@@ -3,64 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر الملابس</title>
+  <title>🛍️ متجر الملابس</title>
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background: #f8f8f8;
+      background: #1c1c1c;
       margin: 0;
       padding: 0;
-      text-align: center;
+      color: #fff;
     }
     header {
       background: #000;
       color: #fff;
       padding: 20px;
-      font-size: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .cart {
+      font-size: 20px;
+      cursor: pointer;
     }
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      gap: 25px;
+      padding: 30px;
     }
     .product {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 10px;
+      background: #2a2a2a;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .product:hover {
+      transform: translateY(-5px);
     }
     .product img {
       width: 100%;
-      border-radius: 10px;
+      height: auto;
+      border-bottom: 2px solid #444;
+      transition: transform 0.3s ease;
+    }
+    .product:hover img {
+      transform: scale(1.05);
     }
     .product h3 {
-      margin: 10px 0 5px;
+      margin: 15px 0 5px;
+      font-size: 20px;
     }
     .price {
-      color: #e91e63;
+      color: #a4c639; /* زيتوني */
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 18px;
     }
     .btn {
       display: inline-block;
-      background: #000;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 5px;
+      background: #a4c639;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #8da32f;
     }
     footer {
-      background: #222;
-      color: #fff;
-      padding: 10px;
-      margin-top: 20px;
+      background: #111;
+      color: #aaa;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <header>🛍️ متجر الملابس</header>
+  <header>
+    <div>🛍️ Abdallah Store</div>
+    <div class="cart">🛒 سلة التسوق</div>
+  </header>
 
   <div class="container">
     <!-- المنتج الأول -->
@@ -89,7 +117,7 @@
   </div>
 
   <footer>
-    &copy; 2025 جميع الحقوق محفوظة - متجر الملابس
+    &copy; 2025 جميع الحقوق محفوظة - Abdallah Store
   </footer>
 
 </body>
