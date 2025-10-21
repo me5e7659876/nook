@@ -3,278 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nook Decor</title>
+  <title>Nook - Create Your Perfect Space</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
-      background-color: #4b0b1b;
-      background-image: radial-gradient(rgba(245, 213, 155, 0.15) 1px, transparent 1px);
-      background-size: 40px 40px;
-      color: #2b2b2b;
-      min-height: 100vh;
-      display: flex;
+      background-color: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
     }
 
-    /* Sidebar Navigation */
-    nav {
-      width: 230px;
-      background-color: #fff7ef;
-      padding: 25px 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      box-shadow: 4px 0 20px rgba(75, 11, 27, 0.2);
-    }
-
-    nav button {
-      background-color: #fff;
-      border: 2px solid #7b2040;
-      color: #7b2040;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    nav button:hover,
-    nav button.active {
-      background-color: #7b2040;
-      color: #f5d59b;
-      box-shadow: 0 0 10px rgba(123, 32, 64, 0.4);
-    }
-
-    header {
-      background: linear-gradient(90deg, #4b0b1b, #7b2040);
-      color: #f5d59b;
-      padding: 25px 0;
-      text-align: center;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      text-transform: uppercase;
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-    }
-
-    .main {
-      flex: 1;
-      margin-top: 100px;
-      padding: 40px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(75, 11, 27, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-      text-align: center;
+    /* بانر علوي */
+    .hero {
       position: relative;
-      border: 1px solid rgba(245, 213, 155, 0.4);
+      width: 100%;
+      height: 100vh;
+      background: url('18cd1689-7db4-44e7-866e-ec28e64a1f52.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
     }
 
-    .card::before {
+    /* خلفية مظللة شفافة */
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: 15px;
-      box-shadow: 0 0 25px rgba(245, 213, 155, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
     }
 
-    .card:hover::before {
-      opacity: 1;
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    .hero h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffffff, #d4b1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 2s ease;
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .card:hover img {
-      transform: scale(1.05);
+    /* ميوزك */
+    audio {
+      display: none;
     }
 
-    .card h3 {
-      margin: 15px 0 5px;
-      font-size: 18px;
-      color: #4b0b1b;
-      font-weight: 600;
+    /* لجزء المحتوى بعد البانر */
+    section {
+      padding: 60px 20px;
+      text-align: center;
     }
 
-    .card p {
-      font-size: 16px;
-      font-weight: 500;
-      color: #7b2040;
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #444;
     }
 
-    .btn {
-      display: inline-block;
-      background-color: #7b2040;
-      color: #f5d59b;
-      padding: 10px 22px;
-      border-radius: 30px;
-      text-decoration: none;
-      margin: 15px 0;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-weight: 600;
-      border: 1px solid #f5d59b;
+    section p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #666;
+      line-height: 1.7;
     }
 
-    .btn:hover {
-      background-color: #f5d59b;
-      color: #4b0b1b;
-    }
-
-    /* Music Button */
-    #music-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #7b2040;
-      color: #f5d59b;
-      border: none;
-      border-radius: 30px;
-      padding: 12px 22px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: background-color 0.3s ease;
-      z-index: 100;
-    }
-
-    #music-btn:hover {
-      background-color: #f5d59b;
-      color: #4b0b1b;
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>Nook Decor</header>
+  <!-- موسيقى بيانو -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/04/18/audio_38496c5d9e.mp3" type="audio/mpeg">
+  </audio>
 
-  <nav>
-    <button class="active" onclick="filterSelection('moods')">Moods</button>
-    <button onclick="filterSelection('games')">Games</button>
-    <button onclick="filterSelection('vases')">Vases</button>
-    <button onclick="filterSelection('cushions')">Cushions</button>
-    <button onclick="filterSelection('wooden')">Wooden Racks</button>
-    <button onclick="filterSelection('glass')">Glass Candles</button>
-    <button onclick="filterSelection('outdoor')">Outdoor Flooring</button>
-    <button onclick="filterSelection('all')">All</button>
-  </nav>
-
-  <div class="main">
-    <div class="container" id="productContainer">
-      <div class="card moods">
-        <img src="https://i.imgur.com/ZbF4HkL.jpg" alt="Mood Decor">
-        <h3>Romantic Mood Setup</h3>
-        <p>EGP 850</p>
-        <a class="btn" href="product.html?id=mood">View Details</a>
-      </div>
-
-      <div class="card games">
-        <img src="https://i.imgur.com/qYxvB7n.jpg" alt="Chess Set">
-        <h3>Luxury Chess Set</h3>
-        <p>EGP 1200</p>
-        <a class="btn" href="product.html?id=chess">View Details</a>
-      </div>
-
-      <div class="card vases">
-        <img src="https://i.imgur.com/nYy1T9T.jpg" alt="Elegant Vase">
-        <h3>Elegant Ceramic Vase</h3>
-        <p>EGP 450</p>
-        <a class="btn" href="product.html?id=vase">View Details</a>
-      </div>
-
-      <div class="card cushions">
-        <img src="https://i.imgur.com/V5G0kT1.jpg" alt="Cushion">
-        <h3>Velvet Cushion</h3>
-        <p>EGP 350</p>
-        <a class="btn" href="product.html?id=cushion">View Details</a>
-      </div>
-
-      <div class="card wooden">
-        <img src="https://i.imgur.com/4lQ1vKo.jpg" alt="Wooden Rack">
-        <h3>Minimal Wooden Rack</h3>
-        <p>EGP 700</p>
-        <a class="btn" href="product.html?id=rack">View Details</a>
-      </div>
-
-      <div class="card glass">
-        <img src="https://i.imgur.com/zkJmVxB.jpg" alt="Glass Candle">
-        <h3>Glass Candle</h3>
-        <p>EGP 250</p>
-        <a class="btn" href="product.html?id=candle">View Details</a>
-      </div>
-
-      <div class="card outdoor">
-        <img src="https://i.imgur.com/bBqHufA.jpg" alt="Outdoor Flooring">
-        <h3>Outdoor Deck Tiles</h3>
-        <p>EGP 950</p>
-        <a class="btn" href="product.html?id=flooring">View Details</a>
-      </div>
+  <!-- البانر -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Create Your Perfect Nook</h1>
     </div>
   </div>
 
-  <!-- Music Button -->
-  <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
-
-  <audio id="bg-music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2023/03/22/audio_6d1dc31dcb.mp3?filename=soft-piano-melody-143200.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    function filterSelection(category) {
-      let cards = document.querySelectorAll(".card");
-      if (category === "all") {
-        cards.forEach(card => card.style.display = "block");
-      } else {
-        cards.forEach(card => {
-          card.style.display = card.classList.contains(category) ? "block" : "none";
-        });
-      }
-      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
-    }
-
-    // Music controls
-    const music = document.getElementById("bg-music");
-    const musicBtn = document.getElementById("music-btn");
-    let playing = false;
-
-    function toggleMusic() {
-      if (!playing) {
-        music.play();
-        musicBtn.textContent = "⏸ Pause Music";
-        playing = true;
-      } else {
-        music.pause();
-        musicBtn.textContent = "🎵 Play Music";
-        playing = false;
-      }
-    }
-  </script>
+  <!-- جزء المحتوى -->
+  <section>
+    <h2>Welcome to Nook</h2>
+    <p>
+      Transform your balcony into a serene retreat — a cozy corner filled with warmth, lights, and elegance.  
+      Whether for quiet evenings or joyful gatherings, your nook is where comfort meets beauty.
+    </p>
+  </section>
 </body>
 </html>
