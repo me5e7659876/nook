@@ -1,1 +1,151 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 { font-size: 22px; color: #4a5a3c; }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .image {
+      flex: 1 1 400px;
+      min-height: 400px;
+    }
+    .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .details {
+      flex: 1 1 400px;
+      padding: 30px;
+    }
+    .details h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .price {
+      font-size: 22px;
+      color: #a4c639;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      background: #a4c639;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 10px;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #8da32f; }
+    .whatsapp {
+      background: #25d366;
+    }
+    .whatsapp:hover {
+      background: #1ebc57;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏠 Decor Store</h1>
+    <a href="index.html">← Back</a>
+  </header>
+
+  <div class="container">
+    <div class="image">
+      <img id="product-image" src="" alt="">
+    </div>
+    <div class="details">
+      <h2 id="product-name"></h2>
+      <div class="price" id="product-price"></div>
+      <a href="#" class="btn" id="add-cart">Add to Cart</a>
+      <a href="#" class="btn whatsapp" id="whatsapp-btn">Order on WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    const products = {
+      chess: {
+        name: "Luxury Wooden Chess Set",
+        price: "550 EGP",
+        image: "https://i.ibb.co/ZfRfkYt/chess.jpg"
+      },
+      lamp: {
+        name: "Wooden Lamp",
+        price: "450 EGP",
+        image: "https://i.ibb.co/60qhYyG/lamp.jpg"
+      },
+      plant: {
+        name: "Artificial Plant",
+        price: "250 EGP",
+        image: "https://i.ibb.co/ZL1Jv9M/plant.jpg"
+      },
+      frame: {
+        name: "Wall Frame",
+        price: "600 EGP",
+        image: "https://i.ibb.co/6XD4GJw/frame.jpg"
+      },
+      vase: {
+        name: "Ceramic Vase",
+        price: "300 EGP",
+        image: "https://i.ibb.co/r6J5Kww/vase.jpg"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    const product = products[productId];
+
+    if (product) {
+      document.getElementById("product-name").textContent = product.name;
+      document.getElementById("product-price").textContent = product.price;
+      document.getElementById("product-image").src = product.image;
+
+      // زر الواتساب
+      const phone = "201234567890"; // ← ضع رقمك هنا
+      const msg = `Hello, I'm interested in ${product.name} (${product.price})`;
+      document.getElementById("whatsapp-btn").href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    } else {
+      document.body.innerHTML = "<h2 style='text-align:center;margin-top:100px;'>Product not found</h2>";
+    }
+  </script>
+
+</body>
+</html>
