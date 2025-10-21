@@ -27,12 +27,14 @@
       right: 0;
       z-index: 1000;
     }
+
     header h1 {
       font-size: 26px;
       color: #4a5a3c;
       margin: 0;
       font-weight: 700;
     }
+
     header .icons {
       font-size: 22px;
       cursor: pointer;
@@ -48,19 +50,23 @@
       bottom: 0;
       overflow-y: auto;
     }
+
     .sidebar h2 {
       font-size: 18px;
       margin-bottom: 15px;
       color: #4a5a3c;
       font-weight: 600;
     }
+
     .sidebar ul {
       list-style: none;
       padding: 0;
     }
+
     .sidebar ul li {
       margin-bottom: 12px;
     }
+
     .sidebar ul li button {
       background: none;
       border: none;
@@ -69,6 +75,7 @@
       color: #444;
       transition: color 0.3s;
     }
+
     .sidebar ul li button:hover {
       color: #a4c639;
       font-weight: 600;
@@ -84,12 +91,14 @@
       align-items: center;
       justify-content: center;
     }
+
     .banner::after {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.35);
     }
+
     .banner h2 {
       position: relative;
       color: #fff;
@@ -106,6 +115,7 @@
       margin-left: 220px;
       margin-top: 20px;
     }
+
     .product {
       background: #fff;
       border-radius: 15px;
@@ -114,27 +124,32 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
     }
+
     .product:hover {
       transform: translateY(-6px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
+
     .product img {
       width: 100%;
       height: 220px;
       object-fit: cover;
     }
+
     .product h3 {
       margin: 15px 0 5px;
       font-size: 18px;
       color: #333;
       font-weight: 600;
     }
+
     .price {
       color: #a4c639;
       font-weight: bold;
       margin-bottom: 15px;
       font-size: 16px;
     }
+
     .btn {
       display: inline-block;
       background: #a4c639;
@@ -146,6 +161,7 @@
       margin-bottom: 15px;
       transition: background 0.3s ease;
     }
+
     .btn:hover {
       background: #8da32f;
     }
@@ -168,6 +184,7 @@
         border-right: none;
         margin-top: 70px;
       }
+
       .banner, .container, footer {
         margin-left: 0;
       }
@@ -202,36 +219,35 @@
       <img src="https://i.ibb.co/60qhYyG/lamp.jpg" alt="Wooden Lamp">
       <h3>Wooden Lamp</h3>
       <div class="price">450 EGP</div>
-      <a class="btn" href="#">Add to Cart</a>
+      <a class="btn" href="product.html?id=lamp">View Details</a>
     </div>
 
     <div class="product" data-category="plant">
       <img src="https://i.ibb.co/ZL1Jv9M/plant.jpg" alt="Artificial Plant">
       <h3>Artificial Plant</h3>
       <div class="price">250 EGP</div>
-      <a class="btn" href="#">Add to Cart</a>
+      <a class="btn" href="product.html?id=plant">View Details</a>
     </div>
 
     <div class="product" data-category="frame">
       <img src="https://i.ibb.co/6XD4GJw/frame.jpg" alt="Wall Frame">
       <h3>Wall Frame</h3>
       <div class="price">600 EGP</div>
-      <a class="btn" href="#">Add to Cart</a>
+      <a class="btn" href="product.html?id=frame">View Details</a>
     </div>
 
     <div class="product" data-category="furniture">
       <img src="https://i.ibb.co/r6J5Kww/vase.jpg" alt="Ceramic Vase">
       <h3>Ceramic Vase</h3>
       <div class="price">300 EGP</div>
-      <a class="btn" href="#">Add to Cart</a>
+      <a class="btn" href="product.html?id=vase">View Details</a>
     </div>
 
-    <!-- 🎮 Games Section -->
     <div class="product" data-category="games">
       <img src="https://i.ibb.co/ZfRfkYt/chess.jpg" alt="Luxury Wooden Chess Set">
       <h3>Luxury Wooden Chess Set</h3>
       <div class="price">550 EGP</div>
-      <a class="btn" href="#">Add to Cart</a>
+      <a class="btn" href="product.html?id=chess">View Details</a>
     </div>
   </div>
 
@@ -249,12 +265,7 @@
           product.style.display = 'none';
         }
       });
-      // Scroll to top of products when filtering
-      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     }
-
-    // Show all by default when page loads
-    window.onload = () => filterProducts('all');
   </script>
 
 </body>
