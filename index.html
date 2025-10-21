@@ -30,3 +30,227 @@
     header h1 {
       font-size: 26px;
       color: #4a5a3c;
+      margin: 0;
+      font-weight: 700;
+    }
+    header .icons {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .sidebar {
+      background: #ffffff;
+      width: 220px;
+      padding: 90px 20px 20px;
+      border-right: 1px solid #eee;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #4a5a3c;
+      font-weight: 600;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 12px;
+    }
+    .sidebar ul li button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #444;
+      transition: color 0.3s;
+    }
+    .sidebar ul li button:hover {
+      color: #a4c639;
+      font-weight: 600;
+    }
+
+    .banner {
+      background: url('https://i.ibb.co/cDLBk5h/interior.jpg') no-repeat center/cover;
+      height: 320px;
+      margin-left: 220px;
+      margin-top: 70px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .banner::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    .banner h2 {
+      position: relative;
+      color: #fff;
+      font-size: 34px;
+      font-weight: 700;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      margin-left: 220px;
+      margin-top: 20px;
+    }
+    .product {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .product h3 {
+      margin: 15px 0 5px;
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+    }
+    .price {
+      color: #a4c639;
+      font-weight: bold;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .btn {
+      display: inline-block;
+      background: #a4c639;
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 15px;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #8da32f;
+    }
+
+    footer {
+      background: #4a5a3c;
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      margin-left: 220px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        margin-top: 70px;
+      }
+      .banner, .container, footer {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏠 Decor Store</h1>
+    <div class="icons">🔍 🛒</div>
+  </header>
+
+  <div class="sidebar">
+    <h2>Categories</h2>
+    <ul>
+      <li><button onclick="filterProducts('all')">All</button></li>
+      <li><button onclick="filterProducts('light')">🕯️ Lighting</button></li>
+      <li><button onclick="filterProducts('plant')">🌿 Plants</button></li>
+      <li><button onclick="filterProducts('frame')">🖼️ Wall Art</button></li>
+      <li><button onclick="filterProducts('furniture')">🪑 Small Furniture</button></li>
+      <li><button onclick="filterProducts('games')">🎮 Games</button></li>
+    </ul>
+  </div>
+
+  <div class="banner">
+    <h2>Transform Your Home ✨</h2>
+  </div>
+
+  <div class="container" id="products">
+    <div class="product" data-category="light">
+      <img src="https://i.ibb.co/60qhYyG/lamp.jpg" alt="Wooden Lamp">
+      <h3>Wooden Lamp</h3>
+      <div class="price">450 EGP</div>
+      <a class="btn" href="#">Add to Cart</a>
+    </div>
+
+    <div class="product" data-category="plant">
+      <img src="https://i.ibb.co/ZL1Jv9M/plant.jpg" alt="Artificial Plant">
+      <h3>Artificial Plant</h3>
+      <div class="price">250 EGP</div>
+      <a class="btn" href="#">Add to Cart</a>
+    </div>
+
+    <div class="product" data-category="frame">
+      <img src="https://i.ibb.co/6XD4GJw/frame.jpg" alt="Wall Frame">
+      <h3>Wall Frame</h3>
+      <div class="price">600 EGP</div>
+      <a class="btn" href="#">Add to Cart</a>
+    </div>
+
+    <div class="product" data-category="furniture">
+      <img src="https://i.ibb.co/r6J5Kww/vase.jpg" alt="Ceramic Vase">
+      <h3>Ceramic Vase</h3>
+      <div class="price">300 EGP</div>
+      <a class="btn" href="#">Add to Cart</a>
+    </div>
+
+    <!-- 🎮 Games Section -->
+    <div class="product" data-category="games">
+      <img src="https://i.ibb.co/ZfRfkYt/chess.jpg" alt="Luxury Wooden Chess Set">
+      <h3>Luxury Wooden Chess Set</h3>
+      <div class="price">550 EGP</div>
+      <a class="btn" href="#">Add to Cart</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 All Rights Reserved - Decor Store
+  </footer>
+
+  <script>
+    function filterProducts(category) {
+      let products = document.querySelectorAll('.product');
+      products.forEach(product => {
+        if (category === 'all' || product.dataset.category === category) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
