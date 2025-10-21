@@ -24,7 +24,7 @@
     .banner {
       position: relative;
       width: 100%;
-      height: 400px;
+      height: 250px; /* تقليل ارتفاع البنر */
       overflow: hidden;
       border-radius: 12px;
     }
@@ -43,9 +43,9 @@
       transform: translate(-50%, -50%);
       color: white;
       background-color: rgba(75, 14, 31, 0.8);
-      padding: 20px 40px;
+      padding: 15px 30px; /* تقليل حجم النص قليلًا ليتناسب مع البنر */
       border-radius: 12px;
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 600;
       text-align: center;
     }
@@ -143,11 +143,11 @@
     /* تحسين عرض البنر على الشاشات الكبيرة */
     @media (min-width: 1200px) {
       .banner {
-        height: 500px;
+        height: 300px; /* ارتفاع أكبر قليلًا للشاشات الكبيرة */
       }
       .banner h1 {
-        font-size: 48px;
-        padding: 25px 50px;
+        font-size: 32px;
+        padding: 20px 40px;
       }
     }
   </style>
