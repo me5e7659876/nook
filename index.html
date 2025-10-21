@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nook Home Decor</title>
+  <title>Nook Decor</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
@@ -29,7 +29,7 @@
 
   <!-- Header -->
   <header class="bg-white shadow p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-gray-700">Nook Home Decor</h1>
+    <h1 class="text-2xl font-bold text-gray-700">Nook Decor</h1>
     <nav>
       <ul class="flex space-x-4">
         <li><a href="#" class="hover:text-gray-600">Home</a></li>
@@ -40,93 +40,4 @@
   </header>
 
   <!-- Main Section -->
-  <main class="flex">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white p-6 border-r border-gray-200">
-      <h2 class="text-lg font-semibold mb-4">Categories</h2>
-      <ul id="categoryList" class="space-y-2">
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="moods">Moods</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="lighting">Lighting</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="vases">Vases</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="wallart">Wall Art</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="furniture">Small Furniture</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="games">Games</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded" data-category="outdoor-flooring">Outdoor Flooring</button></li>
-        <li><button class="category-btn px-3 py-2 w-full text-left rounded active" data-category="all">All</button></li>
-      </ul>
-    </aside>
-
-    <!-- Product Grid -->
-    <section class="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
-      
-      <!-- Lighting -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="lighting">
-        <img src="https://images.unsplash.com/photo-1582719478171-2a7b1c6b8d43?auto=format&fit=crop&w=400&q=80" alt="Lamp" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Elegant Lamp</h3>
-        <p class="text-gray-500">$120</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=lamp">View Details</a>
-      </div>
-
-      <!-- Vases -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="vases">
-        <img src="https://images.unsplash.com/photo-1616628188857-9e8e0b4f1b9d?auto=format&fit=crop&w=400&q=80" alt="Vase" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Ceramic Vase</h3>
-        <p class="text-gray-500">$60</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=vase">View Details</a>
-      </div>
-
-      <!-- Wall Art -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="wallart">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=400&q=80" alt="Wall Art" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Wall Art Piece</h3>
-        <p class="text-gray-500">$90</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=wallart">View Details</a>
-      </div>
-
-      <!-- Furniture -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="furniture">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Chair" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Modern Chair</h3>
-        <p class="text-gray-500">$180</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=chair">View Details</a>
-      </div>
-
-      <!-- Games -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="games">
-        <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=400&q=80" alt="Chess" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Luxury Wooden Chess Set</h3>
-        <p class="text-gray-500">$250</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=chess">View Details</a>
-      </div>
-
-      <!-- Outdoor Flooring -->
-      <div class="product-card bg-white p-4 rounded-2xl shadow-sm" data-category="outdoor-flooring">
-        <img src="https://images.unsplash.com/photo-1627653241805-6f7fa6a8dd1c?auto=format&fit=crop&w=400&q=80" alt="Outdoor Flooring" class="rounded-lg mb-3">
-        <h3 class="font-semibold text-lg">Outdoor Deck Tiles</h3>
-        <p class="text-gray-500">$200</p>
-        <a class="inline-block mt-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition" href="product.html?id=deck">View Details</a>
-      </div>
-
-    </section>
-  </main>
-
-  <script>
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    const products = document.querySelectorAll('.product-card');
-
-    categoryButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const category = button.dataset.category;
-        products.forEach(product => {
-          product.style.display = (category === 'all' || product.dataset.category === category)
-            ? 'block' : 'none';
-        });
-      });
-    });
-  </script>
-
-</body>
-</html>
+  <main
