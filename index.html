@@ -249,7 +249,12 @@
           product.style.display = 'none';
         }
       });
+      // Scroll to top of products when filtering
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     }
+
+    // Show all by default when page loads
+    window.onload = () => filterProducts('all');
   </script>
 
 </body>
