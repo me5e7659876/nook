@@ -5,224 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nook Decor</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
     body {
-      display: flex;
-      background-color: #f6f6f6;
-      color: #333;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0b1b;
+      background-image: radial-gradient(rgba(245, 213, 155, 0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: #2b2b2b;
+      min-height: 100vh;
     }
 
-    /* Sidebar */
-    aside {
-      width: 240px;
-      background: #fff;
-      padding: 30px 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-
-    aside h1 {
-      font-size: 22px;
-      color: #222;
-      margin-bottom: 30px;
+    header {
+      background: linear-gradient(90deg, #4b0b1b, #7b2040);
+      color: #f5d59b;
+      padding: 25px 0;
       text-align: center;
+      font-size: 32px;
+      font-weight: 700;
       letter-spacing: 1px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
     }
 
-    aside ul {
-      list-style: none;
-    }
-
-    aside ul li {
-      margin: 15px 0;
-    }
-
-    aside ul li button {
-      background: none;
-      border: none;
-      font-size: 16px;
-      color: #444;
-      cursor: pointer;
-      transition: color 0.3s;
-      width: 100%;
-      text-align: left;
-    }
-
-    aside ul li button:hover {
-      color: #111;
-      font-weight: 500;
-    }
-
-    /* Main Content */
-    main {
-      margin-left: 260px;
-      padding: 40px 30px;
-      width: calc(100% - 260px);
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    .product {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    nav {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #fff7ef;
+      padding: 12px 0;
+      box-shadow: 0 4px 15px rgba(75, 11, 27, 0.15);
     }
 
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    nav button {
+      background-color: #fff;
+      border: 2px solid #7b2040;
+      color: #7b2040;
+      padding: 10px 18px;
+      margin: 6px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 15px;
     }
 
-    .product img {
+    nav button:hover,
+    nav button.active {
+      background-color: #7b2040;
+      color: #f5d59b;
+      box-shadow: 0 0 10px rgba(123, 32, 64, 0.4);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(75, 11, 27, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(245, 213, 155, 0.4);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(245, 213, 155, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card img {
       width: 100%;
-      height: 180px;
+      height: 220px;
       object-fit: cover;
+      transition: transform 0.4s ease;
     }
 
-    .product h3 {
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      margin: 15px 0 5px;
+      font-size: 18px;
+      color: #4b0b1b;
+      font-weight: 600;
+    }
+
+    .card p {
       font-size: 16px;
       font-weight: 500;
-      margin: 15px;
-      color: #222;
+      color: #7b2040;
     }
 
-    .product .price {
-      font-size: 15px;
-      color: #666;
-      margin: 0 15px 15px;
-    }
-
-    .product a.btn {
-      display: block;
-      background: #111;
-      color: #fff;
-      text-align: center;
+    .btn {
+      display: inline-block;
+      background-color: #7b2040;
+      color: #f5d59b;
+      padding: 10px 22px;
+      border-radius: 30px;
       text-decoration: none;
-      padding: 10px;
-      border-radius: 0 0 16px 16px;
-      transition: background 0.3s;
+      margin: 15px 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-weight: 600;
+      border: 1px solid #f5d59b;
     }
 
-    .product a.btn:hover {
-      background: #333;
-    }
-
-    @media (max-width: 768px) {
-      aside {
-        width: 180px;
-      }
-      main {
-        margin-left: 190px;
-        width: calc(100% - 190px);
-      }
+    .btn:hover {
+      background-color: #f5d59b;
+      color: #4b0b1b;
     }
   </style>
 </head>
 <body>
-  <aside>
-    <h1>Nook Decor</h1>
-    <ul>
-      <li><button onclick="filterProducts('moods')">🕯️ Moods</button></li>
-      <li><button onclick="filterProducts('lighting')">💡 Lighting</button></li>
-      <li><button onclick="filterProducts('wallart')">🖼️ Wall Art</button></li>
-      <li><button onclick="filterProducts('furniture')">🪑 Small Furniture</button></li>
-      <li><button onclick="filterProducts('woodenracks')">🪵 Wooden Racks</button></li>
-      <li><button onclick="filterProducts('games')">🎮 Games</button></li>
-      <li><button onclick="filterProducts('vases')">🏺 Vases</button></li>
-      <li><button onclick="filterProducts('cushions')">🛋️ Cushions</button></li>
-      <li><button onclick="filterProducts('outdoorflooring')">🌿 Outdoor Flooring</button></li>
-      <li><button onclick="filterProducts('all')">🛍️ All</button></li>
-    </ul>
-  </aside>
+  <header>
+    Nook Decor
+  </header>
 
-  <main>
-    <section class="products" id="product-list">
-      <div class="product" data-category="lighting">
-        <img src="https://i.ibb.co/ZzW2kgR/lamp.jpg" alt="Modern Lamp">
-        <h3>Modern Lamp</h3>
-        <div class="price">EGP 450</div>
-        <a class="btn" href="product.html?id=lamp">View Details</a>
-      </div>
+  <nav>
+    <button class="active" onclick="filterSelection('moods')">Moods</button>
+    <button onclick="filterSelection('games')">Games</button>
+    <button onclick="filterSelection('vases')">Vases</button>
+    <button onclick="filterSelection('cushions')">Cushions</button>
+    <button onclick="filterSelection('wooden')">Wooden Racks</button>
+    <button onclick="filterSelection('glass')">Glass Candles</button>
+    <button onclick="filterSelection('outdoor')">Outdoor Flooring</button>
+    <button onclick="filterSelection('all')">All</button>
+  </nav>
 
-      <div class="product" data-category="wallart">
-        <img src="https://i.ibb.co/Wp8KjVn/wallart.jpg" alt="Wall Art Canvas">
-        <h3>Wall Art Canvas</h3>
-        <div class="price">EGP 320</div>
-        <a class="btn" href="product.html?id=wallart">View Details</a>
-      </div>
+  <div class="container" id="productContainer">
+    <!-- Moods -->
+    <div class="card moods">
+      <img src="https://i.imgur.com/ZbF4HkL.jpg" alt="Mood Decor">
+      <h3>Romantic Mood Setup</h3>
+      <p>EGP 850</p>
+      <a class="btn" href="product.html?id=mood">View Details</a>
+    </div>
 
-      <div class="product" data-category="furniture">
-        <img src="https://i.ibb.co/SRrQZYw/table.jpg" alt="Wooden Side Table">
-        <h3>Wooden Side Table</h3>
-        <div class="price">EGP 850</div>
-        <a class="btn" href="product.html?id=table">View Details</a>
-      </div>
+    <!-- Games -->
+    <div class="card games">
+      <img src="https://i.imgur.com/qYxvB7n.jpg" alt="Chess Set">
+      <h3>Luxury Chess Set</h3>
+      <p>EGP 1200</p>
+      <a class="btn" href="product.html?id=chess">View Details</a>
+    </div>
 
-      <div class="product" data-category="woodenracks">
-        <img src="https://i.ibb.co/M9YzzpR/wooden-rack.jpg" alt="Wooden Storage Rack">
-        <h3>Wooden Storage Rack</h3>
-        <div class="price">EGP 670</div>
-        <a class="btn" href="product.html?id=rack">View Details</a>
-      </div>
+    <!-- Vases -->
+    <div class="card vases">
+      <img src="https://i.imgur.com/nYy1T9T.jpg" alt="Elegant Vase">
+      <h3>Elegant Ceramic Vase</h3>
+      <p>EGP 450</p>
+      <a class="btn" href="product.html?id=vase">View Details</a>
+    </div>
 
-      <div class="product" data-category="games">
-        <img src="https://i.ibb.co/ZfRfkYt/chess.jpg" alt="Luxury Wooden Chess Set">
-        <h3>Luxury Wooden Chess Set</h3>
-        <div class="price">EGP 550</div>
-        <a class="btn" href="product.html?id=chess">View Details</a>
-      </div>
+    <!-- Cushions -->
+    <div class="card cushions">
+      <img src="https://i.imgur.com/V5G0kT1.jpg" alt="Cushion">
+      <h3>Velvet Cushion</h3>
+      <p>EGP 350</p>
+      <a class="btn" href="product.html?id=cushion">View Details</a>
+    </div>
 
-      <div class="product" data-category="vases">
-        <img src="https://i.ibb.co/4Yq9rSB/vase.jpg" alt="Ceramic Vase">
-        <h3>Ceramic Vase</h3>
-        <div class="price">EGP 260</div>
-        <a class="btn" href="product.html?id=vase">View Details</a>
-      </div>
+    <!-- Wooden Racks -->
+    <div class="card wooden">
+      <img src="https://i.imgur.com/4lQ1vKo.jpg" alt="Wooden Rack">
+      <h3>Minimal Wooden Rack</h3>
+      <p>EGP 700</p>
+      <a class="btn" href="product.html?id=rack">View Details</a>
+    </div>
 
-      <div class="product" data-category="cushions">
-        <img src="https://i.ibb.co/5LdhcCx/cushion.jpg" alt="Soft Velvet Cushion">
-        <h3>Soft Velvet Cushion</h3>
-        <div class="price">EGP 190</div>
-        <a class="btn" href="product.html?id=cushion">View Details</a>
-      </div>
+    <!-- Glass Candles -->
+    <div class="card glass">
+      <img src="https://i.imgur.com/zkJmVxB.jpg" alt="Glass Candle">
+      <h3>Glass Candle</h3>
+      <p>EGP 250</p>
+      <a class="btn" href="product.html?id=candle">View Details</a>
+    </div>
 
-      <div class="product" data-category="outdoorflooring">
-        <img src="https://i.ibb.co/7kRkQ7h/outdoor-floor.jpg" alt="Outdoor Deck Flooring">
-        <h3>Outdoor Deck Flooring</h3>
-        <div class="price">EGP 1250</div>
-        <a class="btn" href="product.html?id=deck">View Details</a>
-      </div>
-    </section>
-  </main>
+    <!-- Outdoor Flooring -->
+    <div class="card outdoor">
+      <img src="https://i.imgur.com/bBqHufA.jpg" alt="Outdoor Flooring">
+      <h3>Outdoor Deck Tiles</h3>
+      <p>EGP 950</p>
+      <a class="btn" href="product.html?id=flooring">View Details</a>
+    </div>
+  </div>
 
   <script>
-    function filterProducts(category) {
-      const products = document.querySelectorAll(".product");
-      products.forEach((product) => {
-        if (category === "all" || product.dataset.category === category) {
-          product.style.display = "flex";
-        } else {
-          product.style.display = "none";
-        }
-      });
+    function filterSelection(category) {
+      let cards = document.querySelectorAll(".card");
+      if (category === "all") {
+        cards.forEach(card => card.style.display = "block");
+      } else {
+        cards.forEach(card => {
+          card.style.display = card.classList.contains(category) ? "block" : "none";
+        });
+      }
+      document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
     }
   </script>
 </body>
