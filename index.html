@@ -107,6 +107,14 @@
       flex-wrap: wrap;
     }
 
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      order: 0;
+    }
+
     .sidebar {
       width: 230px;
       background-color: #4b0e1f;
@@ -116,7 +124,7 @@
       margin-left: 20px;
       height: fit-content;
       flex-shrink: 0;
-      order: 2;
+      order: 1; /* لجعلها في الجهة اليمنى */
     }
 
     .sidebar h2 {
@@ -145,13 +153,6 @@
 
     .categories a:hover {
       color: #ffb3c6;
-    }
-
-    .content {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
     }
 
     .card {
