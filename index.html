@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,15 @@
       --text: #ffffff;
       --muted: rgba(255,255,255,0.85);
     }
-    html,body{height:100%;margin:0;padding:0;font-family:'Poppins',sans-serif;background-color:var(--bg);color:var(--text);direction:rtl}
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      font-family:'Poppins',sans-serif;
+      background-color:var(--bg);
+      color:var(--text);
+      direction:ltr;
+    }
     header{
       background-color:var(--bg);
       color:var(--text);
@@ -24,11 +32,15 @@
       position:relative;
       box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
-    .brand{font-size:34px;font-weight:700;text-shadow:0 0 10px rgba(255,200,210,0.35)}
+    .brand{
+      font-size:34px;
+      font-weight:700;
+      text-shadow:0 0 10px rgba(255,200,210,0.35);
+    }
     /* search area */
     .search-wrap{
       position:absolute;
-      right:20px;
+      left:20px;
       top:10px;
       display:flex;
       align-items:center;
@@ -52,14 +64,14 @@
       background:none;border:none;color:var(--text);cursor:pointer;font-size:18px;padding:6px;border-radius:8px;
     }
     .icon-btn:hover{background:rgba(255,255,255,0.03)}
-    .results-info{position:absolute;left:20px;top:12px;font-size:14px;color:var(--muted)}
+    .results-info{position:absolute;right:20px;top:12px;font-size:14px;color:var(--muted)}
     /* banner */
     .banner{position:relative;width:100%;max-height:480px;overflow:hidden;border-radius:12px;margin:18px 20px}
     .banner img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
     .banner h1{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--text);
       background-color: rgba(75,14,31,0.75);padding:18px 34px;border-radius:10px;font-size:34px;font-weight:600;text-align:center}
     .container{display:flex;gap:20px;padding:18px 20px;flex-wrap:wrap}
-    .sidebar{width:230px;background:var(--bg);padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.3);flex-shrink:0}
+    .sidebar{width:230px;background:var(--bg);padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.3);flex-shrink:0;order:1}
     .sidebar h2{margin:0 0 10px 0;font-size:20px}
     .categories{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
     .categories li a{display:block;text-decoration:none;color:var(--text);padding:8px;border-radius:8px;font-weight:500}
@@ -89,7 +101,7 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- موسيقى (اختياري) -->
+  <!-- background music -->
   <audio autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
   </audio>
@@ -97,32 +109,32 @@
   <header>
     <div class="brand">Nook Decor</div>
 
-    <div class="results-info" id="resultsInfo" aria-live="polite">عرض كل العناصر</div>
+    <div class="results-info" id="resultsInfo" aria-live="polite">Showing all items</div>
 
-    <div class="search-wrap" role="search" aria-label="بحث في الموقع">
-      <input id="searchInput" class="search-input" type="search" placeholder="ابحث عن منتج، فئة، أو كلمة..." aria-label="حقل البحث" />
+    <div class="search-wrap" role="search" aria-label="Site Search">
+      <input id="searchInput" class="search-input" type="search" placeholder="Search products, categories, or keywords..." aria-label="Search field" />
       <div class="search-icons" aria-hidden="false">
-        <button class="icon-btn" id="clearBtn" title="مسح البحث" aria-label="مسح البحث" style="display:none">
+        <button class="icon-btn" id="clearBtn" title="Clear search" aria-label="Clear search" style="display:none">
           <i class="fas fa-times"></i>
         </button>
-        <button class="icon-btn" id="searchBtn" title="تركيز البحث" aria-label="تركيز البحث">
+        <button class="icon-btn" id="searchBtn" title="Focus search" aria-label="Focus search">
           <i class="fas fa-search"></i>
         </button>
-        <button class="icon-btn" id="cartBtn" title="سلة التسوق" aria-label="سلة التسوق">
+        <button class="icon-btn" id="cartBtn" title="Shopping cart" aria-label="Shopping cart">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- بانر -->
+  <!-- Banner -->
   <div class="banner" aria-hidden="false">
     <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Outdoor Balcony Decor Banner">
     <h1 id="bannerTitle">Outdoor & Balcony Elegance</h1>
   </div>
 
   <div class="container">
-    <aside class="sidebar" aria-label="التصنيفات">
+    <aside class="sidebar" aria-label="Categories">
       <h2>Categories</h2>
       <ul class="categories" id="categoryList">
         <li><a href="#" data-category="all">All</a></li>
@@ -139,7 +151,6 @@
     </aside>
 
     <main class="content" id="content" aria-live="polite">
-      <!-- كل بطاقة تحمل خصائص للبحث -->
       <div class="card" data-title="Elegant Vase" data-category="vases" data-desc="Handmade ceramic vase for balcony">
         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase - Handmade ceramic vase">
         <h3>Elegant Vase</h3>
@@ -182,8 +193,7 @@
         <p>Classic wooden chess set for leisure</p>
       </div>
 
-      <!-- رسالة لا توجد نتائج (تظهر عند الحاجة) -->
-      <div id="noResults" class="no-results" style="display:none">لا توجد نتائج مطابقة لبحثك.</div>
+      <div id="noResults" class="no-results" style="display:none">No matching results found.</div>
     </main>
   </div>
 
@@ -192,12 +202,10 @@
   </footer>
 
   <script>
-    // ---------- HELPERS ----------
     const $ = q => document.querySelector(q);
     const $$ = q => Array.from(document.querySelectorAll(q));
     const escapeRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    // ---------- ELEMENTS ----------
     const searchInput = $('#searchInput');
     const searchBtn = $('#searchBtn');
     const clearBtn = $('#clearBtn');
@@ -208,12 +216,10 @@
     const noResults = $('#noResults');
     const bannerTitle = $('#bannerTitle');
 
-    // ---------- STATE ----------
     let lastQuery = '';
     let activeCategory = 'all';
     let debounceTimer = null;
 
-    // ---------- SEARCH LOGIC ----------
     function highlightText(text, query) {
       if(!query) return text;
       const re = new RegExp('(' + escapeRegex(query) + ')', 'ig');
@@ -226,31 +232,24 @@
       const qLower = q.toLowerCase();
       let visibleCount = 0;
 
-      // Search in category links (show/hide categories that don't match)
       categoryLinks.forEach(link => {
         const catText = link.textContent.trim();
         const match = q === '' ? true : catText.toLowerCase().includes(qLower);
         link.style.display = match ? 'block' : 'none';
       });
 
-      // Search in banner and header title too (for completeness)
       if(q && bannerTitle) {
-        bannerTitle.innerHTML = highlightText(bannerTitle.textContent, q);
+        bannerTitle.innerHTML = highlightText('Outdoor & Balcony Elegance', q);
       } else if (bannerTitle) {
-        // reset if empty
         bannerTitle.textContent = 'Outdoor & Balcony Elegance';
       }
 
-      // For each product card, check title, description, alt text, category
       cards.forEach(card => {
-        // original plain fields
-        const title = (card.getAttribute('data-title')||'').toString();
-        const desc = (card.getAttribute('data-desc')||'').toString();
-        const cat = (card.getAttribute('data-category')||'').toString();
-        const img = card.querySelector('img');
-        const imgAlt = img ? (img.alt || '') : '';
+        const title = (card.getAttribute('data-title')||'');
+        const desc = (card.getAttribute('data-desc')||'');
+        const cat = (card.getAttribute('data-category')||'');
+        const imgAlt = card.querySelector('img')?.alt || '';
 
-        // match conditions
         const matchesQuery = q === '' ? true : (
           title.toLowerCase().includes(qLower) ||
           desc.toLowerCase().includes(qLower) ||
@@ -261,55 +260,34 @@
         const matchesCategory = (activeCategory === 'all') ? true : (cat === activeCategory);
 
         if(matchesQuery && matchesCategory) {
-          // show & highlight
           card.style.display = '';
           visibleCount++;
 
-          // highlight title & description & alt (we'll set innerHTML)
           const h3 = card.querySelector('h3');
           const p = card.querySelector('p');
           if(h3) h3.innerHTML = highlightText(title, q);
           if(p) p.innerHTML = highlightText(desc, q);
-
-          // alt attribute highlight (can't set HTML inside alt) -> leave alt untouched
         } else {
           card.style.display = 'none';
         }
       });
 
-      // handle no results
-      if(visibleCount === 0) {
-        noResults.style.display = '';
-      } else {
-        noResults.style.display = 'none';
-      }
+      noResults.style.display = visibleCount === 0 ? '' : 'none';
+      resultsInfo.textContent = q === ''
+        ? (activeCategory === 'all' ? 'Showing all items' : `Showing category: ${activeCategory}`)
+        : `${visibleCount} result${visibleCount===1 ? '' : 's'} for "${q}"`;
 
-      // update results info
-      if(q === '') {
-        resultsInfo.textContent = activeCategory === 'all' ? 'عرض كل العناصر' : `عرض العناصر في: ${activeCategory}`;
-      } else {
-        resultsInfo.textContent = `${visibleCount} نتيجة${visibleCount===1 ? '' : 'ًات'} لبحثك: "${q}"`;
-      }
-
-      // show/ hide clear button
       clearBtn.style.display = q ? 'inline-block' : 'none';
     }
 
-    // ---------- DEBOUNCE ----------
     function doSearchDebounced(q) {
       if(debounceTimer) clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => runSearch(q), 180);
     }
 
-    // ---------- EVENTS ----------
-    // input typing
-    searchInput.addEventListener('input', e => {
-      const q = e.target.value;
-      doSearchDebounced(q);
-    });
+    searchInput.addEventListener('input', e => doSearchDebounced(e.target.value));
 
-    // Enter focuses search (if pressing from anywhere)
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if(e.key === 'Enter' && document.activeElement !== searchInput) {
         e.preventDefault();
         searchInput.focus();
@@ -320,41 +298,21 @@
       }
     });
 
-    // search icon focuses input
-    searchBtn.addEventListener('click', () => {
-      searchInput.focus();
-    });
+    searchBtn.addEventListener('click', () => searchInput.focus());
+    clearBtn.addEventListener('click', () => { searchInput.value=''; runSearch(''); searchInput.focus(); });
+    cartBtn.addEventListener('click', () => alert('Your cart is empty. Demo only.'));
 
-    // clear button
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      runSearch('');
-      searchInput.focus();
-    });
-
-    // sample cart button action (placeholder)
-    cartBtn.addEventListener('click', () => {
-      alert('سلة التسوق فارغة حالياً. هذه مجرد عرض تجريبي.');
-    });
-
-    // category clicks filter
     categoryLinks.forEach(link => {
-      link.addEventListener('click', (ev) => {
+      link.addEventListener('click', ev => {
         ev.preventDefault();
-        // set active
         categoryLinks.forEach(l => l.classList.remove('active-cat'));
         link.classList.add('active-cat');
         activeCategory = link.dataset.category || 'all';
-        // run search with current query
         runSearch(searchInput.value);
       });
     });
 
-    // initial run to ensure everything visible
     runSearch('');
-
-    // For accessibility: announce changes when search input changes (aria-live already set)
-    // No additional code required.
   </script>
 </body>
 </html>
