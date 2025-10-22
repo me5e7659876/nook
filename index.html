@@ -5,162 +5,214 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nook Decor</title>
   <style>
-    :root{
-      --bg: #4b0e1f;
-      --card: #6b1a38;
-      --accent: #ffb3c6;
-      --text: #ffffff;
-      --muted: rgba(255,255,255,0.85);
-    }
-    html,body{
-      height:100%;
-      margin:0;
-      padding:0;
-      font-family:'Poppins',sans-serif;
-      background-color:var(--bg);
-      color:var(--text);
-      direction:ltr;
-    }
-    header{
-      background-color:var(--bg);
-      color:var(--text);
-      padding:18px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      position:relative;
-      box-shadow:0 2px 6px rgba(0,0,0,0.25);
-    }
-    .brand{
-      font-size:34px;
-      font-weight:700;
-      text-shadow:0 0 10px rgba(255,200,210,0.35);
-    }
-    .search-wrap{
-      position:absolute;
-      left:20px;
-      top:10px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .search-icon{
-      font-size:20px;
-      color:var(--accent);
-      margin-right:6px;
-    }
-    .search-input{
-      width:320px;
-      max-width:55vw;
-      min-width:140px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.05);
-      color:var(--text);
-      outline:none;
-      transition:box-shadow .15s, transform .08s;
-    }
-    .search-input:focus{box-shadow:0 0 0 4px rgba(255,179,198,0.08);transform:translateY(-1px)}
-    .search-icons{display:flex;gap:8px;align-items:center}
-    .icon-btn{
-      background:none;border:none;color:var(--text);cursor:pointer;font-size:18px;padding:6px;border-radius:8px;
-    }
-    .icon-btn:hover{background:rgba(255,255,255,0.03)}
-    .results-info{
-      position:absolute;
-      right:20px;
-      top:12px;
-      font-size:24px;
-      color:#FFD700; /* اللون الذهبي الأنيق */
-      font-family:'Playfair Display',serif;
-      letter-spacing:1px;
-      font-weight:700;
-      animation: glow 2.5s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px rgba(255,215,0,0.3), 0 0 10px rgba(255,215,0,0.2); }
-      to { text-shadow: 0 0 15px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.5); }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #4b0e1f;
+      color: #fff;
     }
 
-    .banner{position:relative;width:100%;max-height:480px;overflow:hidden;border-radius:12px;margin:18px 20px}
-    .banner img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
-    .banner h1{
-      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      color:var(--text);background-color:rgba(75,14,31,0.75);
-      padding:18px 34px;border-radius:10px;font-size:34px;font-weight:600;text-align:center
+    header {
+      background-color: #4b0e1f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 38px;
+      font-weight: bold;
+      position: relative;
+      text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
     }
 
-    .container{
-      display:flex;
-      gap:20px;
-      padding:18px 20px;
-      flex-wrap:wrap;
-      flex-direction:row-reverse; /* Categories on right */
-    }
-    .sidebar{
-      width:230px;background:var(--bg);padding:18px;border-radius:12px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.3);flex-shrink:0;order:1
-    }
-    .sidebar h2{margin:0 0 10px 0;font-size:20px}
-    .categories{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-    .categories li a{
-      display:block;text-decoration:none;color:var(--text);
-      padding:8px;border-radius:8px;font-weight:500
-    }
-    .categories li a:hover{background:rgba(255,255,255,0.03);color:var(--accent)}
-
-    .content{
-      flex:1;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      align-items:start
-    }
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.3);
-      padding:12px;
-      text-align:center;
-      transition:transform .25s,box-shadow .2s;
-      position:relative
-    }
-    .card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-    .card h3{color:var(--text);margin:10px 0 6px;font-size:18px}
-    .card p{color:var(--muted);font-size:14px;margin:0}
-
-    footer{
-      background:var(--bg);
-      color:var(--text);
-      text-align:center;
-      padding:16px;
-      margin-top:26px
+    .header-icons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 15px;
+      font-size: 22px;
     }
 
-    .no-results{
-      grid-column:1/-1;
-      background:rgba(255,255,255,0.04);
-      padding:20px;
-      border-radius:12px;
-      text-align:center;
-      color:var(--muted)
+    .header-icons i {
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    mark{background:transparent;color:var(--accent);font-weight:700;padding:0 2px}
 
-    @media (max-width:768px){
-      .search-wrap{position:static;order:3;width:100%;padding:12px 20px;justify-content:center}
-      header{flex-direction:column;padding:12px 10px}
-      .sidebar{width:100%;order:2}
-      .banner{margin:12px}
-      .container{padding:12px;flex-direction:column;}
-      .results-info{position:static;margin-top:8px;text-align:center;}
+    .header-icons i:hover {
+      transform: scale(1.2);
+    }
+
+    .search-bar {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      width: 280px;
+      outline: none;
+    }
+
+    .search-bar i {
+      font-size: 20px;
+      color: white;
+    }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      max-height: 500px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .banner h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      background-color: rgba(75, 14, 31, 0.8);
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 30px;
+      font-weight: 600;
+      text-align: center;
+      animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.7; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      display: flex;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      width: 230px;
+      background-color: #4b0e1f;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      margin-left: 20px;
+      height: fit-content;
+      flex-shrink: 0;
+      order: 2;
+    }
+
+    .sidebar h2 {
+      color: #fff;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .categories {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .categories li {
+      margin: 12px 0;
+    }
+
+    .categories a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+      display: block;
+    }
+
+    .categories a:hover {
+      color: #ffb3c6;
+    }
+
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #6b1a38;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      height: 180px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card h3 {
+      color: #fff;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    footer {
+      background-color: #4b0e1f;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    .results-info {
+      text-align: center;
+      margin: 10px 0 30px 0;
+      font-size: 22px;
+      font-weight: 600;
+      color: #ffffff;
+      font-family: 'Playfair Display', serif;
+      animation: subtleFade 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes subtleFade {
+      from { opacity: 0.8; transform: scale(1); }
+      to { opacity: 1; transform: scale(1.05); }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+        order: 2;
+      }
     }
   </style>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -169,144 +221,105 @@
   </audio>
 
   <header>
-    <div class="brand">Nook Decor</div>
-
-    <div class="results-info" id="resultsInfo">Create your own mood</div>
-
-    <div class="search-wrap" role="search" aria-label="Site Search">
-      <i class="fas fa-search search-icon"></i>
-      <input id="searchInput" class="search-input" type="search" placeholder="Search products, categories, or keywords..." />
-      <div class="search-icons">
-        <button class="icon-btn" id="clearBtn" title="Clear search" style="display:none"><i class="fas fa-times"></i></button>
-        <button class="icon-btn" id="cartBtn" title="Shopping cart"><i class="fas fa-shopping-cart"></i></button>
-      </div>
+    <div class="header-icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-shopping-cart"></i>
     </div>
+    Nook Decor
   </header>
+
+  <div class="search-bar">
+    <i class="fas fa-search"></i>
+    <input type="text" id="searchInput" placeholder="Search for anything..." />
+  </div>
+
+  <div class="results-info" id="resultsInfo">Create your own mood</div>
 
   <div class="banner">
     <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Outdoor Balcony Decor Banner">
-    <h1 id="bannerTitle">Outdoor & Balcony Elegance</h1>
+    <h1>Outdoor & Balcony Elegance</h1>
   </div>
 
   <div class="container">
-    <aside class="sidebar" aria-label="Categories">
+    <main class="content" id="content">
+      <div class="card" data-category="Vases">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
+        <h3>Elegant Vase</h3>
+      </div>
+      <div class="card" data-category="Cushions">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion">
+        <h3>Soft Cushion</h3>
+      </div>
+      <div class="card" data-category="Lighting">
+        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting">
+        <h3>Modern Lamp</h3>
+      </div>
+      <div class="card" data-category="Furniture">
+        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Furniture">
+        <h3>Luxury Chair</h3>
+      </div>
+      <div class="card" data-category="Glass Candles">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Glass Candle">
+        <h3>Glass Candle</h3>
+      </div>
+      <div class="card" data-category="Wooden Racks">
+        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Wooden Rack">
+        <h3>Wooden Rack</h3>
+      </div>
+      <div class="card" data-category="Games">
+        <img src="https://i.postimg.cc/hvhyYKks/chess.jpg" alt="Chess">
+        <h3>Chess</h3>
+      </div>
+    </main>
+
+    <aside class="sidebar">
       <h2>Categories</h2>
-      <ul class="categories" id="categoryList">
-        <li><a href="#" data-category="all">All</a></li>
-        <li><a href="#" data-category="moods">Moods</a></li>
-        <li><a href="#" data-category="vases">Vases</a></li>
-        <li><a href="#" data-category="outdoor-flooring">Outdoor Flooring</a></li>
-        <li><a href="#" data-category="wooden-racks">Wooden Racks</a></li>
-        <li><a href="#" data-category="lighting">Lighting</a></li>
-        <li><a href="#" data-category="glass-candles">Glass Candles</a></li>
-        <li><a href="#" data-category="furniture">Furniture</a></li>
-        <li><a href="#" data-category="cushions">Cushions</a></li>
-        <li><a href="#" data-category="games">Games</a></li>
+      <ul class="categories">
+        <li><a href="#">All</a></li>
+        <li><a href="#">Moods</a></li>
+        <li><a href="#">Vases</a></li>
+        <li><a href="#">Outdoor Flooring</a></li>
+        <li><a href="#">Wooden Racks</a></li>
+        <li><a href="#">Lighting</a></li>
+        <li><a href="#">Glass Candles</a></li>
+        <li><a href="#">Furniture</a></li>
+        <li><a href="#">Cushions</a></li>
+        <li><a href="#">Games</a></li>
       </ul>
     </aside>
-
-    <main class="content" id="content">
-      <div class="card" data-title="Elegant Vase" data-category="vases" data-desc="Handmade ceramic vase for balcony">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase - Handmade ceramic vase">
-        <h3>Elegant Vase</h3>
-        <p>Handmade ceramic vase for balcony</p>
-      </div>
-      <div class="card" data-title="Soft Cushion" data-category="cushions" data-desc="Soft cotton cushion for cozy seating">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion - Soft cotton cushion">
-        <h3>Soft Cushion</h3>
-        <p>Soft cotton cushion for cozy seating</p>
-      </div>
-      <div class="card" data-title="Modern Lamp" data-category="lighting" data-desc="Minimalist outdoor lamp with LED">
-        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting - Minimalist outdoor lamp">
-        <h3>Modern Lamp</h3>
-        <p>Minimalist outdoor lamp with LED</p>
-      </div>
-      <div class="card" data-title="Luxury Chair" data-category="furniture" data-desc="Outdoor luxury chair made of walnut">
-        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Furniture - Luxury walnut chair">
-        <h3>Luxury Chair</h3>
-        <p>Outdoor luxury chair made of walnut</p>
-      </div>
-      <div class="card" data-title="Glass Candle" data-category="glass-candles" data-desc="Scented glass candle with warm aroma">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Glass Candle - Scented glass candle">
-        <h3>Glass Candle</h3>
-        <p>Scented glass candle with warm aroma</p>
-      </div>
-      <div class="card" data-title="Wooden Rack" data-category="wooden-racks" data-desc="Stackable wooden rack for plants">
-        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Wooden Rack - Stackable plant rack">
-        <h3>Wooden Rack</h3>
-        <p>Stackable wooden rack for plants</p>
-      </div>
-      <div class="card" data-title="Chess" data-category="games" data-desc="Classic wooden chess set for leisure">
-        <img src="https://i.postimg.cc/hvhyYKks/chess.jpg" alt="Chess - Classic wooden chess set">
-        <h3>Chess</h3>
-        <p>Classic wooden chess set for leisure</p>
-      </div>
-      <div id="noResults" class="no-results" style="display:none">No matching results found.</div>
-    </main>
   </div>
 
-  <footer>© 2025 Nook Decor. All rights reserved.</footer>
+  <footer>
+    © 2025 Nook Decor. All rights reserved.
+  </footer>
 
   <script>
-    const $ = q => document.querySelector(q);
-    const $$ = q => Array.from(document.querySelectorAll(q));
-    const escapeRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.card');
+    const resultsInfo = document.getElementById('resultsInfo');
 
-    const searchInput = $('#searchInput');
-    const clearBtn = $('#clearBtn');
-    const cartBtn = $('#cartBtn');
-    const resultsInfo = $('#resultsInfo');
-    const cards = $$('.card');
-    const categoryLinks = $$('#categoryList a');
-    const noResults = $('#noResults');
-
-    let activeCategory = 'all';
-
-    function highlightText(text, query) {
-      if(!query) return text;
-      const re = new RegExp('(' + escapeRegex(query) + ')', 'ig');
-      return text.replace(re, '<mark>$1</mark>');
-    }
-
-    function runSearch(query) {
-      const q = (query || '').trim().toLowerCase();
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
       let visibleCount = 0;
 
       cards.forEach(card => {
-        const title = card.dataset.title.toLowerCase();
-        const desc = card.dataset.desc.toLowerCase();
-        const cat = card.dataset.category.toLowerCase();
-        const matchesQuery = q === '' || title.includes(q) || desc.includes(q) || cat.includes(q);
-        const matchesCategory = activeCategory === 'all' || cat === activeCategory;
-
-        if(matchesQuery && matchesCategory) {
-          card.style.display = '';
+        const text = card.textContent.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'block';
           visibleCount++;
-          card.querySelector('h3').innerHTML = highlightText(card.dataset.title, query);
-          card.querySelector('p').innerHTML = highlightText(card.dataset.desc, query);
         } else {
           card.style.display = 'none';
         }
       });
 
-      noResults.style.display = visibleCount ? 'none' : '';
-      clearBtn.style.display = q ? 'inline-block' : 'none';
-    }
-
-    searchInput.addEventListener('input', e => runSearch(e.target.value));
-    clearBtn.addEventListener('click', ()=>{searchInput.value='';runSearch('');});
-    cartBtn.addEventListener('click', ()=>alert('Your cart is empty. Demo only.'));
-    categoryLinks.forEach(link=>{
-      link.addEventListener('click',e=>{
-        e.preventDefault();
-        categoryLinks.forEach(l=>l.classList.remove('active-cat'));
-        link.classList.add('active-cat');
-        activeCategory = link.dataset.category;
-        runSearch(searchInput.value);
-      });
+      if (query === '') {
+        resultsInfo.textContent = 'Create your own mood';
+      } else if (visibleCount === 0) {
+        resultsInfo.textContent = 'No matching results';
+      } else {
+        resultsInfo.textContent = `${visibleCount} results for "${query}"`;
+      }
     });
-
-    runSearch('');
   </script>
 </body>
 </html>
