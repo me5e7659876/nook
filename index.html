@@ -112,7 +112,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      order: 0;
+      order: 1; /* علشان تكون المحتويات في اليمين والـ sidebar في اليسار */
     }
 
     .sidebar {
@@ -121,10 +121,10 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      margin-left: 20px;
+      margin-right: 20px;
       height: fit-content;
       flex-shrink: 0;
-      order: 1; /* لجعلها في الجهة اليمنى */
+      order: 0; /* علشان تبقى في الجهة اليسرى */
     }
 
     .sidebar h2 {
@@ -193,7 +193,7 @@
     .results-info {
       text-align: center;
       margin: 10px 0 30px 0;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 600;
       color: #ffffff;
       font-family: 'Playfair Display', serif;
@@ -208,7 +208,7 @@
     @media (max-width: 768px) {
       .sidebar {
         width: 100%;
-        margin-left: 0;
+        margin-right: 0;
         margin-top: 20px;
         order: 2;
       }
@@ -242,6 +242,22 @@
   </div>
 
   <div class="container">
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <ul class="categories">
+        <li><a href="#">All</a></li>
+        <li><a href="#">Moods</a></li>
+        <li><a href="#">Vases</a></li>
+        <li><a href="#">Outdoor Flooring</a></li>
+        <li><a href="#">Wooden Racks</a></li>
+        <li><a href="#">Lighting</a></li>
+        <li><a href="#">Glass Candles</a></li>
+        <li><a href="#">Furniture</a></li>
+        <li><a href="#">Cushions</a></li>
+        <li><a href="#">Games</a></li>
+      </ul>
+    </aside>
+
     <main class="content" id="content">
       <div class="card" data-category="Vases">
         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
@@ -272,22 +288,6 @@
         <h3>Chess</h3>
       </div>
     </main>
-
-    <aside class="sidebar">
-      <h2>Categories</h2>
-      <ul class="categories">
-        <li><a href="#">All</a></li>
-        <li><a href="#">Moods</a></li>
-        <li><a href="#">Vases</a></li>
-        <li><a href="#">Outdoor Flooring</a></li>
-        <li><a href="#">Wooden Racks</a></li>
-        <li><a href="#">Lighting</a></li>
-        <li><a href="#">Glass Candles</a></li>
-        <li><a href="#">Furniture</a></li>
-        <li><a href="#">Cushions</a></li>
-        <li><a href="#">Games</a></li>
-      </ul>
-    </aside>
   </div>
 
   <footer>
