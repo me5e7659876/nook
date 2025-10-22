@@ -8,55 +8,38 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background-color: #4b0e1f;
+      background-color: #4b0e1f; /* اللون البرجوندي */
       color: #fff;
     }
 
     header {
       background-color: #4b0e1f;
       color: white;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 20px;
+      text-align: center;
+      font-size: 38px;
+      font-weight: bold;
       position: relative;
+      text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
     }
 
-    /* الأيقونات على اليسار */
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
+    /* أيقونات البحث والسلة */
     .header-icons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       display: flex;
-      align-items: center;
       gap: 15px;
       font-size: 22px;
-      cursor: pointer;
     }
 
     .header-icons i {
-      transition: transform 0.2s ease, color 0.3s ease;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
     .header-icons i:hover {
       transform: scale(1.2);
-      color: #ffb3c6;
-    }
-
-    /* عنوان الموقع في المنتصف */
-    .header-title {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 38px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ffb3c6, #fff, #ffb3c6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
     }
 
     .banner {
@@ -180,36 +163,34 @@
       display: none;
     }
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    @media (min-width: 1200px) {
+      .banner {
+        max-height: 500px;
       }
-
-      .header-left {
-        order: 2;
-        margin-top: 10px;
+      .banner h1 {
+        font-size: 42px;
+        padding: 25px 50px;
       }
+    }
 
-      .header-title {
-        position: static;
-        transform: none;
-        background: linear-gradient(90deg, #ffb3c6, #fff, #ffb3c6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    @media (max-width: 992px) {
+      .banner {
+        max-height: 400px;
+      }
+      .banner h1 {
         font-size: 32px;
+        padding: 20px 40px;
       }
+    }
 
+    @media (max-width: 768px) {
       .banner {
         max-height: 300px;
       }
-
       .banner h1 {
         font-size: 24px;
         padding: 15px 30px;
       }
-
       .sidebar {
         width: 100%;
         margin-right: 0;
@@ -217,9 +198,7 @@
       }
     }
   </style>
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- موسيقى فخمة تلقائية -->
@@ -228,18 +207,17 @@
   </audio>
 
   <header>
-    <div class="header-left">
-      <div class="header-icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-cart-shopping"></i>
-      </div>
+    <div class="header-icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-shopping-cart"></i>
     </div>
-    <div class="header-title">Nook Decor</div>
+    Nook Decor
   </header>
 
+  <!-- بانر جديد لديكورات البلكونات -->
   <div class="banner">
-    <img src="https://i.postimg.cc/NjyVznfm/4.png" alt="Banner Image">
-    <h1>Create Your Perfect Nook</h1>
+    <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Outdoor Balcony Decor Banner">
+    <h1>Outdoor & Balcony Elegance</h1>
   </div>
 
   <div class="container">
