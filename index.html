@@ -15,10 +15,36 @@
     header {
       background-color: #4b0e1f;
       color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 24px;
       font-weight: bold;
+      position: relative;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .header-icons i {
+      transition: transform 0.2s ease, color 0.3s ease;
+    }
+
+    .header-icons i:hover {
+      transform: scale(1.2);
+      color: #ffb3c6;
     }
 
     .banner {
@@ -121,6 +147,7 @@
       border-radius: 12px;
       height: 180px;
       object-fit: cover;
+      object-position: center;
     }
 
     .card h3 {
@@ -162,6 +189,16 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .header-left {
+        margin-bottom: 10px;
+      }
+
       .banner {
         max-height: 300px;
       }
@@ -176,6 +213,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
   <!-- موسيقى فخمة تلقائية عند فتح الموقع -->
@@ -183,7 +221,15 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
   </audio>
 
-  <header>Nook Decor</header>
+  <header>
+    <div class="header-left">
+      <div class="header-icons">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </div>
+    <div class="header-title">Nook Decor</div>
+  </header>
 
   <div class="banner">
     <img src="https://i.postimg.cc/NjyVznfm/4.png" alt="Banner Image">
