@@ -4,269 +4,355 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nook Decor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{
+    :root {
       --bg: #4b0e1f;
       --card: #6b1a38;
       --accent: #ffb3c6;
       --text: #ffffff;
       --muted: rgba(255,255,255,0.85);
     }
-    html,body{
-      height:100%;
-      margin:0;
-      padding:0;
-      font-family:'Poppins',sans-serif;
-      background-color:var(--bg);
-      color:var(--text);
-      direction:ltr;
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
     }
-    header{
-      background-color:var(--bg);
-      color:var(--text);
-      padding:18px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      position:relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+
+    header {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     }
-    .brand{
-      font-size:34px;
-      font-weight:700;
-      text-shadow:0 0 10px rgba(255,200,210,0.35);
+
+    .brand {
+      font-size: 34px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 200, 210, 0.35);
     }
-    /* search area */
-    .search-wrap{
-      position:absolute;
-      left:20px;
-      top:10px;
-      display:flex;
-      align-items:center;
-      gap:8px;
+
+    .search-wrap {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .search-input{
-      width:320px;
-      max-width:55vw;
-      min-width:140px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.12);
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .search-input {
+      width: 320px;
+      max-width: 55vw;
+      min-width: 140px;
+      padding: 10px 12px 10px 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.05);
-      color:var(--text);
-      outline:none;
-      transition:box-shadow .15s, transform .08s;
+      color: var(--text);
+      outline: none;
+      transition: box-shadow .15s, transform .08s;
     }
-    .search-input:focus{box-shadow:0 0 0 4px rgba(255,179,198,0.08);transform:translateY(-1px)}
-    .search-icons{display:flex;gap:8px;align-items:center}
-    .icon-btn{
-      background:none;border:none;color:var(--text);cursor:pointer;font-size:18px;padding:6px;border-radius:8px;
+
+    .search-input:focus {
+      box-shadow: 0 0 0 4px rgba(255,179,198,0.08);
+      transform: translateY(-1px);
     }
-    .icon-btn:hover{background:rgba(255,255,255,0.03)}
-    
-    /* animated results info */
-    .results-info{
-      position:absolute;
-      right:20px;
-      top:12px;
-      font-size:14px;
-      color:var(--muted);
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 6px;
+      border-radius: 8px;
+    }
+
+    .icon-btn:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .results-info {
+      position: absolute;
+      right: 20px;
+      top: 8px;
+      font-size: 28px;
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
       animation: fadeGlow 4s ease-in-out infinite;
+      letter-spacing: 0.5px;
     }
+
     @keyframes fadeGlow {
-      0%,100% { opacity: 0.75; text-shadow: 0 0 6px rgba(255,179,198,0.4); }
+      0%, 100% { opacity: 0.75; text-shadow: 0 0 6px rgba(255,179,198,0.4); }
       50% { opacity: 1; text-shadow: 0 0 14px rgba(255,179,198,0.9); }
     }
 
-    /* banner */
-    .banner{position:relative;width:100%;max-height:480px;overflow:hidden;border-radius:12px;margin:18px 20px}
-    .banner img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
-    .banner h1{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--text);
-      background-color: rgba(75,14,31,0.75);padding:18px 34px;border-radius:10px;font-size:34px;font-weight:600;text-align:center}
-    
-    .container{
-      display:flex;
-      gap:20px;
-      padding:18px 20px;
-      flex-wrap:wrap;
-      flex-direction: row-reverse;
+    .banner {
+      position: relative;
+      width: 100%;
+      max-height: 480px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 18px 20px;
     }
-    .sidebar{width:230px;background:var(--bg);padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.3);flex-shrink:0;order:1}
-    .sidebar h2{margin:0 0 10px 0;font-size:20px}
-    .categories{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-    .categories li a{display:block;text-decoration:none;color:var(--text);padding:8px;border-radius:8px;font-weight:500}
-    .categories li a:hover{background:rgba(255,255,255,0.03);color:var(--accent)}
-    
-    /* content grid */
-    .content{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;align-items:start}
-    .card{background:var(--card);border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,0.3);padding:12px;text-align:center;transition:transform .25s,box-shadow .2s;position:relative}
-    .card:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:12px}
-    .card h3{color:var(--text);margin:10px 0 6px;font-size:18px}
-    .card p{color:var(--muted);font-size:14px;margin:0}
-    footer{background:var(--bg);color:var(--text);text-align:center;padding:16px;margin-top:26px}
-    .no-results{grid-column:1/-1;background:rgba(255,255,255,0.04);padding:20px;border-radius:12px;text-align:center;color:var(--muted)}
-    mark{background:transparent;color:var(--accent);font-weight:700;padding:0 2px}
-    @media (max-width:768px){
-      .search-wrap{position:static;order:3;width:100%;padding:12px 20px;justify-content:center}
-      header{flex-direction:column;padding:12px 10px}
-      .sidebar{width:100%;order:2}
-      .banner{margin:12px}
-      .container{padding:12px;flex-direction:column;}
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .banner h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(75, 14, 31, 0.75);
+      padding: 18px 34px;
+      border-radius: 10px;
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+      gap: 20px;
+      padding: 18px 20px;
+    }
+
+    .sidebar {
+      width: 230px;
+      background: var(--bg);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      order: 1;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .categories {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .categories li a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    .categories li a:hover {
+      background: rgba(255,255,255,0.03);
+      color: var(--accent);
+    }
+
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      padding: 12px;
+      text-align: center;
+      transition: transform .25s, box-shadow .2s, opacity .3s;
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      color: var(--text);
+      margin: 10px 0 6px;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      .search-wrap {
+        position: static;
+        order: 3;
+        justify-content: center;
+      }
+
+      .results-info {
+        position: static;
+        font-size: 22px;
+        margin-top: 6px;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
     }
   </style>
 
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-  </audio>
-
   <header>
     <div class="brand">Nook Decor</div>
-    <div class="results-info" id="resultsInfo" aria-live="polite">Create your own mood</div>
-    <div class="search-wrap" role="search" aria-label="Site Search">
-      <input id="searchInput" class="search-input" type="search" placeholder="Search products, categories, or keywords..." aria-label="Search field" />
-      <div class="search-icons">
-        <button class="icon-btn" id="clearBtn" title="Clear search" style="display:none"><i class="fas fa-times"></i></button>
-        <button class="icon-btn" id="searchBtn" title="Focus search"><i class="fas fa-search"></i></button>
-        <button class="icon-btn" id="cartBtn" title="Shopping cart"><i class="fas fa-shopping-cart"></i></button>
+    <div class="results-info" id="resultsInfo">Create your own mood</div>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input id="searchInput" class="search-input" type="search" placeholder="Search products, categories..." />
       </div>
+      <button class="icon-btn" id="clearBtn" title="Clear search" style="display:none;"><i class="fas fa-times"></i></button>
+      <button class="icon-btn" id="cartBtn" title="Shopping cart"><i class="fas fa-shopping-cart"></i></button>
     </div>
   </header>
 
   <div class="banner">
     <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Outdoor Balcony Decor Banner">
-    <h1 id="bannerTitle">Outdoor & Balcony Elegance</h1>
+    <h1>Outdoor & Balcony Elegance</h1>
   </div>
 
   <div class="container">
-    <aside class="sidebar" aria-label="Categories">
+    <aside class="sidebar">
       <h2>Categories</h2>
       <ul class="categories" id="categoryList">
         <li><a href="#" data-category="all">All</a></li>
-        <li><a href="#" data-category="moods">Moods</a></li>
         <li><a href="#" data-category="vases">Vases</a></li>
-        <li><a href="#" data-category="outdoor-flooring">Outdoor Flooring</a></li>
-        <li><a href="#" data-category="wooden-racks">Wooden Racks</a></li>
         <li><a href="#" data-category="lighting">Lighting</a></li>
-        <li><a href="#" data-category="glass-candles">Glass Candles</a></li>
         <li><a href="#" data-category="furniture">Furniture</a></li>
         <li><a href="#" data-category="cushions">Cushions</a></li>
-        <li><a href="#" data-category="games">Games</a></li>
       </ul>
     </aside>
 
     <main class="content" id="content">
       <div class="card" data-title="Elegant Vase" data-category="vases" data-desc="Handmade ceramic vase for balcony">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase - Handmade ceramic vase">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase">
         <h3>Elegant Vase</h3>
         <p>Handmade ceramic vase for balcony</p>
       </div>
       <div class="card" data-title="Soft Cushion" data-category="cushions" data-desc="Soft cotton cushion for cozy seating">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion - Soft cotton cushion">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Soft Cushion">
         <h3>Soft Cushion</h3>
         <p>Soft cotton cushion for cozy seating</p>
       </div>
       <div class="card" data-title="Modern Lamp" data-category="lighting" data-desc="Minimalist outdoor lamp with LED">
-        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting - Minimalist outdoor lamp">
+        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Modern Lamp">
         <h3>Modern Lamp</h3>
         <p>Minimalist outdoor lamp with LED</p>
       </div>
       <div class="card" data-title="Luxury Chair" data-category="furniture" data-desc="Outdoor luxury chair made of walnut">
-        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Furniture - Luxury walnut chair">
+        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Luxury Chair">
         <h3>Luxury Chair</h3>
         <p>Outdoor luxury chair made of walnut</p>
       </div>
-      <div class="card" data-title="Glass Candle" data-category="glass-candles" data-desc="Scented glass candle with warm aroma">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Glass Candle - Scented glass candle">
-        <h3>Glass Candle</h3>
-        <p>Scented glass candle with warm aroma</p>
-      </div>
-      <div class="card" data-title="Wooden Rack" data-category="wooden-racks" data-desc="Stackable wooden rack for plants">
-        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Wooden Rack - Stackable plant rack">
-        <h3>Wooden Rack</h3>
-        <p>Stackable wooden rack for plants</p>
-      </div>
-      <div class="card" data-title="Chess" data-category="games" data-desc="Classic wooden chess set for leisure">
-        <img src="https://i.postimg.cc/hvhyYKks/chess.jpg" alt="Chess - Classic wooden chess set">
-        <h3>Chess</h3>
-        <p>Classic wooden chess set for leisure</p>
-      </div>
-      <div id="noResults" class="no-results" style="display:none">No matching results found.</div>
     </main>
   </div>
 
-  <footer>
-    © 2025 Nook Decor. All rights reserved.
-  </footer>
+  <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
   <script>
-    const $ = q => document.querySelector(q);
-    const $$ = q => Array.from(document.querySelectorAll(q));
-    const escapeRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-    const searchInput = $('#searchInput');
-    const searchBtn = $('#searchBtn');
-    const clearBtn = $('#clearBtn');
-    const cartBtn = $('#cartBtn');
-    const resultsInfo = $('#resultsInfo');
-    const cards = $$('.card');
-    const categoryLinks = $$('#categoryList a');
-    const noResults = $('#noResults');
-
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const resultsInfo = document.getElementById('resultsInfo');
+    const cards = document.querySelectorAll('.card');
+    const categoryLinks = document.querySelectorAll('#categoryList a');
     let activeCategory = 'all';
 
-    function highlightText(text, query) {
-      if(!query) return text;
-      const re = new RegExp('(' + escapeRegex(query) + ')', 'ig');
-      return text.replace(re, '<mark>$1</mark>');
-    }
-
     function runSearch(query) {
-      const q = (query || '').trim().toLowerCase();
-      let visibleCount = 0;
-
+      const q = query.trim().toLowerCase();
+      let visible = 0;
       cards.forEach(card => {
         const title = card.dataset.title.toLowerCase();
         const desc = card.dataset.desc.toLowerCase();
         const cat = card.dataset.category.toLowerCase();
-        const matchesQuery = q === '' || title.includes(q) || desc.includes(q) || cat.includes(q);
-        const matchesCategory = activeCategory === 'all' || cat === activeCategory;
-
-        if(matchesQuery && matchesCategory) {
-          card.style.display = '';
-          visibleCount++;
-          card.querySelector('h3').innerHTML = highlightText(card.dataset.title, query);
-          card.querySelector('p').innerHTML = highlightText(card.dataset.desc, query);
-        } else {
-          card.style.display = 'none';
-        }
+        const match = (q === '' || title.includes(q) || desc.includes(q)) && (activeCategory === 'all' || cat === activeCategory);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
       });
-
-      noResults.style.display = visibleCount ? 'none' : '';
-      resultsInfo.textContent = q ? `${visibleCount} result${visibleCount===1?'':'s'} for "${query}"` : 'Create your own mood';
+      resultsInfo.textContent = q ? `${visible} result${visible === 1 ? '' : 's'} for "${query}"` : 'Create your own mood';
       clearBtn.style.display = q ? 'inline-block' : 'none';
     }
 
     searchInput.addEventListener('input', e => runSearch(e.target.value));
-    clearBtn.addEventListener('click', ()=>{searchInput.value='';runSearch('');});
-    searchBtn.addEventListener('click', ()=>searchInput.focus());
-    cartBtn.addEventListener('click', ()=>alert('Your cart is empty. Demo only.'));
-
-    categoryLinks.forEach(link=>{
-      link.addEventListener('click',e=>{
+    clearBtn.addEventListener('click', () => { searchInput.value = ''; runSearch(''); });
+    categoryLinks.forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        categoryLinks.forEach(l=>l.classList.remove('active-cat'));
-        link.classList.add('active-cat');
+        categoryLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
         activeCategory = link.dataset.category;
         runSearch(searchInput.value);
       });
     });
-
-    runSearch('');
   </script>
 </body>
 </html>
