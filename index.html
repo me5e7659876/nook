@@ -8,7 +8,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      background-color: #4b0e1f; /* اللون البرجوندي */
+      background-color: #4b0e1f;
       color: #fff;
     }
 
@@ -19,11 +19,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 24px;
-      font-weight: bold;
       position: relative;
     }
 
+    /* الأيقونات على اليسار */
     .header-left {
       display: flex;
       align-items: center;
@@ -45,6 +44,19 @@
     .header-icons i:hover {
       transform: scale(1.2);
       color: #ffb3c6;
+    }
+
+    /* عنوان الموقع في المنتصف */
+    .header-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 38px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffb3c6, #fff, #ffb3c6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
     }
 
     .banner {
@@ -168,26 +180,6 @@
       display: none;
     }
 
-    @media (min-width: 1200px) {
-      .banner {
-        max-height: 500px;
-      }
-      .banner h1 {
-        font-size: 42px;
-        padding: 25px 50px;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .banner {
-        max-height: 400px;
-      }
-      .banner h1 {
-        font-size: 32px;
-        padding: 20px 40px;
-      }
-    }
-
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -196,16 +188,28 @@
       }
 
       .header-left {
-        margin-bottom: 10px;
+        order: 2;
+        margin-top: 10px;
+      }
+
+      .header-title {
+        position: static;
+        transform: none;
+        background: linear-gradient(90deg, #ffb3c6, #fff, #ffb3c6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 32px;
       }
 
       .banner {
         max-height: 300px;
       }
+
       .banner h1 {
         font-size: 24px;
         padding: 15px 30px;
       }
+
       .sidebar {
         width: 100%;
         margin-right: 0;
@@ -213,10 +217,12 @@
       }
     }
   </style>
+
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <!-- موسيقى فخمة تلقائية عند فتح الموقع -->
+  <!-- موسيقى فخمة تلقائية -->
   <audio autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
   </audio>
