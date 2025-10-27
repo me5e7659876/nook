@@ -121,10 +121,10 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      margin-left: 20px;
+      margin-right: 20px;
       height: fit-content;
       flex-shrink: 0;
-      order: 2;
+      order: 0;
     }
 
     .sidebar h2 {
@@ -193,7 +193,7 @@
     .results-info {
       text-align: center;
       margin: 10px 0 30px 0;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
       color: #ffffff;
       font-family: 'Playfair Display', serif;
@@ -208,16 +208,14 @@
     @media (max-width: 768px) {
       .sidebar {
         width: 100%;
-        margin-left: 0;
+        margin-right: 0;
         margin-top: 20px;
         order: 2;
       }
     }
   </style>
-
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <audio autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
@@ -244,39 +242,6 @@
   </div>
 
   <div class="container">
-    <main class="content" id="content">
-      <a href="#" class="card" data-category="Vases">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
-        <h3>Elegant Vase</h3>
-        <p>$25.00</p>
-      </a>
-      <a href="#" class="card" data-category="Cushions">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion">
-        <h3>Soft Cushion</h3>
-        <p>$19.99</p>
-      </a>
-      <a href="#" class="card" data-category="Lighting">
-        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting">
-        <h3>Modern Lamp</h3>
-        <p>$39.00</p>
-      </a>
-      <a href="#" class="card" data-category="Glass Candles">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
-        <h3>Glass Candles</h3>
-        <p>$12.50</p>
-      </a>
-      <a href="#" class="card" data-category="Wooden Rack">
-        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Wooden Rack">
-        <h3>Wooden Rack</h3>
-        <p>$49.00</p>
-      </a>
-      <a href="#" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/pdFnsZdJ/ayny.jpg" alt="Games">
-        <h3>Games</h3>
-        <p>$55.00</p>
-      </a>
-    </main>
-
     <aside class="sidebar">
       <h2>Categories</h2>
       <ul class="categories">
@@ -292,6 +257,33 @@
         <li><a href="#">Games</a></li>
       </ul>
     </aside>
+
+    <main class="content" id="content">
+      <a href="product1.html" class="card" data-category="Vases">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
+        <h3>Elegant Vase</h3>
+      </a>
+      <a href="product2.html" class="card" data-category="Cushions">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion">
+        <h3>Soft Cushion</h3>
+      </a>
+      <a href="product3.html" class="card" data-category="Lighting">
+        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting">
+        <h3>Modern Lamp</h3>
+      </a>
+      <a href="product4.html" class="card" data-category="Glass Candles">
+        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
+        <h3>Glass Candles</h3>
+      </a>
+      <a href="product5.html" class="card" data-category="Wooden Racks">
+        <img src="https://images.unsplash.com/photo-1558211583-d26f610c6f2a" alt="Wooden Rack">
+        <h3>Wooden Rack</h3>
+      </a>
+      <a href="product6.html" class="card" data-category="Wooden Rack">
+        <img src="https://i.postimg.cc/pdFnsZdJ/ayny.jpg" alt="Wooden Rack">
+        <h3>Wooden Rack</h3>
+      </a>
+    </main>
   </div>
 
   <footer>
