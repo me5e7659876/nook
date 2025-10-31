@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Games & Prices</title>
+  <title>Elegant Vase - Nook Decor</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
-
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
+      font-family: 'Poppins', sans-serif;
       background-color: #4b0e1f;
       color: #fff;
     }
@@ -19,267 +17,106 @@
       color: white;
       padding: 20px;
       text-align: center;
-      font-size: 38px;
+      font-size: 36px;
       font-weight: bold;
-      position: relative;
-      text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
-    }
-
-    .header-icons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      gap: 15px;
-      font-size: 22px;
-    }
-
-    .header-icons i {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .header-icons i:hover {
-      transform: scale(1.2);
     }
 
     .search-bar {
-      margin: 20px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+      text-align: center;
+      margin: 20px 0;
     }
 
     .search-bar input {
-      padding: 10px 15px;
-      font-size: 16px;
+      padding: 10px;
+      width: 300px;
       border: none;
       border-radius: 8px;
-      width: 280px;
-      outline: none;
-    }
-
-    .search-bar i {
-      font-size: 20px;
-      color: white;
-    }
-
-    .banner {
-      position: relative;
-      width: 100%;
-      max-height: 500px;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .banner h1 {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      background-color: rgba(75, 14, 31, 0.8);
-      padding: 20px 40px;
-      border-radius: 12px;
-      font-size: 30px;
-      font-weight: 600;
-      text-align: center;
-      animation: fadeIn 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0.7; }
-      to { opacity: 1; }
     }
 
     .container {
       display: flex;
-      padding: 20px;
       flex-wrap: wrap;
     }
 
-    .content {
+    aside {
+      width: 200px;
+      padding: 20px;
+    }
+
+    main {
       flex: 1;
+      padding: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      order: 1;
-    }
-
-    .sidebar {
-      width: 230px;
-      background-color: #4b0e1f;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      margin-right: 20px;
-      height: fit-content;
-      flex-shrink: 0;
-      order: 0;
-    }
-
-    .sidebar h2 {
-      color: #fff;
-      margin-bottom: 15px;
-      font-size: 22px;
-    }
-
-    .categories {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .categories li {
-      margin: 12px 0;
-    }
-
-    .categories a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-      display: block;
-    }
-
-    .categories a:hover {
-      color: #ffb3c6;
     }
 
     .card {
-      background: none;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 0;
+      background-color: #4b0e1f;
+      border-radius: 8px;
       text-align: center;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s;
+      text-decoration: none;
+      color: white;
     }
 
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .card img {
       width: 100%;
-      border-radius: 16px;
-      height: 260px;
+      border-radius: 8px;
+      height: 250px;
       object-fit: cover;
-      object-position: center;
-      transition: transform 0.4s ease;
-    }
-
-    .card img:hover {
-      transform: scale(1.05);
-    }
-
-    .card h3 {
-      color: #fff;
-      margin-top: 8px;
-      font-size: 18px;
-      font-weight: 500;
-    }
-
-    .price {
-      font-size: 16px;
-      color: #ffb3c6;
-      margin-top: 4px;
-      font-weight: 600;
     }
 
     footer {
+      text-align: center;
+      padding: 20px;
       background-color: #4b0e1f;
       color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
-    .results-info {
-      text-align: center;
-      margin: 10px 0 30px 0;
-      font-size: 17px;
-      font-weight: 600;
-      color: #ffffff;
-      font-family: 'Playfair Display', serif;
-      animation: subtleFade 2.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes subtleFade {
-      from { opacity: 0.8; transform: scale(1); }
-      to { opacity: 1; transform: scale(1.05); }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        margin-right: 0;
-        margin-top: 20px;
-        order: 2;
-      }
+      margin-top: 30px;
     }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-  </audio>
-
-  <header>
-    <div class="header-icons">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-shopping-cart"></i>
-    </div>
-    Games & Prices
-  </header>
+  <header>Nook Decor</header>
 
   <div class="search-bar">
-    <i class="fas fa-search"></i>
-    <input type="text" id="searchInput" placeholder="Search for a game..." />
-  </div>
-
-  <div class="results-info" id="resultsInfo">Explore Our Games Collection</div>
-
-  <div class="banner">
-    <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Games Banner">
-    <h1>Games & Fun Moments</h1>
+    <input type="text" placeholder="Search for products..." />
   </div>
 
   <div class="container">
-    <aside class="sidebar">
+    <aside>
       <h2>Categories</h2>
-      <ul class="categories">
-        <li><a href="#">All</a></li>
-        <li><a href="#">Games</a></li>
+      <ul>
+        <li><a href="#">Vases</a></li>
+        <li><a href="#">Candles</a></li>
+        <li><a href="#">Lamps</a></li>
+        <li><a href="#">Wall Art</a></li>
       </ul>
     </aside>
 
-    <main class="content" id="content">
-      <a href="#" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/j5JwpVsY/Art-of-Chess-Classic-Set.jpg" alt="Chess Set">
-        <h3>شطرنج كلاسيك</h3>
-        <div class="price">350 EGP</div>
+    <main>
+      <a href="product1.html" class="card" data-category="Vases">
+        <img src="https://i.postimg.cc/ZRzFyJP9/image-1759220155342-1zkrul.png" alt="Vases">
+        <h3>Vases</h3>
       </a>
 
-      <a href="#" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/BvTRMbFQ/Hermes-Playing-Cards.jpg" alt="Playing Cards">
-        <h3>كوتشينة Hermes</h3>
-        <div class="price">80 EGP</div>
+      <a href="product2.html" class="card" data-category="Candles">
+        <img src="https://i.postimg.cc/fWjqL7mQ/image-1759220197615-p3h5t.png" alt="Candles">
+        <h3>Candles</h3>
       </a>
 
-      <a href="#" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/158TbJFD/download-5.jpg" alt="Domino">
-        <h3>دومينو كلاسيك</h3>
-        <div class="price">200 EGP</div>
+      <a href="product3.html" class="card" data-category="Lamps">
+        <img src="https://i.postimg.cc/PJzsw7zF/image-1759220294285-p8b5bn.png" alt="Lamps">
+        <h3>Lamps</h3>
+      </a>
+
+      <a href="product7.html" class="card" data-category="Wall Art">
+        <img src="https://i.postimg.cc/NfYPMdqF/download-3.jpg" alt="Wall Art">
+        <h3>Wall Art</h3>
       </a>
     </main>
   </div>
@@ -287,34 +124,5 @@
   <footer>
     © 2025 Nook Decor. All rights reserved.
   </footer>
-
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.card');
-    const resultsInfo = document.getElementById('resultsInfo');
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase().trim();
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = 'block';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (query === '') {
-        resultsInfo.textContent = 'Explore Our Games Collection';
-      } else if (visibleCount === 0) {
-        resultsInfo.textContent = 'No matching results';
-      } else {
-        resultsInfo.textContent = `${visibleCount} results for "${query}"`;
-      }
-    });
-  </script>
 </body>
 </html>
