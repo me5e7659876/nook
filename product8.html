@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nook Decor</title>
+  <title>Games & Prices</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
 
@@ -188,6 +188,13 @@
       font-weight: 500;
     }
 
+    .price {
+      font-size: 16px;
+      color: #ffb3c6;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
     footer {
       background-color: #4b0e1f;
       color: white;
@@ -232,19 +239,19 @@
       <i class="fas fa-search"></i>
       <i class="fas fa-shopping-cart"></i>
     </div>
-    Nook Decor
+    Games & Prices
   </header>
 
   <div class="search-bar">
     <i class="fas fa-search"></i>
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <input type="text" id="searchInput" placeholder="Search for a game..." />
   </div>
 
-  <div class="results-info" id="resultsInfo">Create your own mood</div>
+  <div class="results-info" id="resultsInfo">Explore Our Games Collection</div>
 
   <div class="banner">
-    <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Outdoor Balcony Decor Banner">
-    <h1>Outdoor & Balcony Elegance</h1>
+    <img src="https://i.postimg.cc/gJdpK7ST/outdoor-balcony-decor.jpg" alt="Games Banner">
+    <h1>Games & Fun Moments</h1>
   </div>
 
   <div class="container">
@@ -252,47 +259,27 @@
       <h2>Categories</h2>
       <ul class="categories">
         <li><a href="#">All</a></li>
-        <li><a href="#">Moods</a></li>
-        <li><a href="#">Vases</a></li>
-        <li><a href="#">Outdoor Flooring</a></li>
-        <li><a href="#">Lighting</a></li>
-        <li><a href="#">Glass Candles</a></li>
-        <li><a href="#">Furniture</a></li>
-        <li><a href="#">Cushions</a></li>
-        <li><a href="#">Wooden Rack</a></li>
         <li><a href="#">Games</a></li>
-        <li><a href="#">Wall Art</a></li>
       </ul>
     </aside>
 
     <main class="content" id="content">
-      <a href="product1.html" class="card" data-category="Vases">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
-        <h3>Elegant Vase</h3>
+      <a href="#" class="card" data-category="Games">
+        <img src="https://i.postimg.cc/j5JwpVsY/Art-of-Chess-Classic-Set.jpg" alt="Chess Set">
+        <h3>شطرنج كلاسيك</h3>
+        <div class="price">350 EGP</div>
       </a>
-      <a href="product2.html" class="card" data-category="Cushions">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion">
-        <h3>Soft Cushion</h3>
+
+      <a href="#" class="card" data-category="Games">
+        <img src="https://i.postimg.cc/BvTRMbFQ/Hermes-Playing-Cards.jpg" alt="Playing Cards">
+        <h3>كوتشينة Hermes</h3>
+        <div class="price">80 EGP</div>
       </a>
-      <a href="product3.html" class="card" data-category="Lighting">
-        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting">
-        <h3>Modern Lamp</h3>
-      </a>
-      <a href="product4.html" class="card" data-category="Glass Candles">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
-        <h3>Glass Candles</h3>
-      </a>
-      <a href="product5.html" class="card" data-category="Outdoor Flooring">
-        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353" alt="Outdoor Flooring">
-        <h3>Outdoor Flooring</h3>
-      </a>
-      <a href="product6.html" class="card" data-category="Wooden Rack">
-        <img src="https://i.postimg.cc/pdFnsZdJ/ayny.jpg" alt="Wooden Rack">
-        <h3>Wooden Rack</h3>
-      </a>
-      <a href="wallart.html" class="card" data-category="Wall Art">
-        <img src="https://i.postimg.cc/fL0fJ9Mp/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Wall Art">
-        <h3>Wall Art</h3>
+
+      <a href="#" class="card" data-category="Games">
+        <img src="https://i.postimg.cc/158TbJFD/download-5.jpg" alt="Domino">
+        <h3>دومينو كلاسيك</h3>
+        <div class="price">200 EGP</div>
       </a>
     </main>
   </div>
@@ -321,7 +308,7 @@
       });
 
       if (query === '') {
-        resultsInfo.textContent = 'Create your own mood';
+        resultsInfo.textContent = 'Explore Our Games Collection';
       } else if (visibleCount === 0) {
         resultsInfo.textContent = 'No matching results';
       } else {
