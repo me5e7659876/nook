@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elegant Vase - Nook Decor</title>
+  <title>Games - Nook Decor</title>
   <style>
     body {
       margin: 0;
@@ -23,14 +23,22 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       padding: 30px;
-      gap: 30px;
+      gap: 60px;
     }
     .product-image {
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      max-width: 450px;
+      border-radius: 0;
+      box-shadow: none;
+      display: block;
+      margin: 0;
+      transform: scale(1.05);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .product-image:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1);
     }
     .product-details {
       max-width: 400px;
@@ -76,13 +84,14 @@
   <header>Nook Decor</header>
 
   <div class="product-container">
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase" class="product-image" />
+    <img src="https://images.unsplash.com/photo-1606813902779-7d16a1c33b12" alt="Board Game" class="product-image" />
     <div class="product-details">
-      <h1>Elegant Vase</h1>
-      <p>Bring timeless elegance to your home with this handcrafted ceramic vase. Perfect for flowers or as a stand-alone decor piece.</p>
-      <div class="price">$39.99</div>
+      <h1>Family Board Game</h1>
+      <p>Challenge your friends and family with this fun and engaging board game for all ages.</p>
+      <div class="price">$24.99</div>
       <button class="btn">Add to Cart</button>
-      <a href="index.html" class="back-link">← Back to Home</a>
+      <!-- بدل ما نرجع لصفحة index.html، نرجع لصفحة التصنيفات -->
+      <a href="categories.html" class="back-link">← Back to Categories</a>
     </div>
   </div>
 
