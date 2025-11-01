@@ -11,6 +11,7 @@
       background-color: #4b0e1f;
       color: #fff;
     }
+
     header {
       background-color: #4b0e1f;
       padding: 15px;
@@ -49,6 +50,7 @@
       padding: 30px;
       justify-items: center;
     }
+
     .item {
       background-color: rgba(255,255,255,0.1);
       border-radius: 15px;
@@ -62,19 +64,23 @@
     .item:hover {
       transform: scale(1.05);
     }
+
+    /* ✅ الصور بقت أكبر وموحدة الحجم */
     .item img {
       width: 100%;
-      max-width: 300px;
-      height: 300px; /* ✅ الصورة كلها نفس الارتفاع */
-      object-fit: cover; /* ✅ يظبط المقاس ويحافظ على شكل الصورة */
+      max-width: 350px;
+      height: 420px;
+      object-fit: cover;
       border-radius: 15px;
     }
+
     .price {
       font-size: 20px;
       font-weight: bold;
       color: #ffb3c6;
       margin-top: 10px;
     }
+
     .desc {
       font-size: 15px;
       color: #ffe3eb;
@@ -88,6 +94,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
@@ -102,6 +109,7 @@
     .btn:hover {
       background-color: #ffc7d3;
     }
+
     .back-link {
       display: block;
       text-align: center;
@@ -179,6 +187,5 @@
   </div>
 
   <a href="index.html" class="back-link">← Back to Home</a>
-
 </body>
 </html>
