@@ -3,339 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nook Decor</title>
+  <title>Modern Lamp - Nook Decor</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
-
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
+      font-family: 'Poppins', sans-serif;
       background-color: #4b0e1f;
       color: #fff;
     }
-
     header {
       background-color: #4b0e1f;
-      color: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
-      font-size: 38px;
+      font-size: 28px;
       font-weight: bold;
-      position: relative;
-      text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
-
-    .header-icons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      gap: 15px;
-      font-size: 22px;
+    /* مساحة فاضية مكان البانر */
+    .banner-space {
+      height: 100px;
+      background-color: transparent;
     }
-
-    .header-icons i {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .header-icons i:hover {
-      transform: scale(1.2);
-    }
-
-    .search-bar {
-      margin: 20px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-bar input {
-      padding: 10px 15px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      width: 280px;
-      outline: none;
-    }
-
-    .search-bar i {
-      font-size: 20px;
-      color: white;
-    }
-
-    .banner {
-      position: relative;
-      width: 100%;
-      max-height: 200px; /* 🔸 تم تصغير ارتفاع البانر */
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 30px;
-    }
-
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .banner h1 {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      background-color: rgba(75, 14, 31, 0.8);
-      padding: 15px 30px;
-      border-radius: 12px;
-      font-size: 24px;
-      font-weight: 600;
-      text-align: center;
-      animation: fadeIn 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0.7; }
-      to { opacity: 1; }
-    }
-
-    .container {
-      display: flex;
-      padding: 20px;
-      flex-wrap: wrap;
-    }
-
-    .content {
-      flex: 1;
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      order: 1;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 30px;
+      justify-items: center;
     }
-
-    .sidebar {
-      width: 230px;
-      background-color: #4b0e1f;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      margin-right: 20px;
-      height: fit-content;
-      flex-shrink: 0;
-      order: 0;
-    }
-
-    .sidebar h2 {
-      color: #fff;
-      margin-bottom: 15px;
-      font-size: 22px;
-    }
-
-    .categories {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .categories li {
-      margin: 12px 0;
-    }
-
-    .categories a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-      display: block;
-    }
-
-    .categories a:hover {
-      color: #ffb3c6;
-    }
-
-    .card {
-      background: none;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 0;
+    .item {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 15px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 16px;
-      height: 260px;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.4s ease;
-    }
-
-    .card img:hover {
+    .item:hover {
       transform: scale(1.05);
     }
-
-    .card h3 {
-      color: #fff;
+    .item img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 15px;
+    }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffb3c6;
+      margin-top: 10px;
+    }
+    .desc {
+      font-size: 15px;
+      color: #ffe3eb;
       margin-top: 8px;
-      font-size: 18px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .item:hover .desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      color: #ffb3c6;
+      text-decoration: none;
       font-weight: 500;
     }
-
-    footer {
-      background-color: #4b0e1f;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
-    .results-info {
-      text-align: center;
-      margin: 10px 0 30px 0;
-      font-size: 17px;
-      font-weight: 600;
-      color: #ffffff;
-      font-family: 'Playfair Display', serif;
-      animation: subtleFade 2.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes subtleFade {
-      from { opacity: 0.8; transform: scale(1); }
-      to { opacity: 1; transform: scale(1.05); }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        margin-right: 0;
-        margin-top: 20px;
-        order: 2;
-      }
-    }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-  </audio>
+  <header>Nook Decor</header>
 
-  <header>
-    <div class="header-icons">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-shopping-cart"></i>
+  <div class="banner-space"></div>
+
+  <div class="gallery">
+    <div class="item">
+      <img src="https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png" alt="Modern Lamp 1">
+      <div class="price">1500 EGP</div>
+      <p class="desc">A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.</p>
+      <button class="btn">Add to Cart</button>
     </div>
-    Nook Decor
-  </header>
 
-  <div class="search-bar">
-    <i class="fas fa-search"></i>
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <div class="item">
+      <img src="https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png" alt="Modern Lamp 2">
+      <div class="price">2200 EGP</div>
+      <p class="desc">A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png" alt="Modern Lamp 3">
+      <div class="price">1800 EGP</div>
+      <p class="desc">Soft lighting with a minimal artistic design — the perfect piece to create a relaxing evening mood.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/Xq1c0rqg/b387512d-d9a8-4a21-9cdf-255bb1e9da06.png" alt="Modern Lamp 4">
+      <div class="price">2200 EGP</div>
+      <p class="desc">A sleek geometric design with gentle brightness that balances beauty and comfort in your decor.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png" alt="Modern Lamp 5">
+      <div class="price">1800 EGP</div>
+      <p class="desc">A modern elegant lamp that brings a cozy and stylish touch to your corners and small spaces.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png" alt="Modern Lamp 6">
+      <div class="price">1400 EGP</div>
+      <p class="desc">A chic and affordable decor piece that combines simplicity with charming, relaxing lighting.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png" alt="Modern Lamp 7">
+      <div class="price">2000 EGP</div>
+      <p class="desc">A unique lamp that radiates positive energy and highlights your furniture with soft elegant light.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png" alt="Modern Lamp 8">
+      <div class="price">2200 EGP</div>
+      <p class="desc">The perfect blend of art and function — this lamp adds luxury and brilliance to any interior space.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
   </div>
 
-  <div class="results-info" id="resultsInfo">Create your own mood</div>
+  <a href="index.html" class="back-link">← Back to Home</a>
 
-  <!-- 🔸 Banner Section -->
-  <div class="banner">
-    <img src="https://i.postimg.cc/rwnnnZZM/download-11.jpg" alt="Decor Banner">
-    <h1>Elegant Home Decor</h1>
-  </div>
-
-  <div class="container">
-    <aside class="sidebar">
-      <h2>Categories</h2>
-      <ul class="categories">
-        <li><a href="#">All</a></li>
-        <li><a href="#">Moods</a></li>
-        <li><a href="#">Vases</a></li>
-        <li><a href="#">Outdoor Flooring</a></li>
-        <li><a href="#">Lighting</a></li>
-        <li><a href="#">Glass Candles</a></li>
-        <li><a href="#">Furniture</a></li>
-        <li><a href="#">Cushions</a></li>
-        <li><a href="#">Wooden Rack</a></li>
-        <li><a href="#">Games</a></li>
-        <li><a href="#">Wall Art</a></li>
-      </ul>
-    </aside>
-
-    <main class="content" id="content">
-      <a href="product1.html" class="card" data-category="Vases">
-        <img src="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Vase">
-        <h3>Elegant Vase</h3>
-      </a>
-      <a href="product2.html" class="card" data-category="Cushions">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" alt="Cushion">
-        <h3>Soft Cushion</h3>
-      </a>
-      <a href="product3.html" class="card" data-category="Lighting">
-        <img src="https://images.unsplash.com/photo-1595526114035-0c65f26b9d5d" alt="Lighting">
-        <h3>Modern Lamp</h3>
-      </a>
-      <a href="product4.html" class="card" data-category="Glass Candles">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
-        <h3>Glass Candles</h3>
-      </a>
-      <a href="product5.html" class="card" data-category="Outdoor Flooring">
-        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353" alt="Outdoor Flooring">
-        <h3>Outdoor Flooring</h3>
-      </a>
-      <a href="product6.html" class="card" data-category="Wooden Rack">
-        <img src="https://i.postimg.cc/pdFnsZdJ/ayny.jpg" alt="Wooden Rack">
-        <h3>Wooden Rack</h3>
-      </a>
-      <a href="product7.html" class="card" data-category="Wall Art">
-        <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png" alt="Boho Wall Art">
-        <h3>Wall Art</h3>
-      </a>
-      <a href="games.html" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="Games" />
-        <h3>Games</h3>
-      </a>
-    </main>
-  </div>
-
-  <footer>
-    © 2025 Nook Decor. All rights reserved.
-  </footer>
-
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.card');
-    const resultsInfo = document.getElementById('resultsInfo');
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase().trim();
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(query)) {
-          card.style.display = 'block';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (query === '') {
-        resultsInfo.textContent = 'Create your own mood';
-      } else if (visibleCount === 0) {
-        resultsInfo.textContent = 'No matching results';
-      } else {
-        resultsInfo.textContent = `${visibleCount} results for "${query}"`;
-      }
-    });
-  </script>
 </body>
 </html>
-
-
