@@ -11,118 +11,80 @@
       background-color: #4b0e1f;
       color: #fff;
     }
-
     header {
       background-color: #4b0e1f;
-      color: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
-      font-size: 36px;
+      font-size: 28px;
       font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
-
-    .search-bar {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 300px;
-      border: none;
-      border-radius: 8px;
-    }
-
-    .container {
+    .product-container {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
+      gap: 30px;
     }
-
-    aside {
-      width: 200px;
-      padding: 20px;
+    .product-image {
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-
-    main {
-      flex: 1;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+    .product-details {
+      max-width: 400px;
     }
-
-    .card {
-      background-color: #4b0e1f;
-      border-radius: 8px;
+    .product-details h1 {
+      margin-top: 0;
+      font-size: 28px;
+      color: #ffb3c6;
+    }
+    .product-details p {
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
+    .back-link {
+      display: block;
       text-align: center;
-      transition: transform 0.3s;
+      margin-top: 20px;
+      color: #ffb3c6;
       text-decoration: none;
-      color: white;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #4b0e1f;
-      color: white;
-      margin-top: 30px;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
   <header>Nook Decor</header>
 
-  <div class="search-bar">
-    <input type="text" placeholder="Search for products..." />
+  <div class="product-container">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase" class="product-image" />
+    <div class="product-details">
+      <h1>Elegant Vase</h1>
+      <p>Bring timeless elegance to your home with this handcrafted ceramic vase. Perfect for flowers or as a stand-alone decor piece.</p>
+      <div class="price">$39.99</div>
+      <button class="btn">Add to Cart</button>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
   </div>
 
-  <div class="container">
-    <aside>
-      <h2>Categories</h2>
-      <ul>
-        <li><a href="#">Vases</a></li>
-        <li><a href="#">Candles</a></li>
-        <li><a href="#">Lamps</a></li>
-        <li><a href="#">Wall Art</a></li>
-      </ul>
-    </aside>
-
-    <main>
-      <a href="product1.html" class="card" data-category="Vases">
-        <img src="https://i.postimg.cc/ZRzFyJP9/image-1759220155342-1zkrul.png" alt="Vases">
-        <h3>Vases</h3>
-      </a>
-
-      <a href="product2.html" class="card" data-category="Candles">
-        <img src="https://i.postimg.cc/fWjqL7mQ/image-1759220197615-p3h5t.png" alt="Candles">
-        <h3>Candles</h3>
-      </a>
-
-      <a href="product3.html" class="card" data-category="Lamps">
-        <img src="https://i.postimg.cc/PJzsw7zF/image-1759220294285-p8b5bn.png" alt="Lamps">
-        <h3>Lamps</h3>
-      </a>
-
-      <a href="product7.html" class="card" data-category="Wall Art">
-        <img src="https://i.postimg.cc/NfYPMdqF/download-3.jpg" alt="Wall Art">
-        <h3>Wall Art</h3>
-      </a>
-    </main>
-  </div>
-
-  <footer>
-    © 2025 Nook Decor. All rights reserved.
-  </footer>
 </body>
 </html>
