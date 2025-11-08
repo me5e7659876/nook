@@ -11,6 +11,7 @@
       background-color: #4b0e1f;
       color: #fff;
     }
+
     header {
       background-color: #4b0e1f;
       padding: 15px;
@@ -19,62 +20,80 @@
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
-    .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
       padding: 30px;
-      gap: 60px;
+      justify-items: center;
     }
-    /* الصورة بدون فريم */
-    .product-image {
-      max-width: 450px;
-      border-radius: 0;
-      box-shadow: none;
-      display: block;
-      margin: 0;
+
+    .item {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item:hover {
       transform: scale(1.05);
-      transition: transform 0.4s ease, filter 0.4s ease;
     }
-    .product-image:hover {
-      transform: scale(1.1);
-      filter: brightness(1.1);
+
+    .item img {
+      width: 100%;
+      max-width: 350px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
     }
-    .product-details {
-      max-width: 400px;
-    }
-    .product-details h1 {
-      margin-top: 0;
-      font-size: 28px;
-      color: #ffb3c6;
-    }
-    .product-details p {
-      line-height: 1.6;
-      font-size: 16px;
-    }
+
     .price {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
-      margin: 15px 0;
+      color: #ffb3c6;
+      margin-top: 10px;
     }
+
+    .desc {
+      font-size: 15px;
+      color: #ffe3eb;
+      margin-top: 8px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .item:hover .desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
       color: #4b0e1f;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
+      margin-top: 10px;
       transition: 0.3s;
     }
+
     .btn:hover {
       background-color: #ffc7d3;
     }
+
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 20px;
+      margin: 30px 0;
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
@@ -84,17 +103,36 @@
 <body>
   <header>Nook Decor</header>
 
-  <div class="product-container">
-    <img src="https://images.unsplash.com/photo-1606813902779-7d16a1c33b12" alt="Board Game" class="product-image" />
-    <div class="product-details">
-      <h1>Family Board Game</h1>
-      <p>Challenge your friends and family with this fun and engaging board game for all ages.</p>
-      <div class="price">$24.99</div>
+  <div class="gallery">
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1606813902779-7d16a1c33b12" alt="Board Game 1">
+      <div class="price">850 EGP</div>
+      <p class="desc">Fun and exciting board game perfect for family nights and gatherings with friends.</p>
       <button class="btn">Add to Cart</button>
-      <!-- الرابط الصحيح للرئيسية -->
-      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1597939434195-c2eebd6d4916" alt="Board Game 2">
+      <div class="price">950 EGP</div>
+      <p class="desc">Strategic and interactive board game to boost your thinking and teamwork skills.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1611605698323-5d5b06208b0e" alt="Board Game 3">
+      <div class="price">700 EGP</div>
+      <p class="desc">Colorful and modern design game suitable for both kids and adults to enjoy.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1609230938528-2e0d44ef7af1" alt="Board Game 4">
+      <div class="price">1200 EGP</div>
+      <p class="desc">Bring creativity and laughter to your gatherings with this premium family board game.</p>
+      <button class="btn">Add to Cart</button>
     </div>
   </div>
 
+  <a href="index.html" class="back-link">← Back to Home</a>
 </body>
 </html>
