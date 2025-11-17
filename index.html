@@ -5,528 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nook Decor</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
-
-    :root{
-      --accent-hover: rgba(255,179,198,0.12); /* subtle hover for category */
-      --active-outline: rgba(255,179,198,0.28);
-    }
-
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background-color: #4b0e1f;
-      color: #fff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    header {
-      background-color: #4b0e1f;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 38px;
-      font-weight: bold;
-      position: relative;
-      text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
-    }
-
-    .header-icons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      gap: 15px;
-      font-size: 22px;
-    }
-
-    .header-icons i {
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .header-icons i:hover {
-      transform: scale(1.15);
-    }
-
-    .search-bar {
-      margin: 18px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-bar input {
-      padding: 10px 15px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      width: 280px;
-      outline: none;
-    }
-
-    .banner {
-      position: relative;
-      width: 100%;
-      max-height: 300px;
-      overflow: hidden;
-      border-radius: 12px;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      border-radius: 12px;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
     }
 
     .container {
       display: flex;
-      padding: 20px;
-      gap: 20px;
-      box-sizing: border-box;
+      min-height: 100vh;
     }
 
-    /* Sidebar (desktop) */
+    /* Sidebar */
     .sidebar {
-      width: 230px;
-      background-color: #4b0e1f;
+      width: 260px;
+      background: #fff;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      height: fit-content;
-      flex-shrink: 0;
-      order: 0;
-      box-sizing: border-box;
+      border-right: 1px solid #ddd;
     }
 
     .sidebar h2 {
-      color: #fff;
-      margin-bottom: 15px;
       font-size: 22px;
+      margin-bottom: 15px;
     }
 
-    .categories {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: block;
+    .category {
+      padding: 10px;
+      margin: 6px 0;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.2s;
     }
 
-    .categories li {
-      margin: 10px 0;
-    }
-
-    .categories a {
-      text-decoration: none;
+    .category:hover, .category.active {
+      background: #222;
       color: #fff;
-      font-weight: 500;
-      transition: background 0.18s ease, transform 0.12s ease;
-      display: block;
-      padding: 8px 10px;
-      border-radius: 8px;
     }
 
-    .categories a:hover {
-      background: var(--accent-hover);
-      transform: translateX(4px);
-    }
-
-    .categories a.active {
-      outline: 2px solid var(--active-outline);
-      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    }
-
-    .results-info {
-      text-align: center;
-      margin: 10px 0 14px 0;
-      font-size: 17px;
-      font-weight: 600;
-      color: #ffffff;
-      font-family: 'Playfair Display', serif;
-      animation: subtleFade 2.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes subtleFade {
-      from { opacity: 0.9; transform: scale(1); }
-      to { opacity: 1; transform: scale(1.01); }
-    }
-
-    .content {
+    /* Main content */
+    .main {
       flex: 1;
+      padding: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
-      order: 1;
-      align-items: start;
     }
 
     .card {
-      background: none;
-      box-shadow: none;
+      background: #fff;
+      padding: 15px;
       border-radius: 10px;
-      padding: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
     }
 
     .card img {
       width: 100%;
-      border-radius: 16px;
-      height: 260px;
+      height: 220px;
       object-fit: cover;
-      object-position: center;
-      transition: transform 0.4s ease;
-      display: block;
+      border-radius: 10px;
     }
 
-    .card h3 {
-      color: #fff;
-      margin-top: 8px;
+    .results-info {
       font-size: 18px;
-      font-weight: 500;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
-
-    footer {
-      background-color: #4b0e1f;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
-    /* Mobile: make categories a scrollable top bar and keep UX clean */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        padding: 14px;
-      }
-
-      /* Replace sidebar by a horizontal categories bar */
-      .sidebar {
-        display: none; /* keep desktop sidebar hidden on mobile (we use top categories bar) */
-      }
-
-      .categories-bar {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 10px 6px;
-        margin: 0 6px 8px 6px;
-        scrollbar-width: none;
-      }
-
-      .categories-bar::-webkit-scrollbar { display: none; }
-
-      .cat-chip {
-        background: rgba(255,255,255,0.04);
-        padding: 10px 14px;
-        border-radius: 999px;
-        white-space: nowrap;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.12s ease, background 0.18s ease;
-        color: #fff;
-        border: 1px solid rgba(255,255,255,0.02);
-      }
-
-      .cat-chip:hover { transform: translateY(-3px); }
-      .cat-chip.active {
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-        background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      }
-
-      .content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-      }
-
-      .card img {
-        height: 180px;
-        border-radius: 12px;
-      }
-
-      .search-bar input {
-        width: calc(100% - 40px);
-        max-width: 520px;
-      }
-
-      .banner { padding: 0 6px; }
-    }
-
-    @media (max-width: 420px) {
-      .content { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .card img { height: 150px; }
-      header { font-size: 28px; padding: 16px; }
-      .search-bar { margin: 14px 8px; }
-    }
-
   </style>
-
-  <!-- fontawesome kit (kept) -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-  </audio>
-
-  <header>
-    <div class="header-icons">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-shopping-cart"></i>
-    </div>
-    Nook Decor
-  </header>
-
-  <div class="search-bar">
-    <i class="fas fa-search" style="color: #fff;"></i>
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
-  </div>
-
-  <div class="results-info" id="resultsInfo">Create your own mood</div>
-
-  <div class="banner">
-    <img src="https://images.unsplash.com/photo-1533779283484-53af5bf27642" alt="Home Decor Banner Image">
-  </div>
-
-  <!-- Mobile categories bar (shown on mobile) -->
-  <div class="categories-bar" id="categoriesBar" aria-hidden="false" style="display:none;">
-
-    <!-- chips will be generated by JS for consistency with desktop -->
-    <!-- fallback static chips (in case JS disabled) -->
-    <div class="cat-chip" data-cat="All">All</div>
-    <div class="cat-chip" data-cat="Moods">Moods</div>
-    <div class="cat-chip" data-cat="Vases">Vases</div>
-    <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-    <div class="cat-chip" data-cat="Lighting">Lighting</div>
-    <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
-    <div class="cat-chip" data-cat="Furniture">Furniture</div>
-    <div class="cat-chip" data-cat="Cushions">Cushions</div>
-    <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-    <div class="cat-chip" data-cat="Games">Games</div>
-    <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
-  </div>
-
   <div class="container">
-    <!-- Desktop sidebar (visible on desktop only) -->
-    <aside class="sidebar" id="desktopSidebar">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
       <h2>Categories</h2>
-      <ul class="categories" id="desktopCategories">
-        <li><a href="#" class="category-item active" data-cat="All">All</a></li>
-        <li><a href="#" class="category-item" data-cat="Moods">Moods</a></li>
-        <li><a href="#" class="category-item" data-cat="Vases">Vases</a></li>
-        <li><a href="#" class="category-item" data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-        <li><a href="#" class="category-item" data-cat="Lighting">Lighting</a></li>
-        <li><a href="#" class="category-item" data-cat="Glass Candles">Glass Candles</a></li>
-        <li><a href="#" class="category-item" data-cat="Furniture">Furniture</a></li>
-        <li><a href="#" class="category-item" data-cat="Cushions">Cushions</a></li>
-        <li><a href="#" class="category-item" data-cat="Wooden Rack">Wooden Rack</a></li>
-        <li><a href="#" class="category-item" data-cat="Games">Games</a></li>
-        <li><a href="#" class="category-item" data-cat="Wall Art">Wall Art</a></li>
-      </ul>
-    </aside>
 
-    <main class="content" id="content">
+      <div class="category" data-category="all">All</div>
+      <div class="category" data-category="moods">Moods</div>
+      <div class="category" data-category="vases">Vases</div>
+      <div class="category" data-category="outdoor-flooring">Outdoor Flooring</div>
+      <div class="category" data-category="wooden-racks">Wooden Racks</div>
+      <div class="category" data-category="lighting">Lighting</div>
+      <div class="category" data-category="glass-candles">Glass Candles</div>
+      <div class="category" data-category="furniture">Furniture</div>
+      <div class="category" data-category="cushions">Cushions</div>
+      <div class="category" data-category="games">Games</div>
+    </div>
 
-      <a href="moods.html" class="card" data-category="Moods">
-        <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg" alt="Moods">
-        <h3>Moods</h3>
-      </a>
+    <!-- Main Content -->
+    <div class="main">
 
-      <a href="product3.html" class="card" data-category="Lighting">
-        <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg" alt="Modern Lamp">
-        <h3>Modern Lamp</h3>
-      </a>
+      <div class="top-bar">
+        <div class="results-info" id="resultsInfo">Showing all products</div>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+      </div>
 
-      <a href="product1.html" class="card" data-category="Vases">
-        <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg" alt="Vase">
-        <h3>Elegant Vase</h3>
-      </a>
-
-      <a href="product2.html" class="card" data-category="Cushions">
-        <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png" alt="Cushion">
-        <h3>Soft Cushion</h3>
-      </a>
-
-      <a href="product4.html" class="card" data-category="Glass Candles">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
-        <h3>Glass Candles</h3>
-      </a>
-
-      <a href="product5.html" class="card" data-category="Outdoor Flooring">
-        <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png" alt="Outdoor Flooring">
-        <h3>Outdoor Flooring</h3>
-      </a>
-
-      <a href="product6.html" class="card" data-category="Wooden Rack">
-        <img src="https://i.postimg.cc/FHrZGByr/Etagere-murale-en-bois-rustique-pour-fleurs-support-decoratif-pour-plantes-d-interieur-avec-plusie.jpg" alt="Wooden Rack">
-        <h3>Wooden Rack</h3>
-      </a>
-
-      <a href="product7.html" class="card" data-category="Wall Art">
-        <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png" alt="Boho Wall Art">
-        <h3>Wall Art</h3>
-      </a>
-
-      <a href="games.html" class="card" data-category="Games">
-        <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="Games" />
-        <h3>Games</h3>
-      </a>
-
-    </main>
+      <div class="products" id="productList"></div>
+    </div>
   </div>
-
-  <footer>
-    © 2025 Nook Decor. All rights reserved.
-  </footer>
 
   <script>
-    // Elements
-    const desktopCategoryLinks = document.querySelectorAll('.category-item');
-    const catChips = document.querySelectorAll('.cat-chip');
-    const cards = document.querySelectorAll('.card');
-    const resultsInfo = document.getElementById('resultsInfo');
-    const categoriesBar = document.getElementById('categoriesBar');
+    const products = [
+      { name: "Moroccan Mood Setup", img: "https://i.postimg.cc/Y9HZNBwc/a9af2565-1fd9-4f56-872a-44bccbe35109.jpg", category: "moods" },
+      { name: "Boho Vibes Mood", img: "https://i.postimg.cc/TPGJCdhH/a3d864e9-2c9d-4340-82d1-c4d2bd775492.jpg", category: "moods" },
+    ];
 
-    // Ensure mobile chips visible only on mobile
-    function handleResize() {
-      if (window.innerWidth <= 768) {
-        categoriesBar.style.display = 'flex';
-        document.getElementById('desktopSidebar').style.display = 'none';
-      } else {
-        categoriesBar.style.display = 'none';
-        document.getElementById('desktopSidebar').style.display = 'block';
-      }
-    }
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('load', handleResize);
+    const productList = document.getElementById("productList");
+    const searchInput = document.getElementById("searchInput");
+    const resultsInfo = document.getElementById("resultsInfo");
 
-    // Utility: set active class for desktop links and mobile chips
-    function setActiveCategory(catName) {
-      // desktop
-      desktopCategoryLinks.forEach(link => {
-        if (link.dataset.cat === catName) link.classList.add('active');
-        else link.classList.remove('active');
-      });
-      // mobile chips
-      catChips.forEach(chip => {
-        if (chip.dataset.cat === catName) chip.classList.add('active');
-        else chip.classList.remove('active');
+    function displayProducts(list) {
+      productList.innerHTML = "";
+      list.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h3>${p.name}</h3>
+        `;
+        productList.appendChild(card);
       });
     }
 
-    // Filter function
-    function filterByCategory(catName) {
-      let visibleCount = 0;
-      cards.forEach(card => {
-        const cardCat = card.dataset.category || card.getAttribute('data-category') || '';
-        if (catName === 'All' || catName === '' ) {
-          card.style.display = 'block';
-          visibleCount++;
+    displayProducts(products);
+
+    const categories = document.querySelectorAll(".category");
+
+    categories.forEach((cat) => {
+      cat.addEventListener("click", () => {
+        categories.forEach((c) => c.classList.remove("active"));
+        cat.classList.add("active");
+
+        const selected = cat.dataset.category;
+        let filtered = [];
+
+        if (selected === "all") {
+          filtered = products;
         } else {
-          if (cardCat.trim().toLowerCase() === catName.trim().toLowerCase()) {
-            card.style.display = 'block';
-            visibleCount++;
-          } else {
-            card.style.display = 'none';
-          }
-        }
-      });
-
-      // update results info
-      if (catName === 'All' || catName === '') {
-        resultsInfo.textContent = 'Create your own mood';
-      } else if (visibleCount === 0) {
-        resultsInfo.textContent = 'No matching results';
-      } else {
-        resultsInfo.textContent = ${visibleCount} results — ${catName};
-      }
-    }
-
-    // Attach click listeners to desktop links
-    desktopCategoryLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const cat = link.dataset.cat;
-        setActiveCategory(cat);
-        filterByCategory(cat);
-      });
-    });
-
-    // Attach click listeners to mobile chips
-    catChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const cat = chip.dataset.cat;
-        setActiveCategory(cat);
-        filterByCategory(cat);
-        // optionally scroll content to top for smoother UX
-        window.scrollTo({ top: document.querySelector('.banner').offsetTop + 10, behavior: 'smooth' });
-      });
-    });
-
-    // Search behavior (keeps category filtering in sync)
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.toLowerCase().trim();
-      let visibleCount = 0;
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        // if card already hidden by category, keep hidden
-        if (card.style.display === 'none' && document.querySelector('.category-item.active') && document.querySelector('.category-item.active').dataset.cat !== 'All') {
-          // check if matches both category and search: allow search to override only within visible category
-          const activeCat = document.querySelector('.category-item.active').dataset.cat;
-          const cardCat = (card.dataset.category || '').toLowerCase();
-          if (activeCat.toLowerCase() !== 'all' && cardCat !== activeCat.toLowerCase()) {
-            // keep hidden
-            return;
-          }
+          filtered = products.filter((p) => p.category === selected);
         }
 
-        if (q === '' || text.includes(q)) {
-          // But also ensure category match; if a specific category is active, respect it
-          const activeCat = (document.querySelector('.category-item.active') || {}).dataset?.cat || 'All';
-          const cardCat = (card.dataset.category || '').toLowerCase();
-          if (activeCat && activeCat.toLowerCase() !== 'all' && cardCat !== activeCat.toLowerCase()) {
-            card.style.display = 'none';
-          } else {
-            card.style.display = 'block';
-            visibleCount++;
-          }
-        } else {
-          card.style.display = 'none';
-        }
+        displayProducts(filtered);
+
+        resultsInfo.textContent = `${filtered.length} results — ${cat.textContent}`;
       });
-
-      if (q === '') {
-        // restore results-info based on category
-        const active = document.querySelector('.category-item.active')?.dataset?.cat || 'All';
-        filterByCategory(active);
-      } else {
-        if (visibleCount === 0) resultsInfo.textContent = 'No matching results';
-        else resultsInfo.textContent = ${visibleCount} results for "${q}";
-      }
     });
 
-    // Initialize: set All active and show all
-    window.addEventListener('DOMContentLoaded', () => {
-      setActiveCategory('All');
-      filterByCategory('All');
-    });
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase();
 
+      const filtered = products.filter((p) => p.name.toLowerCase().includes(q));
+
+      displayProducts(filtered);
+
+      resultsInfo.textContent = `${filtered.length} results for "${q}"`;
+    });
   </script>
-
 </body>
 </html>
