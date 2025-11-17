@@ -12,6 +12,7 @@
       margin: 0;
       background-color: #4b0e1f;
       color: #fff;
+      min-width: 1000px; /* ✅ أهم خطوة: يجبر الموبايل يعرض نسخة اللاب */
     }
 
     header {
@@ -84,13 +85,13 @@
     .container {
       display: flex;
       padding: 20px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; /* ❗منع الترتيب في الموبايل */
     }
 
     .content {
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr); /* ❗نفس شكل اللاب */
       gap: 20px;
       order: 1;
     }
@@ -191,12 +192,20 @@
       to { opacity: 1; transform: scale(1.05); }
     }
 
+    /* ❌ تم إلغاء كل ما يغير التصميم على الموبايل */
     @media (max-width: 768px) {
       .sidebar {
-        width: 100%;
-        margin-right: 0;
-        margin-top: 20px;
-        order: 2;
+        width: 230px !important;
+        margin-right: 20px !important;
+        order: 0 !important;
+      }
+
+      .content {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+
+      .container {
+        flex-wrap: nowrap !important;
       }
     }
   </style>
@@ -251,7 +260,6 @@
         <h3>Moods</h3>
       </a>
 
-      <!-- ✅ تم تغيير صورة Modern Lamp فقط -->
       <a href="product3.html" class="card" data-category="Lighting">
         <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg" alt="Modern Lamp">
         <h3>Modern Lamp</h3>
@@ -322,7 +330,7 @@
       } else if (visibleCount === 0) {
         resultsInfo.textContent = 'No matching results';
       } else {
-        resultsInfo.textContent = `${visibleCount} results for "${query}"`;
+        resultsInfo.textContent = ${visibleCount} results for "${query}";
       }
     });
   </script>
