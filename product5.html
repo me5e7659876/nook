@@ -46,7 +46,6 @@
       overflow: hidden;
       border-radius: 15px;
       margin-bottom: 15px;
-      cursor: pointer;
     }
 
     .slider img {
@@ -64,6 +63,33 @@
 
     .slider img.active {
       opacity: 1;
+    }
+
+    .slider .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      padding: 6px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.3s;
+    }
+
+    .slider .nav-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    .slider .prev {
+      left: 8px;
+    }
+
+    .slider .next {
+      right: 8px;
     }
 
     h2 {
@@ -118,6 +144,8 @@
     <div class="slider">
       <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active">
       <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg">
+      <button class="nav-btn prev">&#10094;</button>
+      <button class="nav-btn next">&#10095;</button>
     </div>
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
@@ -131,6 +159,8 @@
     <div class="slider">
       <img src="https://i.postimg.cc/gk3PnX87/images.jpg" class="active">
       <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png">
+      <button class="nav-btn prev">&#10094;</button>
+      <button class="nav-btn next">&#10095;</button>
     </div>
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
@@ -144,6 +174,8 @@
     <div class="slider">
       <img src="https://i.postimg.cc/RVdXsvBG/images-(1).jpg" class="active">
       <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png">
+      <button class="nav-btn prev">&#10094;</button>
+      <button class="nav-btn next">&#10095;</button>
     </div>
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
@@ -157,6 +189,8 @@
     <div class="slider">
       <img src="https://i.postimg.cc/tJXFWV7z/images-(2).jpg" class="active">
       <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg">
+      <button class="nav-btn prev">&#10094;</button>
+      <button class="nav-btn next">&#10095;</button>
     </div>
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
@@ -170,13 +204,22 @@
 <script>
   document.querySelectorAll(".slider").forEach(slider => {
     const images = slider.querySelectorAll("img");
+    const prevBtn = slider.querySelector(".prev");
+    const nextBtn = slider.querySelector(".next");
     let index = 0;
 
-    // تغيير الصورة عند الضغط
-    slider.addEventListener("click", () => {
-      images[index].classList.remove("active");
+    function showImage(i) {
+      images.forEach((img, idx) => img.classList.toggle("active", idx === i));
+    }
+
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    });
+
+    nextBtn.addEventListener("click", () => {
       index = (index + 1) % images.length;
-      images[index].classList.add("active");
+      showImage(index);
     });
   });
 </script>
