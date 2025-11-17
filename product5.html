@@ -46,6 +46,7 @@
       overflow: hidden;
       border-radius: 15px;
       margin-bottom: 15px;
+      cursor: pointer;
     }
 
     .slider img {
@@ -58,7 +59,7 @@
       top: 0;
       left: 0;
       opacity: 0;
-      transition: opacity 0.6s ease-in-out;
+      transition: opacity 0.4s ease-in-out;
     }
 
     .slider img.active {
@@ -118,12 +119,10 @@
       <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active">
       <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg">
     </div>
-
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
     <p class="price">1000 EGP</p>
     <p class="size">115 × 75 cm</p>
-
     <button class="btn">Add to Cart</button>
   </div>
 
@@ -133,12 +132,10 @@
       <img src="https://i.postimg.cc/gk3PnX87/images.jpg" class="active">
       <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png">
     </div>
-
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
     <p class="price">1000 EGP</p>
     <p class="size">115 × 75 cm</p>
-
     <button class="btn">Add to Cart</button>
   </div>
 
@@ -148,12 +145,10 @@
       <img src="https://i.postimg.cc/RVdXsvBG/images-(1).jpg" class="active">
       <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png">
     </div>
-
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
     <p class="price">1000 EGP</p>
     <p class="size">115 × 75 cm</p>
-
     <button class="btn">Add to Cart</button>
   </div>
 
@@ -163,12 +158,10 @@
       <img src="https://i.postimg.cc/tJXFWV7z/images-(2).jpg" class="active">
       <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg">
     </div>
-
     <h2>Outdoor Flooring</h2>
     <p>Durable outdoor flooring perfect for outdoor spaces.</p>
     <p class="price">1000 EGP</p>
     <p class="size">115 × 75 cm</p>
-
     <button class="btn">Add to Cart</button>
   </div>
 
@@ -179,11 +172,12 @@
     const images = slider.querySelectorAll("img");
     let index = 0;
 
-    setInterval(() => {
+    // تغيير الصورة عند الضغط
+    slider.addEventListener("click", () => {
       images[index].classList.remove("active");
       index = (index + 1) % images.length;
       images[index].classList.add("active");
-    }, 2500);
+    });
   });
 </script>
 
