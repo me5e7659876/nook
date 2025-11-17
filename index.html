@@ -1,282 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nook Decor</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
-
-:root{
-    --accent-hover: rgba(255,179,198,0.12);
-    --active-outline: rgba(255,179,198,0.28);
-}
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background-color: #4b0e1f;
-    color: #fff;
-}
-header {
-    background-color: #4b0e1f;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 38px;
-    font-weight: bold;
-    position: relative;
-    text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
-}
-.header-icons {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    gap: 15px;
-    font-size: 22px;
-}
-.header-icons i { cursor: pointer; transition: transform 0.2s ease; }
-.header-icons i:hover { transform: scale(1.15); }
-
-.search-bar {
-    margin: 18px auto;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-.search-bar input {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    width: 280px;
-    outline: none;
-}
-
-.results-info {
-    text-align: center;
-    margin: 10px 0 14px 0;
-    font-size: 17px;
-    font-weight: 600;
-    color: #ffffff;
-    font-family: 'Playfair Display', serif;
-    animation: subtleFade 2.5s ease-in-out infinite alternate;
-}
-@keyframes subtleFade {
-    from { opacity: 0.9; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.01); }
-}
-
-.container {
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-}
-
-.sidebar {
-    width: 230px;
-    background-color: #4b0e1f;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    height: fit-content;
-}
-.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
-
-.categories { list-style: none; padding: 0; }
-.categories li { margin: 10px 0; }
-.categories a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 8px;
-    transition: background 0.18s ease, transform 0.12s ease;
-}
-.categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
-.categories a.active {
-    outline: 2px solid var(--active-outline);
-    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-}
-
-.content {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: none;
-    box-shadow: none;
-    border-radius: 10px;
-    padding: 0;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
-}
-.card img {
-    width: 100%;
-    height: 260px;
-    border-radius: 16px;
-    object-fit: cover;
-}
-
-footer {
-    background-color: #4b0e1f;
-    text-align: center;
-    padding: 15px;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .container { flex-direction: column; }
-    .sidebar { display: none; }
-    .categories-bar { display:flex; gap:12px; overflow-x:auto; padding:10px; }
-    .content { grid-template-columns: repeat(2,1fr); }
-    .card img { height: 180px; }
-}
-
-/* Small phones */
-@media (max-width: 420px) {
-    .content { grid-template-columns: repeat(2,1fr); }
-    .card img { height:150px; }
-    header { font-size:28px; }
-}
-</style>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nook Decor - Fixed Products</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
+    .container { display: flex; min-height: 100vh; }
+    .sidebar { width: 260px; background: #fff; padding: 20px; border-right: 1px solid #ddd; }
+    .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
+    .category { padding: 10px; margin: 6px 0; cursor: pointer; border-radius: 6px; transition: 0.2s; }
+    .category:hover, .category.active { background: #222; color: #fff; }
+    .main { flex: 1; padding: 20px; }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; }
+    .search-box input { padding: 10px; width: 250px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); text-align: center; }
+    .card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
+    .results-info { font-size: 18px; margin-bottom: 15px; font-weight: bold; }
+    p.no-products { font-style: italic; color: #444; }
+    @media (max-width: 800px) { .sidebar { display: none; } }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Categories</h2>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-</audio>
+      <div class="category" data-category="all">All</div>
+      <div class="category" data-category="moods">Moods</div>
+      <div class="category" data-category="vases">Vases</div>
+      <div class="category" data-category="outdoor-flooring">Outdoor Flooring</div>
+      <div class="category" data-category="wooden-racks">Wooden Racks</div>
+      <div class="category" data-category="lighting">Lighting</div>
+      <div class="category" data-category="glass-candles">Glass Candles</div>
+      <div class="category" data-category="furniture">Furniture</div>
+      <div class="category" data-category="cushions">Cushions</div>
+      <div class="category" data-category="games">Games</div>
+    </div>
 
-<header>
-<div class="header-icons">
-    <i class="fas fa-search"></i>
-    <i class="fas fa-shopping-cart"></i>
-</div>
-Nook Decor
-</header>
+    <!-- Main Content -->
+    <div class="main">
+      <div class="top-bar">
+        <div class="results-info" id="resultsInfo">Showing all products</div>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search products... (try: mood, chess, vase)" />
+        </div>
+      </div>
 
-<div class="search-bar">
-<i class="fas fa-search" style="color:#fff;"></i>
-<input id="searchInput" type="text" placeholder="Search for anything..." />
-</div>
+      <div class="products" id="productList"></div>
+    </div>
+  </div>
 
-<div id="resultsInfo" class="results-info">Create your own mood</div>
+  <script>
+    // -------------------------
+    // Data:عدل هنا لإضافة/تعديل المنتجات
+    // -------------------------
+    const products = [
+      { id: 1, name: "Moroccan Mood Setup", img: "https://i.postimg.cc/Y9HZNBwc/a9af2565-1fd9-4f56-872a-44bccbe35109.jpg", category: "moods", price: 250 },
+      { id: 2, name: "Boho Vibes Mood", img: "https://i.postimg.cc/TPGJCdhH/a3d864e9-2c9d-4340-82d1-c4d2bd775492.jpg", category: "moods", price: 180 },
+      { id: 3, name: "Elegant Ceramic Vase", img: "https://i.postimg.cc/Xvc3ctLt/download-41.jpg", category: "vases", price: 45 },
+      { id: 4, name: "Outdoor Deck Tile", img: "https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png", category: "outdoor-flooring", price: 75 },
+      { id: 5, name: "Rustic Wooden Rack", img: "https://i.postimg.cc/FHrZGByr/Etagere-murale-en-bois-rustique-pour-fleurs-support-decoratif-pour-plantes-d-interieur-avec-plusie.jpg", category: "wooden-racks", price: 120 },
+      { id: 6, name: "Modern Table Lamp", img: "https://i.postimg.cc/G3GLcMZH/download-39.jpg", category: "lighting", price: 60 },
+      { id: 7, name: "Glass Candle Trio", img: "https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png", category: "glass-candles", price: 30 },
+      { id: 8, name: "Plush Cushion", img: "https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png", category: "cushions", price: 25 },
+      // Product 9: لو تحبي يكون في تصنيف مختلف غيّري category هنا (مثال: "games")
+      { id: 9, name: "Handmade Wall Art", img: "https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png", category: "furniture", price: 95 },
+      { id: 10, name: "Classic Chess Set", img: "https://i.postimg.cc/6624GtwG/chess.jpg", category: "games", price: 40 }
+    ];
 
-<!-- NO BANNER ANYMORE -->
+    // -------------------------
+    // DOM refs
+    // -------------------------
+    const productList = document.getElementById("productList");
+    const searchInput = document.getElementById("searchInput");
+    const resultsInfo = document.getElementById("resultsInfo");
+    const categories = document.querySelectorAll('.category');
 
-<!-- Mobile Category Bar -->
-<div class="categories-bar" id="categoriesBar" style="display:none;">
-    <div class="cat-chip" data-cat="All">All</div>
-    <div class="cat-chip" data-cat="Moods">Moods</div>
-    <div class="cat-chip" data-cat="Vases">Vases</div>
-    <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-    <div class="cat-chip" data-cat="Lighting">Lighting</div>
-    <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
-    <div class="cat-chip" data-cat="Furniture">Furniture</div>
-    <div class="cat-chip" data-cat="Cushions">Cushions</div>
-    <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-    <div class="cat-chip" data-cat="Games">Games</div>
-    <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
-</div>
+    // placeholder image when an image fails to load
+    const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><rect width="100%" height="100%" fill="%23e6e6e6"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="24">Image not available</text></svg>';
 
-<div class="container">
-
-<!-- Desktop Sidebar -->
-<aside class="sidebar" id="desktopSidebar">
-<h2>Categories</h2>
-<ul class="categories" id="desktopCategories">
-    <li><a class="category-item active" data-cat="All" href="#">All</a></li>
-    <li><a class="category-item" data-cat="Moods" href="#">Moods</a></li>
-    <li><a class="category-item" data-cat="Vases" href="#">Vases</a></li>
-    <li><a class="category-item" data-cat="Outdoor Flooring" href="#">Outdoor Flooring</a></li>
-    <li><a class="category-item" data-cat="Lighting" href="#">Lighting</a></li>
-    <li><a class="category-item" data-cat="Glass Candles" href="#">Glass Candles</a></li>
-    <li><a class="category-item" data-cat="Furniture" href="#">Furniture</a></li>
-    <li><a class="category-item" data-cat="Cushions" href="#">Cushions</a></li>
-    <li><a class="category-item" data-cat="Wooden Rack" href="#">Wooden Rack</a></li>
-    <li><a class="category-item" data-cat="Games" href="#">Games</a></li>
-    <li><a class="category-item" data-cat="Wall Art" href="#">Wall Art</a></li>
-</ul>
-</aside>
-
-<main class="content" id="content">
-
-<a href="moods.html" class="card" data-category="Moods">
-<img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-<h3>Moods</h3>
-</a>
-
-<a href="product3.html" class="card" data-category="Lighting">
-<img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-<h3>Modern Lamp</h3>
-</a>
-
-<a href="product1.html" class="card" data-category="Vases">
-<img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-<h3>Elegant Vase</h3>
-</a>
-
-<a href="product2.html" class="card" data-category="Cushions">
-<img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-<h3>Soft Cushion</h3>
-</a>
-
-<a href="product4.html" class="card" data-category="Glass Candles">
-<img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-<h3>Glass Candles</h3>
-</a>
-
-<a href="product5.html" class="card" data-category="Outdoor Flooring">
-<img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-<h3>Outdoor Flooring</h3>
-</a>
-
-<a href="product6.html" class="card" data-category="Wooden Rack">
-<img src="https://i.postimg.cc/FHrZGByr/Etagere-murale-en-bois-rustique-pour-fleurs-support-decoratif-pour-plantes-d-interieur-avec-plusie.jpg">
-<h3>Wooden Rack</h3>
-</a>
-
-<a href="product7.html" class="card" data-category="Wall Art">
-<img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-<h3>Wall Art</h3>
-</a>
-
-<a href="games.html" class="card" data-category="Games">
-<img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-<h3>Games</h3>
-</a>
-
-</main>
-</div>
-
-<footer>© 2025 Nook Decor. All rights reserved.</footer>
-
-<script>
-// Make mobile categories appear only on mobile
-function handleResize() {
-    if (window.innerWidth <= 768) {
-        categoriesBar.style.display = 'flex';
-        desktopSidebar.style.display = 'none';
-    } else {
-        categoriesBar.style.display = 'none';
-        desktopSidebar.style.display = 'block';
+    // helper: check if category exists in sidebar
+    function categoryExists(cat) {
+      return !!document.querySelector(`.category[data-category="${cat}"]`);
     }
-}
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize);
-</script>
 
+    // create card safely
+    function createCard(p) {
+      try {
+        // basic validation
+        if (!p || !p.name) throw new Error(`Invalid product data (id:${p?.id})`);
+
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        // fallback if missing img
+        img.src = p.img || PLACEHOLDER_IMG;
+        img.alt = p.name;
+        // if image fails, replace with placeholder but do not throw
+        img.onerror = function() {
+          console.warn(`Image failed to load for product id:${p.id} - using placeholder`);
+          this.src = PLACEHOLDER_IMG;
+        };
+
+        const title = document.createElement('h3');
+        title.textContent = p.name;
+
+        const price = document.createElement('p');
+        price.textContent = `EGP ${p.price ?? '-'}`;
+        price.style.fontWeight = '600';
+
+        card.appendChild(img);
+        card.appendChild(title);
+        card.appendChild(price);
+
+        return card;
+      } catch (err) {
+        console.error('createCard error for product:', p, err);
+        // return a simple fallback element so UI doesn't break
+        const fallback = document.createElement('div');
+        fallback.className = 'card';
+        const t = document.createElement('p');
+        t.className = 'no-products';
+        t.textContent = `Product error: ${p?.name || 'Unknown product'}`;
+        fallback.appendChild(t);
+        return fallback;
+      }
+    }
+
+    function displayProducts(list) {
+      productList.innerHTML = '';
+      if (!Array.isArray(list) || list.length === 0) {
+        const p = document.createElement('p');
+        p.className = 'no-products';
+        p.textContent = 'No products to show.';
+        productList.appendChild(p);
+        return;
+      }
+      const frag = document.createDocumentFragment();
+      list.forEach(p => {
+        try {
+          frag.appendChild(createCard(p));
+        } catch (err) {
+          console.error('Error appending product card', p, err);
+          // continue with next product
+        }
+      });
+      productList.appendChild(frag);
+    }
+
+    function getActiveCategory() {
+      const active = document.querySelector('.category.active');
+      return active ? active.dataset.category : 'all';
+    }
+
+    function filterProducts({ q = '', category = null } = {}) {
+      const query = (q || '').toLowerCase().trim();
+      const cat = category || getActiveCategory() || 'all';
+
+      // warn if selected category is not present
+      if (cat !== 'all' && !categoryExists(cat)) {
+        console.warn(`Selected category "${cat}" not found in sidebar.`);
+      }
+
+      const filtered = products.filter(p => {
+        // if product missing category, treat as mismatch
+        const prodCat = p.category || '';
+        const matchesCat = (cat === 'all') ? true : (prodCat === cat);
+        const matchesQ = query === '' ? true : (p.name.toLowerCase().includes(query));
+        return matchesCat && matchesQ;
+      });
+
+      displayProducts(filtered);
+
+      // update results info
+      if (query && cat && cat !== 'all') {
+        resultsInfo.textContent = `${filtered.length} results — ${cat} for "${query}"`;
+      } else if (query) {
+        resultsInfo.textContent = `${filtered.length} results for "${query}"`;
+      } else if (cat && cat !== 'all') {
+        resultsInfo.textContent = `${filtered.length} results — ${cat}`;
+      } else {
+        resultsInfo.textContent = `Showing ${filtered.length} products`;
+      }
+    }
+
+    function init() {
+      // mark 'all' active
+      const first = document.querySelector('.category[data-category="all"]');
+      if (first) first.classList.add('active');
+
+      // attach category click handlers
+      categories.forEach(cat => {
+        cat.addEventListener('click', () => {
+          categories.forEach(c => c.classList.remove('active'));
+          cat.classList.add('active');
+          filterProducts({ q: searchInput.value });
+        });
+      });
+
+      // search handler with debounce
+      let debounceTimer = null;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          filterProducts({ q: searchInput.value });
+        }, 180);
+      });
+
+      // initial render
+      filterProducts({ q: '', category: 'all' });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // ---------- Debug helpers ----------
+    // If product #1 or #9 تسبّبوا error قبل كده: اطبع بياناتهم في الـ console للتحقق
+    console.log('Product #1 data:', products.find(p => p.id === 1));
+    console.log('Product #9 data:', products.find(p => p.id === 9));
+    // لو عايزة تغيري تصنيف المنتج 9 لـ "games" فقط اعملي السطر ده (أو غيّري مباشرة في المصفوفة أعلاه):
+    // products.find(p => p.id === 9).category = 'games';
+
+  </script>
 </body>
 </html>
