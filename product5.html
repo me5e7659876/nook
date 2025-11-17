@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Outdoor Flooring - Nook Decor</title>
+
   <style>
     body {
       margin: 0;
@@ -11,179 +12,179 @@
       background-color: #4b0e1f;
       color: #fff;
     }
+
     header {
       background-color: #4b0e1f;
       padding: 15px;
       text-align: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      text-shadow: 0 0 10px rgba(255,200,210,0.6);
     }
 
-    .product-container {
+    .products {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 40px;
       padding: 30px;
-      gap: 30px;
+      max-width: 900px;
+      margin: auto;
     }
 
-    /* flip container */
-    .flip-container {
-      width: 400px;
-      height: 400px;
-      perspective: 1000px;
-    }
-    .flipper {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
-    .flip-container:hover .flipper {
-      transform: rotateY(180deg);
-    }
-    .front, .back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
+    .product-card {
+      background-color: #5a1226;
+      padding: 20px;
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .front img, 
-    .back img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .back {
-      transform: rotateY(180deg);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
-    .product-details {
-      max-width: 400px;
-      text-align: center;
+    .slider {
+      width: 100%;
+      height: 450px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 20px;
     }
-    .product-details h1 {
-      margin-top: 0;
-      font-size: 26px;
+
+    .slider img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    h2 {
+      margin: 0 0 10px 0;
       color: #ffb3c6;
+      font-size: 26px;
     }
-    .product-details p {
-      line-height: 1.6;
+
+    p {
+      margin: 5px 0;
       font-size: 16px;
+      line-height: 1.6;
     }
+
     .price {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
-      margin: 15px 0;
+      margin-top: 10px;
+      color: #ffd1dc;
     }
+
+    .size {
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
-      color: #4b0e1f;
-      padding: 12px 24px;
+      padding: 12px 30px;
       border-radius: 10px;
       font-weight: bold;
+      color: #4b0e1f;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 10px;
     }
+
     .btn:hover {
       background-color: #ffc7d3;
     }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
+
   </style>
 </head>
-
 <body>
 
 <header>Nook Decor</header>
 
-
-<div class="product-container">
+<div class="products">
 
   <!-- المنتج الأول -->
-  <div class="flip-container">
-    <div class="flipper">
-      <div class="front">
-        <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg">
-      </div>
-      <div class="back">
-        <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg">
-      </div>
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active">
+      <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg">
     </div>
-  </div>
 
+    <h2>Outdoor Flooring</h2>
+    <p>Durable outdoor flooring perfect for balconies, gardens and patios.</p>
+    <p class="price">Price: 1000 EGP</p>
+    <p class="size">Size: 115 × 75 cm</p>
+
+    <button class="btn">Add to Cart</button>
+  </div>
 
   <!-- المنتج الثاني -->
-  <div class="flip-container">
-    <div class="flipper">
-      <div class="front">
-        <img src="https://i.postimg.cc/gk3PnX87/images.jpg">
-      </div>
-      <div class="back">
-        <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png">
-      </div>
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/gk3PnX87/images.jpg" class="active">
+      <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png">
     </div>
-  </div>
 
+    <h2>Outdoor Flooring</h2>
+    <p>Durable outdoor flooring perfect for balconies, gardens and patios.</p>
+    <p class="price">Price: 1000 EGP</p>
+    <p class="size">Size: 115 × 75 cm</p>
+
+    <button class="btn">Add to Cart</button>
+  </div>
 
   <!-- المنتج الثالث -->
-  <div class="flip-container">
-    <div class="flipper">
-      <div class="front">
-        <img src="https://i.postimg.cc/RVdXsvBG/images-(1).jpg">
-      </div>
-      <div class="back">
-        <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png">
-      </div>
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/RVdXsvBG/images-(1).jpg" class="active">
+      <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png">
     </div>
-  </div>
 
+    <h2>Outdoor Flooring</h2>
+    <p>Durable outdoor flooring perfect for balconies, gardens and patios.</p>
+    <p class="price">Price: 1000 EGP</p>
+    <p class="size">Size: 115 × 75 cm</p>
+
+    <button class="btn">Add to Cart</button>
+  </div>
 
   <!-- المنتج الرابع -->
-  <div class="flip-container">
-    <div class="flipper">
-      <div class="front">
-        <img src="https://i.postimg.cc/tJXFWV7z/images-(2).jpg">
-      </div>
-      <div class="back">
-        <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg">
-      </div>
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/tJXFWV7z/images-(2).jpg" class="active">
+      <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg">
     </div>
+
+    <h2>Outdoor Flooring</h2>
+    <p>Durable outdoor flooring perfect for balconies, gardens and patios.</p>
+    <p class="price">Price: 1000 EGP</p>
+    <p class="size">Size: 115 × 75 cm</p>
+
+    <button class="btn">Add to Cart</button>
   </div>
 
 </div>
 
+<script>
+  // Slider auto-switch
+  document.querySelectorAll(".slider").forEach(slider => {
+    const images = slider.querySelectorAll("img");
+    let index = 0;
 
-
-
-<!-- التفاصيل الثابتة للمنتجات -->
-<div class="product-details" style="margin: 0 auto; margin-top: 20px;">
-  <h1>Outdoor Flooring</h1>
-
-  <p>Premium outdoor flooring suitable for balconies, gardens, and terraces.<br>
-     High durability and modern texture for stylish outdoor spaces.</p>
-
-  <div class="price">1000 EGP</div>
-  <p><strong>Size:</strong> 115 × 75 cm</p>
-
-  <button class="btn">Add to Cart</button>
-
-  <a href="index.html" class="back-link">← Back to Home</a>
-</div>
-
+    setInterval(() => {
+      images[index].classList.remove("active");
+      index = (index + 1) % images.length;
+      images[index].classList.add("active");
+    }, 2500);
+  });
+</script>
 
 </body>
 </html>
