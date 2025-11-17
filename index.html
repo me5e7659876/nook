@@ -1,168 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decor Shop</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nook Decor</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f7f7f7;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
 
-    /* Header */
-    header {
-        background: #ffffff;
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
+:root{
+    --accent-hover: rgba(255,179,198,0.12);
+    --active-outline: rgba(255,179,198,0.28);
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #4b0e1f;
+    color: #fff;
+}
+header {
+    background-color: #4b0e1f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
+}
+.header-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 15px;
+    font-size: 22px;
+}
+.header-icons i { cursor: pointer; transition: transform 0.2s ease; }
+.header-icons i:hover { transform: scale(1.15); }
 
-    /* Hamburger Menu */
-    .hamburger {
-        width: 30px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
+.search-bar {
+    margin: 18px auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.search-bar input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    width: 280px;
+    outline: none;
+}
 
-    .hamburger div {
-        width: 100%;
-        height: 4px;
-        background: #333;
-        border-radius: 3px;
-    }
+.results-info {
+    text-align: center;
+    margin: 10px 0 14px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    animation: subtleFade 2.5s ease-in-out infinite alternate;
+}
+@keyframes subtleFade {
+    from { opacity: 0.9; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.01); }
+}
 
-    /* Categories Sidebar */
-    .sidebar {
-        position: fixed;
-        left: -260px;
-        top: 0;
-        width: 250px;
-        height: 100%;
-        background: white;
-        box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-        padding: 20px;
-        transition: 0.3s;
-        z-index: 200;
-    }
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
 
-    .sidebar.active {
-        left: 0;
-    }
+.sidebar {
+    width: 230px;
+    background-color: #4b0e1f;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    height: fit-content;
+}
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 
-    .sidebar h3 {
-        margin-top: 0;
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
+.categories { list-style: none; padding: 0; }
+.categories li { margin: 10px 0; }
+.categories a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.18s ease, transform 0.12s ease;
+}
+.categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
+.categories a.active {
+    outline: 2px solid var(--active-outline);
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
 
-    .sidebar a {
-        display: block;
-        padding: 10px 0;
-        font-size: 18px;
-        text-decoration: none;
-        color: #333;
-        border-bottom: 1px solid #eee;
-    }
+.content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
 
-    /* Category cards */
-    .categories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 20px;
-        padding: 20px;
-    }
+.card {
+    background: none;
+    box-shadow: none;
+    border-radius: 10px;
+    padding: 0;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
+.card img {
+    width: 100%;
+    height: 260px;
+    border-radius: 16px;
+    object-fit: cover;
+}
 
-    .card {
-        background: #fff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: 0.3s;
-    }
+footer {
+    background-color: #4b0e1f;
+    text-align: center;
+    padding: 15px;
+}
 
-    .card:hover {
-        transform: translateY(-4px);
-    }
+/* Mobile */
+@media (max-width: 768px) {
+    .container { flex-direction: column; }
+    .sidebar { display: none; }
+    .categories-bar { display:flex; gap:12px; overflow-x:auto; padding:10px; }
+    .content { grid-template-columns: repeat(2,1fr); }
+    .card img { height: 180px; }
+}
 
-    .card img {
-        width: 100%;
-        border-radius: 10px;
-    }
-
-    .card h4 {
-        margin: 10px 0 5px;
-    }
-
-    .card p {
-        color: #777;
-    }
+/* Small phones */
+@media (max-width: 420px) {
+    .content { grid-template-columns: repeat(2,1fr); }
+    .card img { height:150px; }
+    header { font-size:28px; }
+}
 </style>
 
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-<header>
-    <h2>Decor Shop</h2>
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
+</audio>
 
-    <!-- Hamburger -->
-    <div class="hamburger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+<header>
+<div class="header-icons">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-shopping-cart"></i>
+</div>
+Nook Decor
 </header>
 
-<!-- Sidebar Categories -->
-<div class="sidebar" id="sidebar">
-    <h3>Categories</h3>
-    <a href="#">Luxury Chair</a>
-    <a href="#">Glass Candles</a>
-    <a href="#">Outdoor Flooring</a>
-    <a href="#">Wooden Rack</a>
-    <a href="#">Games</a>
+<div class="search-bar">
+<i class="fas fa-search" style="color:#fff;"></i>
+<input id="searchInput" type="text" placeholder="Search for anything..." />
 </div>
 
-<!-- Categories Cards -->
-<section class="categories">
+<div id="resultsInfo" class="results-info">Create your own mood</div>
 
-    <!-- Glass Candles -->
-    <div class="card">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="">
-        <h4>Glass Candles</h4>
-        <p>Premium glass candle collection</p>
-    </div>
+<!-- NO BANNER ANYMORE -->
 
-    <!-- Games -->
-    <div class="card">
-        <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="">
-        <h4>Games</h4>
-        <p>Fun and stylish indoor games</p>
-    </div>
+<!-- Mobile Category Bar -->
+<div class="categories-bar" id="categoriesBar" style="display:none;">
+    <div class="cat-chip" data-cat="All">All</div>
+    <div class="cat-chip" data-cat="Moods">Moods</div>
+    <div class="cat-chip" data-cat="Vases">Vases</div>
+    <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
+    <div class="cat-chip" data-cat="Lighting">Lighting</div>
+    <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
+    <div class="cat-chip" data-cat="Furniture">Furniture</div>
+    <div class="cat-chip" data-cat="Cushions">Cushions</div>
+    <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
+    <div class="cat-chip" data-cat="Games">Games</div>
+    <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
+</div>
 
-    <!-- Outdoor Flooring -->
-    <div class="card">
-        <img src="https://i.postimg.cc/pdFnsZdJ/ayny.jpg" alt="">
-        <h4>Outdoor Flooring</h4>
-        <p>High-quality outdoor floor designs</p>
-    </div>
+<div class="container">
 
-</section>
+<!-- Desktop Sidebar -->
+<aside class="sidebar" id="desktopSidebar">
+<h2>Categories</h2>
+<ul class="categories" id="desktopCategories">
+    <li><a class="category-item active" data-cat="All" href="#">All</a></li>
+    <li><a class="category-item" data-cat="Moods" href="#">Moods</a></li>
+    <li><a class="category-item" data-cat="Vases" href="#">Vases</a></li>
+    <li><a class="category-item" data-cat="Outdoor Flooring" href="#">Outdoor Flooring</a></li>
+    <li><a class="category-item" data-cat="Lighting" href="#">Lighting</a></li>
+    <li><a class="category-item" data-cat="Glass Candles" href="#">Glass Candles</a></li>
+    <li><a class="category-item" data-cat="Furniture" href="#">Furniture</a></li>
+    <li><a class="category-item" data-cat="Cushions" href="#">Cushions</a></li>
+    <li><a class="category-item" data-cat="Wooden Rack" href="#">Wooden Rack</a></li>
+    <li><a class="category-item" data-cat="Games" href="#">Games</a></li>
+    <li><a class="category-item" data-cat="Wall Art" href="#">Wall Art</a></li>
+</ul>
+</aside>
+
+<main class="content" id="content">
+
+<a href="moods.html" class="card" data-category="Moods">
+<img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+<h3>Moods</h3>
+</a>
+
+<a href="product3.html" class="card" data-category="Lighting">
+<img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+<h3>Modern Lamp</h3>
+</a>
+
+<a href="product1.html" class="card" data-category="Vases">
+<img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+<h3>Elegant Vase</h3>
+</a>
+
+<a href="product2.html" class="card" data-category="Cushions">
+<img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+<h3>Soft Cushion</h3>
+</a>
+
+<a href="product4.html" class="card" data-category="Glass Candles">
+<img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+<h3>Glass Candles</h3>
+</a>
+
+<a href="product5.html" class="card" data-category="Outdoor Flooring">
+<img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+<h3>Outdoor Flooring</h3>
+</a>
+
+<a href="product6.html" class="card" data-category="Wooden Rack">
+<img src="https://i.postimg.cc/FHrZGByr/Etagere-murale-en-bois-rustique-pour-fleurs-support-decoratif-pour-plantes-d-interieur-avec-plusie.jpg">
+<h3>Wooden Rack</h3>
+</a>
+
+<a href="product7.html" class="card" data-category="Wall Art">
+<img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+<h3>Wall Art</h3>
+</a>
+
+<a href="games.html" class="card" data-category="Games">
+<img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+<h3>Games</h3>
+</a>
+
+</main>
+</div>
+
+<footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
+// Make mobile categories appear only on mobile
+function handleResize() {
+    if (window.innerWidth <= 768) {
+        categoriesBar.style.display = 'flex';
+        desktopSidebar.style.display = 'none';
+    } else {
+        categoriesBar.style.display = 'none';
+        desktopSidebar.style.display = 'block';
+    }
 }
+window.addEventListener('load', handleResize);
+window.addEventListener('resize', handleResize);
 </script>
 
 </body>
