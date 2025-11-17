@@ -13,7 +13,6 @@
             background: #ffffff;
         }
 
-        /* 🔵 Top App Bar */
         .topbar {
             width: 100%;
             background: #000;
@@ -24,25 +23,27 @@
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
         }
 
-        /* 🟣 Main Container */
         .container {
             display: flex;
             height: 100vh;
         }
 
-        /* 🟡 Sidebar (Categories) */
         .sidebar {
             width: 250px;
             background: #f2f2f2;
             padding: 20px;
             overflow-y: auto;
             border-right: 1px solid #ddd;
+            transition: max-height 0.3s ease;
         }
 
-        /* 🟢 Content Area */
+        .sidebar div {
+            margin-bottom: 10px;
+        }
+
         .content {
             flex-grow: 1;
             padding: 20px;
@@ -65,34 +66,45 @@
             border-radius: 10px;
         }
 
-        /* 📱 App style for mobile */
+        /* Mobile Dropdown */
         @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
 
-            /* Hide sidebar and turn it into top slider */
+            .dropdown-btn {
+                width: 100%;
+                background: #000;
+                color: #fff;
+                padding: 15px;
+                font-size: 18px;
+                border: none;
+                text-align: left;
+                cursor: pointer;
+            }
+
             .sidebar {
                 width: 100%;
-                background: #fff;
                 padding: 10px;
                 border-right: none;
                 border-bottom: 1px solid #ddd;
-                display: flex;
-                overflow-x: auto;
-                gap: 10px;
+                display: block;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .sidebar.open {
+                max-height: 300px;
             }
 
             .sidebar div {
                 background: #eee;
                 padding: 10px 15px;
-                white-space: nowrap;
                 border-radius: 10px;
-                font-size: 14px;
+                white-space: nowrap;
+                margin-right: 10px;
             }
 
-            .container {
-                flex-direction: column;
-            }
-
-            /* content like the app, 2 columns */
             .content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -105,10 +117,13 @@
 
     <div class="topbar">My Store</div>
 
+    <!-- Dropdown Button Mobile -->
+    <button class="dropdown-btn" onclick="toggleMenu()">Categories ▼</button>
+
     <div class="container">
 
         <!-- Sidebar Categories -->
-        <div class="sidebar">
+        <div class="sidebar" id="sideMenu">
             <div>Chairs</div>
             <div>Tables</div>
             <div>Lamps</div>
@@ -128,5 +143,12 @@
         </div>
 
     </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("sideMenu");
+            menu.classList.toggle("open");
+        }
+    </script>
 
 </body>
