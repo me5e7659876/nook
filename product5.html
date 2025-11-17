@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elegant Vase - Nook Decor</title>
+  <title>Outdoor Flooring - Nook Decor</title>
   <style>
     body {
       margin: 0;
@@ -26,6 +26,11 @@
       align-items: flex-start;
       padding: 30px;
       gap: 30px;
+    }
+    .product-images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
     .product-image {
       max-width: 400px;
@@ -73,17 +78,34 @@
   </style>
 </head>
 <body>
+
   <header>Nook Decor</header>
 
   <div class="product-container">
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase" class="product-image" />
+
+    <!-- صور المنتج -->
+    <div class="product-images">
+      <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="product-image" alt="Outdoor Flooring Image 1">
+      <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg" class="product-image" alt="Outdoor Flooring Image 2">
+    </div>
+
+    <!-- تفاصيل المنتج -->
     <div class="product-details">
-      <h1>Elegant Vase</h1>
-      <p>Bring timeless elegance to your home with this handcrafted ceramic vase. Perfect for flowers or as a stand-alone decor piece.</p>
-      <div class="price">$39.99</div>
+      <h1>Outdoor Flooring</h1>
+
+      <p>
+        Premium outdoor flooring suitable for balconies, gardens, and terraces.
+        High durability and modern texture for stylish outdoor spaces.
+      </p>
+
+      <div class="price">1000 EGP</div>
+      <p><strong>Size:</strong> 115 × 75 cm</p>
+
       <button class="btn">Add to Cart</button>
+
       <a href="index.html" class="back-link">← Back to Home</a>
     </div>
+
   </div>
 
 </body>
