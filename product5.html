@@ -50,7 +50,6 @@
 
     .slider img {
       width: 100%;
-      max-width: 350px;
       height: 420px;
       object-fit: cover;
       border-radius: 15px;
@@ -65,24 +64,19 @@
       opacity: 1;
     }
 
+    /* === تعديل شكل السهم (من غير دائرة وبدون خلفية) === */
     .slider .nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
+      background: transparent;
       color: #fff;
       border: none;
-      font-size: 22px;
-      padding: 6px 12px;
-      border-radius: 50%;
+      font-size: 28px;
+      padding: 0;
       cursor: pointer;
       z-index: 2;
-      right: 8px;
-      transition: background 0.3s;
-    }
-
-    .slider .nav-btn:hover {
-      background: rgba(0,0,0,0.7);
+      right: 10px;
     }
 
     h2 {
@@ -132,7 +126,22 @@
 
 <div class="products">
 
-  <!-- المنتج الأول -->
+  <!-- ✔ أول كرت الآن = العشب الصناعي -->
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active">
+      <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg">
+      <button class="nav-btn next">&#10095;</button>
+    </div>
+    <h2>Artificial Grass</h2>
+    <p>High-quality artificial grass perfect for balconies and outdoor areas.</p>
+    <p class="price">650 EGP / m²</p>
+    <p class="size">Grass Thickness: 35 mm</p>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- باقي المنتجات كما هي -->
+
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active">
@@ -146,7 +155,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج الثاني -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg" class="active">
@@ -160,7 +168,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج الثالث -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/5yq7ckPP/b.jpg" class="active">
@@ -174,7 +181,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج الرابع -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/htnPgJ2h/a.jpg" class="active">
@@ -188,7 +194,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج الخامس -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/FspWD8kd/y.jpg" class="active">
@@ -202,7 +207,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج السادس -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/fW7RPRb4/classic-charms-370878-(1).jpg" class="active">
@@ -216,7 +220,6 @@
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- المنتج السابع -->
   <div class="product-card">
     <div class="slider">
       <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active">
@@ -227,20 +230,6 @@
     <p>Luxury outdoor rug adding elegance and warmth to any space.</p>
     <p class="price">1000 EGP</p>
     <p class="size">115 × 75 cm</p>
-    <button class="btn">Add to Cart</button>
-  </div>
-
-  <!-- المنتج الثامن - العشب الصناعي -->
-  <div class="product-card">
-    <div class="slider">
-      <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active">
-      <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg">
-      <button class="nav-btn next">&#10095;</button>
-    </div>
-    <h2>Artificial Grass</h2>
-    <p>High-quality artificial grass perfect for balconies and outdoor areas.</p>
-    <p class="price">650 EGP / m²</p>
-    <p class="size">Grass Thickness: 35 mm</p>
     <button class="btn">Add to Cart</button>
   </div>
 
