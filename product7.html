@@ -31,7 +31,7 @@
       background-color: rgba(75, 14, 31, 0.9);
       border-radius: 15px;
       padding: 15px;
-      width: 240px; /* أصغر من قبل */
+      width: 240px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       transition: transform 0.3s ease;
@@ -41,10 +41,12 @@
     }
     .product-image {
       width: 100%;
-      height: 280px; /* أصغر من قبل */
-      object-fit: cover;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
       border-radius: 15px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+      object-fit: cover;
       box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     }
     .product h1 {
@@ -98,12 +100,15 @@
         width: 90%;
       }
       .product-image {
-        height: 240px; /* أصغر للهواتف */
+        height: auto;         /* ارتفاع تلقائي لتجنب قص الصورة */
+        max-height: 360px;    /* أقصى ارتفاع للحفاظ على تناسق التصميم */
+        object-fit: contain;  /* الصورة تظهر بالكامل داخل الإطار */
       }
     }
+
     @media (max-width: 420px) {
       .product-image {
-        height: 200px;
+        max-height: 300px;    /* على الشاشات الصغيرة أقصى ارتفاع أصغر */
       }
       .product h1 {
         font-size: 16px;
@@ -129,7 +134,6 @@
 
   <div class="product-container">
 
-    <!-- لوحة 1 -->
     <div class="product">
       <img src="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Wall Art 1" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
@@ -138,7 +142,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- لوحة 2 -->
     <div class="product">
       <img src="https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png" alt="Wall Art 2" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
@@ -147,7 +150,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- لوحة 3 -->
     <div class="product">
       <img src="https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png" alt="Wall Art 3" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
@@ -156,7 +158,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- لوحة 4 -->
     <div class="product">
       <img src="https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png" alt="Wall Art 4" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
@@ -165,7 +166,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- لوحة 5 -->
     <div class="product">
       <img src="https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png" alt="Wall Art 5" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
@@ -174,7 +174,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- لوحة 6 -->
     <div class="product">
       <img src="https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png" alt="Wall Art 6" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
