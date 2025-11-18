@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moods - Nook Decor</title>
+  <title>Wooden Racks - Nook Decor</title>
   <style>
     body {
       margin: 0;
@@ -19,43 +19,46 @@
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
-    .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px;
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
+      padding: 40px;
+      justify-items: center;
     }
     .product-card {
-      max-width: 400px;
-      background-color: rgba(255,255,255,0.05);
+      background-color: #5a1a2c;
       border-radius: 15px;
-      padding: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      max-width: 320px;
       text-align: center;
+      transition: transform 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
     }
     .product-card img {
       width: 100%;
-      border-radius: 15px;
+      border-radius: 12px;
       margin-bottom: 15px;
       object-fit: cover;
-      height: 300px;
+      height: 250px;
     }
-    .product-card h1 {
-      font-size: 24px;
+    .product-card h2 {
       color: #ffb3c6;
+      font-size: 22px;
       margin: 10px 0;
     }
     .product-card p {
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.5;
-      margin: 10px 0;
     }
     .price {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
-      margin: 10px 0;
+      margin: 12px 0;
+      color: #ffd6e0;
     }
     .btn {
       background-color: #ffb3c6;
@@ -73,7 +76,7 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 20px;
+      margin: 30px 0;
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
@@ -81,37 +84,38 @@
   </style>
 </head>
 <body>
-  <header>Nook Decor - Moods</header>
+  <header>Nook Decor</header>
 
-  <div class="product-container">
-    <!-- Product 1 -->
+  <section class="products-grid">
+    <!-- المنتج الأول -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Mood 1" />
-      <h1>Cozy Evening Mood</h1>
-      <p>Create a warm and relaxing atmosphere with soft lighting and comforting textures.</p>
-      <div class="price">$29.99</div>
-      <button class="btn">Add to Cart</button>
+      <img src="https://i.postimg.cc/sgnptGDC/b33de9a8-234c-4a0d-b915-162d9ab1169d.jpg" alt="Wooden Rack Set">
+      <h2>رف خشب ديكوري 3 قطع</h2>
+      <p>طقم رفوف خشبية بتصميم عصري وعملي لتزيين الحائط وإضافة لمسة فخمة لديكورك.</p>
+      <div class="price">750 جنيه (الـ3 قطع) | 300 جنيه للقطعة</div>
+      <button class="btn">أضف إلى السلة</button>
     </div>
 
-    <!-- Product 2 -->
+    <!-- المنتج الثاني -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1582719478250-3bdb3f6d1f57" alt="Mood 2" />
-      <h1>Fresh Morning Mood</h1>
-      <p>Brighten your mornings with cheerful colors, natural light, and fresh decor elements.</p>
-      <div class="price">$34.99</div>
-      <button class="btn">Add to Cart</button>
+      <img src="https://i.postimg.cc/G2NRNQ6r/fc5d9082-d6a1-4c9a-9ed2-b1b6eb8fe68f.jpg" alt="Modern Wooden Rack">
+      <h2>حامل خشب جداري مودرن</h2>
+      <p>حامل خشبي جداري بتصميم حديث يناسب الديكورات العصرية، خامة قوية وتشطيب فاخر.</p>
+      <div class="price">650 جنيه</div>
+      <button class="btn">أضف إلى السلة</button>
     </div>
 
-    <!-- Product 3 -->
+    <!-- المنتج الثالث مؤقت -->
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1600585154265-0e7b9e6fdd56" alt="Mood 3" />
-      <h1>Elegant Night Mood</h1>
-      <p>Set a sophisticated ambiance with minimalistic decor and gentle lighting.</p>
-      <div class="price">$39.99</div>
-      <button class="btn">Add to Cart</button>
+      <img src="https://images.unsplash.com/photo-1624460812260-d8dbde1aaf94" alt="Modern Shelf Set">
+      <h2>Modern Shelf Set</h2>
+      <p>مجموعة أرفف خشبية أنيقة تناسب المساحات الصغيرة.</p>
+      <div class="price">850 جنيه</div>
+      <button class="btn">أضف إلى السلة</button>
     </div>
-  </div>
+  </section>
 
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <a href="index.html" class="back-link">← الرجوع للرئيسية</a>
+
 </body>
 </html>
