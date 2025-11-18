@@ -24,14 +24,14 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      padding: 30px;
-      gap: 30px;
+      padding: 20px;
+      gap: 20px;
     }
     .product {
       background-color: rgba(75, 14, 31, 0.9);
       border-radius: 15px;
-      padding: 20px;
-      width: 280px;
+      padding: 15px;
+      width: 240px; /* أصغر من قبل */
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       transition: transform 0.3s ease;
@@ -41,32 +41,32 @@
     }
     .product-image {
       width: 100%;
-      height: 360px;
+      height: 280px; /* أصغر من قبل */
       object-fit: cover;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     }
     .product h1 {
-      font-size: 20px;
+      font-size: 18px;
       color: #ffb3c6;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .product p {
-      line-height: 1.6;
-      font-size: 14px;
-      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 13px;
+      margin-bottom: 8px;
     }
     .price {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .btn {
       background-color: #ffb3c6;
       border: none;
       color: #4b0e1f;
-      padding: 10px 22px;
+      padding: 8px 20px;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
@@ -77,9 +77,9 @@
     }
     .message {
       text-align: center;
-      font-size: 40px;
+      font-size: 32px;
       color: #d4af37;
-      margin-top: 60px;
+      margin-top: 50px;
       font-weight: 700;
       text-shadow: 0 0 14px rgba(212,175,55,0.8);
       letter-spacing: 1px;
@@ -87,7 +87,7 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 25px;
+      margin-top: 20px;
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
@@ -98,7 +98,28 @@
         width: 90%;
       }
       .product-image {
-        height: 300px;
+        height: 240px; /* أصغر للهواتف */
+      }
+    }
+    @media (max-width: 420px) {
+      .product-image {
+        height: 200px;
+      }
+      .product h1 {
+        font-size: 16px;
+      }
+      .product p {
+        font-size: 12px;
+      }
+      .price {
+        font-size: 14px;
+      }
+      .btn {
+        padding: 6px 16px;
+        font-size: 14px;
+      }
+      .message {
+        font-size: 28px;
       }
     }
   </style>
@@ -108,9 +129,9 @@
 
   <div class="product-container">
 
-    <!-- لوحة 1 (تم استبدال الصورة) -->
+    <!-- لوحة 1 -->
     <div class="product">
-      <img src="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Wall Art 1 Large" class="product-image" />
+      <img src="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Wall Art 1" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Elegant portrait design that captures your favourite moments beautifully.</p>
       <div class="price">230 EGP</div>
@@ -119,7 +140,7 @@
 
     <!-- لوحة 2 -->
     <div class="product">
-      <img src="https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png" alt="Wall Art 2 Large" class="product-image" />
+      <img src="https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png" alt="Wall Art 2" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Stylish and modern portrait wall art — a perfect statement piece for your home.</p>
       <div class="price">230 EGP</div>
@@ -128,7 +149,7 @@
 
     <!-- لوحة 3 -->
     <div class="product">
-      <img src="https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png" alt="Wall Art 3 Large" class="product-image" />
+      <img src="https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png" alt="Wall Art 3" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Bright and inspiring portrait wall art that brings warmth and creativity to your walls.</p>
       <div class="price">230 EGP</div>
@@ -137,7 +158,7 @@
 
     <!-- لوحة 4 -->
     <div class="product">
-      <img src="https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png" alt="Wall Art 4 Large" class="product-image" />
+      <img src="https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png" alt="Wall Art 4" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Unique artistic wall piece designed to fit modern and cosy spaces.</p>
       <div class="price">230 EGP</div>
@@ -146,7 +167,7 @@
 
     <!-- لوحة 5 -->
     <div class="product">
-      <img src="https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png" alt="Wall Art 5 Large" class="product-image" />
+      <img src="https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png" alt="Wall Art 5" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Graceful modern artwork blending elegance with subtle colour tones.</p>
       <div class="price">230 EGP</div>
@@ -155,7 +176,7 @@
 
     <!-- لوحة 6 -->
     <div class="product">
-      <img src="https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png" alt="Wall Art 6 Large" class="product-image" />
+      <img src="https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png" alt="Wall Art 6" class="product-image" />
       <h1>Wall Art – 40x50 cm</h1>
       <p>Contemporary portrait art that adds charm and sophistication to your décor.</p>
       <div class="price">230 EGP</div>
