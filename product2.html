@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soft Cushion - Nook Decor</title>
-
+  <title>Nook Decor - Products</title>
   <style>
     body {
       margin: 0;
@@ -12,70 +11,66 @@
       background-color: #4b0e1f;
       color: #fff;
     }
-
     header {
       background-color: #4b0e1f;
       padding: 15px;
       text-align: center;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.6);
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
 
-    .products {
+    /* ----- PRODUCT GRID ----- */
+    .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 25px;
+      gap: 35px;
       padding: 30px;
     }
 
-    .product-card {
-      background-color: #5a1226;
-      width: 250px;
-      padding: 15px;
-      border-radius: 14px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    .item {
       text-align: center;
+      max-width: 350px;
     }
 
-    .product-card img {
+    .item img {
       width: 100%;
-      height: 300px;
+      max-width: 350px;
+      height: 420px;
       object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
-    h2 {
-      margin: 0 0 8px 0;
+    .title {
+      font-size: 22px;
       color: #ffb3c6;
-      font-size: 20px;
+      margin: 12px 0 5px;
+      font-weight: bold;
     }
 
-    p {
-      margin: 3px 0 10px;
-      font-size: 14px;
-      line-height: 1.4;
+    .desc {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 10px;
     }
 
     .price {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      color: #ffd1dc;
-      margin-bottom: 12px;
+      margin: 10px 0;
     }
 
     .btn {
       background-color: #ffb3c6;
       border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
       color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
-      font-size: 14px;
+      transition: .3s;
     }
 
     .btn:hover {
@@ -85,62 +80,62 @@
 </head>
 <body>
 
-<header>Nook Decor – Soft Cushion</header>
+<header>Nook Decor</header>
 
-<div class="products">
+<div class="container">
 
   <!-- 1 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/zGYRDV4x/1.png">
-    <h2>Soft Cushion</h2>
-    <p>Perfect cozy cushion adds warmth and comfort to any room.</p>
+    <div class="title">عشب صناعي فخم</div>
+    <div class="desc">مظهر طبيعي ممتاز يخلي المكان هادي ومريح ومناسب للبلكونات والجناين.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
   <!-- 2 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
-    <h2>Soft Cushion</h2>
-    <p>Elegant design that brings a luxurious touch to your sofa.</p>
+    <div class="title">عشب صناعي سميك</div>
+    <div class="desc">كثافة أعلى وملمس رائع، يضيف شكل فخم ومثالي للمساحات الداخلية والخارجية.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
   <!-- 3 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
-    <h2>Soft Cushion</h2>
-    <p>Chic patterned cushion to elevate your home décor instantly.</p>
+    <div class="title">عشب حدائق ممتاز</div>
+    <div class="desc">اختيار عملي للحدائق والبلكونات بدون صيانة ويعيش لسنين.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
   <!-- 4 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/y6wT96wv/4.png">
-    <h2>Soft Cushion</h2>
-    <p>Modern and stylish piece that blends perfectly with any setup.</p>
+    <div class="title">عشب للروف والبلكونات</div>
+    <div class="desc">مقاوم للشمس والمطر ويحافظ على لونه لفترة طويلة.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
   <!-- 5 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
-    <h2>Soft Cushion</h2>
-    <p>Luxurious soft texture designed for ultimate comfort.</p>
+    <div class="title">عشب ديكوري</div>
+    <div class="desc">مثالي لعمل خلفيات تصوير أو ركن استرخاء مميز في البيت.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
   <!-- 6 -->
-  <div class="product-card">
+  <div class="item">
     <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
-    <h2>Soft Cushion</h2>
-    <p>Beautiful warm tones that instantly enhance your living room.</p>
+    <div class="title">عشب ناعم عالي الجودة</div>
+    <div class="desc">ملمس ناعم ومريح للعين يعطي لمسة طبيعية جذابة للمكان.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn">اطلب الآن</button>
   </div>
 
 </div>
