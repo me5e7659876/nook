@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Soft Cushion - Nook Decor</title>
+
   <style>
     body {
       margin: 0;
@@ -11,80 +12,138 @@
       background-color: #4b0e1f;
       color: #fff;
     }
+
     header {
       background-color: #4b0e1f;
       padding: 15px;
       text-align: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      text-shadow: 0 0 10px rgba(255,200,210,0.6);
     }
-    .product-container {
+
+    .products {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: flex-start;
+      gap: 25px;
       padding: 30px;
-      gap: 30px;
     }
-    .product-image {
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+    .product-card {
+      background-color: #5a1226;
+      width: 250px;
+      padding: 15px;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-align: center;
     }
-    .product-details {
-      max-width: 400px;
+
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
     }
-    .product-details h1 {
-      margin-top: 0;
-      font-size: 28px;
+
+    h2 {
+      margin: 0 0 8px 0;
       color: #ffb3c6;
+      font-size: 20px;
     }
-    .product-details p {
-      line-height: 1.6;
-      font-size: 16px;
+
+    p {
+      margin: 3px 0 10px;
+      font-size: 14px;
+      line-height: 1.4;
     }
+
     .price {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: bold;
-      margin: 15px 0;
+      color: #ffd1dc;
+      margin-bottom: 12px;
     }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
-      color: #4b0e1f;
-      padding: 12px 24px;
-      border-radius: 10px;
+      padding: 10px 20px;
+      border-radius: 8px;
       font-weight: bold;
+      color: #4b0e1f;
       cursor: pointer;
       transition: 0.3s;
+      font-size: 14px;
     }
+
     .btn:hover {
       background-color: #ffc7d3;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <header>Nook Decor</header>
 
-  <div class="product-container">
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase" class="product-image" />
-    <div class="product-details">
-      <h1>Elegant Vase</h1>
-      <p>Bring timeless elegance to your home with this handcrafted ceramic vase. Perfect for flowers or as a stand-alone decor piece.</p>
-      <div class="price">$39.99</div>
-      <button class="btn">Add to Cart</button>
-      <a href="index.html" class="back-link">← Back to Home</a>
-    </div>
+<header>Nook Decor – Soft Cushion</header>
+
+<div class="products">
+
+  <!-- 1 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/zGYRDV4x/1.png">
+    <h2>Soft Cushion</h2>
+    <p>Perfect cozy cushion adds warmth and comfort to any room.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
   </div>
+
+  <!-- 2 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
+    <h2>Soft Cushion</h2>
+    <p>Elegant design that brings a luxurious touch to your sofa.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 3 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
+    <h2>Soft Cushion</h2>
+    <p>Chic patterned cushion to elevate your home décor instantly.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 4 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/y6wT96wv/4.png">
+    <h2>Soft Cushion</h2>
+    <p>Modern and stylish piece that blends perfectly with any setup.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 5 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
+    <h2>Soft Cushion</h2>
+    <p>Luxurious soft texture designed for ultimate comfort.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 6 -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
+    <h2>Soft Cushion</h2>
+    <p>Beautiful warm tones that instantly enhance your living room.</p>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+</div>
 
 </body>
 </html>
