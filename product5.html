@@ -1,109 +1,104 @@
-<!-- Full updated code with new product added -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Outdoor Store</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-    }
+<style>
+  .products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
+  .item {
+    width: 350px;
+    position: relative;
+    text-align: center;
+  }
 
-    .item {
-      width: 320px;
-      background: #fff;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
-    }
+  .item img {
+    width: 100%;
+    max-width: 350px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
 
-    .item img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 15px;
-      transition: opacity 0.3s ease;
-    }
+  .arrow-right {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 20px;
+    color: white;
+    background: rgba(0,0,0,0.35);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+  }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      padding: 10px 14px;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 50%;
-      user-select: none;
-    }
+  .arrow-right:hover {
+    background: rgba(0,0,0,0.55);
+  }
 
-    .details {
-      margin-top: 10px;
-    }
+  .desc {
+    font-size: 17px;
+    margin-top: 10px;
+  }
+</style>
 
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #27ae60;
-    }
+<div class="products-container">
 
-    .desc {
-      margin-top: 5px;
-      font-size: 15px;
-      color: #444;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-
-    <!-- NEW PRODUCT (Artificial Grass) -->
-    <div class="item" onmouseenter="this.classList.add('hover')" onmouseleave="this.classList.remove('hover')">
-      <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="main" />
-      <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg" class="alt" style="position:absolute; top:0; left:0; opacity:0; border-radius:15px; width:100%; height:420px; object-fit:cover;" />
-
-      <div class="arrow" onclick="swapImage(this)">›</div>
-
-      <div class="details">
-        <div class="price">650 EGP / m²</div>
-        <div class="desc">High-density artificial grass with a rich, natural look. Perfect for balconies and outdoor elegance. Thickness: 35mm.</div>
-      </div>
-    </div>
-
+  <!-- ⭐ أول كرت (العشب الصناعي) -->
+  <div class="item" data-images='["https://i.postimg.cc/3RJNqGz0/download-(48).jpg","https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg"]'>
+    <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg">
+    <div class="arrow-right">›</div>
+    <p class="desc"><b>عشب صناعي</b> — سمك 35 مم — السعر: <b>650 جنيه للمتر المربع</b></p>
   </div>
 
-  <script>
-    function swapImage(el) {
-      const card = el.parentElement;
-      const mainImg = card.querySelector('.main');
-      const altImg = card.querySelector('.alt');
+  <!-- المنتج -->
+  <div class="item" data-images='["https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg","https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg"]'>
+    <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg">
+    <div class="arrow-right">›</div>
+    <p class="desc">سجادة مودرن ناعمة تضيف لمسة فخامة للمكان.</p>
+  </div>
 
-      if (altImg.style.opacity == "0") {
-        altImg.style.opacity = "1";
-        mainImg.style.opacity = "0";
-      } else {
-        altImg.style.opacity = "0";
-        mainImg.style.opacity = "1";
-      }
+  <div class="item" data-images='["https://i.postimg.cc/tJXFWV7z/images-(2).jpg","https://i.postimg.cc/9fZ9kB9F/sysy.jpg"]'>
+    <img src="https://i.postimg.cc/tJXFWV7z/images-(2).jpg">
+    <div class="arrow-right">›</div>
+    <p class="desc">سجادة بنقشة بسيطة تناسب جميع الديكورات.</p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll(".item").forEach(item => {
+  let imgs = JSON.parse(item.getAttribute("data-images"));
+  let imgTag = item.querySelector("img");
+  let index = 0;
+
+  // زر السهم
+  item.querySelector(".arrow-right").onclick = () => {
+    index = (index + 1) % imgs.length;
+    imgTag.src = imgs[index];
+  };
+
+  // السحب للموبايل
+  let startX = 0;
+
+  imgTag.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  imgTag.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (endX < startX - 30) {
+      index = (index + 1) % imgs.length;
+      imgTag.src = imgs[index];
     }
-  </script>
+  });
 
-</body>
-</html>
+});
+</script>
