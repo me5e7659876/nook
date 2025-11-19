@@ -157,6 +157,7 @@ header {
     height: 260px;
     border-radius: 16px;
     object-fit: cover;
+    transition: height 0.3s ease; /* smooth resize on desktop */
 }
 
 .card h3 {
@@ -187,12 +188,12 @@ footer {
     .sidebar { display: none; }
     .categories-bar { display: flex; }
     .content { grid-template-columns: repeat(2,1fr); }
-    .card img { height: 180px; }
+    .card img { height: 180px !important; } /* force mobile size */
 }
 
 @media (max-width: 420px) {
     .content { grid-template-columns: repeat(2,1fr); }
-    .card img { height:150px; }
+    .card img { height:150px !important; }
     header { font-size:28px; }
 }
 </style>
@@ -340,6 +341,13 @@ function filterProducts(category) {
         }
     });
     noResults.style.display = anyVisible ? 'none' : 'block';
+
+    // FIX DESKTOP IMAGE SIZE
+    if(window.innerWidth > 768){
+        cards.forEach(card => {
+            card.querySelector('img').style.height = '260px';
+        });
+    }
 }
 
 function setActiveCategory(clickedElem, list) {
