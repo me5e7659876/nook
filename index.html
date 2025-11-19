@@ -115,7 +115,17 @@ header {
     padding: 0;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none !important;
 }
+
+/* شيل أي خط من اللينكات */
+.card:link, 
+.card:visited, 
+.card:hover, 
+.card:active {
+    text-decoration: none !important;
+}
+
 .card:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 22px rgba(0,0,0,0.35);
@@ -127,10 +137,10 @@ header {
     object-fit: cover;
 }
 
-/* ✨ تعديل أسماء التصنيفات تحت كل كرت */
+/* أسماء التصنيفات تحت الكروت */
 .card h3 {
     color: #ffffff;
-    text-decoration: none;
+    text-decoration: none !important;
     margin-top: 12px;
     font-size: 18px;
     font-weight: 600;
@@ -183,7 +193,6 @@ Nook Decor
 
 <div id="resultsInfo" class="results-info">Create your own mood</div>
 
-<!-- Mobile Category Bar -->
 <div class="categories-bar" id="categoriesBar" style="display:none;">
     <div class="cat-chip" data-cat="All">All</div>
     <div class="cat-chip" data-cat="Moods">Moods</div>
@@ -200,7 +209,6 @@ Nook Decor
 
 <div class="container">
 
-<!-- Desktop Sidebar -->
 <aside class="sidebar" id="desktopSidebar">
 <h2>Categories</h2>
 <ul class="categories" id="desktopCategories">
@@ -271,7 +279,6 @@ Nook Decor
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// Mobile category behavior
 function handleResize() {
     if (window.innerWidth <= 768) {
         categoriesBar.style.display = 'flex';
