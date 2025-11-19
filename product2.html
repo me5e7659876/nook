@@ -67,8 +67,7 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transform: translateX(50px);
-      transition: opacity 2s ease, max-height 2s ease, transform 2s ease; /* ظهور أبطأ وتحريك من اليمين */
+      transition: opacity 2s ease, max-height 2s ease; /* أبطأ من قبل */
     }
 
     /* Show description on hover */
@@ -76,7 +75,6 @@
     .item.touch-active .desc {
       opacity: 1;
       max-height: 100px;
-      transform: translateX(0);
     }
 
     .price {
