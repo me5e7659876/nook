@@ -6,18 +6,25 @@
 <title>Nook Decor</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+/* إضافة خط Didot */
+@font-face {
+    font-family: 'Didot';
+    src: url('https://cdn.jsdelivr.net/gh/AlmightyAlpha/fonts/Didot.ttf') format('truetype');
+}
 
 :root{
     --accent-hover: rgba(255,179,198,0.12);
     --active-outline: rgba(255,179,198,0.28);
 }
+
+/* تطبيق الخط على كل حاجة */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Didot', serif !important;
     margin: 0;
     background-color: #4b0e1f;
     color: #fff;
 }
+
 header {
     background-color: #4b0e1f;
     color: white;
@@ -28,6 +35,7 @@ header {
     position: relative;
     text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
+
 .header-icons {
     position: absolute;
     top: 20px;
@@ -60,7 +68,6 @@ header {
     font-size: 17px;
     font-weight: 600;
     color: #ffffff;
-    font-family: 'Playfair Display', serif;
     animation: subtleFade 2.5s ease-in-out infinite alternate;
 }
 @keyframes subtleFade {
@@ -280,4 +287,3 @@ window.addEventListener('resize', handleResize);
 
 </body>
 </html>
-
