@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wooden Racks - Nook Decor</title>
+  <title>Elegant Vase - Nook Decor</title>
   <style>
     body {
       margin: 0;
@@ -19,52 +19,41 @@
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
       gap: 30px;
-      padding: 40px;
-      justify-items: center;
     }
-    .product-card {
-      background-color: #5a1a2c;
+    .product-image {
+      max-width: 400px;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      padding: 20px;
-      max-width: 320px;
-      text-align: center;
-      transition: transform 0.3s;
     }
-    .product-card:hover {
-      transform: translateY(-8px);
+    .product-details {
+      max-width: 400px;
     }
-    .product-card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      object-fit: cover;
-      height: 250px;
-    }
-    .product-card h2 {
+    .product-details h1 {
+      margin-top: 0;
+      font-size: 28px;
       color: #ffb3c6;
-      font-size: 22px;
-      margin: 10px 0;
     }
-    .product-card p {
-      font-size: 15px;
-      line-height: 1.5;
+    .product-details p {
+      line-height: 1.6;
+      font-size: 16px;
     }
     .price {
-      font-size: 18px;
+      font-size: 22px;
       font-weight: bold;
-      margin: 12px 0;
-      color: #ffd6e0;
+      margin: 15px 0;
     }
     .btn {
       background-color: #ffb3c6;
       border: none;
       color: #4b0e1f;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
@@ -76,7 +65,7 @@
     .back-link {
       display: block;
       text-align: center;
-      margin: 30px 0;
+      margin-top: 20px;
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
@@ -86,36 +75,16 @@
 <body>
   <header>Nook Decor</header>
 
-  <section class="products-grid">
-    <!-- المنتج الأول -->
-    <div class="product-card">
-      <img src="https://i.postimg.cc/sgnptGDC/b33de9a8-234c-4a0d-b915-162d9ab1169d.jpg" alt="Wooden Rack Set">
-      <h2>رف خشب ديكوري 3 قطع</h2>
-      <p>طقم رفوف خشبية بتصميم عصري وعملي لتزيين الحائط وإضافة لمسة فخمة لديكورك.</p>
-      <div class="price">750 جنيه (الـ3 قطع) | 300 جنيه للقطعة</div>
-      <button class="btn">أضف إلى السلة</button>
+  <div class="product-container">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Elegant Vase" class="product-image" />
+    <div class="product-details">
+      <h1>Elegant Vase</h1>
+      <p>Bring timeless elegance to your home with this handcrafted ceramic vase. Perfect for flowers or as a stand-alone decor piece.</p>
+      <div class="price">$39.99</div>
+      <button class="btn">Add to Cart</button>
+      <a href="index.html" class="back-link">← Back to Home</a>
     </div>
-
-    <!-- المنتج الثاني -->
-    <div class="product-card">
-      <img src="https://i.postimg.cc/G2NRNQ6r/fc5d9082-d6a1-4c9a-9ed2-b1b6eb8fe68f.jpg" alt="Modern Wooden Rack">
-      <h2>حامل خشب جداري مودرن</h2>
-      <p>حامل خشبي جداري بتصميم حديث يناسب الديكورات العصرية، خامة قوية وتشطيب فاخر.</p>
-      <div class="price">650 جنيه</div>
-      <button class="btn">أضف إلى السلة</button>
-    </div>
-
-    <!-- المنتج الثالث مؤقت -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1624460812260-d8dbde1aaf94" alt="Modern Shelf Set">
-      <h2>Modern Shelf Set</h2>
-      <p>مجموعة أرفف خشبية أنيقة تناسب المساحات الصغيرة.</p>
-      <div class="price">850 جنيه</div>
-      <button class="btn">أضف إلى السلة</button>
-    </div>
-  </section>
-
-  <a href="index.html" class="back-link">← الرجوع للرئيسية</a>
+  </div>
 
 </body>
 </html>
