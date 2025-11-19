@@ -15,6 +15,7 @@
       background-position: center;
       background-attachment: fixed;
     }
+
     header {
       background-color: rgba(75, 14, 31, 0.9);
       padding: 15px;
@@ -24,6 +25,7 @@
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+
     .product-container {
       display: flex;
       flex-wrap: wrap;
@@ -32,34 +34,63 @@
       padding: 30px;
       gap: 30px;
     }
+
     .product {
       background-color: rgba(75, 14, 31, 0.9);
       border-radius: 15px;
       padding: 15px;
-      max-width: 300px; /* 🔹 تم تصغير حجم الكرت */
+      max-width: 300px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
     }
+
+    /* حركة خفيفة عند المرور على الكرت */
+    .product:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
     .product-image {
       width: 100%;
       border-radius: 15px;
       margin-bottom: 10px;
+      transition: transform 0.3s ease;
     }
+
+    .product:hover .product-image {
+      transform: scale(1.05);
+    }
+
     .product h1 {
-      font-size: 20px; /* 🔹 تصغير طفيف للنص */
+      font-size: 20px;
       color: #ffb3c6;
       margin-bottom: 8px;
     }
+
     .product p {
       line-height: 1.5;
-      font-size: 14px; /* 🔹 تصغير بسيط */
+      font-size: 14px;
       margin-bottom: 8px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
     }
+
+    /* اظهار الوصف عند المرور على الكرت */
+    .product:hover p {
+      opacity: 1;
+      max-height: 100px;
+    }
+
     .price {
       font-size: 18px;
       font-weight: bold;
       margin: 8px 0;
     }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
@@ -70,9 +101,11 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .btn:hover {
       background-color: #ffc7d3;
     }
+
     .back-link {
       display: block;
       text-align: center;
@@ -80,6 +113,14 @@
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
+    }
+
+    /* للموبايل: اجعل الوصف يظهر دائمًا */
+    @media (max-width: 768px) {
+      .product p {
+        opacity: 1;
+        max-height: 100px;
+      }
     }
   </style>
 </head>
