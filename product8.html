@@ -34,23 +34,23 @@
       background: #5c1024;
       border-radius: 15px;
       padding: 15px;
-      width: 280px;
-      height: 520px;
+      width: 260px;
+      height: 500px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .product-card img {
       width: 100%;
       height: 420px;
-      position: relative;
-      overflow: hidden;
+      object-fit: cover;
       border-radius: 15px;
       margin-bottom: 10px;
-      object-fit: cover;
     }
 
     .product-card h2 {
@@ -59,10 +59,18 @@
       margin: 8px 0;
     }
 
+    /* ---- Description Animation ---- */
     .product-card p {
       font-size: 14px;
       line-height: 1.4;
-      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 0.3s ease-in-out;
+    }
+
+    .product-card:hover p {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .price {
@@ -106,26 +114,26 @@
   <!-- 1 – Chess -->
   <div class="product-card">
     <img src="https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg" alt="Chess Game" />
-    <h2>The Art of Chess</h2>
-    <p>Premium wooden chess set designed for collectors and stylish homes.</p>
+    <h2>Chess</h2>
+    <p>A timeless strategy game perfect for cozy family nights and friendly challenges.</p>
     <div class="price">450 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- 2 – Kids Stack Game -->
+  <!-- 2 – Premium Playing Cards -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png" alt="Kids Game" />
-    <h2>Fun Stack Game</h2>
-    <p>A colorful stacking game that improves focus and creativity for kids.</p>
+    <img src="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png" alt="Cards" />
+    <h2>Premium Playing Cards</h2>
+    <p>High-quality cards designed for fun gatherings, endless laughs, and group games.</p>
     <div class="price">70 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
 
-  <!-- 3 – Balance Game -->
+  <!-- 3 – UNO Card Game -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png" alt="Balance Game" />
-    <h2>Balance Challenge</h2>
-    <p>A fun and engaging balance game perfect for family gatherings.</p>
+    <img src="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png" alt="UNO" />
+    <h2>UNO Card Game</h2>
+    <p>The ultimate family-friendly game that brings excitement, surprises, and loud laughs.</p>
     <div class="price">90 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
@@ -134,7 +142,7 @@
   <div class="product-card">
     <img src="https://i.postimg.cc/HnH4bJJp/download-(48).jpg" alt="Domino Game" />
     <h2>Classic Domino</h2>
-    <p>High-quality classic domino set with a clean and elegant finish.</p>
+    <p>A smooth and enjoyable game that always gathers friends and family around the table.</p>
     <div class="price">250 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
