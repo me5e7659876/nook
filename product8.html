@@ -24,7 +24,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: flex-start;
+      align-items: stretch;
       padding: 30px;
       gap: 30px;
       margin-bottom: 50px;
@@ -33,27 +33,38 @@
       background: #5c1024;
       border-radius: 15px;
       padding: 20px;
-      max-width: 350px;
+      width: 320px;
+      height: 500px; /* نفس الارتفاع لكل الكروت */
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .product-card img {
       width: 100%;
+      height: 220px; /* نفس ارتفاع الصورة لكل المنتجات */
+      object-fit: cover;
       border-radius: 12px;
     }
     .product-card h2 {
-      font-size: 22px;
+      font-size: 20px;
       color: #ffb3c6;
-      margin-bottom: 10px;
+      margin: 10px 0;
+      height: 50px; /* لتساوي العناوين */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .product-card p {
       font-size: 15px;
       line-height: 1.5;
+      height: 90px; /* لتساوي الوصف */
+      overflow: hidden;
     }
     .price {
       font-size: 20px;
       font-weight: bold;
-      margin: 15px 0;
       color: #ffd6df;
     }
     .btn {
