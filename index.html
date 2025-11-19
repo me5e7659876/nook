@@ -127,6 +127,15 @@ header {
     object-fit: cover;
 }
 
+/* ✨ تعديل أسماء التصنيفات تحت كل كرت */
+.card h3 {
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 footer {
     background-color: #4b0e1f;
     text-align: center;
@@ -173,8 +182,6 @@ Nook Decor
 </div>
 
 <div id="resultsInfo" class="results-info">Create your own mood</div>
-
-<!-- NO BANNER ANYMORE -->
 
 <!-- Mobile Category Bar -->
 <div class="categories-bar" id="categoriesBar" style="display:none;">
@@ -264,7 +271,7 @@ Nook Decor
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// Make mobile categories appear only on mobile
+// Mobile category behavior
 function handleResize() {
     if (window.innerWidth <= 768) {
         categoriesBar.style.display = 'flex';
