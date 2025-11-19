@@ -67,7 +67,8 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 0.3s ease, max-height 0.3s ease;
+      transform: translateX(50px);
+      transition: opacity 2s ease, max-height 2s ease, transform 2s ease; /* ظهور أبطأ وتحريك من اليمين */
     }
 
     /* Show description on hover */
@@ -75,6 +76,7 @@
     .item.touch-active .desc {
       opacity: 1;
       max-height: 100px;
+      transform: translateX(0);
     }
 
     .price {
@@ -183,7 +185,7 @@
     });
 
     // Touch press effect on button
-    btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)');
+    btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)'));
     btn.addEventListener('touchend', () => setTimeout(() => btn.style.transform = 'scale(1)', 150));
   });
 </script>
