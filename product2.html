@@ -33,6 +33,9 @@
     .item {
       text-align: center;
       max-width: 260px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
     }
 
     .item img {
@@ -42,6 +45,12 @@
       object-fit: cover;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover on desktop */
+    .item:hover img {
+      transform: scale(1.05) translateY(-5px);
     }
 
     .title {
@@ -55,7 +64,17 @@
       font-size: 14px;
       line-height: 1.4;
       margin-bottom: 10px;
-      opacity: 0.9;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    /* Show description on hover */
+    .item:hover .desc,
+    .item.touch-active .desc {
+      opacity: 1;
+      max-height: 100px;
     }
 
     .price {
@@ -72,7 +91,7 @@
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      transition: .3s;
+      transition: .2s;
       font-size: 14px;
     }
 
@@ -142,6 +161,32 @@
   </div>
 
 </div>
+
+<script>
+  // Touch effect for mobile devices
+  const items = document.querySelectorAll('.item');
+  items.forEach(item => {
+    const btn = item.querySelector('.btn');
+    item.addEventListener('touchstart', () => {
+      item.classList.add('touch-active');
+      item.style.transform = 'scale(1.03)';
+      const img = item.querySelector('img');
+      img.style.transform = 'scale(1.05) translateY(-5px)';
+    });
+    item.addEventListener('touchend', () => {
+      setTimeout(() => {
+        item.classList.remove('touch-active');
+        item.style.transform = 'scale(1)';
+        const img = item.querySelector('img');
+        img.style.transform = 'scale(1) translateY(0)';
+      }, 300);
+    });
+
+    // Touch press effect on button
+    btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)');
+    btn.addEventListener('touchend', () => setTimeout(() => btn.style.transform = 'scale(1)', 150));
+  });
+</script>
 
 </body>
 </html>
