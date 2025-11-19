@@ -101,6 +101,7 @@ header {
 .categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
 .categories a.active {
     outline: 2px solid var(--active-outline);
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
 }
 
 /* MOBILE CATEGORY BAR */
@@ -164,6 +165,15 @@ header {
     font-size: 18px;
 }
 
+/* NO RESULTS MESSAGE */
+.no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    font-size: 18px;
+    padding: 40px 0;
+    color: #ffb3c6;
+}
+
 /* FOOTER */
 footer {
     background-color: #4b0e1f;
@@ -202,7 +212,7 @@ footer {
 
 <div class="search-bar">
   <i class="fas fa-search" style="color:#fff;"></i>
-  <input type="text" placeholder="Search for anything..." />
+  <input type="text" id="searchInput" placeholder="Search for anything..." />
 </div>
 
 <div class="results-info">Create your own mood</div>
@@ -228,74 +238,75 @@ footer {
   <aside class="sidebar" id="desktopSidebar">
     <h2>Categories</h2>
     <ul class="categories">
-      <li><a class="active">All</a></li>
-      <li><a>Moods</a></li>
-      <li><a>Vases</a></li>
-      <li><a>Outdoor Flooring</a></li>
-      <li><a>Lighting</a></li>
-      <li><a>Glass Candles</a></li>
-      <li><a>Furniture</a></li>
-      <li><a>Cushions</a></li>
-      <li><a>Wooden Rack</a></li>
-      <li><a>Games</a></li>
-      <li><a>Wall Art</a></li>
+      <li><a class="active" data-cat="All">All</a></li>
+      <li><a data-cat="Moods">Moods</a></li>
+      <li><a data-cat="Vases">Vases</a></li>
+      <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
+      <li><a data-cat="Lighting">Lighting</a></li>
+      <li><a data-cat="Glass Candles">Glass Candles</a></li>
+      <li><a data-cat="Furniture">Furniture</a></li>
+      <li><a data-cat="Cushions">Cushions</a></li>
+      <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
+      <li><a data-cat="Games">Games</a></li>
+      <li><a data-cat="Wall Art">Wall Art</a></li>
     </ul>
   </aside>
 
   <!-- CONTENT -->
-  <main class="content">
-
-    <a href="moods.html" class="card">
+  <main class="content" id="content">
+    <a href="moods.html" class="card" data-cat="Moods">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
     </a>
 
-    <a href="product3.html" class="card">
+    <a href="product3.html" class="card" data-cat="Lighting">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Modern Lamp</h3>
+      <h3>Lighting</h3>
     </a>
 
-    <a href="product1.html" class="card">
+    <a href="product1.html" class="card" data-cat="Vases">
       <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Elegant Vase</h3>
+      <h3>Vases</h3>
     </a>
 
-    <a href="product2.html" class="card">
+    <a href="product2.html" class="card" data-cat="Cushions">
       <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Soft Cushion</h3>
+      <h3>Cushions</h3>
     </a>
 
-    <a href="product4.html" class="card">
+    <a href="product4.html" class="card" data-cat="Glass Candles">
       <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
       <h3>Glass Candles</h3>
     </a>
 
-    <a href="product5.html" class="card">
+    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
       <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
       <h3>Outdoor Flooring</h3>
     </a>
 
-    <a href="product6.html" class="card">
+    <a href="product6.html" class="card" data-cat="Wooden Rack">
       <img src="https://i.postimg.cc/1XbfbgSD/e544ccf0-059b-4b02-b6e6-58401e6bfa09.jpg">
       <h3>Wooden Rack</h3>
     </a>
 
-    <a href="product7.html" class="card">
+    <a href="product7.html" class="card" data-cat="Wall Art">
       <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
       <h3>Wall Art</h3>
     </a>
 
-    <a href="games.html" class="card">
+    <a href="games.html" class="card" data-cat="Games">
       <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
       <h3>Games</h3>
     </a>
-
+    
+    <div class="no-results" style="display:none;">No products found.</div>
   </main>
 </div>
 
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
+// RESPONSIVE SIDEBAR
 function handleResize() {
     if (window.innerWidth <= 768) {
         document.getElementById('categoriesBar').style.display = 'flex';
@@ -307,6 +318,62 @@ function handleResize() {
 }
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
+
+// FILTER PRODUCTS FUNCTION
+const desktopCategories = document.querySelectorAll('.sidebar .categories a');
+const mobileCategories = document.querySelectorAll('.categories-bar .cat-chip');
+const cards = document.querySelectorAll('.content .card');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.querySelector('.no-results');
+
+function filterProducts(category) {
+    const searchText = searchInput.value.toLowerCase();
+    let anyVisible = false;
+    cards.forEach(card => {
+        const matchesCategory = category === 'All' || card.dataset.cat === category;
+        const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(searchText);
+        if(matchesCategory && matchesSearch) {
+            card.style.display = 'block';
+            anyVisible = true;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    noResults.style.display = anyVisible ? 'none' : 'block';
+}
+
+function setActiveCategory(clickedElem, list) {
+    list.forEach(el => el.classList.remove('active'));
+    clickedElem.classList.add('active');
+}
+
+// DESKTOP CLICK EVENTS
+desktopCategories.forEach(cat => {
+    cat.addEventListener('click', e => {
+        e.preventDefault();
+        const category = cat.dataset.cat;
+        filterProducts(category);
+        setActiveCategory(cat, desktopCategories);
+        setActiveCategory(document.querySelector(`.categories-bar .cat-chip[data-cat="${category}"]`), mobileCategories);
+    });
+});
+
+// MOBILE CLICK EVENTS
+mobileCategories.forEach(cat => {
+    cat.addEventListener('click', e => {
+        const category = cat.dataset.cat;
+        filterProducts(category);
+        setActiveCategory(cat, mobileCategories);
+        setActiveCategory(document.querySelector(`.sidebar .categories a[data-cat="${category}"]`), desktopCategories);
+    });
+});
+
+// SEARCH FUNCTIONALITY
+searchInput.addEventListener('input', () => {
+    let activeCategory = 'All';
+    desktopCategories.forEach(cat => { if(cat.classList.contains('active')) activeCategory = cat.dataset.cat; });
+    filterProducts(activeCategory);
+});
 </script>
 
 </body>
