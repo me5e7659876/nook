@@ -43,6 +43,7 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .product-card img {
@@ -51,6 +52,7 @@
       object-fit: cover;
       border-radius: 15px;
       margin-bottom: 10px;
+      transition: transform 0.3s ease;
     }
 
     .product-card h2 {
@@ -65,10 +67,11 @@
       line-height: 1.4;
       opacity: 0;
       transform: translateY(10px);
-      transition: 0.3s ease-in-out;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .product-card:hover p {
+    .product-card:hover p,
+    .product-card.touch-active p {
       opacity: 1;
       transform: translateY(0);
     }
@@ -87,12 +90,17 @@
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.2s;
       margin-top: auto;
     }
 
     .btn:hover {
       background-color: #ffc7d3;
+    }
+
+    /* Touch press effect for mobile */
+    .btn.touch-press {
+      transform: scale(0.95);
     }
 
     .back-link {
@@ -101,6 +109,41 @@
       margin: 25px 0;
       color: #ffb3c6;
       text-decoration: none;
+    }
+
+    /* Hover effect for images and shadow on desktop */
+    @media (hover: hover) and (pointer: fine) {
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(255,179,198,0.4);
+      }
+      .product-card:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .product-card {
+        height: auto;
+      }
+      .product-card img {
+        height: 420px;
+      }
+      .product-card p {
+        opacity: 1;
+        transform: translateY(0);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      .product-card.touch-active {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(255,179,198,0.4);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
   </style>
@@ -124,7 +167,7 @@
   <div class="product-card">
     <img src="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png" alt="Cards" />
     <h2>Premium Playing Cards</h2>
-    <p>High-quality cards designed for fun gatherings, endless laughs, and group games.</p>
+    <p>Fun-packed card set for entertaining family nights and gatherings with friends.</p>
     <div class="price">70 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
@@ -133,7 +176,7 @@
   <div class="product-card">
     <img src="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png" alt="UNO" />
     <h2>UNO Card Game</h2>
-    <p>The ultimate family-friendly game that brings excitement, surprises, and loud laughs.</p>
+    <p>Exciting and colorful game for family fun, friends, and laughter-filled evenings.</p>
     <div class="price">90 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
@@ -142,7 +185,7 @@
   <div class="product-card">
     <img src="https://i.postimg.cc/HnH4bJJp/download-(48).jpg" alt="Domino Game" />
     <h2>Classic Domino</h2>
-    <p>A smooth and enjoyable game that always gathers friends and family around the table.</p>
+    <p>Simple and engaging domino game that brings everyone together for endless fun.</p>
     <div class="price">250 EGP</div>
     <button class="btn">Add to Cart</button>
   </div>
@@ -150,6 +193,28 @@
 </div>
 
 <a href="index.html" class="back-link">← Back to Home</a>
+
+<script>
+  // Touch effect for cards
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    card.addEventListener('touchstart', () => {
+      card.classList.add('touch-active');
+    });
+    card.addEventListener('touchend', () => {
+      setTimeout(() => card.classList.remove('touch-active'), 400);
+    });
+  });
+
+  // Touch effect for Add to Cart buttons
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('touchstart', () => btn.classList.add('touch-press'));
+    btn.addEventListener('touchend', () => {
+      setTimeout(() => btn.classList.remove('touch-press'), 200);
+    });
+  });
+</script>
 
 </body>
 </html>
