@@ -12,16 +12,14 @@
     --accent-hover: rgba(255,179,198,0.12);
     --active-outline: rgba(255,179,198,0.28);
 }
-
-/* DARKER BURGUNDY */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #330a15;
+    background-color: #4b0e1f;
     color: #fff;
 }
 header {
-    background-color: #330a15;
+    background-color: #4b0e1f;
     color: white;
     padding: 20px;
     text-align: center;
@@ -36,8 +34,9 @@ header {
     left: 20px;
     display: flex;
     gap: 15px;
+    font-size: 22px;
 }
-.header-icons i { cursor: pointer; transition: .2s; }
+.header-icons i { cursor: pointer; transition: transform 0.2s ease; }
 .header-icons i:hover { transform: scale(1.15); }
 
 .search-bar {
@@ -48,6 +47,7 @@ header {
 }
 .search-bar input {
     padding: 10px 15px;
+    font-size: 16px;
     border: none;
     border-radius: 8px;
     width: 280px;
@@ -59,7 +59,13 @@ header {
     margin: 10px 0 14px 0;
     font-size: 17px;
     font-weight: 600;
+    color: #ffffff;
     font-family: 'Playfair Display', serif;
+    animation: subtleFade 2.5s ease-in-out infinite alternate;
+}
+@keyframes subtleFade {
+    from { opacity: 0.9; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.01); }
 }
 
 .container {
@@ -70,10 +76,11 @@ header {
 
 .sidebar {
     width: 230px;
-    background-color: #330a15;
+    background-color: #4b0e1f;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    height: fit-content;
 }
 .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 
@@ -82,13 +89,16 @@ header {
 .categories a {
     text-decoration: none;
     color: #fff;
+    font-weight: 500;
+    display: block;
     padding: 8px 10px;
     border-radius: 8px;
-    display: block;
+    transition: background 0.18s ease, transform 0.12s ease;
 }
-.categories a:hover { background: var(--accent-hover); }
+.categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
 .categories a.active {
     outline: 2px solid var(--active-outline);
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
 }
 
 .content {
@@ -99,11 +109,24 @@ header {
 }
 
 .card {
+    background: none;
+    box-shadow: none;
+    border-radius: 10px;
+    padding: 0;
     text-align: center;
-    transition: .25s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none !important;
 }
+.card:link, 
+.card:visited, 
+.card:hover, 
+.card:active {
+    text-decoration: none !important;
+}
+
 .card:hover {
     transform: translateY(-6px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
 }
 .card img {
     width: 100%;
@@ -111,11 +134,16 @@ header {
     border-radius: 16px;
     object-fit: cover;
 }
-
-.card h3 { margin-top: 12px; color: #fff; }
+.card h3 {
+    color: #ffffff;
+    text-decoration: none !important;
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
 
 footer {
-    background-color: #330a15;
+    background-color: #4b0e1f;
     text-align: center;
     padding: 15px;
 }
@@ -127,110 +155,119 @@ footer {
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px; }
 }
+
+@media (max-width: 420px) {
+    .content { grid-template-columns: repeat(2,1fr); }
+    .card img { height:150px; }
+    header { font-size:28px; }
+}
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
+</audio>
+
 <header>
-<div class="header-icons">
+  <div class="header-icons">
     <i class="fas fa-search"></i>
     <i class="fas fa-shopping-cart"></i>
-</div>
-Nook Decor
+  </div>
+  Nook Decor
 </header>
 
 <div class="search-bar">
-<i class="fas fa-search" style="color:#fff;"></i>
-<input id="searchInput" type="text" placeholder="Search for anything..." />
+  <i class="fas fa-search" style="color:#fff;"></i>
+  <input id="searchInput" type="text" placeholder="Search for anything..." />
 </div>
 
+<div id="resultsInfo" class="results-info">Create your own mood</div>
+
 <div class="categories-bar" id="categoriesBar" style="display:none;">
-    <div class="cat-chip" data-cat="All">All</div>
-    <div class="cat-chip" data-cat="Moods">Moods</div>
-    <div class="cat-chip" data-cat="Vases">Vases</div>
-    <div class="cat-chip" data-cat="Small & Glass Vases">Small & Glass Vases</div>
-    <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-    <div class="cat-chip" data-cat="Lighting">Lighting</div>
-    <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
-    <div class="cat-chip" data-cat="Furniture">Furniture</div>
-    <div class="cat-chip" data-cat="Cushions">Cushions</div>
-    <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-    <div class="cat-chip" data-cat="Games">Games</div>
-    <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
+  <div class="cat-chip" data-cat="All">All</div>
+  <div class="cat-chip" data-cat="Moods">Moods</div>
+  <div class="cat-chip" data-cat="Vases">Vases</div>
+  <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
+  <div class="cat-chip" data-cat="Lighting">Lighting</div>
+  <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
+  <div class="cat-chip" data-cat="Furniture">Furniture</div>
+  <div class="cat-chip" data-cat="Cushions">Cushions</div>
+  <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
+  <div is="cat-chip" data-cat="Games">Games</div>
+  <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
 </div>
 
 <div class="container">
 
-<aside class="sidebar" id="desktopSidebar">
-<h2>Categories</h2>
-<ul class="categories">
-    <li><a class="active" data-cat="All">All</a></li>
-    <li><a data-cat="Moods">Moods</a></li>
-    <li><a data-cat="Vases">Vases</a></li>
-    <li><a data-cat="Small & Glass Vases">Small & Glass Vases</a></li>
-    <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-    <li><a data-cat="Lighting">Lighting</a></li>
-    <li><a data-cat="Glass Candles">Glass Candles</a></li>
-    <li><a data-cat="Furniture">Furniture</a></li>
-    <li><a data-cat="Cushions">Cushions</a></li>
-    <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-    <li><a data-cat="Games">Games</a></li>
-    <li><a data-cat="Wall Art">Wall Art</a></li>
-</ul>
-</aside>
+  <aside class="sidebar" id="desktopSidebar">
+    <h2>Categories</h2>
+    <ul class="categories" id="desktopCategories">
+      <li><a class="category-item active" data-cat="All" href="#">All</a></li>
+      <li><a class="category-item" data-cat="Moods" href="#">Moods</a></li>
+      <li><a class="category-item" data-cat="Vases" href="#">Vases</a></li>
+      <li><a class="category-item" data-cat="Outdoor Flooring" href="#">Outdoor Flooring</a></li>
+      <li><a class="category-item" data-cat="Lighting" href="#">Lighting</a></li>
+      <li><a class="category-item" data-cat="Glass Candles" href="#">Glass Candles</a></li>
+      <li><a class="category-item" data-cat="Furniture" href="#">Furniture</a></li>
+      <li><a class="category-item" data-cat="Cushions" href="#">Cushions</a></li>
+      <li><a class="category-item" data-cat="Wooden Rack" href="#">Wooden Rack</a></li>
+      <li><a class="category-item" data-cat="Games" href="#">Games</a></li>
+      <li><a class="category-item" data-cat="Wall Art" href="#">Wall Art</a></li>
+    </ul>
+  </aside>
 
-<main class="content">
+  <main class="content" id="content">
 
-<!-- Existing cards -->
-<a href="moods.html" class="card" data-category="Moods">
-<img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-<h3>Moods</h3>
-</a>
+    <a href="moods.html" class="card" data-category="Moods">
+      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+      <h3>Moods</h3>
+    </a>
 
-<a href="product3.html" class="card" data-category="Lighting">
-<img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-<h3>Modern Lamp</h3>
-</a>
+    <a href="product3.html" class="card" data-category="Lighting">
+      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+      <h3>Modern Lamp</h3>
+    </a>
 
-<a href="product1.html" class="card" data-category="Vases">
-<img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-<h3>Elegant Vase</h3>
-</a>
+    <a href="product1.html" class="card" data-category="Vases">
+      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+      <h3>Elegant Vase</h3>
+    </a>
 
-<a href="small-glass-vases.html" class="card" data-category="Small & Glass Vases">
-<img src="https://i.postimg.cc/1XbfbgSD/e544ccf0-059b-4b02-b6e6-58401e6bfa09.jpg">
-<h3>Small & Glass Vases</h3>
-</a>
+    <a href="product2.html" class="card" data-category="Cushions">
+      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+      <h3>Soft Cushion</h3>
+    </a>
 
-<a href="product2.html" class="card" data-category="Cushions">
-<img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-<h3>Soft Cushion</h3>
-</a>
+    <a href="product4.html" class="card" data-category="Glass Candles">
+      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+      <h3>Glass Candles</h3>
+    </a>
 
-<a href="product5.html" class="card" data-category="Outdoor Flooring">
-<img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-<h3>Outdoor Flooring</h3>
-</a>
+    <a href="product5.html" class="card" data-cat="Outdoor Flooring" class="card" data-category="Outdoor Flooring">
+      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+      <h3>Outdoor Flooring</h3>
+    </a>
 
-<a href="product6.html" class="card" data-category="Wooden Rack">
-<img src="https://i.postimg.cc/1XbfbgSD/e544ccf0-059b-4b02-b6e6-58401e6bfa09.jpg">
-<h3>Wooden Rack</h3>
-</a>
+    <a href="product6.html" class="card" data-category="Wooden Rack">
+      <img src="https://i.postimg.cc/1XbfbgSD/e544ccf0-059b-4b02-b6e6-58401e6bfa09.jpg">
+      <h3>Wooden Rack</h3>
+    </a>
 
-<a href="product7.html" class="card" data-category="Wall Art">
-<img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-<h3>Wall Art</h3>
-</a>
+    <a href="product7.html" class="card" data-category="Wall Art">
+      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+      <h3>Wall Art</h3>
+    </a>
 
-<a href="games.html" class="card" data-category="Games">
-<img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-<h3>Games</h3>
-</a>
+    <a href="games.html" class="card" data-category="Games">
+      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+      <h3>Games</h3>
+    </a>
 
-</main>
+  </main>
 </div>
 
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
@@ -238,11 +275,11 @@ Nook Decor
 <script>
 function handleResize() {
     if (window.innerWidth <= 768) {
-        categoriesBar.style.display = 'flex';
-        desktopSidebar.style.display = 'none';
+        document.getElementById('categoriesBar').style.display = 'flex';
+        document.getElementById('desktopSidebar').style.display = 'none';
     } else {
-        categoriesBar.style.display = 'none';
-        desktopSidebar.style.display = 'block';
+        document.getElementById('categoriesBar').style.display = 'none';
+        document.getElementById('desktopSidebar').style.display = 'block';
     }
 }
 window.addEventListener('load', handleResize);
