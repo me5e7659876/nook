@@ -27,28 +27,34 @@
       align-items: flex-start;
       padding: 30px;
       gap: 30px;
+      margin-bottom: 50px;
     }
-    .product-image {
-      max-width: 400px;
+    .product-card {
+      background: #5c1024;
       border-radius: 15px;
+      padding: 20px;
+      max-width: 350px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: center;
     }
-    .product-details {
-      max-width: 400px;
+    .product-card img {
+      width: 100%;
+      border-radius: 12px;
     }
-    .product-details h1 {
-      margin-top: 0;
-      font-size: 28px;
+    .product-card h2 {
+      font-size: 22px;
       color: #ffb3c6;
+      margin-bottom: 10px;
     }
-    .product-details p {
-      line-height: 1.6;
-      font-size: 16px;
+    .product-card p {
+      font-size: 15px;
+      line-height: 1.5;
     }
     .price {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       margin: 15px 0;
+      color: #ffd6df;
     }
     .btn {
       background-color: #ffb3c6;
@@ -75,32 +81,49 @@
 </head>
 <body>
 
-<header>Nook Decor</header>
+<header>Nook Decor - Games</header>
 
 <div class="product-container">
 
-  <img 
-    src="https://i.postimg.cc/6624GtwG/chess.jpg" 
-    alt="Games Item" 
-    class="product-image"
-  />
-
-  <div class="product-details">
-    <h1>Premium Wooden Chess Set</h1>
-
-    <p>
-      A luxurious handcrafted wooden chess set designed for both decoration and gameplay.
-      Perfect for living rooms, offices, and stylish corners.
-    </p>
-
-    <div class="price">1450 EGP</div>
-
+  <!-- 1 – شطرنج -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg" alt="Chess Game" />
+    <h2>The Art of Chess</h2>
+    <p>طقم شطرنج فاخر بتصميم فني راقٍ، مناسب للديكور والّلاعبين، ويضيف لمسة فخامة لأي ركن في البيت.</p>
+    <div class="price">450 EGP</div>
     <button class="btn">Add to Cart</button>
+  </div>
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+  <!-- 2 – لعبة الأطفال -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png" alt="Kids Game" />
+    <h2>Fun Stack Game</h2>
+    <p>لعبة تفاعلية ممتعة للأطفال تساعد على التركيز وتنمية مهاراتهم الحركية بطريقة مرحة وجذابة.</p>
+    <div class="price">70 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 3 – لعبة توازن -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png" alt="Balance Game" />
+    <h2>Balance Challenge</h2>
+    <p>لعبة ذكاء وتوازن ممتعة لكل الأعمار، مثالية للتجمعات والأوقات العائلية.</p>
+    <div class="price">90 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
+
+  <!-- 4 – دومينو -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/HnH4bJJp/download-(48).jpg" alt="Domino Game" />
+    <h2>Classic Domino Set</h2>
+    <p>مجموعة دومينو كلاسيكية بجودة عالية، مناسبة للعب والديكور وتضيف جو ممتع للجلسات.</p>
+    <div class="price">250 EGP</div>
+    <button class="btn">Add to Cart</button>
   </div>
 
 </div>
+
+<a href="index.html" class="back-link">← Back to Home</a>
 
 </body>
 </html>
