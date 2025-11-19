@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +12,15 @@
     --accent-hover: rgba(255,179,198,0.12);
     --active-outline: rgba(255,179,198,0.28);
 }
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: #4b0e1f;
     color: #fff;
 }
+
+/* HEADER */
 header {
     background-color: #4b0e1f;
     color: white;
@@ -30,6 +31,7 @@ header {
     position: relative;
     text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
+
 .header-icons {
     position: absolute;
     top: 20px;
@@ -38,9 +40,9 @@ header {
     gap: 15px;
     font-size: 22px;
 }
-.header-icons i { cursor: pointer; transition: transform 0.2s ease; }
-.header-icons i:hover { transform: scale(1.15); }
+.header-icons i { cursor: pointer; }
 
+/* SEARCH BAR */
 .search-bar {
     margin: 18px auto;
     display: flex;
@@ -56,20 +58,16 @@ header {
     outline: none;
 }
 
+/* RESULTS TEXT */
 .results-info {
     text-align: center;
-    margin: 10px 0 14px 0;
+    margin: 10px 0;
     font-size: 17px;
     font-weight: 600;
-    color: #ffffff;
     font-family: 'Playfair Display', serif;
-    animation: subtleFade 2.5s ease-in-out infinite alternate;
-}
-@keyframes subtleFade {
-    from { opacity: 0.9; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.01); }
 }
 
+/* SIDEBAR DESKTOP */
 .container {
     display: flex;
     padding: 20px;
@@ -78,16 +76,19 @@ header {
 
 .sidebar {
     width: 230px;
-    background-color: #4b0e1f;
     padding: 20px;
+    background-color: #4b0e1f;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
 }
+
 .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 
+/* CATEGORY LIST */
 .categories { list-style: none; padding: 0; }
 .categories li { margin: 10px 0; }
+
 .categories a {
     text-decoration: none;
     color: #fff;
@@ -100,9 +101,39 @@ header {
 .categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
 .categories a.active {
     outline: 2px solid var(--active-outline);
-    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
 }
 
+/* MOBILE CATEGORY BAR */
+.categories-bar {
+    display: none;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 12px;
+    background: #3e0b19;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.categories-bar::-webkit-scrollbar { height: 6px; }
+.categories-bar::-webkit-scrollbar-thumb { background: #6b1833; border-radius: 10px; }
+
+.cat-chip {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    background: #5a1226;
+    border-radius: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.cat-chip:hover { background: #7d1838; }
+.cat-chip.active {
+    background: #ffb3c6;
+    color: #4b0e1f;
+}
+
+/* CARDS */
 .content {
     flex: 1;
     display: grid;
@@ -111,49 +142,40 @@ header {
 }
 
 .card {
-    background: none;
-    box-shadow: none;
-    border-radius: 10px;
-    padding: 0;
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    text-decoration: none !important;
-}
-.card:link, 
-.card:visited, 
-.card:hover, 
-.card:active {
-    text-decoration: none !important;
+    transition: transform 0.25s ease;
+    text-decoration: none;
 }
 
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
 }
+
 .card img {
     width: 100%;
     height: 260px;
     border-radius: 16px;
     object-fit: cover;
 }
+
 .card h3 {
-    color: #ffffff;
-    text-decoration: none !important;
+    color: #fff;
     margin-top: 12px;
     font-size: 18px;
-    font-weight: 600;
 }
 
+/* FOOTER */
 footer {
     background-color: #4b0e1f;
     text-align: center;
     padding: 15px;
 }
 
+/* MOBILE LAYOUT FIX */
 @media (max-width: 768px) {
     .container { flex-direction: column; }
     .sidebar { display: none; }
-    .categories-bar { display:flex; gap:12px; overflow-x:auto; padding:10px; }
+    .categories-bar { display: flex; }
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px; }
 }
@@ -166,13 +188,9 @@ footer {
 </style>
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
-
 <body>
-
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
-</audio>
 
 <header>
   <div class="header-icons">
@@ -184,13 +202,14 @@ footer {
 
 <div class="search-bar">
   <i class="fas fa-search" style="color:#fff;"></i>
-  <input id="searchInput" type="text" placeholder="Search for anything..." />
+  <input type="text" placeholder="Search for anything..." />
 </div>
 
-<div id="resultsInfo" class="results-info">Create your own mood</div>
+<div class="results-info">Create your own mood</div>
 
-<div class="categories-bar" id="categoriesBar" style="display:none;">
-  <div class="cat-chip" data-cat="All">All</div>
+<!-- MOBILE CATEGORY BAR -->
+<div class="categories-bar" id="categoriesBar">
+  <div class="cat-chip active" data-cat="All">All</div>
   <div class="cat-chip" data-cat="Moods">Moods</div>
   <div class="cat-chip" data-cat="Vases">Vases</div>
   <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
@@ -199,72 +218,74 @@ footer {
   <div class="cat-chip" data-cat="Furniture">Furniture</div>
   <div class="cat-chip" data-cat="Cushions">Cushions</div>
   <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-  <div is="cat-chip" data-cat="Games">Games</div>
+  <div class="cat-chip" data-cat="Games">Games</div>
   <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
 </div>
 
 <div class="container">
 
+  <!-- DESKTOP SIDEBAR -->
   <aside class="sidebar" id="desktopSidebar">
     <h2>Categories</h2>
-    <ul class="categories" id="desktopCategories">
-      <li><a class="category-item active" data-cat="All" href="#">All</a></li>
-      <li><a class="category-item" data-cat="Moods" href="#">Moods</a></li>
-      <li><a class="category-item" data-cat="Vases" href="#">Vases</a></li>
-      <li><a class="category-item" data-cat="Outdoor Flooring" href="#">Outdoor Flooring</a></li>
-      <li><a class="category-item" data-cat="Lighting" href="#">Lighting</a></li>
-      <li><a class="category-item" data-cat="Glass Candles" href="#">Glass Candles</a></li>
-      <li><a class="category-item" data-cat="Furniture" href="#">Furniture</a></li>
-      <li><a class="category-item" data-cat="Cushions" href="#">Cushions</a></li>
-      <li><a class="category-item" data-cat="Wooden Rack" href="#">Wooden Rack</a></li>
-      <li><a class="category-item" data-cat="Games" href="#">Games</a></li>
-      <li><a class="category-item" data-cat="Wall Art" href="#">Wall Art</a></li>
+    <ul class="categories">
+      <li><a class="active">All</a></li>
+      <li><a>Moods</a></li>
+      <li><a>Vases</a></li>
+      <li><a>Outdoor Flooring</a></li>
+      <li><a>Lighting</a></li>
+      <li><a>Glass Candles</a></li>
+      <li><a>Furniture</a></li>
+      <li><a>Cushions</a></li>
+      <li><a>Wooden Rack</a></li>
+      <li><a>Games</a></li>
+      <li><a>Wall Art</a></li>
     </ul>
   </aside>
 
-  <main class="content" id="content">
+  <!-- CONTENT -->
+  <main class="content">
 
-    <a href="moods.html" class="card" data-category="Moods">
+    <a href="moods.html" class="card">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
     </a>
 
-    <a href="product3.html" class="card" data-category="Lighting">
+    <a href="product3.html" class="card">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
       <h3>Modern Lamp</h3>
     </a>
 
-    <a href="product1.html" class="card" data-category="Vases">
+    <a href="product1.html" class="card">
       <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
       <h3>Elegant Vase</h3>
     </a>
 
-    <a href="product2.html" class="card" data-category="Cushions">
+    <a href="product2.html" class="card">
       <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
       <h3>Soft Cushion</h3>
     </a>
 
-    <a href="product4.html" class="card" data-category="Glass Candles">
+    <a href="product4.html" class="card">
       <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
       <h3>Glass Candles</h3>
     </a>
 
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring" class="card" data-category="Outdoor Flooring">
+    <a href="product5.html" class="card">
       <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
       <h3>Outdoor Flooring</h3>
     </a>
 
-    <a href="product6.html" class="card" data-category="Wooden Rack">
+    <a href="product6.html" class="card">
       <img src="https://i.postimg.cc/1XbfbgSD/e544ccf0-059b-4b02-b6e6-58401e6bfa09.jpg">
       <h3>Wooden Rack</h3>
     </a>
 
-    <a href="product7.html" class="card" data-category="Wall Art">
+    <a href="product7.html" class="card">
       <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
       <h3>Wall Art</h3>
     </a>
 
-    <a href="games.html" class="card" data-category="Games">
+    <a href="games.html" class="card">
       <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
       <h3>Games</h3>
     </a>
