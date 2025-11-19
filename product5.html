@@ -38,6 +38,8 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       text-align: center;
       transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .product-card:hover {
@@ -89,21 +91,21 @@
       font-size: 20px;
     }
 
-    p {
-      margin: 3px 0;
-      font-size: 14px;
-      line-height: 1.4;
+    p, .price, .size, .btn {
       opacity: 0;
+      transform: translateX(30px); /* يبدأ من اليمين */
+      transition: opacity 1s ease, transform 1s ease; /* ظهور أبطأ */
       max-height: 0;
       overflow: hidden;
-      transition: opacity 0.6s ease, max-height 0.6s ease; /* ظهور أبطأ */
     }
 
-    .price, .size {
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: opacity 0.6s ease, max-height 0.6s ease; /* ظهور أبطأ */
+    .product-card:hover p,
+    .product-card:hover .price,
+    .product-card:hover .size,
+    .product-card:hover .btn {
+      opacity: 1;
+      transform: translateX(0); /* يتحرك تدريجيًا لليسر */
+      max-height: 100px;
     }
 
     .btn {
@@ -114,20 +116,13 @@
       font-weight: bold;
       color: #4b0e1f;
       cursor: pointer;
-      transition: background-color 0.3s, opacity 0.6s, max-height 0.6s;
       font-size: 14px;
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
     }
 
-    .product-card:hover p,
-    .product-card:hover .btn,
-    .product-card:hover .price,
-    .product-card:hover .size {
-      opacity: 1;
-      max-height: 100px;
+    .btn:hover {
+      background-color: #ffc7d3;
     }
+
   </style>
 </head>
 <body>
