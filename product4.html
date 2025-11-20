@@ -44,11 +44,12 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
+      position: relative;
     }
 
     /* حركة خفيفة عند المرور على الكرت */
     .product:hover {
-      transform: translateY(-6px) scale(1.02);
+      transform: translateY(-6px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
@@ -60,7 +61,7 @@
     }
 
     .product:hover .product-image {
-      transform: scale(1.05);
+      transform: none; /* الصورة ثابتة */
     }
 
     .product h1 {
@@ -76,13 +77,16 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 1.2s ease, max-height 1.2s ease; /* تعديل سرعة الظهور لتكون أبطأ */
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out, max-height 0.5s ease-out;
+      transform: translateY(15px);
     }
 
     /* اظهار الوصف عند المرور على الكرت */
-    .product:hover p {
+    .product:hover p,
+    .product.touch-active p {
       opacity: 1;
-      max-height: 100px;
+      max-height: 150px;
+      transform: translateY(0);
     }
 
     .price {
@@ -109,18 +113,10 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 40px; /* رفع الرابط ليظهر أعلى على الموبايل */
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
-    }
-
-    /* للموبايل: اجعل الوصف يظهر دائمًا */
-    @media (max-width: 768px) {
-      .product p {
-        opacity: 1;
-        max-height: 100px;
-      }
     }
   </style>
 </head>
@@ -128,7 +124,6 @@
   <header>Nook Decor</header>
 
   <div class="product-container">
-
     <!-- المنتج الأول -->
     <div class="product">
       <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png" alt="LED Glass Candle" class="product-image" />
@@ -146,10 +141,23 @@
       <div class="price">130 EGP</div>
       <button class="btn">Add to Cart</button>
     </div>
-
   </div>
 
   <a href="index.html" class="back-link">← Back to Home</a>
 
+  <script>
+    // تفعيل ظهور الوصف عند لمس الكرت في الموبايل
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+      product.addEventListener('touchstart', () => {
+        product.classList.add('touch-active');
+      });
+      product.addEventListener('touchend', () => {
+        setTimeout(() => {
+          product.classList.remove('touch-active');
+        }, 300);
+      });
+    });
+  </script>
 </body>
 </html>
