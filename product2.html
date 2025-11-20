@@ -67,7 +67,7 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 2s ease, max-height 2s ease; /* أبطأ من قبل */
+      transition: opacity 2s ease, max-height 2s ease;
     }
 
     /* Show description on hover */
@@ -98,6 +98,27 @@
     .btn:hover {
       background-color: #ffc7d3;
     }
+
+    /* BACK TO HOME BUTTON */
+    .back-home {
+      display: block;
+      width: fit-content;
+      margin: 40px auto;
+      padding: 12px 22px;
+      background-color: #ffb3c6;
+      color: #4b0e1f;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .back-home:hover {
+      background-color: #ffc7d3;
+    }
+
   </style>
 </head>
 <body>
@@ -112,7 +133,7 @@
     <div class="title">Premium Soft Cushion</div>
     <div class="desc">A super–soft cushion that adds elegance and comfort to any sofa or room.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
   <!-- 2 -->
@@ -121,7 +142,7 @@
     <div class="title">Luxury Comfort Cushion</div>
     <div class="desc">Designed for style and coziness—perfect for modern home décor.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
   <!-- 3 -->
@@ -130,7 +151,7 @@
     <div class="title">Modern Decorative Cushion</div>
     <div class="desc">A modern decorative cushion that enhances living rooms and balconies beautifully.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
   <!-- 4 -->
@@ -139,7 +160,7 @@
     <div class="title">Cozy Home Cushion</div>
     <div class="desc">The perfect blend of warmth and style to make your space feel more inviting.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
   <!-- 5 -->
@@ -148,7 +169,7 @@
     <div class="title">Elegant Pattern Cushion</div>
     <div class="desc">A classy patterned cushion that fits perfectly with both modern and classic interiors.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
   <!-- 6 -->
@@ -157,10 +178,13 @@
     <div class="title">Ultra Soft Cushion</div>
     <div class="desc">Extremely soft and premium-looking, designed for maximum comfort and style.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Order Now</button>
+    <button class="btn">Add to Cart</button>
   </div>
 
 </div>
+
+<!-- BACK TO HOME BUTTON -->
+<a href="index.html" class="back-home">Back to Home</a>
 
 <script>
   // Touch effect for mobile devices
@@ -183,7 +207,7 @@
     });
 
     // Touch press effect on button
-    btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)'));
+    btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)');
     btn.addEventListener('touchend', () => setTimeout(() => btn.style.transform = 'scale(1)', 150));
   });
 </script>
