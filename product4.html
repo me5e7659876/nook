@@ -42,14 +42,13 @@
       max-width: 300px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease;
       overflow: hidden;
       position: relative;
     }
 
-    /* حركة خفيفة عند المرور على الكرت */
+    /* حركة خفيفة عند المرور على الكرت بدون تكبير الكرت */
     .product:hover {
-      transform: translateY(-6px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
@@ -57,11 +56,7 @@
       width: 100%;
       border-radius: 15px;
       margin-bottom: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .product:hover .product-image {
-      transform: none; /* الصورة ثابتة */
+      transition: none;
     }
 
     .product h1 {
@@ -77,11 +72,11 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
-      transition: opacity 0.45s ease-out, transform 0.45s ease-out, max-height 0.5s ease-out;
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out, max-height 0.4s ease-out;
       transform: translateY(15px);
     }
 
-    /* اظهار الوصف عند المرور على الكرت */
+    /* اظهار الوصف عند المرور على الكرت أو لمس الكرت في الموبايل */
     .product:hover p,
     .product.touch-active p {
       opacity: 1;
@@ -113,10 +108,17 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 40px; /* رفع الرابط ليظهر أعلى على الموبايل */
+      margin-top: 70px; /* رفع أكبر على الموبايل */
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
+    }
+
+    /* للموبايل: تفعيل ظهور الوصف عند لمس الكرت */
+    @media (max-width: 768px) {
+      .back-link {
+        margin-top: 100px; /* رفع أعلى أكتر على الموبايل */
+      }
     }
   </style>
 </head>
