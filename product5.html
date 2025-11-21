@@ -38,8 +38,6 @@
       transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
-      width: 100%;
-      max-width: 350px; /* حجم الكرت */
     }
 
     .item:hover {
@@ -58,7 +56,7 @@
     .slider img {
       width: 100%;
       height: 420px;
-      object-fit: cover;
+      object-fit: cover; /* على اللاب توب */
       border-radius: 15px;
       position: absolute;
       top: 0;
@@ -134,36 +132,13 @@
       font-weight: 500;
     }
 
-    /* --- حجم الكروت على الموبايل --- */
+    /* --- تعديل على الموبايل فقط --- */
     @media screen and (max-width: 768px) {
-      .item {
-        max-width: 90%;
-      }
-      .slider {
-        height: 300px;
-      }
       .slider img {
-        height: 300px;
+        object-fit: contain; /* الصورة كاملة على الموبايل */
       }
     }
 
-    @media screen and (max-width: 480px) {
-      .item {
-        max-width: 95%;
-      }
-      .slider {
-        height: 250px;
-      }
-      .slider img {
-        height: 250px;
-      }
-      .price {
-        font-size: 18px;
-      }
-      .desc {
-        font-size: 14px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -243,7 +218,7 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 7 -->
+    <!-- آخر منتج (المنتج 7) -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active" alt="Luxury Outdoor Rug 1">
