@@ -39,11 +39,11 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* هذا يجعل Add to Cart دائمًا في الأسفل */
+      justify-content: space-between; /* Add to Cart دائمًا أسفل */
       text-align: center;
       position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: box-shadow 0.3s ease;
     }
 
     .product-card img {
@@ -67,10 +67,11 @@
       line-height: 1.4;
       opacity: 0;
       transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition: opacity 0.35s ease, transform 0.35s ease;
       margin-bottom: 10px;
     }
 
+    /* اظهار الوصف عند hover على اللابتوب أو touch على الموبايل */
     .product-card:hover p,
     .product-card.touch-active p {
       opacity: 1;
@@ -93,24 +94,20 @@
       cursor: pointer;
       transition: 0.2s;
       width: 100%;
-      flex-shrink: 0; /* يمنع الزر من الانزلاق */
+      flex-shrink: 0;
     }
 
     .btn:hover {
       background-color: #ffc7d3;
     }
 
-    /* Touch press effect for mobile */
-    .btn.touch-press {
-      transform: scale(0.95);
-    }
-
     .back-link {
       display: block;
       text-align: center;
-      margin: 25px 0;
+      margin: 40px 0;
       color: #ffb3c6;
       text-decoration: none;
+      font-weight: 500;
     }
 
     /* Hover effect for images on desktop */
@@ -128,21 +125,15 @@
       .product-card img {
         height: 420px;
       }
+      /* وصف يظهر عند لمس الصورة فقط */
       .product-card p {
-        opacity: 1;
-        transform: translateY(0);
-        animation: fadeIn 0.5s ease-in-out;
+        opacity: 0;
+        transform: translateY(10px);
       }
       .product-card.touch-active {
-        transform: scale(1.03);
+        transform: scale(1.02);
       }
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
   </style>
 </head>
 <body>
@@ -192,7 +183,7 @@
 <a href="index.html" class="back-link">← Back to Home</a>
 
 <script>
-  // Touch effect for cards
+  // تفعيل ظهور الوصف عند لمس الكرت في الموبايل
   const cards = document.querySelectorAll('.product-card');
   cards.forEach(card => {
     card.addEventListener('touchstart', () => {
@@ -200,15 +191,6 @@
     });
     card.addEventListener('touchend', () => {
       setTimeout(() => card.classList.remove('touch-active'), 400);
-    });
-  });
-
-  // Touch effect for Add to Cart buttons
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('touchstart', () => btn.classList.add('touch-press'));
-    btn.addEventListener('touchend', () => {
-      setTimeout(() => btn.classList.remove('touch-press'), 200);
     });
   });
 </script>
