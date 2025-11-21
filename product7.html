@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wall Art & Macrame - Nook Decor</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -99,7 +101,7 @@
       font-weight: 500;
     }
 
-    /* GOLD TEXT */
+    /* الجملة الذهبية */
     .gold-text {
       text-align: center;
       font-size: 32px;
@@ -107,30 +109,16 @@
       color: gold;
       margin: 40px 20px;
       font-family: 'Playfair Display', serif;
-      text-shadow: 
-        0 0 5px #fff3a0,
-        0 0 10px #ffd700,
-        0 0 15px #ffec8b,
-        0 0 20px #ffd700;
       letter-spacing: 1px;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
     }
-
     .gold-text:hover {
-      transform: scale(1.05);
-      text-shadow: 
-        0 0 10px #fff3a0,
-        0 0 20px #ffd700,
-        0 0 30px #ffec8b,
-        0 0 40px #ffd700;
+      transform: scale(1.03);
     }
 
     @media (max-width: 768px) {
-      .item img {
-        height: auto;
-        max-height: 360px;
-        object-fit: contain;
-      }
+      .item img { height: auto; max-height: 360px; object-fit: contain; }
       .gold-text { font-size: 28px; }
     }
 
@@ -188,9 +176,9 @@
 
     <!-- MACRAME PRODUCTS -->
     <div class="item">
-      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 1"> <!-- تم استبدال الصورة -->
+      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 1 Updated">
       <div class="price">600 EGP</div>
-      <p class="desc">Beautiful handmade macrame décor.</p>
+      <p class="desc">Handmade wall macrame with 3 leaves — elegant and stylish.</p>
       <button class="btn">Add to Cart</button>
     </div>
     <div class="item">
@@ -226,7 +214,7 @@
 
   </div>
 
-  <!-- GOLD TEXT BELOW GALLERY -->
+  <!-- الجملة الذهبية -->
   <p class="gold-text">create the portrait and macrame you love</p>
 
   <a href="index.html" class="back-link">← Back to Home</a>
