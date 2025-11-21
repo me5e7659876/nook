@@ -99,12 +99,30 @@
       font-weight: 500;
     }
 
+    /* GOLD TEXT */
     .gold-text {
       text-align: center;
-      font-size: 20px;
-      color: gold;
-      margin: 20px 0;
+      font-size: 32px;
       font-weight: bold;
+      color: gold;
+      margin: 40px 20px;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 
+        0 0 5px #fff3a0,
+        0 0 10px #ffd700,
+        0 0 15px #ffec8b,
+        0 0 20px #ffd700;
+      letter-spacing: 1px;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .gold-text:hover {
+      transform: scale(1.05);
+      text-shadow: 
+        0 0 10px #fff3a0,
+        0 0 20px #ffd700,
+        0 0 30px #ffec8b,
+        0 0 40px #ffd700;
     }
 
     @media (max-width: 768px) {
@@ -113,25 +131,15 @@
         max-height: 360px;
         object-fit: contain;
       }
+      .gold-text { font-size: 28px; }
     }
 
     @media (max-width: 420px) {
-      .item img {
-        max-height: 300px;
-      }
-      .price {
-        font-size: 16px;
-      }
-      .desc {
-        font-size: 14px;
-      }
-      .btn {
-        padding: 6px 16px;
-        font-size: 14px;
-      }
-      .gold-text {
-        font-size: 16px;
-      }
+      .item img { max-height: 300px; }
+      .price { font-size: 16px; }
+      .desc { font-size: 14px; }
+      .btn { padding: 6px 16px; font-size: 14px; }
+      .gold-text { font-size: 24px; }
     }
   </style>
 </head>
@@ -180,7 +188,7 @@
 
     <!-- MACRAME PRODUCTS -->
     <div class="item">
-      <img src="https://i.postimg.cc/bvjMFXTR/60d24cf6-be5d-4e7c-a70c-8433967ae216.png" alt="Macrame 1">
+      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 1"> <!-- تم استبدال الصورة -->
       <div class="price">600 EGP</div>
       <p class="desc">Beautiful handmade macrame décor.</p>
       <button class="btn">Add to Cart</button>
@@ -204,10 +212,9 @@
       <button class="btn">Add to Cart</button>
     </div>
     <div class="item">
-      <!-- Updated Macrame image with 3 leaves -->
-      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 5">
+      <img src="https://i.postimg.cc/QtFyFXxN/unnamed.jpg" alt="Macrame 5">
       <div class="price">600 EGP</div>
-      <p class="desc">Handmade wall macrame with 3 leaves.</p>
+      <p class="desc">Handmade wall macrame.</p>
       <button class="btn">Add to Cart</button>
     </div>
     <div class="item">
@@ -219,6 +226,7 @@
 
   </div>
 
+  <!-- GOLD TEXT BELOW GALLERY -->
   <p class="gold-text">create the portrait and macrame you love</p>
 
   <a href="index.html" class="back-link">← Back to Home</a>
