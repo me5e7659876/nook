@@ -1,1 +1,279 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Outdoor Flooring - Nook Decor</title> <style> body { margin: 0; font-family: 'Poppins', sans-serif; background-color: #4b0e1f; color: #fff; } header { background-color: #4b0e1f; padding: 15px; text-align: center; font-size: 30px; font-weight: bold; text-shadow: 0 0 10px rgba(255,200,210,0.6); } .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 30px; } .product-card { background-color: #5a1226; width: 250px; padding: 15px; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); text-align: center; transition: transform 0.3s ease; position: relative; overflow: hidden; } .product-card:hover { transform: translateY(-6px); /* حركة خفيفة عند المرور */ } .slider { width: 100%; height: 420px; position: relative; overflow: hidden; border-radius: 15px; margin-bottom: 15px; } .slider img { width: 100%; height: 420px; object-fit: cover; border-radius: 15px; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease-in-out; } .slider img.active { opacity: 1; } .slider .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: #fff; border: none; font-size: 28px; padding: 0; cursor: pointer; z-index: 2; right: 10px; } h2 { margin: 0 0 8px 0; color: #ffb3c6; font-size: 20px; } p, .price, .size, .btn { opacity: 0; transform: translateX(30px); /* يبدأ من اليمين */ transition: opacity 1s ease, transform 1s ease; /* ظهور أبطأ */ max-height: 0; overflow: hidden; } .product-card:hover p, .product-card:hover .price, .product-card:hover .size, .product-card:hover .btn { opacity: 1; transform: translateX(0); /* يتحرك تدريجيًا لليسر */ max-height: 100px; } .btn { background-color: #ffb3c6; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; color: #4b0e1f; cursor: pointer; font-size: 14px; } .btn:hover { background-color: #ffc7d3; } </style> </head> <body> <header>Nook Decor</header> <div class="products"> <!-- المنتجات --> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active"> <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Artificial Grass</h2> <p>High-quality artificial grass perfect for balconies and outdoor areas.</p> <p class="price">650 EGP / m²</p> <p class="size">Grass Thickness: 35 mm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active"> <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Stylish outdoor rug that enhances your relaxing space beautifully.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg" class="active"> <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Soft texture design made to elevate outdoor comfort.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/5yq7ckPP/b.jpg" class="active"> <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Modern outdoor piece that adds charm to your balcony or garden.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/htnPgJ2h/a.jpg" class="active"> <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Classic pattern rug that blends perfectly with outdoor furniture.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/FspWD8kd/y.jpg" class="active"> <img src="https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Elegant rug that creates a cozy and welcoming atmosphere.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/fW7RPRb4/classic-charms-370878-(1).jpg" class="active"> <img src="https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Premium design perfect for stylish outdoor settings.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active"> <img src="https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Luxury outdoor rug adding elegance and warmth to any space.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> </div> <script> document.querySelectorAll(".slider").forEach(slider => { const images = slider.querySelectorAll("img"); const nextBtn = slider.querySelector(".next"); let index = 0; function showImage(i) { images.forEach((img, idx) => img.classList.toggle("active", idx === i)); } nextBtn.addEventListener("click", () => { index = (index + 1) % images.length; showImage(index); }); }); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outdoor Flooring - Nook Decor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
+
+    header {
+      background-color: #4b0e1f;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 30px;
+      justify-items: center;
+    }
+
+    .item {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 350px; /* حجم الكرت */
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+    }
+
+    .slider {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    .slider .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      border: none;
+      font-size: 28px;
+      padding: 0 8px;
+      cursor: pointer;
+      z-index: 2;
+      right: 10px;
+      border-radius: 5px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffb3c6;
+      margin-top: 10px;
+    }
+
+    .desc {
+      font-size: 15px;
+      color: #ffe3eb;
+      margin-top: 8px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .item:hover .desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      color: #ffb3c6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* --- حجم الكروت على الموبايل --- */
+    @media screen and (max-width: 768px) {
+      .item {
+        max-width: 90%;
+      }
+      .slider {
+        height: 300px;
+      }
+      .slider img {
+        height: 300px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .item {
+        max-width: 95%;
+      }
+      .slider {
+        height: 250px;
+      }
+      .slider img {
+        height: 250px;
+      }
+      .price {
+        font-size: 18px;
+      }
+      .desc {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Nook Decor - Outdoor Flooring</header>
+
+  <div class="gallery">
+
+    <!-- المنتج 1 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active" alt="Artificial Grass 1">
+        <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg" alt="Artificial Grass 2">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">650 EGP / m²</div>
+      <p class="desc">High-quality artificial grass perfect for balconies and outdoor areas.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 2 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active" alt="Outdoor Rug 1">
+        <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg" alt="Outdoor Rug 2">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Stylish outdoor rug that enhances your relaxing space beautifully.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 3 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg" class="active" alt="Outdoor Rug 3">
+        <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png" alt="Outdoor Rug 4">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Soft texture design made to elevate outdoor comfort.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 4 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/5yq7ckPP/b.jpg" class="active" alt="Outdoor Rug 5">
+        <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png" alt="Outdoor Rug 6">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Modern outdoor piece that adds charm to your balcony or garden.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 5 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/htnPgJ2h/a.jpg" class="active" alt="Outdoor Rug 7">
+        <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg" alt="Outdoor Rug 8">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Classic pattern rug that blends perfectly with outdoor furniture.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 6 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/FspWD8kd/y.jpg" class="active" alt="Outdoor Rug 9">
+        <img src="https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png" alt="Outdoor Rug 10">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Elegant rug that creates a cozy and welcoming atmosphere.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <!-- المنتج 7 -->
+    <div class="item">
+      <div class="slider">
+        <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active" alt="Luxury Outdoor Rug 1">
+        <img src="https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg" alt="Luxury Outdoor Rug 2">
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <div class="price">1000 EGP</div>
+      <p class="desc">Luxury outdoor rug adding elegance and warmth to any space.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+  </div>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <script>
+    document.querySelectorAll(".slider").forEach(slider => {
+      const images = slider.querySelectorAll("img");
+      const nextBtn = slider.querySelector(".next");
+      let index = 0;
+
+      function showImage(i) {
+        images.forEach((img, idx) => img.classList.toggle("active", idx === i));
+      }
+
+      nextBtn.addEventListener("click", () => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      });
+    });
+  </script>
+</body>
+</html>
