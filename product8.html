@@ -34,12 +34,12 @@
       background: #5c1024;
       border-radius: 15px;
       padding: 15px;
-      width: 260px;
-      min-height: 500px; /* لضمان مساحة كافية للزر */
+      width: 100%;
+      max-width: 260px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* اترك مساحة للزر في الأسفل */
+      justify-content: flex-start;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -92,7 +92,7 @@
       cursor: pointer;
       transition: 0.2s;
       width: 100%;
-      margin-top: auto; /* اجعل الزر دائمًا أسفل الكرت */
+      margin-top: auto;
     }
 
     .btn:hover {
@@ -115,9 +115,6 @@
     }
 
     @media (max-width: 768px) {
-      .product-card {
-        height: auto;
-      }
       .product-card img {
         height: 420px;
       }
@@ -129,7 +126,6 @@
         transform: scale(1.02);
       }
     }
-
   </style>
 </head>
 <body>
@@ -167,7 +163,7 @@
 
   <!-- 4 – Domino -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/HnH4bJJp/download-(48).jpg" alt="Domino Game" />
+    <img src="https://i.postimg.cc/8CCqdNyc/download-(48).png" alt="Domino Game" />
     <h2>Classic Domino</h2>
     <p>Simple and engaging domino game that brings everyone together for endless fun.</p>
     <div class="price">250 EGP</div>
