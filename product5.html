@@ -38,6 +38,8 @@
       transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      max-width: 350px; /* حجم الكرت على اللاب توب */
     }
 
     .item:hover {
@@ -131,6 +133,39 @@
       text-decoration: none;
       font-weight: 500;
     }
+
+    /* ------------------- */
+    /* حجم الكرت على الموبايل */
+    /* ------------------- */
+    @media screen and (max-width: 768px) {
+      .item {
+        max-width: 90%; /* تقليل حجم الكرت على الموبايل */
+      }
+      .slider {
+        height: 300px; /* ارتفاع أقل للصورة على الموبايل */
+      }
+      .slider img {
+        height: 300px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .item {
+        max-width: 95%;
+      }
+      .slider {
+        height: 250px;
+      }
+      .slider img {
+        height: 250px;
+      }
+      .price {
+        font-size: 18px;
+      }
+      .desc {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -150,7 +185,7 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 2 -->
+    <!-- المنتجات 2 إلى 6 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active" alt="Outdoor Rug 1">
@@ -162,7 +197,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 3 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg" class="active" alt="Outdoor Rug 3">
@@ -174,7 +208,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 4 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/5yq7ckPP/b.jpg" class="active" alt="Outdoor Rug 5">
@@ -186,7 +219,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 5 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/htnPgJ2h/a.jpg" class="active" alt="Outdoor Rug 7">
@@ -198,7 +230,6 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 6 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/FspWD8kd/y.jpg" class="active" alt="Outdoor Rug 9">
@@ -210,7 +241,7 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- آخر منتج (المنتج 7) -->
+    <!-- آخر المنتج 7 -->
     <div class="item">
       <div class="slider">
         <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active" alt="Luxury Outdoor Rug 1">
