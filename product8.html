@@ -35,11 +35,11 @@
       border-radius: 15px;
       padding: 15px;
       width: 260px;
-      height: 500px;
+      min-height: 500px; /* لضمان مساحة كافية للزر */
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Add to Cart دائمًا أسفل */
+      justify-content: flex-start; /* اترك مساحة للزر في الأسفل */
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -61,7 +61,6 @@
       margin: 8px 0;
     }
 
-    /* ---- Description Animation ---- */
     .product-card p {
       font-size: 14px;
       line-height: 1.4;
@@ -71,7 +70,6 @@
       margin-bottom: 10px;
     }
 
-    /* اظهار الوصف عند hover على اللابتوب أو touch على الموبايل */
     .product-card:hover p,
     .product-card.touch-active p {
       opacity: 1;
@@ -94,7 +92,7 @@
       cursor: pointer;
       transition: 0.2s;
       width: 100%;
-      flex-shrink: 0;
+      margin-top: auto; /* اجعل الزر دائمًا أسفل الكرت */
     }
 
     .btn:hover {
@@ -110,14 +108,12 @@
       font-weight: 500;
     }
 
-    /* Hover effect for images on desktop */
     @media (hover: hover) and (pointer: fine) {
       .product-card:hover img {
         transform: scale(1.05);
       }
     }
 
-    /* Mobile adjustments */
     @media (max-width: 768px) {
       .product-card {
         height: auto;
@@ -125,7 +121,6 @@
       .product-card img {
         height: 420px;
       }
-      /* وصف يظهر عند لمس الصورة فقط */
       .product-card p {
         opacity: 0;
         transform: translateY(10px);
@@ -134,6 +129,7 @@
         transform: scale(1.02);
       }
     }
+
   </style>
 </head>
 <body>
