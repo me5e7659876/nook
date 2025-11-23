@@ -99,7 +99,7 @@ header {
   transform: scale(1.05);
 }
 
-/* TOP BAR فوق البانر */
+/* TOP BAR */
 .top-bar {
   display: flex;
   flex-direction: column;
@@ -147,30 +147,10 @@ header {
   color: #ffd2dd;
 }
 
-/* MOBILE CATEGORY BAR */
+/* HIDE CATEGORY BAR COMPLETELY */
 .categories-bar {
-  display: none;
-  gap: 10px;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 12px;
-  background: #2e0812;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  display: none !important;
 }
-
-.cat-chip {
-  flex-shrink: 0;
-  padding: 8px 16px;
-  background: #480b1e;
-  border-radius: 18px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.cat-chip:hover { background: #6b1530; }
-.cat-chip.active { background: #ffb3c6; color: #4b0e1f; }
 
 /* CARDS */
 .container {
@@ -264,8 +244,7 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 /* MOBILE FIX */
 @media (max-width: 768px) {
   .container { flex-direction: column; }
-  .sidebar { display: none; }
-  .categories-bar { display: flex; }
+  .sidebar { display: none !important; }  /* hide sidebar on mobile */
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 180px !important; }
 }
@@ -331,19 +310,7 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
   </div>
 </div>
 
-<div class="categories-bar" id="categoriesBar">
-  <div class="cat-chip active" data-cat="All">All</div>
-  <div class="cat-chip" data-cat="Moods">Moods</div>
-  <div class="cat-chip" data-cat="Vases">Vases</div>
-  <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-  <div class="cat-chip" data-cat="Lighting">Lighting</div>
-  <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
-  <div class="cat-chip" data-cat="Furniture">Furniture</div>
-  <div class="cat-chip" data-cat="Cushions">Cushions</div>
-  <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-  <div class="cat-chip" data-cat="Games">Games</div>
-  <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
-</div>
+<!-- CATEGORY BAR REMOVED AUTOMATICALLY -->
 
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
@@ -426,13 +393,13 @@ function closeMenu() {
   document.getElementById("menuOverlay").style.height = "0%";
 }
 
-// RESPONSIVE SIDEBAR
+// RESPONSIVE SIDEBAR (updated to remove category bar)
 function handleResize() {
   if (window.innerWidth <= 768) {
-    document.getElementById('categoriesBar').style.display = 'flex';
+    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'none';
   } else {
-    document.getElementById('categoriesBar').style.display = 'none';
+    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'block';
   }
 }
@@ -441,9 +408,8 @@ window.addEventListener('resize', handleResize);
 
 // FILTER SYSTEM
 const desktopCategories = document.querySelectorAll('.sidebar .categories a');
-const mobileCategories = document.querySelectorAll('.categories-bar .cat-chip');
-const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
 const cards = document.querySelectorAll('.content .card');
+const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
 const searchInput = document.getElementById('searchInput');
 const noResults = document.querySelector('.no-results');
 
@@ -468,27 +434,17 @@ function filterProducts(category) {
 
 function activate(category) {
   desktopCategories.forEach(el => el.classList.remove('active'));
-  mobileCategories.forEach(el => el.classList.remove('active'));
   menuOverlayCats.forEach(el => el.classList.remove('active'));
 
   const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const mob = document.querySelector('.cat-chip[data-cat="'+category+'"]');
   const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
-  if(mob) mob.classList.add('active');
   if(over) over.classList.add('active');
 }
 
 // CLICK EVENTS
 desktopCategories.forEach(cat => {
-  cat.onclick = () => {
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-  };
-});
-
-mobileCategories.forEach(cat => {
   cat.onclick = () => {
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
