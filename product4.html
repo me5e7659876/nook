@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glass Candles - Nook Decor</title>
+
   <style>
     body {
       margin: 0;
@@ -32,14 +33,14 @@
       justify-content: center;
       align-items: flex-start;
       padding: 30px;
-      gap: 25px;
+      gap: 30px;
     }
 
     .product {
       background-color: rgba(75, 14, 31, 0.9);
       border-radius: 15px;
-      padding: 12px;
-      max-width: 260px;
+      padding: 12px; /* أصغر شوية */
+      max-width: 270px; /* أصغر بسيط */
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       transition: box-shadow 0.3s ease;
@@ -64,8 +65,8 @@
     }
 
     .product p {
-      line-height: 1.4;
-      font-size: 13px;
+      line-height: 1.5;
+      font-size: 14px;
       margin-bottom: 8px;
       opacity: 0;
       max-height: 0;
@@ -82,7 +83,7 @@
     }
 
     .price {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: bold;
       margin: 8px 0;
     }
@@ -91,58 +92,61 @@
       background-color: #ffb3c6;
       border: none;
       color: #4b0e1f;
-      padding: 7px 16px;
+      padding: 8px 18px;
       border-radius: 10px;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
-      font-size: 14px;
     }
 
     .btn:hover {
       background-color: #ffc7d3;
     }
 
+    /* BACK TO HOME */
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 40px; /* تم الرفع */
+      margin-top: 150px;
+      margin-bottom: 40px;
       color: #ffb3c6;
       text-decoration: none;
+      font-size: 20px;
       font-weight: 500;
-      font-size: 18px;
     }
 
+    /* للموبايل: رفع أكبر بكتير جداً */
     @media (max-width: 768px) {
-      .product {
-        max-width: 240px;
-      }
-
       .back-link {
-        margin-top: 60px; /* رفع أعلى للموبايل */
+        margin-top: 260px; 
       }
     }
   </style>
 </head>
+
 <body>
   <header>Nook Decor</header>
 
   <div class="product-container">
+
+    <!-- المنتج الأول -->
     <div class="product">
-      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png" alt="LED Glass Candle" class="product-image" />
+      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png" class="product-image">
       <h1>LED Glass Candle</h1>
       <p>Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.</p>
       <div class="price">200 EGP</div>
       <button class="btn">Add to Cart</button>
     </div>
 
+    <!-- المنتج الثاني -->
     <div class="product">
-      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png" alt="Round LED Glass Candle" class="product-image" />
+      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png" class="product-image">
       <h1>Round LED Glass Candle</h1>
       <p>Beautiful round LED glass candle offering soft lighting and stylish modern design for your home.</p>
       <div class="price">130 EGP</div>
       <button class="btn">Add to Cart</button>
     </div>
+
   </div>
 
   <a href="index.html" class="back-link">← Back to Home</a>
@@ -160,5 +164,6 @@
       });
     });
   </script>
+
 </body>
 </html>
