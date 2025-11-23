@@ -44,7 +44,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     .slider img {
       width: 100%;
@@ -75,17 +75,25 @@
     }
     .product-card:hover .nav-btn { opacity: 1; }
     h2 { margin: 0 0 8px 0; color: #ffb3c6; font-size: 20px; }
-    p, .price, .size, .btn {
+    p, .size, .btn {
       opacity: 0;
       transform: translateX(30px);
       transition: opacity 1s ease, transform 1s ease;
       max-height: 0;
       overflow: hidden;
     }
-    .product-card:hover p, .product-card:hover .price, .product-card:hover .size, .product-card:hover .btn {
+    .product-card:hover p, .product-card:hover .size, .product-card:hover .btn {
       opacity: 1;
       transform: translateX(0);
       max-height: 100px;
+    }
+    .price {
+      color: #ffb3c6;
+      font-weight: bold;
+      margin: 5px 0;
+      opacity: 1 !important; /* السعر دائمًا ظاهر */
+      transform: translateX(0) !important;
+      max-height: none !important;
     }
     .btn {
       background-color: #ffb3c6;
@@ -117,7 +125,7 @@
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- باقي المنتجات مع نفس ترتيب الصور الثانية كأول صورة -->
+    <!-- باقي المنتجات بنفس ترتيب الصور الثانية -->
     <div class="product-card">
       <div class="slider">
         <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg" class="active">
@@ -226,11 +234,11 @@
         showImage(index);
       });
 
-      // تغيير تلقائي كل 3 ثواني
+      // تغيير تلقائي كل 7 ثواني
       setInterval(() => {
         index = (index + 1) % images.length;
         showImage(index);
-      }, 3000);
+      }, 7000);
     });
   </script>
 </body>
