@@ -110,6 +110,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
+    transition: transform 0.3s ease;
 }
 .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 .categories { list-style: none; padding: 0; }
@@ -199,7 +200,16 @@ footer {
 /* MOBILE LAYOUT FIX */
 @media (max-width: 768px) {
     .container { flex-direction: column; }
-    .sidebar { display: none; }
+    .sidebar { 
+        display: none; 
+        position: fixed;
+        top: 0; left: 0;
+        height: 100%;
+        z-index: 1000;
+        transform: translateX(-100%);
+        background-color: #3b0a1a;
+    }
+    .sidebar.show { transform: translateX(0); }
     .categories-bar { display: flex; }
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px !important; }
@@ -217,7 +227,7 @@ footer {
 
 <header>
   <div class="header-icons">
-    <i class="fas fa-search"></i>
+    <i class="fas fa-bars" id="menuToggle"></i>
     <i class="fas fa-shopping-cart"></i>
   </div>
   Nook Decor
@@ -316,14 +326,22 @@ footer {
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
+// SIDEBAR TOGGLE
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('desktopSidebar');
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
+});
+
 // RESPONSIVE SIDEBAR
 function handleResize() {
     if (window.innerWidth <= 768) {
         document.getElementById('categoriesBar').style.display = 'flex';
-        document.getElementById('desktopSidebar').style.display = 'none';
+        if(!sidebar.classList.contains('show')) sidebar.style.display = 'none';
     } else {
         document.getElementById('categoriesBar').style.display = 'none';
-        document.getElementById('desktopSidebar').style.display = 'block';
+        sidebar.style.display = 'block';
+        sidebar.classList.remove('show');
     }
 }
 window.addEventListener('load', handleResize);
@@ -350,11 +368,6 @@ function filterProducts(category) {
         }
     });
     noResults.style.display = anyVisible ? 'none' : 'block';
-    if(window.innerWidth > 768){
-        cards.forEach(card => {
-            card.querySelector('img').style.height = '260px';
-        });
-    }
 }
 
 function setActiveCategory(clickedElem, list) {
@@ -369,6 +382,7 @@ desktopCategories.forEach(cat => {
         filterProducts(category);
         setActiveCategory(cat, desktopCategories);
         setActiveCategory(document.querySelector(`.categories-bar .cat-chip[data-cat="${category}"]`), mobileCategories);
+        sidebar.classList.remove('show');
     });
 });
 
