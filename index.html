@@ -204,12 +204,8 @@ footer {
 <!-- Banner Slider -->
 <div class="banner-slider">
   <div class="banner-slide active">
-    <img src="https://i.postimg.cc/zD9zntWM/Beautiful-Simple-Boho-Balcony-Theme-Ideas-(1).jpg" alt="Decor Banner 1">
-    <div>Boho Balcony Ideas</div>
-  </div>
-  <div class="banner-slide">
-    <img src="https://i.postimg.cc/sgz3LMTP/Good-Morning-Sunshine.jpg" alt="Decor Banner 2">
-    <div>Good Morning Sunshine</div>
+    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg" alt="Decor Banner">
+    <div>Cozy Balcony Oasis</div>
   </div>
 </div>
 
@@ -367,20 +363,6 @@ searchInput.addEventListener('input', () => {
     desktopCategories.forEach(cat => { if(cat.classList.contains('active')) activeCategory = cat.dataset.cat; });
     filterProducts(activeCategory);
 });
-
-// BANNER SLIDER SCRIPT
-const slides = document.querySelectorAll('.banner-slide');
-let currentIndex = 0;
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.style.opacity = i === index ? '1' : '0';
-  });
-}
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  showSlide(currentIndex);
-}, 5000);
-showSlide(currentIndex);
 </script>
 
 </body>
