@@ -15,11 +15,11 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #3a0a18; /* بيرجوندي أغمق */
+    background-color: #4b0e1f;
     color: #fff;
 }
 header {
-    background-color: #3a0a18;
+    background-color: #4b0e1f;
     color: white;
     padding: 20px;
     text-align: center;
@@ -28,59 +28,10 @@ header {
     position: relative;
     text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
-
-/* ================= MOBILE MENU BUTTON ================= */
-.mobile-menu-btn {
-    position: absolute;
-    left: 20px;
-    top: 22px;
-    font-size: 28px;
-    cursor: pointer;
-    display: none;
-}
-
-/* ================= SLIDE MENU ================= */
-.slide-menu {
-    position: fixed;
-    top: 0;
-    left: -260px;
-    width: 240px;
-    height: 100%;
-    background-color: #3a0a18;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.4);
-    padding: 25px 15px;
-    transition: 0.35s ease;
-    z-index: 9999;
-}
-
-.slide-menu.open {
-    left: 0;
-}
-
-.slide-menu h3 {
-    margin-top: 0;
-    font-size: 22px;
-}
-
-.slide-menu a {
-    display: block;
-    padding: 10px 0;
-    color: #fff;
-    text-decoration: none;
-    font-size: 17px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.slide-menu a:hover {
-    transform: translateX(5px);
-}
-
-/* ====================================================== */
-
 .header-icons {
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     display: flex;
     gap: 15px;
     font-size: 22px;
@@ -108,7 +59,7 @@ header {
     margin: 10px 0 14px 0;
     font-size: 17px;
     font-weight: 600;
-    color: #ffffff;
+    color: #ffffff; /* ← الأبيض المطلوب */
     font-family: 'Playfair Display', serif;
     animation: subtleFade 2.5s ease-in-out infinite alternate;
 }
@@ -125,12 +76,13 @@ header {
 
 .sidebar {
     width: 230px;
-    background-color: #3a0a18;
+    background-color: #4b0e1f;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
 }
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 
 .categories { list-style: none; padding: 0; }
 .categories li { margin: 10px 0; }
@@ -175,25 +127,23 @@ header {
     object-fit: cover;
 }
 
-/* Remove underline */
 .card h3 {
-    color: white !important;
-    text-decoration: none !important;
-    border: none !important;
-    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 footer {
-    background-color: #3a0a18;
+    background-color: #4b0e1f;
     text-align: center;
     padding: 15px;
 }
 
-/* ============ MOBILE ============ */
+/* Mobile */
 @media (max-width: 768px) {
-    .mobile-menu-btn { display: block; }
-    .sidebar { display: none !important; }
     .container { flex-direction: column; }
+    .sidebar { display: none; }
+    .categories-bar { display:flex; gap:12px; overflow-x:auto; padding:10px; }
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px; }
 }
@@ -211,35 +161,16 @@ footer {
 
 <body>
 
-<!-- MOBILE MENU BUTTON -->
-<i class="fas fa-bars mobile-menu-btn" id="menuBtn"></i>
-
-<!-- SLIDE MENU -->
-<div class="slide-menu" id="slideMenu">
-    <h3>Categories</h3>
-    <a href="#" data-cat="All">All</a>
-    <a href="#" data-cat="Moods">Moods</a>
-    <a href="#" data-cat="Vases">Vases</a>
-    <a href="#" data-cat="Outdoor Flooring">Outdoor Flooring</a>
-    <a href="#" data-cat="Lighting">Lighting</a>
-    <a href="#" data-cat="Glass Candles">Glass Candles</a>
-    <a href="#" data-cat="Furniture">Furniture</a>
-    <a href="#" data-cat="Cushions">Cushions</a>
-    <a href="#" data-cat="Wooden Rack">Wooden Rack</a>
-    <a href="#" data-cat="Games">Games</a>
-    <a href="#" data-cat="Wall Art">Wall Art</a>
-</div>
-
 <audio autoplay loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_dfb2e0f32a.mp3?filename=epic-cinematic-ambience-11088.mp3" type="audio/mpeg">
 </audio>
 
 <header>
-Nook Decor
 <div class="header-icons">
     <i class="fas fa-search"></i>
     <i class="fas fa-shopping-cart"></i>
 </div>
+Nook Decor
 </header>
 
 <div class="search-bar">
@@ -249,9 +180,22 @@ Nook Decor
 
 <div id="resultsInfo" class="results-info">Create your own mood</div>
 
+<div class="categories-bar" id="categoriesBar" style="display:none;">
+    <div class="cat-chip" data-cat="All">All</div>
+    <div class="cat-chip" data-cat="Moods">Moods</div>
+    <div class="cat-chip" data-cat="Vases">Vases</div>
+    <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
+    <div class="cat-chip" data-cat="Lighting">Lighting</div>
+    <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
+    <div class="cat-chip" data-cat="Furniture">Furniture</div>
+    <div class="cat-chip" data-cat="Cushions">Cushions</div>
+    <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
+    <div class="cat-chip" data-cat="Games">Games</div>
+    <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
+</div>
+
 <div class="container">
 
-<!-- DESKTOP SIDEBAR (hidden on mobile) -->
 <aside class="sidebar" id="desktopSidebar">
 <h2>Categories</h2>
 <ul class="categories" id="desktopCategories">
@@ -322,13 +266,17 @@ Nook Decor
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// MOBILE MENU TOGGLE
-const menuBtn = document.getElementById("menuBtn");
-const slideMenu = document.getElementById("slideMenu");
-
-menuBtn.addEventListener("click", () => {
-    slideMenu.classList.toggle("open");
-});
+function handleResize() {
+    if (window.innerWidth <= 768) {
+        categoriesBar.style.display = 'flex';
+        desktopSidebar.style.display = 'none';
+    } else {
+        categoriesBar.style.display = 'none';
+        desktopSidebar.style.display = 'block';
+    }
+}
+window.addEventListener('load', handleResize);
+window.addEventListener('resize', handleResize);
 </script>
 
 </body>
