@@ -33,19 +33,16 @@
       border-radius: 14px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       text-align: center;
-      transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    .product-card:hover { transform: translateY(-6px); }
-
     .slider {
       width: 100%;
       height: 420px;
       position: relative;
       overflow: hidden;
       border-radius: 15px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     .slider img {
       width: 100%;
@@ -56,191 +53,165 @@
       top: 0;
       left: 0;
       opacity: 0;
-      transition: opacity 0.8s ease-in-out, transform 0.5s ease;
+      transition: opacity 0.4s ease-in-out;
     }
     .slider img.active { opacity: 1; }
-
     .slider .nav-btn {
       position: absolute;
       top: 50%;
-      right: 10px;
       transform: translateY(-50%);
-      background: rgba(255,255,255,0.3);
+      background: transparent;
       color: #fff;
       border: none;
       font-size: 28px;
-      padding: 5px 10px;
+      padding: 0;
       cursor: pointer;
-      border-radius: 50%;
       z-index: 2;
+      right: 10px;
     }
-
     h2 { margin: 0 0 8px 0; color: #ffb3c6; font-size: 20px; }
-    p, .size {
+    p.description {
       opacity: 0;
       transform: translateX(30px);
       transition: opacity 1s ease, transform 1s ease;
-      max-height: 0;
+      max-height: 100px;
       overflow: hidden;
     }
-    .product-card:hover p, .product-card:hover .size {
+    .product-card:hover p.description {
       opacity: 1;
       transform: translateX(0);
-      max-height: 100px;
     }
-
     .price, .btn {
-      opacity: 1 !important;
-      transform: translateX(0) !important;
-      max-height: none !important;
-      margin: 5px 0;
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: bold;
     }
-    .price { color: #ffb3c6; font-weight: bold; }
+    .price { color: #ffb3c6; }
     .btn {
       background-color: #ffb3c6;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
-      font-weight: bold;
       color: #4b0e1f;
       cursor: pointer;
       font-size: 14px;
     }
     .btn:hover { background-color: #ffc7d3; }
-
     .back-home {
       display: block;
       text-align: center;
-      margin: 30px 0;
-      font-size: 18px;
+      margin: 40px 0;
       color: #ffb3c6;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 20px;
+      font-weight: 500;
     }
-    .back-home:hover { color: #ffc7d3; }
   </style>
 </head>
 <body>
   <header>Nook Decor</header>
   <div class="products">
 
-    <!-- كل المنتجات كما هي -->
-    <!-- المنتج 1 -->
+    <!-- المنتجات -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg" class="active">
-        <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg">
+        <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active">
+        <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Artificial Grass</h2>
-      <p>High-quality artificial grass perfect for balconies and outdoor areas.</p>
+      <p class="description">High-quality artificial grass perfect for balconies and outdoor areas.</p>
       <p class="price">650 EGP / m²</p>
-      <p class="size">Grass Thickness: 35 mm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 2 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg" class="active">
-        <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg">
+        <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active">
+        <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Stylish outdoor rug that enhances your relaxing space beautifully.</p>
+      <p class="description">Stylish outdoor rug that enhances your relaxing space beautifully.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 3 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png" class="active">
-        <img src="https://i.postimg.cc/FsbCszxR/3.png">
+        <img src="https://i.postimg.cc/FsbCszxR/3.png" class="active">
+        <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Soft texture design made to elevate outdoor comfort.</p>
+      <p class="description">Soft texture design made to elevate outdoor comfort.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 4 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png" class="active">
-        <img src="https://i.postimg.cc/4ygvrvqS/5.png">
+        <img src="https://i.postimg.cc/4ygvrvqS/5.png" class="active">
+        <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Modern outdoor piece that adds charm to your balcony or garden.</p>
+      <p class="description">Modern outdoor piece that adds charm to your balcony or garden.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 5 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg" class="active">
-        <img src="https://i.postimg.cc/XYzfV6t8/4.png">
+        <img src="https://i.postimg.cc/XYzfV6t8/4.png" class="active">
+        <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Classic pattern rug that blends perfectly with outdoor furniture.</p>
+      <p class="description">Classic pattern rug that blends perfectly with outdoor furniture.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 6 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png" class="active">
-        <img src="https://i.postimg.cc/PxG1wzXf/6.png">
+        <img src="https://i.postimg.cc/PxG1wzXf/6.png" class="active">
+        <img src="https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Elegant rug that creates a cozy and welcoming atmosphere.</p>
+      <p class="description">Elegant rug that creates a cozy and welcoming atmosphere.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 7 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png" class="active">
-        <img src="https://i.postimg.cc/v8t54Vpb/2.png">
+        <img src="https://i.postimg.cc/v8t54Vpb/2.png" class="active">
+        <img src="https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Premium design perfect for stylish outdoor settings.</p>
+      <p class="description">Premium design perfect for stylish outdoor settings.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 8 -->
     <div class="product-card">
       <div class="slider">
-        <img src="https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg" class="active">
-        <img src="https://i.postimg.cc/rFhWJLy2/1.png">
+        <img src="https://i.postimg.cc/rFhWJLy2/1.png" class="active">
+        <img src="https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg">
         <button class="nav-btn next">&#10095;</button>
       </div>
       <h2>Outdoor Flooring</h2>
-      <p>Luxury outdoor rug adding elegance and warmth to any space.</p>
+      <p class="description">Luxury outdoor rug adding elegance and warmth to any space.</p>
       <p class="price">1000 EGP</p>
-      <p class="size">115 × 75 cm</p>
       <button class="btn">Add to Cart</button>
     </div>
 
   </div>
 
-  <!-- زر العودة للرئيسية -->
-  <a href="index.html" class="back-home">← Back to Home</a>
+  <a href="./index.html" class="back-home">← Back to Home</a>
 
   <script>
     document.querySelectorAll(".slider").forEach(slider => {
@@ -252,15 +223,17 @@
         images.forEach((img, idx) => img.classList.toggle("active", idx === i));
       }
 
-      setInterval(() => {
-        index = (index + 1) % images.length;
-        showImage(index);
-      }, 7000);
-
+      // التنقل اليدوي
       nextBtn.addEventListener("click", () => {
         index = (index + 1) % images.length;
         showImage(index);
       });
+
+      // التنقل التلقائي كل 7 ثواني
+      setInterval(() => {
+        index = (index + 1) % images.length;
+        showImage(index);
+      }, 7000);
     });
   </script>
 </body>
