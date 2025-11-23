@@ -16,7 +16,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #4b0e1f; /* غامق وأنيق */
+    background-color: #4b0e1f;
     color: #fff;
 }
 
@@ -41,6 +41,44 @@ header {
     font-size: 22px;
 }
 .header-icons i { cursor: pointer; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: 15px 0;
+  border-radius: 15px;
+}
+
+.banner-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.banner-slide.active { opacity: 1; }
+
+.banner-slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-text {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
 
 /* SEARCH BAR */
 .search-bar {
@@ -77,7 +115,7 @@ header {
 .sidebar {
     width: 230px;
     padding: 20px;
-    background-color: #3b0a1a; /* أغمق وأكثر أناقة */
+    background-color: #3b0a1a;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
@@ -111,7 +149,7 @@ header {
     overflow-x: auto;
     white-space: nowrap;
     padding: 12px;
-    background: #2e0812; /* أغمق وأكثر أناقة */
+    background: #2e0812;
     border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
@@ -121,7 +159,7 @@ header {
 .cat-chip {
     flex-shrink: 0;
     padding: 8px 16px;
-    background: #480b1e; /* أغمق وأكثر أناقة */
+    background: #480b1e;
     border-radius: 18px;
     font-size: 14px;
     cursor: pointer;
@@ -211,6 +249,22 @@ footer {
   Nook Decor
 </header>
 
+<!-- BANNER SLIDER -->
+<div class="banner-slider">
+  <div class="banner-slide active">
+    <img src="https://i.postimg.cc/7LwZLwX0/banner1.jpg" alt="Decor Banner 1">
+    <div class="banner-text">Elevate Your Home Decor</div>
+  </div>
+  <div class="banner-slide">
+    <img src="https://i.postimg.cc/BvKb7mZr/banner2.jpg" alt="Decor Banner 2">
+    <div class="banner-text">Stylish Designs for Every Space</div>
+  </div>
+  <div class="banner-slide">
+    <img src="https://i.postimg.cc/63Kd5ZMG/banner3.jpg" alt="Decor Banner 3">
+    <div class="banner-text">Luxury & Comfort Combined</div>
+  </div>
+</div>
+
 <div class="search-bar">
   <i class="fas fa-search" style="color:#fff;"></i>
   <input type="text" id="searchInput" placeholder="Search for anything..." />
@@ -285,7 +339,6 @@ footer {
       <h3>Outdoor Flooring</h3>
     </a>
 
-    <!-- Updated Wooden Rack image -->
     <a href="product6.html" class="card" data-cat="Wooden Rack">
       <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
       <h3>Wooden Rack</h3>
@@ -382,6 +435,20 @@ searchInput.addEventListener('input', () => {
     desktopCategories.forEach(cat => { if(cat.classList.contains('active')) activeCategory = cat.dataset.cat; });
     filterProducts(activeCategory);
 });
+
+// BANNER SLIDER SCRIPT
+const bannerSlides = document.querySelectorAll('.banner-slide');
+let bannerIndex = 0;
+
+function showBannerSlide(i) {
+  bannerSlides.forEach((slide, idx) => slide.classList.toggle('active', idx === i));
+}
+
+// التنقل التلقائي كل 5 ثواني
+setInterval(() => {
+  bannerIndex = (bannerIndex + 1) % bannerSlides.length;
+  showBannerSlide(bannerIndex);
+}, 5000);
 </script>
 
 </body>
