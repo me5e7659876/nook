@@ -32,16 +32,15 @@ header {
     text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
-/* HEADER ICONS */
-.header-icons-left, .header-icons-right {
+.header-icons {
     position: absolute;
     top: 20px;
     display: flex;
     gap: 15px;
     font-size: 22px;
 }
-.header-icons-left { left: 20px; flex-direction: column; }
-.header-icons-right { right: 20px; }
+.header-icons .fa-bars { left: 20px; position: absolute; cursor: pointer; }
+.header-icons .fa-shopping-cart { right: 20px; position: absolute; cursor: pointer; }
 
 /* TOP BAR فوق البانر */
 .top-bar {
@@ -50,11 +49,6 @@ header {
     align-items: center;
     margin: 15px 10px 0;
     gap: 8px;
-}
-.top-bar .results-info {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Playfair Display', serif;
 }
 .top-bar .search-bar {
     display: flex;
@@ -68,6 +62,12 @@ header {
     border-radius: 8px;
     width: 280px;
     outline: none;
+}
+.top-bar .results-info {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    color: #ffb3c6;
 }
 
 /* MOBILE CATEGORY BAR */
@@ -227,11 +227,8 @@ footer {
 <body>
 
 <header>
-  <div class="header-icons-left">
+  <div class="header-icons">
     <i class="fas fa-bars" id="menuToggle"></i>
-    <i class="fas fa-search"></i>
-  </div>
-  <div class="header-icons-right">
     <i class="fas fa-shopping-cart"></i>
   </div>
   Nook Decor
@@ -239,11 +236,11 @@ footer {
 
 <!-- TOP BAR فوق البانر -->
 <div class="top-bar">
-    <div class="results-info">Create your own mood</div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search for anything..." />
       <i class="fas fa-search"></i>
     </div>
+    <div class="results-info">Create your own mood</div>
 </div>
 
 <!-- Banner Slider -->
@@ -287,14 +284,41 @@ footer {
   </aside>
 
   <main class="content" id="content">
-    <!-- أمثلة على المنتجات -->
-    <a href="#" class="card" data-cat="Moods">
+    <a href="product9.html" class="card" data-cat="Moods">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
     </a>
-    <a href="#" class="card" data-cat="Lighting">
+    <a href="product3.html" class="card" data-cat="Lighting">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
       <h3>Lighting</h3>
+    </a>
+    <a href="product1.html" class="card" data-cat="Vases">
+      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+      <h3>Vases</h3>
+    </a>
+    <a href="product2.html" class="card" data-cat="Cushions">
+      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+      <h3>Cushions</h3>
+    </a>
+    <a href="product4.html" class="card" data-cat="Glass Candles">
+      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+      <h3>Glass Candles</h3>
+    </a>
+    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
+      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+      <h3>Outdoor Flooring</h3>
+    </a>
+    <a href="product6.html" class="card" data-cat="Wooden Rack">
+      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+      <h3>Wooden Rack</h3>
+    </a>
+    <a href="product7.html" class="card" data-cat="Wall Art">
+      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+      <h3>Wall Art</h3>
+    </a>
+    <a href="product8.html" class="card" data-cat="Games">
+      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+      <h3>Games</h3>
     </a>
     <div class="no-results" style="display:none;">No products found.</div>
   </main>
