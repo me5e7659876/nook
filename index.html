@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nook Decor</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
 
@@ -23,48 +22,82 @@ body {
 /* HEADER */
 header {
     background-color: #4b0e1f;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 38px;
-    font-weight: bold;
-    position: relative;
-    text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header-icons {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.header-left, .header-right {
     display: flex;
+    align-items: center;
     gap: 15px;
-    font-size: 22px;
 }
-.header-icons i { cursor: pointer; }
 
-/* SEARCH BAR */
-.search-bar {
-    margin: 18px auto;
+.header-left i {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.header-right i {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* SEARCH + TEXT ABOVE BANNER */
+.top-bar {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 10px 0;
+    gap: 8px;
+}
+.top-bar .results-info {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+}
+.search-bar {
+    display: flex;
     gap: 10px;
+    width: 90%;
+    max-width: 400px;
 }
 .search-bar input {
+    flex: 1;
     padding: 10px 15px;
     font-size: 16px;
     border: none;
     border-radius: 8px;
-    width: 280px;
     outline: none;
 }
 
-/* RESULTS TEXT */
-.results-info {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 17px;
-    font-weight: 600;
-    font-family: 'Playfair Display', serif;
+/* BANNER SLIDER */
+.banner-slider { 
+    position: relative; 
+    width: 100%; 
+    min-height: 250px; 
+    height: 40vw; 
+    max-height: 450px; 
+    overflow: hidden; 
+    border-radius: 15px; 
+    margin: 15px 0; 
+}
+.banner-slide { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0; 
+    left: 0; 
+    opacity: 0; 
+    transition: opacity 1s ease; 
+}
+.banner-slide.active { opacity: 1; }
+.banner-slide img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 15px; 
 }
 
 /* MOBILE CATEGORY BAR */
@@ -108,6 +141,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
+    display: none; /* يظهر عند الضغط على الهامبرغر */
 }
 .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 .categories { list-style: none; padding: 0; }
@@ -166,85 +200,45 @@ footer {
     padding: 15px;
 }
 
-/* BANNER SLIDER */
-.banner-slider { 
-    position: relative; 
-    width: 100%; 
-    min-height: 250px; 
-    height: 40vw; /* مرن حسب عرض الشاشة */
-    max-height: 450px; 
-    overflow: hidden; 
-    border-radius: 15px; 
-    margin: 20px 0; 
-}
-.banner-slide { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    top: 0; 
-    left: 0; 
-    opacity: 0; 
-    transition: opacity 1s ease; 
-}
-.banner-slide.active { opacity: 1; }
-.banner-slide img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    border-radius: 15px; 
-}
-.banner-slide div { 
-    position: absolute; 
-    bottom: 20px; 
-    left: 20px; 
-    color: #fff; 
-    font-size: 22px; 
-    font-weight: bold; 
-    text-shadow: 0 0 10px rgba(0,0,0,0.5); 
-}
-
-/* MOBILE LAYOUT FIX */
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .container { flex-direction: column; }
-    .sidebar { display: none; }
     .categories-bar { display: flex; }
-    .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px !important; }
 }
 @media (max-width: 420px) {
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height:150px !important; }
-    header { font-size:28px; }
 }
 </style>
-
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
 
 <header>
-  <div class="header-icons">
-    <i class="fas fa-search"></i>
+  <div class="header-left">
+    <i class="fas fa-bars" id="menuToggle"></i>
+    <span id="categoriesText" style="display:none; margin-left:8px;">Categories</span>
+  </div>
+  <div class="header-right">
     <i class="fas fa-shopping-cart"></i>
   </div>
-  Nook Decor
 </header>
+
+<div class="top-bar">
+    <div class="results-info">Create your own mood</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for anything..." />
+      <i class="fas fa-search" style="color:#fff;"></i>
+    </div>
+</div>
 
 <!-- Banner Slider -->
 <div class="banner-slider">
   <div class="banner-slide active">
     <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg" alt="Decor Banner">
-    <div>Cozy Balcony Oasis</div>
   </div>
 </div>
-
-<div class="search-bar">
-  <i class="fas fa-search" style="color:#fff;"></i>
-  <input type="text" id="searchInput" placeholder="Search for anything..." />
-</div>
-
-<div class="results-info">Create your own mood</div>
 
 <div class="categories-bar" id="categoriesBar">
   <div class="cat-chip active" data-cat="All">All</div>
@@ -261,7 +255,6 @@ footer {
 </div>
 
 <div class="container">
-
   <aside class="sidebar" id="desktopSidebar">
     <h2>Categories</h2>
     <ul class="categories">
@@ -280,63 +273,37 @@ footer {
   </aside>
 
   <main class="content" id="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-    <div class="no-results" style="display:none;">No products found.</div>
+    <!-- ضع هنا جميع منتجاتك كما في الكود السابق -->
   </main>
 </div>
 
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
+// عرض وإخفاء sidebar عند الضغط على الهامبرغر
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('desktopSidebar');
+const categoriesText = document.getElementById('categoriesText');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.style.display = (sidebar.style.display === 'block') ? 'none' : 'block';
+    categoriesText.style.display = (categoriesText.style.display === 'none') ? 'inline' : 'none';
+});
+
 // RESPONSIVE SIDEBAR
 function handleResize() {
     if (window.innerWidth <= 768) {
         document.getElementById('categoriesBar').style.display = 'flex';
-        document.getElementById('desktopSidebar').style.display = 'none';
+        sidebar.style.display = 'none';
     } else {
         document.getElementById('categoriesBar').style.display = 'none';
-        document.getElementById('desktopSidebar').style.display = 'block';
+        sidebar.style.display = 'block';
     }
 }
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
-// FILTER PRODUCTS FUNCTION
+// FILTER PRODUCTS
 const desktopCategories = document.querySelectorAll('.sidebar .categories a');
 const mobileCategories = document.querySelectorAll('.categories-bar .cat-chip');
 const cards = document.querySelectorAll('.content .card');
@@ -357,11 +324,6 @@ function filterProducts(category) {
         }
     });
     noResults.style.display = anyVisible ? 'none' : 'block';
-    if(window.innerWidth > 768){
-        cards.forEach(card => {
-            card.querySelector('img').style.height = '260px';
-        });
-    }
 }
 
 function setActiveCategory(clickedElem, list) {
