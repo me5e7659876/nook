@@ -3,161 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cushions</title>
+  <title>Glass Candles - Nook Decor</title>
 
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f7f7f7;
+      background-color: #4b0e1f;
+      color: #fff;
+      background-image: url('https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
-    /* Back to Home */
-    .back-link {
-      display: block;
-      text-decoration: none;
-      color: #333;
-      font-size: 20px;
-      font-weight: 600;
-      margin: 30px 20px 10px 20px;
-    }
-
-    /* رفع أكبر على الموبايل */
-    @media (max-width: 767px) {
-      .back-link {
-        margin-top: 70px !important; /* ← رفع أعلى بكتير */
-        font-size: 22px;
-      }
-    }
-
-    .container {
-      width: 90%;
-      margin: auto;
-      padding-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-      position: relative;
-    }
-
-    /* منع تكبير الكرت */
-    .card:hover {
-      transform: none;
-    }
-
-    .card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ضبط الصورة على الموبايل */
-    @media (max-width: 767px) {
-      .card img {
-        height: 200px;
-        object-fit: cover; /* الصورة كاملة */
-      }
-    }
-
-    .content {
+    header {
+      background-color: rgba(75, 14, 31, 0.9);
       padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
+      gap: 30px;
+    }
+
+    .product {
+      background-color: rgba(75, 14, 31, 0.9);
+      border-radius: 15px;
+      padding: 12px;
+      max-width: 270px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: box-shadow 0.3s ease;
+      overflow: hidden;
       position: relative;
     }
 
-    .desc {
-      font-size: 15px;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
+    .product:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
-    /* الوصف يظهر دون تكبير الكرت */
-    .card:hover .desc {
+    .product-image {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .product h1 {
+      font-size: 18px;
+      color: #ffb3c6;
+      margin-bottom: 8px;
+    }
+
+    .product p {
+      line-height: 1.5;
+      font-size: 14px;
+      margin-bottom: 8px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out, max-height 0.4s ease-out;
+      transform: translateY(15px);
+    }
+
+    .product:hover p,
+    .product.touch-active p {
       opacity: 1;
+      max-height: 150px;
       transform: translateY(0);
     }
 
     .price {
-      font-size: 18px;
-      font-weight: 700;
-      margin-top: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      margin: 8px 0;
     }
 
-    .add-btn {
-      margin-top: 12px;
-      background: black;
-      color: white;
-      padding: 10px;
-      width: 100%;
+    .btn {
+      background-color: #ffb3c6;
       border: none;
+      color: #4b0e1f;
+      padding: 8px 18px;
       border-radius: 10px;
-      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
     }
 
-    .add-btn:hover {
-      background: #333;
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
+
+    /* BACK TO HOME */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 150px;
+      margin-bottom: 40px;
+      color: #ffb3c6;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    /* للموبايل: رفع أعلى بكتير جداً */
+    @media (max-width: 768px) {
+      .back-link {
+        margin-top: 350px !important; /* ← مرتفعة جداً */
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
+  <header>Nook Decor</header>
 
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <div class="product-container">
 
-  <div class="container">
-
-    <!-- المنتج 1 -->
-    <div class="card">
-      <img src="c1.jpg" alt="">
-      <div class="content">
-        <p class="desc">Cushion – Premium Quality</p>
-        <p class="price">250 EGP</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
+    <!-- المنتج الأول -->
+    <div class="product">
+      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png" class="product-image">
+      <h1>LED Glass Candle</h1>
+      <p>Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.</p>
+      <div class="price">200 EGP</div>
+      <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 2 -->
-    <div class="card">
-      <img src="c2.jpg" alt="">
-      <div class="content">
-        <p class="desc">Soft Velvet Cushion</p>
-        <p class="price">230 EGP</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- المنتج 3 -->
-    <div class="card">
-      <img src="c3.jpg" alt="">
-      <div class="content">
-        <p class="desc">Pattern Cushion</p>
-        <p class="price">260 EGP</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
-    </div>
-
-    <!-- المنتج 4 (اللي قلتي رجعيه) -->
-    <div class="card">
-      <img src="c4.jpg" alt="">
-      <div class="content">
-        <p class="desc">Decorative Cushion</p>
-        <p class="price">240 EGP</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>
+    <!-- المنتج الثاني -->
+    <div class="product">
+      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png" class="product-image">
+      <h1>Round LED Glass Candle</h1>
+      <p>Beautiful round LED glass candle offering soft lighting and stylish modern design for your home.</p>
+      <div class="price">130 EGP</div>
+      <button class="btn">Add to Cart</button>
     </div>
 
   </div>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <script>
+    const products = document.querySelectorAll('.product');
+    products.forEach(product => {
+      product.addEventListener('touchstart', () => {
+        product.classList.add('touch-active');
+      });
+      product.addEventListener('touchend', () => {
+        setTimeout(() => {
+          product.classList.remove('touch-active');
+        }, 300);
+      });
+    });
+  </script>
 
 </body>
 </html>
