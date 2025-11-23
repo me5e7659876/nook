@@ -1,227 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nook Decor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nook Decor - Products</title>
 
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #fff;
+      background-color: #4b0e1f;
+      color: #fff;
     }
 
-    /* HEADER */
     header {
-      width: 100%;
-      padding: 12px 15px;
-      background: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .menu-icon {
+      background-color: #4b0e1f;
+      padding: 15px;
+      text-align: center;
       font-size: 28px;
-      cursor: pointer;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .cart-icon {
-      font-size: 26px;
-      cursor: pointer;
-    }
-
-    /* SLIDER */
-    .slider {
-      width: 100%;
-      height: 260px;
-      max-height: 350px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slides {
-      display: flex;
-      width: 300%;
-      height: 100%;
-      transition: transform 0.6s ease-in-out;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: white;
-      padding: 10px 14px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    .dots {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .dot {
-      height: 10px;
-      width: 10px;
-      background: #ddd;
-      display: inline-block;
-      border-radius: 50%;
-      margin: 0 4px;
-      cursor: pointer;
-    }
-
-    .active-dot {
-      background: #000;
-    }
-
-    /* PRODUCTS */
-    .products-section {
-      padding: 20px;
-    }
-
-    .products-title {
-      font-size: 22px;
       font-weight: bold;
-      margin-bottom: 15px;
-      text-align: center;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 40px;
+      justify-items: center;
     }
 
     .product-card {
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #5a1a2c;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      max-width: 320px;
       text-align: center;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
     }
 
     .product-card img {
       width: 100%;
-      height: 140px;
+      border-radius: 12px;
+      margin-bottom: 12px;
       object-fit: cover;
-      border-radius: 10px;
+      height: 250px;
     }
 
-    .product-title {
-      margin-top: 8px;
-      font-size: 15px;
-      font-weight: 500;
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffd6e0;
+      margin: 12px 0;
+    }
+
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      color: #ffb3c6;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="menu-icon">&#9776;</div>
-    <div class="logo">Nook Decor</div>
-    <div class="cart-icon">&#128722;</div>
-  </header>
+<header>Nook Decor</header>
 
+<section class="products-grid">
 
-  <!-- SLIDER -->
-  <div class="slider">
-    <div class="slides" id="slideContainer">
-      <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg" />
-      <img src="https://i.postimg.cc/Y9HZNBwc/a9af2565-1fd9-4f56-872a-44bccbe35109.jpg" />
-      <img src="https://i.postimg.cc/TPGJCdhH/a3d864e9-2c9d-4340-82d1-c4d2bd775492.jpg" />
-    </div>
+  <!-- المنتج الأول -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
+    <img src="https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg">
 
-    <button class="btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="btn next" onclick="moveSlide(1)">&#10095;</button>
-
-    <div class="dots">
-      <span class="dot active-dot" onclick="goToSlide(0)"></span>
-      <span class="dot" onclick="goToSlide(1)"></span>
-      <span class="dot" onclick="goToSlide(2)"></span>
-    </div>
+    <h2>المنتج الأول</h2>
+    <div class="price">1200 جنيه</div>
+    <button class="btn">أضف إلى السلة</button>
   </div>
 
+  <!-- المنتج الثاني -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
+    <img src="https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg">
 
-  <!-- PRODUCTS SECTION -->
-  <section class="products-section">
-    <div class="products-title">All Products</div>
+    <h2>المنتج الثاني</h2>
+    <div class="price">600 جنيه</div>
+    <button class="btn">أضف إلى السلة</button>
+  </div>
 
-    <div class="products-grid">
+  <!-- المنتج الثالث -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
+    <img src="https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg">
 
-      <div class="product-card">
-        <img src="https://i.postimg.cc/Y9HZNBwc/a9af2565-1fd9-4f56-872a-44bccbe35109.jpg">
-        <div class="product-title">Vase Decor</div>
-      </div>
+    <h2>المنتج الثالث</h2>
+    <div class="price">300 جنيه</div>
+    <button class="btn">أضف إلى السلة</button>
+  </div>
 
-      <div class="product-card">
-        <img src="https://i.postimg.cc/TPGJCdhH/a3d864e9-2c9d-4340-82d1-c4d2bd775492.jpg">
-        <div class="product-title">Outdoor Flooring</div>
-      </div>
+  <!-- المنتج الرابع -->
+  <div class="product-card">
+    <img src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
+    <img src="https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg">
 
-      <div class="product-card">
-        <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
-        <div class="product-title">Balcony Decor</div>
-      </div>
+    <h2>المنتج الرابع</h2>
+    <div class="price">200 جنيه</div>
+    <button class="btn">أضف إلى السلة</button>
+  </div>
 
-      <!-- تقدري تزودي منتجات قد ما تحبي -->
+</section>
 
-    </div>
-  </section>
-
-
-  <script>
-    let index = 0;
-
-    function showSlide() {
-      const container = document.getElementById("slideContainer");
-      container.style.transform = "translateX(" + (-index * 100) + "%)";
-
-      const dots = document.querySelectorAll(".dot");
-      dots.forEach(d => d.classList.remove("active-dot"));
-      dots[index].classList.add("active-dot");
-    }
-
-    function moveSlide(step) {
-      index += step;
-      if (index > 2) index = 0;
-      if (index < 0) index = 2;
-      showSlide();
-    }
-
-    function goToSlide(n) {
-      index = n;
-      showSlide();
-    }
-
-    setInterval(() => { moveSlide(1); }, 4000);
-  </script>
+<a href="index.html" class="back-link">← الرجوع للرئيسية</a>
 
 </body>
 </html>
