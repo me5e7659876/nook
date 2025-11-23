@@ -1,172 +1,148 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wooden Racks</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wooden Racks - Nook Decor</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
 
-header {
-    background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255,200,210,0.5);
-}
+    header {
+      background-color: #4b0e1f;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    }
 
-/* شبكة المنتجات */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 40px;
-    justify-items: center;
-}
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 30px;
+      justify-items: center;
+    }
 
-/* الكرت */
-.product-card {
-    background-color: #5a1a2c;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    overflow: hidden; /* مهم عشان الصور تملى الكرت */
-    max-width: 320px;
-    text-align: center;
-    transition: 0.3s;
-}
+    .item {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-.product-card:hover {
-    transform: translateY(-8px);
-}
+    .item:hover {
+      transform: scale(1.05);
+    }
 
-/* السلايدر */
-.slider {
-    width: 100%;
-    height: 280px;
-    position: relative;
-    overflow: hidden;
-}
+    .item img {
+      width: 100%;
+      max-width: 350px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
 
-.slide {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-}
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffb3c6;
+      margin-top: 10px;
+    }
 
-.active {
-    opacity: 1;
-}
+    .desc {
+      font-size: 15px;
+      color: #ffe3eb;
+      margin-top: 8px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-.price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffd6e0;
-    margin: 12px 0;
-}
+    .item:hover .desc {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.btn {
-    background-color: #ffb3c6;
-    border: none;
-    color: #4b0e1f;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
 
-.btn:hover {
-    background-color: #ffc7d3;
-}
+    .btn:hover {
+      background-color: #ffc7d3;
+    }
 
-.back-link {
-    display: block;
-    text-align: center;
-    margin: 30px 0;
-    color: #ffb3c6;
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 30px 0;
+      color: #ffb3c6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>Nook Decor</header>
+  <header>Wooden Racks</header>
 
-<section class="products-grid">
+  <div class="gallery">
 
-    <!-- المنتج 1 -->
-    <div class="product-card">
-        <div class="slider">
-            <img class="slide active" src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
-            <img class="slide" src="https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg">
-        </div>
-        <h2>Wooden Racks</h2>
-        <div class="price">1200 جنيه</div>
-        <button class="btn">أضف إلى السلة</button>
+    <!-- Item 1 -->
+    <div class="item">
+      <img src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
+      <div class="price">1200 EGP</div>
+      <p class="desc">Strong solid wood rack — perfect for plants, décor items, and modern home styling.</p>
+      <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 2 -->
-    <div class="product-card">
-        <div class="slider">
-            <img class="slide active" src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
-            <img class="slide" src="https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg">
-        </div>
-        <h2>Wooden Racks</h2>
-        <div class="price">600 جنيه</div>
-        <button class="btn">أضف إلى السلة</button>
+    <!-- Item 2 -->
+    <div class="item">
+      <img src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
+      <div class="price">600 EGP</div>
+      <p class="desc">Minimal modern wooden rack — ideal for small spaces and stylish organization.</p>
+      <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 3 -->
-    <div class="product-card">
-        <div class="slider">
-            <img class="slide active" src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
-            <img class="slide" src="https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg">
-        </div>
-        <h2>Wooden Racks</h2>
-        <div class="price">300 جنيه</div>
-        <button class="btn">أضف إلى السلة</button>
+    <!-- Item 3 -->
+    <div class="item">
+      <img src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
+      <div class="price">300 EGP</div>
+      <p class="desc">Decorative wooden stand — great for showcasing plants, candles, and ornaments.</p>
+      <button class="btn">Add to Cart</button>
     </div>
 
-    <!-- المنتج 4 -->
-    <div class="product-card">
-        <div class="slider">
-            <img class="slide active" src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
-            <img class="slide" src="https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg">
-        </div>
-        <h2>Wooden Racks</h2>
-        <div class="price">200 جنيه</div>
-        <button class="btn">أضف إلى السلة</button>
+    <!-- Item 4 -->
+    <div class="item">
+      <img src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
+      <div class="price">200 EGP</div>
+      <p class="desc">Compact wooden shelf — perfect for tight areas and adding an elegant touch.</p>
+      <button class="btn">Add to Cart</button>
     </div>
 
-</section>
+  </div>
 
-<a href="index.html" class="back-link">← الرجوع للرئيسية</a>
-
-<script>
-// السلايدر لكل كرت
-document.querySelectorAll(".slider").forEach(slider => {
-    let slides = slider.querySelectorAll(".slide");
-    let index = 0;
-
-    setInterval(() => {
-        slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
-        slides[index].classList.add("active");
-    }, 2200);
-});
-</script>
+  <a href="index.html" class="back-link">← Back to Home</a>
 
 </body>
 </html>
