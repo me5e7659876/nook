@@ -42,44 +42,6 @@ header {
 }
 .header-icons i { cursor: pointer; }
 
-/* BANNER SLIDER */
-.banner-slider {
-  width: 100%;
-  max-height: 300px;
-  overflow: hidden;
-  position: relative;
-  margin: 15px 0;
-  border-radius: 15px;
-}
-
-.banner-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.banner-slide.active { opacity: 1; }
-
-.banner-slide img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.banner-text {
-  position: absolute;
-  bottom: 15px;
-  left: 20px;
-  color: #fff;
-  font-size: 28px;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
-}
-
 /* SEARCH BAR */
 .search-bar {
     margin: 18px auto;
@@ -105,43 +67,6 @@ header {
     font-family: 'Playfair Display', serif;
 }
 
-/* SIDEBAR DESKTOP */
-.container {
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-}
-
-.sidebar {
-    width: 230px;
-    padding: 20px;
-    background-color: #3b0a1a;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    height: fit-content;
-}
-
-.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
-
-/* CATEGORY LIST */
-.categories { list-style: none; padding: 0; }
-.categories li { margin: 10px 0; }
-
-.categories a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 8px;
-    transition: background 0.18s ease, transform 0.12s ease;
-}
-.categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
-.categories a.active {
-    outline: 2px solid var(--active-outline);
-    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-}
-
 /* MOBILE CATEGORY BAR */
 .categories-bar {
     display: none;
@@ -152,10 +77,8 @@ header {
     background: #2e0812;
     border-bottom: 1px solid rgba(255,255,255,0.15);
 }
-
 .categories-bar::-webkit-scrollbar { height: 6px; }
 .categories-bar::-webkit-scrollbar-thumb { background: #5e0f29; border-radius: 10px; }
-
 .cat-chip {
     flex-shrink: 0;
     padding: 8px 16px;
@@ -173,6 +96,37 @@ header {
 }
 
 /* CARDS */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+.sidebar {
+    width: 230px;
+    padding: 20px;
+    background-color: #3b0a1a;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    height: fit-content;
+}
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
+.categories { list-style: none; padding: 0; }
+.categories li { margin: 10px 0; }
+.categories a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.18s ease, transform 0.12s ease;
+}
+.categories a:hover { background: var(--accent-hover); transform: translateX(4px); }
+.categories a.active {
+    outline: 2px solid var(--active-outline);
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
 .content {
     flex: 1;
     display: grid;
@@ -185,26 +139,19 @@ header {
     transition: transform 0.25s ease;
     text-decoration: none;
 }
-
-.card:hover {
-    transform: translateY(-6px);
-}
-
+.card:hover { transform: translateY(-6px); }
 .card img {
     width: 100%;
     height: 260px;
     border-radius: 16px;
     object-fit: cover;
-    transition: height 0.3s ease;
 }
-
 .card h3 {
     color: #fff;
     margin-top: 12px;
     font-size: 18px;
 }
 
-/* NO RESULTS MESSAGE */
 .no-results {
     grid-column: 1/-1;
     text-align: center;
@@ -213,12 +160,18 @@ header {
     color: #ffb3c6;
 }
 
-/* FOOTER */
 footer {
     background-color: #4b0e1f;
     text-align: center;
     padding: 15px;
 }
+
+/* BANNER SLIDER */
+.banner-slider { position: relative; width: 100%; height: 250px; overflow: hidden; border-radius: 15px; margin: 20px 0; }
+.banner-slide { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; transition: opacity 1s ease; }
+.banner-slide.active { opacity: 1; }
+.banner-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+.banner-slide div { position: absolute; bottom: 20px; left: 20px; color: #fff; font-size: 22px; font-weight: bold; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
 
 /* MOBILE LAYOUT FIX */
 @media (max-width: 768px) {
@@ -228,7 +181,6 @@ footer {
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px !important; }
 }
-
 @media (max-width: 420px) {
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height:150px !important; }
@@ -249,19 +201,15 @@ footer {
   Nook Decor
 </header>
 
-<!-- BANNER SLIDER -->
+<!-- Banner Slider -->
 <div class="banner-slider">
   <div class="banner-slide active">
-    <img src="https://i.postimg.cc/7LwZLwX0/banner1.jpg" alt="Decor Banner 1">
-    <div class="banner-text">Elevate Your Home Decor</div>
+    <img src="https://i.postimg.cc/zD9zntWM/Beautiful-Simple-Boho-Balcony-Theme-Ideas-(1).jpg" alt="Decor Banner 1">
+    <div>Boho Balcony Ideas</div>
   </div>
   <div class="banner-slide">
-    <img src="https://i.postimg.cc/BvKb7mZr/banner2.jpg" alt="Decor Banner 2">
-    <div class="banner-text">Stylish Designs for Every Space</div>
-  </div>
-  <div class="banner-slide">
-    <img src="https://i.postimg.cc/63Kd5ZMG/banner3.jpg" alt="Decor Banner 3">
-    <div class="banner-text">Luxury & Comfort Combined</div>
+    <img src="https://i.postimg.cc/sgz3LMTP/Good-Morning-Sunshine.jpg" alt="Decor Banner 2">
+    <div>Good Morning Sunshine</div>
   </div>
 </div>
 
@@ -272,7 +220,6 @@ footer {
 
 <div class="results-info">Create your own mood</div>
 
-<!-- MOBILE CATEGORY BAR -->
 <div class="categories-bar" id="categoriesBar">
   <div class="cat-chip active" data-cat="All">All</div>
   <div class="cat-chip" data-cat="Moods">Moods</div>
@@ -289,7 +236,6 @@ footer {
 
 <div class="container">
 
-  <!-- DESKTOP SIDEBAR -->
   <aside class="sidebar" id="desktopSidebar">
     <h2>Categories</h2>
     <ul class="categories">
@@ -307,53 +253,43 @@ footer {
     </ul>
   </aside>
 
-  <!-- CONTENT -->
   <main class="content" id="content">
     <a href="product9.html" class="card" data-cat="Moods">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
     </a>
-
     <a href="product3.html" class="card" data-cat="Lighting">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
       <h3>Lighting</h3>
     </a>
-
     <a href="product1.html" class="card" data-cat="Vases">
       <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
       <h3>Vases</h3>
     </a>
-
     <a href="product2.html" class="card" data-cat="Cushions">
       <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
       <h3>Cushions</h3>
     </a>
-
     <a href="product4.html" class="card" data-cat="Glass Candles">
       <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
       <h3>Glass Candles</h3>
     </a>
-
     <a href="product5.html" class="card" data-cat="Outdoor Flooring">
       <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
       <h3>Outdoor Flooring</h3>
     </a>
-
     <a href="product6.html" class="card" data-cat="Wooden Rack">
       <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
       <h3>Wooden Rack</h3>
     </a>
-
     <a href="product7.html" class="card" data-cat="Wall Art">
       <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
       <h3>Wall Art</h3>
     </a>
-
     <a href="product8.html" class="card" data-cat="Games">
       <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
       <h3>Games</h3>
     </a>
-    
     <div class="no-results" style="display:none;">No products found.</div>
   </main>
 </div>
@@ -395,7 +331,6 @@ function filterProducts(category) {
         }
     });
     noResults.style.display = anyVisible ? 'none' : 'block';
-
     if(window.innerWidth > 768){
         cards.forEach(card => {
             card.querySelector('img').style.height = '260px';
@@ -408,7 +343,6 @@ function setActiveCategory(clickedElem, list) {
     clickedElem.classList.add('active');
 }
 
-// DESKTOP CLICK EVENTS
 desktopCategories.forEach(cat => {
     cat.addEventListener('click', e => {
         e.preventDefault();
@@ -419,7 +353,6 @@ desktopCategories.forEach(cat => {
     });
 });
 
-// MOBILE CLICK EVENTS
 mobileCategories.forEach(cat => {
     cat.addEventListener('click', e => {
         const category = cat.dataset.cat;
@@ -429,7 +362,6 @@ mobileCategories.forEach(cat => {
     });
 });
 
-// SEARCH FUNCTIONALITY
 searchInput.addEventListener('input', () => {
     let activeCategory = 'All';
     desktopCategories.forEach(cat => { if(cat.classList.contains('active')) activeCategory = cat.dataset.cat; });
@@ -437,18 +369,18 @@ searchInput.addEventListener('input', () => {
 });
 
 // BANNER SLIDER SCRIPT
-const bannerSlides = document.querySelectorAll('.banner-slide');
-let bannerIndex = 0;
-
-function showBannerSlide(i) {
-  bannerSlides.forEach((slide, idx) => slide.classList.toggle('active', idx === i));
+const slides = document.querySelectorAll('.banner-slide');
+let currentIndex = 0;
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === index ? '1' : '0';
+  });
 }
-
-// التنقل التلقائي كل 5 ثواني
 setInterval(() => {
-  bannerIndex = (bannerIndex + 1) % bannerSlides.length;
-  showBannerSlide(bannerIndex);
+  currentIndex = (currentIndex + 1) % slides.length;
+  showSlide(currentIndex);
 }, 5000);
+showSlide(currentIndex);
 </script>
 
 </body>
