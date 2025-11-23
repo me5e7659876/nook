@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,198 +8,272 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
 
-:root {
-    --accent-hover: rgba(255,179,198,0.12);
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background-color: #4b0e1f;
-    color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #4b0e1f;
+  color: #fff;
 }
 
 /* HEADER */
 header {
-    background-color: #4b0e1f;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 38px;
-    font-weight: bold;
-    position: relative;
-    text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
+  background-color: #4b0e1f;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
 .header-icons {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    gap: 15px;
-    font-size: 26px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  font-size: 22px;
 }
 
 .header-icons i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-/* FULL MENU PAGE */
-.full-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #300815;
-    z-index: 999;
-    display: none;
-    flex-direction: column;
-    padding: 40px 25px;
-    overflow-y: auto;
+/* MENU ICON */
+.menu-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 999;
 }
 
-.full-menu h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
+/* FULL SCREEN MENU */
+#menuOverlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(43, 4, 16, 0.97);
+  overflow-y: hidden;
+  transition: 0.5s;
+  z-index: 1000;
 }
 
-.full-menu .close-menu {
-    font-size: 26px;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 25px;
+#menuOverlay .closebtn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 50px;
+  color: #fff;
+  text-decoration: none;
 }
 
-.full-menu .menu-cat {
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    font-size: 20px;
-    cursor: pointer;
+#menuOverlay .overlay-content {
+  position: relative;
+  top: 15%;
+  width: 100%;
+  text-align: center;
 }
 
-/* TOP BAR */
+#menuOverlay .overlay-content a {
+  display: block;
+  padding: 18px;
+  font-size: 26px;
+  color: #ffb3c6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+#menuOverlay .overlay-content a:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* TOP BAR فوق البانر */
 .top-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px 10px 0;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 10px 0;
+  gap: 8px;
 }
 
 .top-bar .results-info {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
 }
 
 .top-bar .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .top-bar .search-bar input {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    width: 280px;
-    outline: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  width: 280px;
+  outline: none;
 }
 
-/* BANNER */
-.banner-slider {
-    width: 100%;
-    height: 40vw;
-    max-height: 450px;
-    border-radius: 15px;
-    overflow: hidden;
-    margin: 20px 0;
+/* MOOD TEXT */
+.mood-text {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  margin: 15px 0;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: default;
 }
 
-.banner-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.mood-text:hover {
+  transform: scale(1.05);
+  color: #ffd2dd;
 }
 
-/* PRODUCTS GRID */
+/* MOBILE CATEGORY BAR */
+.categories-bar {
+  display: none;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 12px;
+  background: #2e0812;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.cat-chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: #480b1e;
+  border-radius: 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.cat-chip:hover { background: #6b1530; }
+.cat-chip.active { background: #ffb3c6; color: #4b0e1f; }
+
+/* CARDS */
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 230px;
+  padding: 20px;
+  background-color: #3b0a1a;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  height: fit-content;
+}
+
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
+
+.categories { list-style: none; padding: 0; }
+.categories li { margin: 10px 0; }
+.categories a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.categories a:hover {
+  background: var(--accent-hover);
+  transform: translateX(4px);
+}
+
+.categories a.active {
+  outline: 2px solid var(--active-outline);
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
 .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.card {
-    text-align: center;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-}
+.card { text-align: center; transition: transform 0.25s ease; text-decoration: none; }
+.card:hover { transform: translateY(-6px); }
 
 .card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  object-fit: cover;
 }
 
-.card h3 {
-    margin-top: 12px;
-    color: #fff;
-    font-size: 18px;
+.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
+
+.no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
+
+footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  height: 40vw;
+  max-height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px 0;
 }
 
-.no-results {
-    text-align: center;
-    width: 100%;
-    font-size: 20px;
-    color: #ffb3c6;
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  opacity: 0; transition: opacity 1s ease;
 }
 
+.banner-slide.active { opacity: 1; }
+.banner-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 15px;
+}
+
+/* MOBILE FIX */
 @media (max-width: 768px) {
-    .card img { height: 180px; }
+  .container { flex-direction: column; }
+  .sidebar { display: none; }
+  .categories-bar { display: flex; }
+  .content { grid-template-columns: repeat(2,1fr); }
+  .card img { height: 180px !important; }
 }
 
 @media (max-width: 420px) {
-    header { font-size: 28px; }
-    .card img { height: 150px; }
-}
-
-/* DESKTOP SIDEBAR */
-.desktop-sidebar {
-    display: none;
-    position: fixed;
-    top: 100px;
-    left: 0;
-    width: 230px;
-    background: #350717;
-    padding: 25px 20px;
-    height: 100vh;
-    overflow-y: auto;
-    border-right: 2px solid rgba(255,255,255,0.1);
-}
-.desktop-sidebar a {
-    display: block;
-    padding: 12px 0;
-    font-size: 18px;
-    color: #fff;
-    text-decoration: none;
-}
-.desktop-sidebar a:hover { color: #ffb3c6; }
-
-@media (min-width: 900px) {
-    .desktop-sidebar { display: block; }
-    .content { margin-left: 260px; }
-    #fullMenu { display: none !important; }
-    .header-icons { display: none; }
+  .content { grid-template-columns: repeat(2,1fr); }
+  .card img { height:150px !important; }
+  header { font-size:28px; }
 }
 </style>
 
@@ -209,125 +282,234 @@ header {
 
 <body>
 
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="openMenu()">☰</div>
+
+<!-- FULL SCREEN MENU -->
+<div id="menuOverlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+
+  <div class="overlay-content">
+    <a data-cat="All">All</a>
+    <a data-cat="Moods">Moods</a>
+    <a data-cat="Vases">Vases</a>
+    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
+    <a data-cat="Lighting">Lighting</a>
+    <a data-cat="Glass Candles">Glass Candles</a>
+    <a data-cat="Furniture">Furniture</a>
+    <a data-cat="Cushions">Cushions</a>
+    <a data-cat="Wooden Rack">Wooden Rack</a>
+    <a data-cat="Games">Games</a>
+    <a data-cat="Wall Art">Wall Art</a>
+  </div>
+</div>
+
 <header>
-    <div class="header-icons">
-        <i id="menuBtn" class="fas fa-bars"></i>
-    </div>
-    Nook Decor
+  <div class="header-icons">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-shopping-cart"></i>
+  </div>
+  Nook Decor
 </header>
 
-<!-- DESKTOP SIDEBAR -->
-<div class="desktop-sidebar">
-    <a href="#">All</a>
-    <a href="#">Moods</a>
-    <a href="#">Vases</a>
-    <a href="#">Outdoor Flooring</a>
-    <a href="#">Lighting</a>
-    <a href="#">Glass Candles</a>
-    <a href="#">Furniture</a>
-    <a href="#">Cushions</a>
-    <a href="#">Wooden Rack</a>
-    <a href="#">Games</a>
-    <a href="#">Wall Art</a>
-</div>
-
-<!-- FULL MENU PAGE -->
-<div id="fullMenu" class="full-menu">
-    <i class="fas fa-times close-menu" id="closeMenu"></i>
-    <h2>Categories</h2>
-    <div class="menu-cat" data-cat="All">All</div>
-    <div class="menu-cat" data-cat="Moods">Moods</div>
-    <div class="menu-cat" data-cat="Vases">Vases</div>
-    <div class="menu-cat" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-    <div class="menu-cat" data-cat="Lighting">Lighting</div>
-    <div class="menu-cat" data-cat="Glass Candles">Glass Candles</div>
-    <div class="menu-cat" data-cat="Furniture">Furniture</div>
-    <div class="menu-cat" data-cat="Cushions">Cushions</div>
-    <div class="menu-cat" data-cat="Wooden Rack">Wooden Rack</div>
-    <div class="menu-cat" data-cat="Games">Games</div>
-    <div class="menu-cat" data-cat="Wall Art">Wall Art</div>
-</div>
-
-<!-- SEARCH BAR -->
+<!-- TOP BAR -->
 <div class="top-bar">
-    <div class="results-info">Search for anything...</div>
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for anything..." />
-        <i class="fas fa-search"></i>
-    </div>
+  <div class="results-info">Search for anything...</div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <i class="fas fa-search"></i>
+  </div>
 </div>
+
+<!-- MOOD TEXT -->
+<div class="mood-text">Create your own mood</div>
 
 <!-- BANNER -->
 <div class="banner-slider">
-    <div class="banner-slide active">
-        <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
-    </div>
+  <div class="banner-slide active">
+    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
+  </div>
 </div>
 
-<!-- PRODUCTS -->
+<div class="categories-bar" id="categoriesBar">
+  <div class="cat-chip active" data-cat="All">All</div>
+  <div class="cat-chip" data-cat="Moods">Moods</div>
+  <div class="cat-chip" data-cat="Vases">Vases</div>
+  <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
+  <div class="cat-chip" data-cat="Lighting">Lighting</div>
+  <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
+  <div class="cat-chip" data-cat="Furniture">Furniture</div>
+  <div class="cat-chip" data-cat="Cushions">Cushions</div>
+  <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
+  <div class="cat-chip" data-cat="Games">Games</div>
+  <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
+</div>
+
+<div class="container">
+<aside class="sidebar" id="desktopSidebar">
+  <h2>Categories</h2>
+  <ul class="categories">
+    <li><a class="active" data-cat="All">All</a></li>
+    <li><a data-cat="Moods">Moods</a></li>
+    <li><a data-cat="Vases">Vases</a></li>
+    <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
+    <li><a data-cat="Lighting">Lighting</a></li>
+    <li><a data-cat="Glass Candles">Glass Candles</a></li>
+    <li><a data-cat="Furniture">Furniture</a></li>
+    <li><a data-cat="Cushions">Cushions</a></li>
+    <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
+    <li><a data-cat="Games">Games</a></li>
+    <li><a data-cat="Wall Art">Wall Art</a></li>
+  </ul>
+</aside>
+
 <main class="content" id="content">
-    <a href="#" class="card" data-cat="Moods">
-        <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-        <h3>Moods</h3>
-    </a>
-    <a href="#" class="card" data-cat="Lighting">
-        <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-        <h3>Lighting</h3>
-    </a>
-    <a href="#" class="card" data-cat="Vases">
-        <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-        <h3>Vases</h3>
-    </a>
-    <a href="#" class="card" data-cat="Cushions">
-        <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-        <h3>Cushions</h3>
-    </a>
-    <a href="#" class="card" data-cat="Glass Candles">
-        <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-        <h3>Glass Candles</h3>
-    </a>
-    <a href="#" class="card" data-cat="Outdoor Flooring">
-        <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-        <h3>Outdoor Flooring</h3>
-    </a>
+
+<a href="product9.html" class="card" data-cat="Moods">
+  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+  <h3>Moods</h3>
+</a>
+
+<a href="product3.html" class="card" data-cat="Lighting">
+  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+  <h3>Lighting</h3>
+</a>
+
+<a href="product1.html" class="card" data-cat="Vases">
+  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+  <h3>Vases</h3>
+</a>
+
+<a href="product2.html" class="card" data-cat="Cushions">
+  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+  <h3>Cushions</h3>
+</a>
+
+<a href="product4.html" class="card" data-cat="Glass Candles">
+  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+  <h3>Glass Candles</h3>
+</a>
+
+<a href="product5.html" class="card" data-cat="Outdoor Flooring">
+  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+  <h3>Outdoor Flooring</h3>
+</a>
+
+<a href="product6.html" class="card" data-cat="Wooden Rack">
+  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+  <h3>Wooden Rack</h3>
+</a>
+
+<a href="product7.html" class="card" data-cat="Wall Art">
+  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+  <h3>Wall Art</h3>
+</a>
+
+<a href="product8.html" class="card" data-cat="Games">
+  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+  <h3>Games</h3>
+</a>
+
+<div class="no-results" style="display:none;">No products found.</div>
+
 </main>
+</div>
+
+<footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// OPEN / CLOSE MENU
-document.getElementById("menuBtn").onclick = () => {
-    document.getElementById("fullMenu").style.display = "flex";
-};
-
-document.getElementById("closeMenu").onclick = () => {
-    document.getElementById("fullMenu").style.display = "none";
-};
-
-// FILTER FROM MENU
-const menuCats = document.querySelectorAll(".menu-cat");
-const cards = document.querySelectorAll(".card");
-const noResults = document.createElement("div");
-noResults.className = "no-results";
-noResults.innerText = "No products found.";
-document.getElementById("content").appendChild(noResults);
-
-function filter(category) {
-    let visible = false;
-    cards.forEach(card => {
-        if (category === "All" || card.dataset.cat === category) {
-            card.style.display = "block";
-            visible = true;
-        } else {
-            card.style.display = "none";
-        }
-    });
-    noResults.style.display = visible ? "none" : "block";
+// FULL SCREEN MENU
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
+}
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
 }
 
-menuCats.forEach(cat => {
-    cat.onclick = () => {
-        filter(cat.dataset.cat);
-        document.getElementById("fullMenu").style.display = "none";
-    };
+// RESPONSIVE SIDEBAR
+function handleResize() {
+  if (window.innerWidth <= 768) {
+    document.getElementById('categoriesBar').style.display = 'flex';
+    document.getElementById('desktopSidebar').style.display = 'none';
+  } else {
+    document.getElementById('categoriesBar').style.display = 'none';
+    document.getElementById('desktopSidebar').style.display = 'block';
+  }
+}
+window.addEventListener('load', handleResize);
+window.addEventListener('resize', handleResize);
+
+// FILTER SYSTEM
+const desktopCategories = document.querySelectorAll('.sidebar .categories a');
+const mobileCategories = document.querySelectorAll('.categories-bar .cat-chip');
+const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
+const cards = document.querySelectorAll('.content .card');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.querySelector('.no-results');
+
+function filterProducts(category) {
+  const searchText = searchInput.value.toLowerCase();
+  let anyVisible = false;
+
+  cards.forEach(card => {
+    const matchesCategory = category === 'All' || card.dataset.cat === category;
+    const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(searchText);
+
+    if(matchesCategory && matchesSearch) {
+      card.style.display = 'block';
+      anyVisible = true;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  noResults.style.display = anyVisible ? 'none' : 'block';
+}
+
+function activate(category) {
+  desktopCategories.forEach(el => el.classList.remove('active'));
+  mobileCategories.forEach(el => el.classList.remove('active'));
+  menuOverlayCats.forEach(el => el.classList.remove('active'));
+
+  const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
+  const mob = document.querySelector('.cat-chip[data-cat="'+category+'"]');
+  const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
+
+  if(desk) desk.classList.add('active');
+  if(mob) mob.classList.add('active');
+  if(over) over.classList.add('active');
+}
+
+// CLICK EVENTS
+desktopCategories.forEach(cat => {
+  cat.onclick = () => {
+    filterProducts(cat.dataset.cat);
+    activate(cat.dataset.cat);
+  };
+});
+
+mobileCategories.forEach(cat => {
+  cat.onclick = () => {
+    filterProducts(cat.dataset.cat);
+    activate(cat.dataset.cat);
+  };
+});
+
+menuOverlayCats.forEach(cat => {
+  cat.onclick = () => {
+    filterProducts(cat.dataset.cat);
+    activate(cat.dataset.cat);
+    closeMenu();
+  };
+});
+
+// SEARCH INPUT
+searchInput.addEventListener('input', () => {
+  let activeCategory = "All";
+  desktopCategories.forEach(cat => {
+    if(cat.classList.contains('active')) activeCategory = cat.dataset.cat;
+  });
+  filterProducts(activeCategory);
 });
 </script>
 
