@@ -44,12 +44,28 @@
       transform: translateY(-8px);
     }
 
-    .product-card img {
+    /* سلايدر */
+    .slider {
+      position: relative;
       width: 100%;
+      height: 250px;
+      overflow: hidden;
       border-radius: 12px;
       margin-bottom: 12px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      height: 250px;
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .active {
+      opacity: 1;
     }
 
     .price {
@@ -93,8 +109,10 @@
 
   <!-- المنتج الأول -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
-    <img src="https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg">
+    <div class="slider">
+      <img class="slide active" src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
+      <img class="slide" src="https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg">
+    </div>
 
     <h2>المنتج الأول</h2>
     <div class="price">1200 جنيه</div>
@@ -103,8 +121,10 @@
 
   <!-- المنتج الثاني -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
-    <img src="https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg">
+    <div class="slider">
+      <img class="slide active" src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
+      <img class="slide" src="https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg">
+    </div>
 
     <h2>المنتج الثاني</h2>
     <div class="price">600 جنيه</div>
@@ -113,8 +133,10 @@
 
   <!-- المنتج الثالث -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
-    <img src="https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg">
+    <div class="slider">
+      <img class="slide active" src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
+      <img class="slide" src="https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg">
+    </div>
 
     <h2>المنتج الثالث</h2>
     <div class="price">300 جنيه</div>
@@ -123,8 +145,10 @@
 
   <!-- المنتج الرابع -->
   <div class="product-card">
-    <img src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
-    <img src="https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg">
+    <div class="slider">
+      <img class="slide active" src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
+      <img class="slide" src="https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg">
+    </div>
 
     <h2>المنتج الرابع</h2>
     <div class="price">200 جنيه</div>
@@ -134,6 +158,20 @@
 </section>
 
 <a href="index.html" class="back-link">← الرجوع للرئيسية</a>
+
+<script>
+  // السلايدر لكل الكروت
+  document.querySelectorAll(".slider").forEach(slider => {
+    let slides = slider.querySelectorAll(".slide");
+    let index = 0;
+
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }, 2200); // مدة الانتقال
+  });
+</script>
 
 </body>
 </html>
