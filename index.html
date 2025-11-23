@@ -69,6 +69,23 @@ header {
     outline: none;
 }
 
+/* MOOD TEXT */
+.mood-text {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    margin: 15px 0;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: default;
+}
+.mood-text:hover {
+    transform: scale(1.05);
+    color: #ffd2dd;
+}
+
 /* MOBILE CATEGORY BAR */
 .categories-bar {
     display: none;
@@ -225,12 +242,15 @@ footer {
 
 <!-- TOP BAR فوق البانر -->
 <div class="top-bar">
-    <div class="results-info">Create your own mood</div>
+    <div class="results-info">Search for anything...</div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search for anything..." />
       <i class="fas fa-search"></i>
     </div>
 </div>
+
+<!-- MOOD TEXT -->
+<div class="mood-text">Create your own mood</div>
 
 <!-- Banner Slider -->
 <div class="banner-slider">
