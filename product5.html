@@ -1,1 +1,164 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Outdoor Flooring - Nook Decor</title> <style> body { margin: 0; font-family: 'Poppins', sans-serif; background-color: #4b0e1f; color: #fff; } header { background-color: #4b0e1f; padding: 15px; text-align: center; font-size: 30px; font-weight: bold; text-shadow: 0 0 10px rgba(255,200,210,0.6); } .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 30px; } .product-card { background-color: #5a1226; width: 250px; padding: 15px; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); text-align: center; transition: transform 0.3s ease; position: relative; overflow: hidden; } .product-card:hover { transform: translateY(-6px); /* حركة خفيفة عند المرور */ } .slider { width: 100%; height: 420px; position: relative; overflow: hidden; border-radius: 15px; margin-bottom: 15px; } .slider img { width: 100%; height: 420px; object-fit: cover; border-radius: 15px; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease-in-out; } .slider img.active { opacity: 1; } .slider .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: #fff; border: none; font-size: 28px; padding: 0; cursor: pointer; z-index: 2; right: 10px; } h2 { margin: 0 0 8px 0; color: #ffb3c6; font-size: 20px; } p, .price, .size, .btn { opacity: 0; transform: translateX(30px); /* يبدأ من اليمين */ transition: opacity 1s ease, transform 1s ease; /* ظهور أبطأ */ max-height: 0; overflow: hidden; } .product-card:hover p, .product-card:hover .price, .product-card:hover .size, .product-card:hover .btn { opacity: 1; transform: translateX(0); /* يتحرك تدريجيًا لليسر */ max-height: 100px; } .btn { background-color: #ffb3c6; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; color: #4b0e1f; cursor: pointer; font-size: 14px; } .btn:hover { background-color: #ffc7d3; } </style> </head> <body> <header>Nook Decor</header> <div class="products"> <!-- المنتجات --> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/3RJNqGz0/download-(48).jpg" class="active"> <img src="https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Artificial Grass</h2> <p>High-quality artificial grass perfect for balconies and outdoor areas.</p> <p class="price">650 EGP / m²</p> <p class="size">Grass Thickness: 35 mm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg" class="active"> <img src="https://i.postimg.cc/Hs9LchCf/ss.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Stylish outdoor rug that enhances your relaxing space beautifully.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg" class="active"> <img src="https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Soft texture design made to elevate outdoor comfort.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/5yq7ckPP/b.jpg" class="active"> <img src="https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Modern outdoor piece that adds charm to your balcony or garden.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/htnPgJ2h/a.jpg" class="active"> <img src="https://i.postimg.cc/9fZ9kB9F/sysy.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Classic pattern rug that blends perfectly with outdoor furniture.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/FspWD8kd/y.jpg" class="active"> <img src="https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Elegant rug that creates a cozy and welcoming atmosphere.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/fW7RPRb4/classic-charms-370878-(1).jpg" class="active"> <img src="https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Premium design perfect for stylish outdoor settings.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> <div class="product-card"> <div class="slider"> <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg" class="active"> <img src="https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg"> <button class="nav-btn next">&#10095;</button> </div> <h2>Outdoor Flooring</h2> <p>Luxury outdoor rug adding elegance and warmth to any space.</p> <p class="price">1000 EGP</p> <p class="size">115 × 75 cm</p> <button class="btn">Add to Cart</button> </div> </div> <script> document.querySelectorAll(".slider").forEach(slider => { const images = slider.querySelectorAll("img"); const nextBtn = slider.querySelector(".next"); let index = 0; function showImage(i) { images.forEach((img, idx) => img.classList.toggle("active", idx === i)); } nextBtn.addEventListener("click", () => { index = (index + 1) % images.length; showImage(index); }); }); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+
+    .back-link {
+      display: block;
+      margin: 25px 0 10px 15px;
+      font-size: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .slider img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 300px;
+    }
+
+    .name {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .price {
+      color: #444;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .add {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to Home</a>
+
+<div class="products">
+
+  <!-- PRODUCT 1 -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/V6bPZ7rF/IMG-20250123-WA0050.jpg">
+      <img src="https://i.postimg.cc/25vHBcv0/IMG-20250123-WA0049.jpg">
+    </div>
+    <div class="name">Elegant Vase</div>
+    <div class="price">250 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 2 -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/6qX6b7hS/IMG-20250123-WA0048.jpg">
+      <img src="https://i.postimg.cc/W1mwzWS9/IMG-20250123-WA0047.jpg">
+    </div>
+    <div class="name">Glass Candle</div>
+    <div class="price">180 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 3 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/FsbCszxR/3.png">
+      <img src="https://i.postimg.cc/fy3QjsBW/OCTO6903-899.jpg">
+    </div>
+    <div class="name">Outdoor Wood Tiles</div>
+    <div class="price">450 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 4 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/4ygvrvqS/5.png">
+      <img src="https://i.postimg.cc/5yq7ckPP/b.jpg">
+    </div>
+    <div class="name">Garden Floor Set</div>
+    <div class="price">520 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 5 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/XYzfV6t8/4.png">
+      <img src="https://i.postimg.cc/htnPgJ2h/a.jpg">
+    </div>
+    <div class="name">Outdoor Carpet</div>
+    <div class="price">300 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 6 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/PxG1wzXf/6.png">
+      <img src="https://i.postimg.cc/FspWD8kd/y.jpg">
+    </div>
+    <div class="name">Wooden Rack</div>
+    <div class="price">280 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 7 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/v8t54Vpb/2.png">
+      <img src="https://i.postimg.cc/fW7RPRb4/classic-charms-370878-(1).jpg">
+    </div>
+    <div class="name">Lighting Piece</div>
+    <div class="price">390 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+  <!-- PRODUCT 8 (updated) -->
+  <div class="card">
+    <div class="slider">
+      <img src="https://i.postimg.cc/rFhWJLy2/1.png">
+      <img src="https://i.postimg.cc/Ghg8n4zz/9ca45398-5d8d-460d-8cff-617d7df520bd.jpg">
+    </div>
+    <div class="name">Classic Cushion</div>
+    <div class="price">150 EGP</div>
+    <a class="add">Add to Cart</a>
+  </div>
+
+</div>
+
+</body>
+</html>
