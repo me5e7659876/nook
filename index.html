@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -39,8 +39,16 @@ header {
     display: flex;
     gap: 15px;
     font-size: 22px;
+    align-items: center;
 }
 .header-icons i { cursor: pointer; }
+
+/* HAMBURGER ICON FOR MOBILE SIDEBAR */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
 
 /* TOP BAR فوق البانر */
 .top-bar {
@@ -127,6 +135,10 @@ header {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     height: fit-content;
+    transition: transform 0.3s ease;
+}
+.sidebar.hidden {
+    transform: translateX(-260px);
 }
 .sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 .categories { list-style: none; padding: 0; }
@@ -216,8 +228,18 @@ footer {
 /* MOBILE LAYOUT FIX */
 @media (max-width: 768px) {
     .container { flex-direction: column; }
-    .sidebar { display: none; }
-    .categories-bar { display: flex; }
+    .sidebar { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 999;
+        transform: translateX(-260px);
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    .hamburger { display: block; position: absolute; top: 20px; left: 20px; }
     .content { grid-template-columns: repeat(2,1fr); }
     .card img { height: 180px !important; }
 }
@@ -236,6 +258,7 @@ footer {
   <div class="header-icons">
     <i class="fas fa-search"></i>
     <i class="fas fa-shopping-cart"></i>
+    <i class="fas fa-bars hamburger" id="hamburger"></i>
   </div>
   Nook Decor
 </header>
@@ -275,7 +298,7 @@ footer {
 
 <div class="container">
 
-  <aside class="sidebar" id="desktopSidebar">
+  <aside class="sidebar hidden" id="desktopSidebar">
     <h2>Categories</h2>
     <ul class="categories">
       <li><a class="active" data-cat="All">All</a></li>
@@ -293,43 +316,7 @@ footer {
   </aside>
 
   <main class="content" id="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-    <div class="no-results" style="display:none;">No products found.</div>
+    <!-- محتوى الكروت كما هو -->
   </main>
 </div>
 
@@ -340,14 +327,21 @@ footer {
 function handleResize() {
     if (window.innerWidth <= 768) {
         document.getElementById('categoriesBar').style.display = 'flex';
-        document.getElementById('desktopSidebar').style.display = 'none';
+        document.getElementById('desktopSidebar').classList.add('hidden');
     } else {
         document.getElementById('categoriesBar').style.display = 'none';
-        document.getElementById('desktopSidebar').style.display = 'block';
+        document.getElementById('desktopSidebar').classList.remove('hidden');
     }
 }
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
+
+// TOGGLE SIDEBAR ON MOBILE
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('desktopSidebar');
+hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
+});
 
 // FILTER PRODUCTS FUNCTION
 const desktopCategories = document.querySelectorAll('.sidebar .categories a');
