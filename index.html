@@ -32,15 +32,28 @@ header {
     text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
+/* 🔥 تعديل أماكن الأيقونات */
 .header-icons {
     position: absolute;
     top: 20px;
-    display: flex;
-    gap: 15px;
-    font-size: 22px;
+    left: 0;
+    right: 0;
+    width: 100%;
 }
-.header-icons .fa-bars { left: 20px; position: absolute; cursor: pointer; }
-.header-icons .fa-shopping-cart { right: 20px; position: absolute; cursor: pointer; }
+
+.header-icons .fa-bars {
+    position: absolute;
+    left: 20px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.header-icons .fa-shopping-cart {
+    position: absolute;
+    right: 20px;
+    font-size: 26px;
+    cursor: pointer;
+}
 
 /* TOP BAR فوق البانر */
 .top-bar {
