@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -252,8 +251,45 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 }
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
+<body>
+
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="openMenu()">☰</div>
+
+<!-- HEADER -->
+<header>
+  Nook Decor
+
+  <div class="header-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</header>
+
+<!-- MENU OVERLAY -->
+<div id="menuOverlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+
+  <div class="overlay-content">
+    <a href="#">Home</a>
+    <a href="#">All Products</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<script>
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
+}
+
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
+}
+</script>
+
+</body>
+</html>
 <body>
 
 <!-- MENU ICON -->
@@ -289,6 +325,8 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="results-info">Search for anything...</div>
+
+  <!-- SEARCH BAR (hidden on mobile) -->
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for anything..." />
     <i class="fas fa-search"></i>
@@ -305,23 +343,10 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
   </div>
 </div>
 
-<div class="categories-bar" id="categoriesBar">
-  <div class="cat-chip active" data-cat="All">All</div>
-  <div class="cat-chip" data-cat="Moods">Moods</div>
-  <div class="cat-chip" data-cat="Vases">Vases</div>
-  <div class="cat-chip" data-cat="Outdoor Flooring">Outdoor Flooring</div>
-  <div class="cat-chip" data-cat="Lighting">Lighting</div>
-  <div class="cat-chip" data-cat="Glass Candles">Glass Candles</div>
-  <div class="cat-chip" data-cat="Furniture">Furniture</div>
-  <div class="cat-chip" data-cat="Cushions">Cushions</div>
-  <div class="cat-chip" data-cat="Wooden Rack">Wooden Rack</div>
-  <div class="cat-chip" data-cat="Games">Games</div>
-  <div class="cat-chip" data-cat="Wall Art">Wall Art</div>
-</div>
-
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
   <h2>Categories</h2>
+
   <ul class="categories">
     <li><a class="active" data-cat="All">All</a></li>
     <li><a data-cat="Moods">Moods</a></li>
@@ -392,96 +417,74 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// FULL SCREEN MENU
-function openMenu() {
-  document.getElementById("menuOverlay").style.height = "100%";
-}
-function closeMenu() {
-  document.getElementById("menuOverlay").style.height = "0%";
-}
+function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
+function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 
-// RESPONSIVE SIDEBAR
 function handleResize() {
   if (window.innerWidth <= 768) {
-    document.getElementById('categoriesBar').style.display = 'flex';
     document.getElementById('desktopSidebar').style.display = 'none';
   } else {
-    document.getElementById('categoriesBar').style.display = 'none';
     document.getElementById('desktopSidebar').style.display = 'block';
   }
 }
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
-// FILTER SYSTEM
-const desktopCategories = document.querySelectorAll('.sidebar .categories a');
-const mobileCategories = document.querySelectorAll('.categories-bar .cat-chip');
-const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
-const cards = document.querySelectorAll('.content .card');
-const searchInput = document.getElementById('searchInput');
-const noResults = document.querySelector('.no-results');
+const desktopCategories=document.querySelectorAll('.sidebar .categories a');
+const cards=document.querySelectorAll('.content .card');
+const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
+const searchInput=document.getElementById('searchInput');
+const noResults=document.querySelector('.no-results');
 
-function filterProducts(category) {
-  const searchText = searchInput.value.toLowerCase();
-  let anyVisible = false;
+function filterProducts(category){
+  const searchText=searchInput.value.toLowerCase();
+  let anyVisible=false;
 
-  cards.forEach(card => {
-    const matchesCategory = category === 'All' || card.dataset.cat === category;
-    const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(searchText);
+  cards.forEach(card=>{
+    const matchesCategory=(category==="All" || card.dataset.cat===category);
+    const matchesSearch=card.querySelector('h3').textContent.toLowerCase().includes(searchText);
 
-    if(matchesCategory && matchesSearch) {
-      card.style.display = 'block';
-      anyVisible = true;
+    if(matchesCategory && matchesSearch){
+      card.style.display="block";
+      anyVisible=true;
     } else {
-      card.style.display = 'none';
+      card.style.display="none";
     }
   });
 
-  noResults.style.display = anyVisible ? 'none' : 'block';
+  noResults.style.display = anyVisible ? "none" : "block";
 }
 
-function activate(category) {
-  desktopCategories.forEach(el => el.classList.remove('active'));
-  mobileCategories.forEach(el => el.classList.remove('active'));
-  menuOverlayCats.forEach(el => el.classList.remove('active'));
+function activate(category){
+  desktopCategories.forEach(el=>el.classList.remove('active'));
+  menuOverlayCats.forEach(el=>el.classList.remove('active'));
 
-  const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const mob = document.querySelector('.cat-chip[data-cat="'+category+'"]');
-  const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
+  const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
+  const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
-  if(mob) mob.classList.add('active');
   if(over) over.classList.add('active');
 }
 
-// CLICK EVENTS
-desktopCategories.forEach(cat => {
-  cat.onclick = () => {
+desktopCategories.forEach(cat=>{
+  cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
   };
 });
 
-mobileCategories.forEach(cat => {
-  cat.onclick = () => {
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-  };
-});
-
-menuOverlayCats.forEach(cat => {
-  cat.onclick = () => {
+menuOverlayCats.forEach(cat=>{
+  cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
     closeMenu();
   };
 });
 
-// SEARCH INPUT
-searchInput.addEventListener('input', () => {
-  let activeCategory = "All";
-  desktopCategories.forEach(cat => {
-    if(cat.classList.contains('active')) activeCategory = cat.dataset.cat;
+searchInput.addEventListener('input',()=>{
+  let activeCategory="All";
+  desktopCategories.forEach(cat=>{
+    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
   });
   filterProducts(activeCategory);
 });
@@ -489,4 +492,3 @@ searchInput.addEventListener('input', () => {
 
 </body>
 </html>
-
