@@ -4,100 +4,254 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nook Decor</title>
+
 <style>
-body{font-family:sans-serif;margin:0;background:#4b0e1f;color:#fff;}
-header{background:#4b0e1f;color:white;padding:20px;text-align:center;position:relative;}
-.header-icons{position:absolute;top:20px;right:20px;display:flex;gap:15px;font-size:26px;cursor:pointer;}
-.card{display:inline-block;text-align:center;background:#3b0a1a;padding:10px;border-radius:10px;margin:10px;}
-.card img{width:100px;height:100px;object-fit:cover;}
-button{cursor:pointer;padding:5px 10px;margin-top:5px;}
-#cartOverlay,#menuOverlay{height:0%;width:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.95);overflow-y:auto;transition:0.5s;z-index:1000;}
-.closebtn{position:absolute;top:25px;right:35px;font-size:50px;color:#fff;text-decoration:none;cursor:pointer;}
-.overlay-content{margin-top:80px;text-align:center;}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #4b0e1f;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  background-color: #4b0e1f;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
+}
+
+.header-icons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  font-size: 26px;
+}
+
+.header-icons a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* MENU ICON */
+.menu-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* FULL SCREEN MENU */
+#menuOverlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(43, 4, 16, 0.97);
+  overflow-y: hidden;
+  transition: 0.5s;
+  z-index: 1000;
+}
+
+#menuOverlay .closebtn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 50px;
+  color: #fff;
+  text-decoration: none;
+}
+
+#menuOverlay .overlay-content {
+  position: relative;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+}
+
+#menuOverlay .overlay-content a {
+  display: block;
+  padding: 18px;
+  font-size: 26px;
+  color: #ffb3c6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+#menuOverlay .overlay-content a:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 10px 0;
+  gap: 8px;
+}
+
+.top-bar .results-info {
+  display: none;
+}
+
+.top-bar .search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-bar .search-bar input {
+  display: none;
+}
+
+/* MOOD TEXT */
+.mood-text {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  margin: 15px 0;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.mood-text:hover {
+  transform: scale(1.05);
+  color: #ffd2dd;
+}
+
+/* HIDE CATEGORY BAR */
+.categories-bar {
+  display: none !important;
+}
+
+/* CARDS */
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 230px;
+  padding: 20px;
+  background-color: #3b0a1a;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  height: fit-content;
+}
+
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
+
+.categories { list-style: none; padding: 0; }
+.categories li { margin: 10px 0; }
+.categories a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background 0.18s ease, transform 0.12s ease;
+}
+
+.categories a:hover {
+  background: var(--accent-hover);
+  transform: translateX(4px);
+}
+
+.categories a.active {
+  outline: 2px solid var(--active-outline);
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
+.content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card { text-align: center; transition: transform 0.25s ease; text-decoration: none; }
+.card:hover { transform: translateY(-6px); }
+
+.card img {
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
+
+.no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
+
+footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  height: 40vw;
+  max-height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  opacity: 0; transition: opacity 1s ease;
+}
+
+.banner-slide.active { opacity: 1; }
+.banner-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 15px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  .sidebar { display: none !important; }
+  .content { grid-template-columns: repeat(2,1fr); }
+  .card img { height: 180px !important; }
+}
+
+@media (max-width: 420px) {
+  .content { grid-template-columns: repeat(2,1fr); }
+  .card img { height:150px !important; }
+  header { font-size:28px; }
+}
 </style>
+
 </head>
-<body>
-
-<header>
-  Nook Decor
-  <div class="header-icons">
-    <i class="fas fa-shopping-cart" id="cartIcon"></i>
-  </div>
-</header>
-
-<div id="cartOverlay">
-  <a class="closebtn" id="closeCart">&times;</a>
-  <div class="overlay-content" id="cartContent"><h2>Your Cart</h2></div>
-</div>
-
-<div class="content">
-  <div class="card" data-name="Mood Lamp" data-price="50">
-    <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-    <h3>Mood Lamp</h3>
-    <button>Add to Cart</button>
-  </div>
-  <div class="card" data-name="Ceiling Light" data-price="80">
-    <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-    <h3>Ceiling Light</h3>
-    <button>Add to Cart</button>
-  </div>
-  <div class="card" data-name="Decor Vase" data-price="30">
-    <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-    <h3>Decor Vase</h3>
-    <button>Add to Cart</button>
-  </div>
-</div>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<script>
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function updateCartUI(){
-  const container = document.getElementById('cartContent');
-  container.innerHTML = '<h2>Your Cart</h2>';
-  if(cart.length===0){
-    container.innerHTML += '<p>Your cart is empty.</p>';
-    return;
-  }
-  cart.forEach((item,index)=>{
-    const div = document.createElement('div');
-    div.style.marginBottom="15px";
-    div.innerHTML = `
-      <img src="${item.img}" style="width:80px;height:80px;border-radius:8px;vertical-align:middle;">
-      <span style="margin-left:10px">${item.name} - $${item.price}</span>
-      <button onclick="removeItem(${index})" style="margin-left:10px">Remove</button>
-    `;
-    container.appendChild(div);
-  });
-}
-
-function addToCart(name,img,price){
-  cart.push({name,img,price});
-  localStorage.setItem('cart',JSON.stringify(cart));
-  updateCartUI();
-  alert(name+' added to cart');
-}
-
-function removeItem(index){
-  cart.splice(index,1);
-  localStorage.setItem('cart',JSON.stringify(cart));
-  updateCartUI();
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.card').forEach(card=>{
-    card.querySelector('button').addEventListener('click',()=>{
-      addToCart(card.dataset.name,card.querySelector('img').src,card.dataset.price);
-    });
-  });
-
-  document.getElementById('cartIcon').addEventListener('click',()=>{document.getElementById('cartOverlay').style.height='100%';updateCartUI();});
-  document.getElementById('closeCart').addEventListener('click',()=>{document.getElementById('cartOverlay').style.height='0%';});
-});
-</script>
-</body>
-</html>
-
 
 <body>
 
@@ -107,6 +261,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <!-- HEADER -->
 <header>
   Nook Decor
+
   <div class="header-icons">
     <a href="cart.html">🛒</a>
   </div>
@@ -122,6 +277,49 @@ document.addEventListener('DOMContentLoaded',()=>{
     <a href="#">Contact</a>
   </div>
 </div>
+
+<script>
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
+}
+
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
+}
+</script>
+
+</body>
+</html>
+
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="openMenu()">☰</div>
+
+<!-- FULL SCREEN MENU -->
+<div id="menuOverlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+
+  <div class="overlay-content">
+    <a data-cat="All">All</a>
+    <a data-cat="Moods">Moods</a>
+    <a data-cat="Vases">Vases</a>
+    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
+    <a data-cat="Lighting">Lighting</a>
+    <a data-cat="Glass Candles">Glass Candles</a>
+    <a data-cat="Furniture">Furniture</a>
+    <a data-cat="Cushions">Cushions</a>
+    <a data-cat="Wooden Rack">Wooden Rack</a>
+    <a data-cat="Games">Games</a>
+    <a data-cat="Wall Art">Wall Art</a>
+  </div>
+</div>
+
+<header>
+  <div class="header-icons">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-shopping-cart"></i>
+  </div>
+  Nook Decor
+</header>
 
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -284,6 +482,5 @@ menuOverlayCats.forEach(cat => {
 
 </body>
 </html>
-
 
 
