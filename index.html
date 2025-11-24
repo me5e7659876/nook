@@ -38,10 +38,12 @@ header {
   right: 20px;
   display: flex;
   gap: 15px;
-  font-size: 22px;
+  font-size: 26px;
 }
 
-.header-icons i {
+.header-icons a {
+  color: white;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -109,7 +111,7 @@ header {
 }
 
 .top-bar .results-info {
-  display: none; /* مخفي */
+  display: none;
 }
 
 .top-bar .search-bar {
@@ -119,7 +121,7 @@ header {
 }
 
 .top-bar .search-bar input {
-  display: none; /* مخفي */
+  display: none;
 }
 
 /* MOOD TEXT */
@@ -140,7 +142,7 @@ header {
   color: #ffd2dd;
 }
 
-/* HIDE CATEGORY BAR COMPLETELY */
+/* HIDE CATEGORY BAR */
 .categories-bar {
   display: none !important;
 }
@@ -249,10 +251,45 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 }
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="openMenu()">☰</div>
+
+<!-- HEADER -->
+<header>
+  Nook Decor
+
+  <div class="header-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</header>
+
+<!-- MENU OVERLAY -->
+<div id="menuOverlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+
+  <div class="overlay-content">
+    <a href="#">Home</a>
+    <a href="#">All Products</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<script>
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
+}
+
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
+}
+</script>
+
+</body>
+</html>
 
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
@@ -445,4 +482,5 @@ menuOverlayCats.forEach(cat => {
 
 </body>
 </html>
+
 
