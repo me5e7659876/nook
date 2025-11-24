@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,25 +33,24 @@ header {
   text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
-/* LEFT HEADER ICONS (cart + search) */
-.header-left-icons {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  gap: 15px;
-  font-size: 26px;
-}
-
-.header-left-icons i {
-  cursor: pointer;
-}
-
-/* RIGHT MENU ICON */
-.menu-icon {
+.header-icons {
   position: absolute;
   top: 20px;
   right: 20px;
+  display: flex;
+  gap: 15px;
+  font-size: 22px;
+}
+
+.header-icons i {
+  cursor: pointer;
+}
+
+/* MENU ICON */
+.menu-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   font-size: 32px;
   cursor: pointer;
   z-index: 999;
@@ -109,14 +109,19 @@ header {
   gap: 8px;
 }
 
-/* Search bar hidden by default (until clicking search icon) */
-.search-bar {
-  display: none;
+.top-bar .results-info {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+.top-bar .search-bar {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.search-bar input {
+.top-bar .search-bar input {
   padding: 10px 15px;
   font-size: 16px;
   border: none;
@@ -134,6 +139,18 @@ header {
   font-family: 'Playfair Display', serif;
   margin: 15px 0;
   letter-spacing: 0.5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.mood-text:hover {
+  transform: scale(1.05);
+  color: #ffd2dd;
+}
+
+/* HIDE CATEGORY BAR COMPLETELY */
+.categories-bar {
+  display: none !important;
 }
 
 /* CARDS */
@@ -197,15 +214,39 @@ header {
 
 .no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
 
-/* MOBILE */
+footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  height: 40vw;
+  max-height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  opacity: 0; transition: opacity 1s ease;
+}
+
+.banner-slide.active { opacity: 1; }
+.banner-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 15px;
+}
+
+/* MOBILE FIX */
 @media (max-width: 768px) {
-
-  /* Hide sidebar */
-  .sidebar { display: none !important; }
-
-  /* 2 columns */
+  .container { flex-direction: column; }
+  .sidebar { display: none !important; }  /* hide sidebar on mobile */
   .content { grid-template-columns: repeat(2,1fr); }
-
   .card img { height: 180px !important; }
 }
 
@@ -220,16 +261,6 @@ header {
 </head>
 
 <body>
-
-<!-- LEFT ICONS: CART + SEARCH -->
-<div class="header-left-icons">
-  
-  <!-- Cart -->
-  <i class="fas fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
-
-  <!-- Search Icon -->
-  <i class="fas fa-search" onclick="toggleSearch()"></i>
-</div>
 
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
@@ -253,14 +284,20 @@ header {
   </div>
 </div>
 
-<header>Nook Decor</header>
+<header>
+  <div class="header-icons">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-shopping-cart"></i>
+  </div>
+  Nook Decor
+</header>
 
 <!-- TOP BAR -->
 <div class="top-bar">
-
-  <!-- SEARCH BAR -->
-  <div class="search-bar" id="searchBar">
-    <input type="text" id="searchInput" placeholder="Search..." />
+  <div class="results-info">Search for anything...</div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <i class="fas fa-search"></i>
   </div>
 </div>
 
@@ -274,10 +311,11 @@ header {
   </div>
 </div>
 
+<!-- CATEGORY BAR REMOVED AUTOMATICALLY -->
+
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
   <h2>Categories</h2>
-
   <ul class="categories">
     <li><a class="active" data-cat="All">All</a></li>
     <li><a data-cat="Moods">Moods</a></li>
@@ -348,79 +386,85 @@ header {
 <footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
-
-function toggleSearch() {
-  let bar = document.getElementById("searchBar");
-  bar.style.display = bar.style.display === "flex" ? "none" : "flex";
+// FULL SCREEN MENU
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
+}
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
 }
 
+// RESPONSIVE SIDEBAR (updated to remove category bar)
 function handleResize() {
   if (window.innerWidth <= 768) {
+    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'none';
   } else {
+    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'block';
   }
 }
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
-const desktopCategories=document.querySelectorAll('.sidebar .categories a');
-const cards=document.querySelectorAll('.content .card');
-const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
-const searchInput=document.getElementById('searchInput');
-const noResults=document.querySelector('.no-results');
+// FILTER SYSTEM
+const desktopCategories = document.querySelectorAll('.sidebar .categories a');
+const cards = document.querySelectorAll('.content .card');
+const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.querySelector('.no-results');
 
-function filterProducts(category){
-  const searchText=searchInput.value.toLowerCase();
-  let anyVisible=false;
+function filterProducts(category) {
+  const searchText = searchInput.value.toLowerCase();
+  let anyVisible = false;
 
-  cards.forEach(card=>{
-    const matchesCategory=(category==="All" || card.dataset.cat===category);
-    const matchesSearch=card.querySelector('h3').textContent.toLowerCase().includes(searchText);
+  cards.forEach(card => {
+    const matchesCategory = category === 'All' || card.dataset.cat === category;
+    const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(searchText);
 
-    if(matchesCategory && matchesSearch){
-      card.style.display="block";
-      anyVisible=true;
+    if(matchesCategory && matchesSearch) {
+      card.style.display = 'block';
+      anyVisible = true;
     } else {
-      card.style.display="none";
+      card.style.display = 'none';
     }
   });
 
-  noResults.style.display = anyVisible ? "none" : "block";
+  noResults.style.display = anyVisible ? 'none' : 'block';
 }
 
-function activate(category){
-  desktopCategories.forEach(el=>el.classList.remove('active'));
-  menuOverlayCats.forEach(el=>el.classList.remove('active'));
+function activate(category) {
+  desktopCategories.forEach(el => el.classList.remove('active'));
+  menuOverlayCats.forEach(el => el.classList.remove('active'));
 
-  const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
+  const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
+  const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
   if(over) over.classList.add('active');
 }
 
-desktopCategories.forEach(cat=>{
-  cat.onclick=()=>{
+// CLICK EVENTS
+desktopCategories.forEach(cat => {
+  cat.onclick = () => {
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
   };
 });
 
-menuOverlayCats.forEach(cat=>{
-  cat.onclick=()=>{
+menuOverlayCats.forEach(cat => {
+  cat.onclick = () => {
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
     closeMenu();
   };
 });
 
-searchInput.addEventListener('input',()=>{
-  let activeCategory="All";
-  desktopCategories.forEach(cat=>{
-    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
+// SEARCH INPUT
+searchInput.addEventListener('input', () => {
+  let activeCategory = "All";
+  desktopCategories.forEach(cat => {
+    if(cat.classList.contains('active')) activeCategory = cat.dataset.cat;
   });
   filterProducts(activeCategory);
 });
