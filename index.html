@@ -109,9 +109,7 @@ header {
 }
 
 .top-bar .results-info {
-  font-size: 18px;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
+  display: none; /* مخفي */
 }
 
 .top-bar .search-bar {
@@ -121,12 +119,7 @@ header {
 }
 
 .top-bar .search-bar input {
-  padding: 10px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  width: 280px;
-  outline: none;
+  display: none; /* مخفي */
 }
 
 /* MOOD TEXT */
@@ -247,11 +240,6 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 180px !important; }
-
-  /* hide search bar text + bar on mobile if needed */
-  .top-bar .results-info {
-    display: none !important;
-  }
 }
 
 @media (max-width: 420px) {
@@ -300,7 +288,6 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <div class="top-bar">
   <div class="results-info"></div>
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="" />
     <i class="fas fa-search"></i>
   </div>
 </div>
@@ -411,18 +398,13 @@ window.addEventListener('resize', handleResize);
 const desktopCategories = document.querySelectorAll('.sidebar .categories a');
 const cards = document.querySelectorAll('.content .card');
 const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
-const searchInput = document.getElementById('searchInput');
-const noResults = document.querySelector('.no-results');
 
 function filterProducts(category) {
-  const searchText = searchInput.value.toLowerCase();
   let anyVisible = false;
 
   cards.forEach(card => {
     const matchesCategory = category === 'All' || card.dataset.cat === category;
-    const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(searchText);
-
-    if(matchesCategory && matchesSearch) {
+    if(matchesCategory) {
       card.style.display = 'block';
       anyVisible = true;
     } else {
@@ -430,7 +412,7 @@ function filterProducts(category) {
     }
   });
 
-  noResults.style.display = anyVisible ? 'none' : 'block';
+  document.querySelector('.no-results').style.display = anyVisible ? 'none' : 'block';
 }
 
 function activate(category) {
@@ -458,15 +440,6 @@ menuOverlayCats.forEach(cat => {
     activate(cat.dataset.cat);
     closeMenu();
   };
-});
-
-// SEARCH INPUT
-searchInput.addEventListener('input', () => {
-  let activeCategory = "All";
-  desktopCategories.forEach(cat => {
-    if(cat.classList.contains('active')) activeCategory = cat.dataset.cat;
-  });
-  filterProducts(activeCategory);
 });
 </script>
 
