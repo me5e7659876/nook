@@ -32,24 +32,25 @@ header {
   text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
-.header-icons {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  gap: 15px;
-  font-size: 22px;
-}
-
-.header-icons i {
-  cursor: pointer;
-}
-
-/* MENU ICON */
-.menu-icon {
+/* LEFT HEADER ICONS (cart + search) */
+.header-left-icons {
   position: absolute;
   top: 20px;
   left: 20px;
+  display: flex;
+  gap: 15px;
+  font-size: 26px;
+}
+
+.header-left-icons i {
+  cursor: pointer;
+}
+
+/* RIGHT MENU ICON */
+.menu-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   font-size: 32px;
   cursor: pointer;
   z-index: 999;
@@ -108,19 +109,14 @@ header {
   gap: 8px;
 }
 
-.top-bar .results-info {
-  font-size: 18px;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
-}
-
-.top-bar .search-bar {
-  display: flex;
+/* Search bar hidden by default (until clicking search icon) */
+.search-bar {
+  display: none;
   align-items: center;
   gap: 8px;
 }
 
-.top-bar .search-bar input {
+.search-bar input {
   padding: 10px 15px;
   font-size: 16px;
   border: none;
@@ -138,17 +134,7 @@ header {
   font-family: 'Playfair Display', serif;
   margin: 15px 0;
   letter-spacing: 0.5px;
-  transition: transform 0.3s ease, color 0.3s ease;
-  cursor: default;
 }
-
-.mood-text:hover {
-  transform: scale(1.05);
-  color: #ffd2dd;
-}
-
-/* HIDE CATEGORY BAR COMPLETELY */
-.categories-bar { display: none !important; }
 
 /* CARDS */
 .container {
@@ -211,60 +197,15 @@ header {
 
 .no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
 
-footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
-
-/* BANNER */
-.banner-slider {
-  position: relative;
-  width: 100%;
-  min-height: 250px;
-  height: 40vw;
-  max-height: 450px;
-  overflow: hidden;
-  border-radius: 15px;
-  margin: 10px 0;
-}
-
-.banner-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0; left: 0;
-  opacity: 0; transition: opacity 1s ease;
-}
-
-.banner-slide.active { opacity: 1; }
-.banner-slide img {
-  width: 100%; height: 100%;
-  object-fit: cover; border-radius: 15px;
-}
-
-/* ------------------------------ */
-/* 📱 MOBILE ONLY – Search Fixes */
-/* ------------------------------ */
+/* MOBILE */
 @media (max-width: 768px) {
 
-  /* Hide search bar */
-  .top-bar .search-bar {
-    display: none !important;
-  }
-
-  /* Show only search icon in header */
-  .header-icons .fa-search {
-    display: inline-block !important;
-    font-size: 24px;
-  }
-
-  /* Move icons slightly */
-  .header-icons {
-    right: 15px !important;
-    top: 18px !important;
-  }
-
-  /* Layout adjustments */
-  .container { flex-direction: column; }
+  /* Hide sidebar */
   .sidebar { display: none !important; }
+
+  /* 2 columns */
   .content { grid-template-columns: repeat(2,1fr); }
+
   .card img { height: 180px !important; }
 }
 
@@ -279,6 +220,16 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 </head>
 
 <body>
+
+<!-- LEFT ICONS: CART + SEARCH -->
+<div class="header-left-icons">
+  
+  <!-- Cart -->
+  <i class="fas fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
+
+  <!-- Search Icon -->
+  <i class="fas fa-search" onclick="toggleSearch()"></i>
+</div>
 
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
@@ -302,22 +253,14 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
   </div>
 </div>
 
-<header>
-  <div class="header-icons">
-    <i class="fas fa-search"></i>
-    <i class="fas fa-shopping-cart"></i>
-  </div>
-  Nook Decor
-</header>
+<header>Nook Decor</header>
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <div class="results-info">Search for anything...</div>
 
-  <!-- SEARCH BAR (hidden on mobile) -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
-    <i class="fas fa-search"></i>
+  <!-- SEARCH BAR -->
+  <div class="search-bar" id="searchBar">
+    <input type="text" id="searchInput" placeholder="Search..." />
   </div>
 </div>
 
@@ -407,6 +350,11 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <script>
 function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
 function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
+
+function toggleSearch() {
+  let bar = document.getElementById("searchBar");
+  bar.style.display = bar.style.display === "flex" ? "none" : "flex";
+}
 
 function handleResize() {
   if (window.innerWidth <= 768) {
