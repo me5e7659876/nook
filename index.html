@@ -1,486 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nook Decor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soft Cushions - Nook Decor</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
 
-:root{
-  --accent-hover: rgba(255,179,198,0.12);
-  --active-outline: rgba(255,179,198,0.28);
-}
+    header {
+      background-color: #4b0e1f;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background-color: #4b0e1f;
-  color: #fff;
-}
+    /* PRODUCT GRID */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 35px;
+      padding: 40px 20px;
+    }
 
-/* HEADER */
-header {
-  background-color: #4b0e1f;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: 38px;
-  font-weight: bold;
-  position: relative;
-  text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
-}
+    .item {
+      width: 260px;
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 18px;
+      box-shadow: 0px 4px 14px rgba(0,0,0,0.45);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
 
-.header-icons {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  gap: 15px;
-  font-size: 26px;
-}
+    .item:hover {
+      transform: scale(1.03);
+    }
 
-.header-icons a {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .item img {
+      width: 100%;
+      height: 360px;
+      object-fit: contain;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
 
-/* MENU ICON */
-.menu-icon {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 32px;
-  cursor: pointer;
-  z-index: 999;
-}
+    .title {
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #ffb3c6;
+    }
 
-/* FULL SCREEN MENU */
-#menuOverlay {
-  height: 0%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(43, 4, 16, 0.97);
-  overflow-y: hidden;
-  transition: 0.5s;
-  z-index: 1000;
-}
+    .desc {
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(20px);
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .45s ease-out, transform .45s ease-out, max-height .5s ease-out;
+      margin-top: 5px;
+    }
 
-#menuOverlay .closebtn {
-  position: absolute;
-  top: 25px;
-  right: 35px;
-  font-size: 50px;
-  color: #fff;
-  text-decoration: none;
-}
+    .item:hover .desc {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 150px;
+    }
 
-#menuOverlay .overlay-content {
-  position: relative;
-  top: 15%;
-  width: 100%;
-  text-align: center;
-}
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
 
-#menuOverlay .overlay-content a {
-  display: block;
-  padding: 18px;
-  font-size: 26px;
-  color: #ffb3c6;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      color: #4b0e1f;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .25s;
+    }
 
-#menuOverlay .overlay-content a:hover {
-  color: #fff;
-  transform: scale(1.05);
-}
+    .btn:hover {
+      background-color: #ffd2dd;
+      transform: scale(1.05);
+    }
 
-/* TOP BAR */
-.top-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 15px 10px 0;
-  gap: 8px;
-}
+    /* back-link style */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 40px 0;
+      color: #ffb3c6;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
 
-.top-bar .results-info {
-  display: none;
-}
+    .back-link:hover {
+      color: #ffd2dd;
+    }
 
-.top-bar .search-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .item img {
+        height: 400px;
+        object-fit: contain;
+      }
+    }
 
-.top-bar .search-bar input {
-  display: none;
-}
+    @media (max-width: 768px) {
+      .item img {
+        width: 100%;
+        max-width: 450px;
+        height: 520px;
+        object-fit: cover;
+      }
+    }
 
-/* MOOD TEXT */
-.mood-text {
-  text-align: center;
-  font-size: 24px;
-  color: #fff;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
-  margin: 15px 0;
-  letter-spacing: 0.5px;
-  transition: transform 0.3s ease, color 0.3s ease;
-  cursor: default;
-}
-
-.mood-text:hover {
-  transform: scale(1.05);
-  color: #ffd2dd;
-}
-
-/* HIDE CATEGORY BAR */
-.categories-bar {
-  display: none !important;
-}
-
-/* CARDS */
-.container {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-}
-
-.sidebar {
-  width: 230px;
-  padding: 20px;
-  background-color: #3b0a1a;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  height: fit-content;
-}
-
-.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
-
-.categories { list-style: none; padding: 0; }
-.categories li { margin: 10px 0; }
-.categories a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  display: block;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: background 0.18s ease, transform 0.12s ease;
-}
-
-.categories a:hover {
-  background: var(--accent-hover);
-  transform: translateX(4px);
-}
-
-.categories a.active {
-  outline: 2px solid var(--active-outline);
-  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-}
-
-.content {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.card { text-align: center; transition: transform 0.25s ease; text-decoration: none; }
-.card:hover { transform: translateY(-6px); }
-
-.card img {
-  width: 100%;
-  height: 260px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
-
-.no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
-
-footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
-
-/* BANNER SLIDER */
-.banner-slider {
-  position: relative;
-  width: 100%;
-  min-height: 250px;
-  height: 40vw;
-  max-height: 450px;
-  overflow: hidden;
-  border-radius: 15px;
-  margin: 10px 0;
-}
-
-.banner-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0; left: 0;
-  opacity: 0; transition: opacity 1s ease;
-}
-
-.banner-slide.active { opacity: 1; }
-.banner-slide img {
-  width: 100%; height: 100%;
-  object-fit: cover; border-radius: 15px;
-}
-
-/* MOBILE FIX */
-@media (max-width: 768px) {
-  .container { flex-direction: column; }
-  .sidebar { display: none !important; }
-  .content { grid-template-columns: repeat(2,1fr); }
-  .card img { height: 180px !important; }
-}
-
-@media (max-width: 420px) {
-  .content { grid-template-columns: repeat(2,1fr); }
-  .card img { height:150px !important; }
-  header { font-size:28px; }
-}
-</style>
-
+    @media (max-width: 420px) {
+      .item img {
+        max-height: 380px;
+      }
+      .price { font-size: 16px; }
+      .desc { font-size: 14px; }
+      .btn { padding: 6px 16px; font-size: 14px; }
+      .back-link { font-size: 18px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- MENU ICON -->
-<div class="menu-icon" onclick="openMenu()">☰</div>
-
-<!-- HEADER -->
-<header>
-  Nook Decor
-
-  <div class="header-icons">
-    <a href="cart.html">🛒</a>
-  </div>
-</header>
-
-<!-- MENU OVERLAY -->
-<div id="menuOverlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-
-  <div class="overlay-content">
-    <a href="#">Home</a>
-    <a href="#">All Products</a>
-    <a href="#">Contact</a>
-  </div>
-</div>
-
-<script>
-function openMenu() {
-  document.getElementById("menuOverlay").style.height = "100%";
-}
-
-function closeMenu() {
-  document.getElementById("menuOverlay").style.height = "0%";
-}
-</script>
-
-</body>
-</html>
-
-<!-- MENU ICON -->
-<div class="menu-icon" onclick="openMenu()">☰</div>
-
-<!-- FULL SCREEN MENU -->
-<div id="menuOverlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-
-  <div class="overlay-content">
-    <a data-cat="All">All</a>
-    <a data-cat="Moods">Moods</a>
-    <a data-cat="Vases">Vases</a>
-    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
-    <a data-cat="Lighting">Lighting</a>
-    <a data-cat="Glass Candles">Glass Candles</a>
-    <a data-cat="Furniture">Furniture</a>
-    <a data-cat="Cushions">Cushions</a>
-    <a data-cat="Wooden Rack">Wooden Rack</a>
-    <a data-cat="Games">Games</a>
-    <a data-cat="Wall Art">Wall Art</a>
-  </div>
-</div>
-
-<header>
-  <div class="header-icons">
-    <i class="fas fa-search"></i>
-    <i class="fas fa-shopping-cart"></i>
-  </div>
-  Nook Decor
-</header>
-
-<!-- TOP BAR -->
-<div class="top-bar">
-  <div class="results-info"></div>
-  <div class="search-bar">
-    <i class="fas fa-search"></i>
-  </div>
-</div>
-
-<!-- MOOD TEXT -->
-<div class="mood-text">Create your own mood</div>
-
-<!-- BANNER -->
-<div class="banner-slider">
-  <div class="banner-slide active">
-    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
-  </div>
-</div>
+<header>Soft Cushions – Nook Decor</header>
 
 <div class="container">
-<aside class="sidebar" id="desktopSidebar">
-  <h2>Categories</h2>
-  <ul class="categories">
-    <li><a class="active" data-cat="All">All</a></li>
-    <li><a data-cat="Moods">Moods</a></li>
-    <li><a data-cat="Vases">Vases</a></li>
-    <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-    <li><a data-cat="Lighting">Lighting</a></li>
-    <li><a data-cat="Glass Candles">Glass Candles</a></li>
-    <li><a data-cat="Furniture">Furniture</a></li>
-    <li><a data-cat="Cushions">Cushions</a></li>
-    <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-    <li><a data-cat="Games">Games</a></li>
-    <li><a data-cat="Wall Art">Wall Art</a></li>
-  </ul>
-</aside>
 
-<main class="content" id="content">
+  <!-- 1 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/zGYRDV4x/1.png">
+    <div class="title">Premium Soft Cushion</div>
+    <div class="desc">A super–soft cushion that adds elegance and comfort to any sofa or room.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product9.html" class="card" data-cat="Moods">
-  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-  <h3>Moods</h3>
-</a>
+  <!-- 2 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
+    <div class="title">Luxury Comfort Cushion</div>
+    <div class="desc">Designed for style and coziness—perfect for modern home décor.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product3.html" class="card" data-cat="Lighting">
-  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-  <h3>Lighting</h3>
-</a>
+  <!-- 3 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
+    <div class="title">Modern Decorative Cushion</div>
+    <div class="desc">A modern decorative cushion that enhances living rooms and balconies beautifully.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product1.html" class="card" data-cat="Vases">
-  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-  <h3>Vases</h3>
-</a>
+  <!-- 4 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/y6wT96wv/4.png">
+    <div class="title">Cozy Home Cushion</div>
+    <div class="desc">The perfect blend of warmth and style to make your space feel more inviting.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product2.html" class="card" data-cat="Cushions">
-  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-  <h3>Cushions</h3>
-</a>
+  <!-- 5 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
+    <div class="title">Elegant Pattern Cushion</div>
+    <div class="desc">A classy patterned cushion that fits perfectly with both modern and classic interiors.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product4.html" class="card" data-cat="Glass Candles">
-  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-  <h3>Glass Candles</h3>
-</a>
+  <!-- 6 -->
+  <div class="item">
+    <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
+    <div class="title">Ultra Soft Cushion</div>
+    <div class="desc">Extremely soft and premium-looking, designed for maximum comfort and style.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn">Add to Cart</button>
+  </div>
 
-<a href="product5.html" class="card" data-cat="Outdoor Flooring">
-  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-  <h3>Outdoor Flooring</h3>
-</a>
-
-<a href="product6.html" class="card" data-cat="Wooden Rack">
-  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-  <h3>Wooden Rack</h3>
-</a>
-
-<a href="product7.html" class="card" data-cat="Wall Art">
-  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-  <h3>Wall Art</h3>
-</a>
-
-<a href="product8.html" class="card" data-cat="Games">
-  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-  <h3>Games</h3>
-</a>
-
-<div class="no-results" style="display:none;">No products found.</div>
-
-</main>
 </div>
 
-<footer>©️ 2025 Nook Decor. All rights reserved.</footer>
+<!-- Back to home -->
+<div>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</div>
 
 <script>
-// FULL SCREEN MENU
-function openMenu() {
-  document.getElementById("menuOverlay").style.height = "100%";
-}
-function closeMenu() {
-  document.getElementById("menuOverlay").style.height = "0%";
-}
+  // إضافة المنتجات للسلة
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// RESPONSIVE SIDEBAR
-function handleResize() {
-  if (window.innerWidth <= 768) {
-    document.getElementById('desktopSidebar').style.display = 'none';
-  } else {
-    document.getElementById('desktopSidebar').style.display = 'block';
+    cart.push({
+      name: name,
+      price: price,
+      image: image
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart!");
   }
-}
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize);
 
-// FILTER SYSTEM
-const desktopCategories = document.querySelectorAll('.sidebar .categories a');
-const cards = document.querySelectorAll('.content .card');
-const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
+  // ربط كل زرار Add to Cart بالمنتج الخاص به
+  const products = document.querySelectorAll(".item");
 
-function filterProducts(category) {
-  let anyVisible = false;
+  products.forEach((product) => {
+    const btn = product.querySelector(".btn");
+    const name = product.querySelector(".title").innerText;
+    const priceText = product.querySelector(".price").innerText;
+    const price = Number(priceText.replace("EGP","").trim());
+    const image = product.querySelector("img").src;
 
-  cards.forEach(card => {
-    const matchesCategory = category === 'All' || card.dataset.cat === category;
-    if(matchesCategory) {
-      card.style.display = 'block';
-      anyVisible = true;
-    } else {
-      card.style.display = 'none';
-    }
+    btn.addEventListener("click", () => {
+      addToCart(name, price, image);
+    });
   });
-
-  document.querySelector('.no-results').style.display = anyVisible ? 'none' : 'block';
-}
-
-function activate(category) {
-  desktopCategories.forEach(el => el.classList.remove('active'));
-  menuOverlayCats.forEach(el => el.classList.remove('active'));
-
-  const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
-
-  if(desk) desk.classList.add('active');
-  if(over) over.classList.add('active');
-}
-
-// CLICK EVENTS
-desktopCategories.forEach(cat => {
-  cat.onclick = () => {
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-  };
-});
-
-menuOverlayCats.forEach(cat => {
-  cat.onclick = () => {
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-    closeMenu();
-  };
-});
 </script>
 
 </body>
 </html>
-
-
