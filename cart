@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart - Nook Decor</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
+
+    header {
+      background-color: #4b0e1f;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    }
+
+    .cart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+      gap: 25px;
+    }
+
+    .cart-card {
+      background: #5c1024;
+      border-radius: 15px;
+      padding: 15px;
+      width: 100%;
+      max-width: 260px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .cart-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .cart-card h2 {
+      font-size: 18px;
+      color: #ffb3c6;
+      margin: 8px 0;
+    }
+
+    .cart-card .price {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .remove-btn {
+      background-color: #ff4d6d;
+      border: none;
+      color: #fff;
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .remove-btn:hover {
+      background-color: #ff1a3b;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 40px 0;
+      color: #ffb3c6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .empty-cart {
+      text-align: center;
+      font-size: 20px;
+      margin: 50px 0;
+      color: #ffb3c6;
+    }
+  </style>
+</head>
+<body>
+
+<header>Your Cart</header>
+
+<div class="cart-container" id="cartContainer"></div>
+
+<div class="empty-cart" id="emptyCart" style="display:none;">Your cart is empty.</div>
+
+<a href="index.html" class="back-link">← Back to Home</a>
+
+<script>
+  // جلب المنتجات من localStorage
+  const cartContainer = document.getElementById("cartContainer");
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function displayCart() {
+    cartContainer.innerHTML = "";
+
+    if(cart.length === 0){
+      document.getElementById("emptyCart").style.display = "block";
+      return;
+    } else {
+      document.getElementById("emptyCart").style.display = "none";
+    }
+
+    cart.forEach((item, index) => {
+      const card = document.createElement("div");
+      card.className = "cart-card";
+
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+        <h2>${item.name}</h2>
+        <div class="price">${item.price} EGP</div>
+        <button class="remove-btn">Remove</button>
+      `;
+
+      const removeBtn = card.querySelector(".remove-btn");
+      removeBtn.addEventListener("click", () => {
+        removeFromCart(index);
+      });
+
+      cartContainer.appendChild(card);
+    });
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+  }
+
+  displayCart();
+</script>
+
+</body>
+</html>
