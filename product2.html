@@ -211,5 +211,36 @@
   <a href="index.html" class="back-link">← Back to Home</a>
 </div>
 
+<script>
+  // إضافة المنتجات للسلة
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+      name: name,
+      price: price,
+      image: image
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart!");
+  }
+
+  // ربط كل زرار Add to Cart بالمنتج الخاص به
+  const products = document.querySelectorAll(".item");
+
+  products.forEach((product) => {
+    const btn = product.querySelector(".btn");
+    const name = product.querySelector(".title").innerText;
+    const priceText = product.querySelector(".price").innerText;
+    const price = Number(priceText.replace("EGP","").trim());
+    const image = product.querySelector("img").src;
+
+    btn.addEventListener("click", () => {
+      addToCart(name, price, image);
+    });
+  });
+</script>
+
 </body>
 </html>
