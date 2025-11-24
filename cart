@@ -1,158 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Cart - Nook Decor</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Cart - Nook Decor</title>
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #4b0e1f;
+  color: #fff;
+}
 
-    header {
-      background-color: #4b0e1f;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-    }
+header {
+  background-color: #4b0e1f;
+  padding: 20px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,200,210,0.5);
+}
 
-    .cart-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 30px;
-      gap: 25px;
-    }
+.container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
 
-    .cart-card {
-      background: #5c1024;
-      border-radius: 15px;
-      padding: 15px;
-      width: 100%;
-      max-width: 260px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #5c1024;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
 
-    .cart-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin-bottom: 10px;
-    }
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 15px;
+}
 
-    .cart-card h2 {
-      font-size: 18px;
-      color: #ffb3c6;
-      margin: 8px 0;
-    }
+.item-info {
+  flex: 1;
+}
 
-    .cart-card .price {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+.item-info h3 { margin: 0 0 8px 0; color: #ffb3c6; }
+.item-info p { margin: 0; }
 
-    .remove-btn {
-      background-color: #ff4d6d;
-      border: none;
-      color: #fff;
-      padding: 8px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      width: 100%;
-      margin-top: auto;
-    }
+.remove-btn {
+  background-color: #ff5c5c;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .remove-btn:hover {
-      background-color: #ff1a3b;
-    }
+.remove-btn:hover { background-color: #ff7b7b; }
 
-    .back-link {
-      display: block;
-      text-align: center;
-      margin: 40px 0;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
+.total {
+  text-align: right;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+}
 
-    .empty-cart {
-      text-align: center;
-      font-size: 20px;
-      margin: 50px 0;
-      color: #ffb3c6;
-    }
-  </style>
+.back-link {
+  display: block;
+  margin-top: 30px;
+  text-align: center;
+  color: #ffb3c6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover { color: #fff; }
+</style>
 </head>
-<body>
 
+<body>
 <header>Your Cart</header>
 
-<div class="cart-container" id="cartContainer"></div>
+<div class="container" id="cartContainer">
+  <!-- Cart items will appear here -->
+</div>
 
-<div class="empty-cart" id="emptyCart" style="display:none;">Your cart is empty.</div>
+<div class="container total" id="totalPrice">
+  Total: 0 EGP
+</div>
 
 <a href="index.html" class="back-link">← Back to Home</a>
 
 <script>
-  // جلب المنتجات من localStorage
-  const cartContainer = document.getElementById("cartContainer");
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Load cart items from localStorage
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const cartContainer = document.getElementById("cartContainer");
+const totalPriceEl = document.getElementById("totalPrice");
 
-  function displayCart() {
-    cartContainer.innerHTML = "";
+function renderCart() {
+  cartContainer.innerHTML = "";
+  let total = 0;
 
-    if(cart.length === 0){
-      document.getElementById("emptyCart").style.display = "block";
-      return;
-    } else {
-      document.getElementById("emptyCart").style.display = "none";
-    }
-
-    cart.forEach((item, index) => {
-      const card = document.createElement("div");
-      card.className = "cart-card";
-
-      card.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" />
-        <h2>${item.name}</h2>
-        <div class="price">${item.price} EGP</div>
-        <button class="remove-btn">Remove</button>
-      `;
-
-      const removeBtn = card.querySelector(".remove-btn");
-      removeBtn.addEventListener("click", () => {
-        removeFromCart(index);
-      });
-
-      cartContainer.appendChild(card);
-    });
+  if(cart.length === 0){
+    cartContainer.innerHTML = '<p style="text-align:center;">Your cart is empty.</p>';
+    totalPriceEl.style.display = 'none';
+    return;
+  } else {
+    totalPriceEl.style.display = 'block';
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    displayCart();
-  }
+  cart.forEach((item, index) => {
+    total += item.price;
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div class="item-info">
+        <h3>${item.name}</h3>
+        <p>${item.price} EGP</p>
+      </div>
+      <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+    `;
+    cartContainer.appendChild(div);
+  });
 
-  displayCart();
+  totalPriceEl.innerText = Total: ${total} EGP;
+}
+
+function removeItem(index){
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+renderCart();
 </script>
 
 </body>
