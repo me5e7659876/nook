@@ -32,25 +32,26 @@ header {
   text-shadow: 0 0 10px rgba(255, 200, 210, 0.5);
 }
 
-/* LEFT HEADER ICONS (cart + search) */
-.header-left-icons {
+.header-icons {
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px;
   display: flex;
   gap: 15px;
   font-size: 26px;
 }
 
-.header-left-icons i {
+.header-icons a {
+  color: white;
+  text-decoration: none;
   cursor: pointer;
 }
 
-/* RIGHT MENU ICON */
+/* MENU ICON */
 .menu-icon {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 20px;
   font-size: 32px;
   cursor: pointer;
   z-index: 999;
@@ -109,20 +110,18 @@ header {
   gap: 8px;
 }
 
-/* Search bar hidden by default (until clicking search icon) */
-.search-bar {
+.top-bar .results-info {
   display: none;
+}
+
+.top-bar .search-bar {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.search-bar input {
-  padding: 10px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  width: 280px;
-  outline: none;
+.top-bar .search-bar input {
+  display: none;
 }
 
 /* MOOD TEXT */
@@ -134,6 +133,18 @@ header {
   font-family: 'Playfair Display', serif;
   margin: 15px 0;
   letter-spacing: 0.5px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: default;
+}
+
+.mood-text:hover {
+  transform: scale(1.05);
+  color: #ffd2dd;
+}
+
+/* HIDE CATEGORY BAR */
+.categories-bar {
+  display: none !important;
 }
 
 /* CARDS */
@@ -197,15 +208,39 @@ header {
 
 .no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
 
-/* MOBILE */
+footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
+
+/* BANNER SLIDER */
+.banner-slider {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  height: 40vw;
+  max-height: 450px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.banner-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  opacity: 0; transition: opacity 1s ease;
+}
+
+.banner-slide.active { opacity: 1; }
+.banner-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 15px;
+}
+
+/* MOBILE FIX */
 @media (max-width: 768px) {
-
-  /* Hide sidebar */
+  .container { flex-direction: column; }
   .sidebar { display: none !important; }
-
-  /* 2 columns */
   .content { grid-template-columns: repeat(2,1fr); }
-
   .card img { height: 180px !important; }
 }
 
@@ -216,214 +251,41 @@ header {
 }
 </style>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<!-- LEFT ICONS: CART + SEARCH -->
-<div class="header-left-icons">
-  
-  <!-- Cart -->
-  <i class="fas fa-shopping-cart" onclick="window.location.href='cart.html'"></i>
-
-  <!-- Search Icon -->
-  <i class="fas fa-search" onclick="toggleSearch()"></i>
-</div>
-
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
-<!-- FULL SCREEN MENU -->
+<!-- HEADER -->
+<header>
+  Nook Decor
+
+  <div class="header-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</header>
+
+<!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 
   <div class="overlay-content">
-    <a data-cat="All">All</a>
-    <a data-cat="Moods">Moods</a>
-    <a data-cat="Vases">Vases</a>
-    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
-    <a data-cat="Lighting">Lighting</a>
-    <a data-cat="Glass Candles">Glass Candles</a>
-    <a data-cat="Furniture">Furniture</a>
-    <a data-cat="Cushions">Cushions</a>
-    <a data-cat="Wooden Rack">Wooden Rack</a>
-    <a data-cat="Games">Games</a>
-    <a data-cat="Wall Art">Wall Art</a>
+    <a href="#">Home</a>
+    <a href="#">All Products</a>
+    <a href="#">Contact</a>
   </div>
 </div>
-
-<header>Nook Decor</header>
-
-<!-- TOP BAR -->
-<div class="top-bar">
-
-  <!-- SEARCH BAR -->
-  <div class="search-bar" id="searchBar">
-    <input type="text" id="searchInput" placeholder="Search..." />
-  </div>
-</div>
-
-<!-- MOOD TEXT -->
-<div class="mood-text">Create your own mood</div>
-
-<!-- BANNER -->
-<div class="banner-slider">
-  <div class="banner-slide active">
-    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
-  </div>
-</div>
-
-<div class="container">
-<aside class="sidebar" id="desktopSidebar">
-  <h2>Categories</h2>
-
-  <ul class="categories">
-    <li><a class="active" data-cat="All">All</a></li>
-    <li><a data-cat="Moods">Moods</a></li>
-    <li><a data-cat="Vases">Vases</a></li>
-    <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-    <li><a data-cat="Lighting">Lighting</a></li>
-    <li><a data-cat="Glass Candles">Glass Candles</a></li>
-    <li><a data-cat="Furniture">Furniture</a></li>
-    <li><a data-cat="Cushions">Cushions</a></li>
-    <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-    <li><a data-cat="Games">Games</a></li>
-    <li><a data-cat="Wall Art">Wall Art</a></li>
-  </ul>
-</aside>
-
-<main class="content" id="content">
-
-<a href="product9.html" class="card" data-cat="Moods">
-  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-  <h3>Moods</h3>
-</a>
-
-<a href="product3.html" class="card" data-cat="Lighting">
-  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-  <h3>Lighting</h3>
-</a>
-
-<a href="product1.html" class="card" data-cat="Vases">
-  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-  <h3>Vases</h3>
-</a>
-
-<a href="product2.html" class="card" data-cat="Cushions">
-  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-  <h3>Cushions</h3>
-</a>
-
-<a href="product4.html" class="card" data-cat="Glass Candles">
-  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-  <h3>Glass Candles</h3>
-</a>
-
-<a href="product5.html" class="card" data-cat="Outdoor Flooring">
-  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-  <h3>Outdoor Flooring</h3>
-</a>
-
-<a href="product6.html" class="card" data-cat="Wooden Rack">
-  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-  <h3>Wooden Rack</h3>
-</a>
-
-<a href="product7.html" class="card" data-cat="Wall Art">
-  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-  <h3>Wall Art</h3>
-</a>
-
-<a href="product8.html" class="card" data-cat="Games">
-  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-  <h3>Games</h3>
-</a>
-
-<div class="no-results" style="display:none;">No products found.</div>
-
-</main>
-</div>
-
-<footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
-
-function toggleSearch() {
-  let bar = document.getElementById("searchBar");
-  bar.style.display = bar.style.display === "flex" ? "none" : "flex";
+function openMenu() {
+  document.getElementById("menuOverlay").style.height = "100%";
 }
 
-function handleResize() {
-  if (window.innerWidth <= 768) {
-    document.getElementById('desktopSidebar').style.display = 'none';
-  } else {
-    document.getElementById('desktopSidebar').style.display = 'block';
-  }
+function closeMenu() {
+  document.getElementById("menuOverlay").style.height = "0%";
 }
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize);
-
-const desktopCategories=document.querySelectorAll('.sidebar .categories a');
-const cards=document.querySelectorAll('.content .card');
-const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
-const searchInput=document.getElementById('searchInput');
-const noResults=document.querySelector('.no-results');
-
-function filterProducts(category){
-  const searchText=searchInput.value.toLowerCase();
-  let anyVisible=false;
-
-  cards.forEach(card=>{
-    const matchesCategory=(category==="All" || card.dataset.cat===category);
-    const matchesSearch=card.querySelector('h3').textContent.toLowerCase().includes(searchText);
-
-    if(matchesCategory && matchesSearch){
-      card.style.display="block";
-      anyVisible=true;
-    } else {
-      card.style.display="none";
-    }
-  });
-
-  noResults.style.display = anyVisible ? "none" : "block";
-}
-
-function activate(category){
-  desktopCategories.forEach(el=>el.classList.remove('active'));
-  menuOverlayCats.forEach(el=>el.classList.remove('active'));
-
-  const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
-
-  if(desk) desk.classList.add('active');
-  if(over) over.classList.add('active');
-}
-
-desktopCategories.forEach(cat=>{
-  cat.onclick=()=>{
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-  };
-});
-
-menuOverlayCats.forEach(cat=>{
-  cat.onclick=()=>{
-    filterProducts(cat.dataset.cat);
-    activate(cat.dataset.cat);
-    closeMenu();
-  };
-});
-
-searchInput.addEventListener('input',()=>{
-  let activeCategory="All";
-  desktopCategories.forEach(cat=>{
-    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
-  });
-  filterProducts(activeCategory);
-});
 </script>
 
 </body>
