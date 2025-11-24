@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -245,9 +244,14 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 /* MOBILE FIX */
 @media (max-width: 768px) {
   .container { flex-direction: column; }
-  .sidebar { display: none !important; }  /* hide sidebar on mobile */
+  .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 180px !important; }
+
+  /* hide search bar text + bar on mobile if needed */
+  .top-bar .results-info {
+    display: none !important;
+  }
 }
 
 @media (max-width: 420px) {
@@ -294,9 +298,9 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <div class="results-info">Search for anything...</div>
+  <div class="results-info"></div>
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <input type="text" id="searchInput" placeholder="" />
     <i class="fas fa-search"></i>
   </div>
 </div>
@@ -310,8 +314,6 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
     <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
   </div>
 </div>
-
-<!-- CATEGORY BAR REMOVED AUTOMATICALLY -->
 
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
@@ -394,13 +396,11 @@ function closeMenu() {
   document.getElementById("menuOverlay").style.height = "0%";
 }
 
-// RESPONSIVE SIDEBAR (updated to remove category bar)
+// RESPONSIVE SIDEBAR
 function handleResize() {
   if (window.innerWidth <= 768) {
-    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'none';
   } else {
-    document.getElementById('categoriesBar')?.style.setProperty('display', 'none', 'important');
     document.getElementById('desktopSidebar').style.display = 'block';
   }
 }
