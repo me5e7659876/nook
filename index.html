@@ -38,12 +38,10 @@ header {
   right: 20px;
   display: flex;
   gap: 15px;
-  font-size: 26px;
+  font-size: 22px;
 }
 
-.header-icons a {
-  color: white;
-  text-decoration: none;
+.header-icons i {
   cursor: pointer;
 }
 
@@ -111,7 +109,9 @@ header {
 }
 
 .top-bar .results-info {
-  display: none;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
 }
 
 .top-bar .search-bar {
@@ -121,7 +121,12 @@ header {
 }
 
 .top-bar .search-bar input {
-  display: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  width: 280px;
+  outline: none;
 }
 
 /* MOOD TEXT */
@@ -142,10 +147,8 @@ header {
   color: #ffd2dd;
 }
 
-/* HIDE CATEGORY BAR */
-.categories-bar {
-  display: none !important;
-}
+/* HIDE CATEGORY BAR COMPLETELY */
+.categories-bar { display: none !important; }
 
 /* CARDS */
 .container {
@@ -210,7 +213,7 @@ header {
 
 footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 
-/* BANNER SLIDER */
+/* BANNER */
 .banner-slider {
   position: relative;
   width: 100%;
@@ -236,8 +239,29 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
   object-fit: cover; border-radius: 15px;
 }
 
-/* MOBILE FIX */
+/* ------------------------------ */
+/* 📱 MOBILE ONLY – Search Fixes */
+/* ------------------------------ */
 @media (max-width: 768px) {
+
+  /* Hide search bar */
+  .top-bar .search-bar {
+    display: none !important;
+  }
+
+  /* Show only search icon in header */
+  .header-icons .fa-search {
+    display: inline-block !important;
+    font-size: 24px;
+  }
+
+  /* Move icons slightly */
+  .header-icons {
+    right: 15px !important;
+    top: 18px !important;
+  }
+
+  /* Layout adjustments */
   .container { flex-direction: column; }
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
@@ -259,29 +283,40 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
-<!-- HEADER -->
-<header>
-  Nook Decor
-  <div class="header-icons">
-    <a href="cart.html" id="cartLink">🛒</a>
-  </div>
-</header>
-
-<!-- MENU OVERLAY -->
+<!-- FULL SCREEN MENU -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 
   <div class="overlay-content">
-    <a href="#">Home</a>
-    <a href="#">All Products</a>
-    <a href="#">Contact</a>
+    <a data-cat="All">All</a>
+    <a data-cat="Moods">Moods</a>
+    <a data-cat="Vases">Vases</a>
+    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
+    <a data-cat="Lighting">Lighting</a>
+    <a data-cat="Glass Candles">Glass Candles</a>
+    <a data-cat="Furniture">Furniture</a>
+    <a data-cat="Cushions">Cushions</a>
+    <a data-cat="Wooden Rack">Wooden Rack</a>
+    <a data-cat="Games">Games</a>
+    <a data-cat="Wall Art">Wall Art</a>
   </div>
 </div>
 
+<header>
+  <div class="header-icons">
+    <i class="fas fa-search"></i>
+    <i class="fas fa-shopping-cart"></i>
+  </div>
+  Nook Decor
+</header>
+
 <!-- TOP BAR -->
 <div class="top-bar">
-  <div class="results-info"></div>
+  <div class="results-info">Search for anything...</div>
+
+  <!-- SEARCH BAR (hidden on mobile) -->
   <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for anything..." />
     <i class="fas fa-search"></i>
   </div>
 </div>
@@ -299,6 +334,7 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
   <h2>Categories</h2>
+
   <ul class="categories">
     <li><a class="active" data-cat="All">All</a></li>
     <li><a data-cat="Moods">Moods</a></li>
@@ -369,15 +405,9 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// FULL SCREEN MENU
-function openMenu() {
-  document.getElementById("menuOverlay").style.height = "100%";
-}
-function closeMenu() {
-  document.getElementById("menuOverlay").style.height = "0%";
-}
+function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
+function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 
-// RESPONSIVE SIDEBAR
 function handleResize() {
   if (window.innerWidth <= 768) {
     document.getElementById('desktopSidebar').style.display = 'none';
@@ -388,50 +418,63 @@ function handleResize() {
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
-// FILTER SYSTEM
-const desktopCategories = document.querySelectorAll('.sidebar .categories a');
-const cards = document.querySelectorAll('.content .card');
-const menuOverlayCats = document.querySelectorAll('#menuOverlay .overlay-content a');
+const desktopCategories=document.querySelectorAll('.sidebar .categories a');
+const cards=document.querySelectorAll('.content .card');
+const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
+const searchInput=document.getElementById('searchInput');
+const noResults=document.querySelector('.no-results');
 
-function filterProducts(category) {
-  let anyVisible = false;
+function filterProducts(category){
+  const searchText=searchInput.value.toLowerCase();
+  let anyVisible=false;
 
-  cards.forEach(card => {
-    const matchesCategory = category === 'All' || card.dataset.cat === category;
-    if(matchesCategory) {
-      card.style.display = 'block';
-      anyVisible = true;
+  cards.forEach(card=>{
+    const matchesCategory=(category==="All" || card.dataset.cat===category);
+    const matchesSearch=card.querySelector('h3').textContent.toLowerCase().includes(searchText);
+
+    if(matchesCategory && matchesSearch){
+      card.style.display="block";
+      anyVisible=true;
     } else {
-      card.style.display = 'none';
+      card.style.display="none";
     }
   });
 
-  document.querySelector('.no-results').style.display = anyVisible ? 'none' : 'block';
+  noResults.style.display = anyVisible ? "none" : "block";
 }
 
-function activate(category) {
-  desktopCategories.forEach(el => el.classList.remove('active'));
-  menuOverlayCats.forEach(el => el.classList.remove('active'));
+function activate(category){
+  desktopCategories.forEach(el=>el.classList.remove('active'));
+  menuOverlayCats.forEach(el=>el.classList.remove('active'));
 
-  const desk = document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const over = document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
+  const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
+  const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
   if(over) over.classList.add('active');
 }
-desktopCategories.forEach(cat => {
-  cat.onclick = () => {
+
+desktopCategories.forEach(cat=>{
+  cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
   };
 });
 
-menuOverlayCats.forEach(cat => {
-  cat.onclick = () => {
+menuOverlayCats.forEach(cat=>{
+  cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
     closeMenu();
   };
+});
+
+searchInput.addEventListener('input',()=>{
+  let activeCategory="All";
+  desktopCategories.forEach(cat=>{
+    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
+  });
+  filterProducts(activeCategory);
 });
 </script>
 
