@@ -36,35 +36,37 @@
       gap: 30px;
     }
 
-    .product {
+    .product-card {
       background-color: rgba(75, 14, 31, 0.9);
       border-radius: 15px;
       padding: 12px;
       max-width: 270px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      transition: box-shadow 0.3s ease;
+      transition: 0.3s;
       overflow: hidden;
       position: relative;
     }
 
-    .product:hover {
+    .product-card:hover {
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
-    .product-image {
+    .product-card img {
       width: 100%;
+      height: 420px;
+      object-fit: cover;
       border-radius: 15px;
       margin-bottom: 10px;
     }
 
-    .product h1 {
+    .product-card h1 {
       font-size: 18px;
       color: #ffb3c6;
       margin-bottom: 8px;
     }
 
-    .product p {
+    .product-card p {
       line-height: 1.5;
       font-size: 14px;
       margin-bottom: 8px;
@@ -75,8 +77,8 @@
       transform: translateY(15px);
     }
 
-    .product:hover p,
-    .product.touch-active p {
+    .product-card:hover p,
+    .product-card.touch-active p {
       opacity: 1;
       max-height: 150px;
       transform: translateY(0);
@@ -97,13 +99,13 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
     }
 
     .btn:hover {
       background-color: #ffc7d3;
     }
 
-    /* BACK TO HOME */
     .back-link {
       display: block;
       text-align: center;
@@ -115,10 +117,9 @@
       font-weight: 500;
     }
 
-    /* للموبايل: رفع أعلى بكتير جداً */
     @media (max-width: 768px) {
       .back-link {
-        margin-top: 350px !important; /* ← مرتفعة جداً */
+        margin-top: 350px !important;
         font-size: 22px;
       }
     }
@@ -130,22 +131,20 @@
 
   <div class="product-container">
 
-    <!-- المنتج الأول -->
-    <div class="product">
-      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png" class="product-image">
+    <div class="product-card" data-name="LED Glass Candle" data-price="200" data-img="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png">
+      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png">
       <h1>LED Glass Candle</h1>
       <p>Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.</p>
       <div class="price">200 EGP</div>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
 
-    <!-- المنتج الثاني -->
-    <div class="product">
-      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png" class="product-image">
+    <div class="product-card" data-name="Round LED Glass Candle" data-price="130" data-img="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png">
+      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png">
       <h1>Round LED Glass Candle</h1>
       <p>Beautiful round LED glass candle offering soft lighting and stylish modern design for your home.</p>
       <div class="price">130 EGP</div>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
 
   </div>
@@ -153,7 +152,8 @@
   <a href="index.html" class="back-link">← Back to Home</a>
 
   <script>
-    const products = document.querySelectorAll('.product');
+    // Touch hover effect for mobile
+    const products = document.querySelectorAll('.product-card');
     products.forEach(product => {
       product.addEventListener('touchstart', () => {
         product.classList.add('touch-active');
@@ -162,6 +162,51 @@
         setTimeout(() => {
           product.classList.remove('touch-active');
         }, 300);
+      });
+    });
+
+    // =========================
+    // Cart system like Games page
+    // =========================
+    function getCart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".product-card");
+
+        const product = {
+          name: card.dataset.name,
+          price: parseFloat(card.dataset.price),
+          img: card.dataset.img,
+          qty: 1
+        };
+
+        let cart = getCart();
+        let existing = cart.find(p => p.name === product.name);
+
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push(product);
+        }
+
+        saveCart(cart);
+
+        btn.innerText = "Added!";
+        btn.style.background = "#fff";
+        btn.style.color = "#4b0e1f";
+
+        setTimeout(() => {
+          btn.innerText = "Add to Cart";
+          btn.style.background = "#ffb3c6";
+          btn.style.color = "#4b0e1f";
+        }, 1200);
       });
     });
   </script>
