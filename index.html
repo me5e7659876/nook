@@ -41,7 +41,7 @@ header {
   font-size: 26px;
 }
 
-.header-icons a, .header-icons i {
+.header-icons a {
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -117,41 +117,7 @@ header {
   gap: 8px;
 }
 
-.top-bar .search-bar input {
-  display: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  width: 200px;
-}
-
-/* CATEGORY BAR ON TOP */
-.categories-bar {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 15px 0;
-}
-
-.categories-bar a {
-  color: #fff;
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.categories-bar a:hover {
-  background: var(--accent-hover);
-}
-
-.categories-bar a.active {
-  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  outline: 2px solid var(--active-outline);
-}
+.top-bar .search-bar input { display: none; }
 
 /* MOOD TEXT */
 .mood-text {
@@ -168,6 +134,11 @@ header {
 .mood-text:hover {
   transform: scale(1.05);
   color: #ffd2dd;
+}
+
+/* HIDE CATEGORY BAR */
+.categories-bar {
+  display: none !important;
 }
 
 /* CARDS */
@@ -227,7 +198,7 @@ header {
   object-fit: cover;
 }
 
-.card h3 { color: #fff; margin-top: 12px; }
+.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
 
 .no-results {
   grid-column: 1/-1;
@@ -294,33 +265,18 @@ footer {
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
-<!-- HEADER -->
+<!-- HEADER (واحد فقط الآن) -->
 <header>
   Nook Decor
   <div class="header-icons">
-    <i class="fas fa-search" id="searchIcon">🔍</i>
     <a href="cart.html">🛒</a>
   </div>
 </header>
 
-<!-- CATEGORIES BAR -->
-<div class="categories-bar" id="categoriesBar">
-  <a class="active" data-cat="All">All</a>
-  <a data-cat="Moods">Moods</a>
-  <a data-cat="Vases">Vases</a>
-  <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
-  <a data-cat="Lighting">Lighting</a>
-  <a data-cat="Glass Candles">Glass Candles</a>
-  <a data-cat="Furniture">Furniture</a>
-  <a data-cat="Cushions">Cushions</a>
-  <a data-cat="Wooden Rack">Wooden Rack</a>
-  <a data-cat="Games">Games</a>
-  <a data-cat="Wall Art">Wall Art</a>
-</div>
-
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+
   <div class="overlay-content">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
@@ -339,8 +295,10 @@ footer {
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="results-info">Search for anything...</div>
+
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for anything..." />
+    <i class="fas fa-search"></i>
   </div>
 </div>
 
@@ -357,6 +315,7 @@ footer {
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
   <h2>Categories</h2>
+
   <ul class="categories">
     <li><a class="active" data-cat="All">All</a></li>
     <li><a data-cat="Moods">Moods</a></li>
@@ -373,8 +332,54 @@ footer {
 </aside>
 
 <main class="content" id="content">
-  <!-- ضع الكاردات هنا -->
-  <div class="no-results" style="display:none;">No products found.</div>
+
+<a href="product9.html" class="card" data-cat="Moods">
+  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+  <h3>Moods</h3>
+</a>
+
+<a href="product3.html" class="card" data-cat="Lighting">
+  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+  <h3>Lighting</h3>
+</a>
+
+<a href="product1.html" class="card" data-cat="Vases">
+  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+  <h3>Vases</h3>
+</a>
+
+<a href="product2.html" class="card" data-cat="Cushions">
+  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+  <h3>Cushions</h3>
+</a>
+
+<a href="product4.html" class="card" data-cat="Glass Candles">
+  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+  <h3>Glass Candles</h3>
+</a>
+
+<a href="product5.html" class="card" data-cat="Outdoor Flooring">
+  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+  <h3>Outdoor Flooring</h3>
+</a>
+
+<a href="product6.html" class="card" data-cat="Wooden Rack">
+  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+  <h3>Wooden Rack</h3>
+</a>
+
+<a href="product7.html" class="card" data-cat="Wall Art">
+  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+  <h3>Wall Art</h3>
+</a>
+
+<a href="product8.html" class="card" data-cat="Games">
+  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+  <h3>Games</h3>
+</a>
+
+<div class="no-results" style="display:none;">No products found.</div>
+
 </main>
 </div>
 
@@ -395,7 +400,6 @@ window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
 const desktopCategories=document.querySelectorAll('.sidebar .categories a');
-const topCategories=document.querySelectorAll('.categories-bar a');
 const cards=document.querySelectorAll('.content .card');
 const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
 const searchInput=document.getElementById('searchInput');
@@ -422,19 +426,16 @@ function filterProducts(category){
 
 function activate(category){
   desktopCategories.forEach(el=>el.classList.remove('active'));
-  topCategories.forEach(el=>el.classList.remove('active'));
   menuOverlayCats.forEach(el=>el.classList.remove('active'));
 
   const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
-  const top=document.querySelector('.categories-bar a[data-cat="'+category+'"]');
   const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
-  if(top) top.classList.add('active');
   if(over) over.classList.add('active');
 }
 
-[...desktopCategories, ...topCategories].forEach(cat=>{
+desktopCategories.forEach(cat=>{
   cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
@@ -449,24 +450,12 @@ menuOverlayCats.forEach(cat=>{
   };
 });
 
-// Search functionality
 searchInput.addEventListener('input',()=>{
   let activeCategory="All";
-  topCategories.forEach(cat=>{
+  desktopCategories.forEach(cat=>{
     if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
   });
   filterProducts(activeCategory);
-});
-
-// Toggle search bar on search icon click
-const searchIcon = document.getElementById('searchIcon');
-searchIcon.addEventListener('click',()=>{
-  if(searchInput.style.display === "block"){
-    searchInput.style.display = "none";
-  } else {
-    searchInput.style.display = "block";
-    searchInput.focus();
-  }
 });
 </script>
 
