@@ -32,7 +32,7 @@
     }
 
     .item {
-      background-color: rgba(255,255,255,0.1); /* لون الكرت */
+      background-color: rgba(255,255,255,0.1);
       border-radius: 15px;
       padding: 15px;
       text-align: center;
@@ -42,14 +42,12 @@
       overflow: hidden;
     }
 
-    .item:hover {
-      transform: scale(1.05);
-    }
+    .item:hover { transform: scale(1.05); }
 
     .item img {
       width: 100%;
-      max-width: 350px; /* حجم أصغر على اللابتوب */
-      height: 420px;   /* ارتفاع أصغر على اللابتوب */
+      max-width: 350px;
+      height: 420px;
       object-fit: cover;
       border-radius: 15px;
     }
@@ -86,11 +84,10 @@
       cursor: pointer;
       margin-top: 10px;
       transition: 0.3s;
+      width: 100%;
     }
 
-    .btn:hover {
-      background-color: #ffc7d3;
-    }
+    .btn:hover { background-color: #ffc7d3; }
 
     .back-link {
       display: block;
@@ -112,25 +109,15 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
       transition: transform 0.2s ease;
     }
-    .gold-text:hover {
-      transform: scale(1.03);
-    }
+    .gold-text:hover { transform: scale(1.03); }
 
-    /* حجم أكبر على الموبايل */
     @media (max-width: 768px) {
-      .item img {
-        width: 100%;
-        max-width: 450px;
-        height: 520px;
-        object-fit: cover;
-      }
+      .item img { max-width: 450px; height: 520px; }
       .gold-text { font-size: 28px; }
     }
 
     @media (max-width: 420px) {
-      .item img {
-        max-height: 380px;
-      }
+      .item img { max-height: 380px; }
       .price { font-size: 16px; }
       .desc { font-size: 14px; }
       .btn { padding: 6px 16px; font-size: 14px; }
@@ -139,90 +126,144 @@
   </style>
 </head>
 <body>
-  <header>Nook Decor</header>
+  <header>Nook Decor - Wall Art & Macrame</header>
 
   <div class="gallery">
 
     <!-- WALL ART PRODUCTS -->
-    <div class="item">
+    <div class="item" data-name="Wall Art 1" data-price="230" data-img="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png">
       <img src="https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png" alt="Wall Art 1">
       <div class="price">230 EGP</div>
       <p class="desc">Elegant portrait design that captures your favourite moments beautifully.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Wall Art 2" data-price="230" data-img="https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png">
       <img src="https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png" alt="Wall Art 2">
       <div class="price">230 EGP</div>
       <p class="desc">Stylish and modern portrait wall art — a perfect statement piece for your home.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Wall Art 3" data-price="230" data-img="https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png">
       <img src="https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png" alt="Wall Art 3">
       <div class="price">230 EGP</div>
       <p class="desc">Bright and inspiring portrait wall art that brings warmth and creativity to your walls.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Wall Art 4" data-price="230" data-img="https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png">
       <img src="https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png" alt="Wall Art 4">
       <div class="price">230 EGP</div>
       <p class="desc">Unique artistic wall piece designed to fit modern and cosy spaces.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Wall Art 5" data-price="230" data-img="https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png">
       <img src="https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png" alt="Wall Art 5">
       <div class="price">230 EGP</div>
       <p class="desc">Graceful modern artwork blending elegance with subtle colour tones.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Wall Art 6" data-price="230" data-img="https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png">
       <img src="https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png" alt="Wall Art 6">
       <div class="price">230 EGP</div>
       <p class="desc">Contemporary portrait art that adds charm and sophistication to your décor.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
 
     <!-- MACRAME PRODUCTS -->
-    <div class="item">
-      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 1 Updated">
+    <div class="item" data-name="Macrame 1" data-price="600" data-img="https://i.postimg.cc/RVhmQ1Nh/1.png">
+      <img src="https://i.postimg.cc/RVhmQ1Nh/1.png" alt="Macrame 1">
       <div class="price">600 EGP</div>
       <p class="desc">Handmade wall macrame with 3 leaves — elegant and stylish.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Macrame 2" data-price="450" data-img="https://i.postimg.cc/nzh36nQX/93aaa85d-9e24-4c56-80d2-6b86c307f4c3.png">
       <img src="https://i.postimg.cc/nzh36nQX/93aaa85d-9e24-4c56-80d2-6b86c307f4c3.png" alt="Macrame 2">
       <div class="price">450 EGP</div>
       <p class="desc">Handcrafted boho macrame piece for your wall.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Macrame 3" data-price="750" data-img="https://i.postimg.cc/W4XnmxfR/aa42721c-3f05-4318-8ede-608baa2208dc.png">
       <img src="https://i.postimg.cc/W4XnmxfR/aa42721c-3f05-4318-8ede-608baa2208dc.png" alt="Macrame 3">
       <div class="price">750 EGP</div>
       <p class="desc">Premium macrame décor crafted with detail.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Macrame 4" data-price="1200" data-img="https://i.postimg.cc/8CP3VR28/ff7f4d79-cd5d-4411-8217-fb1cd0ac1c43.png">
       <img src="https://i.postimg.cc/8CP3VR28/ff7f4d79-cd5d-4411-8217-fb1cd0ac1c43.png" alt="Macrame 4">
       <div class="price">1200 EGP</div>
       <p class="desc">Large stylish macrame piece.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Macrame 5" data-price="600" data-img="https://i.postimg.cc/QtFyFXxN/unnamed.jpg">
       <img src="https://i.postimg.cc/QtFyFXxN/unnamed.jpg" alt="Macrame 5">
       <div class="price">600 EGP</div>
       <p class="desc">Handmade wall macrame.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
-    <div class="item">
+
+    <div class="item" data-name="Macrame 6" data-price="1300" data-img="https://i.postimg.cc/mrZdnKk8/e4c6d0c1-e2fc-45fb-a2a0-00c56812d7f2.jpg">
       <img src="https://i.postimg.cc/mrZdnKk8/e4c6d0c1-e2fc-45fb-a2a0-00c56812d7f2.jpg" alt="Macrame 6">
       <div class="price">1300 EGP</div>
       <p class="desc">Handcrafted premium macrame wall piece.</p>
-      <button class="btn">Add to Cart</button>
+      <button class="btn add-to-cart">Add to Cart</button>
     </div>
 
   </div>
 
-  <p class="gold-text">create the portrait and macrame you love</p>
+  <p class="gold-text">Create the portrait and macrame you love</p>
 
   <a href="index.html" class="back-link">← Back to Home</a>
+
+  <script>
+    // Add to Cart System
+    function getCart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".item");
+        const product = {
+          name: card.dataset.name,
+          price: parseFloat(card.dataset.price),
+          img: card.dataset.img,
+          qty: 1
+        };
+
+        let cart = getCart();
+        let existing = cart.find(p => p.name === product.name);
+
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push(product);
+        }
+
+        saveCart(cart);
+
+        btn.innerText = "Added!";
+        btn.style.background = "#fff";
+        btn.style.color = "#4b0e1f";
+
+        setTimeout(() => {
+          btn.innerText = "Add to Cart";
+          btn.style.background = "#ffb3c6";
+          btn.style.color = "#4b0e1f";
+        }, 1200);
+      });
+    });
+  </script>
 </body>
 </html>
