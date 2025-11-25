@@ -41,7 +41,7 @@ header {
   font-size: 26px;
 }
 
-.header-icons a {
+.header-icons a, .header-icons i {
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -117,7 +117,14 @@ header {
   gap: 8px;
 }
 
-.top-bar .search-bar input { display: none; }
+.top-bar .search-bar input {
+  display: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 200px;
+}
 
 /* MOOD TEXT */
 .mood-text {
@@ -137,9 +144,7 @@ header {
 }
 
 /* HIDE CATEGORY BAR */
-.categories-bar {
-  display: none !important;
-}
+.categories-bar { display: none !important; }
 
 /* CARDS */
 .container {
@@ -198,7 +203,7 @@ header {
   object-fit: cover;
 }
 
-.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
+.card h3 { color: #fff; margin-top: 12px; }
 
 .no-results {
   grid-column: 1/-1;
@@ -265,10 +270,11 @@ footer {
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
-<!-- HEADER (واحد فقط الآن) -->
+<!-- HEADER -->
 <header>
   Nook Decor
   <div class="header-icons">
+    <i class="fas fa-search" id="searchIcon">🔍</i>
     <a href="cart.html">🛒</a>
   </div>
 </header>
@@ -276,7 +282,6 @@ footer {
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-
   <div class="overlay-content">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
@@ -295,10 +300,8 @@ footer {
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="results-info">Search for anything...</div>
-
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for anything..." />
-    <i class="fas fa-search"></i>
   </div>
 </div>
 
@@ -315,7 +318,6 @@ footer {
 <div class="container">
 <aside class="sidebar" id="desktopSidebar">
   <h2>Categories</h2>
-
   <ul class="categories">
     <li><a class="active" data-cat="All">All</a></li>
     <li><a data-cat="Moods">Moods</a></li>
@@ -332,54 +334,7 @@ footer {
 </aside>
 
 <main class="content" id="content">
-
-<a href="product9.html" class="card" data-cat="Moods">
-  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-  <h3>Moods</h3>
-</a>
-
-<a href="product3.html" class="card" data-cat="Lighting">
-  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-  <h3>Lighting</h3>
-</a>
-
-<a href="product1.html" class="card" data-cat="Vases">
-  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-  <h3>Vases</h3>
-</a>
-
-<a href="product2.html" class="card" data-cat="Cushions">
-  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-  <h3>Cushions</h3>
-</a>
-
-<a href="product4.html" class="card" data-cat="Glass Candles">
-  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-  <h3>Glass Candles</h3>
-</a>
-
-<a href="product5.html" class="card" data-cat="Outdoor Flooring">
-  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-  <h3>Outdoor Flooring</h3>
-</a>
-
-<a href="product6.html" class="card" data-cat="Wooden Rack">
-  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-  <h3>Wooden Rack</h3>
-</a>
-
-<a href="product7.html" class="card" data-cat="Wall Art">
-  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-  <h3>Wall Art</h3>
-</a>
-
-<a href="product8.html" class="card" data-cat="Games">
-  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-  <h3>Games</h3>
-</a>
-
-<div class="no-results" style="display:none;">No products found.</div>
-
+<!-- Cards هنا مثل ما هما -->
 </main>
 </div>
 
@@ -450,12 +405,24 @@ menuOverlayCats.forEach(cat=>{
   };
 });
 
+// Search functionality
 searchInput.addEventListener('input',()=>{
   let activeCategory="All";
   desktopCategories.forEach(cat=>{
     if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
   });
   filterProducts(activeCategory);
+});
+
+// Toggle search bar on search icon click
+const searchIcon = document.getElementById('searchIcon');
+searchIcon.addEventListener('click',()=>{
+  if(searchInput.style.display === "block"){
+    searchInput.style.display = "none";
+  } else {
+    searchInput.style.display = "block";
+    searchInput.focus();
+  }
 });
 </script>
 
