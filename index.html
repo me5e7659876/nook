@@ -126,6 +126,33 @@ header {
   width: 200px;
 }
 
+/* CATEGORY BAR ON TOP */
+.categories-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.categories-bar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.categories-bar a:hover {
+  background: var(--accent-hover);
+}
+
+.categories-bar a.active {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  outline: 2px solid var(--active-outline);
+}
+
 /* MOOD TEXT */
 .mood-text {
   text-align: center;
@@ -142,9 +169,6 @@ header {
   transform: scale(1.05);
   color: #ffd2dd;
 }
-
-/* HIDE CATEGORY BAR */
-.categories-bar { display: none !important; }
 
 /* CARDS */
 .container {
@@ -279,6 +303,21 @@ footer {
   </div>
 </header>
 
+<!-- CATEGORIES BAR -->
+<div class="categories-bar" id="categoriesBar">
+  <a class="active" data-cat="All">All</a>
+  <a data-cat="Moods">Moods</a>
+  <a data-cat="Vases">Vases</a>
+  <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
+  <a data-cat="Lighting">Lighting</a>
+  <a data-cat="Glass Candles">Glass Candles</a>
+  <a data-cat="Furniture">Furniture</a>
+  <a data-cat="Cushions">Cushions</a>
+  <a data-cat="Wooden Rack">Wooden Rack</a>
+  <a data-cat="Games">Games</a>
+  <a data-cat="Wall Art">Wall Art</a>
+</div>
+
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
@@ -334,7 +373,8 @@ footer {
 </aside>
 
 <main class="content" id="content">
-<!-- Cards هنا مثل ما هما -->
+  <!-- ضع الكاردات هنا -->
+  <div class="no-results" style="display:none;">No products found.</div>
 </main>
 </div>
 
@@ -355,6 +395,7 @@ window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
 const desktopCategories=document.querySelectorAll('.sidebar .categories a');
+const topCategories=document.querySelectorAll('.categories-bar a');
 const cards=document.querySelectorAll('.content .card');
 const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
 const searchInput=document.getElementById('searchInput');
@@ -381,16 +422,19 @@ function filterProducts(category){
 
 function activate(category){
   desktopCategories.forEach(el=>el.classList.remove('active'));
+  topCategories.forEach(el=>el.classList.remove('active'));
   menuOverlayCats.forEach(el=>el.classList.remove('active'));
 
   const desk=document.querySelector('.sidebar a[data-cat="'+category+'"]');
+  const top=document.querySelector('.categories-bar a[data-cat="'+category+'"]');
   const over=document.querySelector('#menuOverlay a[data-cat="'+category+'"]');
 
   if(desk) desk.classList.add('active');
+  if(top) top.classList.add('active');
   if(over) over.classList.add('active');
 }
 
-desktopCategories.forEach(cat=>{
+[...desktopCategories, ...topCategories].forEach(cat=>{
   cat.onclick=()=>{
     filterProducts(cat.dataset.cat);
     activate(cat.dataset.cat);
@@ -408,7 +452,7 @@ menuOverlayCats.forEach(cat=>{
 // Search functionality
 searchInput.addEventListener('input',()=>{
   let activeCategory="All";
-  desktopCategories.forEach(cat=>{
+  topCategories.forEach(cat=>{
     if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
   });
   filterProducts(activeCategory);
