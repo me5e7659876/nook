@@ -39,13 +39,28 @@ header {
   display: flex;
   gap: 15px;
   font-size: 26px;
+  align-items: center;
 }
 
-.header-icons a {
+.header-icons a,
+.header-icons span {
   color: white;
   text-decoration: none;
   cursor: pointer;
+  user-select: none;
 }
+
+/* SEARCH ICON specifics (slightly larger click area) */
+#searchBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+#searchBtn:active { transform: scale(0.98); }
+#searchBtn:hover { background: rgba(255,255,255,0.03); }
 
 /* MENU ICON */
 .menu-icon {
@@ -110,14 +125,29 @@ header {
   gap: 8px;
 }
 
+/* Initially hide the top search input visually (we'll toggle it via JS) */
 .top-bar .results-info { display: none; }
 .top-bar .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
+  background: rgba(59,10,26,0.9);
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.top-bar .search-bar input { 
+  display: block; 
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  width: 260px;
 }
 
-.top-bar .search-bar input { display: none; }
+/* hide top-bar by default; will show when search icon clicked */
+#searchBarContainer { display: none; }
 
 /* MOOD TEXT */
 .mood-text {
@@ -208,6 +238,10 @@ header {
   color: #ffb3c6;
 }
 
+/* keep no-results hidden by default */
+.no-results[aria-hidden="true"] { display: none; }
+
+/* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
@@ -269,36 +303,19 @@ footer {
 <header>
   Nook Decor
   <div class="header-icons">
-    <a href="cart.html">🛒</a>
+    <!-- Search icon added here (next to cart) -->
+    <span id="searchBtn" title="Search">🔍</span>
+    <a href="cart.html" title="Cart">🛒</a>
   </div>
 </header>
 
-<!-- MENU OVERLAY -->
-<div id="menuOverlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-
-  <div class="overlay-content">
-    <a data-cat="All">All</a>
-    <a data-cat="Moods">Moods</a>
-    <a data-cat="Vases">Vases</a>
-    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
-    <a data-cat="Lighting">Lighting</a>
-    <a data-cat="Glass Candles">Glass Candles</a>
-    <a data-cat="Furniture">Furniture</a>
-    <a data-cat="Cushions">Cushions</a>
-    <a data-cat="Wooden Rack">Wooden Rack</a>
-    <a data-cat="Games">Games</a>
-    <a data-cat="Wall Art">Wall Art</a>
-  </div>
-</div>
-
-<!-- TOP BAR -->
-<div class="top-bar">
+<!-- TOP BAR (search bar container) -->
+<div class="top-bar" id="searchBarContainer">
   <div class="results-info">Search for anything...</div>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for anything..." />
-    <i class="fas fa-search"></i>
+    <input type="text" id="searchInput" placeholder="Search for anything..." aria-label="Search products" />
+    <i id="clearSearch" style="cursor:pointer; user-select:none;">✖</i>
   </div>
 </div>
 
@@ -308,7 +325,7 @@ footer {
 <!-- BANNER -->
 <div class="banner-slider">
   <div class="banner-slide active">
-    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg">
+    <img src="https://i.postimg.cc/tT3KWkjR/Transform-your-balcony-into-a-cozy-oasis-Add-comfy-seating-vibrant-plants-and-soft-lighting-for.jpg" alt="banner">
   </div>
 </div>
 
@@ -334,51 +351,51 @@ footer {
 <main class="content" id="content">
 
 <a href="product9.html" class="card" data-cat="Moods">
-  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+  <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg" alt="Moods">
   <h3>Moods</h3>
 </a>
 
 <a href="product3.html" class="card" data-cat="Lighting">
-  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+  <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg" alt="Lighting">
   <h3>Lighting</h3>
 </a>
 
 <a href="product1.html" class="card" data-cat="Vases">
-  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+  <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg" alt="Vases">
   <h3>Vases</h3>
 </a>
 
 <a href="product2.html" class="card" data-cat="Cushions">
-  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+  <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png" alt="Cushions">
   <h3>Cushions</h3>
 </a>
 
 <a href="product4.html" class="card" data-cat="Glass Candles">
-  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+  <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="Glass Candles">
   <h3>Glass Candles</h3>
 </a>
 
 <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+  <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png" alt="Outdoor Flooring">
   <h3>Outdoor Flooring</h3>
 </a>
 
 <a href="product6.html" class="card" data-cat="Wooden Rack">
-  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+  <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg" alt="Wooden Rack">
   <h3>Wooden Rack</h3>
 </a>
 
 <a href="product7.html" class="card" data-cat="Wall Art">
-  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+  <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png" alt="Wall Art">
   <h3>Wall Art</h3>
 </a>
 
 <a href="product8.html" class="card" data-cat="Games">
-  <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+  <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="Games">
   <h3>Games</h3>
 </a>
 
-<div class="no-results" style="display:none;">No products found.</div>
+<div class="no-results" aria-hidden="true">No products found.</div>
 
 </main>
 </div>
@@ -386,8 +403,8 @@ footer {
 <footer>©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
+function openMenu(){ document.getElementById("menuOverlay") && (document.getElementById("menuOverlay").style.height="100%"); }
+function closeMenu(){ document.getElementById("menuOverlay") && (document.getElementById("menuOverlay").style.height="0%"); }
 
 function handleResize() {
   if (window.innerWidth <= 768) {
@@ -399,6 +416,7 @@ function handleResize() {
 window.addEventListener('load', handleResize);
 window.addEventListener('resize', handleResize);
 
+/* ----- Existing category + card logic ----- */
 const desktopCategories=document.querySelectorAll('.sidebar .categories a');
 const cards=document.querySelectorAll('.content .card');
 const menuOverlayCats=document.querySelectorAll('#menuOverlay .overlay-content a');
@@ -406,7 +424,7 @@ const searchInput=document.getElementById('searchInput');
 const noResults=document.querySelector('.no-results');
 
 function filterProducts(category){
-  const searchText=searchInput.value.toLowerCase();
+  const searchText=searchInput.value.toLowerCase().trim();
   let anyVisible=false;
 
   cards.forEach(card=>{
@@ -421,7 +439,13 @@ function filterProducts(category){
     }
   });
 
-  noResults.style.display = anyVisible ? "none" : "block";
+  if(anyVisible){
+    noResults.style.display = "none";
+    noResults.setAttribute('aria-hidden','true');
+  } else {
+    noResults.style.display = "block";
+    noResults.setAttribute('aria-hidden','false');
+  }
 }
 
 function activate(category){
@@ -450,12 +474,77 @@ menuOverlayCats.forEach(cat=>{
   };
 });
 
+/* ----- Search input behavior ----- */
 searchInput.addEventListener('input',()=>{
   let activeCategory="All";
   desktopCategories.forEach(cat=>{
     if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
   });
   filterProducts(activeCategory);
+});
+
+/* ----- New: Toggle search bar when search icon clicked ----- */
+const searchBtn = document.getElementById('searchBtn');
+const searchBarContainer = document.getElementById('searchBarContainer');
+const clearBtn = document.getElementById('clearSearch');
+
+let searchOpen = false;
+
+function openSearchBar(){
+  searchBarContainer.style.display = 'flex';
+  // Ensure it's visible and focus the input
+  setTimeout(()=> { searchInput.focus(); }, 50);
+  searchOpen = true;
+}
+
+function closeSearchBar(){
+  searchBarContainer.style.display = 'none';
+  searchInput.value = '';
+  // reset filter to current active category
+  let activeCategory="All";
+  desktopCategories.forEach(cat=>{
+    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
+  });
+  filterProducts(activeCategory);
+  searchOpen = false;
+}
+
+searchBtn.addEventListener('click', ()=>{
+  if(!searchOpen){
+    openSearchBar();
+  } else {
+    closeSearchBar();
+  }
+});
+
+// clear icon inside search bar
+clearBtn.addEventListener('click', ()=>{
+  searchInput.value = '';
+  searchInput.focus();
+  // re-run filter
+  let activeCategory="All";
+  desktopCategories.forEach(cat=>{
+    if(cat.classList.contains('active')) activeCategory=cat.dataset.cat;
+  });
+  filterProducts(activeCategory);
+});
+
+/* Close search on ESC key */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && searchOpen){
+    closeSearchBar();
+  }
+});
+
+/* If user clicks outside the search-bar area (on small overlay), close it — minimal approach */
+document.addEventListener('click', (e)=>{
+  if(searchOpen){
+    const isInside = e.target.closest('.top-bar') || e.target.closest('#searchBtn');
+    if(!isInside){
+      // do not auto-close if click is on a card or nav intentionally — keep behavior conservative
+      // we'll not auto-close here to avoid interfering; comment left intentionally.
+    }
+  }
 });
 </script>
 
