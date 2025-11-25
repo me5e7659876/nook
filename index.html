@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -110,19 +110,14 @@ header {
   gap: 8px;
 }
 
-.top-bar .results-info {
-  display: none;
-}
-
+.top-bar .results-info { display: none; }
 .top-bar .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.top-bar .search-bar input {
-  display: none;
-}
+.top-bar .search-bar input { display: none; }
 
 /* MOOD TEXT */
 .mood-text {
@@ -134,7 +129,6 @@ header {
   margin: 15px 0;
   letter-spacing: 0.5px;
   transition: transform 0.3s ease, color 0.3s ease;
-  cursor: default;
 }
 
 .mood-text:hover {
@@ -206,9 +200,19 @@ header {
 
 .card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
 
-.no-results { grid-column: 1/-1; text-align: center; font-size: 18px; padding: 40px 0; color: #ffb3c6; }
+.no-results {
+  grid-column: 1/-1;
+  text-align: center;
+  font-size: 18px;
+  padding: 40px 0;
+  color: #ffb3c6;
+}
 
-footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
+footer {
+  background-color: #4b0e1f;
+  text-align: center;
+  padding: 15px;
+}
 
 /* BANNER SLIDER */
 .banner-slider {
@@ -231,12 +235,15 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 }
 
 .banner-slide.active { opacity: 1; }
+
 .banner-slide img {
-  width: 100%; height: 100%;
-  object-fit: cover; border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width: 768px) {
   .container { flex-direction: column; }
   .sidebar { display: none !important; }
@@ -258,44 +265,15 @@ footer { background-color: #4b0e1f; text-align: center; padding: 15px; }
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
-<!-- HEADER -->
+<!-- HEADER (واحد فقط الآن) -->
 <header>
   Nook Decor
-
   <div class="header-icons">
     <a href="cart.html">🛒</a>
   </div>
 </header>
 
 <!-- MENU OVERLAY -->
-<div id="menuOverlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-
-  <div class="overlay-content">
-    <a href="#">Home</a>
-    <a href="#">All Products</a>
-    <a href="#">Contact</a>
-  </div>
-</div>
-
-<script>
-function openMenu() {
-  document.getElementById("menuOverlay").style.height = "100%";
-}
-
-function closeMenu() {
-  document.getElementById("menuOverlay").style.height = "0%";
-}
-</script>
-
-</body>
-</html>
-<body>
-
-<!-- MENU ICON -->
-<div class="menu-icon" onclick="openMenu()">☰</div>
-
-<!-- FULL SCREEN MENU -->
 <div id="menuOverlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
 
@@ -314,19 +292,10 @@ function closeMenu() {
   </div>
 </div>
 
-<header>
-  <div class="header-icons">
-    <i class="fas fa-search"></i>
-    <i class="fas fa-shopping-cart"></i>
-  </div>
-  Nook Decor
-</header>
-
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="results-info">Search for anything...</div>
 
-  <!-- SEARCH BAR (hidden on mobile) -->
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Search for anything..." />
     <i class="fas fa-search"></i>
