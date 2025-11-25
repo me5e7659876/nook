@@ -42,16 +42,13 @@
       transition: transform 0.3s ease;
     }
 
-    .item:hover {
-      transform: scale(1.03);
-    }
+    .item:hover { transform: scale(1.03); }
 
     .item img {
       width: 100%;
       height: 360px;
       object-fit: contain;
       border-radius: 15px;
-      transition: all 0.3s ease;
     }
 
     .title {
@@ -67,7 +64,7 @@
       transform: translateY(20px);
       max-height: 0;
       overflow: hidden;
-      transition: opacity .45s ease-out, transform .45s ease-out, max-height .5s ease-out;
+      transition: .45s ease-out;
       margin-top: 5px;
     }
 
@@ -90,17 +87,12 @@
       border-radius: 12px;
       font-weight: bold;
       color: #4b0e1f;
-      font-size: 15px;
       cursor: pointer;
       transition: .25s;
     }
 
-    .btn:hover {
-      background-color: #ffd2dd;
-      transform: scale(1.05);
-    }
+    .btn:hover { transform: scale(1.05); }
 
-    /* back-link style */
     .back-link {
       display: block;
       text-align: center;
@@ -111,36 +103,6 @@
       text-decoration: none;
     }
 
-    .back-link:hover {
-      color: #ffd2dd;
-    }
-
-    /* Media Queries */
-    @media (max-width: 1024px) {
-      .item img {
-        height: 400px;
-        object-fit: contain;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .item img {
-        width: 100%;
-        max-width: 450px;
-        height: 520px;
-        object-fit: cover;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .item img {
-        max-height: 380px;
-      }
-      .price { font-size: 16px; }
-      .desc { font-size: 14px; }
-      .btn { padding: 6px 16px; font-size: 14px; }
-      .back-link { font-size: 18px; }
-    }
   </style>
 </head>
 
@@ -151,95 +113,111 @@
 <div class="container">
 
   <!-- 1 -->
-  <div class="item">
+  <div class="item" data-name="Premium Soft Cushion" data-price="370" data-img="https://i.postimg.cc/zGYRDV4x/1.png">
     <img src="https://i.postimg.cc/zGYRDV4x/1.png">
     <div class="title">Premium Soft Cushion</div>
     <div class="desc">A super–soft cushion that adds elegance and comfort to any sofa or room.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
   <!-- 2 -->
-  <div class="item">
+  <div class="item" data-name="Luxury Comfort Cushion" data-price="370" data-img="https://i.postimg.cc/0Q4bTQpn/2.png">
     <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
     <div class="title">Luxury Comfort Cushion</div>
     <div class="desc">Designed for style and coziness—perfect for modern home décor.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
   <!-- 3 -->
-  <div class="item">
+  <div class="item" data-name="Modern Decorative Cushion" data-price="370" data-img="https://i.postimg.cc/t7Q7gMv2/3.png">
     <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
     <div class="title">Modern Decorative Cushion</div>
     <div class="desc">A modern decorative cushion that enhances living rooms and balconies beautifully.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
   <!-- 4 -->
-  <div class="item">
+  <div class="item" data-name="Cozy Home Cushion" data-price="370" data-img="https://i.postimg.cc/y6wT96wv/4.png">
     <img src="https://i.postimg.cc/y6wT96wv/4.png">
     <div class="title">Cozy Home Cushion</div>
-    <div class="desc">The perfect blend of warmth and style to make your space feel more inviting.</div>
+    <div class="desc">Perfect blend of warmth & style for a more inviting atmosphere.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
   <!-- 5 -->
-  <div class="item">
+  <div class="item" data-name="Elegant Pattern Cushion" data-price="370" data-img="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
     <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
     <div class="title">Elegant Pattern Cushion</div>
-    <div class="desc">A classy patterned cushion that fits perfectly with both modern and classic interiors.</div>
+    <div class="desc">Classy patterned cushion for modern & classic interiors.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
   <!-- 6 -->
-  <div class="item">
+  <div class="item" data-name="Ultra Soft Cushion" data-price="370" data-img="https://i.postimg.cc/Pf8WtsPr/re1.png">
     <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
     <div class="title">Ultra Soft Cushion</div>
-    <div class="desc">Extremely soft and premium-looking, designed for maximum comfort and style.</div>
+    <div class="desc">Extremely soft and premium designed for maximum comfort.</div>
     <div class="price">370 EGP</div>
-    <button class="btn">Add to Cart</button>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
 </div>
 
-<!-- Back to home -->
-<div>
-  <a href="index.html" class="back-link">← Back to Home</a>
-</div>
+<a href="index.html" class="back-link">← Back to Home</a>
 
 <script>
-  // إضافة المنتجات للسلة
-  function addToCart(name, price, image) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+/* ============================
+      CART SYSTEM (SAME AS GAMES)
+===============================*/
 
-    cart.push({
-      name: name,
-      price: price,
-      image: image
-    });
+function getCart() {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert(name + " added to cart!");
-  }
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-  // ربط كل زرار Add to Cart بالمنتج الخاص به
-  const products = document.querySelectorAll(".item");
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.closest(".item");
 
-  products.forEach((product) => {
-    const btn = product.querySelector(".btn");
-    const name = product.querySelector(".title").innerText;
-    const priceText = product.querySelector(".price").innerText;
-    const price = Number(priceText.replace("EGP","").trim());
-    const image = product.querySelector("img").src;
+    const product = {
+      name: item.dataset.name,
+      price: parseFloat(item.dataset.price),
+      img: item.dataset.img,
+      qty: 1
+    };
 
-    btn.addEventListener("click", () => {
-      addToCart(name, price, image);
-    });
+    let cart = getCart();
+
+    // لو موجود نزود الكمية
+    let existing = cart.find(p => p.name === product.name);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push(product);
+    }
+
+    saveCart(cart);
+
+    // Animation – نفس الGames  
+    btn.innerText = "Added!";
+    btn.style.background = "#fff";
+    btn.style.color = "#4b0e1f";
+
+    setTimeout(() => {
+      btn.innerText = "Add to Cart";
+      btn.style.background = "#ffb3c6";
+      btn.style.color = "#4b0e1f";
+    }, 1200);
   });
+});
 </script>
 
 </body>
