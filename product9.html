@@ -1,203 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Moods - Nook Decor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moods</title>
 
-<style>
+  <style>
     body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: #f5f5f5;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
     }
 
-    /* Header */
     header {
-        background: #8b1e3f;
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #fff;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+      background-color: #4b0e1f;
+      padding: 15px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
     }
 
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .cart-icon {
-        font-size: 22px;
-        cursor: pointer;
-    }
-
-    /* Categories */
-    .categories {
-        display: flex;
-        gap: 10px;
-        padding: 15px;
-        overflow-x: auto;
-    }
-
-    .category {
-        background: #8b1e3f;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
-        cursor: pointer;
-        white-space: nowrap;
-        font-size: 14px;
-        transition: 0.3s;
-    }
-
-    .category:hover {
-        background: #a3264d;
-    }
-
-    /* Products */
-    .products-container {
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
+    /* === Product Grid === */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 30px;
     }
 
     .product-card {
-        background: white;
-        border-radius: 15px;
-        padding: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        transition: 0.3s;
+      background: #5c1228;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+      text-align: center;
+      transition: 0.3s;
     }
 
     .product-card:hover {
-        transform: translateY(-4px);
+      transform: scale(1.03);
     }
 
     .product-card img {
-        width: 100%;
-        border-radius: 12px;
-        height: 220px;
-        object-fit: cover;
+      width: 100%;
+      border-radius: 12px;
     }
 
-    .product-title {
-        font-size: 16px;
-        margin: 8px 0 4px;
-        font-weight: 600;
+    .product-card h3 {
+      margin: 15px 0 5px;
+      color: #ffb3c6;
     }
 
-    .product-price {
-        color: #8b1e3f;
-        font-weight: bold;
-        margin-bottom: 10px;
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 10px 0;
     }
 
-    .add-btn {
-        background: #8b1e3f;
-        color: white;
-        width: 100%;
-        padding: 8px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
+    .btn {
+      background-color: #ffb3c6;
+      border: none;
+      color: #4b0e1f;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .add-btn:hover {
-        background: #a42a50;
+    .btn:hover {
+      background-color: #ffc7d3;
     }
-</style>
+
+  </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">Nook Decor</div>
-    <div class="cart-icon" onclick="goToCart()">🛒</div>
-</header>
+  <header>Moods</header>
 
-<!-- Categories -->
-<div class="categories">
-    <div class="category">All</div>
-    <div class="category">Outdoor</div>
-    <div class="category">Balcony</div>
-    <div class="category">Lights</div>
-    <div class="category">Chairs</div>
-    <div class="category">Plants</div>
-</div>
+  <!-- ======== PRODUCTS SECTION ======== -->
+  <div class="products-grid">
 
-<!-- Products Grid -->
-<div class="products-container" id="products-list">
-</div>
+    <!-- Product 1 -->
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Vase">
+      <h3>Elegant Vase</h3>
+      <div class="price">$39.99</div>
+      <button class="btn">Add to Cart</button>
+    </div>
 
-<script>
-    // PRODUCTS DATA
-    const products = [
-        {
-            id: 1,
-            name: "Elegant Vase",
-            price: 450,
-            img: "https://i.ibb.co/9pJZcv5/vase.jpg"
-        },
-        {
-            id: 2,
-            name: "Outdoor Chair",
-            price: 1200,
-            img: "https://i.ibb.co/4Zx9cLk/chair.jpg"
-        },
-        {
-            id: 3,
-            name: "Balcony Lamp",
-            price: 650,
-            img: "https://i.ibb.co/qC4ypnk/lamp.jpg"
-        },
-        {
-            id: 4,
-            name: "Hanging Plant",
-            price: 300,
-            img: "https://i.ibb.co/ZK8VvQ4/plant.jpg"
-        },
-        {
-            id: 5,
-            name: "Luxury Candle",
-            price: 180,
-            img: "https://i.ibb.co/J3pp6sF/candle.jpg"
-        }
-    ];
+    <!-- Product 2 -->
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Lamp">
+      <h3>Modern Lamp</h3>
+      <div class="price">$54.99</div>
+      <button class="btn">Add to Cart</button>
+    </div>
 
-    // Load Products
-    const container = document.getElementById("products-list");
+    <!-- Product 3 -->
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt="Plant">
+      <h3>Indoor Plant</h3>
+      <div class="price">$24.99</div>
+      <button class="btn">Add to Cart</button>
+    </div>
 
-    products.forEach(p => {
-        container.innerHTML += `
-        <div class="product-card">
-            <img src="${p.img}" alt="${p.name}">
-            <div class="product-title">${p.name}</div>
-            <div class="product-price">${p.price} EGP</div>
-            <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
-        </div>
-        `;
-    });
-
-    // ADD TO CART
-    function addToCart(id) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const product = products.find(p => p.id === id);
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("تمت إضافة المنتج للسلة ✔️");
-    }
-
-    // GO TO CART PAGE
-    function goToCart() {
-        window.location.href = "cart.html";
-    }
-</script>
+  </div>
 
 </body>
 </html>
