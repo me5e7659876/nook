@@ -12,7 +12,6 @@
       background-color: #4b0e1f;
       color: #fff;
     }
-
     header {
       background-color: #4b0e1f;
       padding: 15px;
@@ -20,8 +19,21 @@
       font-size: 28px;
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      position: relative;
     }
-
+    #langSelect {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ffb3c6;
+      color: #4b0e1f;
+    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -29,7 +41,6 @@
       padding: 30px;
       justify-items: center;
     }
-
     .item {
       background-color: rgba(255,255,255,0.1);
       border-radius: 15px;
@@ -40,9 +51,7 @@
       position: relative;
       overflow: hidden;
     }
-
     .item:hover { transform: scale(1.05); }
-
     .slider {
       width: 100%;
       max-width: 350px;
@@ -52,7 +61,6 @@
       border-radius: 15px;
       margin: 0 auto;
     }
-
     .slide {
       width: 100%;
       height: 100%;
@@ -63,9 +71,7 @@
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
     }
-
     .active { opacity: 1; }
-
     .next-btn {
       position: absolute;
       top: 50%;
@@ -80,14 +86,12 @@
       color: #4b0e1f;
       font-weight: bold;
     }
-
     .price {
       font-size: 20px;
       font-weight: bold;
       color: #ffb3c6;
       margin-top: 10px;
     }
-
     .desc {
       font-size: 15px;
       color: #ffe3eb;
@@ -97,12 +101,10 @@
       transform: translateY(10px);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
-
     .item:hover .desc {
       opacity: 1;
       transform: translateY(0);
     }
-
     .btn {
       background-color: #ffb3c6;
       border: none;
@@ -115,9 +117,7 @@
       transition: 0.3s;
       width: 100%;
     }
-
     .btn:hover { background-color: #ffc7d3; }
-
     .back-link {
       display: block;
       text-align: center;
@@ -128,137 +128,117 @@
     }
   </style>
 </head>
-
 <body>
 
-  <header>Wooden Racks</header>
+<header>
+  <span id="headerTitle">Wooden Racks</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-  <div class="gallery">
+<div class="gallery" id="galleryContainer">
+  <!-- المنتجات سيتم توليدها تلقائيًا حسب اللغة -->
+</div>
 
-    <!-- Item 1 -->
-    <div class="item" data-name="Solid Wood Rack" data-price="1200" data-img="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+
+<script>
+const products = [
+  {img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg"], price:1200,
+   name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"},
+   desc:{en:"Strong solid wood rack — perfect for plants, décor items, and modern home styling.",
+         ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}},
+
+  {img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg","https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg"], price:600,
+   name:{en:"Minimal Modern Rack", ar:"رف عصري بسيط"},
+   desc:{en:"Minimal modern wooden rack — ideal for small spaces and stylish organization.",
+         ar:"رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."}},
+
+  {img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg","https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg"], price:300,
+   name:{en:"Decorative Wooden Stand", ar:"حامل خشبي زخرفي"},
+   desc:{en:"Decorative wooden stand — great for showcasing plants, candles, and ornaments.",
+         ar:"حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."}},
+
+  {img:["https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg","https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg"], price:200,
+   name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"},
+   desc:{en:"Compact wooden shelf — perfect for tight areas and adding an elegant touch.",
+         ar:"رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."}}
+];
+
+// توليد المنتجات حسب اللغة
+function renderProducts(lang){
+  const container = document.getElementById("galleryContainer");
+  container.innerHTML = "";
+  products.forEach(p=>{
+    const item = document.createElement("div");
+    item.className = "item";
+    item.dataset.name = p.name[lang];
+    item.dataset.price = p.price;
+    item.dataset.img = p.img[0];
+
+    let slidesHTML = p.img.map((src,i)=>`<img class="slide ${i===0?'active':''}" src="${src}">`).join("");
+    item.innerHTML = `
       <div class="slider">
-        <img class="slide active" src="https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg">
-        <img class="slide" src="https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg">
+        ${slidesHTML}
         <button class="next-btn">&#9654;</button>
       </div>
-      <div class="price">1200 EGP</div>
-      <p class="desc">Strong solid wood rack — perfect for plants, décor items, and modern home styling.</p>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
+      <div class="price">${p.price} EGP</div>
+      <p class="desc">${p.desc[lang]}</p>
+      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(item);
+  });
+  attachSliders();
+  attachCart(lang);
+}
 
-    <!-- Item 2 -->
-    <div class="item" data-name="Minimal Modern Rack" data-price="600" data-img="https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png">
-      <div class="slider">
-        <img class="slide active" src="https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png">
-        <img class="slide" src="https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg">
-        <img class="slide" src="https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg">
-        <button class="next-btn">&#9654;</button>
-      </div>
-      <div class="price">600 EGP</div>
-      <p class="desc">Minimal modern wooden rack — ideal for small spaces and stylish organization.</p>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
+// Slider
+function attachSliders(){
+  document.querySelectorAll('.slider').forEach(slider => {
+    const slides = slider.querySelectorAll('.slide');
+    let index = 0;
+    const nextBtn = slider.querySelector('.next-btn');
+    function showSlide(i){ slides.forEach((s,idx)=>s.classList.toggle('active',idx===i)); }
+    nextBtn.addEventListener('click',()=>{ index=(index+1)%slides.length; showSlide(index); });
+    setInterval(()=>{ index=(index+1)%slides.length; showSlide(index); },7000);
+  });
+}
 
-    <!-- Item 3 -->
-    <div class="item" data-name="Decorative Wooden Stand" data-price="300" data-img="https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg">
-      <div class="slider">
-        <img class="slide active" src="https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg">
-        <img class="slide" src="https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg">
-        <img class="slide" src="https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg">
-        <button class="next-btn">&#9654;</button>
-      </div>
-      <div class="price">300 EGP</div>
-      <p class="desc">Decorative wooden stand — great for showcasing plants, candles, and ornaments.</p>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
+// Cart
+function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
+function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
 
-    <!-- Item 4 -->
-    <div class="item" data-name="Compact Wooden Shelf" data-price="200" data-img="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
-      <div class="slider">
-        <img class="slide active" src="https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg">
-        <img class="slide" src="https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg">
-        <button class="next-btn">&#9654;</button>
-      </div>
-      <div class="price">200 EGP</div>
-      <p class="desc">Compact wooden shelf — perfect for tight areas and adding an elegant touch.</p>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
-
-  </div>
-
-  <a href="index.html" class="back-link">← Back to Home</a>
-
-  <script>
-    // Slider functionality
-    document.querySelectorAll('.slider').forEach(slider => {
-      let slides = slider.querySelectorAll('.slide');
-      let index = 0;
-      const nextBtn = slider.querySelector('.next-btn');
-
-      function showSlide(i) {
-        slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
-      }
-
-      let interval = setInterval(() => {
-        index = (index + 1) % slides.length;
-        showSlide(index);
-      }, 7000);
-
-      nextBtn.addEventListener('click', () => {
-        index = (index + 1) % slides.length;
-        showSlide(index);
-        clearInterval(interval);
-        interval = setInterval(() => {
-          index = (index + 1) % slides.length;
-          showSlide(index);
-        }, 7000);
-      });
+function attachCart(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item = btn.closest(".item");
+      const product = {name:item.dataset.name, price:parseFloat(item.dataset.price), img:item.dataset.img, qty:1};
+      let cart = getCart();
+      let existing = cart.find(p=>p.name===product.name);
+      if(existing) existing.qty+=1; else cart.push(product);
+      saveCart(cart);
+      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff"; btn.style.color="#4b0e1f";
+      setTimeout(()=>{ btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200);
     });
+  });
+}
 
-    // =========================
-    // Add to Cart System
-    // =========================
-    function getCart() {
-      return JSON.parse(localStorage.getItem("cart")) || [];
-    }
+// Language switch
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change",()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  document.getElementById("headerTitle").textContent = lang==="ar"?"رفوف خشبية":"Wooden Racks";
+  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(lang);
+});
 
-    function saveCart(cart) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const item = btn.closest(".item");
-        const product = {
-          name: item.dataset.name,
-          price: parseFloat(item.dataset.price),
-          img: item.dataset.img,
-          qty: 1
-        };
-
-        let cart = getCart();
-        let existing = cart.find(p => p.name === product.name);
-        if (existing) {
-          existing.qty += 1;
-        } else {
-          cart.push(product);
-        }
-
-        saveCart(cart);
-
-        btn.innerText = "Added!";
-        btn.style.background = "#fff";
-        btn.style.color = "#4b0e1f";
-
-        setTimeout(() => {
-          btn.innerText = "Add to Cart";
-          btn.style.background = "#ffb3c6";
-          btn.style.color = "#4b0e1f";
-        }, 1200);
-      });
-    });
-  </script>
+// Initial render
+renderProducts("en");
+</script>
 
 </body>
 </html>
