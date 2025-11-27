@@ -30,7 +30,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px; /* قللت الفاصل بين اللوجو والنص */
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: box-shadow 0.3s ease;
 }
@@ -42,7 +42,6 @@ header img.logo {
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-  margin-bottom: -12px;
   animation: floatLogo 3s ease-in-out infinite;
 }
 header img.logo:hover { transform: scale(1.08); }
@@ -56,7 +55,7 @@ header img.logo:hover { transform: scale(1.08); }
 
 /* HEADER TEXT */
 header .title-text {
-  font-size: 48px;
+  font-size: 38px; /* صغّرت الحجم */
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
   margin-top: 0;
@@ -248,7 +247,7 @@ footer {
 /* MOBILE */
 @media (max-width: 768px) {
   header img.logo { width: 150px; max-width: 60vw; }
-  header .title-text { font-size: 36px; }
+  header .title-text { font-size: 30px; }
   .container { flex-direction: column; }
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
