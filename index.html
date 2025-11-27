@@ -1,361 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Nook Decor — Premium</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nook Decor</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap');
 
-/* ===========================
-      GLOBAL VARIABLES
-=========================== */
 :root{
-  --bg:#3a0a17;                /* بيرجوندي أغمق */
-  --bg-dark:#240610;
-  --accent:#ffb3c6;
-  --muted:rgba(255,255,255,0.85);
-  --glass:rgba(255,255,255,0.05);
-  --radius:18px;
-  --shadow:0 14px 40px rgba(0,0,0,0.55);
-  --max-w:1200px;
+    --main-bg:#3b0915; /* بيرجوندي غامق */
+    --card-bg:#4b0e1c;
+    --text-light:#ffffff;
+    --accent:#d8a77f;
 }
 
-/* ===========================
-        BASIC RESET
-=========================== */
-*{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,var(--bg),var(--bg-dark));
-  color:var(--muted);
-  -webkit-font-smoothing:antialiased;
-  padding:0;
+    margin:0;
+    font-family:"Poppins", sans-serif;
+    background:var(--main-bg);
+    color:var(--text-light);
 }
 
-.site{
-  max-width:var(--max-w);
-  margin:auto;
-  padding:18px;
-}
+/*=============== NAVBAR =================*/
 
-/* ===========================
-            HEADER
-=========================== */
 header{
-  position:sticky;
-  top:10px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 20px;
-  border-radius:16px;
-  background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01));
-  backdrop-filter:blur(6px);
-  box-shadow:0 8px 28px rgba(0,0,0,0.45);
-  z-index:200;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
+    background:#2a0610;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
-  font-family:'Playfair Display',serif;
-  font-size:24px;
-  color:#fff;
+    font-family:"Playfair Display";
+    font-size:26px;
+    font-weight:600;
 }
 
-.menu-btn,
-.icon-btn{
-  background:transparent;
-  border:0;
-  font-size:22px;
-  color:var(--muted);
-  cursor:pointer;
-  padding:8px;
-  transition:0.18s;
-  border-radius:10px;
+.menu-icon{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
 }
 
-.icon-btn:hover,
-.menu-btn:hover{
-  background:var(--glass);
-  transform:translateY(-2px);
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+    margin:0;
 }
 
-/* ===========================
-            HERO
-=========================== */
-.hero{
-  border-radius:22px;
-  overflow:hidden;
-  position:relative;
-  margin:20px 0 32px 0;
-  box-shadow:var(--shadow);
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
 }
 
-.hero img{
-  width:100%;
-  height:48vw;
-  max-height:420px;
-  object-fit:cover;
-  filter:brightness(0.88) contrast(1.05);
+@media(max-width:768px){
+    nav{
+        display:none;
+        position:absolute;
+        top:70px;
+        right:0;
+        width:200px;
+        background:#2a0610;
+        padding:20px;
+        border-radius:0 0 0 10px;
+    }
+    nav ul{
+        flex-direction:column;
+    }
+    .menu-icon{
+        display:block;
+    }
 }
 
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.55));
-  padding:30px;
+/*=============== BANNER =================*/
+
+.banner{
+    width:100%;
+    height:260px;
+    background:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2070') center/cover no-repeat;
+    border-bottom:3px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.hero-content{
-  text-align:center;
-  max-width:800px;
+.banner h1{
+    font-size:40px;
+    font-family:"Playfair Display";
+    background:rgba(0,0,0,0.4);
+    padding:10px 20px;
+    border-radius:8px;
 }
 
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:36px;
-  color:#fff;
-  margin-bottom:10px;
+/*=============== CATEGORY GRID =================*/
+
+.section-title{
+    font-size:32px;
+    text-align:center;
+    margin-top:35px;
+    margin-bottom:25px;
+    font-family:"Playfair Display";
 }
 
-.hero p{
-  font-size:16px;
-  opacity:0.9;
-  margin-bottom:16px;
-}
-
-.cta{
-  display:inline-block;
-  padding:12px 22px;
-  border-radius:14px;
-  background:linear-gradient(90deg,#ffd2dd,#ffb3c6);
-  color:#4b0e1f;
-  font-weight:600;
-  text-decoration:none;
-  box-shadow:0 10px 28px rgba(255,179,198,0.25);
-  transition:0.25s;
-}
-
-.cta:hover{
-  transform:translateY(-5px);
-}
-
-/* ===========================
-        GRID LAYOUT
-=========================== */
-.main-grid{
-  display:grid;
-  grid-template-columns:250px 1fr;
-  gap:22px;
-}
-
-/* ===========================
-        SIDEBAR
-=========================== */
-.sidebar{
-  background:var(--glass);
-  padding:20px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  height:fit-content;
-  position:sticky;
-  top:110px;
-}
-
-.sidebar h3{
-  font-size:18px;
-  margin-bottom:10px;
-  color:#fff;
-}
-
-.cats{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.cats button{
-  background:transparent;
-  border:1px solid transparent;
-  padding:10px 12px;
-  border-radius:14px;
-  color:var(--muted);
-  text-align:left;
-  font-weight:500;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.cats button:hover{
-  background:var(--glass);
-  transform:translateX(5px);
-}
-
-.cats .active{
-  border:1px solid rgba(255,179,198,0.25);
-  background:rgba(255,255,255,0.05);
-}
-
-/* ===========================
-      PRODUCT CARDS
-=========================== */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
 }
 
 .card{
-  display:flex;
-  flex-direction:column;
-  border-radius:20px;
-  overflow:hidden;
-  background:rgba(255,255,255,0.03);
-  text-decoration:none;
-  color:#fff;
-  box-shadow:var(--shadow);
-  transition:0.25s;
+    background:var(--card-bg);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,0.5);
+    transform:scale(1.04);
 }
 
 .card img{
-  width:100%;
-  height:230px;         /* أكبر + أوضح */
-  object-fit:cover;
+    width:100%;
+    height:200px;
+    object-fit:cover;
 }
 
-.card-body{
-  padding:16px 18px 20px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.card-title{
+    text-align:center;
+    padding:12px;
+    font-size:18px;
+    color:white;
 }
-
-.card h4{
-  margin:0;
-  font-size:17px;
-  color:#fff;
-}
-
-.tag{
-  font-size:12px;
-  background:rgba(255,255,255,0.08);
-  padding:6px 10px;
-  border-radius:10px;
-}
-
-/* ===========================
-        RESPONSIVE
-=========================== */
-@media(max-width:1000px){
-  .main-grid{
-    grid-template-columns:220px 1fr;
-  }
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:750px){
-  .main-grid{
-    grid-template-columns:1fr;
-  }
-  .sidebar{display:none}
-  .card img{
-    height:55vw;   /* أخيراً: صور كاملة على الموبايل */
-  }
-}
-
-@media(max-width:430px){
-  .cards{
-    grid-template-columns:1fr;
-  }
-  .hero h1{font-size:26px}
-  .hero img{height:60vw}
-}
-
 </style>
 </head>
+
 <body>
 
-<div class="site">
-
-<!-- HEADER -->
+<!-- NAVBAR -->
 <header>
-  <div style="display:flex;align-items:center;gap:12px">
-    <button class="menu-btn" id="openMenu">☰</button>
     <div class="logo">Nook Decor</div>
-  </div>
-  <div style="display:flex;gap:12px">
-    <button class="icon-btn" id="openSearch">🔍</button>
-    <a class="icon-btn" href="cart.html">🛒</a>
-  </div>
+
+    <div class="menu-icon" onclick="document.querySelector('nav').style.display =
+    document.querySelector('nav').style.display=='block'?'none':'block';">☰</div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#">Products</a></li>
+        </ul>
+    </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <img src="/mnt/data/103B2CCD-98EB-4117-B857-EF01431E242D.jpeg">
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <h1>Create your own mood — transform balconies & cozy corners</h1>
-      <p>Handpicked décor, lighting and textures to make any small space feel luxurious.</p>
-      <a class="cta" href="#content">Explore Collections</a>
-    </div>
-  </div>
-</section>
-
-<!-- MAIN GRID -->
-<div class="main-grid">
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <h3>Categories</h3>
-  <ul class="cats" id="categoryList">
-    <li><button class="active" data-cat="All">All</button></li>
-    <li><button data-cat="Moods">Moods</button></li>
-    <li><button data-cat="Vases">Vases</button></li>
-    <li><button data-cat="Lighting">Lighting</button></li>
-    <li><button data-cat="Cushions">Cushions</button></li>
-    <li><button data-cat="Wall Art">Wall Art</button></li>
-    <li><button data-cat="Glass Candles">Glass Candles</button></li>
-    <li><button data-cat="Furniture">Furniture</button></li>
-    <li><button data-cat="Games">Games</button></li>
-  </ul>
-</aside>
-
-<!-- CARDS CONTENT -->
-<main>
-  <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-    <div style="font-weight:600;color:#fff">Collections</div>
-    <div id="resultsCount" style="opacity:0.9">Show all</div>
-  </div>
-
-  <section class="cards" id="content">
-
-    <!-- SAME PRODUCTS YOU SENT — بدون تغيير -->
-    ⭐ (الكروت بالكامل محفوظة كما هي — فقط التنسيق اتظبط)
-
-    <!-- HERE SHOULD BE YOUR CARDS — I keep your cards exactly as is -->
-    <!-- ... (ضع كل كروتك اللي فوق هنا) ... -->
-
-  </section>
-</main>
-
+<!-- BANNER -->
+<div class="banner">
+    <h1>Luxury Outdoor & Decor</h1>
 </div>
 
-<footer style="margin-top:30px;text-align:center;color:rgba(255,255,255,0.6);padding:20px 0">
-  © 2025 Nook Decor — All rights reserved
-</footer>
+<!-- CATEGORIES -->
+<h2 class="section-title" id="categories">Our Categories</h2>
+
+<div class="grid">
+
+    <!-- CATEGORY 1 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?q=80&w=2070" />
+        <div class="card-title">Plants</div>
+    </div>
+
+    <!-- CATEGORY 2 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2070" />
+        <div class="card-title">Vases</div>
+    </div>
+
+    <!-- CATEGORY 3 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1586105251261-72a756497a12?q=80&w=2070" />
+        <div class="card-title">Candles</div>
+    </div>
+
+    <!-- CATEGORY 4 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?q=80&w=2070" />
+        <div class="card-title">Outdoor</div>
+    </div>
+
+    <!-- CATEGORY 5 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=2070" />
+        <div class="card-title">Wall Art</div>
+    </div>
+
+    <!-- CATEGORY 6 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2070" />
+        <div class="card-title">Furniture</div>
+    </div>
 
 </div>
 
