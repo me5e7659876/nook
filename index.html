@@ -18,6 +18,7 @@ body {
   margin: 0;
   background-color: #4b0e1f;
   color: #fff;
+  direction: ltr;
 }
 
 /* HEADER */
@@ -30,15 +31,14 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px; /* قللت الفاصل بين اللوجو والنص */
+  gap: 4px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: box-shadow 0.3s ease;
 }
 header:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
 
-/* LOGO */
 header img.logo {
-  width: 200px; 
+  width: 200px;
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -46,22 +46,19 @@ header img.logo {
 }
 header img.logo:hover { transform: scale(1.08); }
 
-/* ANIMATION */
 @keyframes floatLogo {
   0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
 
-/* HEADER TEXT */
 header .title-text {
-  font-size: 38px; /* صغّرت الحجم */
+  font-size: 38px;
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
   margin-top: 0;
 }
 
-/* HEADER ICONS */
 .header-icons {
   position: absolute;
   top: 20px;
@@ -79,7 +76,6 @@ header .title-text {
   user-select: none;
 }
 
-/* SEARCH ICON */
 #searchBtn {
   display: inline-flex;
   align-items: center;
@@ -91,7 +87,6 @@ header .title-text {
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
 
-/* MENU ICON */
 .menu-icon {
   position: absolute;
   top: 20px;
@@ -165,7 +160,6 @@ header .title-text {
 }
 #searchBarContainer { display: none; }
 
-/* MOOD TEXT */
 .mood-text {
   text-align: center;
   font-size: 24px;
@@ -236,7 +230,6 @@ header .title-text {
 }
 .no-results[aria-hidden="true"] { display: none; }
 
-/* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
@@ -258,13 +251,21 @@ footer {
 
 <body>
 
+<!-- LANGUAGE TOGGLE -->
+<div style="position:absolute; top:10px; left:10px; z-index:1000;">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</div>
+
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a class="closebtn" onclick="closeMenu()">×</a>
-  <div class="overlay-content">
+  <div class="overlay-content" id="menuLinks">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
     <a data-cat="Vases">Vases</a>
@@ -282,7 +283,7 @@ footer {
 <!-- HEADER -->
 <header>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo">
-  <div class="title-text">Nook Decor</div>
+  <div class="title-text" id="titleText">Nook Decor</div>
   <div class="header-icons">
     <span id="searchBtn">🔍</span>
     <a href="cart.html">🛒</a>
@@ -298,13 +299,13 @@ footer {
 </div>
 
 <!-- MOOD TEXT -->
-<div class="mood-text">Create your own mood</div>
+<div class="mood-text" id="moodText">Create your own mood</div>
 
 <!-- MAIN CONTENT -->
 <div class="container">
   <aside class="sidebar" id="desktopSidebar">
-    <h2>Categories</h2>
-    <ul class="categories">
+    <h2 id="categoriesTitle">Categories</h2>
+    <ul class="categories" id="categoriesList">
       <li><a class="active" data-cat="All">All</a></li>
       <li><a data-cat="Moods">Moods</a></li>
       <li><a data-cat="Vases">Vases</a></li>
@@ -371,90 +372,54 @@ footer {
       <h3>Glass and Small Vase</h3>
     </a>
 
-    <div class="no-results" aria-hidden="true">No products found.</div>
+    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
 
   </main>
 </div>
 
-<footer>© 2025 Nook Decor. All rights reserved.</footer>
+<footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
-
-function handleResize() {
-  if (window.innerWidth <= 768)
-    document.getElementById('desktopSidebar').style.display = 'none';
-  else
-    document.getElementById('desktopSidebar').style.display = 'block';
-}
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize);
-
-const desktopCategories=document.querySelectorAll('.sidebar a');
-const menuCats=document.querySelectorAll('#menuOverlay a');
-const cards=document.querySelectorAll('.card');
-const searchInput=document.getElementById('searchInput');
-const noResults=document.querySelector('.no-results');
-
-function filterProducts(category){
-  const text=searchInput.value.toLowerCase();
-  let visible=false;
-  cards.forEach(c=>{
-    const okCat = category==="All" || c.dataset.cat===category;
-    const okSearch = c.querySelector('h3').textContent.toLowerCase().includes(text);
-    if(okCat && okSearch){
-      c.style.display="block";
-      visible=true;
-    } else { c.style.display="none"; }
-  });
-  noResults.style.display = visible? "none":"block";
-}
-
-function activate(cat){
-  desktopCategories.forEach(c=>c.classList.remove('active'));
-  menuCats.forEach(c=>c.classList.remove('active'));
-  const d=document.querySelector('.sidebar a[data-cat="'+cat+'"]');
-  const m=document.querySelector('#menuOverlay a[data-cat="'+cat+'"]');
-  if(d) d.classList.add('active');
-  if(m) m.classList.add('active');
-}
-
-desktopCategories.forEach(c=>{
-  c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); };
-});
-menuCats.forEach(c=>{
-  c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); closeMenu(); };
-});
-
-const searchBtn=document.getElementById('searchBtn');
-const searchBar=document.getElementById('searchBarContainer');
-const clearBtn=document.getElementById('clearSearch');
-let open=false;
-
-searchBtn.onclick=()=>{
-  if(!open){
-    searchBar.style.display="flex";
-    setTimeout(()=>searchInput.focus(),50);
-  } else {
-    searchBar.style.display="none";
-    searchInput.value="";
-    filterProducts("All");
+// LANGUAGE DATA
+const langData = {
+  ar: {
+    title: "نوك ديكور",
+    moodText: "اصنع جوك الخاص",
+    categoriesTitle: "الفئات",
+    categories: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
+    menu: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
+    searchPlaceholder: "ابحث عن أي شيء...",
+    noResults: "لا توجد منتجات."
+  },
+  en: {
+    title: "Nook Decor",
+    moodText: "Create your own mood",
+    categoriesTitle: "Categories",
+    categories: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
+    menu: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
+    searchPlaceholder: "Search for anything...",
+    noResults: "No products found."
   }
-  open=!open;
 };
 
-clearBtn.onclick=()=>{
-  searchInput.value="";
-  filterProducts("All");
-  searchInput.focus();
-};
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", ()=>changeLanguage(langSelect.value));
 
-searchInput.oninput=()=>{
-  let cat="All";
-  desktopCategories.forEach(c=>{ if(c.classList.contains("active")) cat=c.dataset.cat; });
-  filterProducts(cat);
-};
+function changeLanguage(lang){
+  const data = langData[lang];
+  document.getElementById("titleText").textContent = data.title;
+  document.getElementById("moodText").textContent = data.moodText;
+  document.getElementById("categoriesTitle").textContent = data.categoriesTitle;
+  const cats = document.querySelectorAll('.sidebar a');
+  cats.forEach((c,i)=>c.textContent=data.categories[i]);
+  const menuCats = document.querySelectorAll('#menuOverlay a');
+  menuCats.forEach((c,i)=>c.textContent=data.menu[i]);
+  document.getElementById("searchInput").placeholder = data.searchPlaceholder;
+  document.getElementById("noResults").textContent = data.noResults;
+
+  // change direction
+  document.body.dir = (lang=="ar")?"rtl":"ltr";
+}
 </script>
 
 </body>
