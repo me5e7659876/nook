@@ -31,7 +31,10 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+
+  /* ↓↓↓ تم تقليل المسافة هنا ↓↓↓ */
+  gap: 0px;
+
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: box-shadow 0.3s ease;
 }
@@ -56,6 +59,8 @@ header .title-text {
   font-size: 38px;
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
+
+  /* ↓↓↓ تقليل المسافة فوق كلمة Nook Decor ↓↓↓ */
   margin-top: 0;
 }
 
@@ -278,6 +283,7 @@ footer {
 <header>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo">
   <div class="title-text" id="titleText">Nook Decor</div>
+
   <div class="header-icons">
     <span id="searchBtn">🔍</span>
     <a href="cart.html">🛒</a>
@@ -363,7 +369,7 @@ footer {
     </a>
 
     <a href="product10.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg" alt="Glass and Small Vases">
+      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
       <h3>Glass and Small Vases</h3>
     </a>
 
@@ -376,23 +382,19 @@ footer {
 
 <!-- SCRIPTS -->
 <script>
-// MENU open/close
 function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
 function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 
-// SEARCH BAR OPEN/CLOSE
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
   bar.style.display = bar.style.display === "none" ? "block" : "none";
 };
 
-// CLEAR SEARCH
 document.getElementById("clearSearch").onclick = function () {
   document.getElementById("searchInput").value = "";
   filterCards();
 };
 
-// REALTIME SEARCH
 document.getElementById("searchInput").addEventListener("input", filterCards);
 
 function filterCards() {
@@ -413,11 +415,7 @@ function filterCards() {
   });
 
   const noResults = document.getElementById("noResults");
-  if (visible === 0) {
-    noResults.setAttribute("aria-hidden", "false");
-  } else {
-    noResults.setAttribute("aria-hidden", "true");
-  }
+  noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
 }
 </script>
 
