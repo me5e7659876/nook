@@ -87,6 +87,7 @@ header .title-text {
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
 
+/* menu icon */
 .menu-icon {
   position: absolute;
   top: 20px;
@@ -308,8 +309,8 @@ footer {
       <li><a data-cat="Furniture">Furniture</a></li>
       <li><a data-cat="Cushions">Cushions</a></li>
       <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-    <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
-  <li><a data-cat="Games">Games</a></li>
+      <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
+      <li><a data-cat="Games">Games</a></li>
       <li><a data-cat="Wall Art">Wall Art</a></li>
     </ul>
   </aside>
@@ -373,12 +374,52 @@ footer {
 
 <footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
 
+<!-- SCRIPTS -->
 <script>
 // MENU open/close
 function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
 function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
+
+// SEARCH BAR OPEN/CLOSE
+document.getElementById("searchBtn").onclick = function () {
+  const bar = document.getElementById("searchBarContainer");
+  bar.style.display = bar.style.display === "none" ? "block" : "none";
+};
+
+// CLEAR SEARCH
+document.getElementById("clearSearch").onclick = function () {
+  document.getElementById("searchInput").value = "";
+  filterCards();
+};
+
+// REALTIME SEARCH
+document.getElementById("searchInput").addEventListener("input", filterCards);
+
+function filterCards() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+  let visible = 0;
+
+  cards.forEach(card => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+    const cat = card.dataset.cat.toLowerCase();
+
+    if (title.includes(query) || cat.includes(query)) {
+      card.style.display = "block";
+      visible++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  const noResults = document.getElementById("noResults");
+  if (visible === 0) {
+    noResults.setAttribute("aria-hidden", "false");
+  } else {
+    noResults.setAttribute("aria-hidden", "true");
+  }
+}
 </script>
 
 </body>
 </html>
-
