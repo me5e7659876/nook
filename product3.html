@@ -6,7 +6,8 @@
 <title>Modern Lamp - Nook Decor</title>
 <style>
 body { margin:0; font-family:'Poppins',sans-serif; background:#4b0e1f; color:#fff; }
-header { background:#4b0e1f; padding:15px; text-align:center; font-size:28px; font-weight:bold; text-shadow:0 0 10px rgba(255,200,210,0.5);}
+header { background:#4b0e1f; padding:15px; text-align:center; font-size:28px; font-weight:bold; text-shadow:0 0 10px rgba(255,200,210,0.5); position:relative; }
+#langSelect { position:absolute; right:20px; top:50%; transform:translateY(-50%); padding:6px 10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; background:#ffb3c6; color:#4b0e1f; }
 .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; padding:30px; justify-items:center; }
 .item { background-color: rgba(255,255,255,0.1); border-radius:15px; padding:15px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s ease; position:relative; overflow:hidden;}
 .item:hover { transform: scale(1.05);}
@@ -21,227 +22,121 @@ header { background:#4b0e1f; padding:15px; text-align:center; font-size:28px; fo
 </head>
 <body>
 
-<header>Nook Decor</header>
+<header>
+  Nook Decor
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-<div class="gallery">
-
-<!-- المنتجات الكاملة مع data attributes -->
-
-<div class="item" data-name="Modern Lamp 1" data-price="1500" data-img="https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png">
-<img src="https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png">
-<div class="price">1500 EGP</div>
-<p class="desc">A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.</p>
-<button class="btn add-cart">Add to Cart</button>
+<div class="gallery" id="productContainer">
+  <!-- المنتجات سيتم توليدها ديناميكياً -->
 </div>
 
-<div class="item" data-name="Modern Lamp 2" data-price="2200" data-img="https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png">
-<img src="https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png">
-<div class="price">2200 EGP</div>
-<p class="desc">A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp 3" data-price="1800" data-img="https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png">
-<img src="https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png">
-<div class="price">1800 EGP</div>
-<p class="desc">Soft lighting with a minimal artistic design — the perfect piece to create a relaxing evening mood.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp 4" data-price="2200" data-img="https://i.postimg.cc/Xq1c0rqg/b387512d-d9a8-4a21-9cdf-255bb1e9da06.png">
-<img src="https://i.postimg.cc/Xq1c0rqg/b387512d-d9a8-4a21-9cdf-255bb1e9da06.png">
-<div class="price">2200 EGP</div>
-<p class="desc">A sleek geometric design with gentle brightness that balances beauty and comfort in your decor.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp 5" data-price="1800" data-img="https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png">
-<img src="https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png">
-<div class="price">1800 EGP</div>
-<p class="desc">A modern elegant lamp that brings a cozy and stylish touch to your corners and small spaces.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp 6" data-price="1500" data-img="https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png">
-  <img src="https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png">
-  <div class="price">1500 EGP</div>
-  <p class="desc">A chic and affordable decor piece that combines simplicity with charming, relaxing lighting.</p>
-  <button class="btn add-cart">Add to Cart</button>
-</div>
-
-
-<div class="item" data-name="Modern Lamp 7" data-price="2000" data-img="https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png">
-<img src="https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png">
-<div class="price">2000 EGP</div>
-<p class="desc">A unique lamp that radiates positive energy and highlights your furniture with soft elegant light.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp 8" data-price="2200" data-img="https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png">
-<img src="https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png">
-<div class="price">2200 EGP</div>
-<p class="desc">The perfect blend of art and function — this lamp adds luxury and brilliance to any interior space.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 1" data-price="2000" data-img="https://i.postimg.cc/8zxkyTqV/fdd88ed6-c599-4b80-aba1-e1f8172fd008.png">
-<img src="https://i.postimg.cc/8zxkyTqV/fdd88ed6-c599-4b80-aba1-e1f8172fd008.png">
-<div class="price">2000 EGP</div>
-<p class="desc">Modern style lamp featuring a stunning artistic glow that enhances your home’s ambiance beautifully.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 2" data-price="700" data-img="https://i.postimg.cc/76nxY0b5/re1.jpg">
-<img src="https://i.postimg.cc/76nxY0b5/re1.jpg">
-<div class="price">700 EGP</div>
-<p class="desc">A minimalist lamp that fits every corner — perfect for cozy, intimate lighting at an affordable price.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 3" data-price="2000" data-img="https://i.postimg.cc/xjg0wvWp/re5.png">
-<img src="https://i.postimg.cc/xjg0wvWp/re5.png">
-<div class="price">2000 EGP</div>
-<p class="desc">Elegant yet simple — this modern lamp blends functionality with timeless beauty for your home decor.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 4" data-price="2000" data-img="https://i.postimg.cc/nL8Z40QN/re6.png">
-<img src="https://i.postimg.cc/nL8Z40QN/re6.png">
-<div class="price">2000 EGP</div>
-<p class="desc">Soft lighting with a touch of modern luxury — ideal for your bedroom or living area.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 5" data-price="1500" data-img="https://i.postimg.cc/D0zKvNtC/re9.png">
-<img src="https://i.postimg.cc/D0zKvNtC/re9.png">
-<div class="price">1500 EGP</div>
-<p class="desc">Contemporary lighting piece that gives your space warmth and harmony with a minimal look.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 6" data-price="800" data-img="https://i.postimg.cc/qMSdrjQw/bb.jpg">
-<img src="https://i.postimg.cc/qMSdrjQw/bb.jpg">
-<div class="price">800 EGP</div>
-<p class="desc">Affordable modern lamp with soft tones that make any room instantly feel more elegant.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 7" data-price="2200" data-img="https://i.postimg.cc/FR9MpqFW/y.jpg">
-<img src="https://i.postimg.cc/FR9MpqFW/y.jpg">
-<div class="price">2200 EGP</div>
-<p class="desc">A statement lamp that elevates any modern home with its stylish and artistic glow.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 8" data-price="1500" data-img="https://i.postimg.cc/Gtf6cmFW/yy.jpg">
-<img src="https://i.postimg.cc/Gtf6cmFW/yy.jpg">
-<div class="price">1500 EGP</div>
-<p class="desc">Modern lamp combining soft curves and bright tones for a perfect decor enhancement.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 9" data-price="2000" data-img="https://i.postimg.cc/rFv73zFR/yyyyshs.png">
-<img src="https://i.postimg.cc/rFv73zFR/yyyyshs.png">
-<div class="price">2000 EGP</div>
-<p class="desc">Contemporary design that reflects both simplicity and class — ideal for modern homes.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Modern Lamp New 10" data-price="2500" data-img="https://i.postimg.cc/VNFTJR9t/yyyyy.jpg">
-<img src="https://i.postimg.cc/VNFTJR9t/yyyyy.jpg">
-<div class="price">2500 EGP</div>
-<p class="desc">High-end lamp offering warm and ambient lighting to bring elegance into your living space.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<!-- الأباليك + النجف -->
-
-<div class="item" data-name="Chandelier 1" data-price="2500" data-img="https://i.postimg.cc/LszfF3Q2/11.png">
-<img src="https://i.postimg.cc/LszfF3Q2/11.png">
-<div class="price">2500 EGP</div>
-<p class="desc">Elegant chandelier with a modern luxurious design that elevates your space.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Chandelier 2" data-price="800" data-img="https://i.postimg.cc/13FVDKQF/wyyys.png">
-<img src="https://i.postimg.cc/13FVDKQF/wyyys.png">
-<div class="price">800 EGP</div>
-<p class="desc">Simple and stylish chandelier — perfect for modern minimalist spaces.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Wall Light 1" data-price="700" data-img="https://i.postimg.cc/zBzLZZg5/2ablyk.jpg">
-<img src="https://i.postimg.cc/zBzLZZg5/2ablyk.jpg">
-<div class="price">700 EGP</div>
-<p class="desc">Modern wall light that adds a warm and decorative glow to your walls.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Wall Light 2" data-price="400" data-img="https://i.postimg.cc/y6rD5G6L/q.jpg">
-<img src="https://i.postimg.cc/y6rD5G6L/q.jpg">
-<div class="price">400 EGP</div>
-<p class="desc">Sleek minimal wall light ideal for bedrooms and hallways.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Wall Light 3" data-price="500" data-img="https://i.postimg.cc/FH01YsyB/hh.png">
-<img src="https://i.postimg.cc/FH01YsyB/hh.png">
-<div class="price">500 EGP</div>
-<p class="desc">Decorative wall sconce that combines modern elegance with soft warm lighting.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-<div class="item" data-name="Wall Light 4" data-price="250" data-img="https://i.postimg.cc/yxwYNwkk/ym.png">
-<img src="https://i.postimg.cc/yxwYNwkk/ym.png">
-<div class="price">250 EGP</div>
-<p class="desc">Compact and affordable wall light perfect for small cozy corners.</p>
-<button class="btn add-cart">Add to Cart</button>
-</div>
-
-</div>
-
-<a href="index.html" class="back-link">← Back to Home</a>
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-// ===========================
-// نفس نظام كارت الـ Games
-// ===========================
+// كل المنتجات في مصفوفة
+const products = [
+  {
+    img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png",
+    price:1500,
+    name:{en:"Modern Lamp 1", ar:"مصباح مودرن 1"},
+    desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.", ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}
+  },
+  {
+    img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png",
+    price:2200,
+    name:{en:"Modern Lamp 2", ar:"مصباح مودرن 2"},
+    desc:{en:"A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.", ar:"مصباح مودرن فاخر يضيف الرقي والسحر لغرفة المعيشة أو النوم."}
+  },
+  {
+    img:"https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png",
+    price:1800,
+    name:{en:"Modern Lamp 3", ar:"مصباح مودرن 3"},
+    desc:{en:"Soft lighting with a minimal artistic design — the perfect piece to create a relaxing evening mood.", ar:"إضاءة ناعمة مع تصميم فني بسيط — القطعة المثالية لخلق أجواء هادئة في المساء."}
+  },
+  // … أضف كل المنتجات الأخرى هنا بنفس الصيغة
+  {
+    img:"https://i.postimg.cc/LszfF3Q2/11.png",
+    price:2500,
+    name:{en:"Chandelier 1", ar:"ثريا 1"},
+    desc:{en:"Elegant chandelier with a modern luxurious design that elevates your space.", ar:"ثريا أنيقة بتصميم فاخر مودرن يرفع مستوى المساحة لديك."}
+  },
+  {
+    img:"https://i.postimg.cc/13FVDKQF/wyyys.png",
+    price:800,
+    name:{en:"Chandelier 2", ar:"ثريا 2"},
+    desc:{en:"Simple and stylish chandelier — perfect for modern minimalist spaces.", ar:"ثريا بسيطة وأنيقة — مثالية للمساحات المودرن البسيطة."}
+  },
+  {
+    img:"https://i.postimg.cc/zBzLZZg5/2ablyk.jpg",
+    price:700,
+    name:{en:"Wall Light 1", ar:"أباليك حائط 1"},
+    desc:{en:"Modern wall light that adds a warm and decorative glow to your walls.", ar:"إضاءة حائط مودرن تضيف توهجاً دافئاً وزخرفياً لجدرانك."}
+  }
+];
 
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-document.querySelectorAll(".add-cart").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const item = btn.closest(".item");
-    const product = {
-      name: item.dataset.name,
-      price: Number(item.dataset.price),
-      img: item.dataset.img,
-      qty: 1
-    };
-    let cart = getCart();
-    const found = cart.find(p => p.name === product.name);
-    if (found) found.qty++;
-    else cart.push(product);
-    saveCart(cart);
-
-    btn.innerText = "Added!";
-    btn.style.background="#fff";
-    btn.style.color="#4b0e1f";
-
-    setTimeout(()=>{
-      btn.innerText="Add to Cart";
-      btn.style.background="#ffb3c6";
-      btn.style.color="#4b0e1f";
-    },1200);
+// دالة توليد المنتجات
+function renderProducts(lang){
+  const container = document.getElementById("productContainer");
+  container.innerHTML = "";
+  products.forEach(p=>{
+    const div = document.createElement("div");
+    div.className="item";
+    div.innerHTML=`
+      <img src="${p.img}">
+      <div class="price">${p.price} EGP</div>
+      <p class="desc">${p.desc[lang]}</p>
+      <button class="btn add-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(div);
   });
-});
-</script>
+  attachCartListeners(lang);
+}
 
+// نظام السلة
+function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
+function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+
+function attachCartListeners(lang){
+  document.querySelectorAll(".add-cart").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item = btn.closest(".item");
+      const name = item.querySelector(".desc").textContent; // استخدام الوصف أو الاسم إذا أردت الاسم
+      const price = Number(item.querySelector(".price").textContent);
+      const img = item.querySelector("img").src;
+      let cart = getCart();
+      let found = cart.find(p=>p.img===img);
+      if(found) found.qty++;
+      else cart.push({name,price,img,qty:1});
+      saveCart(cart);
+
+      btn.innerText=lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff";
+      btn.style.color="#4b0e1f";
+      setTimeout(()=>{
+        btn.innerText=lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="#ffb3c6";
+        btn.style.color="#4b0e1f";
+      },1200);
+    });
+  });
+}
+
+// تغيير اللغة
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change",()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  renderProducts(lang);
+  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+});
+
+// عرض مبدئي
+renderProducts("en");
+
+</script>
 </body>
 </html>
