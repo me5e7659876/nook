@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Decor Piece - Nook Decor</title>
 
+<!-- خطوط عربية وإنجليزية -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
   body {
     margin: 0;
@@ -12,6 +15,7 @@
     background-color: #4b0e1f;
     color: #fff;
     direction: ltr;
+    transition: all 0.3s ease;
   }
   header {
     background-color: #4b0e1f;
@@ -72,6 +76,7 @@
     text-decoration: none;
     font-weight: 500;
   }
+
   /* LANGUAGE SELECT */
   #langSelectContainer {
     position: absolute;
@@ -104,7 +109,8 @@
   <div class="product-details">
     <h1 id="productTitle" data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة">Premium Decor Piece</h1>
 
-    <p id="productDesc" data-en="A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling." 
+    <p id="productDesc" 
+       data-en="A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling." 
        data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والتميز لأي مكان. مثالية للديكورات الحديثة والفخمة.">
        A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling.
     </p>
@@ -126,7 +132,7 @@
   langSelect.value = savedLang;
   changeLanguage(savedLang);
 
-  langSelect.addEventListener("change", ()=>{
+  langSelect.addEventListener("change", ()=> {
     const selected = langSelect.value;
     localStorage.setItem("siteLang", selected);
     changeLanguage(selected);
@@ -134,6 +140,7 @@
 
   function changeLanguage(lang){
     document.body.dir = (lang=="ar") ? "rtl" : "ltr";
+    document.body.style.fontFamily = (lang=="ar") ? "'Cairo', sans-serif" : "'Poppins', sans-serif";
 
     // غير النصوص
     const elems = ["headerText","productTitle","productDesc","productPrice","addCartBtn","backLink"];
