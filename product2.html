@@ -27,7 +27,6 @@
     position: relative;
   }
 
-  /* Language selector */
   #langSelect {
     padding: 6px 10px;
     border-radius: 8px;
@@ -137,7 +136,7 @@
 
 <div class="container">
 
-  <!-- Example product -->
+  <!-- 1 -->
   <div class="item" data-name-en="Premium Soft Cushion" data-name-ar="وسادة ناعمة مميزة"
        data-desc-en="A super–soft cushion that adds elegance and comfort to any sofa or room."
        data-desc-ar="وسادة فائقة النعومة تضيف الأناقة والراحة لأي أريكة أو غرفة."
@@ -149,7 +148,7 @@
     <button class="btn add-to-cart">Add to Cart</button>
   </div>
 
-  <!-- Add more products with similar structure -->
+  <!-- 2 -->
   <div class="item" data-name-en="Luxury Comfort Cushion" data-name-ar="وسادة فاخرة مريحة"
        data-desc-en="Designed for style and coziness—perfect for modern home décor."
        data-desc-ar="مصممة للأناقة والراحة – مثالية لديكور المنزل العصري."
@@ -157,6 +156,54 @@
     <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
     <div class="title">Luxury Comfort Cushion</div>
     <div class="desc">Designed for style and coziness—perfect for modern home décor.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+  <!-- 3 -->
+  <div class="item" data-name-en="Modern Decorative Cushion" data-name-ar="وسادة ديكورية عصرية"
+       data-desc-en="A modern decorative cushion that enhances living rooms and balconies beautifully."
+       data-desc-ar="وسادة ديكورية عصرية تعزز جمال غرف المعيشة والشرفات."
+       data-price="370" data-img="https://i.postimg.cc/t7Q7gMv2/3.png">
+    <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
+    <div class="title">Modern Decorative Cushion</div>
+    <div class="desc">A modern decorative cushion that enhances living rooms and balconies beautifully.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+  <!-- 4 -->
+  <div class="item" data-name-en="Cozy Home Cushion" data-name-ar="وسادة مريحة للمنزل"
+       data-desc-en="Perfect blend of warmth & style for a more inviting atmosphere."
+       data-desc-ar="مزيج مثالي من الدفء والأناقة لأجواء أكثر ترحيبًا."
+       data-price="370" data-img="https://i.postimg.cc/y6wT96wv/4.png">
+    <img src="https://i.postimg.cc/y6wT96wv/4.png">
+    <div class="title">Cozy Home Cushion</div>
+    <div class="desc">Perfect blend of warmth & style for a more inviting atmosphere.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+  <!-- 5 -->
+  <div class="item" data-name-en="Elegant Pattern Cushion" data-name-ar="وسادة بنقشة أنيقة"
+       data-desc-en="Classy patterned cushion for modern & classic interiors."
+       data-desc-ar="وسادة بنقشة أنيقة للديكورات العصرية والكلاسيكية."
+       data-price="370" data-img="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
+    <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
+    <div class="title">Elegant Pattern Cushion</div>
+    <div class="desc">Classy patterned cushion for modern & classic interiors.</div>
+    <div class="price">370 EGP</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+  <!-- 6 -->
+  <div class="item" data-name-en="Ultra Soft Cushion" data-name-ar="وسادة فائقة النعومة"
+       data-desc-en="Extremely soft and premium designed for maximum comfort."
+       data-desc-ar="ناعمة جدًا ومصممة لتوفير أقصى درجات الراحة."
+       data-price="370" data-img="https://i.postimg.cc/Pf8WtsPr/re1.png">
+    <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
+    <div class="title">Ultra Soft Cushion</div>
+    <div class="desc">Extremely soft and premium designed for maximum comfort.</div>
     <div class="price">370 EGP</div>
     <button class="btn add-to-cart">Add to Cart</button>
   </div>
@@ -178,15 +225,12 @@ langSelect.addEventListener("change", () => {
   });
 
   document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
-
   document.body.dir = lang === "ar" ? "rtl" : "ltr";
 });
 </script>
 
 <script>
-/* ============================
-      CART SYSTEM
-===============================*/
+/* CART SYSTEM */
 function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
