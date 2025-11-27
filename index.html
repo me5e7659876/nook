@@ -251,14 +251,6 @@ footer {
 
 <body>
 
-<!-- LANGUAGE TOGGLE -->
-<div style="position:absolute; top:10px; left:10px; z-index:1000;">
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
-  </select>
-</div>
-
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
 
@@ -380,46 +372,9 @@ footer {
 <footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-// LANGUAGE DATA
-const langData = {
-  ar: {
-    title: "نوك ديكور",
-    moodText: "اصنع جوك الخاص",
-    categoriesTitle: "الفئات",
-    categories: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
-    menu: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
-    searchPlaceholder: "ابحث عن أي شيء...",
-    noResults: "لا توجد منتجات."
-  },
-  en: {
-    title: "Nook Decor",
-    moodText: "Create your own mood",
-    categoriesTitle: "Categories",
-    categories: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
-    menu: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
-    searchPlaceholder: "Search for anything...",
-    noResults: "No products found."
-  }
-};
-
-const langSelect = document.getElementById("langSelect");
-langSelect.addEventListener("change", ()=>changeLanguage(langSelect.value));
-
-function changeLanguage(lang){
-  const data = langData[lang];
-  document.getElementById("titleText").textContent = data.title;
-  document.getElementById("moodText").textContent = data.moodText;
-  document.getElementById("categoriesTitle").textContent = data.categoriesTitle;
-  const cats = document.querySelectorAll('.sidebar a');
-  cats.forEach((c,i)=>c.textContent=data.categories[i]);
-  const menuCats = document.querySelectorAll('#menuOverlay a');
-  menuCats.forEach((c,i)=>c.textContent=data.menu[i]);
-  document.getElementById("searchInput").placeholder = data.searchPlaceholder;
-  document.getElementById("noResults").textContent = data.noResults;
-
-  // change direction
-  document.body.dir = (lang=="ar")?"rtl":"ltr";
-}
+// MENU open/close
+function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
+function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 </script>
 
 </body>
