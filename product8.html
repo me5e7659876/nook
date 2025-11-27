@@ -20,6 +20,21 @@
       font-size: 28px;
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      position: relative;
+    }
+
+    #langSelect {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ffb3c6;
+      color: #4b0e1f;
     }
 
     .product-container {
@@ -64,96 +79,98 @@
       cursor: pointer;
       width: 100%;
     }
+
+    a.back-link {
+      color: #ffb3c6;
+      text-align: center;
+      display: block;
+      margin: 40px 0;
+      text-decoration: none;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
 
-<header>Nook Decor - Games</header>
+<header>
+  <span id="headerTitle">Nook Decor - Games</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-<div class="product-container">
+<div class="product-container" id="productContainer"></div>
 
-  <!-- 1 – Chess -->
-  <div class="product-card" data-name="Chess" data-price="450" data-img="https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg">
-    <img src="https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg"/>
-    <h2>Chess</h2>
-    <div class="price">450 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 2 – Premium Playing Cards -->
-  <div class="product-card" data-name="Premium Playing Cards" data-price="70" data-img="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png">
-    <img src="https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png"/>
-    <h2>Premium Playing Cards</h2>
-    <div class="price">70 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 3 – UNO -->
-  <div class="product-card" data-name="UNO Card Game" data-price="90" data-img="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png">
-    <img src="https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png"/>
-    <h2>UNO Card Game</h2>
-    <div class="price">90 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 4 – Domino -->
-  <div class="product-card" data-name="Classic Domino" data-price="250" data-img="https://i.postimg.cc/8CCqdNyc/download-(48).png">
-    <img src="https://i.postimg.cc/8CCqdNyc/download-(48).png"/>
-    <h2>Classic Domino</h2>
-    <div class="price">250 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-</div>
-
-<a href="index.html" style="color:#ffb3c6;text-align:center;display:block;margin:40px 0;">← Back to Home</a>
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-/* ============================
-      ADD TO CART SYSTEM
-===============================*/
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
+const products = [
+  {img:"https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg", price:450,
+   name:{en:"Chess", ar:"شطرنج"}},
 
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+  {img:"https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png", price:70,
+   name:{en:"Premium Playing Cards", ar:"ورق لعب فاخر"}},
 
-document.querySelectorAll(".add-to-cart").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const card = btn.closest(".product-card");
+  {img:"https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png", price:90,
+   name:{en:"UNO Card Game", ar:"لعبة أورنو"}},
 
-    const product = {
-      name: card.dataset.name,
-      price: parseFloat(card.dataset.price),
-      img: card.dataset.img,
-      qty: 1
-    };
+  {img:"https://i.postimg.cc/8CCqdNyc/download-(48).png", price:250,
+   name:{en:"Classic Domino", ar:"دومينو كلاسيك"}}
+];
 
-    let cart = getCart();
+function renderProducts(lang){
+  const container = document.getElementById("productContainer");
+  container.innerHTML = "";
+  products.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.dataset.name = p.name[lang];
+    card.dataset.price = p.price;
+    card.dataset.img = p.img;
 
-    // لو المنتج موجود قبل كده نزود الكمية
-    let existing = cart.find(p => p.name === product.name);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push(product);
-    }
-
-    saveCart(cart);
-
-    btn.innerText = "Added!";
-    btn.style.background = "#fff";
-    btn.style.color = "#4b0e1f";
-
-    setTimeout(() => {
-      btn.innerText = "Add to Cart";
-      btn.style.background = "#ffb3c6";
-      btn.style.color = "#4b0e1f";
-    }, 1200);
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name[lang]}">
+      <h2>${p.name[lang]}</h2>
+      <div class="price">${p.price} EGP</div>
+      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(card);
   });
+  attachCart(lang);
+}
+
+function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
+function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
+
+function attachCart(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const card = btn.closest(".product-card");
+      const product = {name:card.dataset.name, price:parseFloat(card.dataset.price), img:card.dataset.img, qty:1};
+      let cart = getCart();
+      let existing = cart.find(p=>p.name===product.name);
+      if(existing) existing.qty+=1; else cart.push(product);
+      saveCart(cart);
+      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff"; btn.style.color="#4b0e1f";
+      setTimeout(()=>{ btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200);
+    });
+  });
+}
+
+// Language switch
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change",()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  document.getElementById("headerTitle").textContent = lang==="ar"?"نوك ديكور - الألعاب":"Nook Decor - Games";
+  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(lang);
 });
+
+// Initial render
+renderProducts("en");
 </script>
 
 </body>
