@@ -276,12 +276,13 @@ footer {
   .container { flex-direction: column; }
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
-  .card img { height: 180px !important; }
+  .card img { height: 200px !important; } /* أكبر شوية على التليفون */
 }
 
 @media (max-width: 420px) {
   .content { grid-template-columns: repeat(2,1fr); }
-  .card img { height:150px !important; }
+  .card img { height:220px !important; } /* أكبر من قبل */
+  .card h3 { font-size: 20px; } /* عنوان أكبر */
   header { font-size:28px; }
 }
 </style>
@@ -483,11 +484,7 @@ searchBtn.addEventListener('click', ()=>{ if(!searchOpen){ openSearchBar(); } el
 clearBtn.addEventListener('click', ()=>{ searchInput.value=''; searchInput.focus(); let activeCategory="All"; desktopCategories.forEach(cat=>{ if(cat.classList.contains('active')) activeCategory=cat.dataset.cat; }); filterProducts(activeCategory); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && searchOpen){ closeSearchBar(); } });
 
-searchInput.addEventListener('input', ()=>{
-  let activeCategory="All";
-  desktopCategories.forEach(cat=>{ if(cat.classList.contains('active')) activeCategory=cat.dataset.cat; });
-  filterProducts(activeCategory);
-});
+searchInput.addEventListener('input', ()=>{ let activeCategory="All"; desktopCategories.forEach(cat=>{ if(cat.classList.contains('active')) activeCategory=cat.dataset.cat; }); filterProducts(activeCategory); });
 </script>
 
 </body>
