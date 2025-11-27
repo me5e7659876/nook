@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moods</title>
+  <title>Moods - Nook Decor</title>
 
   <style>
     body {
@@ -20,9 +20,23 @@
       font-size: 28px;
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
+      position: relative;
     }
 
-    /* === Product Grid === */
+    #langSelect {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ffb3c6;
+      color: #4b0e1f;
+    }
+
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -68,46 +82,79 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
     }
 
     .btn:hover {
       background-color: #ffc7d3;
     }
-
   </style>
 </head>
 <body>
 
-  <header>Moods</header>
+<header>
+  <span id="pageTitle">Moods</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-  <!-- ======== PRODUCTS SECTION ======== -->
-  <div class="products-grid">
+<div class="products-grid">
 
-    <!-- Product 1 -->
-    <div class="product-card">
-      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png" alt="Sun Flower Mood">
-      <h3>Sun Flower Mood</h3>
-      <div class="price">$39.99</div>
-      <button class="btn">Add to Cart</button>
-    </div>
-
-    <!-- Product 2 (UPDATED) -->
-    <div class="product-card">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg" alt="Modern Lamp">
-      <h3>Modern Lamp</h3>
-      <div class="price">$54.99</div>
-      <button class="btn">Add to Cart</button>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt="Plant">
-      <h3>Indoor Plant</h3>
-      <div class="price">$24.99</div>
-      <button class="btn">Add to Cart</button>
-    </div>
-
+  <!-- Product 1 -->
+  <div class="product-card" data-name-en="Sun Flower Mood" data-name-ar="مزاج زهرة الشمس" data-price="39.99" data-currency="$">
+    <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png" alt="Sun Flower Mood">
+    <h3 class="product-name">Sun Flower Mood</h3>
+    <div class="price">39.99 $</div>
+    <button class="btn add-to-cart">Add to Cart</button>
   </div>
+
+  <!-- Product 2 -->
+  <div class="product-card" data-name-en="Modern Lamp" data-name-ar="مصباح مودرن" data-price="54.99" data-currency="$">
+    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg" alt="Modern Lamp">
+    <h3 class="product-name">Modern Lamp</h3>
+    <div class="price">54.99 $</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="product-card" data-name-en="Indoor Plant" data-name-ar="نبات داخلي" data-price="24.99" data-currency="$">
+    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt="Indoor Plant">
+    <h3 class="product-name">Indoor Plant</h3>
+    <div class="price">24.99 $</div>
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+
+</div>
+
+<script>
+  const langSelect = document.getElementById('langSelect');
+  const pageTitle = document.getElementById('pageTitle');
+  const products = document.querySelectorAll('.product-card');
+
+  langSelect.addEventListener('change', () => {
+    const lang = langSelect.value;
+
+    if(lang === 'en'){
+      pageTitle.textContent = "Moods";
+      products.forEach(p => {
+        p.querySelector('.product-name').textContent = p.dataset.nameEn;
+        const price = parseFloat(p.dataset.price);
+        p.querySelector('.price').textContent = `${price} ${p.dataset.currency}`;
+        p.querySelector('.btn').textContent = "Add to Cart";
+      });
+    } else {
+      pageTitle.textContent = "المزاجات";
+      products.forEach(p => {
+        p.querySelector('.product-name').textContent = p.dataset.nameAr;
+        const price = parseFloat(p.dataset.price);
+        p.querySelector('.price').textContent = `${price} ${p.dataset.currency}`;
+        p.querySelector('.btn').textContent = "أضف إلى السلة";
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
