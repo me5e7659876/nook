@@ -6,121 +6,121 @@
 <title>Soft Cushions - Nook Decor</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
-    direction: ltr;
-  }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #4b0e1f;
+  color: #fff;
+  direction: ltr;
+}
 
-  header {
-    background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    position: relative;
-  }
+header {
+  background-color: #4b0e1f;
+  padding: 15px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
 
-  #langSelect {
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    background-color: #ffb3c6;
-    color: #4b0e1f;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+#langSelect {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  background-color: #ffb3c6;
+  color: #4b0e1f;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 35px;
-    padding: 40px 20px;
-  }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  padding: 40px 20px;
+}
 
-  .item {
-    width: 260px;
-    text-align: center;
-    background: rgba(255,255,255,0.05);
-    padding: 15px;
-    border-radius: 18px;
-    box-shadow: 0px 4px 14px rgba(0,0,0,0.45);
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease;
-  }
+.item {
+  width: 260px;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.45);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
 
-  .item:hover { transform: scale(1.03); }
+.item:hover { transform: scale(1.03); }
 
-  .item img {
-    width: 100%;
-    height: 360px;
-    object-fit: contain;
-    border-radius: 15px;
-  }
+.item img {
+  width: 100%;
+  height: 360px;
+  object-fit: contain;
+  border-radius: 15px;
+}
 
-  .title {
-    font-size: 20px;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #ffb3c6;
-  }
+.title {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ffb3c6;
+}
 
-  .desc {
-    font-size: 14px;
-    opacity: 0;
-    transform: translateY(20px);
-    max-height: 0;
-    overflow: hidden;
-    transition: .45s ease-out;
-    margin-top: 5px;
-  }
+.desc {
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  max-height: 0;
+  overflow: hidden;
+  transition: .45s ease-out;
+  margin-top: 5px;
+}
 
-  .item:hover .desc {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 150px;
-  }
+.item:hover .desc {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 150px;
+}
 
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 12px 0;
-  }
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 12px 0;
+}
 
-  .btn {
-    background-color: #ffb3c6;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: bold;
-    color: #4b0e1f;
-    cursor: pointer;
-    transition: .25s;
-  }
+.btn {
+  background-color: #ffb3c6;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  color: #4b0e1f;
+  cursor: pointer;
+  transition: .25s;
+}
 
-  .btn:hover { transform: scale(1.05); }
+.btn:hover { transform: scale(1.05); }
 
-  .back-link {
-    display: block;
-    text-align: center;
-    margin: 40px 0;
-    color: #ffb3c6;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-  }
+.back-link {
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  color: #ffb3c6;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
 </style>
 </head>
 
@@ -134,138 +134,110 @@
   </select>
 </header>
 
-<div class="container">
-
-  <!-- 1 -->
-  <div class="item" data-name-en="Premium Soft Cushion" data-name-ar="وسادة ناعمة مميزة"
-       data-desc-en="A super–soft cushion that adds elegance and comfort to any sofa or room."
-       data-desc-ar="وسادة فائقة النعومة تضيف الأناقة والراحة لأي أريكة أو غرفة."
-       data-price="370" data-img="https://i.postimg.cc/zGYRDV4x/1.png">
-    <img src="https://i.postimg.cc/zGYRDV4x/1.png">
-    <div class="title">Premium Soft Cushion</div>
-    <div class="desc">A super–soft cushion that adds elegance and comfort to any sofa or room.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 2 -->
-  <div class="item" data-name-en="Luxury Comfort Cushion" data-name-ar="وسادة فاخرة مريحة"
-       data-desc-en="Designed for style and coziness—perfect for modern home décor."
-       data-desc-ar="مصممة للأناقة والراحة – مثالية لديكور المنزل العصري."
-       data-price="370" data-img="https://i.postimg.cc/0Q4bTQpn/2.png">
-    <img src="https://i.postimg.cc/0Q4bTQpn/2.png">
-    <div class="title">Luxury Comfort Cushion</div>
-    <div class="desc">Designed for style and coziness—perfect for modern home décor.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 3 -->
-  <div class="item" data-name-en="Modern Decorative Cushion" data-name-ar="وسادة ديكورية عصرية"
-       data-desc-en="A modern decorative cushion that enhances living rooms and balconies beautifully."
-       data-desc-ar="وسادة ديكورية عصرية تعزز جمال غرف المعيشة والشرفات."
-       data-price="370" data-img="https://i.postimg.cc/t7Q7gMv2/3.png">
-    <img src="https://i.postimg.cc/t7Q7gMv2/3.png">
-    <div class="title">Modern Decorative Cushion</div>
-    <div class="desc">A modern decorative cushion that enhances living rooms and balconies beautifully.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 4 -->
-  <div class="item" data-name-en="Cozy Home Cushion" data-name-ar="وسادة مريحة للمنزل"
-       data-desc-en="Perfect blend of warmth & style for a more inviting atmosphere."
-       data-desc-ar="مزيج مثالي من الدفء والأناقة لأجواء أكثر ترحيبًا."
-       data-price="370" data-img="https://i.postimg.cc/y6wT96wv/4.png">
-    <img src="https://i.postimg.cc/y6wT96wv/4.png">
-    <div class="title">Cozy Home Cushion</div>
-    <div class="desc">Perfect blend of warmth & style for a more inviting atmosphere.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 5 -->
-  <div class="item" data-name-en="Elegant Pattern Cushion" data-name-ar="وسادة بنقشة أنيقة"
-       data-desc-en="Classy patterned cushion for modern & classic interiors."
-       data-desc-ar="وسادة بنقشة أنيقة للديكورات العصرية والكلاسيكية."
-       data-price="370" data-img="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
-    <img src="https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png">
-    <div class="title">Elegant Pattern Cushion</div>
-    <div class="desc">Classy patterned cushion for modern & classic interiors.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- 6 -->
-  <div class="item" data-name-en="Ultra Soft Cushion" data-name-ar="وسادة فائقة النعومة"
-       data-desc-en="Extremely soft and premium designed for maximum comfort."
-       data-desc-ar="ناعمة جدًا ومصممة لتوفير أقصى درجات الراحة."
-       data-price="370" data-img="https://i.postimg.cc/Pf8WtsPr/re1.png">
-    <img src="https://i.postimg.cc/Pf8WtsPr/re1.png">
-    <div class="title">Ultra Soft Cushion</div>
-    <div class="desc">Extremely soft and premium designed for maximum comfort.</div>
-    <div class="price">370 EGP</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-</div>
+<div class="container" id="productContainer"></div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+// PRODUCT DATA
+const products = [
+  {
+    img: "https://i.postimg.cc/zGYRDV4x/1.png",
+    price: 370,
+    name: { en: "Premium Soft Cushion", ar: "وسادة ناعمة مميزة" },
+    desc: { en: "A super–soft cushion that adds elegance and comfort to any sofa or room.", ar: "وسادة فائقة النعومة تضيف الأناقة والراحة لأي أريكة أو غرفة." }
+  },
+  {
+    img: "https://i.postimg.cc/0Q4bTQpn/2.png",
+    price: 370,
+    name: { en: "Luxury Comfort Cushion", ar: "وسادة فاخرة مريحة" },
+    desc: { en: "Designed for style and coziness—perfect for modern home décor.", ar: "مصممة للأناقة والراحة – مثالية لديكور المنزل العصري." }
+  },
+  {
+    img: "https://i.postimg.cc/t7Q7gMv2/3.png",
+    price: 370,
+    name: { en: "Modern Decorative Cushion", ar: "وسادة ديكورية عصرية" },
+    desc: { en: "A modern decorative cushion that enhances living rooms and balconies beautifully.", ar: "وسادة ديكورية عصرية تعزز جمال غرف المعيشة والشرفات." }
+  },
+  {
+    img: "https://i.postimg.cc/y6wT96wv/4.png",
+    price: 370,
+    name: { en: "Cozy Home Cushion", ar: "وسادة مريحة للمنزل" },
+    desc: { en: "Perfect blend of warmth & style for a more inviting atmosphere.", ar: "مزيج مثالي من الدفء والأناقة لأجواء أكثر ترحيبًا." }
+  },
+  {
+    img: "https://i.postimg.cc/R0s70v7W/4e3bf26b-f1a1-4512-852a-2a3ad6ef6835.png",
+    price: 370,
+    name: { en: "Elegant Pattern Cushion", ar: "وسادة بنقشة أنيقة" },
+    desc: { en: "Classy patterned cushion for modern & classic interiors.", ar: "وسادة بنقشة أنيقة للديكورات العصرية والكلاسيكية." }
+  },
+  {
+    img: "https://i.postimg.cc/Pf8WtsPr/re1.png",
+    price: 370,
+    name: { en: "Ultra Soft Cushion", ar: "وسادة فائقة النعومة" },
+    desc: { en: "Extremely soft and premium designed for maximum comfort.", ar: "ناعمة جدًا ومصممة لتوفير أقصى درجات الراحة." }
+  }
+];
+
+// FUNCTION TO RENDER PRODUCTS
+function renderProducts(lang) {
+  const container = document.getElementById("productContainer");
+  container.innerHTML = "";
+  products.forEach(prod => {
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <img src="${prod.img}">
+      <div class="title">${prod.name[lang]}</div>
+      <div class="desc">${prod.desc[lang]}</div>
+      <div class="price">${prod.price} EGP</div>
+      <button class="btn add-to-cart">${lang === "ar" ? "أضف إلى السلة" : "Add to Cart"}</button>
+    `;
+    container.appendChild(div);
+  });
+  attachCartListeners(lang);
+}
+
+// CART FUNCTIONALITY
+function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
+function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
+
+function attachCartListeners(lang) {
+  document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".item");
+      const name = item.querySelector(".title").textContent;
+      const price = parseFloat(item.querySelector(".price").textContent);
+      const img = item.querySelector("img").src;
+
+      let cart = getCart();
+      let existing = cart.find(p => p.name === name);
+      if (existing) { existing.qty += 1; } else { cart.push({ name, price, img, qty: 1 }); }
+      saveCart(cart);
+
+      btn.innerText = lang === "ar" ? "تم الإضافة!" : "Added!";
+      btn.style.background = "#fff";
+      btn.style.color = "#4b0e1f";
+      setTimeout(() => {
+        btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
+        btn.style.background = "#ffb3c6";
+        btn.style.color = "#4b0e1f";
+      }, 1200);
+    });
+  });
+}
+
 // LANGUAGE SWITCH
 const langSelect = document.getElementById("langSelect");
-
 langSelect.addEventListener("change", () => {
   const lang = langSelect.value;
-
-  document.querySelectorAll(".item").forEach(item => {
-    item.querySelector(".title").textContent = lang === "ar" ? item.dataset.nameAr : item.dataset.nameEn;
-    item.querySelector(".desc").textContent = lang === "ar" ? item.dataset.descAr : item.dataset.descEn;
-  });
-
+  renderProducts(lang);
   document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
   document.body.dir = lang === "ar" ? "rtl" : "ltr";
 });
-</script>
 
-<script>
-/* CART SYSTEM */
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-document.querySelectorAll(".add-to-cart").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const item = btn.closest(".item");
-    const lang = langSelect.value;
-    const product = {
-      name: lang === "ar" ? item.dataset.nameAr : item.dataset.nameEn,
-      price: parseFloat(item.dataset.price),
-      img: item.dataset.img,
-      qty: 1
-    };
-
-    let cart = getCart();
-    let existing = cart.find(p => p.name === product.name);
-    if (existing) { existing.qty += 1; } else { cart.push(product); }
-    saveCart(cart);
-
-    btn.innerText = lang === "ar" ? "تم الإضافة!" : "Added!";
-    btn.style.background = "#fff";
-    btn.style.color = "#4b0e1f";
-
-    setTimeout(() => {
-      btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
-      btn.style.background = "#ffb3c6";
-      btn.style.color = "#4b0e1f";
-    }, 1200);
-  });
-});
+// INITIAL RENDER
+renderProducts('en');
 </script>
 
 </body>
