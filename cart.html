@@ -11,12 +11,28 @@ body {
   color:#fff;
   font-family:'Poppins',sans-serif;
   padding:20px;
+  direction: ltr;
 }
 
 h1 {
   text-align:center;
   margin-bottom:30px;
   text-shadow:0 0 10px rgba(255,200,210,0.5);
+}
+
+#langSelectContainer {
+  text-align:center;
+  margin-bottom:20px;
+}
+
+#langSelect {
+  padding:6px 10px;
+  border-radius:8px;
+  border:none;
+  font-weight:bold;
+  color:#4b0e1f;
+  background:#ffb3c6;
+  cursor:pointer;
 }
 
 .cart-item {
@@ -89,15 +105,50 @@ h1 {
 
 <body>
 
-<h1>Your Cart 🛒</h1>
+<!-- LANGUAGE SELECT -->
+<div id="langSelectContainer">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</div>
+
+<h1 id="cartTitle">Your Cart 🛒</h1>
 <div id="cartItems"></div>
 
 <div class="total-box" id="totalBox">Total: 0 EGP</div>
 
-<a class="back-link" href="index.html">← Back to Home</a>
+<a class="back-link" href="index.html" id="backLink">← Back to Home</a>
 
 <script>
-/* ================ CART FUNCTIONS ================ */
+/* ================= CART FUNCTIONS ================= */
+
+const langData = {
+  en: {
+    cartTitle: "Your Cart 🛒",
+    emptyCart: "Your cart is empty.",
+    total: "Total",
+    remove: "Remove",
+    back: "← Back to Home"
+  },
+  ar: {
+    cartTitle: "سلة التسوق 🛒",
+    emptyCart: "السلة فاضية",
+    total: "المجموع",
+    remove: "إزالة",
+    back: "← العودة للرئيسية"
+  }
+};
+
+const langSelect = document.getElementById("langSelect");
+let currentLang = localStorage.getItem("siteLang") || "en";
+langSelect.value = currentLang;
+
+langSelect.addEventListener("change", ()=>{
+  currentLang = langSelect.value;
+  localStorage.setItem("siteLang", currentLang);
+  renderCart();
+});
 
 function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
@@ -110,12 +161,16 @@ function saveCart(cart) {
 function renderCart() {
   let cart = getCart();
   let container = document.getElementById("cartItems");
+  const data = langData[currentLang];
+
+  document.getElementById("cartTitle").textContent = data.cartTitle;
+  document.getElementById("backLink").textContent = data.back;
 
   container.innerHTML = "";
 
   if (cart.length === 0) {
-    container.innerHTML = "<h2 style='text-align:center;'>السلة فاضية</h2>";
-    document.getElementById("totalBox").innerText = "Total: 0 EGP";
+    container.innerHTML = `<h2 style="text-align:center;">${data.emptyCart}</h2>`;
+    document.getElementById("totalBox").innerText = `${data.total}: 0 EGP`;
     return;
   }
 
@@ -127,24 +182,21 @@ function renderCart() {
     container.innerHTML += `
       <div class="cart-item">
         <img src="${item.img}">
-        
         <div class="item-info">
           <h3>${item.name}</h3>
           <div class="price">${item.price} EGP</div>
-
           <div class="qty-box">
             <button onclick="decreaseQty(${index})">-</button>
             <span>${item.qty}</span>
             <button onclick="increaseQty(${index})">+</button>
           </div>
         </div>
-
-        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        <button class="remove-btn" onclick="removeItem(${index})">${data.remove}</button>
       </div>
     `;
   });
 
-  document.getElementById("totalBox").innerText = `Total: ${total} EGP`;
+  document.getElementById("totalBox").innerText = `${data.total}: ${total} EGP`;
 }
 
 function increaseQty(i) {
