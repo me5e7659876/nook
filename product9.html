@@ -37,22 +37,6 @@
       color: #4b0e1f;
     }
 
-    /* SEARCH BAR */
-    .search-box {
-      width: 90%;
-      margin: 20px auto 0;
-      text-align: center;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      font-size: 16px;
-      outline: none;
-    }
-
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -116,11 +100,6 @@
   </select>
 </header>
 
-<!-- SEARCH BAR -->
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search products...">
-</div>
-
 <div class="products-grid">
 
   <!-- Product 1 -->
@@ -153,17 +132,12 @@
   const langSelect = document.getElementById('langSelect');
   const pageTitle = document.getElementById('pageTitle');
   const products = document.querySelectorAll('.product-card');
-  const searchInput = document.getElementById('searchInput');
 
-  // ------------ LANGUAGE SWITCH ------------
-  langSelect.addEventListener('change', applyLanguage);
-
-  function applyLanguage() {
+  langSelect.addEventListener('change', () => {
     const lang = langSelect.value;
 
     if (lang === 'en') {
       pageTitle.textContent = "Moods";
-      searchInput.placeholder = "Search products...";
       products.forEach(p => {
         p.querySelector('.product-name').textContent = p.dataset.nameEn;
         p.querySelector('.btn').textContent = "Add to Cart";
@@ -171,33 +145,12 @@
 
     } else {
       pageTitle.textContent = "المزاجات";
-      searchInput.placeholder = "ابحث عن منتج...";
       products.forEach(p => {
         p.querySelector('.product-name').textContent = p.dataset.nameAr;
         p.querySelector('.btn').textContent = "أضف إلى السلة";
       });
     }
-
-    filterProducts(); // update search after language change
-  }
-
-  // ------------ SEARCH FUNCTION ------------
-  searchInput.addEventListener('keyup', filterProducts);
-
-  function filterProducts() {
-    const text = searchInput.value.toLowerCase();
-    const lang = langSelect.value;
-
-    products.forEach(p => {
-      const name = lang === "en" ? p.dataset.nameEn.toLowerCase() : p.dataset.nameAr.toLowerCase();
-
-      if (name.includes(text)) {
-        p.style.display = "block";
-      } else {
-        p.style.display = "none";
-      }
-    });
-  }
+  });
 </script>
 
 </body>
