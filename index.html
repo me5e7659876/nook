@@ -18,7 +18,7 @@ body {
   margin: 0;
   background-color: #4b0e1f;
   color: #fff;
-  transition: all 0.3s ease;
+  direction: ltr;
 }
 
 /* HEADER */
@@ -37,9 +37,8 @@ header {
 }
 header:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
 
-/* LOGO */
 header img.logo {
-  width: 200px; 
+  width: 200px;
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -47,14 +46,12 @@ header img.logo {
 }
 header img.logo:hover { transform: scale(1.08); }
 
-/* ANIMATION */
 @keyframes floatLogo {
   0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
 
-/* HEADER TEXT */
 header .title-text {
   font-size: 38px;
   font-weight: 700;
@@ -62,7 +59,6 @@ header .title-text {
   margin-top: 0;
 }
 
-/* HEADER ICONS */
 .header-icons {
   position: absolute;
   top: 20px;
@@ -80,7 +76,6 @@ header .title-text {
   user-select: none;
 }
 
-/* SEARCH ICON */
 #searchBtn {
   display: inline-flex;
   align-items: center;
@@ -92,7 +87,6 @@ header .title-text {
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
 
-/* MENU ICON */
 .menu-icon {
   position: absolute;
   top: 20px;
@@ -100,17 +94,6 @@ header .title-text {
   font-size: 34px;
   cursor: pointer;
   z-index: 999;
-}
-
-/* LANGUAGE SWITCHER */
-.language-switcher {
-  position: absolute;
-  top: 20px;
-  left: 70px;
-  font-size: 18px;
-  cursor: pointer;
-  color: #fff;
-  user-select: none;
 }
 
 /* FULLSCREEN MENU */
@@ -177,7 +160,6 @@ header .title-text {
 }
 #searchBarContainer { display: none; }
 
-/* MOOD TEXT */
 .mood-text {
   text-align: center;
   font-size: 24px;
@@ -238,11 +220,6 @@ header .title-text {
   margin-top: 12px;
   font-size: 18px;
 }
-.card .desc {
-  color: #ffb3c6;
-  font-size: 14px;
-  margin-top: 4px;
-}
 
 .no-results {
   grid-column: 1/-1;
@@ -253,7 +230,6 @@ header .title-text {
 }
 .no-results[aria-hidden="true"] { display: none; }
 
-/* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
@@ -275,16 +251,21 @@ footer {
 
 <body>
 
+<!-- LANGUAGE TOGGLE -->
+<div style="position:absolute; top:10px; left:10px; z-index:1000;">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</div>
+
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
-
-<!-- LANGUAGE SWITCHER -->
-<div class="language-switcher" onclick="toggleLanguage()">ع / En</div>
 
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a class="closebtn" onclick="closeMenu()">×</a>
-  <div class="overlay-content">
+  <div class="overlay-content" id="menuLinks">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
     <a data-cat="Vases">Vases</a>
@@ -324,7 +305,7 @@ footer {
 <div class="container">
   <aside class="sidebar" id="desktopSidebar">
     <h2 id="categoriesTitle">Categories</h2>
-    <ul class="categories">
+    <ul class="categories" id="categoriesList">
       <li><a class="active" data-cat="All">All</a></li>
       <li><a data-cat="Moods">Moods</a></li>
       <li><a data-cat="Vases">Vases</a></li>
@@ -340,177 +321,89 @@ footer {
   </aside>
 
   <main class="content" id="content">
-    <!-- المنتجات مع الوصف باللغتين -->
-    <a href="product9.html" class="card" data-cat="Moods" data-desc-en="Beautiful mood creation ideas" data-desc-ar="أفكار جميلة لإنشاء المزاج">
+
+    <a href="product9.html" class="card" data-cat="Moods">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
-      <p class="desc">Beautiful mood creation ideas</p>
     </a>
 
-    <a href="product3.html" class="card" data-cat="Lighting" data-desc-en="Modern lighting for any space" data-desc-ar="إضاءة حديثة لأي مكان">
+    <a href="product3.html" class="card" data-cat="Lighting">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
       <h3>Lighting</h3>
-      <p class="desc">Modern lighting for any space</p>
     </a>
 
-    <a href="product1.html" class="card" data-cat="Vases" data-desc-en="Elegant vases for home decor" data-desc-ar="فازات أنيقة لديكور المنزل">
+    <a href="product1.html" class="card" data-cat="Vases">
       <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
       <h3>Vases</h3>
-      <p class="desc">Elegant vases for home decor</p>
     </a>
 
-    <a href="product2.html" class="card" data-cat="Cushions" data-desc-en="Soft cushions in various colors" data-desc-ar="وسائد ناعمة بألوان متنوعة">
+    <a href="product2.html" class="card" data-cat="Cushions">
       <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
       <h3>Cushions</h3>
-      <p class="desc">Soft cushions in various colors</p>
     </a>
 
-    <a href="product4.html" class="card" data-cat="Glass Candles" data-desc-en="Scented glass candles" data-desc-ar="شموع زجاجية معطرة">
+    <a href="product4.html" class="card" data-cat="Glass Candles">
       <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
       <h3>Glass Candles</h3>
-      <p class="desc">Scented glass candles</p>
     </a>
 
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring" data-desc-en="Durable outdoor flooring options" data-desc-ar="خيارات أرضيات خارجية متينة">
+    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
       <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
       <h3>Outdoor Flooring</h3>
-      <p class="desc">Durable outdoor flooring options</p>
     </a>
 
-    <a href="product6.html" class="card" data-cat="Wooden Rack" data-desc-en="Handcrafted wooden racks" data-desc-ar="أرفف خشبية مصنوعة يدوياً">
+    <a href="product6.html" class="card" data-cat="Wooden Rack">
       <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
       <h3>Wooden Rack</h3>
-      <p class="desc">Handcrafted wooden racks</p>
     </a>
 
-    <a href="product7.html" class="card" data-cat="Wall Art" data-desc-en="Stylish wall art pieces" data-desc-ar="قطع فنية أنيقة للجدران">
+    <a href="product7.html" class="card" data-cat="Wall Art">
       <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
       <h3>Wall Art</h3>
-      <p class="desc">Stylish wall art pieces</p>
     </a>
 
-    <a href="product8.html" class="card" data-cat="Games" data-desc-en="Fun board games for family" data-desc-ar="ألعاب لوحية ممتعة للعائلة">
+    <a href="product8.html" class="card" data-cat="Games">
       <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
       <h3>Games</h3>
-      <p class="desc">Fun board games for family</p>
     </a>
 
-    <a href="product10.html" class="card" data-cat="Vases" data-desc-en="Glass and small decorative vase" data-desc-ar="فازة زجاجية وصغيرة للديكور">
+    <a href="product10.html" class="card" data-cat="Vases">
       <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg" alt="Glass and Small Vase">
       <h3>Glass and Small Vase</h3>
-      <p class="desc">Glass and small decorative vase</p>
     </a>
 
-    <div class="no-results" id="noResults" aria-hidden="true">No products found.</div>
+    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
 
   </main>
 </div>
 
-<footer>© 2025 Nook Decor. All rights reserved.</footer>
+<footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
-
-function handleResize() {
-  if (window.innerWidth <= 768)
-    document.getElementById('desktopSidebar').style.display = 'none';
-  else
-    document.getElementById('desktopSidebar').style.display = 'block';
-}
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize);
-
-// CATEGORY FILTER
-const desktopCategories=document.querySelectorAll('.sidebar a');
-const menuCats=document.querySelectorAll('#menuOverlay a');
-const cards=document.querySelectorAll('.card');
-const searchInput=document.getElementById('searchInput');
-const noResults=document.getElementById('noResults');
-
-function filterProducts(category){
-  const text=searchInput.value.toLowerCase();
-  let visible=false;
-  cards.forEach(c=>{
-    const okCat = category==="All" || c.dataset.cat===category;
-    const okSearch = c.querySelector('h3').textContent.toLowerCase().includes(text);
-    if(okCat && okSearch){
-      c.style.display="block";
-      visible=true;
-    } else { c.style.display="none"; }
-  });
-  noResults.style.display = visible? "none":"block";
-}
-
-function activate(cat){
-  desktopCategories.forEach(c=>c.classList.remove('active'));
-  menuCats.forEach(c=>c.classList.remove('active'));
-  const d=document.querySelector('.sidebar a[data-cat="'+cat+'"]');
-  const m=document.querySelector('#menuOverlay a[data-cat="'+cat+'"]');
-  if(d) d.classList.add('active');
-  if(m) m.classList.add('active');
-}
-
-desktopCategories.forEach(c=>{ c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); }; });
-menuCats.forEach(c=>{ c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); closeMenu(); }; });
-
-// SEARCH
-const searchBtn=document.getElementById('searchBtn');
-const searchBar=document.getElementById('searchBarContainer');
-const clearBtn=document.getElementById('clearSearch');
-let open=false;
-
-searchBtn.onclick=()=>{
-  if(!open){
-    searchBar.style.display="flex";
-    setTimeout(()=>searchInput.focus(),50);
-  } else {
-    searchBar.style.display="none";
-    searchInput.value="";
-    filterProducts("All");
-  }
-  open=!open;
-};
-
-clearBtn.onclick=()=>{
-  searchInput.value="";
-  filterProducts("All");
-  searchInput.focus();
-};
-
-searchInput.oninput=()=>{
-  let cat="All";
-  desktopCategories.forEach(c=>{ if(c.classList.contains("active")) cat=c.dataset.cat; });
-  filterProducts(cat);
-};
-
-// LANGUAGE SWITCHER
-let currentLang="en";
-function toggleLanguage(){
-  currentLang = currentLang==="en"?"ar":"en";
-  changeLanguage(currentLang);
-}
-
+// LANGUAGE DATA
 const langData = {
-  en:{
-    title:"Nook Decor",
-    moodText:"Create your own mood",
-    categoriesTitle:"Categories",
-    categories:["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
-    menu:["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
-    searchPlaceholder:"Search for anything...",
-    noResults:"No products found."
+  ar: {
+    title: "نوك ديكور",
+    moodText: "اصنع جوك الخاص",
+    categoriesTitle: "الفئات",
+    categories: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
+    menu: ["الكل","مزاجات","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","رف خشبي","ألعاب","فن جداري"],
+    searchPlaceholder: "ابحث عن أي شيء...",
+    noResults: "لا توجد منتجات."
   },
-  ar:{
-    title:"نوك ديكور",
-    moodText:"اصنع مزاجك الخاص",
-    categoriesTitle:"الأقسام",
-    categories:["الكل","مزاج","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","أرفف خشبية","ألعاب","فن جداري"],
-    menu:["الكل","مزاج","فازات","أرضيات خارجية","إضاءة","شموع زجاجية","أثاث","وسائد","أرفف خشبية","ألعاب","فن جداري"],
-    searchPlaceholder:"ابحث عن أي شيء...",
-    noResults:"لا توجد منتجات."
+  en: {
+    title: "Nook Decor",
+    moodText: "Create your own mood",
+    categoriesTitle: "Categories",
+    categories: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
+    menu: ["All","Moods","Vases","Outdoor Flooring","Lighting","Glass Candles","Furniture","Cushions","Wooden Rack","Games","Wall Art"],
+    searchPlaceholder: "Search for anything...",
+    noResults: "No products found."
   }
 };
+
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", ()=>changeLanguage(langSelect.value));
 
 function changeLanguage(lang){
   const data = langData[lang];
@@ -523,13 +416,7 @@ function changeLanguage(lang){
   menuCats.forEach((c,i)=>c.textContent=data.menu[i]);
   document.getElementById("searchInput").placeholder = data.searchPlaceholder;
   document.getElementById("noResults").textContent = data.noResults;
-  
-  // update product descriptions
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(c=>{
-    c.querySelector('.desc').textContent = (lang==="ar") ? c.dataset.descAr : c.dataset.descEn;
-  });
-  
+
   // change direction
   document.body.dir = (lang=="ar")?"rtl":"ltr";
 }
