@@ -9,94 +9,122 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
-    direction: ltr;
-    transition: all 0.3s ease;
-  }
-  header {
-    background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255,200,210,0.5);
-  }
-  .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 30px;
-    gap: 30px;
-  }
-  .product-image {
-    max-width: 400px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-  .product-details {
-    max-width: 400px;
-  }
-  .product-details h1 {
-    margin-top: 0;
-    font-size: 28px;
-    color: #ffb3c6;
-  }
-  .product-details p {
-    line-height: 1.6;
-    font-size: 16px;
-  }
-  .price {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 15px 0;
-  }
-  .btn {
-    background-color: #ffb3c6;
-    border: none;
-    color: #4b0e1f;
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .btn:hover {
-    background-color: #ffc7d3;
-  }
-  .back-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #ffb3c6;
-    text-decoration: none;
-    font-weight: 500;
-  }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #4b0e1f;
+  color: #fff;
+  transition: all 0.3s ease;
+}
 
-  /* LANGUAGE SELECT */
-  #langSelectContainer {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
+/* HEADER */
+header {
+  background-color: #4b0e1f;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 0 10px rgba(255,200,210,0.5);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* LANGUAGE SELECT */
+#langSelect {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: #ffb3c6;
+  color: #4b0e1f;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* PRODUCT SECTION */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 30px;
+}
+
+.product-image {
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.product-details {
+  max-width: 400px;
+}
+
+.product-details h1 {
+  margin-top: 0;
+  font-size: 28px;
+  color: #ffb3c6;
+}
+
+.product-details p {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.btn {
+  background-color: #ffb3c6;
+  border: none;
+  color: #4b0e1f;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #ffc7d3;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #ffb3c6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .product-container {
+    flex-direction: column;
+    align-items: center;
   }
+  .product-image, .product-details { max-width: 90%; }
+}
 </style>
 </head>
 <body>
 
-<!-- LANGUAGE SELECT -->
-<div id="langSelectContainer">
+<header>
+  <h1 id="headerText">Nook Decor</h1>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
-</div>
-
-<header id="headerText">Nook Decor</header>
+</header>
 
 <div class="product-container">
 
@@ -125,30 +153,29 @@
 </div>
 
 <script>
-  const langSelect = document.getElementById("langSelect");
+const langSelect = document.getElementById("langSelect");
 
-  // عند تحميل الصفحة اقرأ اللغة من localStorage
-  const savedLang = localStorage.getItem("siteLang") || "en";
-  langSelect.value = savedLang;
-  changeLanguage(savedLang);
+// قراءة اللغة المحفوظة
+let savedLang = localStorage.getItem("siteLang") || "en";
+langSelect.value = savedLang;
+changeLanguage(savedLang);
 
-  langSelect.addEventListener("change", ()=> {
-    const selected = langSelect.value;
-    localStorage.setItem("siteLang", selected);
-    changeLanguage(selected);
+langSelect.addEventListener("change", ()=>{
+  const selected = langSelect.value;
+  localStorage.setItem("siteLang", selected);
+  changeLanguage(selected);
+});
+
+function changeLanguage(lang){
+  document.body.dir = (lang=="ar") ? "rtl" : "ltr";
+  document.body.style.fontFamily = (lang=="ar") ? "'Cairo', sans-serif" : "'Poppins', sans-serif";
+
+  const elems = ["headerText","productTitle","productDesc","productPrice","addCartBtn","backLink"];
+  elems.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && el.dataset[lang]) el.textContent = el.dataset[lang];
   });
-
-  function changeLanguage(lang){
-    document.body.dir = (lang=="ar") ? "rtl" : "ltr";
-    document.body.style.fontFamily = (lang=="ar") ? "'Cairo', sans-serif" : "'Poppins', sans-serif";
-
-    // غير النصوص
-    const elems = ["headerText","productTitle","productDesc","productPrice","addCartBtn","backLink"];
-    elems.forEach(id=>{
-      const el = document.getElementById(id);
-      if(el && el.dataset[lang]) el.textContent = el.dataset[lang];
-    });
-  }
+}
 </script>
 
 </body>
