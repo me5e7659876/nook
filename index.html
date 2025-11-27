@@ -220,6 +220,11 @@ header .title-text {
   margin-top: 12px;
   font-size: 18px;
 }
+.card .desc {
+  color: #ffb3c6;
+  font-size: 14px;
+  margin-top: 4px;
+}
 
 .no-results {
   grid-column: 1/-1;
@@ -322,54 +327,23 @@ footer {
 
   <main class="content" id="content">
 
-    <a href="product9.html" class="card" data-cat="Moods">
+    <!-- EXAMPLES OF CARDS WITH DUAL-LANGUAGE DESCRIPTIONS -->
+    <a href="product9.html" class="card" data-cat="Moods" data-desc-en="Beautiful mood creation ideas" data-desc-ar="أفكار جميلة لإنشاء المزاج">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
       <h3>Moods</h3>
+      <p class="desc">Beautiful mood creation ideas</p>
     </a>
 
-    <a href="product3.html" class="card" data-cat="Lighting">
+    <a href="product3.html" class="card" data-cat="Lighting" data-desc-en="Modern lighting for every corner" data-desc-ar="إضاءة عصرية لكل زاوية">
       <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
       <h3>Lighting</h3>
+      <p class="desc">Modern lighting for every corner</p>
     </a>
 
-    <a href="product1.html" class="card" data-cat="Vases">
+    <a href="product1.html" class="card" data-cat="Vases" data-desc-en="Elegant vases for your home" data-desc-ar="فازات أنيقة لمنزلك">
       <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
       <h3>Vases</h3>
-    </a>
-
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-
-    <a href="product10.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg" alt="Glass and Small Vase">
-      <h3>Glass and Small Vase</h3>
+      <p class="desc">Elegant vases for your home</p>
     </a>
 
     <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
@@ -402,6 +376,7 @@ const langData = {
   }
 };
 
+// LANGUAGE SWITCH
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change", ()=>changeLanguage(langSelect.value));
 
@@ -410,16 +385,90 @@ function changeLanguage(lang){
   document.getElementById("titleText").textContent = data.title;
   document.getElementById("moodText").textContent = data.moodText;
   document.getElementById("categoriesTitle").textContent = data.categoriesTitle;
+
   const cats = document.querySelectorAll('.sidebar a');
   cats.forEach((c,i)=>c.textContent=data.categories[i]);
   const menuCats = document.querySelectorAll('#menuOverlay a');
   menuCats.forEach((c,i)=>c.textContent=data.menu[i]);
+
   document.getElementById("searchInput").placeholder = data.searchPlaceholder;
   document.getElementById("noResults").textContent = data.noResults;
 
-  // change direction
   document.body.dir = (lang=="ar")?"rtl":"ltr";
+
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(c=>{
+    const desc = (lang=="ar") ? c.dataset.descAr : c.dataset.descEn;
+    c.querySelector('.desc').textContent = desc;
+  });
 }
+
+// MENU OPEN/CLOSE
+function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
+function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
+
+// RESPONSIVE
+function handleResize() {
+  if (window.innerWidth <= 768) document.getElementById('desktopSidebar').style.display = 'none';
+  else document.getElementById('desktopSidebar').style.display = 'block';
+}
+window.addEventListener('load', handleResize);
+window.addEventListener('resize', handleResize);
+
+// FILTER
+const desktopCategories=document.querySelectorAll('.sidebar a');
+const menuCats=document.querySelectorAll('#menuOverlay a');
+const cards=document.querySelectorAll('.card');
+const searchInput=document.getElementById('searchInput');
+const noResults=document.getElementById('noResults');
+
+function filterProducts(category){
+  const text=searchInput.value.toLowerCase();
+  let visible=false;
+  cards.forEach(c=>{
+    const okCat = category==="All" || c.dataset.cat===category;
+    const okSearch = c.querySelector('h3').textContent.toLowerCase().includes(text);
+    if(okCat && okSearch){ c.style.display="block"; visible=true; } 
+    else{ c.style.display="none"; }
+  });
+  noResults.style.display = visible? "none":"block";
+}
+
+function activate(cat){
+  desktopCategories.forEach(c=>c.classList.remove('active'));
+  menuCats.forEach(c=>c.classList.remove('active'));
+  const d=document.querySelector('.sidebar a[data-cat="'+cat+'"]');
+  const m=document.querySelector('#menuOverlay a[data-cat="'+cat+'"]');
+  if(d) d.classList.add('active');
+  if(m) m.classList.add('active');
+}
+
+desktopCategories.forEach(c=>{ c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); }; });
+menuCats.forEach(c=>{ c.onclick=()=>{ filterProducts(c.dataset.cat); activate(c.dataset.cat); closeMenu(); }; });
+
+// SEARCH
+const searchBtn=document.getElementById('searchBtn');
+const searchBar=document.getElementById('searchBarContainer');
+const clearBtn=document.getElementById('clearSearch');
+let open=false;
+
+searchBtn.onclick=()=>{
+  if(!open){ searchBar.style.display="flex"; setTimeout(()=>searchInput.focus(),50); } 
+  else{ searchBar.style.display="none"; searchInput.value=""; filterProducts("All"); }
+  open=!open;
+};
+
+clearBtn.onclick=()=>{
+  searchInput.value="";
+  filterProducts("All");
+  searchInput.focus();
+};
+
+searchInput.oninput=()=>{
+  let cat="All";
+  desktopCategories.forEach(c=>{ if(c.classList.contains("active")) cat=c.dataset.cat; });
+  filterProducts(cat);
+};
 </script>
 
 </body>
