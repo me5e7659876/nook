@@ -25,6 +25,21 @@
       font-weight: bold;
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    #langSelect {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #ffb3c6;
+      color: #4b0e1f;
     }
 
     .product-container {
@@ -127,46 +142,60 @@
 </head>
 
 <body>
-  <header>Nook Decor</header>
+  <header>
+    Nook Decor
+    <select id="langSelect">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+    </select>
+  </header>
 
-  <div class="product-container">
+  <div class="product-container" id="productContainer"></div>
 
-    <div class="product-card" data-name="LED Glass Candle" data-price="200" data-img="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png">
-      <img src="https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png">
-      <h1>LED Glass Candle</h1>
-      <p>Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.</p>
-      <div class="price">200 EGP</div>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
-
-    <div class="product-card" data-name="Round LED Glass Candle" data-price="130" data-img="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png">
-      <img src="https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png">
-      <h1>Round LED Glass Candle</h1>
-      <p>Beautiful round LED glass candle offering soft lighting and stylish modern design for your home.</p>
-      <div class="price">130 EGP</div>
-      <button class="btn add-to-cart">Add to Cart</button>
-    </div>
-
-  </div>
-
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
   <script>
-    // Touch hover effect for mobile
-    const products = document.querySelectorAll('.product-card');
-    products.forEach(product => {
-      product.addEventListener('touchstart', () => {
-        product.classList.add('touch-active');
+    // =========================
+    // Products data with bilingual support
+    // =========================
+    const products = [
+      {img:"https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png", price:200,
+       name:{en:"LED Glass Candle", ar:"شمعة زجاجية LED"}, 
+       desc:{en:"Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.",
+             ar:"شمعة LED زجاجية أنيقة تضيف توهجاً مريحاً لأي غرفة — مثالية لأمسيات الاسترخاء ولمسات الديكور."}},
+
+      {img:"https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png", price:130,
+       name:{en:"Round LED Glass Candle", ar:"شمعة زجاجية دائرية LED"}, 
+       desc:{en:"Beautiful round LED glass candle offering soft lighting and stylish modern design for your home.",
+             ar:"شمعة زجاجية دائرية LED جميلة توفر إضاءة ناعمة وتصميم عصري أنيق لمنزلك."}}
+    ];
+
+    // Render products according to language
+    function renderProducts(lang) {
+      const container = document.getElementById("productContainer");
+      container.innerHTML = "";
+      products.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.dataset.name = p.name[lang];
+        card.dataset.price = p.price;
+        card.dataset.img = p.img;
+
+        card.innerHTML = `
+          <img src="${p.img}">
+          <h1>${p.name[lang]}</h1>
+          <p>${p.desc[lang]}</p>
+          <div class="price">${p.price} EGP</div>
+          <button class="btn add-to-cart">${lang === "ar" ? "أضف إلى السلة" : "Add to Cart"}</button>
+        `;
+        container.appendChild(card);
       });
-      product.addEventListener('touchend', () => {
-        setTimeout(() => {
-          product.classList.remove('touch-active');
-        }, 300);
-      });
-    });
+
+      attachCartListeners(lang);
+    }
 
     // =========================
-    // Cart system like Games page
+    // Cart system
     // =========================
     function getCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
@@ -176,40 +205,61 @@
       localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".product-card");
+    function attachCartListeners(lang) {
+      document.querySelectorAll(".add-to-cart").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".product-card");
+          const product = {
+            name: card.dataset.name,
+            price: parseFloat(card.dataset.price),
+            img: card.dataset.img,
+            qty: 1
+          };
 
-        const product = {
-          name: card.dataset.name,
-          price: parseFloat(card.dataset.price),
-          img: card.dataset.img,
-          qty: 1
-        };
+          let cart = getCart();
+          const existing = cart.find(p => p.name === product.name);
+          if (existing) existing.qty++;
+          else cart.push(product);
 
-        let cart = getCart();
-        let existing = cart.find(p => p.name === product.name);
+          saveCart(cart);
 
-        if (existing) {
-          existing.qty += 1;
-        } else {
-          cart.push(product);
-        }
-
-        saveCart(cart);
-
-        btn.innerText = "Added!";
-        btn.style.background = "#fff";
-        btn.style.color = "#4b0e1f";
-
-        setTimeout(() => {
-          btn.innerText = "Add to Cart";
-          btn.style.background = "#ffb3c6";
+          btn.innerText = lang === "ar" ? "تم الإضافة!" : "Added!";
+          btn.style.background = "#fff";
           btn.style.color = "#4b0e1f";
-        }, 1200);
+
+          setTimeout(() => {
+            btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
+            btn.style.background = "#ffb3c6";
+            btn.style.color = "#4b0e1f";
+          }, 1200);
+        });
       });
+    }
+
+    // =========================
+    // Language switching
+    // =========================
+    const langSelect = document.getElementById("langSelect");
+    langSelect.addEventListener("change", () => {
+      const lang = langSelect.value;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+      renderProducts(lang);
+      document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
+    });
+
+    // =========================
+    // Initial render
+    // =========================
+    renderProducts("en");
+
+    // =========================
+    // Touch effect for mobile
+    // =========================
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+      card.addEventListener('touchstart', () => card.classList.add('touch-active'));
+      card.addEventListener('touchend', () => setTimeout(() => card.classList.remove('touch-active'), 300));
     });
   </script>
-
 </body>
 </html>
