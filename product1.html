@@ -1,85 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decor Piece - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decor Piece - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-    }
-    .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px;
-      gap: 30px;
-    }
-    .product-image {
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .product-details {
-      max-width: 400px;
-    }
-    .product-details h1 {
-      margin-top: 0;
-      font-size: 28px;
-      color: #ffb3c6;
-    }
-    .product-details p {
-      line-height: 1.6;
-      font-size: 16px;
-    }
-    .price {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background-color: #ffc7d3;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
-  </style>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+    direction: ltr;
+  }
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+  }
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+  }
+  .product-image {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .product-details {
+    max-width: 400px;
+  }
+  .product-details h1 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #ffb3c6;
+  }
+  .product-details p {
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .price {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background-color: #ffc7d3;
+  }
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffb3c6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  /* LANGUAGE SELECT */
+  #langSelectContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+</style>
 </head>
 <body>
 
-<header>Nook Decor</header>
+<!-- LANGUAGE SELECT -->
+<div id="langSelectContainer">
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</div>
+
+<header id="headerText">Nook Decor</header>
 
 <div class="product-container">
 
-  <!-- NEW PRODUCT IMAGE -->
   <img 
     src="https://i.postimg.cc/wxNz3CVN/download-(26).jpg" 
     alt="Decor Item" 
@@ -87,21 +102,47 @@
   />
 
   <div class="product-details">
-    <h1>Premium Decor Piece</h1>
+    <h1 id="productTitle" data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة">Premium Decor Piece</h1>
 
-    <p>
-      A beautifully crafted decor piece designed to add elegance and character 
-      to any space. Perfect for modern interiors and luxury home styling.
+    <p id="productDesc" data-en="A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling." 
+       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والتميز لأي مكان. مثالية للديكورات الحديثة والفخمة.">
+       A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling.
     </p>
 
-    <div class="price">5665 EGP</div>
+    <div class="price" id="productPrice" data-en="5665 EGP" data-ar="٥٦٦٥ جنيه">5665 EGP</div>
 
-    <button class="btn">Add to Cart</button>
+    <button class="btn" id="addCartBtn" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <a href="index.html" class="back-link" id="backLink" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
   </div>
 
 </div>
+
+<script>
+  const langSelect = document.getElementById("langSelect");
+
+  // عند تحميل الصفحة اقرأ اللغة من localStorage
+  const savedLang = localStorage.getItem("siteLang") || "en";
+  langSelect.value = savedLang;
+  changeLanguage(savedLang);
+
+  langSelect.addEventListener("change", ()=>{
+    const selected = langSelect.value;
+    localStorage.setItem("siteLang", selected);
+    changeLanguage(selected);
+  });
+
+  function changeLanguage(lang){
+    document.body.dir = (lang=="ar") ? "rtl" : "ltr";
+
+    // غير النصوص
+    const elems = ["headerText","productTitle","productDesc","productPrice","addCartBtn","backLink"];
+    elems.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el && el.dataset[lang]) el.textContent = el.dataset[lang];
+    });
+  }
+</script>
 
 </body>
 </html>
