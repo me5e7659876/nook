@@ -24,43 +24,39 @@ body {
 header {
   background-color: #4b0e1f;
   color: white;
-  padding: 40px 20px 20px;
+  padding: 20px 20px 20px;
   text-align: center;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: box-shadow 0.3s ease;
 }
-header:hover {
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-}
+header:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
 
 /* LOGO */
 header img.logo {
-  width: 350px; /* حجم كبير جدًا */
-  max-width: 45vw;
+  width: 200px; /* تم تصغير الحجم */
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
-header img.logo:hover {
-  transform: scale(1.05);
-}
+header img.logo:hover { transform: scale(1.05); }
 
 /* HEADER TEXT */
 header .title-text {
   font-size: 48px;
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
+  margin-top: 0;
 }
 
 /* HEADER ICONS */
 .header-icons {
   position: absolute;
-  top: 30px;
+  top: 20px;
   right: 20px;
   display: flex;
   gap: 15px;
@@ -90,7 +86,7 @@ header .title-text {
 /* MENU ICON */
 .menu-icon {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 20px;
   font-size: 34px;
   cursor: pointer;
@@ -132,10 +128,7 @@ header .title-text {
   font-family: 'Didot', serif;
   transition: 0.3s;
 }
-#menuOverlay .overlay-content a:hover {
-  color: #fff;
-  transform: scale(1.05);
-}
+#menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
 
 /* TOP BAR */
 .top-bar {
@@ -186,10 +179,7 @@ header .title-text {
   background-color: #3b0a1a;
   border-radius: 12px;
 }
-.sidebar h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-}
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
 .categories { list-style: none; padding: 0; }
 .categories li { margin: 10px 0; }
 .categories a {
@@ -202,9 +192,7 @@ header .title-text {
   transition: background 0.18s ease;
 }
 .categories a:hover { background: var(--accent-hover); }
-.categories a.active {
-  outline: 2px solid var(--active-outline);
-}
+.categories a.active { outline: 2px solid var(--active-outline); }
 
 .content {
   flex: 1;
@@ -250,10 +238,7 @@ footer {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  header img.logo { 
-    width: 200px; /* أكبر على الموبايل */
-    max-width: 60vw; 
-  }
+  header img.logo { width: 150px; max-width: 60vw; }
   header .title-text { font-size: 36px; }
   .container { flex-direction: column; }
   .sidebar { display: none !important; }
@@ -413,9 +398,7 @@ function filterProducts(category){
     if(okCat && okSearch){
       c.style.display="block";
       visible=true;
-    } else {
-      c.style.display="none";
-    }
+    } else { c.style.display="none"; }
   });
   noResults.style.display = visible? "none":"block";
 }
