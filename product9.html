@@ -1,199 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mood Collections - Nook Decor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunflower Mood Collection - Nook Decor</title>
 
-<style>
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
-  }
-
-  header {
-    background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255,200,210,0.6);
-    position: relative;
-  }
-
-  #langSelect {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 6px 10px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #ffb3c6;
-    color: #4b0e1f;
-  }
-
-  /* GRID */
-  .moods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    padding: 30px;
-  }
-
-  /* MOOD CARD */
-  .mood-card {
-    background: #5c1228;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-    transition: 0.3s;
-  }
-
-  .mood-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  }
-
-  /* SLIDER FULL IMAGE */
-  .slider {
-    position: relative;
-    width: 100%;
-    height: 320px; /* FULL SIZE IMAGE */
-    overflow: hidden;
-  }
-
-  @media (max-width: 768px) {
-    .slider {
-      height: 280px; /* MOBILE FULL SIZE */
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
     }
-  }
 
-  .slider img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s;
-  }
+    header {
+      padding: 18px 25px;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: center;
+      background: #4b0e1f;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      letter-spacing: 1px;
+    }
 
-  .slider img.active {
-    opacity: 1;
-  }
+    /* HERO SECTION */
+    .hero {
+      width: 100%;
+      height: 55vh;
+      background-size: cover;
+      background-position: center;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
 
-  .mood-info {
-    text-align: center;
-    padding: 15px;
-  }
+    /* TITLE + DESCRIPTION */
+    .content {
+      padding: 30px 25px;
+      text-align: center;
+    }
 
-  .mood-info h3 {
-    margin: 10px 0;
-    font-size: 20px;
-    color: #ffb3c6;
-  }
+    .content h1 {
+      font-size: 34px;
+      color: #ffb3c6;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 15px rgba(255,200,210,0.35);
+    }
 
-  .btn {
-    background-color: #ffb3c6;
-    border: none;
-    color: #4b0e1f;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 90%;
-    margin-bottom: 15px;
-    transition: 0.3s;
-  }
+    .content p {
+      font-size: 17px;
+      line-height: 1.8;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: auto;
+    }
 
-  .btn:hover {
-    background-color: #ffc7d3;
-  }
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 25px;
+    }
 
-</style>
+    .gallery img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* CTA */
+    .btn {
+      display: block;
+      width: 80%;
+      max-width: 350px;
+      margin: 40px auto;
+      padding: 14px;
+      background: #ffb3c6;
+      color: #4b0e1f;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: .3s;
+      font-size: 18px;
+    }
+    
+    .btn:hover {
+      background: #ffc5d5;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <span id="pageTitle">Mood Collections</span>
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
-  </select>
-</header>
+<header>Mood Collection</header>
 
-<div class="moods-grid">
-
-  <!-- MOOD 1 SUN FLOWER UPDATED -->
-  <div class="mood-card" data-name-en="Sun Flower Collection" data-name-ar="كوليكشن دوار الشمس">
-    <div class="slider">
-
-      <!-- NEW IMAGES YOU SENT -->
-      <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg" class="active">
-      <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
-      <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
-      <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
-      <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
-
-    </div>
-    <div class="mood-info">
-      <h3 class="mood-name">Sun Flower Collection</h3>
-      <button class="btn">View Mood</button>
-    </div>
-  </div>
-
-  <!-- MOOD 2 SAME AS BEFORE -->
-  <div class="mood-card" data-name-en="Soft Cozy Mood" data-name-ar="كوليكشن الدفء والراحة">
-    <div class="slider">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" class="active">
-      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-    </div>
-    <div class="mood-info">
-      <h3 class="mood-name">Soft Cozy Mood</h3>
-      <button class="btn">View Mood</button>
-    </div>
-  </div>
-
+<!-- MAIN IMAGE (HERO) -->
+<div class="hero" style="background-image: url('https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png');">
 </div>
 
-<script>
-/* AUTO SLIDER */
-document.querySelectorAll(".slider").forEach(slider => {
-  const imgs = slider.querySelectorAll("img");
-  let index = 0;
+<!-- TITLE + TEXT -->
+<div class="content">
+  <h1>Sunflower Mood Collection</h1>
+  <p>
+    Discover a carefully curated décor mood featuring warm tones, soft textures, 
+    and elegant sunflower-themed aesthetics.  
+    This mood collection includes 6 premium pieces designed to complete 
+    a full luxurious corner in your home with global-quality styling.
+  </p>
+</div>
 
-  setInterval(() => {
-    imgs[index].classList.remove("active");
-    index = (index + 1) % imgs.length;
-    imgs[index].classList.add("active");
-  }, 2000);
-});
+<!-- GALLERY IMAGES (6 IMAGES) -->
+<div class="gallery">
+  <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+  <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+  <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
+  <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9">
+  <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6">
+</div>
 
-/* LANG SYSTEM */
-const langSelect = document.getElementById("langSelect");
-const pageTitle = document.getElementById("pageTitle");
-const moods = document.querySelectorAll(".mood-card");
-
-langSelect.addEventListener("change", () => {
-  const lang = langSelect.value;
-
-  if (lang === "en") {
-    pageTitle.textContent = "Mood Collections";
-    moods.forEach(m => m.querySelector(".mood-name").textContent = m.dataset.nameEn);
-  } else {
-    pageTitle.textContent = "كوليكشنات المزاج";
-    moods.forEach(m => m.querySelector(".mood-name").textContent = m.dataset.nameAr);
-  }
-});
-</script>
+<a class="btn">Add Full Mood to Cart</a>
 
 </body>
 </html>
