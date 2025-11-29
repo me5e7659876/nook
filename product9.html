@@ -60,17 +60,23 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   }
 
-  /* SLIDER */
+  /* SLIDER FULL IMAGE */
   .slider {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 320px; /* FULL SIZE IMAGE */
     overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .slider {
+      height: 280px; /* MOBILE FULL SIZE */
+    }
   }
 
   .slider img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     opacity: 0;
@@ -123,15 +129,17 @@
 
 <div class="moods-grid">
 
-  <!-- MOOD 1 -->
+  <!-- MOOD 1 SUN FLOWER UPDATED -->
   <div class="mood-card" data-name-en="Sun Flower Collection" data-name-ar="كوليكشن دوار الشمس">
     <div class="slider">
-      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png" class="active">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
-      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+
+      <!-- NEW IMAGES YOU SENT -->
+      <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg" class="active">
+      <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
+      <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
+      <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
+      <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
+
     </div>
     <div class="mood-info">
       <h3 class="mood-name">Sun Flower Collection</h3>
@@ -139,7 +147,7 @@
     </div>
   </div>
 
-  <!-- MOOD 2 -->
+  <!-- MOOD 2 SAME AS BEFORE -->
   <div class="mood-card" data-name-en="Soft Cozy Mood" data-name-ar="كوليكشن الدفء والراحة">
     <div class="slider">
       <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" class="active">
@@ -147,7 +155,6 @@
       <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
       <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
       <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
     </div>
     <div class="mood-info">
       <h3 class="mood-name">Soft Cozy Mood</h3>
