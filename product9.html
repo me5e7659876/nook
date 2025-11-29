@@ -1,118 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moods Collections - Nook Decor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Collections - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+  }
 
-    header {
-      background-color: #4b0e1f;
-      padding: 20px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-    }
+  header {
+    background-color: #4b0e1f;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+  }
 
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      padding: 25px;
-    }
+  /* اللغة */
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffb3c6;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4b0e1f;
+    cursor: pointer;
+  }
 
-    .collection-card {
-      background: #5c1228;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
-      transition: 0.3s;
-      cursor: pointer;
-    }
+  /* الصفحة الرئيسية */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 25px;
+  }
 
-    .collection-card:hover {
-      transform: scale(1.03);
-    }
+  .collection-card {
+    background: #5c1228;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    transition: 0.3s;
+    cursor: pointer;
+  }
 
-    /* 🔥 الصورة أصبحت أكبر بكثير على الموبايل */
+  .collection-card:hover {
+    transform: scale(1.03);
+  }
+
+  .collection-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
     .collection-card img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      display: block;
+      height: 450px;
     }
+  }
 
-    /* على الشاشات الكبيرة تكون أكبر شوية */
-    @media (min-width: 768px) {
-      .collection-card img {
-        height: 450px;
-      }
-    }
+  .collection-info {
+    padding: 10px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+  }
 
-    /* 🔥 مربع الاسم بقى صغير قوي */
-    .collection-info {
-      padding: 10px 12px;
-      text-align: center;
-      background: rgba(255,255,255,0.05);
-    }
+  .collection-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #ffb3c6;
+  }
 
-    .collection-info h3 {
-      margin: 0;
-      font-size: 16px; /* أصغر */
-      color: #ffb3c6;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-  </style>
+  /* الصفحة الداخلية */
+  .collection-page {
+    display: none;
+    padding: 20px;
+  }
+
+  .back-btn {
+    background: #ffb3c6;
+    color: #4b0e1f;
+    padding: 10px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  .inner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .inner-grid img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    height: 250px;
+  }
+</style>
 </head>
 
 <body>
 
-<header>Moods Collections</header>
+<header>
+  <span id="pageTitle">Mood Collections</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-<div class="collections-grid">
+<!-- ================= PAGE 1 — HOME ================= -->
 
-  <!-- Sun Flower Collection -->
-  <a href="sunflower-collection.html" class="collection-card">
+<div id="homePage" class="collections-grid">
+
+  <div class="collection-card" onclick="openCollection('sunflower')">
     <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
-    <div class="collection-info">
-      <h3>Sun Flower Collection</h3>
-    </div>
-  </a>
+    <div class="collection-info"><h3 data-en="Sun Flower Mood" data-ar="مود دوار الشمس">Sun Flower Mood</h3></div>
+  </div>
 
-  <!-- Modern Collection -->
-  <a href="modern-collection.html" class="collection-card">
+  <div class="collection-card" onclick="openCollection('modern')">
     <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-    <div class="collection-info">
-      <h3>Modern Collection</h3>
-    </div>
-  </a>
+    <div class="collection-info"><h3 data-en="Modern Mood" data-ar="مود مودرن">Modern Mood</h3></div>
+  </div>
 
-  <!-- Classic Collection -->
-  <a href="classic-collection.html" class="collection-card">
+  <div class="collection-card" onclick="openCollection('classic')">
     <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
-    <div class="collection-info">
-      <h3>Classic Collection</h3>
-    </div>
-  </a>
+    <div class="collection-info"><h3 data-en="Classic Mood" data-ar="مود كلاسيك">Classic Mood</h3></div>
+  </div>
 
-  <!-- Pinky Collection -->
-  <a href="pinky-collection.html" class="collection-card">
+  <div class="collection-card" onclick="openCollection('pinky')">
     <img src="https://i.postimg.cc/ry4FbnZm/pink.jpg">
-    <div class="collection-info">
-      <h3>Pinky Collection</h3>
-    </div>
-  </a>
+    <div class="collection-info"><h3 data-en="Pinky Mood" data-ar="مود بينكي">Pinky Mood</h3></div>
+  </div>
 
 </div>
+
+<!-- ================= SUNFLOWER PAGE ================= -->
+
+<div id="sunflower" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Sun Flower Mood</h2>
+
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
+    <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
+    <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
+    <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
+    <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
+  </div>
+</div>
+
+<!-- ================= MODERN PAGE ================= -->
+
+<div id="modern" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Modern Mood</h2>
+
+  <div class="inner-grid">
+    <!-- حط صور المودرن هنا -->
+  </div>
+</div>
+
+<!-- ================= CLASSIC PAGE ================= -->
+
+<div id="classic" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Classic Mood</h2>
+
+  <div class="inner-grid">
+    <!-- صور الكلاسيك هنا -->
+  </div>
+</div>
+
+<!-- ================= PINKY PAGE ================= -->
+
+<div id="pinky" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Pinky Mood</h2>
+
+  <div class="inner-grid">
+    <!-- صور البينكي هنا -->
+  </div>
+</div>
+
+<script>
+/* فتح الكوليكشن */
+function openCollection(id) {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+
+/* رجوع للرئيسية */
+function goHome() {
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById("homePage").style.display = "grid";
+}
+
+/* نظام اللغات */
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", () => {
+  const lang = langSelect.value;
+
+  document.querySelectorAll("[data-en]").forEach(el => {
+    el.textContent = el.getAttribute(`data-${lang}`);
+  });
+
+  document.getElementById("pageTitle").textContent =
+    lang === "en" ? "Mood Collections" : "كوليكشنات المزاج";
+});
+</script>
 
 </body>
 </html>
