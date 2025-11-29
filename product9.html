@@ -22,7 +22,6 @@
     position: relative;
   }
 
-  /* اللغة */
   #langSelect {
     position: absolute;
     right: 20px;
@@ -37,7 +36,6 @@
     cursor: pointer;
   }
 
-  /* الصفحة الرئيسية */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -58,15 +56,16 @@
     transform: scale(1.03);
   }
 
+  /* 🔥 الصور أصغر على الموبايل وأكثر عرض */
   .collection-card img {
     width: 100%;
-    height: 400px;
+    height: 220px; /* أقصر */
     object-fit: cover;
   }
 
   @media (min-width: 768px) {
     .collection-card img {
-      height: 450px;
+      height: 450px; /* للكمبيوتر */
     }
   }
 
@@ -78,11 +77,10 @@
 
   .collection-info h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px; /* أصغر */
     color: #ffb3c6;
   }
 
-  /* الصفحة الداخلية */
   .collection-page {
     display: none;
     padding: 20px;
@@ -109,7 +107,13 @@
     width: 100%;
     border-radius: 12px;
     object-fit: cover;
-    height: 250px;
+    height: 200px; /* أصغر للموبايل */
+  }
+
+  @media (min-width: 768px) {
+    .inner-grid img {
+      height: 250px; /* أكبر للشاشة الكبيرة */
+    }
   }
 </style>
 </head>
@@ -123,8 +127,6 @@
     <option value="ar">العربية</option>
   </select>
 </header>
-
-<!-- ================= PAGE 1 — HOME ================= -->
 
 <div id="homePage" class="collections-grid">
 
@@ -150,12 +152,9 @@
 
 </div>
 
-<!-- ================= SUNFLOWER PAGE ================= -->
-
 <div id="sunflower" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Sun Flower Mood</h2>
-
   <div class="inner-grid">
     <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
     <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
@@ -165,61 +164,47 @@
   </div>
 </div>
 
-<!-- ================= MODERN PAGE ================= -->
-
 <div id="modern" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Modern Mood</h2>
-
   <div class="inner-grid">
-    <!-- حط صور المودرن هنا -->
+    <!-- صور المودرن هنا -->
   </div>
 </div>
-
-<!-- ================= CLASSIC PAGE ================= -->
 
 <div id="classic" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Classic Mood</h2>
-
   <div class="inner-grid">
     <!-- صور الكلاسيك هنا -->
   </div>
 </div>
 
-<!-- ================= PINKY PAGE ================= -->
-
 <div id="pinky" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Pinky Mood</h2>
-
   <div class="inner-grid">
     <!-- صور البينكي هنا -->
   </div>
 </div>
 
 <script>
-/* فتح الكوليكشن */
 function openCollection(id) {
   document.getElementById("homePage").style.display = "none";
   document.getElementById(id).style.display = "block";
 }
 
-/* رجوع للرئيسية */
 function goHome() {
   document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
   document.getElementById("homePage").style.display = "grid";
 }
 
-/* نظام اللغات */
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change", () => {
   const lang = langSelect.value;
-
   document.querySelectorAll("[data-en]").forEach(el => {
     el.textContent = el.getAttribute(`data-${lang}`);
   });
-
   document.getElementById("pageTitle").textContent =
     lang === "en" ? "Mood Collections" : "كوليكشنات المزاج";
 });
