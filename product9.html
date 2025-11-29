@@ -1,156 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moods - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mood Collections - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+  }
 
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-      position: relative;
-    }
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,200,210,0.6);
+    position: relative;
+  }
 
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #ffb3c6;
-      color: #4b0e1f;
-    }
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
+  }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 30px;
-    }
+  /* GRID */
+  .moods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 30px;
+  }
 
-    .product-card {
-      background: #5c1228;
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.35);
-      text-align: center;
-      transition: 0.3s;
-    }
+  /* MOOD CARD */
+  .mood-card {
+    background: #5c1228;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    transition: 0.3s;
+  }
 
-    .product-card:hover {
-      transform: scale(1.03);
-    }
+  .mood-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  }
 
-    .product-card img {
-      width: 100%;
-      border-radius: 12px;
-    }
+  /* SLIDER */
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
 
-    .product-card h3 {
-      margin: 15px 0 5px;
-      color: #ffb3c6;
-    }
+  .slider img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+  }
 
-    .price {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+  .slider img.active {
+    opacity: 1;
+  }
 
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
-    }
+  .mood-info {
+    text-align: center;
+    padding: 15px;
+  }
 
-    .btn:hover {
-      background-color: #ffc7d3;
-    }
-  </style>
+  .mood-info h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #ffb3c6;
+  }
+
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom: 15px;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #ffc7d3;
+  }
+
+</style>
 </head>
 <body>
 
 <header>
-  <span id="pageTitle">Moods</span>
+  <span id="pageTitle">Mood Collections</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
-<div class="products-grid">
+<div class="moods-grid">
 
-  <!-- Product 1 -->
-  <div class="product-card" data-name-en="Sun Flower Mood" data-name-ar="مزاج زهرة الشمس" data-price="39.99" data-currency="$">
-    <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png" alt="Sun Flower Mood">
-    <h3 class="product-name">Sun Flower Mood</h3>
-    <div class="price">39.99 $</div>
-    <button class="btn add-to-cart">Add to Cart</button>
+  <!-- MOOD 1 -->
+  <div class="mood-card" data-name-en="Sun Flower Collection" data-name-ar="كوليكشن دوار الشمس">
+    <div class="slider">
+      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png" class="active">
+      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+    </div>
+    <div class="mood-info">
+      <h3 class="mood-name">Sun Flower Collection</h3>
+      <button class="btn">View Mood</button>
+    </div>
   </div>
 
-  <!-- Product 2 -->
-  <div class="product-card" data-name-en="Modern Lamp" data-name-ar="مصباح مودرن" data-price="54.99" data-currency="$">
-    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg" alt="Modern Lamp">
-    <h3 class="product-name">Modern Lamp</h3>
-    <div class="price">54.99 $</div>
-    <button class="btn add-to-cart">Add to Cart</button>
-  </div>
-
-  <!-- Product 3 -->
-  <div class="product-card" data-name-en="Indoor Plant" data-name-ar="نبات داخلي" data-price="24.99" data-currency="$">
-    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt="Indoor Plant">
-    <h3 class="product-name">Indoor Plant</h3>
-    <div class="price">24.99 $</div>
-    <button class="btn add-to-cart">Add to Cart</button>
+  <!-- MOOD 2 -->
+  <div class="mood-card" data-name-en="Soft Cozy Mood" data-name-ar="كوليكشن الدفء والراحة">
+    <div class="slider">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" class="active">
+      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+      <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+    </div>
+    <div class="mood-info">
+      <h3 class="mood-name">Soft Cozy Mood</h3>
+      <button class="btn">View Mood</button>
+    </div>
   </div>
 
 </div>
 
 <script>
-  const langSelect = document.getElementById('langSelect');
-  const pageTitle = document.getElementById('pageTitle');
-  const products = document.querySelectorAll('.product-card');
+/* AUTO SLIDER */
+document.querySelectorAll(".slider").forEach(slider => {
+  const imgs = slider.querySelectorAll("img");
+  let index = 0;
 
-  langSelect.addEventListener('change', () => {
-    const lang = langSelect.value;
+  setInterval(() => {
+    imgs[index].classList.remove("active");
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add("active");
+  }, 2000);
+});
 
-    if (lang === 'en') {
-      pageTitle.textContent = "Moods";
-      products.forEach(p => {
-        p.querySelector('.product-name').textContent = p.dataset.nameEn;
-        p.querySelector('.btn').textContent = "Add to Cart";
-      });
+/* LANG SYSTEM */
+const langSelect = document.getElementById("langSelect");
+const pageTitle = document.getElementById("pageTitle");
+const moods = document.querySelectorAll(".mood-card");
 
-    } else {
-      pageTitle.textContent = "المزاجات";
-      products.forEach(p => {
-        p.querySelector('.product-name').textContent = p.dataset.nameAr;
-        p.querySelector('.btn').textContent = "أضف إلى السلة";
-      });
-    }
-  });
+langSelect.addEventListener("change", () => {
+  const lang = langSelect.value;
+
+  if (lang === "en") {
+    pageTitle.textContent = "Mood Collections";
+    moods.forEach(m => m.querySelector(".mood-name").textContent = m.dataset.nameEn);
+  } else {
+    pageTitle.textContent = "كوليكشنات المزاج";
+    moods.forEach(m => m.querySelector(".mood-name").textContent = m.dataset.nameAr);
+  }
+});
 </script>
 
 </body>
