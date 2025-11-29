@@ -1,215 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mood Collections - Nook Decor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moods Collections - Nook Decor</title>
 
-<style>
-  body {
-    margin: 0;
-    background: #4b0e1f;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
 
-  header {
-    padding: 20px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffb3c6;
-  }
+    header {
+      background-color: #4b0e1f;
+      padding: 20px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    }
 
-  /* GRID MAIN PAGE */
-  .collections-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    padding: 30px;
-  }
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 25px;
+    }
 
-  .collection-card {
-    background: #5c1228;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .collection-card:hover {
-    transform: scale(1.03);
-  }
+    .collection-card {
+      background: #5c1228;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      transition: 0.3s;
+      cursor: pointer;
+    }
 
-  .collection-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-  }
+    .collection-card:hover {
+      transform: scale(1.03);
+    }
 
-  .collection-info {
-    padding: 15px;
-    text-align: center;
-  }
+    /* الصورة كبيرة وواضحة */
+    .collection-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
 
-  .collection-info h3 {
-    margin: 0;
-    font-size: 22px;
-    color: #ffb3c6;
-  }
+    .collection-info {
+      padding: 18px;
+      text-align: center;
+    }
 
-  /* HIDE SCREENS */
-  .screen {
-    display: none;
-  }
-  .active-screen {
-    display: block;
-  }
+    .collection-info h3 {
+      margin: 0;
+      font-size: 22px;
+      color: #ffb3c6;
+    }
 
-  /* GALLERY STYLE */
-  .gallery {
-    padding: 20px;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .gallery img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  }
-
-  /* BACK BUTTON */
-  .back-btn {
-    background: #ffb3c6;
-    color: #4b0e1f;
-    padding: 10px 20px;
-    border-radius: 12px;
-    border: none;
-    margin: 20px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
+    @media (min-width: 768px) {
+      .collection-card img {
+        height: 340px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header id="mainTitle">Mood Collections</header>
+<header>Moods Collections</header>
 
-<!-- ===========================
-     MAIN PAGE - COLLECTION LIST
-===============================-->
-<div id="homeScreen" class="screen active-screen">
+<div class="collections-grid">
 
-  <div class="collections-grid">
-
-    <!-- 1 - SUNFLOWER -->
-    <div class="collection-card" onclick="openMood('sunflower')">
-      <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
-      <div class="collection-info">
-        <h3>Sun Flower Mood</h3>
-      </div>
+  <!-- Sun Flower Collection -->
+  <a href="sunflower-collection.html" class="collection-card">
+    <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+    <div class="collection-info">
+      <h3>Sun Flower Collection</h3>
     </div>
+  </a>
 
-    <!-- 2 - MODERN -->
-    <div class="collection-card" onclick="openMood('modern')">
-      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
-      <div class="collection-info">
-        <h3>Modern Mood</h3>
-      </div>
+  <!-- Modern Collection -->
+  <a href="modern-collection.html" class="collection-card">
+    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+    <div class="collection-info">
+      <h3>Modern Collection</h3>
     </div>
+  </a>
 
-    <!-- 3 - CLASSIC -->
-    <div class="collection-card" onclick="openMood('classic')">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
-      <div class="collection-info">
-        <h3>Classic Mood</h3>
-      </div>
+  <!-- Classic Collection -->
+  <a href="classic-collection.html" class="collection-card">
+    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+    <div class="collection-info">
+      <h3>Classic Collection</h3>
     </div>
+  </a>
 
-    <!-- 4 - PINKY -->
-    <div class="collection-card" onclick="openMood('pinky')">
-      <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
-      <div class="collection-info">
-        <h3>Pinky Mood</h3>
-      </div>
+  <!-- Pinky Collection -->
+  <a href="pinky-collection.html" class="collection-card">
+    <img src="https://i.postimg.cc/ry4FbnZm/pink.jpg">
+    <div class="collection-info">
+      <h3>Pinky Collection</h3>
     </div>
-
-  </div>
+  </a>
 
 </div>
-
-<!-- ===========================
-     SUNFLOWER PAGE
-===============================-->
-<div id="sunflower" class="screen">
-  <button class="back-btn" onclick="goBack()">← Back</button>
-  <header>Sun Flower Mood</header>
-
-  <div class="gallery">
-    <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
-    <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
-    <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
-    <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
-    <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
-  </div>
-</div>
-
-<!-- ===========================
-     MODERN PAGE
-===============================-->
-<div id="modern" class="screen">
-  <button class="back-btn" onclick="goBack()">← Back</button>
-  <header>Modern Mood</header>
-
-  <div class="gallery">
-    <!-- ADD MODERN IMAGES HERE -->
-  </div>
-</div>
-
-<!-- ===========================
-     CLASSIC PAGE
-===============================-->
-<div id="classic" class="screen">
-  <button class="back-btn" onclick="goBack()">← Back</button>
-  <header>Classic Mood</header>
-
-  <div class="gallery">
-    <!-- ADD CLASSIC IMAGES HERE -->
-  </div>
-</div>
-
-<!-- ===========================
-     PINKY PAGE
-===============================-->
-<div id="pinky" class="screen">
-  <button class="back-btn" onclick="goBack()">← Back</button>
-  <header>Pinky Mood</header>
-
-  <div class="gallery">
-    <!-- ADD PINKY IMAGES HERE -->
-  </div>
-</div>
-
-<script>
-function openMood(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
-  document.getElementById(id).classList.add('active-screen');
-
-  // تغيير العنوان
-  document.getElementById("mainTitle").style.display = "none";
-}
-
-function goBack() {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
-  document.getElementById('homeScreen').classList.add('active-screen');
-
-  document.getElementById("mainTitle").style.display = "block";
-}
-</script>
 
 </body>
 </html>
