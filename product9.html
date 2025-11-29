@@ -1,133 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sunflower Mood Collection - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mood Collections - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<style>
+  body {
+    margin: 0;
+    background: #4b0e1f;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    header {
-      padding: 18px 25px;
-      font-size: 26px;
-      font-weight: bold;
-      text-align: center;
-      background: #4b0e1f;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      letter-spacing: 1px;
-    }
+  header {
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffb3c6;
+  }
 
-    /* HERO SECTION */
-    .hero {
-      width: 100%;
-      height: 55vh;
-      background-size: cover;
-      background-position: center;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    }
+  /* GRID MAIN PAGE */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 30px;
+  }
 
-    /* TITLE + DESCRIPTION */
-    .content {
-      padding: 30px 25px;
-      text-align: center;
-    }
+  .collection-card {
+    background: #5c1228;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .collection-card:hover {
+    transform: scale(1.03);
+  }
 
-    .content h1 {
-      font-size: 34px;
-      color: #ffb3c6;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-      text-shadow: 0 0 15px rgba(255,200,210,0.35);
-    }
+  .collection-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
 
-    .content p {
-      font-size: 17px;
-      line-height: 1.8;
-      opacity: 0.9;
-      max-width: 800px;
-      margin: auto;
-    }
+  .collection-info {
+    padding: 15px;
+    text-align: center;
+  }
 
-    /* GALLERY */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 25px;
-    }
+  .collection-info h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #ffb3c6;
+  }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      transition: 0.3s;
-    }
+  /* HIDE SCREENS */
+  .screen {
+    display: none;
+  }
+  .active-screen {
+    display: block;
+  }
 
-    .gallery img:hover {
-      transform: scale(1.03);
-    }
+  /* GALLERY STYLE */
+  .gallery {
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 
-    /* CTA */
-    .btn {
-      display: block;
-      width: 80%;
-      max-width: 350px;
-      margin: 40px auto;
-      padding: 14px;
-      background: #ffb3c6;
-      color: #4b0e1f;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: .3s;
-      font-size: 18px;
-    }
-    
-    .btn:hover {
-      background: #ffc5d5;
-    }
-  </style>
+  .gallery img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+
+  /* BACK BUTTON */
+  .back-btn {
+    background: #ffb3c6;
+    color: #4b0e1f;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    margin: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
 </head>
 
 <body>
 
-<header>Mood Collection</header>
+<header id="mainTitle">Mood Collections</header>
 
-<!-- MAIN IMAGE (HERO) -->
-<div class="hero" style="background-image: url('https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png');">
+<!-- ===========================
+     MAIN PAGE - COLLECTION LIST
+===============================-->
+<div id="homeScreen" class="screen active-screen">
+
+  <div class="collections-grid">
+
+    <!-- 1 - SUNFLOWER -->
+    <div class="collection-card" onclick="openMood('sunflower')">
+      <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
+      <div class="collection-info">
+        <h3>Sun Flower Mood</h3>
+      </div>
+    </div>
+
+    <!-- 2 - MODERN -->
+    <div class="collection-card" onclick="openMood('modern')">
+      <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+      <div class="collection-info">
+        <h3>Modern Mood</h3>
+      </div>
+    </div>
+
+    <!-- 3 - CLASSIC -->
+    <div class="collection-card" onclick="openMood('classic')">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+      <div class="collection-info">
+        <h3>Classic Mood</h3>
+      </div>
+    </div>
+
+    <!-- 4 - PINKY -->
+    <div class="collection-card" onclick="openMood('pinky')">
+      <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
+      <div class="collection-info">
+        <h3>Pinky Mood</h3>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- TITLE + TEXT -->
-<div class="content">
-  <h1>Sunflower Mood Collection</h1>
-  <p>
-    Discover a carefully curated décor mood featuring warm tones, soft textures, 
-    and elegant sunflower-themed aesthetics.  
-    This mood collection includes 6 premium pieces designed to complete 
-    a full luxurious corner in your home with global-quality styling.
-  </p>
+<!-- ===========================
+     SUNFLOWER PAGE
+===============================-->
+<div id="sunflower" class="screen">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <header>Sun Flower Mood</header>
+
+  <div class="gallery">
+    <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
+    <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
+    <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
+    <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
+    <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
+  </div>
 </div>
 
-<!-- GALLERY IMAGES (6 IMAGES) -->
-<div class="gallery">
-  <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
-  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
-  <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
-  <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
-  <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9">
-  <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6">
+<!-- ===========================
+     MODERN PAGE
+===============================-->
+<div id="modern" class="screen">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <header>Modern Mood</header>
+
+  <div class="gallery">
+    <!-- ADD MODERN IMAGES HERE -->
+  </div>
 </div>
 
-<a class="btn">Add Full Mood to Cart</a>
+<!-- ===========================
+     CLASSIC PAGE
+===============================-->
+<div id="classic" class="screen">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <header>Classic Mood</header>
+
+  <div class="gallery">
+    <!-- ADD CLASSIC IMAGES HERE -->
+  </div>
+</div>
+
+<!-- ===========================
+     PINKY PAGE
+===============================-->
+<div id="pinky" class="screen">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <header>Pinky Mood</header>
+
+  <div class="gallery">
+    <!-- ADD PINKY IMAGES HERE -->
+  </div>
+</div>
+
+<script>
+function openMood(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
+  document.getElementById(id).classList.add('active-screen');
+
+  // تغيير العنوان
+  document.getElementById("mainTitle").style.display = "none";
+}
+
+function goBack() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
+  document.getElementById('homeScreen').classList.add('active-screen');
+
+  document.getElementById("mainTitle").style.display = "block";
+}
+</script>
 
 </body>
 </html>
