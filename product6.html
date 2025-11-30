@@ -34,6 +34,7 @@
       background: #ffb3c6;
       color: #4b0e1f;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -42,16 +43,19 @@
       justify-items: center;
     }
     .item {
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255,255,255,0.06);
       border-radius: 15px;
       padding: 15px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
-    .item:hover { transform: scale(1.05); }
+    .item:hover { transform: scale(1.03); }
+
     .slider {
       width: 100%;
       max-width: 350px;
@@ -60,6 +64,7 @@
       overflow: hidden;
       border-radius: 15px;
       margin: 0 auto;
+      background: #2f0a14;
     }
     .slide {
       width: 100%;
@@ -71,21 +76,32 @@
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
     }
+    .slide[alt] { /* keep alt for accessibility */ }
     .active { opacity: 1; }
+
+    /* single simple arrow, no shadow, minimal */
     .next-btn {
       position: absolute;
       top: 50%;
-      right: 10px;
+      right: 8px;
       transform: translateY(-50%);
-      background-color: rgba(255,179,198,0.8);
+      background: none;
       border: none;
-      padding: 8px 12px;
-      border-radius: 50%;
+      padding: 6px;
       cursor: pointer;
-      font-size: 18px;
-      color: #4b0e1f;
-      font-weight: bold;
+      font-size: 28px;
+      line-height: 1;
+      color: #ffb3c6;
+      font-weight: 700;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
     }
+    .next-btn:focus { outline: 2px solid rgba(255,179,198,0.25); outline-offset: 2px; }
+
     .price {
       font-size: 20px;
       font-weight: bold;
@@ -98,8 +114,8 @@
       margin-top: 8px;
       line-height: 1.5;
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .item:hover .desc {
       opacity: 1;
@@ -118,6 +134,7 @@
       width: 100%;
     }
     .btn:hover { background-color: #ffc7d3; }
+
     .back-link {
       display: block;
       text-align: center;
@@ -125,6 +142,14 @@
       color: #ffb3c6;
       text-decoration: none;
       font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .slider { height: 520px; max-width: 420px; }
+    }
+    @media (max-width: 420px) {
+      .slider { height: 380px; }
+      .price { font-size: 18px; }
     }
   </style>
 </head>
@@ -139,104 +164,212 @@
 </header>
 
 <div class="gallery" id="galleryContainer">
-  <!-- المنتجات سيتم توليدها تلقائيًا حسب اللغة -->
+  <!-- products generated dynamically -->
 </div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+/*
+  Products array updated per your instructions:
+  - Replaced/inserted the requested images in the specified positions.
+  - Added two new products (5 & 6) each with 2 images and price 350.
+  - Each product's images array is ordered as requested.
+*/
 const products = [
-  {img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/Y9sKyyh9/8a4d857c-a063-4102-a4ca-4df19ec5d46c.jpg"], price:1200,
-   name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"},
-   desc:{en:"Strong solid wood rack — perfect for plants, décor items, and modern home styling.",
-         ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}},
+  // 1) Solid Wood Rack (product 1) — keep original first image, replace second with user image
+  {
+    img: [
+      "https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg",
+      "https://i.postimg.cc/5yQ3fPGR/5.png"  // ← user replacement for second image (product 1)
+    ],
+    price: 1200,
+    name: { en: "Solid Wood Rack", ar: "رف خشبي صلب" },
+    desc: {
+      en: "Strong solid wood rack — perfect for plants, décor items, and modern home styling.",
+      ar: "رف خشبي صلب — مثالي للنباتات وزينة المنزل."
+    }
+  },
 
-  {img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/sfb1MTKk/cd3b153b-aa7b-490f-9e70-4b91572531db.jpg","https://i.postimg.cc/7Zk6VbFp/4a11e97c-a892-45fa-9bdf-01283fbd4676.jpg"], price:600,
-   name:{en:"Minimal Modern Rack", ar:"رف عصري بسيط"},
-   desc:{en:"Minimal modern wooden rack — ideal for small spaces and stylish organization.",
-         ar:"رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."}},
+  // 2) Minimal Modern Rack (product 2) — keep first, replace second & third
+  {
+    img: [
+      "https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png",
+      "https://i.postimg.cc/434jXg1L/8.png",   // ← user replacement for second image (product 2)
+      "https://i.postimg.cc/Y9GnSqLb/3.png"    // ← user replacement for third image (product 2)
+    ],
+    price: 600,
+    name: { en: "Minimal Modern Rack", ar: "رف عصري بسيط" },
+    desc: {
+      en: "Minimal modern wooden rack — ideal for small spaces and stylish organization.",
+      ar: "رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."
+    }
+  },
 
-  {img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/Lsy82Dnb/3ba3e3db-a4a5-42ec-bba8-aaa31555b6b9.jpg","https://i.postimg.cc/sxWjPRws/241d7238-ca66-4ee4-bfa5-ee405feba2df.jpg"], price:300,
-   name:{en:"Decorative Wooden Stand", ar:"حامل خشبي زخرفي"},
-   desc:{en:"Decorative wooden stand — great for showcasing plants, candles, and ornaments.",
-         ar:"حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."}},
+  // 3) Decorative Wooden Stand (product 3) — replace second & third
+  {
+    img: [
+      "https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg",
+      "https://i.postimg.cc/QddqtxRF/2.png",   // ← user replacement for second image (product 3)
+      "https://i.postimg.cc/rpdC1Zyk/7.png"    // ← user replacement for third image (product 3)
+    ],
+    price: 300,
+    name: { en: "Decorative Wooden Stand", ar: "حامل خشبي زخرفي" },
+    desc: {
+      en: "Decorative wooden stand — great for showcasing plants, candles, and ornaments.",
+      ar: "حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."
+    }
+  },
 
-  {img:["https://i.postimg.cc/KvXvGR84/3b04b788-57f9-48c8-8c62-9c0861cabce2.jpg","https://i.postimg.cc/LssmCPNQ/bf2ff562-a769-4fab-950d-e49f8e623603.jpg"], price:200,
-   name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"},
-   desc:{en:"Compact wooden shelf — perfect for tight areas and adding an elegant touch.",
-         ar:"رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."}}
+  // 4) Compact Wooden Shelf (product 4) — replace both images with user images
+  {
+    img: [
+      "https://i.postimg.cc/PfmGb2NW/1.jpg",    // ← user image for first (product 4)
+      "https://i.postimg.cc/TY9ZF1V5/6.png"    // ← user image for second (product 4)
+    ],
+    price: 200,
+    name: { en: "Compact Wooden Shelf", ar: "رف خشبي صغير" },
+    desc: {
+      en: "Compact wooden shelf — perfect for tight areas and adding an elegant touch.",
+      ar: "رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."
+    }
+  },
+
+  // 5) NEW — Wooden Shelf (product 5) — two images, price 350
+  {
+    img: [
+      "https://i.postimg.cc/4yFpHzCS/4.png",   // first image (product 5)
+      "https://i.postimg.cc/P5D1NpSD/10.png"   // second image (product 5)
+    ],
+    price: 350,
+    name: { en: "Wooden Shelf", ar: "رف خشبي" },
+    desc: {
+      en: "Classic wooden shelf — functional and stylish.",
+      ar: "رف خشبي كلاسيكي — عملي وأنيق."
+    }
+  },
+
+  // 6) NEW — White Wooden Shelf (product 6) — two images, price 350
+  {
+    img: [
+      "https://i.postimg.cc/LX9Pyy2x/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg", // first image (product 6)
+      "https://i.postimg.cc/kX6bhR3k/9.png"   // second image (product 6)
+    ],
+    price: 350,
+    name: { en: "White Wooden Shelf", ar: "رف خشبي أبيض" },
+    desc: {
+      en: "White wooden shelf — clean modern look for any room.",
+      ar: "رف خشبي أبيض — مظهر عصري ونظيف لأي غرفة."
+    }
+  }
 ];
 
-// توليد المنتجات حسب اللغة
-function renderProducts(lang){
+function renderProducts(lang) {
   const container = document.getElementById("galleryContainer");
   container.innerHTML = "";
-  products.forEach(p=>{
+  products.forEach((p, productIndex) => {
     const item = document.createElement("div");
     item.className = "item";
     item.dataset.name = p.name[lang];
     item.dataset.price = p.price;
-    item.dataset.img = p.img[0];
+    item.dataset.img = p.img[0]; // default image (updated by slider on change)
 
-    let slidesHTML = p.img.map((src,i)=>`<img class="slide ${i===0?'active':''}" src="${src}">`).join("");
+    // build slides HTML
+    const slidesHTML = p.img.map((src, i) =>
+      `<img class="slide ${i === 0 ? "active" : ""}" src="${src}" alt="${p.name[lang]} image ${i + 1}">`
+    ).join("");
+
     item.innerHTML = `
       <div class="slider">
         ${slidesHTML}
-        <button class="next-btn">&#9654;</button>
+        <button class="next-btn" aria-label="Next image">&#9654;</button>
       </div>
       <div class="price">${p.price} EGP</div>
       <p class="desc">${p.desc[lang]}</p>
-      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+      <button class="btn add-to-cart">${lang === "ar" ? "أضف إلى السلة" : "Add to Cart"}</button>
     `;
+
     container.appendChild(item);
   });
+
   attachSliders();
   attachCart(lang);
 }
 
-// Slider
-function attachSliders(){
+// Slider logic: single simple "next" arrow, auto-change every 7000ms, update item's dataset.img to current slide
+function attachSliders() {
   document.querySelectorAll('.slider').forEach(slider => {
-    const slides = slider.querySelectorAll('.slide');
-    let index = 0;
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    if (slides.length === 0) return;
+    let index = slides.findIndex(s => s.classList.contains('active'));
+    if (index === -1) index = 0;
+
     const nextBtn = slider.querySelector('.next-btn');
-    function showSlide(i){ slides.forEach((s,idx)=>s.classList.toggle('active',idx===i)); }
-    nextBtn.addEventListener('click',()=>{ index=(index+1)%slides.length; showSlide(index); });
-    setInterval(()=>{ index=(index+1)%slides.length; showSlide(index); },7000);
+    const item = slider.closest('.item');
+
+    function showSlide(i) {
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      // update the dataset image so "Add to Cart" will save the currently visible image
+      item.dataset.img = slides[i].src;
+    }
+
+    // initial ensure dataset.img is correct
+    item.dataset.img = slides[index].src;
+
+    // next button handler
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    });
+
+    // auto change every 7 seconds (7000 ms)
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 7000);
   });
 }
 
-// Cart
-function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
-function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+// Cart functions (store in localStorage)
+function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
+function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
 
-function attachCart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
-    btn.addEventListener("click",()=>{
+function attachCart(lang) {
+  document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
       const item = btn.closest(".item");
-      const product = {name:item.dataset.name, price:parseFloat(item.dataset.price), img:item.dataset.img, qty:1};
+      const product = {
+        name: item.dataset.name,
+        price: parseFloat(item.dataset.price),
+        img: item.dataset.img,
+        qty: 1
+      };
       let cart = getCart();
-      let existing = cart.find(p=>p.name===product.name);
-      if(existing) existing.qty+=1; else cart.push(product);
+      let existing = cart.find(p => p.name === product.name && p.img === product.img);
+      if (existing) existing.qty += 1; else cart.push(product);
       saveCart(cart);
-      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff"; btn.style.color="#4b0e1f";
-      setTimeout(()=>{ btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200);
+
+      btn.innerText = lang === "ar" ? "تم الإضافة!" : "Added!";
+      btn.style.background = "#fff"; btn.style.color = "#4b0e1f";
+      setTimeout(() => {
+        btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
+        btn.style.background = "#ffb3c6"; btn.style.color = "#4b0e1f";
+      }, 1200);
     });
   });
 }
 
 // Language switch
 const langSelect = document.getElementById("langSelect");
-langSelect.addEventListener("change",()=>{
+langSelect.addEventListener("change", () => {
   const lang = langSelect.value;
-  document.body.dir = lang==="ar"?"rtl":"ltr";
-  document.getElementById("headerTitle").textContent = lang==="ar"?"رفوف خشبية":"Wooden Racks";
-  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  document.body.dir = lang === "ar" ? "rtl" : "ltr";
+  document.getElementById("headerTitle").textContent = lang === "ar" ? "رفوف خشبية" : "Wooden Racks";
+  document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
   renderProducts(lang);
 });
 
-// Initial render
+// initial render (English)
 renderProducts("en");
 </script>
 
