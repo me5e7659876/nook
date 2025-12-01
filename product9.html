@@ -54,7 +54,7 @@
       max-width: 360px;
       display: flex;
       flex-direction: column;
-      padding: 0;
+      padding: 0; /* الحواف أقل */ /* يقلل الحواف */
     }
 
     .collection-card:hover {
@@ -63,10 +63,10 @@
 
     .collection-card img {
       width: 100%;
-      height: 400px;
+      height: 400px; /* الصورة أكبر */
       object-fit: cover;
       display: block;
-      border-radius: 22px;
+      border-radius: 22px; /* الصورة كاملة على شكل الكرت */
     }
 
     .collection-info {
@@ -80,6 +80,7 @@
       font-size: 18px;
       font-weight: 500;
       color: #ffb3c6;
+      font-family: 'Didot', serif;
     }
 
     @media (min-width: 768px) {
@@ -92,7 +93,7 @@
       }
 
       .collection-card img {
-        height: 460px;
+        height: 460px; /* أكبر للشاشات الكبيرة */
       }
 
       .collection-info h3 {
@@ -154,18 +155,18 @@
   </div>
 
   <div class="collection-card" onclick="openCollection('modern')">
-    <img src="https://i.postimg.cc/JnJ2Lh72/0a473957-0cd9-47e5-9ab4-254bec94bb67.jpg">
+    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
     <div class="collection-info"><h3 data-en="Modern" data-ar="مودرن">Modern</h3></div>
   </div>
 
   <div class="collection-card" onclick="openCollection('classic')">
-    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+    <img src="https://i.postimg.cc/mrfW0KBw/ec487ce9-c6e5-44f0-a661-2846161e4576.jpg">
     <div class="collection-info"><h3 data-en="Classic" data-ar="كلاسيك">Classic</h3></div>
   </div>
+  </div>
 
-  <!-- 🔥 تم تغيير صورة pinky هنا -->
   <div class="collection-card" onclick="openCollection('pinky')">
-    <img src="https://i.postimg.cc/fyQ28hsd/af6b0667-18a7-41fc-92c4-76f81747b752.jpg">
+    <img src="https://i.postimg.cc/ry4FbnZm/pink.jpg">
     <div class="collection-info"><h3 data-en="Pinky" data-ar="بينكي">Pinky</h3></div>
   </div>
 
