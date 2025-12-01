@@ -156,7 +156,6 @@
     <div class="collection-info"><h3 data-en="Modern" data-ar="مودرن">Modern</h3></div>
   </div>
 
-  <!-- 🔥 تم تغيير صورة الكلاسيك هنا فقط -->
   <div class="collection-card" onclick="openCollection('classic')">
     <img src="https://i.postimg.cc/mrfW0KBw/ec487ce9-c6e5-44f0-a661-2846161e4576.jpg">
     <div class="collection-info"><h3 data-en="Classic" data-ar="كلاسيك">Classic</h3></div>
@@ -167,6 +166,22 @@
     <div class="collection-info"><h3 data-en="Pinky" data-ar="بينكي">Pinky</h3></div>
   </div>
 
+</div>
+
+<!-- 🔥 زر Back to Home أسفل الصفحة الرئيسية -->
+<div style="text-align:center; margin:25px 0;">
+  <a href="index.html" style="
+    background:#ffb3c6;
+    color:#4b0e1f;
+    padding:12px 22px;
+    font-weight:bold;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:18px;
+    display:inline-block;
+  ">
+    ← Back to Home
+  </a>
 </div>
 
 <div id="sunflower" class="collection-page">
@@ -208,7 +223,7 @@ function openCollection(id) {
 function goHome() {
   document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
   document.getElementById("homePage").style.display = "grid";
-  window.scrollTo(0, document.body.scrollHeight);
+  window.scrollTo(0, 0);
 }
 
 const langSelect = document.getElementById("langSelect");
