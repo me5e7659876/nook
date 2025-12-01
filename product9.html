@@ -1,139 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mood Collections - Nook Decor</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Didot&display=swap');
-
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #4b0e1f;
-  color: white;
-  text-align: center;
-}
-
-/* ---------------- HEADER ---------------- */
-.header {
-  padding: 25px 0 10px;
-}
-
-.logo {
-  font-family: 'Didot', serif;
-  font-size: 42px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: white;
-}
-
-.subtitle {
-  font-size: 15px;
-  margin-top: -5px;
-  opacity: 0.8;
-}
-
-/* ---------------- GRID ---------------- */
-.collections-grid {
-  display: grid;
-  gap: 22px;
-  padding: 25px;
-  justify-content: center;
-}
-
-/* ⭐ كرت أكبر ومربع على الموبايل */
-.collection-card {
-  background: #5c1228;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
-  transition: 0.3s;
-  cursor: pointer;
-  width: 100%;
-  max-width: 360px;
-  height: 360px; /* مربع */
-}
-
-.collection-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.collection-name {
-  padding: 12px;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: white;
-  text-transform: uppercase;
-}
-
-/* ---------------- DESKTOP ---------------- */
-@media (min-width: 768px) {
-  .collections-grid {
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    justify-items: center;
-    padding: 40px;
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
   }
 
-  /* كروت كبيرة جداً على الديسكتوب - نفس الشكل المربع */
+  header {
+    background-color: #4b0e1f;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+  }
+
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffb3c6;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4b0e1f;
+    cursor: pointer;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 25px;
+    justify-items: center;
+  }
+
+  /* ⭐ كرت كبير ومربع على الموبايل */
   .collection-card {
-    max-width: 420px;
-    height: 420px;
+    background: #5c1228;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    transition: 0.3s;
+    cursor: pointer;
+    width: 100%;
+    max-width: 360px;  /* أكبر على الموبايل */
+    height: 360px;     /* مربّع */
+  }
+
+  .collection-card:hover {
+    transform: scale(1.05);
   }
 
   .collection-card img {
-    height: 100%;
+    width: 100%;
+    height: 100%;     /* عشان يملأ المربع */
+    object-fit: cover;
   }
 
-  .collection-name {
-    font-size: 18px;
-  }
-}
+  /* 🔥 كروت ضخمة على الديسكتوب ومربعة */
+  @media (min-width: 768px) {
+    .collections-grid {
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    }
 
-/* Hover Effect */
-.collection-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 30px rgba(0,0,0,0.5);
-}
+    .collection-card {
+      max-width: 420px;
+      height: 420px; /* مربع */
+    }
+
+    .collection-card img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .collection-info {
+    padding: 10px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .collection-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #ffb3c6;
+  }
+
+  .collection-page {
+    display: none;
+    padding: 20px;
+  }
+
+  .back-btn {
+    background: #ffb3c6;
+    color: #4b0e1f;
+    padding: 10px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  .inner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .inner-grid img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    height: 250px;
+  }
+
+  @media (min-width: 768px) {
+    .inner-grid img {
+      height: 300px;
+    }
+  }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">Nook Decor</div>
-  <div class="subtitle">Create Your Own Mood</div>
+<header>
+  <span id="pageTitle">Mood Collections</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
+
+<div id="homePage" class="collections-grid">
+
+  <div class="collection-card" onclick="openCollection('sunflower')">
+    <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
+    <div class="collection-info"><h3 data-en="Sun Flower Mood" data-ar="مود دوار الشمس">Sun Flower Mood</h3></div>
+  </div>
+
+  <div class="collection-card" onclick="openCollection('modern')">
+    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+    <div class="collection-info"><h3 data-en="Modern Mood" data-ar="مود مودرن">Modern Mood</h3></div>
+  </div>
+
+  <div class="collection-card" onclick="openCollection('classic')">
+    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4">
+    <div class="collection-info"><h3 data-en="Classic Mood" data-ar="مود كلاسيك">Classic Mood</h3></div>
+  </div>
+
+  <div class="collection-card" onclick="openCollection('pinky')">
+    <img src="https://i.postimg.cc/ry4FbnZm/pink.jpg">
+    <div class="collection-info"><h3 data-en="Pinky Mood" data-ar="مود بينكي">Pinky Mood</h3></div>
+  </div>
+
 </div>
 
-<!-- GRID -->
-<div class="collections-grid">
-
-  <div class="collection-card">
-    <img src="img1.jpg" alt="">
-    <div class="collection-name">Large Vases</div>
+<div id="sunflower" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Sun Flower Mood</h2>
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/VsMsggnk/Idees-au-top.jpg">
+    <img src="https://i.postimg.cc/B6F3hZ8g/Good-Morning-Sunshine.jpg">
+    <img src="https://i.postimg.cc/mZQRCDWY/Yellow-sunflowers-home-decor-Ai.jpg">
+    <img src="https://i.postimg.cc/SKBFz0ZD/How-to-Decorate-Essential-Tips-and-Ideas.jpg">
+    <img src="https://i.postimg.cc/P5JB3f96/𝚋𝚎𝚝𝚛𝚊𝚢𝚘𝚘𝚗𝚐𝚒.jpg">
   </div>
-
-  <div class="collection-card">
-    <img src="img2.jpg" alt="">
-    <div class="collection-name">Decor Trees</div>
-  </div>
-
-  <div class="collection-card">
-    <img src="img3.jpg" alt="">
-    <div class="collection-name">Flower Vases</div>
-  </div>
-
-  <div class="collection-card">
-    <img src="img4.jpg" alt="">
-    <div class="collection-name">Glass & Small Vase</div>
-  </div>
-
 </div>
+
+<div id="modern" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Modern Mood</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="classic" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Classic Mood</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="pinky" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Pinky Mood</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<script>
+function openCollection(id) {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+
+function goHome() {
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById("homePage").style.display = "grid";
+}
+
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", () => {
+  const lang = langSelect.value;
+
+  document.querySelectorAll("[data-en]").forEach(el => {
+    el.textContent = el.getAttribute(`data-${lang}`);
+  });
+
+  document.getElementById("pageTitle").textContent =
+    lang === "en" ? "Mood Collections" : "كوليكشنات المزاج";
+});
+</script>
 
 </body>
 </html>
