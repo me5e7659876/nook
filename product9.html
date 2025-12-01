@@ -46,17 +46,17 @@
 
   .collection-card {
     background: #5c1228;
-    border-radius: 18px;
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.4);
     transition: 0.3s;
     cursor: pointer;
-    max-width: 300px; /* ✅ تثبيت أكبر عرض للكرت */
-    margin: auto;
+    width: 100%;
+    max-width: 300px;
   }
 
   .collection-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 
   .collection-card img {
@@ -65,15 +65,20 @@
     object-fit: cover;
   }
 
-  /* 📌 نفس المقاس للموبايل والديسكتوب */
+  /* 🔥 كروت ضخمة على الديسكتوب ومربعة تقريباً */
   @media (min-width: 768px) {
     .collections-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* كرت كبير */
+    }
+
+    .collection-card {
+      max-width: 420px; /* أكبر بكتير */
+      height: 420px;    /* مربع */
     }
 
     .collection-card img {
-      height: 340px;
+      height: 100%;   /* يخلي الصورة تتمدد داخل الشكل المربع */
+      object-fit: cover;
     }
   }
 
@@ -85,7 +90,7 @@
 
   .collection-info h3 {
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
     color: #ffb3c6;
   }
 
@@ -175,25 +180,19 @@
 <div id="modern" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Modern Mood</h2>
-  <div class="inner-grid">
-    <!-- صور المودرن -->
-  </div>
+  <div class="inner-grid"></div>
 </div>
 
 <div id="classic" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Classic Mood</h2>
-  <div class="inner-grid">
-    <!-- صور الكلاسيك -->
-  </div>
+  <div class="inner-grid"></div>
 </div>
 
 <div id="pinky" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Pinky Mood</h2>
-  <div class="inner-grid">
-    <!-- صور البينكي -->
-  </div>
+  <div class="inner-grid"></div>
 </div>
 
 <script>
