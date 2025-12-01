@@ -54,7 +54,7 @@
       max-width: 360px;
       display: flex;
       flex-direction: column;
-      padding: 0; /* الحواف أقل */ /* يقلل الحواف */
+      padding: 0;
     }
 
     .collection-card:hover {
@@ -63,10 +63,10 @@
 
     .collection-card img {
       width: 100%;
-      height: 400px; /* الصورة أكبر */
+      height: 400px;
       object-fit: cover;
       display: block;
-      border-radius: 22px; /* الصورة كاملة على شكل الكرت */
+      border-radius: 22px;
     }
 
     .collection-info {
@@ -80,22 +80,18 @@
       font-size: 18px;
       font-weight: 500;
       color: #ffb3c6;
-      font-family: 'Didot', serif;
     }
 
     @media (min-width: 768px) {
       .collections-grid {
         grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
       }
-
       .collection-card {
         max-width: 420px;
       }
-
       .collection-card img {
-        height: 460px; /* أكبر للشاشات الكبيرة */
+        height: 460px;
       }
-
       .collection-info h3 {
         font-size: 20px;
       }
@@ -137,6 +133,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -155,18 +152,18 @@
   </div>
 
   <div class="collection-card" onclick="openCollection('modern')">
-    <img src="https://i.postimg.cc/DZysS1r4/photo-1600585154340-be6161a56a0c.jpg">
+    <img src="https://i.postimg.cc/JnJ2Lh72/0a473957-0cd9-47e5-9ab4-254bec94bb67.jpg">
     <div class="collection-info"><h3 data-en="Modern" data-ar="مودرن">Modern</h3></div>
   </div>
 
+  <!-- 🔥 تم تغيير صورة الكلاسيك هنا فقط -->
   <div class="collection-card" onclick="openCollection('classic')">
     <img src="https://i.postimg.cc/mrfW0KBw/ec487ce9-c6e5-44f0-a661-2846161e4576.jpg">
     <div class="collection-info"><h3 data-en="Classic" data-ar="كلاسيك">Classic</h3></div>
   </div>
-  </div>
 
   <div class="collection-card" onclick="openCollection('pinky')">
-    <img src="https://i.postimg.cc/ry4FbnZm/pink.jpg">
+    <img src="https://i.postimg.cc/fyQ28hsd/af6b0667-18a7-41fc-92c4-76f81747b752.jpg">
     <div class="collection-info"><h3 data-en="Pinky" data-ar="بينكي">Pinky</h3></div>
   </div>
 
@@ -218,7 +215,7 @@ const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change", () => {
   const lang = langSelect.value;
   document.querySelectorAll("[data-en]").forEach(el => {
-    el.textContent = el.getAttribute(`data-${lang}`);
+    el.textContent = el.getAttribute("data-" + lang);
   });
 
   document.getElementById("pageTitle").textContent =
