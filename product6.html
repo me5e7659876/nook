@@ -3,195 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wooden Racks - Nook Decor</title>
-
+  <title>Wooden Racks</title>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-      position: relative;
-    }
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #ffb3c6;
-      color: #4b0e1f;
+      background-color: #f9f9f9;
     }
 
-    .gallery {
+    .container {
+      padding: 20px;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 35px;
-      padding: 35px;
-      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
-    .item {
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 18px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      position: relative;
+    .card {
+      background: #fff;
+      border-radius: 16px;
       overflow: hidden;
-      width: 100%;
-      max-width: 430px;
-    }
-
-    .item:hover { transform: scale(1.05); }
-
-    .slider {
-      width: 100%;
-      max-width: 430px;
-      height: 460px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      margin: 0 auto;
-    }
-
-    .slide {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-    }
-
-    .active { opacity: 1; }
-
-    .next-btn {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      background-color: rgba(255,179,198,0.8);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      color: #4b0e1f;
-      font-weight: bold;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffb3c6;
-      margin-top: 10px;
-    }
-
-    .desc {
-      font-size: 15px;
-      color: #ffe3eb;
-      margin-top: 8px;
-      line-height: 1.5;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .item:hover .desc {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: 0.3s;
+    }
+
+    .card img {
       width: 100%;
+      height: 280px;
+      object-fit: cover;
     }
 
-    .btn:hover { background-color: #ffc7d3; }
-
-    .back-link {
-      display: block;
+    .card h3 {
       text-align: center;
-      margin: 30px 0;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
+      padding: 10px 0;
+      font-size: 18px;
+      font-family: 'Didot', serif;
+      color: #444;
     }
 
-    @media (max-width: 480px) {
-      .slider {
-        height: 390px;
-        max-width: 100%;
-      }
-      .item {
-        max-width: 100%;
-      }
-    }
-
-    /* ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-       ⭐   تعديل آخر كرتين على الموبايل فقط   ⭐
-       ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ */
-    @media (max-width: 480px) {
-      .item:last-child .slider,
-      .item:nth-last-child(2) .slider {
-        height: 500px !important;
+    /* --- موبايل --- */
+    @media (max-width: 600px) {
+      .card img {
+        height: 260px;
       }
 
-      .item:last-child,
-      .item:nth-last-child(2) {
-        max-width: 92% !important;
+      /* آخر كرتين أطول و أضيق */
+      .card:nth-last-child(1) img,
+      .card:nth-last-child(2) img {
+        height: 350px !important;
+        width: 90% !important;
         margin: 0 auto;
+        display: block;
+        border-radius: 14px;
       }
 
-      .item:last-child .slide,
-      .item:nth-last-child(2) .slide {
-        object-fit: cover !important;
+      .card:nth-last-child(1),
+      .card:nth-last-child(2) {
+        padding-bottom: 10px;
       }
     }
-
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="grid">
 
-<header>
-  <span id="headerTitle">Wooden Racks</span>
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
-  </select>
-</header>
+      <div class="card">
+        <img src="https://i.postimg.cc/YS2LFg1r/9077ff9c-7cf7-4a66-acf0-981d4509b7d2.jpg">
+        <h3>Wooden Rack 1</h3>
+      </div>
 
-<div class="gallery" id="galleryContainer"></div>
+      <div class="card">
+        <img src="https://i.postimg.cc/PrMgRzGQ/6e102c35-edcb-4fe9-a474-f3045b581aba.jpg">
+        <h3>Wooden Rack 2</h3>
+      </div>
 
-<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+      <div class="card">
+        <img src="https://i.postimg.cc/52T9wGzt/322766127-573911088109949-4160564904504611895-n.jpg">
+        <h3>Wooden Rack 3</h3>
+      </div>
 
-<script>
-// JS CODE — (unchanged)
-</script>
+      <!-- آخر كرتين اللي طلبتيهم -->
+      <div class="card">
+        <img src="https://i.postimg.cc/zBdTJ7dk/IMG-20241123-WA0058.jpg">
+        <h3>Wooden Rack 4</h3>
+      </div>
 
+      <div class="card">
+        <img src="https://i.postimg.cc/pdXN2M5m/IMG-20241123-WA0057.jpg">
+        <h3>Wooden Rack 5</h3>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>
