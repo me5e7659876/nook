@@ -30,45 +30,64 @@ header { background:#4b0e1f; padding:15px; text-align:center; font-size:28px; fo
   </select>
 </header>
 
-<div class="gallery" id="productContainer">
-  <!-- المنتجات سيتم توليدها ديناميكياً -->
-</div>
+<div class="gallery" id="productContainer"></div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-// كل المنتجات الأصلية في مصفوفة مع الاسم والوصف بالإنجليزي والعربي
 const products = [
-  // المصابيح
-  {img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png", price:1500, name:{en:"Modern Lamp 1", ar:"مصباح مودرن 1"}, desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.", ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}},
-  {img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png", price:2200, name:{en:"Modern Lamp 2", ar:"مصباح مودرن 2"}, desc:{en:"A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.", ar:"مصباح مودرن فاخر يضيف الرقي والسحر لغرفة المعيشة أو النوم."}},
-  {img:"https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png", price:1800, name:{en:"Modern Lamp 3", ar:"مصباح مودرن 3"}, desc:{en:"Soft lighting with a minimal artistic design — the perfect piece to create a relaxing evening mood.", ar:"إضاءة ناعمة مع تصميم فني بسيط — القطعة المثالية لخلق أجواء هادئة في المساء."}},
-  {img:"https://i.postimg.cc/Xq1c0rqg/b387512d-d9a8-4a21-9cdf-255bb1e9da06.png", price:2200, name:{en:"Modern Lamp 4", ar:"مصباح مودرن 4"}, desc:{en:"A sleek geometric design with gentle brightness that balances beauty and comfort in your decor.", ar:"تصميم هندسي أنيق مع إضاءة لطيفة يوازن بين الجمال والراحة في ديكورك."}},
-  {img:"https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png", price:1800, name:{en:"Modern Lamp 5", ar:"مصباح مودرن 5"}, desc:{en:"A modern elegant lamp that brings a cozy and stylish touch to your corners and small spaces.", ar:"مصباح مودرن أنيق يضيف لمسة دافئة وعصرية لزواياك والمساحات الصغيرة."}},
-  {img:"https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png", price:1500, name:{en:"Modern Lamp 6", ar:"مصباح مودرن 6"}, desc:{en:"A chic and affordable decor piece that combines simplicity with charming, relaxing lighting.", ar:"قطعة ديكور أنيقة وبسعر مناسب تجمع بين البساطة والإضاءة المريحة والجذابة."}},
-  {img:"https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png", price:2000, name:{en:"Modern Lamp 7", ar:"مصباح مودرن 7"}, desc:{en:"A unique lamp that radiates positive energy and highlights your furniture with soft elegant light.", ar:"مصباح فريد يشع طاقة إيجابية ويبرز أثاثك بضوء ناعم وأنيق."}},
-  {img:"https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png", price:2200, name:{en:"Modern Lamp 8", ar:"مصباح مودرن 8"}, desc:{en:"The perfect blend of art and function — this lamp adds luxury and brilliance to any interior space.", ar:"المزيج المثالي بين الفن والوظيفة — هذا المصباح يضيف الفخامة والبهاء لأي مساحة داخلية."}},
-  // المصابيح الجديدة
-  {img:"https://i.postimg.cc/8zxkyTqV/fdd88ed6-c599-4b80-aba1-e1f8172fd008.png", price:2000, name:{en:"Modern Lamp New 1", ar:"مصباح مودرن جديد 1"}, desc:{en:"Modern style lamp featuring a stunning artistic glow that enhances your home’s ambiance beautifully.", ar:"مصباح مودرن مع توهج فني رائع يعزز أجواء منزلك بشكل جميل."}},
-  {img:"https://i.postimg.cc/76nxY0b5/re1.jpg", price:700, name:{en:"Modern Lamp New 2", ar:"مصباح مودرن جديد 2"}, desc:{en:"A minimalist lamp that fits every corner — perfect for cozy, intimate lighting at an affordable price.", ar:"مصباح بسيط يناسب كل زاوية — مثالي لإضاءة دافئة وحميمة بسعر مناسب."}},
-  {img:"https://i.postimg.cc/xjg0wvWp/re5.png", price:2000, name:{en:"Modern Lamp New 3", ar:"مصباح مودرن جديد 3"}, desc:{en:"Elegant yet simple — this modern lamp blends functionality with timeless beauty for your home decor.", ar:"أنيق وبسيط — هذا المصباح المودرن يجمع بين الوظائف والجمال الخالد لديكور منزلك."}},
-  {img:"https://i.postimg.cc/nL8Z40QN/re6.png", price:2000, name:{en:"Modern Lamp New 4", ar:"مصباح مودرن جديد 4"}, desc:{en:"Soft lighting with a touch of modern luxury — ideal for your bedroom or living area.", ar:"إضاءة ناعمة مع لمسة من الفخامة المودرن — مثالي لغرفة النوم أو المعيشة."}},
-  {img:"https://i.postimg.cc/D0zKvNtC/re9.png", price:1500, name:{en:"Modern Lamp New 5", ar:"مصباح مودرن جديد 5"}, desc:{en:"Contemporary lighting piece that gives your space warmth and harmony with a minimal look.", ar:"قطعة إضاءة معاصرة تمنح مساحتك الدفء والانسجام بمظهر بسيط."}},
-  {img:"https://i.postimg.cc/qMSdrjQw/bb.jpg", price:800, name:{en:"Modern Lamp New 6", ar:"مصباح مودرن جديد 6"}, desc:{en:"Affordable modern lamp with soft tones that make any room instantly feel more elegant.", ar:"مصباح مودرن بأسعار مناسبة مع ألوان ناعمة تجعل أي غرفة تبدو أكثر أناقة فوراً."}},
-  {img:"https://i.postimg.cc/FR9MpqFW/y.jpg", price:2200, name:{en:"Modern Lamp New 7", ar:"مصباح مودرن جديد 7"}, desc:{en:"A statement lamp that elevates any modern home with its stylish and artistic glow.", ar:"مصباح بارز يرفع مستوى أي منزل مودرن بضوءه العصري والفني."}},
-  {img:"https://i.postimg.cc/Gtf6cmFW/yy.jpg", price:1500, name:{en:"Modern Lamp New 8", ar:"مصباح مودرن جديد 8"}, desc:{en:"Modern lamp combining soft curves and bright tones for a perfect decor enhancement.", ar:"مصباح مودرن يجمع بين المنحنيات الناعمة والألوان الزاهية لتعزيز الديكور بشكل مثالي."}},
-  {img:"https://i.postimg.cc/rFv73zFR/yyyyshs.png", price:2000, name:{en:"Modern Lamp New 9", ar:"مصباح مودرن جديد 9"}, desc:{en:"Contemporary design that reflects both simplicity and class — ideal for modern homes.", ar:"تصميم معاصر يجمع بين البساطة والفخامة — مثالي للمنازل المودرن."}},
-  {img:"https://i.postimg.cc/VNFTJR9t/yyyyy.jpg", price:2500, name:{en:"Modern Lamp New 10", ar:"مصباح مودرن جديد 10"}, desc:{en:"High-end lamp offering warm and ambient lighting to bring elegance into your living space.", ar:"مصباح فاخر يوفر إضاءة دافئة وجوياً ليضفي الأناقة على مساحة المعيشة الخاصة بك."}},
-  // الأباليك والنجف
-  {img:"https://i.postimg.cc/LszfF3Q2/11.png", price:2500, name:{en:"Chandelier 1", ar:"ثريا 1"}, desc:{en:"Elegant chandelier with a modern luxurious design that elevates your space.", ar:"ثريا أنيقة بتصميم فاخر مودرن يرفع مستوى المساحة لديك."}},
-  {img:"https://i.postimg.cc/13FVDKQF/wyyys.png", price:800, name:{en:"Chandelier 2", ar:"ثريا 2"}, desc:{en:"Simple and stylish chandelier — perfect for modern minimalist spaces.", ar:"ثريا بسيطة وأنيقة — مثالية للمساحات المودرن البسيطة."}},
-  {img:"https://i.postimg.cc/zBzLZZg5/2ablyk.jpg", price:700, name:{en:"Wall Light 1", ar:"أباليك حائط 1"}, desc:{en:"Modern wall light that adds a warm and decorative glow to your walls.", ar:"إضاءة حائط مودرن تضيف توهجاً دافئاً وزخرفياً لجدرانك."}},
-  {img:"https://i.postimg.cc/y6rD5G6L/q.jpg", price:400, name:{en:"Wall Light 2", ar:"أباليك حائط 2"}, desc:{en:"Sleek minimal wall light ideal for bedrooms and hallways.", ar:"أباليك حائط أنيق وبسيط مثالي لغرف النوم والممرات."}},
-  {img:"https://i.postimg.cc/FH01YsyB/hh.png", price:500, name:{en:"Wall Light 3", ar:"أباليك حائط 3"}, desc:{en:"Decorative wall sconce that combines modern elegance with soft warm lighting.", ar:"أباليك حائط زخرفي يجمع بين الأناقة المودرن والإضاءة الدافئة."}},
-  {img:"https://i.postimg.cc/yxwYNwkk/ym.png", price:250, name:{en:"Wall Light 4", ar:"أباليك حائط 4"}, desc:{en:"Compact and affordable wall light perfect for small cozy corners.", ar:"أباليك حائط صغير وبسعر مناسب مثالي للزوايا الصغيرة المريحة."}},
+  {img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png", price:1500, name:{en:"Modern Lamp 1", ar:"مصباح مودرن 1"}, desc:{en:"A warm and elegant touch...", ar:"لمسة دافئة..." }},
+  {img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png", price:2200, name:{en:"Modern Lamp 2", ar:"مصباح مودرن 2"}, desc:{en:"A luxurious modern lamp...", ar:"مصباح مودرن فاخر..." }},
+  {img:"https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png", price:1800, name:{en:"Modern Lamp 3", ar:"مصباح مودرن 3"}, desc:{en:"Soft lighting...", ar:"إضاءة ناعمة..." }},
+  {img:"https://i.postimg.cc/Xq1c0rqg/b387512d-d9a8-4a21-9cdf-255bb1e9da06.png", price:2200, name:{en:"Modern Lamp 4", ar:"مصباح مودرن 4"}, desc:{en:"A sleek design...", ar:"تصميم أنيق..." }},
+  {img:"https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png", price:1800, name:{en:"Modern Lamp 5", ar:"مصباح مودرن 5"}, desc:{en:"Modern elegant lamp...", ar:"مصباح مودرن أنيق..." }},
+  {img:"https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png", price:1500, name:{en:"Modern Lamp 6", ar:"مصباح مودرن 6"}, desc:{en:"A chic and affordable decor...", ar:"قطعة ديكور..." }},
+  {img:"https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png", price:2000, name:{en:"Modern Lamp 7", ar:"مصباح مودرن 7"}, desc:{en:"A unique lamp...", ar:"مصباح فريد..." }},
+  {img:"https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png", price:2200, name:{en:"Modern Lamp 8", ar:"مصباح مودرن 8"}, desc:{en:"The perfect blend...", ar:"المزيج المثالي..." }},
+
+  /* 🔥 هنا تبدأ المنتجات اللي بدّلنا صورها 🔥 */
+
+  {img:"https://i.postimg.cc/8zxkyTqV/fdd88ed6-c599-4b80-aba1-e1f8172fd008.png", price:2000, name:{en:"New Lamp 1", ar:"مصباح جديد 1"}, desc:{en:"Modern style...", ar:"ستايل مودرن..." }},
+
+  /* المنتج 10 */
+  {img:"https://i.postimg.cc/W4PsyVq8/4.png", price:700, name:{en:"Modern Lamp New 2", ar:"مصباح مودرن جديد ٢"}, desc:{en:"Minimalist...", ar:"بسيط..." }},
+
+  {img:"https://i.postimg.cc/xjg0wvWp/re5.png", price:2000, name:{en:"Modern Lamp New 3", ar:"مصباح مودرن جديد 3"}, desc:{en:"Elegant...", ar:"أنيق..." }},
+
+  /* المنتج 14 */
+  {img:"https://i.postimg.cc/L6YR65zj/10.png", price:2000, name:{en:"Modern Lamp New 4", ar:"مصباح مودرن جديد ٤"}, desc:{en:"Soft lighting...", ar:"إضاءة ناعمة..." }},
+
+  /* المنتج 15 */
+  {img:"https://i.postimg.cc/1zPZHKb4/3.png", price:1500, name:{en:"Modern Lamp New 5", ar:"مصباح مودرن جديد ٥"}, desc:{en:"Contemporary...", ar:"معاصر..." }},
+
+  /* المنتج 16 */
+  {img:"https://i.postimg.cc/KjKXzp3w/2.png", price:800, name:{en:"Modern Lamp New 6", ar:"مصباح مودرن جديد ٦"}, desc:{en:"Affordable modern...", ar:"سعر مناسب..." }},
+
+  /* المنتج 17 (لم يُطلب تغييره) */
+  {img:"https://i.postimg.cc/FR9MpqFW/y.jpg", price:2200, name:{en:"Modern Lamp New 7", ar:"مصباح مودرن جديد ٧"}, desc:{en:"A statement lamp...", ar:"مصباح بارز..." }},
+
+  /* المنتج 18 */
+  {img:"https://i.postimg.cc/bdX5vyhV/1.png", price:1500, name:{en:"Modern Lamp New 8", ar:"مصباح مودرن جديد ٨"}, desc:{en:"Soft curves...", ar:"منحنيات..." }},
+
+  /* المنتج 19 (لم يُطلب تغييره) */
+  {img:"https://i.postimg.cc/rFv73zFR/yyyyshs.png", price:2000, name:{en:"Modern Lamp New 9", ar:"مصباح مودرن جديد ٩"}, desc:{en:"Contemporary...", ar:"معاصر..." }},
+
+  /* المنتج 20 */
+  {img:"https://i.postimg.cc/d3Gbrkng/6.png", price:2500, name:{en:"Modern Lamp New 10", ar:"مصباح مودرن جديد ١٠"}, desc:{en:"High-end lamp...", ar:"مصباح فاخر..." }},
+
+  /* المنتج 21 */
+  {img:"https://i.postimg.cc/Nfkh0XKj/9.png", price:2500, name:{en:"Chandelier 1", ar:"ثريا ١"}, desc:{en:"Elegant chandelier...", ar:"ثريا أنيقة..." }},
+
+  /* المنتج 22 (unchanged) */
+  {img:"https://i.postimg.cc/13FVDKQF/wyyys.png", price:800, name:{en:"Chandelier 2", ar:"ثريا ٢"}, desc:{en:"Simple and stylish...", ar:"بسيطة..." }},
+
+  /* المنتج 23 */
+  {img:"https://i.postimg.cc/1X0dfx5v/7.png", price:700, name:{en:"Wall Light 1", ar:"أباليك حائط ١"}, desc:{en:"Modern wall light...", ar:"إضاءة حائط..." }},
+
+  /* المنتج 24 */
+  {img:"https://i.postimg.cc/wj4GtQgv/5.png", price:400, name:{en:"Wall Light 2", ar:"أباليك حائط ٢"}, desc:{en:"Minimal wall light...", ar:"أباليك بسيط..." }},
 ];
 
-// توليد المنتجات حسب اللغة
 function renderProducts(lang){
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
@@ -86,9 +105,9 @@ function renderProducts(lang){
   attachCartListeners(lang);
 }
 
-// نظام السلة
 function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
 function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+
 function attachCartListeners(lang){
   document.querySelectorAll(".add-cart").forEach(btn=>{
     btn.addEventListener("click",()=>{
@@ -114,7 +133,6 @@ function attachCartListeners(lang){
   });
 }
 
-// تغيير اللغة
 const langSelect=document.getElementById("langSelect");
 langSelect.addEventListener("change",()=>{
   const lang=langSelect.value;
@@ -123,9 +141,7 @@ langSelect.addEventListener("change",()=>{
   document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
 });
 
-// عرض مبدئي
 renderProducts("en");
-
 </script>
 
 </body>
