@@ -35,12 +35,9 @@
       color: #4b0e1f;
     }
 
-    /* =============================
-       ✔ تعديل عرض كروت الديسك توب
-       ============================= */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); /* كان 250 */
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
       gap: 35px;
       padding: 35px;
       justify-items: center;
@@ -56,18 +53,15 @@
       position: relative;
       overflow: hidden;
       width: 100%;
-      max-width: 430px; /* ✔ الكرت كبر */
+      max-width: 430px;
     }
 
     .item:hover { transform: scale(1.05); }
 
-    /* =============================
-       ✔ تكبير السلايدر على الديسك توب
-       ============================= */
     .slider {
       width: 100%;
-      max-width: 430px; /* كان 350 */
-      height: 460px;    /* كان 420 */
+      max-width: 430px;
+      height: 460px;
       position: relative;
       overflow: hidden;
       border-radius: 15px;
@@ -77,7 +71,7 @@
     .slide {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* مهم لظهور الصورة كاملة */
+      object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
@@ -108,6 +102,7 @@
       color: #ffb3c6;
       margin-top: 10px;
     }
+
     .desc {
       font-size: 15px;
       color: #ffe3eb;
@@ -117,10 +112,12 @@
       transform: translateY(10px);
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
+
     .item:hover .desc {
       opacity: 1;
       transform: translateY(0);
     }
+
     .btn {
       background-color: #ffb3c6;
       border: none;
@@ -133,7 +130,9 @@
       transition: 0.3s;
       width: 100%;
     }
+
     .btn:hover { background-color: #ffc7d3; }
+
     .back-link {
       display: block;
       text-align: center;
@@ -143,17 +142,32 @@
       font-weight: 500;
     }
 
-    /* =============================
-       📱✔️ تعديل الموبايل
-       المنتج الأول + الأخير كاملين
-       ============================= */
     @media (max-width: 480px) {
       .slider {
-        height: 390px;  /* كان 330 → الصور أصبحت كاملة */
+        height: 390px;
         max-width: 100%;
       }
       .item {
         max-width: 100%;
+      }
+    }
+
+    /* تعديل آخر كرتين على الموبايل فقط */
+    @media (max-width: 480px) {
+      .item:last-child .slider,
+      .item:nth-last-child(2) .slider {
+        height: 500px !important;
+      }
+
+      .item:last-child,
+      .item:nth-last-child(2) {
+        max-width: 92% !important;
+        margin: 0 auto;
+      }
+
+      .item:last-child .slide,
+      .item:nth-last-child(2) .slide {
+        object-fit: cover !important;
       }
     }
 
@@ -176,11 +190,11 @@
 <script>
 const products = [
 
-  /* ⭐ المنتج الأول */
+  /* المنتج الأول */
   {
     img:[
       "https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg",
-      https://i.postimg.cc/grb9QkXk/13eb5dbd-f944-4389-8cc3-e29b3b9a0700.jpg
+      "https://i.postimg.cc/grb9QkXk/13eb5dbd-f944-4389-8cc3-e29b3b9a0700.jpg" // تم التعديل
     ],
     price:1200,
     name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"},
@@ -188,7 +202,7 @@ const products = [
           ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}
   },
 
-  /* ⭐ المنتج الثاني */
+  /* المنتج الثاني */
   {
     img:[
       "https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png",
@@ -201,7 +215,7 @@ const products = [
           ar:"رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."}
   },
 
-  /* ⭐ المنتج الثالث */
+  /* المنتج الثالث */
   {
     img:[
       "https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg",
@@ -214,11 +228,11 @@ const products = [
           ar:"حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."}
   },
 
-  /* ⭐ المنتج الرابع */
+  /* المنتج الرابع */
   {
     img:[
       "https://i.postimg.cc/PfmGb2NW/1.jpg",
-      https://i.postimg.cc/VNkNDDPB/7d16e512-4176-44f7-bfee-80b722cf9bc3.jpg
+      "https://i.postimg.cc/VNkNDDPB/7d16e512-4176-44f7-bfee-80b722cf9bc3.jpg" // تم التعديل
     ],
     price:200,
     name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"},
@@ -226,7 +240,7 @@ const products = [
           ar:"رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."}
   },
 
-  /* ⭐ المنتج الخامس */
+  /* المنتج الخامس */
   {
     img:[
       "https://i.postimg.cc/4yFpHzCS/4.png",
@@ -238,7 +252,7 @@ const products = [
           ar:"رف خشبي قوي وأنيق."}
   },
 
-  /* ⭐ المنتج السادس (الأخير) */
+  /* المنتج السادس */
   {
     img:[
       "https://i.postimg.cc/LX9Pyy2x/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg",
