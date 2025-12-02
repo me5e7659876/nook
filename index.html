@@ -25,16 +25,13 @@ body {
 header {
   background-color: #4b0e1f;
   color: white;
-  padding: 20px 20px 20px;
+  padding: 20px;
   text-align: center;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* ↓↓↓ تم تقليل المسافة هنا ↓↓↓ */
   gap: 0px;
-
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   transition: box-shadow 0.3s ease;
 }
@@ -59,8 +56,6 @@ header .title-text {
   font-size: 38px;
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
-
-  /* ↓↓↓ تقليل المسافة فوق كلمة Nook Decor ↓↓↓ */
   margin-top: 0;
 }
 
@@ -92,7 +87,7 @@ header .title-text {
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
 
-/* menu icon */
+/* Menu icon */
 .menu-icon {
   position: absolute;
   top: 20px;
@@ -139,7 +134,7 @@ header .title-text {
 }
 #menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
 
-/* TOP BAR */
+/* SEARCH BAR */
 .top-bar {
   display: flex;
   flex-direction: column;
@@ -166,6 +161,7 @@ header .title-text {
 }
 #searchBarContainer { display: none; }
 
+/* MOOD TEXT */
 .mood-text {
   text-align: center;
   font-size: 24px;
@@ -174,7 +170,7 @@ header .title-text {
   letter-spacing: 0.5px;
 }
 
-/* CARDS */
+/* CONTAINER */
 .container {
   display: flex;
   padding: 20px;
@@ -202,13 +198,13 @@ header .title-text {
 .categories a:hover { background: var(--accent-hover); }
 .categories a.active { outline: 2px solid var(--active-outline); }
 
+/* CARDS */
 .content {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
-
 .card {
   text-align: center;
   transition: transform 0.25s ease;
@@ -236,6 +232,7 @@ header .title-text {
 }
 .no-results[aria-hidden="true"] { display: none; }
 
+/* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
@@ -268,7 +265,7 @@ footer {
     <a data-cat="Moods">Moods</a>
     <a data-cat="Vases">Vases</a>
     <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
-   <a data-cat="Space Packages">Space Packages</a>
+    <a data-cat="Space Packages">Space Packages</a>
     <a data-cat="Lighting">Lighting</a>
     <a data-cat="Glass Candles">Glass Candles</a>
     <a data-cat="Furniture">Furniture</a>
@@ -311,7 +308,7 @@ footer {
       <li><a data-cat="Moods">Moods</a></li>
       <li><a data-cat="Vases">Vases</a></li>
       <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-     <li><a data-cat="Space Packages">Space Packages</a></li>
+      <li><a data-cat="Space Packages">Space Packages</a></li>
       <li><a data-cat="Lighting">Lighting</a></li>
       <li><a data-cat="Glass Candles">Glass Candles</a></li>
       <li><a data-cat="Furniture">Furniture</a></li>
@@ -344,10 +341,12 @@ footer {
       <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
       <h3>Cushions</h3>
     </a>
-<a href="space-packages.html" class="card" data-cat="Space Packages">
-  <img src="https://i.postimg.cc/59nM3bFf/modern-living-room-interior.jpg">
-  <h3>Space Packages</h3>
-</a>
+
+    <a href="space-packages.html" class="card" data-cat="Space Packages">
+      <img src="https://i.postimg.cc/59nM3bFf/modern-living-room-interior.jpg">
+      <h3>Space Packages</h3>
+    </a>
+
     <a href="product4.html" class="card" data-cat="Glass Candles">
       <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
       <h3>Glass Candles</h3>
@@ -373,7 +372,7 @@ footer {
       <h3>Games</h3>
     </a>
 
-    <a href="product10.html" class="card" data-cat="Vases">
+    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
       <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
       <h3>Glass and Small Vases</h3>
     </a>
@@ -387,8 +386,12 @@ footer {
 
 <!-- SCRIPTS -->
 <script>
-function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
-function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
+function openMenu(){ 
+  document.getElementById("menuOverlay").style.height="100%"; 
+}
+function closeMenu(){ 
+  document.getElementById("menuOverlay").style.height="0%"; 
+}
 
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
