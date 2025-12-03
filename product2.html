@@ -37,7 +37,9 @@ header {
   cursor: pointer;
   position: absolute;
   right: 20px;
-  top: 50%;
+
+  /* ↓↓ التعديلات المطلوبة ↓↓ */
+  top: 65%;
   transform: translateY(-50%);
 }
 
@@ -212,7 +214,9 @@ function attachCartListeners(lang) {
 
       let cart = getCart();
       let existing = cart.find(p => p.name === name);
-      if (existing) { existing.qty += 1; } else { cart.push({ name, price, img, qty: 1 }); }
+      if (existing) { existing.qty += 1; } 
+      else { cart.push({ name, price, img, qty: 1 }); }
+
       saveCart(cart);
 
       btn.innerText = lang === "ar" ? "تم الإضافة!" : "Added!";
@@ -238,6 +242,7 @@ langSelect.addEventListener("change", () => {
 
 // INITIAL RENDER
 renderProducts('en');
+
 </script>
 
 </body>
