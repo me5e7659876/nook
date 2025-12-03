@@ -29,16 +29,19 @@
     justify-items: center;
   }
 
-  /* Cards */
+  /* Rounded Style Cards — SAME AS MOOD COLLECTIONS */
   .collection-card {
-    background: none;
-    border-radius: 0;
+    background: #5c1228;
+    border-radius: 22px;
     overflow: hidden;
     box-shadow: 0 4px 25px rgba(0,0,0,0.4);
     transition: 0.3s;
     cursor: pointer;
     width: 100%;
     max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
   }
 
   .collection-card:hover {
@@ -50,18 +53,35 @@
     height: 400px;
     object-fit: cover;
     display: block;
+    border-radius: 22px;
   }
 
   .collection-info {
     padding: 8px 0;
     text-align: center;
+    background: none;
   }
 
   .collection-info h3 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
+  }
+
+  @media (min-width: 768px) {
+    .collections-grid {
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    }
+    .collection-card {
+      max-width: 420px;
+    }
+    .collection-card img {
+      height: 460px;
+    }
+    .collection-info h3 {
+      font-size: 20px;
+    }
   }
 
   /* Inside Pages */
@@ -89,22 +109,19 @@
 
   .inner-grid img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     object-fit: cover;
     height: 250px;
   }
 
   @media (min-width: 768px) {
-    .collection-card img {
-      height: 460px;
-    }
     .inner-grid img {
       height: 300px;
     }
   }
 </style>
-</head>
 
+</head>
 <body>
 
 <header>Space Packages</header>
@@ -149,9 +166,7 @@
 <div id="office" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Office Package</h2>
-  <div class="inner-grid">
-    <!-- حطي هنا صور منتجات المكتب -->
-  </div>
+  <div class="inner-grid"></div>
 </div>
 
 <div id="gym" class="collection-page">
@@ -185,20 +200,19 @@
 </div>
 
 <!-- ---------------- Script ---------------- -->
-
 <script>
-function openCollection(id) {
-  document.getElementById("homePage").style.display = "none";
-  document.getElementById(id).style.display = "block";
-  window.scrollTo(0, 0);
-}
+  function openCollection(id) {
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById(id).style.display = "block";
+    window.scrollTo(0, 0);
+  }
 
-function goHome() {
-  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
-  document.getElementById("homePage").style.display = "grid";
-  window.scrollTo(0, 0);
-}
+  function goHome() {
+    document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+    document.getElementById("homePage").style.display = "grid";
+    window.scrollTo(0, 0);
+  }
 </script>
 
 </body>
-</html> 
+</html>
