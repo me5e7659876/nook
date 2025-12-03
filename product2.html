@@ -37,9 +37,7 @@ header {
   cursor: pointer;
   position: absolute;
   right: 20px;
-
-  /* ↓↓ تعديل المكان ليكون أسفل الهيدر ↓↓ */
-  top: 78%;
+  top: 65%;
   transform: translateY(-50%);
 }
 
@@ -123,6 +121,15 @@ header {
   font-weight: bold;
   text-decoration: none;
 }
+
+/* ===== MOBILE FIX: Move language selector much lower ===== */
+@media (max-width: 600px) {
+  #langSelect {
+    top: 140%;   /* ينزل لتحت جامد جدا على الموبايل */
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+  }
+}
 </style>
 </head>
 
@@ -181,7 +188,7 @@ const products = [
   }
 ];
 
-// RENDER PRODUCTS
+// FUNCTION TO RENDER PRODUCTS
 function renderProducts(lang) {
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
@@ -200,7 +207,7 @@ function renderProducts(lang) {
   attachCartListeners(lang);
 }
 
-// CART
+// CART FUNCTIONALITY
 function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
 function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
 
@@ -214,8 +221,8 @@ function attachCartListeners(lang) {
 
       let cart = getCart();
       let existing = cart.find(p => p.name === name);
-      if (existing) existing.qty += 1;
-      else cart.push({ name, price, img, qty: 1 });
+      if (existing) { existing.qty += 1; } 
+      else { cart.push({ name, price, img, qty: 1 }); }
 
       saveCart(cart);
 
@@ -232,16 +239,15 @@ function attachCartListeners(lang) {
 }
 
 // LANGUAGE SWITCH
-const langSelect2 = document.getElementById("langSelect");
-langSelect2.addEventListener("change", () => {
-  const lang = langSelect2.value;
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", () => {
+  const lang = langSelect.value;
   renderProducts(lang);
-  document.getElementById("backLink").textContent =
-    lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
+  document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
   document.body.dir = lang === "ar" ? "rtl" : "ltr";
 });
 
-// INITIAL
+// INITIAL RENDER
 renderProducts('en');
 </script>
 
