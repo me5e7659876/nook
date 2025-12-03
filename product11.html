@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space Packages - Nook Decor</title>
 
 <style>
@@ -13,124 +13,192 @@
     color: #fff;
   }
 
-  .container {
-    padding: 30px 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  h1 {
+  header {
     text-align: center;
-    margin-bottom: 35px;
-    font-size: 35px;
-    letter-spacing: 1px;
-    font-weight: 500;
+    padding: 35px 10px 20px;
+    font-size: 32px;
+    font-weight: bold;
   }
 
-  /* --- GRID --- */
-  .grid {
+  /* Main Grid */
+  .collections-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
+    padding: 25px;
+    justify-items: center;
   }
 
-  /* --- CARD STYLE (IDENTICAL TO MOOD COLLECTIONS) --- */
-  .card {
-    background-color: #5c1228;
-    border-radius: 22px;
-    padding: 10px;
-    text-align: center;
+  /* Cards */
+  .collection-card {
+    background: none;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.4);
     transition: 0.3s;
     cursor: pointer;
+    width: 100%;
+    max-width: 360px;
   }
 
-  .card:hover {
+  .collection-card:hover {
     transform: scale(1.05);
   }
 
-  .card img {
+  .collection-card img {
     width: 100%;
-    height: 240px;
+    height: 400px;
     object-fit: cover;
-    border-radius: 22px;
+    display: block;
   }
 
-  .title {
+  .collection-info {
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .collection-info h3 {
+    margin: 0;
     font-size: 20px;
-    margin-top: 12px;
-    margin-bottom: 5px;
     font-weight: 500;
+    color: #ffb3c6;
   }
 
-  .view-btn {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 8px 15px;
+  /* Inside Pages */
+  .collection-page {
+    display: none;
+    padding: 20px;
+  }
+
+  .back-btn {
     background: #ffb3c6;
     color: #4b0e1f;
-    border-radius: 12px;
-    font-size: 14px;
+    padding: 10px 18px;
     font-weight: bold;
-    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
   }
 
-  .view-btn:hover{
-    background: #ffcfda;
+  .inner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .inner-grid img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    height: 250px;
+  }
+
+  @media (min-width: 768px) {
+    .collection-card img {
+      height: 460px;
+    }
+    .inner-grid img {
+      height: 300px;
+    }
   }
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Space Packages</h1>
+<header>Space Packages</header>
 
-  <div class="grid">
+<!-- Home Grid -->
+<div id="homePage" class="collections-grid">
 
-    <!-- 1. Office Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Office+Package" alt="">
-      <div class="title">Office Package</div>
-      <a class="view-btn" href="office-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('office')">
+    <img src="https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg">
+    <div class="collection-info"><h3>Office Package</h3></div>
+  </div>
 
-    <!-- 2. Gym Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Gym+Package" alt="">
-      <div class="title">Gym Package</div>
-      <a class="view-btn" href="gym-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('gym')">
+    <img src="https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg">
+    <div class="collection-info"><h3>Gym Package</h3></div>
+  </div>
 
-    <!-- 3. Clinic Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Clinic+Package" alt="">
-      <div class="title">Clinic Package</div>
-      <a class="view-btn" href="clinic-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('clinic')">
+    <img src="https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg">
+    <div class="collection-info"><h3>Clinic Package</h3></div>
+  </div>
 
-    <!-- 4. Entrance Area Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Entrance+Area" alt="">
-      <div class="title">Entrance Area Package</div>
-      <a class="view-btn" href="entrance-area-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('entrance')">
+    <img src="https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg">
+    <div class="collection-info"><h3>Entrance Area</h3></div>
+  </div>
 
-    <!-- 5. Indoor Café Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Indoor+Cafe" alt="">
-      <div class="title">Indoor Café Package</div>
-      <a class="view-btn" href="indoor-cafe-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('indoorCafe')">
+    <img src="https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg">
+    <div class="collection-info"><h3>Indoor Café</h3></div>
+  </div>
 
-    <!-- 6. Outdoor Café Package -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300?text=Outdoor+Cafe" alt="">
-      <div class="title">Outdoor Café Package</div>
-      <a class="view-btn" href="outdoor-cafe-package.html">View Package</a>
-    </div>
+  <div class="collection-card" onclick="openCollection('outdoorCafe')">
+    <img src="https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg">
+    <div class="collection-info"><h3>Outdoor Café</h3></div>
+  </div>
 
+</div>
+
+<!-- ---------------- Pages ---------------- -->
+
+<div id="office" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Office Package</h2>
+  <div class="inner-grid">
+    <!-- حطي هنا صور منتجات المكتب -->
   </div>
 </div>
 
+<div id="gym" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Gym Package</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="clinic" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Clinic Package</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="entrance" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Entrance Area</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="indoorCafe" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Indoor Café</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="outdoorCafe" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Outdoor Café</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<!-- ---------------- Script ---------------- -->
+
+<script>
+function openCollection(id) {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById(id).style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+function goHome() {
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById("homePage").style.display = "grid";
+  window.scrollTo(0, 0);
+}
+</script>
+
 </body>
-</html>
+</html> 
