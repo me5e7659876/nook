@@ -20,25 +20,21 @@ header {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  position: relative;
+  position: relative; /* لتثبيت زر اللغة */
 }
 
 #langSelect {
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  background-color: #ffb3c6;
-  color: #4b0e1f;
-  cursor: pointer;
   position: absolute;
   right: 20px;
-  top: 65%;
+  top: 50%; /* منتصف الهيدر عموديًا */
   transform: translateY(-50%);
+  background-color: #ffb3c6;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #4b0e1f;
+  cursor: pointer;
 }
 
 .container {
@@ -121,22 +117,13 @@ header {
   font-weight: bold;
   text-decoration: none;
 }
-
-/* ===== MOBILE FIX: Move language selector much lower ===== */
-@media (max-width: 600px) {
-  #langSelect {
-    top: 140%;   /* ينزل لتحت جامد جدا على الموبايل */
-    right: 50%;
-    transform: translateX(50%) translateY(-50%);
-  }
-}
 </style>
 </head>
 
 <body>
 
 <header>
-  Soft Cushions 
+  Soft Cushions
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
