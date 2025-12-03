@@ -37,7 +37,7 @@
     cursor: pointer;
   }
 
-  /* GRID نفس نظام الكروت في صفحة Mood */
+  /* GRID مثل صفحة Mood */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -74,7 +74,6 @@
   .collection-info {
     padding: 10px 0;
     text-align: center;
-    background: none;
   }
 
   .collection-info h3 {
@@ -84,8 +83,41 @@
     color: #ffb3c6;
   }
 
-  /* DESKTOP */
+  /* INNER PAGES */
+  .collection-page {
+    display: none;
+    padding: 25px;
+  }
+
+  .back-btn {
+    background: #ffb3c6;
+    color: #4b0e1f;
+    padding: 10px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .inner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .inner-grid img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    height: 250px;
+  }
+
   @media (min-width: 768px) {
+    .inner-grid img {
+      height: 300px;
+    }
     .collections-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
@@ -95,21 +127,8 @@
     .collection-card img {
       height: 460px;
     }
-    .collection-info h3 {
-      font-size: 20px;
-    }
   }
 
-  /* BACK BUTTON */
-  a.back-link {
-    color: #ffb3c6;
-    text-align: center;
-    display: block;
-    margin: 40px 0;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 20px;
-  }
 </style>
 </head>
 
@@ -124,35 +143,86 @@
   </select>
 </header>
 
-<!-- MAIN GRID -->
+<!-- MAIN HOME GRID -->
 <div class="collections-grid" id="packagesContainer"></div>
 
 <!-- BACK -->
-<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+<a href="index.html" class="back-link" id="backLink" 
+style="text-align:center; display:block; margin:40px 0; color:#ffb3c6; text-decoration:none; font-size:22px; font-weight:bold;">
+← Back to Home
+</a>
+
+<!-- =======================
+     PACKAGE INNER PAGES
+======================= -->
+
+<div id="office" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Office Package</h2>
+  <div class="inner-grid">
+    <!-- حط المنتجات هنا -->
+  </div>
+</div>
+
+<div id="gym" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Gym Package</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="clinic" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Clinic Package</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="entrance" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Entrance Area</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="indoor" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Indoor Café</h2>
+  <div class="inner-grid"></div>
+</div>
+
+<div id="outdoor" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Outdoor Café</h2>
+  <div class="inner-grid"></div>
+</div>
 
 <script>
 const packages = [
   {
+    id:"office",
     img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",
     name:{en:"Office Package", ar:"باكدج مكتب"}
   },
   {
+    id:"gym",
     img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",
     name:{en:"Gym Package", ar:"باكدج جيم"}
   },
   {
+    id:"clinic",
     img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",
     name:{en:"Clinic Package", ar:"باكدج عيادة"}
   },
   {
+    id:"entrance",
     img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",
     name:{en:"Entrance Area", ar:"منطقة مدخل"}
   },
   {
+    id:"indoor",
     img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",
     name:{en:"Indoor Café", ar:"كافيه داخلي"}
   },
   {
+    id:"outdoor",
     img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",
     name:{en:"Outdoor Café", ar:"كافيه خارجي"}
   }
@@ -165,15 +235,29 @@ function renderPackages(lang){
   packages.forEach(p=>{
     const card = document.createElement("div");
     card.className = "collection-card";
+    card.setAttribute("onclick", `openPackage("${p.id}")`);
 
     card.innerHTML = `
-      <img src="${p.img}" alt="${p.name[lang]}">
+      <img src="${p.img}">
       <div class="collection-info">
         <h3>${p.name[lang]}</h3>
       </div>
     `;
     container.appendChild(card);
   });
+}
+
+function openPackage(id){
+  document.getElementById("packagesContainer").style.display = "none";
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById(id).style.display = "block";
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById("packagesContainer").style.display = "grid";
+  window.scrollTo(0,0);
 }
 
 const langSelect = document.getElementById("langSelect");
