@@ -15,34 +15,33 @@
 
     header {
       background-color: #4b0e1f;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
       position: relative;
     }
 
     #langSelect {
       position: absolute;
       right: 20px;
-      top: 120%; /* moved much lower */
+      top: 50%;
       transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
       background: #ffb3c6;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: bold;
       color: #4b0e1f;
+      cursor: pointer;
     }
 
     .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 25px;
+      padding: 30px;
+      justify-items: center;
     }
 
     .product-card {
@@ -78,6 +77,11 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
     }
 
     a.back-link {
@@ -87,22 +91,24 @@
       margin: 40px 0;
       text-decoration: none;
       font-weight: 500;
+      font-size: 20px;
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 600px) {
-      #langSelect {
-        top: 150%; /* even lower on small screens */
-        right: 50%;
-        transform: translate(50%, -50%);
+    @media (min-width: 768px) {
+      .product-container {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      .product-card img {
+        height: 460px;
       }
     }
+
   </style>
 </head>
 <body>
 
 <header>
-  <span id="headerTitle"> Games</span>
+  <span id="headerTitle">Games</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
