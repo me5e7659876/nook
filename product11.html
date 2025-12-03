@@ -23,13 +23,13 @@
   /* Main Grid */
   .collections-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 25px;
     padding: 25px;
     justify-items: center;
   }
 
-  /* Rounded Style Cards — SAME AS MOOD COLLECTIONS */
+  /* Rounded Cards */
   .collection-card {
     background: #5c1228;
     border-radius: 22px;
@@ -38,7 +38,7 @@
     transition: 0.3s;
     cursor: pointer;
     width: 100%;
-    max-width: 360px;
+    max-width: 290px; /* أصغر على الموبايل */
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -50,7 +50,7 @@
 
   .collection-card img {
     width: 100%;
-    height: 400px;
+    height: 330px; /* أصغر على الموبايل */
     object-fit: cover;
     display: block;
     border-radius: 22px;
@@ -64,11 +64,12 @@
 
   .collection-info h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     color: #ffb3c6;
   }
 
+  /* Bigger on tablets/desktops */
   @media (min-width: 768px) {
     .collections-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
@@ -99,6 +100,19 @@
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 20px;
+  }
+
+  .back-btn-bottom {
+    margin-top: 25px;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    padding: 12px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
   }
 
   .inner-grid {
@@ -167,36 +181,42 @@
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Office Package</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <div id="gym" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Gym Package</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <div id="clinic" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Clinic Package</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <div id="entrance" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Entrance Area</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <div id="indoorCafe" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Indoor Café</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <div id="outdoorCafe" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Outdoor Café</h2>
   <div class="inner-grid"></div>
+  <button class="back-btn-bottom" onclick="goHome()">← Back to Home</button>
 </div>
 
 <!-- ---------------- Script ---------------- -->
