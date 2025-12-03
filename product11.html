@@ -1,178 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space Packages - Nook Decor</title>
 
 <style>
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #4b0082;
-    color: white;
-    direction: ltr;
-    transition: 0.3s;
+    background-color: #4b0e1f;
+    color: #fff;
   }
 
-  /* Language Switcher */
-  .lang-switcher {
-    display: flex;
-    justify-content: flex-end;
-    padding: 15px 20px;
-    gap: 10px;
-  }
-  .lang-btn {
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background: white;
-    color: #4b0082;
-    font-weight: bold;
-  }
-  .lang-btn.active {
-    background: #ffcc00;
-  }
-
-  .container {
-    padding: 20px;
+  /* HEADER */
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
     text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    position: relative;
   }
 
-  h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
   }
 
-  .cards {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    padding: 10px;
+  /* GRID */
+  .collections-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px;
+    gap: 25px;
   }
 
-  .card {
-    background: #ffffff22;
-    border-radius: 10px;
-    overflow: hidden;
-    padding-bottom: 15px;
+  .collection-card {
+    background: #5c1024;
+    border-radius: 15px;
+    padding: 12px;
+    max-width: 260px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
     transition: 0.3s;
+    cursor: pointer;
   }
 
-  .card img {
+  .collection-card:hover {
+    transform: scale(1.05);
+  }
+
+  .collection-card img {
     width: 100%;
-    height: 260px;
+    height: 330px;
     object-fit: cover;
-  }
-
-  .card-title {
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  /* Back Button */
-  .back-home {
-    margin: 40px auto;
-    display: block;
-    background: #ffcc00;
-    color: #4b0082;
-    padding: 12px 25px;
     border-radius: 12px;
-    font-size: 18px;
-    text-decoration: none;
-    width: fit-content;
+    margin-bottom: 10px;
   }
 
-  /* Mobile Fixes */
-  @media (max-width: 480px) {
-    .card img {
-      height: 220px;
-    }
+  .collection-card h3 {
+    font-size: 18px;
+    color: #ffb3c6;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* BACK BUTTON */
+  a.back-link {
+    color: #ffb3c6;
+    text-align: center;
+    display: block;
+    margin: 40px 0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
   }
 </style>
 </head>
 
 <body>
 
-<!-- Language Switcher -->
-<div class="lang-switcher">
-  <button class="lang-btn active" id="enBtn">English</button>
-  <button class="lang-btn" id="arBtn">العربية</button>
-</div>
+<header>
+  <span id="headerTitle">Nook Decor - Space Packages</span>
 
-<div class="container">
-  <h1 id="pageTitle">Space Packages</h1>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-  <div class="cards">
+<!-- MAIN GRID -->
+<div class="collections-grid" id="packagesContainer"></div>
 
-    <div class="card">
-      <img src="1.jpg" alt="">
-      <div class="card-title" data-en="Office Package" data-ar="باكدج مكتب">Office Package</div>
-    </div>
-
-    <div class="card">
-      <img src="2.jpg" alt="">
-      <div class="card-title" data-en="Salon Package" data-ar="باكدج صالون">Salon Package</div>
-    </div>
-
-    <div class="card">
-      <img src="3.jpg" alt="">
-      <div class="card-title" data-en="Beauty Room" data-ar="غرفة بيوتي">Beauty Room</div>
-    </div>
-
-    <div class="card">
-      <img src="4.jpg" alt="">
-      <div class="card-title" data-en="Studio Package" data-ar="باكدج ستوديو">Studio Package</div>
-    </div>
-
-    <div class="card">
-      <img src="5.jpg" alt="">
-      <div class="card-title" data-en="Luxury Package" data-ar="باكدج فخم">Luxury Package</div>
-    </div>
-
-    <div class="card">
-      <img src="6.jpg" alt="">
-      <div class="card-title" data-en="Reception Package" data-ar="باكدج ريسيبشن">Reception Package</div>
-    </div>
-
-  </div>
-
-  <a href="index.html" class="back-home" id="backHomeBtn">Back to Home</a>
-</div>
+<!-- BACK -->
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-  const enBtn = document.getElementById("enBtn");
-  const arBtn = document.getElementById("arBtn");
-
-  const pageTitle = document.getElementById("pageTitle");
-  const backHomeBtn = document.getElementById("backHomeBtn");
-
-  function setLanguage(lang) {
-    document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
-
-    const cards = document.querySelectorAll(".card-title");
-
-    cards.forEach(card => {
-      card.textContent = card.getAttribute(`data-${lang}`);
-    });
-
-    if (lang === "ar") {
-      pageTitle.textContent = "باكدجات المساحات";
-      backHomeBtn.textContent = "الرجوع للرئيسية";
-      arBtn.classList.add("active");
-      enBtn.classList.remove("active");
-    } else {
-      pageTitle.textContent = "Space Packages";
-      backHomeBtn.textContent = "Back to Home";
-      enBtn.classList.add("active");
-      arBtn.classList.remove("active");
-    }
+const packages = [
+  {
+    img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",
+    name:{en:"Office Package", ar:"باكدج مكتب"}
+  },
+  {
+    img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",
+    name:{en:"Gym Package", ar:"باكدج جيم"}
+  },
+  {
+    img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",
+    name:{en:"Clinic Package", ar:"باكدج عيادة"}
+  },
+  {
+    img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",
+    name:{en:"Entrance Area", ar:"منطقة مدخل"}
+  },
+  {
+    img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",
+    name:{en:"Indoor Café", ar:"كافيه داخلي"}
+  },
+  {
+    img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",
+    name:{en:"Outdoor Café", ar:"كافيه خارجي"}
   }
+];
 
-  enBtn.onclick = () => setLanguage("en");
-  arBtn.onclick = () => setLanguage("ar");
+function renderPackages(lang){
+  const container = document.getElementById("packagesContainer");
+  container.innerHTML = "";
+
+  packages.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "collection-card";
+
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name[lang]}">
+      <h3>${p.name[lang]}</h3>
+    `;
+    container.appendChild(card);
+  });
+}
+
+const langSelect = document.getElementById("langSelect");
+
+langSelect.addEventListener("change",()=>{
+  const lang = langSelect.value;
+
+  document.body.dir = lang==="ar" ? "rtl" : "ltr";
+
+  document.getElementById("headerTitle").textContent = 
+    lang==="ar" ? "نوك ديكور - باكدجات المساحات" : "Nook Decor - Space Packages";
+
+  document.getElementById("backLink").textContent =
+    lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
+
+  renderPackages(lang);
+});
+
+// Initial load
+renderPackages("en");
 </script>
 
 </body>
