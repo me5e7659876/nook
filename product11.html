@@ -1,180 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Space Packages - Nook Decor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Packages - Nook Decor</title>
 
-<!-- خطوط عربية وإنجليزية -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #4b0e1f;
+      color: #fff;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #4b0e1f;
-  color: #fff;
-  transition: all 0.3s ease;
-}
+    header {
+      background-color: #4b0e1f;
+      padding: 20px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      position: relative;
+    }
 
-/* HEADER */
-header {
-  background-color: #4b0e1f;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-shadow: 0 0 10px rgba(255,200,210,0.5);
-}
+    #langSelect {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ffb3c6;
+      border: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #4b0e1f;
+      cursor: pointer;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: bold;
-}
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 25px;
+      justify-items: center;
+    }
 
-/* LANGUAGE SELECT */
-#langSelect {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  background: #ffb3c6;
-  color: #4b0e1f;
-  font-family: 'Poppins', sans-serif;
-}
+    .collection-card {
+      background: #5c1228;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+      transition: 0.3s;
+      cursor: pointer;
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
 
-/* PRODUCT SECTION */
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 30px;
-  gap: 30px;
-}
+    .collection-card:hover {
+      transform: scale(1.05);
+    }
 
-.product-image {
-  max-width: 400px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+    .collection-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      border-radius: 22px;
+    }
 
-.product-details {
-  max-width: 400px;
-}
+    .collection-info {
+      padding: 8px 0;
+      text-align: center;
+      background: none;
+    }
 
-.product-details h1 {
-  margin-top: 0;
-  font-size: 28px;
-  color: #ffb3c6;
-}
+    .collection-info h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffb3c6;
+    }
 
-.product-details p {
-  line-height: 1.6;
-  font-size: 16px;
-}
+    @media (min-width: 768px) {
+      .collections-grid {
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      }
+      .collection-card {
+        max-width: 420px;
+      }
+      .collection-card img {
+        height: 460px;
+      }
+      .collection-info h3 {
+        font-size: 20px;
+      }
+    }
 
-.price {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 15px 0;
-}
+    .collection-page {
+      display: none;
+      padding: 20px;
+    }
 
-.btn {
-  background-color: #ffb3c6;
-  border: none;
-  color: #4b0e1f;
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .back-btn {
+      background: #ffb3c6;
+      color: #4b0e1f;
+      padding: 10px 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
 
-.btn:hover {
-  background-color: #ffc7d3;
-}
+    .inner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-.back-link {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  color: #ffb3c6;
-  text-decoration: none;
-  font-weight: 500;
-}
+    .inner-grid img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 250px;
+    }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .product-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .product-image, .product-details { max-width: 90%; }
-}
-</style>
+    @media (min-width: 768px) {
+      .inner-grid img {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <h1 id="headerText">Nook Decor</h1>
+  <span id="pageTitle" data-en="Space Packages" data-ar="باكيدجات المساحات">Space Packages</span>
+
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
-<div class="product-container">
+<!-- 🔥 الصفحة الرئيسية للكوليكشنز -->
+<div id="homePage" class="collections-grid">
 
-  <img 
-    src="https://i.postimg.cc/wxNz3CVN/download-(26).jpg" 
-    alt="Decor Item" 
-    class="product-image"
-  />
+  <div class="collection-card" onclick="openCollection('package1')">
+    <img src="https://i.postimg.cc/2S2D7c7b/living-room.jpg">
+    <div class="collection-info"><h3 data-en="Living Room Package" data-ar="باكيدج غرفة المعيشة">Living Room Package</h3></div>
+  </div>
 
-  <div class="product-details">
-    <h1 id="productTitle" data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة">Premium Decor Piece</h1>
+  <div class="collection-card" onclick="openCollection('package2')">
+    <img src="https://i.postimg.cc/J4yH0JfY/bedroom.jpg">
+    <div class="collection-info"><h3 data-en="Bedroom Package" data-ar="باكيدج غرفة النوم">Bedroom Package</h3></div>
+  </div>
 
-    <p id="productDesc" 
-       data-en="A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling." 
-       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والتميز لأي مكان. مثالية للديكورات الحديثة والفخمة.">
-       A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling.
-    </p>
+  <div class="collection-card" onclick="openCollection('package3')">
+    <img src="https://i.postimg.cc/3rs8Ds3L/office.jpg">
+    <div class="collection-info"><h3 data-en="Office Package" data-ar="باكيدج المكتب">Office Package</h3></div>
+  </div>
 
-    <div class="price" id="productPrice" data-en="5665 EGP" data-ar="٥٦٦٥ جنيه">5665 EGP</div>
-
-    <button class="btn" id="addCartBtn" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
-
-    <a href="index.html" class="back-link" id="backLink" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
+  <div class="collection-card" onclick="openCollection('package4')">
+    <img src="https://i.postimg.cc/h4BnQSLF/kitchen.jpg">
+    <div class="collection-info"><h3 data-en="Kitchen Package" data-ar="باكيدج المطبخ">Kitchen Package</h3></div>
   </div>
 
 </div>
 
+<!-- 🔙 زر رجوع -->
+<div style="text-align:center; margin:25px 0;">
+  <a href="index.html" style="
+    background:#ffb3c6;
+    color:#4b0e1f;
+    padding:12px 22px;
+    font-weight:bold;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:18px;
+    display:inline-block;
+  ">
+    ← Back to Home
+  </a>
+</div>
+
+<!-- 🔥 صفحات الباكيدج الداخلية -->
+<div id="package1" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Living Room Package</h2>
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/mrS3VbkG/l1.jpg">
+    <img src="https://i.postimg.cc/wM5MLp7N/l2.jpg">
+    <img src="https://i.postimg.cc/zvR4K9xW/l3.jpg">
+    <img src="https://i.postimg.cc/k4gJWc2b/l4.jpg">
+  </div>
+</div>
+
+<div id="package2" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Bedroom Package</h2>
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/BQyg4G8z/b1.jpg">
+    <img src="https://i.postimg.cc/MT8tnP1y/b2.jpg">
+    <img src="https://i.postimg.cc/8C9yk8WR/b3.jpg">
+    <img src="https://i.postimg.cc/R0xXsnqj/b4.jpg">
+  </div>
+</div>
+
+<div id="package3" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Office Package</h2>
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/cCpKdM0P/o1.jpg">
+    <img src="https://i.postimg.cc/FK8WJzPP/o2.jpg">
+    <img src="https://i.postimg.cc/7Y9Q1X2g/o3.jpg">
+    <img src="https://i.postimg.cc/RFjv6vQ8/o4.jpg">
+  </div>
+</div>
+
+<div id="package4" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Kitchen Package</h2>
+  <div class="inner-grid">
+    <img src="https://i.postimg.cc/Zn3Z1Z5d/k1.jpg">
+    <img src="https://i.postimg.cc/tR8SNpNn/k2.jpg">
+    <img src="https://i.postimg.cc/vZPrt9k3/k3.jpg">
+    <img src="https://i.postimg.cc/2yq0W9H4/k4.jpg">
+  </div>
+</div>
+
 <script>
+function openCollection(id) {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+
+function goHome() {
+  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.getElementById("homePage").style.display = "grid";
+  window.scrollTo(0, 0);
+}
+
 const langSelect = document.getElementById("langSelect");
 
-// قراءة اللغة المحفوظة
+// تحميل اللغة المحفوظة
 let savedLang = localStorage.getItem("siteLang") || "en";
 langSelect.value = savedLang;
-changeLanguage(savedLang);
+updateLang(savedLang);
 
-langSelect.addEventListener("change", ()=>{
-  const selected = langSelect.value;
-  localStorage.setItem("siteLang", selected);
-  changeLanguage(selected);
+langSelect.addEventListener("change", () => {
+  const lang = langSelect.value;
+  localStorage.setItem("siteLang", lang);
+  updateLang(lang);
 });
 
-function changeLanguage(lang){
-  document.body.dir = (lang=="ar") ? "rtl" : "ltr";
-  document.body.style.fontFamily = (lang=="ar") ? "'Cairo', sans-serif" : "'Poppins', sans-serif";
-
-  const elems = ["headerText","productTitle","productDesc","productPrice","addCartBtn","backLink"];
-  elems.forEach(id=>{
-    const el = document.getElementById(id);
-    if(el && el.dataset[lang]) el.textContent = el.dataset[lang];
+function updateLang(lang) {
+  document.querySelectorAll("[data-en]").forEach(el => {
+    el.textContent = el.getAttribute("data-" + lang);
   });
+
+  document.getElementById("pageTitle").textContent =
+    lang === "en" ? "Space Packages" : "باكيدجات المساحات";
 }
 </script>
 
