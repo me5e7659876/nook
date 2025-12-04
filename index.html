@@ -258,9 +258,7 @@ footer {
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a class="closebtn" onclick="closeMenu()">×</a>
-  <div class="overlay-content" id="menuLinks">
-    <a data-cat="All">All</a>
-  </div>
+  <div class="overlay-content" id="menuLinks"></div>
 </div>
 
 <!-- HEADER -->
@@ -288,9 +286,7 @@ footer {
 <div class="container">
   <aside class="sidebar" id="desktopSidebar">
     <h2 id="categoriesTitle">Categories</h2>
-    <ul class="categories" id="categoriesList">
-      <li><a class="active" data-cat="All">All</a></li>
-    </ul>
+    <ul class="categories" id="categoriesList"></ul>
   </aside>
 
   <main class="content" id="content">
@@ -321,6 +317,7 @@ async function loadProducts() {
   products = await res.json();
   renderCards(products);
   renderCategories(products);
+  renderMenuCategories(products);
 }
 
 function renderCards(list) {
@@ -343,22 +340,39 @@ function renderCards(list) {
 }
 
 function renderCategories(list){
-  const categories = [...new Set(list.map(p=>p.category))];
+  const categories = ["All", ...new Set(list.map(p=>p.category))];
   const catList = document.getElementById("categoriesList");
   catList.innerHTML = '';
-  catList.innerHTML = <li><a class="active" data-cat="All">All</a></li>;
   categories.forEach(c=>{
     const li = document.createElement("li");
-    li.innerHTML = <a data-cat="${c}">${c}</a>;
+    li.innerHTML = <a data-cat="${c}" class="${c==='All'?'active':''}">${c}</a>;
     catList.appendChild(li);
   });
-  // add click events for filter
   document.querySelectorAll("#categoriesList a").forEach(a=>{
     a.addEventListener("click", ()=>{
       document.querySelectorAll("#categoriesList a").forEach(x=>x.classList.remove("active"));
       a.classList.add("active");
       filterByCategory(a.dataset.cat);
     });
+  });
+}
+
+function renderMenuCategories(list){
+  const menuLinks = document.getElementById("menuLinks");
+  const categories = ["All", ...new Set(list.map(p=>p.category))];
+  menuLinks.innerHTML = '';
+  categories.forEach(c=>{
+    const a = document.createElement("a");
+    a.textContent = c;
+    a.dataset.cat = c;
+    a.addEventListener("click", ()=>{
+      closeMenu();
+      filterByCategory(c);
+      document.querySelectorAll("#categoriesList a").forEach(x=>{
+        x.classList.toggle("active", x.dataset.cat===c);
+      });
+    });
+    menuLinks.appendChild(a);
   });
 }
 
