@@ -11,19 +11,25 @@
 <style>
   body {
     margin: 0;
-    font-family: 'Poppins', sans-serif; /* النصوص */
+    font-family: 'Poppins', sans-serif; 
     background-color: #4b0e1f;
     color: #fff;
   }
 
   header {
     background-color: #4b0e1f;
-    padding: 20px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    font-family: 'Didot', serif; /* العنوان الكبير */
+    font-family: 'Didot', serif; 
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  #headerTitle {
+    text-align: center;
   }
 
   #langSelect {
@@ -31,13 +37,13 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background: #ffb3c6;
+    padding: 4px 8px;
     border: none;
-    padding: 6px 10px;
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
-    color: #4b0e1f;
     cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
   }
@@ -85,13 +91,13 @@
     font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
-    font-family: 'Didot', serif; /* أسماء الكروت */
+    font-family: 'Didot', serif; 
   }
 
   .collection-page {
     display: none;
     padding: 25px;
-    font-family: 'Poppins', sans-serif; /* النصوص الداخلية */
+    font-family: 'Poppins', sans-serif; 
   }
 
   .back-btn {
@@ -145,6 +151,11 @@
     font-size:22px;
     font-weight:bold;
     font-family: 'Poppins', sans-serif;
+  }
+
+  @media (max-width: 420px){
+    #langSelect { font-size: 10px; padding: 2px 6px; right: 10px; }
+    #headerTitle { font-size: 24px; }
   }
 
 </style>
