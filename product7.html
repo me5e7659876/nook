@@ -1,144 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wall Art & Macrame - Nook Decor</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wall Art & Macrame - Nook Decor</title>
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-      position: relative;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+  }
 
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #ffb3c6;
-      color: #4b0e1f;
-    }
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    position: relative;
+    font-family: 'Didot', serif !important; /* العنوان الكبير */
+  }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 30px;
-      justify-items: center;
-    }
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .item {
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 30px;
+    justify-items: center;
+  }
 
-    .item:hover { transform: scale(1.05); }
+  .item {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .item img {
-      width: 100%;
-      max-width: 350px;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 15px;
-    }
+  .item:hover { transform: scale(1.05); }
 
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffb3c6;
-      margin-top: 10px;
-    }
+  .item img {
+    width: 100%;
+    max-width: 350px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
 
-    .desc {
-      font-size: 15px;
-      color: #ffe3eb;
-      margin-top: 8px;
-      line-height: 1.5;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffb3c6;
+    margin-top: 10px;
+    font-family: 'Didot', serif !important;
+  }
 
-    .item:hover .desc {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .desc {
+    font-size: 15px;
+    color: #ffe3eb;
+    margin-top: 8px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-      width: 100%;
-    }
+  .item:hover .desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .btn:hover { background-color: #ffc7d3; }
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .back-link {
-      display: block;
-      text-align: center;
-      margin: 30px 0;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  .btn:hover { background-color: #ffc7d3; }
 
-    .gold-text {
-      text-align: center;
-      font-size: 32px;
-      font-weight: bold;
-      color: gold;
-      margin: 40px 20px;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-    .gold-text:hover { transform: scale(1.03); }
+  .back-link {
+    display: block;
+    text-align: center;
+    margin: 30px 0;
+    color: #ffb3c6;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    @media (max-width: 768px) {
-      .item img { max-width: 450px; height: 520px; }
-      .gold-text { font-size: 28px; }
-    }
+  .gold-text {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: gold;
+    margin: 40px 20px;
+    font-family: 'Didot', serif !important;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+  .gold-text:hover { transform: scale(1.03); }
 
-    @media (max-width: 420px) {
-      .item img { max-height: 380px; }
-      .price { font-size: 16px; }
-      .desc { font-size: 14px; }
-      .btn { padding: 6px 16px; font-size: 14px; }
-      .gold-text { font-size: 24px; }
-    }
-  </style>
+  @media (max-width: 768px) {
+    .item img { max-width: 450px; height: 520px; }
+    .gold-text { font-size: 28px; }
+  }
+
+  @media (max-width: 420px) {
+    .item img { max-height: 380px; }
+    .price { font-size: 16px; }
+    .desc { font-size: 14px; }
+    .btn { padding: 6px 16px; font-size: 14px; }
+    .gold-text { font-size: 24px; }
+  }
+</style>
 </head>
 <body>
 
@@ -161,50 +170,36 @@ const products = [
   {img:"https://i.postimg.cc/xCH8BYnB/9e957c99-50c8-479d-8308-ef6f8f808adc.png", price:230,
    name:{en:"Wall Art 1", ar:"لوحة حائط 1"},
    desc:{en:"Elegant portrait design that captures your favourite moments beautifully.", ar:"تصميم بورتريه أنيق يلتقط لحظاتك المفضلة بشكل جميل."}},
-
   {img:"https://i.postimg.cc/cHxyM055/1063eb7c-2bb7-4fe6-bec3-541a2a503d00.png", price:230,
    name:{en:"Wall Art 2", ar:"لوحة حائط 2"},
    desc:{en:"Stylish and modern portrait wall art — a perfect statement piece for your home.", ar:"لوحة حائط عصرية وأنيقة — قطعة مثالية لمنزلك."}},
-
   {img:"https://i.postimg.cc/CM35Y39q/546d8b47-3fa2-4bd3-8fee-6b8a76746e4b.png", price:230,
    name:{en:"Wall Art 3", ar:"لوحة حائط 3"},
    desc:{en:"Bright and inspiring portrait wall art that brings warmth and creativity to your walls.", ar:"لوحة حائط مشرقة وملهمة تضيف الدفء والإبداع لجدرانك."}},
-
   {img:"https://i.postimg.cc/dVXSS9hF/da86e1c9-3226-4ea8-9da4-62ff4949799f.png", price:230,
    name:{en:"Wall Art 4", ar:"لوحة حائط 4"},
    desc:{en:"Unique artistic wall piece designed to fit modern and cosy spaces.", ar:"قطعة فنية فريدة مصممة لتناسب المساحات العصرية والمريحة."}},
-
   {img:"https://i.postimg.cc/ryQjP9bq/a772f1a8-4dcc-4242-949f-fb211baade2e.png", price:230,
    name:{en:"Wall Art 5", ar:"لوحة حائط 5"},
    desc:{en:"Graceful modern artwork blending elegance with subtle colour tones.", ar:"عمل فني عصري رشيق يمزج الأناقة مع ألوان هادئة."}},
-
   {img:"https://i.postimg.cc/MpRyq0sM/303f1630-edb9-4aa7-b24d-bef35752ba87.png", price:230,
    name:{en:"Wall Art 6", ar:"لوحة حائط 6"},
    desc:{en:"Contemporary portrait art that adds charm and sophistication to your décor.", ar:"فن بورتريه معاصر يضيف السحر والرقي لديكورك."}},
-
   {img:"https://i.postimg.cc/RVhmQ1Nh/1.png", price:600,
    name:{en:"Macrame 1", ar:"ماكرامي 1"},
    desc:{en:"Handmade wall macrame with 3 leaves — elegant and stylish.", ar:"ماكرامي جداري يدوي مع 3 أوراق — أنيق وعصري."}},
-
   {img:"https://i.postimg.cc/nzh36nQX/93aaa85d-9e24-4c56-80d2-6b86c307f4c3.png", price:450,
    name:{en:"Macrame 2", ar:"ماكرامي 2"},
    desc:{en:"Handcrafted boho macrame piece for your wall.", ar:"قطعة ماكرامي بوهو مصنوعة يدويًا لجدارك."}},
-
   {img:"https://i.postimg.cc/W4XnmxfR/aa42721c-3f05-4318-8ede-608baa2208dc.png", price:750,
    name:{en:"Macrame 3", ar:"ماكرامي 3"},
    desc:{en:"Premium macrame décor crafted with detail.", ar:"ديكور ماكرامي فاخر مصنوع بعناية."}},
-
   {img:"https://i.postimg.cc/8CP3VR28/ff7f4d79-cd5d-4411-8217-fb1cd0ac1c43.png", price:1200,
    name:{en:"Macrame 4", ar:"ماكرامي 4"},
    desc:{en:"Large stylish macrame piece.", ar:"قطعة ماكرامي كبيرة وأنيقة."}},
-
-  {
-    img:"https://i.postimg.cc/kgzp8bNy/unname78787d.png",  <!-- ← التعديل هنا -->
-    price:600,
-    name:{en:"Macrame 5", ar:"ماكرامي 5"},
-    desc:{en:"Handmade wall macrame.", ar:"ماكرامي جداري مصنوع يدويًا."}
-  },
-
+  {img:"https://i.postimg.cc/kgzp8bNy/unname78787d.png", price:600,
+   name:{en:"Macrame 5", ar:"ماكرامي 5"},
+   desc:{en:"Handmade wall macrame.", ar:"ماكرامي جداري مصنوع يدويًا."}},
   {img:"https://i.postimg.cc/mrZdnKk8/e4c6d0c1-e2fc-45fb-a2a0-00c56812d7f2.jpg", price:1300,
    name:{en:"Macrame 6", ar:"ماكرامي 6"},
    desc:{en:"Handcrafted premium macrame wall piece.", ar:"قطعة ماكرامي جداري فاخرة مصنوعة يدويًا."}}
@@ -250,7 +245,6 @@ function attachCart(lang){
   });
 }
 
-// Language switch
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change",()=>{
   const lang = langSelect.value;
