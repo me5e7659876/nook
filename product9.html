@@ -18,28 +18,32 @@
 
   header {
     background-color: #4b0e1f;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
     position: relative;
-    font-family: 'Didot', serif; /* العنوان الكبير */
+    font-family: 'Didot', serif !important;
   }
 
   #langSelect {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #ffb3c6;
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 4px 8px;
     border: none;
-    padding: 6px 10px; /* أصغر حجم */
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: bold;
-    color: #4b0e1f;
     cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
+  }
+
+  #pageTitle {
+    display: block;
+    font-size: 28px;
   }
 
   .collections-grid {
@@ -85,28 +89,22 @@
     font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
-    font-family: 'Didot', serif; /* أسماء الكروت */
+    font-family: 'Didot', serif;
   }
 
   @media (min-width: 768px) {
     .collections-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
-    .collection-card {
-      max-width: 420px;
-    }
-    .collection-card img {
-      height: 460px;
-    }
-    .collection-info h3 {
-      font-size: 20px;
-    }
+    .collection-card { max-width: 420px; }
+    .collection-card img { height: 460px; }
+    .collection-info h3 { font-size: 20px; }
   }
 
   .collection-page {
     display: none;
     padding: 20px;
-    font-family: 'Poppins', sans-serif; /* النصوص الداخلية */
+    font-family: 'Poppins', sans-serif;
   }
 
   .back-btn {
@@ -135,12 +133,9 @@
   }
 
   @media (min-width: 768px) {
-    .inner-grid img {
-      height: 300px;
-    }
+    .inner-grid img { height: 300px; }
   }
 
-  /* زر العودة للصفحة الرئيسية */
   #backHomeLink {
     background:#ffb3c6; 
     color:#4b0e1f; 
@@ -153,16 +148,21 @@
     font-family: 'Poppins', sans-serif;
   }
 
+  @media (max-width: 420px){
+    #langSelect { font-size: 10px; padding: 2px 6px; }
+    #pageTitle { font-size: 24px; margin-bottom: 10px; }
+  }
+
 </style>
 </head>
 <body>
 
 <header>
-  <span id="pageTitle">Mood Collections</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
+  <span id="pageTitle">Mood Collections</span>
 </header>
 
 <!-- الصفحة الرئيسية -->
@@ -196,7 +196,6 @@
   </div>
 </div>
 
-<!-- Back To Home -->
 <div style="text-align:center; margin:25px 0;">
   <a id="backHomeLink" href="index.html">← Back to Home</a>
 </div>
