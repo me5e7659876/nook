@@ -26,19 +26,26 @@
   font-style: normal;
 }
 
-/* استخدم DidotWeb في كل الموقع */
+/* Use DidotWeb across site */
 body {
   font-family: 'DidotWeb', 'Didot', 'Georgia', serif;
   margin: 0;
   background-color: #4b0e1f;
   color: #fff;
   direction: ltr;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* VARIABLES */
 :root{
   --accent-hover: rgba(255,179,198,0.12);
   --active-outline: rgba(255,179,198,0.28);
+  --card-bg-start: rgba(59,10,26,0.98);
+  --card-bg-end: rgba(43,4,16,0.98);
+  --policy-bg: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%);
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.85);
 }
 
 /* HEADER */
@@ -202,7 +209,7 @@ header .title-text {
   background-color: #3b0a1a;
   border-radius: 12px;
 }
-.sidebar h2 { font-size: 22px; margin-bottom: 15px; }
+.sidebar h2 { font-size: 22px; margin-bottom: 15px; color: #fff; }
 .categories { list-style: none; padding: 0; }
 .categories li { margin: 10px 0; }
 .categories a {
@@ -257,16 +264,123 @@ footer {
   text-align: center;
   padding: 15px;
   font-family: 'DidotWeb';
+  color: #fff;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  header img.logo { width: 150px; max-width: 60vw; }
-  header .title-text { font-size: 30px; }
-  .container { flex-direction: column; }
-  .sidebar { display: none !important; }
+/* FOOTER LINKS STYLING */
+#footerLinks a.policy-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.12s ease, transform 0.08s ease;
+  font-weight:600;
+  background: rgba(255,255,255,0.02);
+}
+#footerLinks a.policy-link:hover {
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
+
+/* POLICY OVERLAY IMPROVED */
+.policy-overlay {
+  position: fixed;
+  inset: 0;
+  display: none; /* toggled to flex when open */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  z-index: 3000;
+  padding: 20px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.policy-card {
+  width: 100%;
+  max-width: 920px;
+  max-height: 86vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  color: var(--white);
+  position: relative;
+  font-family: 'DidotWeb', serif;
+  line-height: 1.6;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Policy header styles */
+.policy-card .policy-headers {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:center;
+  margin-bottom:12px;
+}
+.policy-card h2.policy-title-en {
+  margin:0;
+  font-size:26px;
+  color: var(--white);
+  font-weight:700;
+}
+.policy-card h3.policy-title-ar {
+  margin:0;
+  font-size:18px;
+  color: rgba(255,255,255,0.95);
+  direction: rtl;
+  font-weight:600;
+}
+
+/* bilingual paragraph blocks */
+.policy-section {
+  margin: 14px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.03);
+}
+.policy-section .en { color: var(--white); text-align:left; }
+.policy-section .ar { color: var(--white); text-align:right; direction: rtl; margin-top:10px; }
+
+/* lists */
+.policy-card ul, .policy-card ol {
+  color: var(--white);
+  padding-left: 18px;
+}
+.policy-card li { margin-bottom: 8px; }
+
+/* close button (bilingual) */
+.policy-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight:700;
+}
+
+/* responsive adjustments */
+@media (max-width:600px) {
+  .policy-card { padding:18px; border-radius:10px; }
+  .policy-card h2.policy-title-en { font-size:20px; }
+  .policy-card h3.policy-title-ar { font-size:16px; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 200px !important; }
+}
+
+/* small accessibility tweaks */
+.policy-card .meta {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  color: rgba(255,255,255,0.75);
+  font-size:13px;
+  margin-bottom:10px;
 }
 
 </style>
@@ -312,7 +426,7 @@ footer {
 <div class="top-bar" id="searchBarContainer">
   <div class="search-bar">
     <input id="searchInput" placeholder="Search for anything..." />
-    <i id="clearSearch">✖</i>
+    <i id="clearSearch" style="cursor:pointer;">✖</i>
   </div>
 </div>
 
@@ -343,57 +457,57 @@ footer {
   <main class="content" id="content">
 
     <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg" alt="">
       <h3>Moods</h3>
     </a>
 
     <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
+      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg" alt="">
       <h3>Space Packages</h3>
     </a>
 
     <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg" alt="">
       <h3>Vases</h3>
     </a>
 
     <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png" alt="">
       <h3>Cushions</h3>
     </a>
 
     <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg" alt="">
       <h3>Lighting</h3>
     </a>
 
     <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="">
       <h3>Glass Candles</h3>
     </a>
 
     <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png" alt="">
       <h3>Outdoor Flooring</h3>
     </a>
 
     <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg" alt="">
       <h3>Wooden Rack</h3>
     </a>
 
     <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png" alt="">
       <h3>Wall Art</h3>
     </a>
 
     <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+      <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="">
       <h3>Games</h3>
     </a>
 
     <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
+      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg" alt="">
       <h3>Glass and Small Vases</h3>
     </a>
 
@@ -416,190 +530,325 @@ footer {
 <footer id="footerText">©️ 2025 Nook Decor. All rights reserved.</footer>
 
 <!-- POLICY OVERLAYS (INSERTED) -->
-<style>
-  /* Overlay styles */
-  .policy-overlay {
-    position: fixed;
-    inset: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0,0,0,0.75);
-    z-index: 3000;
-    padding: 20px;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-  }
-  .policy-card {
-    width: 100%;
-    max-width: 880px;
-    max-height: 86vh;
-    overflow-y: auto;
-    background: linear-gradient(180deg, rgba(59,10,26,0.98) 0%, rgba(43,4,16,0.98) 100%);
-    border-radius: 14px;
-    padding: 28px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    color: #fff;
-    position: relative;
-    font-family: 'DidotWeb', serif;
-    line-height: 1.6;
-  }
-  .policy-card h2 { margin-top: 0; font-size: 26px; color: #ffb3c6; text-align:center; }
-  .policy-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: rgba(255,255,255,0.06);
-    border: none;
-    color: #fff;
-    padding: 8px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight:700;
-  }
-  .policy-card p, .policy-card ul, .policy-card ol { color: #f0eaea; }
-  .policy-card ul { padding-left: 18px; }
-  .policy-card li { margin-bottom: 8px; }
-  @media (max-width:600px) {
-    .policy-card { padding:18px; border-radius:10px; }
-    .policy-card h2 { font-size:20px; }
-  }
-</style>
-
 <!-- Privacy -->
 <div id="privacy" class="policy-overlay" aria-hidden="true">
   <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
-    <button class="policy-close" aria-label="Close">Close</button>
-    <h2 id="privacyTitle">Privacy Policy — سياسة الخصوصية</h2>
-    <p><strong>آخر تحديث: 2025</strong></p>
+    <button class="policy-close" aria-label="Close">Close — إغلاق</button>
 
-    <p>في <strong>Nook Decor</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. باستخدامك لموقعنا، فأنت توافق على جمع واستخدام وحماية البيانات كما هو موضح أدناه.</p>
+    <div class="policy-headers">
+      <h2 id="privacyTitle" class="policy-title-en">Privacy Policy</h2>
+      <h3 class="policy-title-ar">سياسة الخصوصية</h3>
+      <div class="meta"><span>Last updated: 2025</span></div>
+    </div>
 
-    <h3>البيانات التي نقوم بجمعها</h3>
-    <ul>
-      <li>الاسم</li>
-      <li>البريد الإلكتروني</li>
-      <li>رقم الهاتف</li>
-      <li>عنوان الشحن والفواتير</li>
-      <li>بيانات الدفع (نحن لا نخزن بيانات البطاقة — تتم المعالجة عبر بوابات دفع آمنة)</li>
-      <li>سجل الطلبات وتفضيلات التصفح</li>
-    </ul>
+    <div class="policy-section">
+      <div class="en"><strong>At Nook Decor, we respect your privacy and are committed to protecting your personal data. By using our site, you consent to the collection and use of information as described below.</strong></div>
+      <div class="ar"><strong>في Nook Decor نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. باستخدامك لموقعنا، فأنت توافق على جمع واستخدام البيانات كما هو موضح أدناه.</strong></div>
+    </div>
 
-    <h3>كيفية استخدامنا للبيانات</h3>
-    <ul>
-      <li>معالجة الطلبات والشحن</li>
-      <li>تحسين تجربة المستخدم داخل الموقع</li>
-      <li>التواصل مع العملاء فيما يخص الطلبات أو العروض</li>
-      <li>منع الأنشطة الاحتيالية وتأمين الموقع</li>
-    </ul>
+    <div class="policy-section" aria-labelledby="dataCollected">
+      <div class="en"><strong>Data We Collect</strong>
+        <ul>
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Phone number</li>
+          <li>Shipping and billing address</li>
+          <li>Payment metadata (we do not store card details; payments processed via secure gateways)</li>
+          <li>Order history and browsing preferences</li>
+        </ul>
+      </div>
+      <div class="ar"><strong>البيانات التي نقوم بجمعها</strong>
+        <ul>
+          <li>الاسم</li>
+          <li>البريد الإلكتروني</li>
+          <li>رقم الهاتف</li>
+          <li>عنوان الشحن والفواتير</li>
+          <li>بيانات الدفع (نحن لا نخزن بيانات البطاقة — تتم المعالجة عبر بوابات دفع آمنة)</li>
+          <li>سجل الطلبات وتفضيلات التصفح</li>
+        </ul>
+      </div>
+    </div>
 
-    <h3>حماية البيانات</h3>
-    <p>نستخدم تشفير SSL وممارسات أمنية معتمدة لتخزين ونقل البيانات. نراجع أنظمة الأمان بشكل دوري ونحدّثها عند الحاجة.</p>
+    <div class="policy-section">
+      <div class="en"><strong>How We Use Your Data</strong>
+        <ul>
+          <li>Process orders and arrange shipping</li>
+          <li>Improve the on-site user experience</li>
+          <li>Communicate about orders and promotions</li>
+          <li>Prevent fraud and secure the site</li>
+        </ul>
+      </div>
+      <div class="ar"><strong>كيفية استخدامنا للبيانات</strong>
+        <ul>
+          <li>معالجة الطلبات والشحن</li>
+          <li>تحسين تجربة المستخدم داخل الموقع</li>
+          <li>التواصل مع العملاء فيما يخص الطلبات أو العروض</li>
+          <li>منع الأنشطة الاحتيالية وتأمين الموقع</li>
+        </ul>
+      </div>
+    </div>
 
-    <h3>مشاركة البيانات</h3>
-    <p>لا نشارك بياناتك مع أطراف ثالثة إلا عند الضرورة مثل شركات الشحن، بوابات الدفع، أو عندما يتطلب القانون ذلك.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Data Security</strong>
+        <p>We use industry-standard SSL encryption and maintain security practices to protect data in transit and at rest. Security systems are reviewed regularly.</p>
+      </div>
+      <div class="ar"><strong>حماية البيانات</strong>
+        <p>نستخدم تشفير SSL وممارسات أمنية معتمدة لتخزين ونقل البيانات. نراجع أنظمة الأمان بشكل دوري ونحدّثها عند الحاجة.</p>
+      </div>
+    </div>
 
-    <h3>حقوقك</h3>
-    <ul>
-      <li>تحديث بياناتك أو تعديلها</li>
-      <li>طلب حذف حسابك وبياناتك</li>
-      <li>طلب نسخة من البيانات المخزنة لدينا</li>
-    </ul>
+    <div class="policy-section">
+      <div class="en"><strong>Sharing of Data</strong>
+        <p>We do not share personal data with third parties except when necessary for shipping, payment processing, or when required by law.</p>
+      </div>
+      <div class="ar"><strong>مشاركة البيانات</strong>
+        <p>لا نشارك بياناتك مع أطراف ثالثة إلا عند الضرورة مثل شركات الشحن، بوابات الدفع، أو عندما يتطلب القانون ذلك.</p>
+      </div>
+    </div>
 
-    <p>لأي استفسار بخصوص الخصوصية تواصل معنا من خلال صفحة <strong>Contact</strong> داخل الفوتر.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Your Rights</strong>
+        <ul>
+          <li>Update or correct your information</li>
+          <li>Request deletion of your account and data</li>
+          <li>Request a copy of your stored data</li>
+        </ul>
+      </div>
+      <div class="ar"><strong>حقوقك</strong>
+        <ul>
+          <li>تحديث بياناتك أو تعديلها</li>
+          <li>طلب حذف حسابك وبياناتك</li>
+          <li>طلب نسخة من البيانات المخزنة لدينا</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en">For any privacy inquiries, please contact us via the <strong>Contact</strong> page in the footer.</div>
+      <div class="ar">لأي استفسار بخصوص الخصوصية تواصل معنا من خلال صفحة <strong>Contact</strong> داخل الفوتر.</div>
+    </div>
+
   </div>
 </div>
 
 <!-- Refund -->
 <div id="refund" class="policy-overlay" aria-hidden="true">
   <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="refundTitle">
-    <button class="policy-close" aria-label="Close">Close</button>
-    <h2 id="refundTitle">Refund Policy — سياسة الاسترجاع</h2>
-    <p><strong>آخر تحديث: 2025</strong></p>
+    <button class="policy-close" aria-label="Close">Close — إغلاق</button>
 
-    <p>نحرص في <strong>Nook Decor</strong> على رضاك. فيما يلي شروط وإجراءات الاسترجاع المتبعة لدينا:</p>
+    <div class="policy-headers">
+      <h2 id="refundTitle" class="policy-title-en">Refund Policy</h2>
+      <h3 class="policy-title-ar">سياسة الاسترجاع</h3>
+      <div class="meta"><span>Last updated: 2025</span></div>
+    </div>
 
-    <h3>المنتجات القابلة للاسترجاع</h3>
-    <p>يمكن استرجاع المنتج خلال <strong>14 يومًا من تاريخ الاستلام</strong> شرط أن يكون المنتج غير مستخدم وفي عبوته الأصلية.</p>
+    <div class="policy-section">
+      <div class="en"><strong>We want you to be satisfied with your purchase. Below are our return terms and procedures.</strong></div>
+      <div class="ar"><strong>نحرص في Nook Decor على رضاك. فيما يلي شروط وإجراءات الاسترجاع المتبعة لدينا:</strong></div>
+    </div>
 
-    <h3>المنتجات غير القابلة للاسترجاع</h3>
-    <ul>
-      <li>الطلبات المصممة حسب الطلب أو الخاصة بالمقاسات.</li>
-      <li>المنتجات التي تعرضت لتلف أو استعمال واضح من قبل العميل.</li>
-    </ul>
+    <div class="policy-section">
+      <div class="en"><strong>Returnable Items</strong>
+        <p>Products can be returned within <strong>14 days of receipt</strong> provided they are unused and in original packaging.</p>
+      </div>
+      <div class="ar"><strong>المنتجات القابلة للاسترجاع</strong>
+        <p>يمكن استرجاع المنتج خلال <strong>14 يومًا من تاريخ الاستلام</strong> شرط أن يكون المنتج غير مستخدم وفي عبوته الأصلية.</p>
+      </div>
+    </div>
 
-    <h3>إجراءات الاسترجاع</h3>
-    <ol>
-      <li>تواصل مع فريق الدعم عبر صفحة <strong>Contact</strong>.</li>
-      <li>ننسق معاََ لعمل استلام المنتج من عنوانك.</li>
-      <li>نفحص المنتج خلال 48 ساعة من الاستلام.</li>
-      <li>إذا تم قبول الاسترجاع، نعيد المبلغ خلال 3–7 أيام عمل إلى وسيلة الدفع الأصلية.</li>
-    </ol>
+    <div class="policy-section">
+      <div class="en"><strong>Non-returnable Items</strong>
+        <ul>
+          <li>Custom or made-to-order items</li>
+          <li>Items damaged or clearly used by the customer</li>
+        </ul>
+      </div>
+      <div class="ar"><strong>المنتجات غير القابلة للاسترجاع</strong>
+        <ul>
+          <li>الطلبات المصممة حسب الطلب أو الخاصة بالمقاسات.</li>
+          <li>المنتجات التي تعرضت لتلف أو استعمال واضح من قبل العميل.</li>
+        </ul>
+      </div>
+    </div>
 
-    <h3>الرسوم</h3>
-    <p>يتم خصم رسوم الشحن في حالات معينة ما لم يكن المنتج تالفًا أو تم شحنه خطأ من جانبنا.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Return Procedure</strong>
+        <ol>
+          <li>Contact our support team via the <strong>Contact</strong> page.</li>
+          <li>We arrange for collection from your address.</li>
+          <li>Item is inspected within 48 hours of receipt.</li>
+          <li>If approved, refund issued within 3–7 business days to original payment method.</li>
+        </ol>
+      </div>
+      <div class="ar"><strong>إجراءات الاسترجاع</strong>
+        <ol>
+          <li>تواصل مع فريق الدعم عبر صفحة <strong>Contact</strong>.</li>
+          <li>ننسق معاََ لعمل استلام المنتج من عنوانك.</li>
+          <li>نفحص المنتج خلال 48 ساعة من الاستلام.</li>
+          <li>إذا تم قبول الاسترجاع، نعيد المبلغ خلال 3–7 أيام عمل إلى وسيلة الدفع الأصلية.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en"><strong>Fees</strong>
+        <p>Shipping fees may be deducted in some cases unless the product was defective or shipped incorrectly by us.</p>
+      </div>
+      <div class="ar"><strong>الرسوم</strong>
+        <p>يتم خصم رسوم الشحن في حالات معينة ما لم يكن المنتج تالفًا أو تم شحنه خطأ من جانبنا.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- Shipping -->
 <div id="shipping" class="policy-overlay" aria-hidden="true">
   <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="shippingTitle">
-    <button class="policy-close" aria-label="Close">Close</button>
-    <h2 id="shippingTitle">Shipping Policy — سياسة الشحن</h2>
-    <p><strong>آخر تحديث: 2025</strong></p>
+    <button class="policy-close" aria-label="Close">Close — إغلاق</button>
 
-    <h3>مدة الشحن</h3>
-    <ul>
-      <li>القاهرة والجيزة: من 1 إلى 3 أيام عمل</li>
-      <li>المحافظات: من 3 إلى 7 أيام عمل</li>
-    </ul>
+    <div class="policy-headers">
+      <h2 id="shippingTitle" class="policy-title-en">Shipping Policy</h2>
+      <h3 class="policy-title-ar">سياسة الشحن</h3>
+      <div class="meta"><span>Last updated: 2025</span></div>
+    </div>
 
-    <h3>رسوم الشحن</h3>
-    <p>تختلف حسب الوزن والمنطقة، وتعرض لك التكلفة قبل إتمام الدفع.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Delivery Times</strong>
+        <ul>
+          <li>Cairo & Giza: 1–3 business days</li>
+          <li>Other governorates: 3–7 business days</li>
+        </ul>
+      </div>
+      <div class="ar"><strong>مدة الشحن</strong>
+        <ul>
+          <li>القاهرة والجيزة: من 1 إلى 3 أيام عمل</li>
+          <li>المحافظات: من 3 إلى 7 أيام عمل</li>
+        </ul>
+      </div>
+    </div>
 
-    <h3>التتبع</h3>
-    <p>نرسل لك رسالة تحتوي على رقم الشحنة ورابط التتبع عند شحن الطلب.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Shipping Costs</strong>
+        <p>Costs vary based on weight and destination; the exact cost is shown at checkout before payment.</p>
+      </div>
+      <div class="ar"><strong>رسوم الشحن</strong>
+        <p>تختلف حسب الوزن والمنطقة، وتعرض لك التكلفة قبل إتمام الدفع.</p>
+      </div>
+    </div>
 
-    <h3>التأخيرات</h3>
-    <p>في حال حدوث تأخير خارجي عن إرادتنا (طوارئ، موارد شحن)، سنتواصل معك لتنسيق حل مناسب.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Tracking</strong>
+        <p>We will send you a shipment number and tracking link once your order is dispatched.</p>
+      </div>
+      <div class="ar"><strong>التتبع</strong>
+        <p>نرسل لك رسالة تحتوي على رقم الشحنة ورابط التتبع عند شحن الطلب.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en"><strong>Delays</strong>
+        <p>If delays outside our control occur (e.g., carrier issues, emergencies), we will contact you to arrange an appropriate solution.</p>
+      </div>
+      <div class="ar"><strong>التأخيرات</strong>
+        <p>في حال حدوث تأخير خارجي عن إرادتنا (طوارئ، موارد شحن)، سنتواصل معك لتنسيق حل مناسب.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- Terms -->
 <div id="terms" class="policy-overlay" aria-hidden="true">
   <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
-    <button class="policy-close" aria-label="Close">Close</button>
-    <h2 id="termsTitle">Terms of Service — الشروط والأحكام</h2>
-    <p><strong>آخر تحديث: 2025</strong></p>
+    <button class="policy-close" aria-label="Close">Close — إغلاق</button>
 
-    <h3>استخدام الموقع</h3>
-    <p>باستخدامك للموقع توافق على عدم إساءة استخدام المحتوى أو محاولة التلاعب به. يُمنع استخدام أي محتوى تجاري بدون إذن كتابي من Nook Decor.</p>
+    <div class="policy-headers">
+      <h2 id="termsTitle" class="policy-title-en">Terms of Service</h2>
+      <h3 class="policy-title-ar">الشروط والأحكام</h3>
+      <div class="meta"><span>Last updated: 2025</span></div>
+    </div>
 
-    <h3>الطلبات والدفع</h3>
-    <p>يتم تأكيد الطلب بعد إتمام عملية الدفع. إذا حدث خطأ في الدفع سيتم التواصل معك لشرح الخطوات التالية.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Use of the Site</strong>
+        <p>By using this site you agree not to misuse or attempt to manipulate content. Commercial use of any content without written permission from Nook Decor is prohibited.</p>
+      </div>
+      <div class="ar"><strong>استخدام الموقع</strong>
+        <p>باستخدامك للموقع توافق على عدم إساءة استخدام المحتوى أو محاولة التلاعب به. يُمنع استخدام أي محتوى تجاري بدون إذن كتابي من Nook Decor.</p>
+      </div>
+    </div>
 
-    <h3>الأسعار</h3>
-    <p>الأسعار عرضة للتغيير بسبب التحديثات أو العروض الترويجية. نحاول الحفاظ على دقة الأسعار، لكن قد تحدث أخطاء نادرة نحتفظ بحقنا في تصحيحها.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Orders & Payment</strong>
+        <p>Orders are confirmed after successful payment. If an error occurs during payment we will contact you with next steps.</p>
+      </div>
+      <div class="ar"><strong>الطلبات والدفع</strong>
+        <p>يتم تأكيد الطلب بعد إتمام عملية الدفع. إذا حدث خطأ في الدفع سيتم التواصل معك لشرح الخطوات التالية.</p>
+      </div>
+    </div>
 
-    <h3>الملكية الفكرية</h3>
-    <p>كل الصور والنصوص والتصاميم الموجودة بالموقع محمية بحقوق ملكية فكرية وتخص Nook Decor. أي استخدام تجاري بدون إذن يُعد انتهاكًا.</p>
+    <div class="policy-section">
+      <div class="en"><strong>Pricing</strong>
+        <p>Prices may change due to updates or promotions. We try to maintain accuracy but reserve the right to correct pricing errors.</p>
+      </div>
+      <div class="ar"><strong>الأسعار</strong>
+        <p>الأسعار عرضة للتغيير بسبب التحديثات أو العروض الترويجية. نحاول الحفاظ على دقة الأسعار، لكن قد تحدث أخطاء نادرة نحتفظ بحقنا في تصحيحها.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en"><strong>Intellectual Property</strong>
+        <p>All images, text and designs on the site are protected intellectual property of Nook Decor. Any commercial use without permission is an infringement.</p>
+      </div>
+      <div class="ar"><strong>الملكية الفكرية</strong>
+        <p>كل الصور والنصوص والتصاميم الموجودة بالموقع محمية بحقوق ملكية فكرية وتخص Nook Decor. أي استخدام تجاري بدون إذن يُعد انتهاكًا.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- Contact -->
 <div id="contact" class="policy-overlay" aria-hidden="true">
   <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
-    <button class="policy-close" aria-label="Close">Close</button>
-    <h2 id="contactTitle">Contact — معلومات التواصل</h2>
-    <p><strong>يسعدنا تواصلك معنا في أي وقت</strong></p>
-    <ul>
-      <li><strong>الهاتف:</strong> 0100-000-0000</li>
-      <li><strong>البريد الإلكتروني:</strong> support@nookdecor.com</li>
-      <li><strong>انستجرام:</strong> @NookDecor</li>
-      <li><strong>العنوان:</strong> القاهرة – مصر</li>
-      <li><strong>ساعات العمل:</strong> 10 صباحًا – 8 مساءً</li>
-    </ul>
-    <p>يمكنك أيضاً مراسلتنا عبر النموذج في صفحة "اتصل بنا" أو عبر أي من قنوات التواصل السابقة.</p>
+    <button class="policy-close" aria-label="Close">Close — إغلاق</button>
+
+    <div class="policy-headers">
+      <h2 id="contactTitle" class="policy-title-en">Contact</h2>
+      <h3 class="policy-title-ar">معلومات التواصل</h3>
+      <div class="meta"><span>We are happy to hear from you</span></div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en"><strong>We are happy to hear from you at any time.</strong></div>
+      <div class="ar"><strong>يسعدنا تواصلك معنا في أي وقت</strong></div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en">
+        <ul>
+          <li><strong>Phone:</strong> 0100-000-0000</li>
+          <li><strong>Email:</strong> support@nookdecor.com</li>
+          <li><strong>Instagram:</strong> @NookDecor</li>
+          <li><strong>Address:</strong> Cairo, Egypt</li>
+          <li><strong>Working hours:</strong> 10:00 AM – 8:00 PM</li>
+        </ul>
+      </div>
+      <div class="ar">
+        <ul style="direction:rtl;">
+          <li><strong>الهاتف:</strong> 0100-000-0000</li>
+          <li><strong>البريد الإلكتروني:</strong> support@nookdecor.com</li>
+          <li><strong>انستجرام:</strong> @NookDecor</li>
+          <li><strong>العنوان:</strong> القاهرة – مصر</li>
+          <li><strong>ساعات العمل:</strong> 10 صباحًا – 8 مساءً</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="en">You can also message us via the "Contact Us" form or any of the channels above.</div>
+      <div class="ar">يمكنك أيضاً مراسلتنا عبر النموذج في صفحة "اتصل بنا" أو عبر أي من قنوات التواصل السابقة.</div>
+    </div>
   </div>
 </div>
 
@@ -612,28 +861,31 @@ function closeMenu(){
   document.getElementById("menuOverlay").style.height="0%"; 
 }
 
+/* Search toggle */
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
-  bar.style.display = bar.style.display === "none" ? "block" : "none";
+  bar.style.display = bar.style.display === "none" || bar.style.display === "" ? "block" : "none";
 };
 
+/* Clear search */
 document.getElementById("clearSearch").onclick = function () {
   document.getElementById("searchInput").value = "";
   filterCards();
 };
 
+/* Filter on input */
 document.getElementById("searchInput").addEventListener("input", filterCards);
 
 function filterCards() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
   const cards = document.querySelectorAll(".card");
   let visible = 0;
 
   cards.forEach(card => {
-    const title = card.querySelector("h3").innerText.toLowerCase();
-    const cat = card.dataset.cat.toLowerCase();
+    const title = (card.querySelector("h3")?.innerText || "").toLowerCase();
+    const cat = (card.dataset.cat || "").toLowerCase();
 
-    if (title.includes(query) || cat.includes(query)) {
+    if (!query || title.includes(query) || cat.includes(query)) {
       card.style.display = "block";
       visible++;
     } else {
@@ -642,12 +894,43 @@ function filterCards() {
   });
 
   const noResults = document.getElementById("noResults");
-  noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+  if (visible === 0) {
+    noResults.setAttribute("aria-hidden", "false");
+    noResults.style.display = "block";
+  } else {
+    noResults.setAttribute("aria-hidden", "true");
+    noResults.style.display = "none";
+  }
 }
-</script>
 
-<!-- POLICY SCRIPTS (attach listeners without touching original functions) -->
-<script>
+/* CATEGORY CLICK HANDLING (desktop sidebar) */
+document.querySelectorAll('.categories a').forEach(a => {
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    document.querySelectorAll('.categories a').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+    const cat = this.getAttribute('data-cat') || this.innerText;
+    filterByCategory(cat);
+  });
+});
+function filterByCategory(cat){
+  const cards = document.querySelectorAll('.card');
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  let visible = 0;
+  cards.forEach(card=>{
+    const cardCat = (card.dataset.cat || '').toLowerCase();
+    const title = (card.querySelector("h3")?.innerText || '').toLowerCase();
+    if ((cat === 'All' || cat === 'All' || cardCat === (cat || '').toLowerCase()) && (!query || title.includes(query) || cardCat.includes(query))) {
+      card.style.display = 'block'; visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  const noResults = document.getElementById("noResults");
+  if (visible === 0) { noResults.setAttribute("aria-hidden","false"); noResults.style.display='block'; } else { noResults.setAttribute("aria-hidden","true"); noResults.style.display='none'; }
+}
+
+/* POLICY SCRIPTS (attach listeners without touching original functions) */
   // Open overlay when clicking footer policy links
   document.querySelectorAll('.policy-link').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -660,6 +943,9 @@ function filterCards() {
         // lock scroll
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
+        // focus first interactive element for accessibility
+        const btn = el.querySelector('.policy-close');
+        if (btn) btn.focus();
       }
     });
   });
