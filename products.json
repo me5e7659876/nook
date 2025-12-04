@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "name": "Moods",
+    "category": "Moods",
+    "image": "https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg",
+    "link": "product9.html"
+  },
+  {
+    "id": 2,
+    "name": "Space Packages",
+    "category": "Space Packages",
+    "image": "https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg",
+    "link": "product11.html"
+  },
+  {
+    "id": 3,
+    "name": "Vases",
+    "category": "Vases",
+    "image": "https://i.postimg.cc/Xvc3ctLt/download-41.jpg",
+    "link": "product1.html"
+  },
+  {
+    "id": 4,
+    "name": "Cushions",
+    "category": "Cushions",
+    "image": "https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png",
+    "link": "product2.html"
+  },
+  {
+    "id": 5,
+    "name": "Lighting",
+    "category": "Lighting",
+    "image": "https://i.postimg.cc/G3GLcMZH/download-39.jpg",
+    "link": "product3.html"
+  },
+  {
+    "id": 6,
+    "name": "Glass Candles",
+    "category": "Glass Candles",
+    "image": "https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png",
+    "link": "product4.html"
+  },
+  {
+    "id": 7,
+    "name": "Outdoor Flooring",
+    "category": "Outdoor Flooring",
+    "image": "https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png",
+    "link": "product5.html"
+  },
+  {
+    "id": 8,
+    "name": "Wooden Rack",
+    "category": "Wooden Rack",
+    "image": "https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg",
+    "link": "product6.html"
+  },
+  {
+    "id": 9,
+    "name": "Wall Art",
+    "category": "Wall Art",
+    "image": "https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png",
+    "link": "product7.html"
+  },
+  {
+    "id": 10,
+    "name": "Games",
+    "category": "Games",
+    "image": "https://i.postimg.cc/6624GtwG/chess.jpg",
+    "link": "product8.html"
+  },
+  {
+    "id": 11,
+    "name": "Glass and Small Vases",
+    "category": "Glass and Small Vases",
+    "image": "https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg",
+    "link": "product10.html"
+  }
+]
