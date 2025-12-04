@@ -24,7 +24,12 @@
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255,200,210,0.5);
     position: relative;
-    font-family: 'Didot', serif !important; /* العنوان الكبير */
+    font-family: 'Didot', serif !important;
+  }
+
+  #headerTitle {
+    display: inline-block;
+    margin-right: 15px; /* المسافة بين العنوان وزر اللغة */
   }
 
   #langSelect {
@@ -32,14 +37,15 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 6px 10px;
+    padding: 4px 8px; /* صغر حجم الزر */
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     background: #ffb3c6;
     color: #4b0e1f;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
   }
 
   .gallery {
@@ -146,13 +152,14 @@
     .desc { font-size: 14px; }
     .btn { padding: 6px 16px; font-size: 14px; }
     .gold-text { font-size: 24px; }
+    #langSelect { font-size: 12px; padding: 3px 6px; } /* أصغر على الموبايل */
   }
 </style>
 </head>
 <body>
 
 <header>
-  <span id="headerTitle"> Wall Art & Macrame</span>
+  <span id="headerTitle">Wall Art & Macrame</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
