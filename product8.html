@@ -1,109 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Games - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Games - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    header {
-      background-color: #4b0e1f;
-      padding: 20px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: bold;
-      position: relative;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+  }
 
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #ffb3c6;
-      border: none;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      color: #4b0e1f;
-      cursor: pointer;
-    }
+  header {
+    background-color: #4b0e1f;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    font-family: 'Didot', serif; /* العنوان الكبير */
+  }
 
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffb3c6;
+    border: none;
+    padding: 6px 10px; /* أصغر حجم */
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4b0e1f;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+
+  .product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    justify-items: center;
+  }
+
+  .product-card {
+    background: #5c1024;
+    border-radius: 15px;
+    padding: 15px;
+    max-width: 260px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif; /* الخط للوصف والكلام */
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+  .product-card h2 {
+    font-family: 'Didot', serif; /* عنوان المنتج */
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.25s;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  a.back-link {
+    color: #ffb3c6;
+    text-align: center;
+    display: block;
+    margin: 40px 0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (min-width: 768px) {
     .product-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      padding: 30px;
-      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
-
-    .product-card {
-      background: #5c1024;
-      border-radius: 15px;
-      padding: 15px;
-      max-width: 260px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      text-align: center;
-      transition: 0.3s;
-    }
-
     .product-card img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin-bottom: 10px;
+      height: 460px;
     }
+  }
 
+  @media (max-width: 420px) {
+    .product-card img {
+      height: 350px;
+    }
     .price {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 10px 0;
+      font-size: 16px;
     }
-
     .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.25s;
+      font-size: 14px;
+      padding: 8px;
     }
-
-    .btn:hover {
-      transform: scale(1.05);
+    .product-card h2 {
+      font-size: 18px;
     }
-
-    a.back-link {
-      color: #ffb3c6;
-      text-align: center;
-      display: block;
-      margin: 40px 0;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 20px;
-    }
-
-    @media (min-width: 768px) {
-      .product-container {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      }
-      .product-card img {
-        height: 460px;
-      }
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
 
