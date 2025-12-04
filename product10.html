@@ -1,91 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Decor Piece - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decor Piece - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-      position: relative;
-    }
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #ffb3c6;
-      color: #4b0e1f;
-    }
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* النصوص */
+    background-color: #4b0e1f;
+    color: #fff;
+  }
+
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    position: relative;
+    font-family: 'Didot', serif; /* العنوان الكبير */
+  }
+
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+  }
+
+  .product-image {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    flex: 1 1 300px;
+    width: 100%;
+  }
+
+  .product-details {
+    max-width: 400px;
+    flex: 1 1 300px;
+  }
+
+  .product-details h1 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #ffb3c6;
+    font-family: 'Didot', serif; /* عنوان المنتج */
+  }
+
+  .product-details p {
+    line-height: 1.6;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .price {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn:hover {
+    background-color: #ffc7d3;
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffb3c6;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (max-width: 768px) {
     .product-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px;
-      gap: 30px;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-    .product-image {
-      max-width: 400px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+    .product-image, .product-details {
+      max-width: 100%;
     }
-    .product-details {
-      max-width: 400px;
-    }
+
     .product-details h1 {
-      margin-top: 0;
-      font-size: 28px;
-      color: #ffb3c6;
+      font-size: 24px;
     }
-    .product-details p {
-      line-height: 1.6;
-      font-size: 16px;
-    }
+
     .price {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 15px 0;
+      font-size: 20px;
     }
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background-color: #ffc7d3;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
