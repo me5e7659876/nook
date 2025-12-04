@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space Packages - Nook Decor</title>
 
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
   body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; /* النصوص */
     background-color: #4b0e1f;
     color: #fff;
   }
 
-  /* HEADER */
   header {
     background-color: #4b0e1f;
     padding: 20px;
@@ -21,6 +23,7 @@
     font-size: 30px;
     font-weight: bold;
     position: relative;
+    font-family: 'Didot', serif; /* العنوان الكبير */
   }
 
   #langSelect {
@@ -30,14 +33,15 @@
     transform: translateY(-50%);
     background: #ffb3c6;
     border: none;
-    padding: 8px 10px;
+    padding: 6px 10px;
     border-radius: 10px;
     font-weight: bold;
     color: #4b0e1f;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
   }
 
-  /* GRID مثل صفحة Mood */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -81,12 +85,13 @@
     font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
+    font-family: 'Didot', serif; /* أسماء الكروت */
   }
 
-  /* INNER PAGES */
   .collection-page {
     display: none;
     padding: 25px;
+    font-family: 'Poppins', sans-serif; /* النصوص الداخلية */
   }
 
   .back-btn {
@@ -99,6 +104,7 @@
     cursor: pointer;
     margin-bottom: 20px;
     font-size: 18px;
+    font-family: 'Poppins', sans-serif;
   }
 
   .inner-grid {
@@ -129,39 +135,39 @@
     }
   }
 
+  /* زر العودة */
+  .back-link {
+    text-align:center;
+    display:block;
+    margin:40px 0;
+    color:#ffb3c6;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
 </style>
 </head>
-
 <body>
 
 <header>
   <span id="headerTitle">Space Packages</span>
-
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
-<!-- MAIN HOME GRID -->
 <div class="collections-grid" id="packagesContainer"></div>
 
-<!-- BACK -->
-<a href="index.html" class="back-link" id="backLink" 
-style="text-align:center; display:block; margin:40px 0; color:#ffb3c6; text-decoration:none; font-size:22px; font-weight:bold;">
-← Back to Home
-</a>
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
-<!-- =======================
-     PACKAGE INNER PAGES
-======================= -->
-
+<!-- INNER PAGES -->
 <div id="office" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Office Package</h2>
-  <div class="inner-grid">
-    <!-- حط المنتجات هنا -->
-  </div>
+  <div class="inner-grid"></div>
 </div>
 
 <div id="gym" class="collection-page">
@@ -196,47 +202,21 @@ style="text-align:center; display:block; margin:40px 0; color:#ffb3c6; text-deco
 
 <script>
 const packages = [
-  {
-    id:"office",
-    img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",
-    name:{en:"Office Package", ar:"باكدج مكتب"}
-  },
-  {
-    id:"gym",
-    img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",
-    name:{en:"Gym Package", ar:"باكدج جيم"}
-  },
-  {
-    id:"clinic",
-    img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",
-    name:{en:"Clinic Package", ar:"باكدج عيادة"}
-  },
-  {
-    id:"entrance",
-    img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",
-    name:{en:"Entrance Area", ar:"منطقة مدخل"}
-  },
-  {
-    id:"indoor",
-    img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",
-    name:{en:"Indoor Café", ar:"كافيه داخلي"}
-  },
-  {
-    id:"outdoor",
-    img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",
-    name:{en:"Outdoor Café", ar:"كافيه خارجي"}
-  }
+  {id:"office", img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:{en:"Office Package", ar:"باكدج مكتب"}},
+  {id:"gym", img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg", name:{en:"Gym Package", ar:"باكدج جيم"}},
+  {id:"clinic", img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:{en:"Clinic Package", ar:"باكدج عيادة"}},
+  {id:"entrance", img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:{en:"Entrance Area", ar:"منطقة مدخل"}},
+  {id:"indoor", img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:{en:"Indoor Café", ar:"كافيه داخلي"}},
+  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:{en:"Outdoor Café", ar:"كافيه خارجي"}}
 ];
 
 function renderPackages(lang){
   const container = document.getElementById("packagesContainer");
   container.innerHTML = "";
-
   packages.forEach(p=>{
     const card = document.createElement("div");
     card.className = "collection-card";
     card.setAttribute("onclick", `openPackage("${p.id}")`);
-
     card.innerHTML = `
       <img src="${p.img}">
       <div class="collection-info">
@@ -249,34 +229,27 @@ function renderPackages(lang){
 
 function openPackage(id){
   document.getElementById("packagesContainer").style.display = "none";
-  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display = "block";
   window.scrollTo(0,0);
 }
 
 function goHome(){
-  document.querySelectorAll(".collection-page").forEach(p => p.style.display = "none");
+  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById("packagesContainer").style.display = "grid";
   window.scrollTo(0,0);
 }
 
 const langSelect = document.getElementById("langSelect");
-
-langSelect.addEventListener("change",()=>{
+langSelect.addEventListener("change", ()=>{
   const lang = langSelect.value;
-
-  document.body.dir = lang==="ar" ? "rtl" : "ltr";
-
-  document.getElementById("headerTitle").textContent = 
-    lang==="ar" ? "نوك ديكور - باكدجات المساحات" : "Nook Decor - Space Packages";
-
-  document.getElementById("backLink").textContent =
-    lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
-
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  document.getElementById("headerTitle").textContent = lang==="ar"?"نوك ديكور - باكدجات المساحات":"Nook Decor - Space Packages";
+  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderPackages(lang);
 });
 
-// Initial load
+// Initial render
 renderPackages("en");
 </script>
 
