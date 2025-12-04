@@ -134,6 +134,11 @@ header .title-text {
 }
 #menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
 
+#menuOverlay .overlay-content a.close-menu-link {
+  color: #fff;
+  font-size: 20px;
+}
+
 /* SEARCH BAR */
 .top-bar {
   display: flex;
@@ -160,6 +165,8 @@ header .title-text {
   font-family: 'Didot', serif;
 }
 #searchBarContainer { display: none; }
+
+#clearSearch { color: #ffd6e6; }
 
 /* MOOD TEXT */
 .mood-text {
@@ -233,7 +240,6 @@ header .title-text {
 }
 .no-results[aria-hidden="true"] { display: none; }
 
-/* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
@@ -609,13 +615,15 @@ function filterCards() {
       } else {
         // create a temporary card in content for search results only
         // but avoid duplicating if already exists with data-search-temp
-        const existingTemp = document.querySelector(.card[data-search-temp="${escapeSelector(m.link)}"]);
+        const selector = `.card[data-search-temp="${escapeSelector(m.link || '')}"]`;
+        const existingTemp = document.querySelector(selector);
         if (!existingTemp) {
           const content = document.getElementById('content');
           const a = document.createElement('a');
           a.className = 'card';
           a.href = m.link || '#';
           a.dataset.cat = m.category || '';
+          // set a safe data-search-temp attribute (use raw link or generated id)
           a.setAttribute('data-search-temp', m.link || ('temp-' + Math.random()));
           a.innerHTML = `
             <img src="${m.image || ''}" alt="${escapeHtml(m.name || '')}">
@@ -636,19 +644,19 @@ function filterCards() {
   }
 
   // fallback: search DOM cards by title & data-cat
-  const cards = document.querySelectorAll('.card');
-  let visible = 0;
-  cards.forEach(card => {
+  const cards2 = document.querySelectorAll('.card');
+  let visible2 = 0;
+  cards2.forEach(card => {
     const title = (card.querySelector("h3")?.innerText || '').toLowerCase();
     const cat = (card.dataset.cat || '').toLowerCase();
     if (title.includes(q) || cat.includes(q)) {
       card.style.display = "block";
-      visible++;
+      visible2++;
     } else {
       card.style.display = "none";
     }
   });
-  document.getElementById('noResults').setAttribute('aria-hidden', visible === 0 ? 'false' : 'true');
+  document.getElementById('noResults').setAttribute('aria-hidden', visible2 === 0 ? 'false' : 'true');
 }
 
 /* small helper to escape HTML in text interpolations */
