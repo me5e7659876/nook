@@ -18,18 +18,25 @@
 
   header {
     background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: 'Didot', serif;
     font-size: 28px;
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(255,200,210,0.5);
-    position: relative;
-    font-family: 'Didot', serif !important;
+  }
+
+  #pageTitle {
+    text-align: center;
   }
 
   #langSelect {
-    display: inline-block;
-    margin-bottom: 15px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     padding: 4px 8px;
     border: none;
     border-radius: 6px;
@@ -39,11 +46,6 @@
     color: #4b0e1f;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-  }
-
-  #pageTitle {
-    display: block;
-    font-size: 28px;
   }
 
   .collections-grid {
@@ -149,8 +151,8 @@
   }
 
   @media (max-width: 420px){
-    #langSelect { font-size: 10px; padding: 2px 6px; }
-    #pageTitle { font-size: 24px; margin-bottom: 10px; }
+    #langSelect { font-size: 10px; padding: 2px 6px; right: 10px; }
+    #pageTitle { font-size: 24px; }
   }
 
 </style>
@@ -158,11 +160,11 @@
 <body>
 
 <header>
+  <span id="pageTitle">Mood Collections</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
-  <span id="pageTitle">Mood Collections</span>
 </header>
 
 <!-- الصفحة الرئيسية -->
