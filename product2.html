@@ -6,9 +6,32 @@
 <title>Soft Cushions - Nook Decor</title>
 
 <style>
+/* --------------------- */
+/* 1) DIDOT FONT WEBFACE */
+/* --------------------- */
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --------------------- */
+/* 2) BASE STYLES        */
+/* --------------------- */
+
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif; /* الوصف والكلام */
   background-color: #4b0e1f;
   color: #fff;
   direction: ltr;
@@ -18,15 +41,16 @@ header {
   background-color: #4b0e1f;
   padding: 15px;
   text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  position: relative; /* لتثبيت زر اللغة */
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'DidotWeb', serif; /* العنوان الرئيسي */
+  position: relative;
 }
 
 #langSelect {
   position: absolute;
   right: 20px;
-  top: 50%; /* منتصف الهيدر عموديًا */
+  top: 50%;
   transform: translateY(-50%);
   background-color: #ffb3c6;
   border: none;
@@ -36,6 +60,10 @@ header {
   color: #4b0e1f;
   cursor: pointer;
 }
+
+/* --------------------- */
+/* 3) PRODUCT GRID       */
+/* --------------------- */
 
 .container {
   display: flex;
@@ -66,14 +94,18 @@ header {
   border-radius: 15px;
 }
 
+/* اسم المنتج (عنوان) */
 .title {
-  font-size: 20px;
+  font-family: 'DidotWeb', serif; /* عناوين المنتجات */
+  font-size: 22px;
   margin-top: 10px;
-  font-weight: bold;
+  font-weight: 700;
   color: #ffb3c6;
 }
 
+/* وصف المنتج */
 .desc {
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   opacity: 0;
   transform: translateY(20px);
@@ -89,7 +121,9 @@ header {
   max-height: 150px;
 }
 
+/* السعر */
 .price {
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   font-weight: bold;
   margin: 12px 0;
@@ -116,6 +150,7 @@ header {
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
+  font-family: 'DidotWeb', serif;
 }
 </style>
 </head>
@@ -175,7 +210,7 @@ const products = [
   }
 ];
 
-// FUNCTION TO RENDER PRODUCTS
+// RENDER PRODUCTS
 function renderProducts(lang) {
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
@@ -194,7 +229,7 @@ function renderProducts(lang) {
   attachCartListeners(lang);
 }
 
-// CART FUNCTIONALITY
+// CART
 function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
 function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
 
@@ -234,7 +269,7 @@ langSelect.addEventListener("change", () => {
   document.body.dir = lang === "ar" ? "rtl" : "ltr";
 });
 
-// INITIAL RENDER
+// INITIAL
 renderProducts('en');
 </script>
 
