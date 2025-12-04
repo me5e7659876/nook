@@ -39,7 +39,7 @@
     transform: translateY(-50%);
     padding: 4px 8px;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
     background: #ffb3c6;
@@ -58,7 +58,7 @@
 
   .collection-card {
     background: #5c1228;
-    border-radius: 22px;
+    border-radius: 36px; /* حواف دائرية جدًا */
     overflow: hidden;
     box-shadow: 0 4px 25px rgba(0,0,0,0.4);
     transition: 0.3s;
@@ -79,7 +79,7 @@
     height: 400px;
     object-fit: cover;
     display: block;
-    border-radius: 22px 22px 0 0;
+    border-radius: 36px 36px 0 0; /* الحواف العلوية دائرية */
   }
 
   .collection-info {
@@ -88,7 +88,7 @@
   }
 
   .collection-info h3 {
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
     font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
@@ -101,8 +101,8 @@
     background: #ffb3c6;
     color: #4b0e1f;
     font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 24px; /* حواف دائرية كبيرة للزر */
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     transition: 0.3s;
@@ -127,7 +127,7 @@
     padding: 10px 18px;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 24px; /* حواف دائرية للزر */
     cursor: pointer;
     margin-bottom: 20px;
     font-size: 18px;
@@ -142,24 +142,18 @@
 
   .inner-grid img {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 24px; /* حواف دائرية للصور الداخلية */
     object-fit: cover;
     height: 250px;
   }
 
   @media (min-width: 768px) {
-    .inner-grid img {
-      height: 300px;
-    }
+    .inner-grid img { height: 300px; }
     .collections-grid {
       grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     }
-    .collection-card {
-      max-width: 420px;
-    }
-    .collection-card img {
-      height: 460px;
-    }
+    .collection-card { max-width: 420px; }
+    .collection-card img { height: 460px; }
   }
 
   .back-link {
