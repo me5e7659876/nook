@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glass Candles - Nook Decor</title>
 
+  <!-- Importing Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -21,8 +25,12 @@
       background-color: rgba(75, 14, 31, 0.9);
       padding: 15px;
       text-align: center;
-      font-size: 28px;
+      
+      /* HEADER TITLE FONT */
+      font-family: 'Didot', serif;
+      font-size: 32px;
       font-weight: bold;
+
       text-shadow: 0 0 10px rgba(255,200,210,0.5);
       border-bottom: 1px solid rgba(255,255,255,0.1);
       position: relative;
@@ -40,6 +48,7 @@
       cursor: pointer;
       background: #ffb3c6;
       color: #4b0e1f;
+      font-family: 'Poppins', sans-serif;
     }
 
     .product-container {
@@ -76,14 +85,22 @@
     }
 
     .product-card h1 {
-      font-size: 18px;
+      font-size: 20px;
       color: #ffb3c6;
+      
+      /* TITLE FONT */
+      font-family: 'Didot', serif;
+
       margin-bottom: 8px;
     }
 
     .product-card p {
       line-height: 1.5;
       font-size: 14px;
+
+      /* DESCRIPTION FONT */
+      font-family: 'Poppins', sans-serif;
+
       margin-bottom: 8px;
       opacity: 0;
       max-height: 0;
@@ -100,9 +117,10 @@
     }
 
     .price {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: bold;
       margin: 8px 0;
+      font-family: 'Poppins', sans-serif;
     }
 
     .btn {
@@ -115,6 +133,7 @@
       cursor: pointer;
       transition: 0.3s;
       width: 100%;
+      font-family: 'Poppins', sans-serif;
     }
 
     .btn:hover {
@@ -130,6 +149,9 @@
       text-decoration: none;
       font-size: 20px;
       font-weight: 500;
+
+      /* BACK LINK FONT */
+      font-family: 'Poppins', sans-serif;
     }
 
     @media (max-width: 768px) {
@@ -155,14 +177,12 @@
   <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
   <script>
-    // =========================
-    // Products data with bilingual support
-    // =========================
     const products = [
       {img:"https://i.postimg.cc/QNKS4RGP/cff5f436-c495-4bcf-9ce4-4dabd6e78ada.png", price:200,
        name:{en:"LED Glass Candle", ar:"شمعة زجاجية LED"}, 
        desc:{en:"Elegant LED glass candle that adds a cozy glow to any room — perfect for relaxing evenings and decor accents.",
              ar:"شمعة LED زجاجية أنيقة تضيف توهجاً مريحاً لأي غرفة — مثالية لأمسيات الاسترخاء ولمسات الديكور."}},
+
 
       {img:"https://i.postimg.cc/bwgRSPk6/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png", price:130,
        name:{en:"Round LED Glass Candle", ar:"شمعة زجاجية دائرية LED"}, 
@@ -170,7 +190,7 @@
              ar:"شمعة زجاجية دائرية LED جميلة توفر إضاءة ناعمة وتصميم عصري أنيق لمنزلك."}}
     ];
 
-    // Render products according to language
+
     function renderProducts(lang) {
       const container = document.getElementById("productContainer");
       container.innerHTML = "";
@@ -194,9 +214,6 @@
       attachCartListeners(lang);
     }
 
-    // =========================
-    // Cart system
-    // =========================
     function getCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
     }
@@ -236,9 +253,6 @@
       });
     }
 
-    // =========================
-    // Language switching
-    // =========================
     const langSelect = document.getElementById("langSelect");
     langSelect.addEventListener("change", () => {
       const lang = langSelect.value;
@@ -247,19 +261,7 @@
       document.getElementById("backLink").textContent = lang === "ar" ? "← العودة للرئيسية" : "← Back to Home";
     });
 
-    // =========================
-    // Initial render
-    // =========================
     renderProducts("en");
-
-    // =========================
-    // Touch effect for mobile
-    // =========================
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach(card => {
-      card.addEventListener('touchstart', () => card.classList.add('touch-active'));
-      card.addEventListener('touchend', () => setTimeout(() => card.classList.remove('touch-active'), 300));
-    });
   </script>
 </body>
 </html>
