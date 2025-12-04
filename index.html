@@ -402,7 +402,206 @@ footer {
   </main>
 </div>
 
-<footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
+<!-- added footer links (kept original footer text below unchanged) -->
+<div style="background:#4b0e1f;padding:18px 0;text-align:center;">
+  <div id="footerLinks" style="max-width:1100px;margin:0 auto;color:#fff;font-family:'DidotWeb';display:flex;flex-wrap:wrap;justify-content:center;gap:18px;">
+    <a href="#" class="policy-link" data-target="privacy">Privacy Policy — سياسة الخصوصية</a>
+    <a href="#" class="policy-link" data-target="refund">Refund Policy — سياسة الاسترجاع</a>
+    <a href="#" class="policy-link" data-target="shipping">Shipping Policy — سياسة الشحن</a>
+    <a href="#" class="policy-link" data-target="terms">Terms of Service — الشروط والأحكام</a>
+    <a href="#" class="policy-link" data-target="contact">Contact — معلومات التواصل</a>
+  </div>
+</div>
+
+<footer id="footerText">©️ 2025 Nook Decor. All rights reserved.</footer>
+
+<!-- POLICY OVERLAYS (INSERTED) -->
+<style>
+  /* Overlay styles */
+  .policy-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.75);
+    z-index: 3000;
+    padding: 20px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .policy-card {
+    width: 100%;
+    max-width: 880px;
+    max-height: 86vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg, rgba(59,10,26,0.98) 0%, rgba(43,4,16,0.98) 100%);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    color: #fff;
+    position: relative;
+    font-family: 'DidotWeb', serif;
+    line-height: 1.6;
+  }
+  .policy-card h2 { margin-top: 0; font-size: 26px; color: #ffb3c6; text-align:center; }
+  .policy-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,0.06);
+    border: none;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight:700;
+  }
+  .policy-card p, .policy-card ul, .policy-card ol { color: #f0eaea; }
+  .policy-card ul { padding-left: 18px; }
+  .policy-card li { margin-bottom: 8px; }
+  @media (max-width:600px) {
+    .policy-card { padding:18px; border-radius:10px; }
+    .policy-card h2 { font-size:20px; }
+  }
+</style>
+
+<!-- Privacy -->
+<div id="privacy" class="policy-overlay" aria-hidden="true">
+  <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <button class="policy-close" aria-label="Close">Close</button>
+    <h2 id="privacyTitle">Privacy Policy — سياسة الخصوصية</h2>
+    <p><strong>آخر تحديث: 2025</strong></p>
+
+    <p>في <strong>Nook Decor</strong> نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. باستخدامك لموقعنا، فأنت توافق على جمع واستخدام وحماية البيانات كما هو موضح أدناه.</p>
+
+    <h3>البيانات التي نقوم بجمعها</h3>
+    <ul>
+      <li>الاسم</li>
+      <li>البريد الإلكتروني</li>
+      <li>رقم الهاتف</li>
+      <li>عنوان الشحن والفواتير</li>
+      <li>بيانات الدفع (نحن لا نخزن بيانات البطاقة — تتم المعالجة عبر بوابات دفع آمنة)</li>
+      <li>سجل الطلبات وتفضيلات التصفح</li>
+    </ul>
+
+    <h3>كيفية استخدامنا للبيانات</h3>
+    <ul>
+      <li>معالجة الطلبات والشحن</li>
+      <li>تحسين تجربة المستخدم داخل الموقع</li>
+      <li>التواصل مع العملاء فيما يخص الطلبات أو العروض</li>
+      <li>منع الأنشطة الاحتيالية وتأمين الموقع</li>
+    </ul>
+
+    <h3>حماية البيانات</h3>
+    <p>نستخدم تشفير SSL وممارسات أمنية معتمدة لتخزين ونقل البيانات. نراجع أنظمة الأمان بشكل دوري ونحدّثها عند الحاجة.</p>
+
+    <h3>مشاركة البيانات</h3>
+    <p>لا نشارك بياناتك مع أطراف ثالثة إلا عند الضرورة مثل شركات الشحن، بوابات الدفع، أو عندما يتطلب القانون ذلك.</p>
+
+    <h3>حقوقك</h3>
+    <ul>
+      <li>تحديث بياناتك أو تعديلها</li>
+      <li>طلب حذف حسابك وبياناتك</li>
+      <li>طلب نسخة من البيانات المخزنة لدينا</li>
+    </ul>
+
+    <p>لأي استفسار بخصوص الخصوصية تواصل معنا من خلال صفحة <strong>Contact</strong> داخل الفوتر.</p>
+  </div>
+</div>
+
+<!-- Refund -->
+<div id="refund" class="policy-overlay" aria-hidden="true">
+  <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="refundTitle">
+    <button class="policy-close" aria-label="Close">Close</button>
+    <h2 id="refundTitle">Refund Policy — سياسة الاسترجاع</h2>
+    <p><strong>آخر تحديث: 2025</strong></p>
+
+    <p>نحرص في <strong>Nook Decor</strong> على رضاك. فيما يلي شروط وإجراءات الاسترجاع المتبعة لدينا:</p>
+
+    <h3>المنتجات القابلة للاسترجاع</h3>
+    <p>يمكن استرجاع المنتج خلال <strong>14 يومًا من تاريخ الاستلام</strong> شرط أن يكون المنتج غير مستخدم وفي عبوته الأصلية.</p>
+
+    <h3>المنتجات غير القابلة للاسترجاع</h3>
+    <ul>
+      <li>الطلبات المصممة حسب الطلب أو الخاصة بالمقاسات.</li>
+      <li>المنتجات التي تعرضت لتلف أو استعمال واضح من قبل العميل.</li>
+    </ul>
+
+    <h3>إجراءات الاسترجاع</h3>
+    <ol>
+      <li>تواصل مع فريق الدعم عبر صفحة <strong>Contact</strong>.</li>
+      <li>ننسق معاََ لعمل استلام المنتج من عنوانك.</li>
+      <li>نفحص المنتج خلال 48 ساعة من الاستلام.</li>
+      <li>إذا تم قبول الاسترجاع، نعيد المبلغ خلال 3–7 أيام عمل إلى وسيلة الدفع الأصلية.</li>
+    </ol>
+
+    <h3>الرسوم</h3>
+    <p>يتم خصم رسوم الشحن في حالات معينة ما لم يكن المنتج تالفًا أو تم شحنه خطأ من جانبنا.</p>
+  </div>
+</div>
+
+<!-- Shipping -->
+<div id="shipping" class="policy-overlay" aria-hidden="true">
+  <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="shippingTitle">
+    <button class="policy-close" aria-label="Close">Close</button>
+    <h2 id="shippingTitle">Shipping Policy — سياسة الشحن</h2>
+    <p><strong>آخر تحديث: 2025</strong></p>
+
+    <h3>مدة الشحن</h3>
+    <ul>
+      <li>القاهرة والجيزة: من 1 إلى 3 أيام عمل</li>
+      <li>المحافظات: من 3 إلى 7 أيام عمل</li>
+    </ul>
+
+    <h3>رسوم الشحن</h3>
+    <p>تختلف حسب الوزن والمنطقة، وتعرض لك التكلفة قبل إتمام الدفع.</p>
+
+    <h3>التتبع</h3>
+    <p>نرسل لك رسالة تحتوي على رقم الشحنة ورابط التتبع عند شحن الطلب.</p>
+
+    <h3>التأخيرات</h3>
+    <p>في حال حدوث تأخير خارجي عن إرادتنا (طوارئ، موارد شحن)، سنتواصل معك لتنسيق حل مناسب.</p>
+  </div>
+</div>
+
+<!-- Terms -->
+<div id="terms" class="policy-overlay" aria-hidden="true">
+  <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+    <button class="policy-close" aria-label="Close">Close</button>
+    <h2 id="termsTitle">Terms of Service — الشروط والأحكام</h2>
+    <p><strong>آخر تحديث: 2025</strong></p>
+
+    <h3>استخدام الموقع</h3>
+    <p>باستخدامك للموقع توافق على عدم إساءة استخدام المحتوى أو محاولة التلاعب به. يُمنع استخدام أي محتوى تجاري بدون إذن كتابي من Nook Decor.</p>
+
+    <h3>الطلبات والدفع</h3>
+    <p>يتم تأكيد الطلب بعد إتمام عملية الدفع. إذا حدث خطأ في الدفع سيتم التواصل معك لشرح الخطوات التالية.</p>
+
+    <h3>الأسعار</h3>
+    <p>الأسعار عرضة للتغيير بسبب التحديثات أو العروض الترويجية. نحاول الحفاظ على دقة الأسعار، لكن قد تحدث أخطاء نادرة نحتفظ بحقنا في تصحيحها.</p>
+
+    <h3>الملكية الفكرية</h3>
+    <p>كل الصور والنصوص والتصاميم الموجودة بالموقع محمية بحقوق ملكية فكرية وتخص Nook Decor. أي استخدام تجاري بدون إذن يُعد انتهاكًا.</p>
+  </div>
+</div>
+
+<!-- Contact -->
+<div id="contact" class="policy-overlay" aria-hidden="true">
+  <div class="policy-card" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+    <button class="policy-close" aria-label="Close">Close</button>
+    <h2 id="contactTitle">Contact — معلومات التواصل</h2>
+    <p><strong>يسعدنا تواصلك معنا في أي وقت</strong></p>
+    <ul>
+      <li><strong>الهاتف:</strong> 0100-000-0000</li>
+      <li><strong>البريد الإلكتروني:</strong> support@nookdecor.com</li>
+      <li><strong>انستجرام:</strong> @NookDecor</li>
+      <li><strong>العنوان:</strong> القاهرة – مصر</li>
+      <li><strong>ساعات العمل:</strong> 10 صباحًا – 8 مساءً</li>
+    </ul>
+    <p>يمكنك أيضاً مراسلتنا عبر النموذج في صفحة "اتصل بنا" أو عبر أي من قنوات التواصل السابقة.</p>
+  </div>
+</div>
 
 <!-- SCRIPTS -->
 <script>
@@ -445,6 +644,78 @@ function filterCards() {
   const noResults = document.getElementById("noResults");
   noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
 }
+</script>
+
+<!-- POLICY SCRIPTS (attach listeners without touching original functions) -->
+<script>
+  // Open overlay when clicking footer policy links
+  document.querySelectorAll('.policy-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = this.getAttribute('data-target');
+      const el = document.getElementById(target);
+      if (el) {
+        el.style.display = 'flex';
+        el.setAttribute('aria-hidden','false');
+        // lock scroll
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  // Close buttons inside overlays
+  document.querySelectorAll('.policy-close').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const overlay = this.closest('.policy-overlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden','true');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close overlay by clicking outside the card
+  document.querySelectorAll('.policy-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden','true');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.policy-overlay').forEach(ov => {
+        if (ov.style.display === 'flex') {
+          ov.style.display = 'none';
+          ov.setAttribute('aria-hidden','true');
+        }
+      });
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // optional: open overlay via hash (e.g., index.html#privacy)
+  window.addEventListener('load', function() {
+    const h = location.hash.replace('#','');
+    if (h) {
+      const el = document.getElementById(h);
+      if (el) {
+        el.style.display = 'flex';
+        el.setAttribute('aria-hidden','false');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  });
 </script>
 
 </body>
