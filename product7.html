@@ -29,7 +29,7 @@
 
   #headerTitle {
     display: inline-block;
-    margin-right: 15px; /* المسافة بين العنوان وزر اللغة */
+    margin-right: 15px;
   }
 
   #langSelect {
@@ -37,7 +37,7 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 4px 8px; /* صغر حجم الزر */
+    padding: 4px 8px;
     border: none;
     border-radius: 6px;
     font-weight: bold;
@@ -152,7 +152,15 @@
     .desc { font-size: 14px; }
     .btn { padding: 6px 16px; font-size: 14px; }
     .gold-text { font-size: 24px; }
-    #langSelect { font-size: 12px; padding: 3px 6px; } /* أصغر على الموبايل */
+    #langSelect { 
+      font-size: 12px; 
+      padding: 3px 5px; 
+      right: 10px;
+    }
+    #headerTitle {
+      display: block;
+      margin-bottom: 10px; /* مسافة أكبر بين العنوان والزر على الموبايل */
+    }
   }
 </style>
 </head>
