@@ -1,158 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wooden Racks - Nook Decor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wooden Racks - Nook Decor</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
-      color: #fff;
-    }
-    header {
-      background-color: #4b0e1f;
-      padding: 15px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255,200,210,0.5);
-      position: relative;
-    }
-    #langSelect {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 6px 10px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #ffb3c6;
-      color: #4b0e1f;
-    }
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 35px;
-      padding: 35px;
-      justify-items: center;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #4b0e1f;
+    color: #fff;
+  }
 
-    .item {
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 18px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 430px;
-    }
+  header {
+    background-color: #4b0e1f;
+    padding: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    position: relative;
+    font-family: 'Didot', serif !important; /* خط العنوان كبير */
+  }
 
-    .item:hover { transform: scale(1.05); }
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    font-family: 'Poppins', sans-serif;
+  }
 
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 35px;
+    padding: 35px;
+    justify-items: center;
+  }
+
+  .item {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 430px;
+    font-family: 'Poppins', sans-serif; /* نصوص داخل الكرت */
+  }
+
+  .item:hover { transform: scale(1.05); }
+
+  .slider {
+    width: 100%;
+    max-width: 430px;
+    height: 460px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0 auto;
+  }
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .active { opacity: 1; }
+
+  .next-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: rgba(255,179,198,0.8);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4b0e1f;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffb3c6;
+    margin-top: 10px;
+    font-family: 'Didot', serif !important; /* العنوان داخل الكرت */
+  }
+
+  .desc {
+    font-size: 15px;
+    color: #ffe3eb;
+    margin-top: 8px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-family: 'Poppins', sans-serif; /* وصف ونصوص */
+  }
+
+  .item:hover .desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn:hover { background-color: #ffc7d3; }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin: 30px 0;
+    color: #ffb3c6;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (max-width: 480px) {
     .slider {
-      width: 100%;
-      max-width: 430px;
-      height: 460px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      margin: 0 auto;
+      height: 390px;
+      max-width: 100%;
     }
-
-    .slide {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+    .item {
+      max-width: 100%;
     }
+  }
 
-    .active { opacity: 1; }
-
-    .next-btn {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      background-color: rgba(255,179,198,0.8);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      color: #4b0e1f;
-      font-weight: bold;
-    }
-
-    .price {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffb3c6;
-      margin-top: 10px;
-    }
-
-    .desc {
-      font-size: 15px;
-      color: #ffe3eb;
-      margin-top: 8px;
-      line-height: 1.5;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .item:hover .desc {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .btn {
-      background-color: #ffb3c6;
-      border: none;
-      color: #4b0e1f;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-      width: 100%;
-    }
-
-    .btn:hover { background-color: #ffc7d3; }
-
-    .back-link {
-      display: block;
-      text-align: center;
-      margin: 30px 0;
-      color: #ffb3c6;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    @media (max-width: 480px) {
-      .slider {
-        height: 390px;
-        max-width: 100%;
-      }
-      .item {
-        max-width: 100%;
-      }
-    }
-
-  </style>
+</style>
 </head>
 <body>
 
@@ -169,85 +182,16 @@
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+// نفس سكربت المنتجات والسلايدر والكارت كما هو
 const products = [
-
-  /* المنتج الأول */
-  {
-    img:[
-      "https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg",
-      "https://i.postimg.cc/66fQRyST/21cf0404-974a-47f9-8182-b1ec9a0b0223.jpg" // تم التعديل
-    ],
-    price:1200,
-    name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"},
-    desc:{en:"Strong solid wood rack — perfect for plants, décor items, and modern home styling.",
-          ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}
-  },
-
-  /* المنتج الثاني */
-  {
-    img:[
-      "https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png",
-      "https://i.postimg.cc/434jXg1L/8.png",
-      "https://i.postimg.cc/Y9GnSqLb/3.png"
-    ],
-    price:600,
-    name:{en:"Minimal Modern Rack", ar:"رف عصري بسيط"},
-    desc:{en:"Minimal modern wooden rack — ideal for small spaces and stylish organization.",
-          ar:"رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."}
-  },
-
-  /* المنتج الثالث */
-  {
-    img:[
-      "https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg",
-      "https://i.postimg.cc/QddqtxRF/2.png",
-      "https://i.postimg.cc/rpdC1Zyk/7.png"
-    ],
-    price:300,
-    name:{en:"Decorative Wooden Stand", ar:"حامل خشبي زخرفي"},
-    desc:{en:"Decorative wooden stand — great for showcasing plants, candles, and ornaments.",
-          ar:"حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."}
-  },
-
-  /* المنتج الرابع */
-  {
-    img:[
-      "https://i.postimg.cc/PfmGb2NW/1.jpg",
-      "https://i.postimg.cc/XNLVqtGH/c37d44dd-15a7-4672-bd77-0c27df4f1449.jpg" // تم التعديل
-    ],
-    price:200,
-    name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"},
-    desc:{en:"Compact wooden shelf — perfect for tight areas and adding an elegant touch.",
-          ar:"رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."}
-  },
-
-  /* المنتج الخامس */
-  {
-    img:[
-      "https://i.postimg.cc/4yFpHzCS/4.png",
-      "https://i.postimg.cc/P5D1NpSD/10.png"
-    ],
-    price:350,
-    name:{en:"Wooden Shelf", ar:"رف خشبي"},
-    desc:{en:"Wooden shelf — strong and elegant.",
-          ar:"رف خشبي قوي وأنيق."}
-  },
-
-  /* المنتج السادس */
-  {
-    img:[
-      "https://i.postimg.cc/LX9Pyy2x/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg",
-      "https://i.postimg.cc/kX6bhR3k/9.png"
-    ],
-    price:350,
-    name:{en:"White Wooden Shelf", ar:"رف خشبي أبيض"},
-    desc:{en:"White wooden shelf — stylish & modern.",
-          ar:"رف خشبي أبيض — أنيق وعصري."}
-  }
-
+  { img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/66fQRyST/21cf0404-974a-47f9-8182-b1ec9a0b0223.jpg"], price:1200, name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"}, desc:{en:"Strong solid wood rack — perfect for plants, décor items, and modern home styling.", ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}},
+  { img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"], price:600, name:{en:"Minimal Modern Rack", ar:"رف عصري بسيط"}, desc:{en:"Minimal modern wooden rack — ideal for small spaces and stylish organization.", ar:"رف خشبي عصري — مثالي للمساحات الصغيرة والتنظيم الأنيق."}},
+  { img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"], price:300, name:{en:"Decorative Wooden Stand", ar:"حامل خشبي زخرفي"}, desc:{en:"Decorative wooden stand — great for showcasing plants, candles, and ornaments.", ar:"حامل خشبي زخرفي — رائع لعرض النباتات والشموع والزينة."}},
+  { img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/XNLVqtGH/c37d44dd-15a7-4672-bd77-0c27df4f1449.jpg"], price:200, name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"}, desc:{en:"Compact wooden shelf — perfect for tight areas and adding an elegant touch.", ar:"رف خشبي صغير — مثالي للمساحات الضيقة ولمسة أنيقة."}},
+  { img:["https://i.postimg.cc/4yFpHzCS/4.png","https://i.postimg.cc/P5D1NpSD/10.png"], price:350, name:{en:"Wooden Shelf", ar:"رف خشبي"}, desc:{en:"Wooden shelf — strong and elegant.", ar:"رف خشبي قوي وأنيق."}},
+  { img:["https://i.postimg.cc/LX9Pyy2x/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg","https://i.postimg.cc/kX6bhR3k/9.png"], price:350, name:{en:"White Wooden Shelf", ar:"رف خشبي أبيض"}, desc:{en:"White wooden shelf — stylish & modern.", ar:"رف خشبي أبيض — أنيق وعصري."}}
 ];
 
-// Generate products
 function renderProducts(lang){
   const container = document.getElementById("galleryContainer");
   container.innerHTML = "";
@@ -257,9 +201,7 @@ function renderProducts(lang){
     item.dataset.name = p.name[lang];
     item.dataset.price = p.price;
     item.dataset.img = p.img[0];
-
     let slidesHTML = p.img.map((src,i)=>`<img class="slide ${i===0?'active':''}" src="${src}">`).join("");
-
     item.innerHTML = `
       <div class="slider">
         ${slidesHTML}
@@ -275,75 +217,44 @@ function renderProducts(lang){
   attachCart(lang);
 }
 
-// Slider logic
 function attachSliders(){
   document.querySelectorAll('.slider').forEach(slider => {
     const slides = slider.querySelectorAll('.slide');
     let index = 0;
     const nextBtn = slider.querySelector('.next-btn');
-
-    function showSlide(i){
-      slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
-    }
-
-    nextBtn.addEventListener('click',()=>{
-      index = (index + 1) % slides.length;
-      showSlide(index);
-    });
-
-    setInterval(()=>{
-      index = (index + 1) % slides.length;
-      showSlide(index);
-    },7000);
+    function showSlide(i){ slides.forEach((s,idx)=>s.classList.toggle('active',idx===i)); }
+    nextBtn.addEventListener('click',()=>{ index=(index+1)%slides.length; showSlide(index); });
+    setInterval(()=>{ index=(index+1)%slides.length; showSlide(index); },7000);
   });
 }
 
-// Cart system
 function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
 function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
-
 function attachCart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+  document.querySelectorAll(".btn.add-to-cart").forEach(btn=>{
     btn.addEventListener("click",()=>{
       const item = btn.closest(".item");
-      const product = {
-        name:item.dataset.name,
-        price:parseFloat(item.dataset.price),
-        img:item.dataset.img,
-        qty:1
-      };
-
-      let cart = getCart();
-      let existing = cart.find(p=>p.name===product.name);
-      if(existing) existing.qty+=1;
-      else cart.push(product);
-
+      const product={name:item.dataset.name, price:parseFloat(item.dataset.price), img:item.dataset.img, qty:1};
+      let cart=getCart();
+      let existing=cart.find(p=>p.name===product.name);
+      if(existing) existing.qty+=1; else cart.push(product);
       saveCart(cart);
-
       btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff";
-      btn.style.color="#4b0e1f";
-
-      setTimeout(()=>{
-        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="#ffb3c6";
-        btn.style.color="#4b0e1f";
-      },1200);
+      btn.style.background="#fff"; btn.style.color="#4b0e1f";
+      setTimeout(()=>{ btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200);
     });
   });
 }
 
-// Language switching
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change",()=>{
-  const lang = langSelect.value;
-  document.body.dir = lang==="ar"?"rtl":"ltr";
-  document.getElementById("headerTitle").textContent = lang==="ar"?"رفوف خشبية":"Wooden Racks";
-  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  const lang=langSelect.value;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  document.getElementById("headerTitle").textContent=lang==="ar"?"رفوف خشبية":"Wooden Racks";
+  document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
 });
 
-// initial render
 renderProducts("en");
 </script>
 
