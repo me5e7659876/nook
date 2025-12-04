@@ -6,19 +6,39 @@
 <title>Nook Decor</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Didot&display=swap');
 
-:root{
-  --accent-hover: rgba(255,179,198,0.12);
-  --active-outline: rgba(255,179,198,0.28);
+/* ------------------------------------ */
+/*   FULL DIDOT WEBFONT FOR ALL DEVICES */
+/* ------------------------------------ */
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* استخدم DidotWeb في كل الموقع */
 body {
-  font-family: 'Didot', serif;
+  font-family: 'DidotWeb', 'Didot', 'Georgia', serif;
   margin: 0;
   background-color: #4b0e1f;
   color: #fff;
   direction: ltr;
+}
+
+/* VARIABLES */
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
 }
 
 /* HEADER */
@@ -129,7 +149,7 @@ header .title-text {
   color: #ffb3c6;
   text-decoration: none;
   font-weight: 600;
-  font-family: 'Didot', serif;
+  font-family: 'DidotWeb', serif;
   transition: 0.3s;
 }
 #menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
@@ -157,11 +177,10 @@ header .title-text {
   color: #fff;
   font-size: 16px;
   width: 260px;
-  font-family: 'Didot', serif;
+  font-family: 'DidotWeb';
 }
 #searchBarContainer { display: none; }
 
-/* MOOD TEXT */
 .mood-text {
   text-align: center;
   font-size: 24px;
@@ -237,7 +256,7 @@ footer {
   background-color: #4b0e1f;
   text-align: center;
   padding: 15px;
-  font-family: 'Didot', serif;
+  font-family: 'DidotWeb';
 }
 
 /* MOBILE */
@@ -249,6 +268,7 @@ footer {
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 200px !important; }
 }
+
 </style>
 </head>
 
@@ -327,7 +347,7 @@ footer {
       <h3>Moods</h3>
     </a>
 
-   <a href="product11.html" class="card" data-cat="Space Packages">
+    <a href="product11.html" class="card" data-cat="Space Packages">
       <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
       <h3>Space Packages</h3>
     </a>
@@ -429,7 +449,3 @@ function filterCards() {
 
 </body>
 </html>
-
-
-
-
