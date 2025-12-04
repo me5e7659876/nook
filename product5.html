@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Outdoor Flooring - Nook Decor</title>
+
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   body {
     margin: 0;
@@ -11,6 +15,8 @@
     background-color: #4b0e1f;
     color: #fff;
   }
+
+  /* العنوان الكبير بخط Didot */
   header {
     background-color: #4b0e1f;
     padding: 15px;
@@ -19,7 +25,9 @@
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255,200,210,0.6);
     position: relative;
+    font-family: 'Didot', serif !important;
   }
+
   #langSelect {
     position: absolute;
     right: 20px;
@@ -33,14 +41,16 @@
     background: #ffb3c6;
     color: #4b0e1f;
     font-size: 14px;
+    font-family: 'Poppins', sans-serif;
   }
-  /* تعديل زر اللغة على الموبايل */
+
   @media (max-width: 768px) {
     #langSelect {
       padding: 4px 8px;
       font-size: 12px;
     }
   }
+
   .products {
     display: flex;
     flex-wrap: wrap;
@@ -48,6 +58,7 @@
     gap: 25px;
     padding: 30px;
   }
+
   .product-card {
     background-color: #5a1226;
     width: 250px;
@@ -57,7 +68,9 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
   }
+
   .slider {
     width: 100%;
     height: 420px;
@@ -66,6 +79,7 @@
     border-radius: 15px;
     margin-bottom: 15px;
   }
+
   .slider img {
     width: 100%;
     height: 420px;
@@ -77,7 +91,9 @@
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
   }
+
   .slider img.active { opacity: 1; }
+
   .slider .nav-btn {
     position: absolute;
     top: 50%;
@@ -91,28 +107,39 @@
     z-index: 2;
     right: 10px;
   }
+
+  /* عنوان المنتج بخط Didot */
   h2 {
     margin: 0 0 8px 0;
     color: #ffb3c6;
     font-size: 20px;
+    font-family: 'Didot', serif !important;
   }
+
+  /* الوصف بخط Poppins */
   p.description {
     opacity: 0;
     transform: translateX(30px);
     transition: opacity 1s ease, transform 1s ease;
     max-height: 100px;
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
   }
+
   .product-card:hover p.description {
     opacity: 1;
     transform: translateX(0);
   }
+
   .price, .btn {
     margin-top: 5px;
     font-size: 14px;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
   }
+
   .price { color: #ffb3c6; }
+
   .btn {
     background-color: #ffb3c6;
     border: none;
@@ -122,8 +149,11 @@
     cursor: pointer;
     font-size: 14px;
     width: 100%;
+    font-family: 'Poppins', sans-serif;
   }
+
   .btn:hover { background-color: #ffc7d3; }
+
   .back-home {
     display: block;
     text-align: center;
@@ -132,9 +162,11 @@
     text-decoration: none;
     font-size: 20px;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
   }
 </style>
 </head>
+
 <body>
 <header>
   <span id="headerTitle">Outdoor Flooring</span>
@@ -144,16 +176,14 @@
   </select>
 </header>
 
-<div class="products" id="productContainer">
-  <!-- المنتجات سيتم توليدها تلقائيًا حسب اللغة -->
-</div>
+<div class="products" id="productContainer"></div>
 
 <a href="./index.html" class="back-home" id="backHome">← Back to Home</a>
 
 <script>
-  // =========================
-  // بيانات المنتجات مع اللغتين
-  // =========================
+  /* باقي السكربت كما هو بدون تغيير */
+  /* ------------------------------- */
+
   const products = [
     {img:["https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg","https://i.postimg.cc/3RJNqGz0/download-(48).jpg"], price:650, name:{en:"Artificial Grass", ar:"عشب صناعي"}, desc:{en:"High-quality artificial grass perfect for balconies and outdoor areas.", ar:"عشب صناعي عالي الجودة مثالي للشرفات والمساحات الخارجية."}},
     {img:["https://i.postimg.cc/Hs9LchCf/ss.jpg","https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg"], price:1000, name:{en:"Outdoor Rug 1", ar:"سجادة خارجية 1"}, desc:{en:"Stylish outdoor rug that enhances your relaxing space beautifully.", ar:"سجادة خارجية أنيقة تعزز مساحتك للاسترخاء بشكل رائع."}},
@@ -165,9 +195,6 @@
     {img:["https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg","https://i.postimg.cc/rFhWJLy2/1.png"], price:1000, name:{en:"Outdoor Rug 7", ar:"سجادة خارجية 7"}, desc:{en:"Luxury outdoor rug adding elegance and warmth to any space.", ar:"سجادة خارجية فاخرة تضيف أناقة ودفء لأي مكان."}}
   ];
 
-  // =========================
-  // توليد المنتجات حسب اللغة
-  // =========================
   function renderProducts(lang){
     const container = document.getElementById("productContainer");
     container.innerHTML = "";
@@ -177,7 +204,11 @@
       card.dataset.name = p.name[lang];
       card.dataset.price = p.price;
       card.dataset.img = p.img[0];
-      let sliderImages = p.img.map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`).join("");
+
+      let sliderImages = p.img
+        .map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`)
+        .join("");
+
       card.innerHTML = `
         <div class="slider">
           ${sliderImages}
@@ -190,37 +221,35 @@
       `;
       container.appendChild(card);
     });
+
     attachCartListeners(lang);
     attachSliders();
   }
 
-  // =========================
-  // اللغة
-  // =========================
-  const langSelect = document.getElementById("langSelect");
-  langSelect.addEventListener("change", ()=>{
-    const lang = langSelect.value;
+  const langSelectEl = document.getElementById("langSelect");
+  langSelectEl.addEventListener("change", ()=>{
+    const lang = langSelectEl.value;
     document.body.dir = lang==="ar"?"rtl":"ltr";
-    document.getElementById("headerTitle").textContent = lang==="ar"?"نوك ديكور - الأرضيات الخارجية":"Nook Decor - Outdoor Flooring";
+    document.getElementById("headerTitle").textContent = lang==="ar"?"الأرضيات الخارجية":"Outdoor Flooring";
     document.getElementById("backHome").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
     renderProducts(lang);
   });
 
-  // =========================
-  // Slider
-  // =========================
   function attachSliders(){
     document.querySelectorAll(".slider").forEach(slider=>{
       const images = slider.querySelectorAll("img");
       const nextBtn = slider.querySelector(".next");
       let index = 0;
+
       function showImage(i){
         images.forEach((img,idx)=> img.classList.toggle("active", idx===i));
       }
+
       nextBtn.addEventListener("click", ()=>{
         index=(index+1)%images.length;
         showImage(index);
       });
+
       setInterval(()=>{
         index=(index+1)%images.length;
         showImage(index);
@@ -228,24 +257,31 @@
     });
   }
 
-  // =========================
-  // Cart
-  // =========================
   function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
   function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+
   function attachCartListeners(lang){
     document.querySelectorAll(".add-to-cart").forEach(btn=>{
       btn.addEventListener("click", ()=>{
         const card = btn.closest(".product-card");
-        const product = {name:card.dataset.name, price:parseFloat(card.dataset.price), img:card.dataset.img, qty:1};
+        const product = {
+          name: card.dataset.name,
+          price: parseFloat(card.dataset.price),
+          img: card.dataset.img,
+          qty: 1
+        };
+
         let cart = getCart();
         let existing = cart.find(p=>p.name===product.name);
-        if(existing) existing.qty+=1;
+        if(existing) existing.qty++;
         else cart.push(product);
+
         saveCart(cart);
+
         btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
         btn.style.background="#fff";
         btn.style.color="#4b0e1f";
+
         setTimeout(()=>{
           btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
           btn.style.background="#ffb3c6";
@@ -255,9 +291,6 @@
     });
   }
 
-  // =========================
-  // التشغيل الأولي
-  // =========================
   renderProducts("en");
 </script>
 </body>
