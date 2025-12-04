@@ -67,6 +67,7 @@
     max-width: 360px;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
   .collection-card:hover {
@@ -78,7 +79,7 @@
     height: 400px;
     object-fit: cover;
     display: block;
-    border-radius: 22px;
+    border-radius: 22px 22px 0 0;
   }
 
   .collection-info {
@@ -87,11 +88,31 @@
   }
 
   .collection-info h3 {
-    margin: 0;
+    margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: 500;
     color: #ffb3c6;
     font-family: 'Didot', serif; 
+  }
+
+  /* زر View Package */
+  .view-btn {
+    display: inline-block;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .view-btn:hover {
+    background: #ff87a0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
 
   .collection-page {
@@ -141,7 +162,6 @@
     }
   }
 
-  /* زر العودة */
   .back-link {
     text-align:center;
     display:block;
@@ -227,11 +247,11 @@ function renderPackages(lang){
   packages.forEach(p=>{
     const card = document.createElement("div");
     card.className = "collection-card";
-    card.setAttribute("onclick", `openPackage("${p.id}")`);
     card.innerHTML = `
       <img src="${p.img}">
       <div class="collection-info">
         <h3>${p.name[lang]}</h3>
+        <a class="view-btn" onclick='openPackage("${p.id}")'>View Package</a>
       </div>
     `;
     container.appendChild(card);
