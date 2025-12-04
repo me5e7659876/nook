@@ -16,38 +16,47 @@
     color: #fff;
   }
 
-  /* العنوان الكبير بخط Didot */
+  /* العنوان بخط Didot */
   header {
     background-color: #4b0e1f;
-    padding: 15px;
+    padding: 20px 15px;
     text-align: center;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255,200,210,0.6);
     position: relative;
     font-family: 'Didot', serif !important;
   }
 
+  /* زر تغيير اللغة — أصغر + مسافة واضحة */
   #langSelect {
     position: absolute;
-    right: 20px;
-    top: 50%;
+    right: 15px;
+    top: 62%; /* ينزل تحت العنوان ويعمل مسافة  */
     transform: translateY(-50%);
-    padding: 6px 10px;
+    padding: 3px 6px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
     background: #ffb3c6;
     color: #4b0e1f;
-    font-size: 14px;
+    font-size: 11px;
     font-family: 'Poppins', sans-serif;
   }
 
+  /* للموبايل */
   @media (max-width: 768px) {
     #langSelect {
-      padding: 4px 8px;
-      font-size: 12px;
+      padding: 2px 5px;
+      font-size: 10px;
+      right: 10px;
+      top: 65%;
+    }
+
+    header {
+      font-size: 26px;
+      padding: 18px;
     }
   }
 
@@ -108,7 +117,6 @@
     right: 10px;
   }
 
-  /* عنوان المنتج بخط Didot */
   h2 {
     margin: 0 0 8px 0;
     color: #ffb3c6;
@@ -116,7 +124,6 @@
     font-family: 'Didot', serif !important;
   }
 
-  /* الوصف بخط Poppins */
   p.description {
     opacity: 0;
     transform: translateX(30px);
@@ -149,7 +156,6 @@
     cursor: pointer;
     font-size: 14px;
     width: 100%;
-    font-family: 'Poppins', sans-serif;
   }
 
   .btn:hover { background-color: #ffc7d3; }
@@ -162,7 +168,6 @@
     text-decoration: none;
     font-size: 20px;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
   }
 </style>
 </head>
@@ -181,117 +186,117 @@
 <a href="./index.html" class="back-home" id="backHome">← Back to Home</a>
 
 <script>
-  /* باقي السكربت كما هو بدون تغيير */
-  /* ------------------------------- */
+/* جميع السكربت كما هو بدون تعديل لأنه شغال تمام */
 
-  const products = [
-    {img:["https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg","https://i.postimg.cc/3RJNqGz0/download-(48).jpg"], price:650, name:{en:"Artificial Grass", ar:"عشب صناعي"}, desc:{en:"High-quality artificial grass perfect for balconies and outdoor areas.", ar:"عشب صناعي عالي الجودة مثالي للشرفات والمساحات الخارجية."}},
-    {img:["https://i.postimg.cc/Hs9LchCf/ss.jpg","https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg"], price:1000, name:{en:"Outdoor Rug 1", ar:"سجادة خارجية 1"}, desc:{en:"Stylish outdoor rug that enhances your relaxing space beautifully.", ar:"سجادة خارجية أنيقة تعزز مساحتك للاسترخاء بشكل رائع."}},
-    {img:["https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png","https://i.postimg.cc/FsbCszxR/3.png"], price:1000, name:{en:"Outdoor Rug 2", ar:"سجادة خارجية 2"}, desc:{en:"Soft texture design made to elevate outdoor comfort.", ar:"تصميم بنسيج ناعم لزيادة راحة المساحات الخارجية."}},
-    {img:["https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png","https://i.postimg.cc/4ygvrvqS/5.png"], price:1000, name:{en:"Outdoor Rug 3", ar:"سجادة خارجية 3"}, desc:{en:"Modern outdoor piece that adds charm to your balcony or garden.", ar:"قطعة خارجية عصرية تضيف جمالًا لشرفتك أو حديقتك."}},
-    {img:["https://i.postimg.cc/9fZ9kB9F/sysy.jpg","https://i.postimg.cc/XYzfV6t8/4.png"], price:1000, name:{en:"Outdoor Rug 4", ar:"سجادة خارجية 4"}, desc:{en:"Classic pattern rug that blends perfectly with outdoor furniture.", ar:"سجادة بنمط كلاسيكي تتناسب تمامًا مع الأثاث الخارجي."}},
-    {img:["https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png","https://i.postimg.cc/PxG1wzXf/6.png"], price:1000, name:{en:"Outdoor Rug 5", ar:"سجادة خارجية 5"}, desc:{en:"Elegant rug that creates a cozy and welcoming atmosphere.", ar:"سجادة أنيقة تخلق جوًا دافئًا ومرحبًا."}},
-    {img:["https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png","https://i.postimg.cc/v8t54Vpb/2.png"], price:1000, name:{en:"Outdoor Rug 6", ar:"سجادة خارجية 6"}, desc:{en:"Premium design perfect for stylish outdoor settings.", ar:"تصميم فاخر مثالي للمساحات الخارجية العصرية."}},
-    {img:["https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg","https://i.postimg.cc/rFhWJLy2/1.png"], price:1000, name:{en:"Outdoor Rug 7", ar:"سجادة خارجية 7"}, desc:{en:"Luxury outdoor rug adding elegance and warmth to any space.", ar:"سجادة خارجية فاخرة تضيف أناقة ودفء لأي مكان."}}
-  ];
+const products = [
+  {img:["https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg","https://i.postimg.cc/3RJNqGz0/download-(48).jpg"], price:650, name:{en:"Artificial Grass", ar:"عشب صناعي"}, desc:{en:"High-quality artificial grass perfect for balconies and outdoor areas.", ar:"عشب صناعي عالي الجودة مثالي للشرفات والمساحات الخارجية."}},
+  {img:["https://i.postimg.cc/Hs9LchCf/ss.jpg","https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg"], price:1000, name:{en:"Outdoor Rug 1", ar:"سجادة خارجية 1"}, desc:{en:"Stylish outdoor rug that enhances your relaxing space beautifully.", ar:"سجادة خارجية أنيقة تعزز مساحتك للاسترخاء بشكل رائع."}},
+  {img:["https://i.postimg.cc/JnsfmG1M/8585b557-6c5e-4356-a43c-307785d8d904.png","https://i.postimg.cc/FsbCszxR/3.png"], price:1000, name:{en:"Outdoor Rug 2", ar:"سجادة خارجية 2"}, desc:{en:"Soft texture design made to elevate outdoor comfort.", ar:"تصميم بنسيج ناعم لزيادة راحة المساحات الخارجية."}},
+  {img:["https://i.postimg.cc/nrkYPG68/a3bcc819-611c-470d-bd90-a0d709e3139f.png","https://i.postimg.cc/4ygvrvqS/5.png"], price:1000, name:{en:"Outdoor Rug 3", ar:"سجادة خارجية 3"}, desc:{en:"Modern outdoor piece that adds charm to your balcony or garden.", ar:"قطعة خارجية عصرية تضيف جمالًا لشرفتك أو حديقتك."}},
+  {img:["https://i.postimg.cc/9fZ9kB9F/sysy.jpg","https://i.postimg.cc/XYzfV6t8/4.png"], price:1000, name:{en:"Outdoor Rug 4", ar:"سجادة خارجية 4"}, desc:{en:"Classic pattern rug that blends perfectly with outdoor furniture.", ar:"سجادة بنمط كلاسيكي تتناسب تمامًا مع الأثاث الخارجي."}},
+  {img:["https://i.postimg.cc/8PVrFYjH/a02d32a6-d4ca-45b6-b2c9-bbf0ac5cd228.png","https://i.postimg.cc/PxG1wzXf/6.png"], price:1000, name:{en:"Outdoor Rug 5", ar:"سجادة خارجية 5"}, desc:{en:"Elegant rug that creates a cozy and welcoming atmosphere.", ar:"سجادة أنيقة تخلق جوًا دافئًا ومرحبًا."}},
+  {img:["https://i.postimg.cc/SxPS9XgR/eb424d8b-7c7c-4b57-b5b0-1e89703bef7a.png","https://i.postimg.cc/v8t54Vpb/2.png"], price:1000, name:{en:"Outdoor Rug 6", ar:"سجادة خارجية 6"}, desc:{en:"Premium design perfect for stylish outdoor settings.", ar:"تصميم فاخر مثالي للمساحات الخارجية العصرية."}},
+  {img:["https://i.postimg.cc/VvYrmM3x/9ba03e1a-85d6-443a-9934-b7bfe2e9154c.jpg","https://i.postimg.cc/rFhWJLy2/1.png"], price:1000, name:{en:"Outdoor Rug 7", ar:"سجادة خارجية 7"}, desc:{en:"Luxury outdoor rug adding elegance and warmth to any space.", ar:"سجادة خارجية فاخرة تضيف أناقة ودفء لأي مكان."}}
+];
 
-  function renderProducts(lang){
-    const container = document.getElementById("productContainer");
-    container.innerHTML = "";
-    products.forEach(p=>{
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.dataset.name = p.name[lang];
-      card.dataset.price = p.price;
-      card.dataset.img = p.img[0];
+function renderProducts(lang){
+  const container = document.getElementById("productContainer");
+  container.innerHTML = "";
+  products.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.dataset.name = p.name[lang];
+    card.dataset.price = p.price;
+    card.dataset.img = p.img[0];
 
-      let sliderImages = p.img
-        .map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`)
-        .join("");
+    let sliderImages = p.img
+      .map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`)
+      .join("");
 
-      card.innerHTML = `
-        <div class="slider">
-          ${sliderImages}
-          <button class="nav-btn next">&#10095;</button>
-        </div>
-        <h2>${p.name[lang]}</h2>
-        <p class="description">${p.desc[lang]}</p>
-        <p class="price">${p.price} EGP</p>
-        <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
-      `;
-      container.appendChild(card);
-    });
-
-    attachCartListeners(lang);
-    attachSliders();
-  }
-
-  const langSelectEl = document.getElementById("langSelect");
-  langSelectEl.addEventListener("change", ()=>{
-    const lang = langSelectEl.value;
-    document.body.dir = lang==="ar"?"rtl":"ltr";
-    document.getElementById("headerTitle").textContent = lang==="ar"?"الأرضيات الخارجية":"Outdoor Flooring";
-    document.getElementById("backHome").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
-    renderProducts(lang);
+    card.innerHTML = `
+      <div class="slider">
+        ${sliderImages}
+        <button class="nav-btn next">&#10095;</button>
+      </div>
+      <h2>${p.name[lang]}</h2>
+      <p class="description">${p.desc[lang]}</p>
+      <p class="price">${p.price} EGP</p>
+      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(card);
   });
 
-  function attachSliders(){
-    document.querySelectorAll(".slider").forEach(slider=>{
-      const images = slider.querySelectorAll("img");
-      const nextBtn = slider.querySelector(".next");
-      let index = 0;
+  attachCartListeners(lang);
+  attachSliders();
+}
 
-      function showImage(i){
-        images.forEach((img,idx)=> img.classList.toggle("active", idx===i));
-      }
+const langSelectEl = document.getElementById("langSelect");
+langSelectEl.addEventListener("change", ()=>{
+  const lang = langSelectEl.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  document.getElementById("headerTitle").textContent = lang==="ar"?"الأرضيات الخارجية":"Outdoor Flooring";
+  document.getElementById("backHome").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(lang);
+});
 
-      nextBtn.addEventListener("click", ()=>{
-        index=(index+1)%images.length;
-        showImage(index);
-      });
+function attachSliders(){
+  document.querySelectorAll(".slider").forEach(slider=>{
+    const images = slider.querySelectorAll("img");
+    const nextBtn = slider.querySelector(".next");
+    let index = 0;
 
-      setInterval(()=>{
-        index=(index+1)%images.length;
-        showImage(index);
-      },7000);
+    function showImage(i){
+      images.forEach((img,idx)=> img.classList.toggle("active", idx===i));
+    }
+
+    nextBtn.addEventListener("click", ()=>{
+      index=(index+1)%images.length;
+      showImage(index);
     });
-  }
 
-  function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
-  function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
+    setInterval(()=>{
+      index=(index+1)%images.length;
+      showImage(index);
+    },7000);
+  });
+}
 
-  function attachCartListeners(lang){
-    document.querySelectorAll(".add-to-cart").forEach(btn=>{
-      btn.addEventListener("click", ()=>{
-        const card = btn.closest(".product-card");
-        const product = {
-          name: card.dataset.name,
-          price: parseFloat(card.dataset.price),
-          img: card.dataset.img,
-          qty: 1
-        };
+function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
+function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
 
-        let cart = getCart();
-        let existing = cart.find(p=>p.name===product.name);
-        if(existing) existing.qty++;
-        else cart.push(product);
+function attachCartListeners(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const card = btn.closest(".product-card");
+      const product = {
+        name: card.dataset.name,
+        price: parseFloat(card.dataset.price),
+        img: card.dataset.img,
+        qty: 1
+      };
 
-        saveCart(cart);
+      let cart = getCart();
+      let existing = cart.find(p=>p.name===product.name);
+      if(existing) existing.qty++;
+      else cart.push(product);
 
-        btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-        btn.style.background="#fff";
+      saveCart(cart);
+
+      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff";
+      btn.style.color="#4b0e1f";
+
+      setTimeout(()=>{
+        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="#ffb3c6";
         btn.style.color="#4b0e1f";
-
-        setTimeout(()=>{
-          btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-          btn.style.background="#ffb3c6";
-          btn.style.color="#4b0e1f";
-        },1200);
-      });
+      },1200);
     });
-  }
+  });
+}
 
-  renderProducts("en");
+renderProducts("en");
 </script>
+
 </body>
 </html>
