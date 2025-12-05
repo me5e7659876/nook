@@ -5,24 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Checkout - Nook Decor</title>
 
+<!-- DIDOT & Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-
-/* DIDOT FONT */
-@font-face {
-  font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
-  font-weight: 700;
-}
-
 body {
-  font-family: 'DidotWeb', serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   background-color: #4b0e1f;
   color: #fff;
@@ -112,6 +100,13 @@ header img.logo { width: 180px; }
   display: flex;
   justify-content: space-between;
   margin: 12px 0;
+  align-items: center;
+}
+.order-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 .total {
   font-weight: 700;
@@ -181,7 +176,6 @@ footer {
   .steps-container::before { display: none; }
   .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
 }
-
 </style>
 </head>
 
@@ -220,18 +214,14 @@ footer {
   <!-- ORDER SUMMARY -->
   <div class="order-summary">
     <h2>Order Summary</h2>
-    <div class="order-item"><span>Product 1</span><span>$49.99</span></div>
-    <div class="order-item"><span>Product 2</span><span>$29.99</span></div>
-    <div class="order-item"><span>Product 3</span><span>$19.99</span></div>
-
+    <div id="orderItems"></div>
     <div class="order-item" style="margin-top:15px;">
       <span>Shipping</span><span>FREE</span>
     </div>
     <div class="order-item">
-      <span>Tax</span><span>$0.00</span>
+      <span>Tax</span><span>0 EGP</span>
     </div>
-
-    <div class="total">Total: $99.97</div>
+    <div class="total" id="totalAmount">Total: 0 EGP</div>
   </div>
 
   <!-- SHIPPING + PAYMENT FORM -->
@@ -259,6 +249,38 @@ footer {
 </div>
 
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
+
+<script>
+function renderCheckout() {
+  const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const orderContainer = document.getElementById('orderItems');
+  const totalEl = document.getElementById('totalAmount');
+  orderContainer.innerHTML = '';
+  let total = 0;
+
+  if(cart.length === 0){
+    orderContainer.innerHTML = '<p style="text-align:center;">Your cart is empty.</p>';
+    totalEl.textContent = 'Total: 0 EGP';
+    return;
+  }
+
+  cart.forEach(item => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    orderContainer.innerHTML += `
+      <div class="order-item">
+        <span><img src="${item.img}" alt="${item.name}"> ${item.name} x ${item.qty}</span>
+        <span>${itemTotal} EGP</span>
+      </div>
+    `;
+  });
+
+  totalEl.textContent = 'Total: ' + total + ' EGP';
+}
+
+renderCheckout();
+</script>
 
 </body>
 </html>
