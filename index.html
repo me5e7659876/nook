@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nook Decor - Checkout</title>
-
+<title>Nook Decor</title>
 <style>
-
 /* ------------------------------------ */
-/*   FULL DIDOT WEBFONT FOR ALL DEVICES */
+/* FULL DIDOT WEBFONT FOR ALL DEVICES */
 /* ------------------------------------ */
 @font-face {
   font-family: 'DidotWeb';
@@ -17,7 +15,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
@@ -25,7 +22,7 @@
   font-weight: 700;
   font-style: normal;
 }
-
+/* استخدم DidotWeb في كل الموقع */
 body {
   font-family: 'DidotWeb', 'Didot', 'Georgia', serif;
   margin: 0;
@@ -33,13 +30,11 @@ body {
   color: #fff;
   direction: ltr;
 }
-
 /* VARIABLES */
 :root{
   --accent-hover: rgba(255,179,198,0.12);
   --active-outline: rgba(255,179,198,0.28);
 }
-
 /* HEADER */
 header {
   background-color: #4b0e1f;
@@ -55,7 +50,6 @@ header {
   transition: box-shadow 0.3s ease;
 }
 header:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
-
 header img.logo {
   width: 200px;
   height: auto;
@@ -64,20 +58,17 @@ header img.logo {
   animation: floatLogo 3s ease-in-out infinite;
 }
 header img.logo:hover { transform: scale(1.08); }
-
 @keyframes floatLogo {
   0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
-
 header .title-text {
   font-size: 38px;
   font-weight: 700;
   text-shadow: 0 3px 12px rgba(255,200,210,0.6);
   margin-top: 0;
 }
-
 .header-icons {
   position: absolute;
   top: 20px;
@@ -87,14 +78,12 @@ header .title-text {
   font-size: 28px;
   align-items: center;
 }
-.header-icons a,
-.header-icons span {
+.header-icons a, .header-icons span {
   color: white;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
 }
-
 #searchBtn {
   display: inline-flex;
   align-items: center;
@@ -105,7 +94,6 @@ header .title-text {
 }
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
-
 /* USER ICON */
 .user-icon {
     font-size: 26px;
@@ -113,11 +101,7 @@ header .title-text {
     text-decoration: none;
     transition: 0.25s;
 }
-.user-icon:hover {
-    color: #ffb3c6;
-    transform: scale(1.1);
-}
-
+.user-icon:hover { color: #ffb3c6; transform: scale(1.1); }
 /* Menu icon */
 .menu-icon {
   position: absolute;
@@ -127,7 +111,6 @@ header .title-text {
   cursor: pointer;
   z-index: 999;
 }
-
 /* FULLSCREEN MENU */
 #menuOverlay {
   height: 0%;
@@ -164,7 +147,6 @@ header .title-text {
   transition: 0.3s;
 }
 #menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
-
 /* SEARCH BAR */
 .top-bar {
   display: flex;
@@ -191,7 +173,6 @@ header .title-text {
   font-family: 'DidotWeb';
 }
 #searchBarContainer { display: none; }
-
 .mood-text {
   text-align: center;
   font-size: 24px;
@@ -199,7 +180,6 @@ header .title-text {
   margin: 15px 0;
   letter-spacing: 0.5px;
 }
-
 /* CONTAINER */
 .container {
   display: flex;
@@ -227,7 +207,6 @@ header .title-text {
 }
 .categories a:hover { background: var(--accent-hover); }
 .categories a.active { outline: 2px solid var(--active-outline); }
-
 /* CARDS */
 .content {
   flex: 1;
@@ -241,18 +220,8 @@ header .title-text {
   text-decoration: none;
 }
 .card:hover { transform: translateY(-6px); }
-.card img {
-  width: 100%;
-  height: 260px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-.card h3 {
-  color: #fff;
-  margin-top: 12px;
-  font-size: 18px;
-}
-
+.card img { width: 100%; height: 260px; border-radius: 16px; object-fit: cover; }
+.card h3 { color: #fff; margin-top: 12px; font-size: 18px; }
 .no-results {
   grid-column: 1/-1;
   text-align: center;
@@ -261,102 +230,13 @@ header .title-text {
   color: #ffb3c6;
 }
 .no-results[aria-hidden="true"] { display: none; }
-
-/* CHECKOUT FORM */
-.checkout-container {
-  display: flex;
-  gap: 30px;
-  padding: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
-}
-
-.order-summary, .checkout-form {
-  background: rgba(59,10,26,0.95);
-  padding: 25px;
-  border-radius: 15px;
-  width: 350px;
-}
-
-.order-summary h2, .checkout-form h2 { color: #ffb3c6; margin-top: 0; }
-
-.order-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-
-.total { font-weight: 700; margin-top: 15px; font-size: 18px; }
-
-.checkout-form label { display: block; margin-top: 15px; font-size: 15px; }
-.checkout-form input, .checkout-form select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  font-size: 15px;
-}
-.checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
-
-.payment-methods label { display: block; margin-top: 10px; cursor: pointer; }
-
-.confirm-btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 25px;
-  background: #ffb3c6;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: #4b0e1f;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.confirm-btn:hover { background: #ffd1dd; }
-
-/* THANK YOU MODAL */
-#thankYouModal {
-  display: none;
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  font-family: 'DidotWeb', serif;
-  text-align: center;
-  padding-top: 150px;
-  z-index: 9999;
-}
-#thankYouModal h1 { font-size: 32px; color: #ffb3c6; }
-#thankYouModal p { font-size: 20px; margin-top: 20px; }
-#thankYouModal button {
-  margin-top: 30px;
-  padding: 12px 25px;
-  font-size: 16px;
-  background: #ffb3c6;
-  color: #4b0e1f;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-#thankYouModal button:hover { background: #ffd1dd; }
-
 /* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
   padding: 15px;
   font-family: 'DidotWeb';
-  margin-top: 40px;
 }
-
 /* MOBILE */
 @media (max-width: 768px) {
   header img.logo { width: 150px; max-width: 60vw; }
@@ -365,16 +245,12 @@ footer {
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 200px !important; }
-  .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
 }
-
 </style>
 </head>
 <body>
-
 <!-- MENU ICON -->
 <div class="menu-icon" onclick="openMenu()">☰</div>
-
 <!-- MENU OVERLAY -->
 <div id="menuOverlay">
   <a class="closebtn" onclick="closeMenu()">×</a>
@@ -394,7 +270,6 @@ footer {
     <a data-cat="Wall Art">Wall Art</a>
   </div>
 </div>
-
 <!-- HEADER -->
 <header>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo">
@@ -405,7 +280,6 @@ footer {
     <a href="login.html" class="user-icon">👤</a>
   </div>
 </header>
-
 <!-- SEARCH BAR -->
 <div class="top-bar" id="searchBarContainer">
   <div class="search-bar">
@@ -413,10 +287,8 @@ footer {
     <i id="clearSearch">✖</i>
   </div>
 </div>
-
 <!-- MOOD TEXT -->
 <div class="mood-text" id="moodText">Create your own mood</div>
-
 <!-- MAIN CONTENT -->
 <div class="container">
   <aside class="sidebar" id="desktopSidebar">
@@ -437,61 +309,61 @@ footer {
       <li><a data-cat="Wall Art">Wall Art</a></li>
     </ul>
   </aside>
-
   <main class="content" id="content">
-    <!-- Cards هنا زي الكود السابق -->
+    <a href="product9.html" class="card" data-cat="Moods">
+      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+      <h3>Moods</h3>
+    </a>
+    <!-- Space Packages الآن يفتح checkout.html -->
+    <a href="checkout.html" class="card" data-cat="Space Packages">
+      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
+      <h3>Space Packages</h3>
+    </a>
+    <a href="product1.html" class="card" data-cat="Vases">
+      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+      <h3>Vases</h3>
+    </a>
+    <a href="product2.html" class="card" data-cat="Cushions">
+      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+      <h3>Cushions</h3>
+    </a>
+    <a href="product3.html" class="card" data-cat="Lighting">
+      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+      <h3>Lighting</h3>
+    </a>
+    <a href="product4.html" class="card" data-cat="Glass Candles">
+      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+      <h3>Glass Candles</h3>
+    </a>
+    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
+      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+      <h3>Outdoor Flooring</h3>
+    </a>
+    <a href="product6.html" class="card" data-cat="Wooden Rack">
+      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+      <h3>Wooden Rack</h3>
+    </a>
+    <a href="product7.html" class="card" data-cat="Wall Art">
+      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+      <h3>Wall Art</h3>
+    </a>
+    <a href="product8.html" class="card" data-cat="Games">
+      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+      <h3>Games</h3>
+    </a>
+    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
+      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
+      <h3>Glass and Small Vases</h3>
+    </a>
+    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
   </main>
 </div>
-
-<!-- CHECKOUT FORM -->
-<div class="checkout-container">
-  <!-- ORDER SUMMARY -->
-  <div class="order-summary">
-    <h2>Order Summary</h2>
-    <div class="order-item"><span>Product 1</span><span>$49.99</span></div>
-    <div class="order-item"><span>Product 2</span><span>$29.99</span></div>
-    <div class="order-item"><span>Product 3</span><span>$19.99</span></div>
-    <div class="total">Total: $99.97</div>
-  </div>
-
-  <!-- SHIPPING + PAYMENT FORM -->
-  <form class="checkout-form" id="checkoutForm">
-    <h2>Shipping Information</h2>
-    <label for="fullName">Full Name</label>
-    <input type="text" id="fullName" placeholder="Your name" required>
-
-    <label for="address">Address</label>
-    <input type="text" id="address" placeholder="Street, City, Country" required>
-
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" placeholder="010XXXXXXXX" required>
-
-    <h2>Payment Method</h2>
-    <div class="payment-methods">
-      <label><input type="radio" name="payment" value="credit" required> Credit/Debit Card</label>
-      <label><input type="radio" name="payment" value="fawry"> Fawry</label>
-      <label><input type="radio" name="payment" value="paypal"> PayPal</label>
-    </div>
-
-    <button type="submit" class="confirm-btn">Confirm & Pay</button>
-  </form>
-</div>
-
-<!-- THANK YOU MODAL -->
-<div id="thankYouModal">
-  <h1>Thank You!</h1>
-  <p>Your order has been placed successfully.</p>
-  <button onclick="closeThankYou()">Back to Home</button>
-</div>
-
-<footer>© 2025 Nook Decor. All rights reserved.</footer>
-
+<footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
+<!-- SCRIPTS -->
 <script>
-/* MENU */
 function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
 function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 
-/* SEARCH */
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
   bar.style.display = bar.style.display === "none" ? "block" : "none";
@@ -508,23 +380,14 @@ function filterCards() {
   cards.forEach(card => {
     const title = card.querySelector("h3").innerText.toLowerCase();
     const cat = card.dataset.cat.toLowerCase();
-    if (title.includes(query) || cat.includes(query)) {
-      card.style.display = "block"; visible++;
+    if(title.includes(query) || cat.includes(query)){
+      card.style.display = "block";
+      visible++;
     } else { card.style.display = "none"; }
   });
   const noResults = document.getElementById("noResults");
-  noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
-}
-
-/* CHECKOUT FORM */
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    document.getElementById("thankYouModal").style.display = "block";
-});
-function closeThankYou(){
-    window.location.href = "index.html";
+  noResults.setAttribute("aria-hidden", visible===0 ? "false" : "true");
 }
 </script>
-
 </body>
 </html>
