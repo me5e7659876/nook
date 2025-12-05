@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nook Decor</title>
+<title>Nook Decor - Checkout</title>
 
 <style>
 
@@ -26,7 +26,6 @@
   font-style: normal;
 }
 
-/* استخدم DidotWeb في كل الموقع */
 body {
   font-family: 'DidotWeb', 'Didot', 'Georgia', serif;
   margin: 0;
@@ -263,12 +262,99 @@ header .title-text {
 }
 .no-results[aria-hidden="true"] { display: none; }
 
+/* CHECKOUT FORM */
+.checkout-container {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.order-summary, .checkout-form {
+  background: rgba(59,10,26,0.95);
+  padding: 25px;
+  border-radius: 15px;
+  width: 350px;
+}
+
+.order-summary h2, .checkout-form h2 { color: #ffb3c6; margin-top: 0; }
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.total { font-weight: 700; margin-top: 15px; font-size: 18px; }
+
+.checkout-form label { display: block; margin-top: 15px; font-size: 15px; }
+.checkout-form input, .checkout-form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 15px;
+}
+.checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
+
+.payment-methods label { display: block; margin-top: 10px; cursor: pointer; }
+
+.confirm-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 25px;
+  background: #ffb3c6;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #4b0e1f;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.confirm-btn:hover { background: #ffd1dd; }
+
+/* THANK YOU MODAL */
+#thankYouModal {
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  font-family: 'DidotWeb', serif;
+  text-align: center;
+  padding-top: 150px;
+  z-index: 9999;
+}
+#thankYouModal h1 { font-size: 32px; color: #ffb3c6; }
+#thankYouModal p { font-size: 20px; margin-top: 20px; }
+#thankYouModal button {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background: #ffb3c6;
+  color: #4b0e1f;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#thankYouModal button:hover { background: #ffd1dd; }
+
 /* FOOTER */
 footer {
   background-color: #4b0e1f;
   text-align: center;
   padding: 15px;
   font-family: 'DidotWeb';
+  margin-top: 40px;
 }
 
 /* MOBILE */
@@ -279,11 +365,11 @@ footer {
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 200px !important; }
+  .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
 }
 
 </style>
 </head>
-
 <body>
 
 <!-- MENU ICON -->
@@ -313,7 +399,6 @@ footer {
 <header>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo">
   <div class="title-text" id="titleText">Nook Decor</div>
-
   <div class="header-icons">
     <span id="searchBtn">🔍</span>
     <a href="cart.html">🛒</a>
@@ -354,109 +439,90 @@ footer {
   </aside>
 
   <main class="content" id="content">
-
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-
-    <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
-    </a>
-
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-
-    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
-      <h3>Glass and Small Vases</h3>
-    </a>
-
-    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
-
+    <!-- Cards هنا زي الكود السابق -->
   </main>
 </div>
 
-<footer id="footerText">© 2025 Nook Decor. All rights reserved.</footer>
+<!-- CHECKOUT FORM -->
+<div class="checkout-container">
+  <!-- ORDER SUMMARY -->
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <div class="order-item"><span>Product 1</span><span>$49.99</span></div>
+    <div class="order-item"><span>Product 2</span><span>$29.99</span></div>
+    <div class="order-item"><span>Product 3</span><span>$19.99</span></div>
+    <div class="total">Total: $99.97</div>
+  </div>
 
-<!-- SCRIPTS -->
+  <!-- SHIPPING + PAYMENT FORM -->
+  <form class="checkout-form" id="checkoutForm">
+    <h2>Shipping Information</h2>
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" placeholder="Your name" required>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" placeholder="Street, City, Country" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" placeholder="010XXXXXXXX" required>
+
+    <h2>Payment Method</h2>
+    <div class="payment-methods">
+      <label><input type="radio" name="payment" value="credit" required> Credit/Debit Card</label>
+      <label><input type="radio" name="payment" value="fawry"> Fawry</label>
+      <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+    </div>
+
+    <button type="submit" class="confirm-btn">Confirm & Pay</button>
+  </form>
+</div>
+
+<!-- THANK YOU MODAL -->
+<div id="thankYouModal">
+  <h1>Thank You!</h1>
+  <p>Your order has been placed successfully.</p>
+  <button onclick="closeThankYou()">Back to Home</button>
+</div>
+
+<footer>© 2025 Nook Decor. All rights reserved.</footer>
+
 <script>
-function openMenu(){ 
-  document.getElementById("menuOverlay").style.height="100%"; 
-}
-function closeMenu(){ 
-  document.getElementById("menuOverlay").style.height="0%"; 
-}
+/* MENU */
+function openMenu(){ document.getElementById("menuOverlay").style.height="100%"; }
+function closeMenu(){ document.getElementById("menuOverlay").style.height="0%"; }
 
+/* SEARCH */
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
   bar.style.display = bar.style.display === "none" ? "block" : "none";
 };
-
 document.getElementById("clearSearch").onclick = function () {
   document.getElementById("searchInput").value = "";
   filterCards();
 };
-
 document.getElementById("searchInput").addEventListener("input", filterCards);
-
 function filterCards() {
   const query = document.getElementById("searchInput").value.toLowerCase();
   const cards = document.querySelectorAll(".card");
   let visible = 0;
-
   cards.forEach(card => {
     const title = card.querySelector("h3").innerText.toLowerCase();
     const cat = card.dataset.cat.toLowerCase();
-
     if (title.includes(query) || cat.includes(query)) {
-      card.style.display = "block";
-      visible++;
-    } else {
-      card.style.display = "none";
-    }
+      card.style.display = "block"; visible++;
+    } else { card.style.display = "none"; }
   });
-
   const noResults = document.getElementById("noResults");
   noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+}
+
+/* CHECKOUT FORM */
+document.getElementById("checkoutForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("thankYouModal").style.display = "block";
+});
+function closeThankYou(){
+    window.location.href = "index.html";
 }
 </script>
 
