@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Checkout - Nook Decor</title>
 
-<!-- DIDOT & Poppins -->
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -143,24 +142,37 @@ header img.logo { width: 180px; }
 }
 .checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
 
-/* PAYMENT METHODS */
-.checkout-form .payment-methods { margin-top: 15px; }
+/* PAYMENT METHODS INLINE */
 .payment-methods label {
-  display: block;
-  margin-top: 10px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
   padding: 8px 12px;
   background: rgba(255,179,198,0.1);
   border-radius: 10px;
+  cursor: pointer;
   transition: 0.25s;
 }
-.payment-methods input[type="radio"] { margin-right: 10px; }
+.payment-methods input[type="radio"] { margin: 0; }
 .payment-methods label:hover { background: rgba(255,179,198,0.25); }
 
-/* DYNAMIC PAYMENT FIELDS */
-.payment-fields { margin-top: 15px; display: none; }
-.payment-fields input {
-  margin-top: 10px;
+/* PAYMENT FIELDS INLINE */
+.payment-fields-inline {
+  display: flex;
+  gap: 10px;
+  margin-left: 15px;
+  flex-wrap: wrap;
+}
+.payment-fields-inline input {
+  padding: 6px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  width: auto;
+  flex: 1 1 120px;
 }
 
 /* SUBMIT BUTTON */
@@ -193,6 +205,7 @@ footer {
   .steps-container::before { display: none; }
   .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
   .order-item img { margin-bottom: 10px; }
+  .payment-fields-inline { flex-direction: column; margin-left:0; }
 }
 </style>
 </head>
@@ -207,7 +220,6 @@ footer {
   </div>
 </header>
 
-<!-- PROGRESS STEPS -->
 <div class="steps-container">
   <div class="step completed">
     <div class="circle">1</div>
@@ -259,23 +271,23 @@ footer {
 
     <h2>Payment Method</h2>
     <div class="payment-methods">
-      <label><input type="radio" name="payment" value="credit" required> Credit/Debit Card</label>
-      <label><input type="radio" name="payment" value="instapay"> Instapay</label>
-      <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
-    </div>
-
-    <div class="payment-fields" id="creditFields">
-      <label>Card Number</label>
-      <input type="text" placeholder="1234 5678 9012 3456">
-      <label>Expiry Date</label>
-      <input type="text" placeholder="MM/YY">
-      <label>CVC</label>
-      <input type="text" placeholder="123">
-    </div>
-
-    <div class="payment-fields" id="instapayFields">
-      <label>Instapay Account/Phone</label>
-      <input type="text" placeholder="Enter your account or phone">
+      <label>
+        <input type="radio" name="payment" value="credit" required> Credit/Debit Card
+        <div class="payment-fields-inline" id="creditFields">
+          <input type="text" placeholder="Card Number" id="cardNumber" maxlength="16">
+          <input type="text" placeholder="MM/YY" id="expiry" maxlength="5">
+          <input type="text" placeholder="CVC" id="cvc" maxlength="4">
+        </div>
+      </label>
+      <label>
+        <input type="radio" name="payment" value="instapay"> Instapay
+        <div class="payment-fields-inline" id="instapayFields">
+          <input type="text" placeholder="Account / Phone" id="instaAccount">
+        </div>
+      </label>
+      <label>
+        <input type="radio" name="payment" value="cod"> Cash on Delivery
+      </label>
     </div>
 
     <button type="submit" class="confirm-btn">Confirm & Pay</button>
@@ -326,14 +338,35 @@ function renderCheckout() {
   totalEl.textContent = 'Total: ' + finalTotal.toFixed(2) + ' EGP';
 }
 
-// Show/hide payment fields dynamically
+// Show/hide inline payment fields
 const paymentRadios = document.querySelectorAll('input[name="payment"]');
 paymentRadios.forEach(radio => {
   radio.addEventListener('change', () => {
-    document.getElementById('creditFields').style.display = radio.value === 'credit' ? 'block' : 'none';
-    document.getElementById('instapayFields').style.display = radio.value === 'instapay' ? 'block' : 'none';
+    document.getElementById('creditFields').style.display = radio.value === 'credit' ? 'flex' : 'none';
+    document.getElementById('instapayFields').style.display = radio.value === 'instapay' ? 'flex' : 'none';
   });
 });
+
+// Validate payment fields
+function validatePayment(payment) {
+  if(payment === 'credit') {
+    const card = document.getElementById('cardNumber').value.trim();
+    const expiry = document.getElementById('expiry').value.trim();
+    const cvc = document.getElementById('cvc').value.trim();
+    const cardRegex = /^\d{16}$/;
+    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    const cvcRegex = /^\d{3,4}$/;
+
+    if(!cardRegex.test(card)) { alert('Invalid card number'); return false; }
+    if(!expiryRegex.test(expiry)) { alert('Invalid expiry date'); return false; }
+    if(!cvcRegex.test(cvc)) { alert('Invalid CVC'); return false; }
+  } 
+  if(payment === 'instapay') {
+    const account = document.getElementById('instaAccount').value.trim();
+    if(account.length < 5) { alert('Please enter a valid Instapay account'); return false; }
+  }
+  return true;
+}
 
 // Submit form handler
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
@@ -347,6 +380,8 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e){
     alert("Please fill all required fields!");
     return;
   }
+
+  if(!validatePayment(payment)) return;
 
   alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment}`);
   localStorage.removeItem('cart');
