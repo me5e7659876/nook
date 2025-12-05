@@ -143,13 +143,19 @@ header img.logo { width: 180px; }
 }
 .checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
 
-/* PAYMENT */
+/* PAYMENT METHODS */
 .checkout-form .payment-methods { margin-top: 15px; }
 .payment-methods label {
   display: block;
   margin-top: 10px;
   cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(255,179,198,0.1);
+  border-radius: 10px;
+  transition: 0.25s;
 }
+.payment-methods input[type="radio"] { margin-right: 10px; }
+.payment-methods label:hover { background: rgba(255,179,198,0.25); }
 
 /* SUBMIT BUTTON */
 .confirm-btn {
@@ -248,8 +254,8 @@ footer {
     <h2>Payment Method</h2>
     <div class="payment-methods">
       <label><input type="radio" name="payment" value="credit" required> Credit/Debit Card</label>
-      <label><input type="radio" name="payment" value="fawry"> Fawry</label>
-      <label><input type="radio" name="payment" value="paypal"> PayPal</label>
+      <label><input type="radio" name="payment" value="instapay"> Instapay</label>
+      <label><input type="radio" name="payment" value="cod"> Cash on Delivery</label>
     </div>
 
     <button type="submit" class="confirm-btn">Confirm & Pay</button>
