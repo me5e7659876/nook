@@ -12,7 +12,7 @@
 body {
   background:#4b0e1f;
   color:#fff;
-  font-family:'Poppins',sans-serif; /* النصوص */
+  font-family:'Poppins',sans-serif;
   padding:20px;
   direction: ltr;
 }
@@ -21,9 +21,10 @@ h1 {
   text-align:center;
   margin-bottom:30px;
   text-shadow:0 0 10px rgba(255,200,210,0.5);
-  font-family: 'Didot', serif; /* العنوان الكبير */
+  font-family: 'Didot', serif;
 }
 
+/* LANG */
 #langSelectContainer {
   text-align:center;
   margin-bottom:20px;
@@ -40,6 +41,7 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
+/* CART ITEM */
 .cart-item {
   background:#3b0a1a;
   padding:15px;
@@ -63,12 +65,17 @@ h1 {
 
 .item-info h3 {
   margin:0;
-  font-family: 'Didot', serif; /* اسم المنتج */
+  font-family: 'Didot', serif;
   font-size:18px;
   color:#ffb3c6;
 }
 
-.price { font-size:18px; font-weight:bold; margin:5px 0; font-family: 'Poppins', sans-serif; }
+.price {
+  font-size:18px;
+  font-weight:bold;
+  margin:5px 0;
+  font-family: 'Poppins', sans-serif;
+}
 
 .qty-box {
   display:flex;
@@ -99,6 +106,7 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
+/* TOTAL */
 .total-box {
   background:#3b0a1a;
   padding:20px;
@@ -110,6 +118,29 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
+/* CHECKOUT BUTTON */
+#checkoutBtn {
+  display:block;
+  text-align:center;
+  background:#ffb3c6;
+  color:#4b0e1f;
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  font-weight:700;
+  font-size:20px;
+  text-decoration:none;
+  font-family:'Poppins',sans-serif;
+  box-shadow:0 0 12px rgba(255,179,198,0.4);
+  transition:0.25s;
+}
+
+#checkoutBtn:hover {
+  background:#ffc2d2;
+  transform:scale(1.03);
+}
+
+/* BACK */
 .back-link {
   display:block;
   text-align:center;
@@ -145,12 +176,17 @@ h1 {
 <h1 id="cartTitle">Your Cart 🛒</h1>
 <div id="cartItems"></div>
 
+<!-- TOTAL -->
 <div class="total-box" id="totalBox">Total: 0 EGP</div>
 
+<!-- CHECKOUT BUTTON -->
+<a id="checkoutBtn" href="checkout.html">Proceed to Checkout 💳</a>
+
+<!-- BACK TO HOME -->
 <a class="back-link" href="index.html" id="backLink">← Back to Home</a>
 
 <script>
-/* ================= CART FUNCTIONS ================= */
+/* ================= CART + LANG ================= */
 
 const langData = {
   en: {
@@ -158,14 +194,16 @@ const langData = {
     emptyCart: "Your cart is empty.",
     total: "Total",
     remove: "Remove",
-    back: "← Back to Home"
+    back: "← Back to Home",
+    checkout: "Proceed to Checkout 💳"
   },
   ar: {
     cartTitle: "سلة التسوق 🛒",
     emptyCart: "السلة فاضية",
     total: "المجموع",
     remove: "إزالة",
-    back: "← العودة للرئيسية"
+    back: "← العودة للرئيسية",
+    checkout: "متابعة الدفع 💳"
   }
 };
 
@@ -179,10 +217,11 @@ langSelect.addEventListener("change", ()=>{
   renderCart();
 });
 
+/* CART FUNCTIONS */
+
 function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
-
 function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -194,14 +233,18 @@ function renderCart() {
 
   document.getElementById("cartTitle").textContent = data.cartTitle;
   document.getElementById("backLink").textContent = data.back;
+  document.getElementById("checkoutBtn").textContent = data.checkout;
 
   container.innerHTML = "";
 
   if (cart.length === 0) {
     container.innerHTML = `<h2 style="text-align:center;">${data.emptyCart}</h2>`;
     document.getElementById("totalBox").innerText = `${data.total}: 0 EGP`;
+    document.getElementById("checkoutBtn").style.display = "none";
     return;
   }
+
+  document.getElementById("checkoutBtn").style.display = "block";
 
   let total = 0;
 
