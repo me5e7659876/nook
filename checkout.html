@@ -298,11 +298,15 @@ function renderCheckout() {
   }
 
   cart.forEach(item => {
-    const itemTotal = parseFloat(item.price) * parseInt(item.qty);
+    // تحويل السعر للرقم حتى لو كان String
+    const priceNum = parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
+    const qtyNum = parseInt(item.qty);
+    const itemTotal = priceNum * qtyNum;
     total += itemTotal;
+
     orderContainer.innerHTML += `
       <div class="order-item">
-        <span><img src="${item.img}" alt="${item.name}"> ${item.name} x ${item.qty}</span>
+        <span><img src="${item.img}" alt="${item.name}"> ${item.name} x ${qtyNum}</span>
         <span>${itemTotal.toFixed(2)} EGP</span>
       </div>
     `;
