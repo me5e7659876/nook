@@ -132,13 +132,13 @@ header img.logo { width: 180px; }
 .checkout-form input, 
 .checkout-form select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-top: 6px;
   border-radius: 10px;
   border: none;
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
 }
 .checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
 
@@ -148,11 +148,12 @@ header img.logo { width: 180px; }
   align-items: center;
   gap: 10px;
   margin-top: 12px;
-  padding: 8px 12px;
+  padding: 10px 12px;
   background: rgba(255,179,198,0.1);
   border-radius: 10px;
   cursor: pointer;
   transition: 0.25s;
+  flex-wrap: wrap;
 }
 .payment-methods input[type="radio"] { margin: 0; }
 .payment-methods label:hover { background: rgba(255,179,198,0.25); }
@@ -163,27 +164,28 @@ header img.logo { width: 180px; }
   gap: 10px;
   margin-left: 15px;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 .payment-fields-inline input {
-  padding: 6px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 16px;
   background: rgba(255,255,255,0.08);
   border: none;
   border-radius: 8px;
   color: #fff;
-  width: auto;
-  flex: 1 1 120px;
+  width: 100%;
+  flex: 1 1 100px;
 }
 
 /* SUBMIT BUTTON */
 .confirm-btn {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   margin-top: 25px;
   background: #ffb3c6;
   border: none;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
   color: #4b0e1f;
   font-weight: 700;
   cursor: pointer;
@@ -206,6 +208,8 @@ footer {
   .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
   .order-item img { margin-bottom: 10px; }
   .payment-fields-inline { flex-direction: column; margin-left:0; }
+  .checkout-form input, .checkout-form select { font-size: 18px; padding: 14px; }
+  .confirm-btn { font-size: 20px; padding: 18px; }
 }
 </style>
 </head>
