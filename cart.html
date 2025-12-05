@@ -59,6 +59,7 @@ h1 {
   object-fit:cover;
   border-radius:12px;
   flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 .item-info { flex:1; }
@@ -150,14 +151,50 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .cart-item img {
+    width:80px;
+    height:80px;
+  }
+}
+
 @media(max-width:768px){
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
   }
   .cart-item img {
-    width:100%;
-    height:auto;
+    width:60px;
+    height:60px;
+    margin-bottom:10px;
+  }
+}
+
+@media(max-width:480px){
+  .cart-item img {
+    width:50px;
+    height:50px;
+  }
+  .item-info h3 {
+    font-size:16px;
+  }
+  .price {
+    font-size:16px;
+  }
+  .qty-box button {
+    padding:4px 8px;
+  }
+  .remove-btn {
+    padding:6px 10px;
+  }
+  .total-box {
+    font-size:20px;
+    padding:15px;
+  }
+  #checkoutBtn {
+    font-size:18px;
+    padding:12px;
   }
 }
 </style>
@@ -211,20 +248,19 @@ const langSelect = document.getElementById("langSelect");
 let currentLang = localStorage.getItem("siteLang") || "en";
 langSelect.value = currentLang;
 
-langSelect.addEventListener("change", ()=>{
+langSelect.addEventListener("change", ()=> {
   currentLang = langSelect.value;
   localStorage.setItem("siteLang", currentLang);
   renderCart();
 });
 
 /* CART FUNCTIONS */
-
 function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
 function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
-  localStorage.setItem("cartItems", JSON.stringify(cart)); // 🔥 مهم للـ Checkout
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // للـ Checkout
 }
 
 function renderCart() {
@@ -254,7 +290,7 @@ function renderCart() {
 
     container.innerHTML += `
       <div class="cart-item">
-        <img src="${item.img}">
+        <img src="${item.img}" alt="${item.name}">
         <div class="item-info">
           <h3>${item.name}</h3>
           <div class="price">${item.price} EGP</div>
@@ -271,7 +307,6 @@ function renderCart() {
 
   document.getElementById("totalBox").innerText = `${data.total}: ${total} EGP`;
 
-  // حفظ نسخة للـ checkout
   localStorage.setItem("cartItems", JSON.stringify(cart));
 }
 
@@ -296,7 +331,6 @@ function removeItem(i) {
   renderCart();
 }
 
-// تشغيل عند فتح الصفحة
 renderCart();
 </script>
 
