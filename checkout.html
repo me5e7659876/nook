@@ -74,6 +74,10 @@ header img.logo { width: 180px; }
   background: #fff;
   color: #4b0e1f;
 }
+.step.completed .circle {
+  background: #ffd1dd;
+  color: #4b0e1f;
+}
 .step p {
   margin-top: 10px;
   font-size: 15px;
@@ -107,6 +111,7 @@ header img.logo { width: 180px; }
   height: 60px;
   object-fit: cover;
   border-radius: 10px;
+  margin-right: 10px;
 }
 .total {
   font-weight: 700;
@@ -175,6 +180,7 @@ footer {
   .steps-container { flex-direction: column; gap: 20px; }
   .steps-container::before { display: none; }
   .checkout-container { flex-direction: column; align-items: center; gap: 20px; }
+  .order-item img { margin-bottom: 10px; }
 }
 </style>
 </head>
@@ -191,7 +197,7 @@ footer {
 
 <!-- PROGRESS STEPS -->
 <div class="steps-container">
-  <div class="step">
+  <div class="step completed">
     <div class="circle">1</div>
     <p>Cart</p>
   </div>
@@ -216,16 +222,19 @@ footer {
     <h2>Order Summary</h2>
     <div id="orderItems"></div>
     <div class="order-item" style="margin-top:15px;">
-      <span>Shipping</span><span>FREE</span>
+      <span>Shipping</span><span id="shippingFee">FREE</span>
     </div>
     <div class="order-item">
-      <span>Tax</span><span>0 EGP</span>
+      <span>Tax</span><span id="taxFee">0 EGP</span>
+    </div>
+    <div class="order-item">
+      <span>Discount</span><span id="discountFee">0 EGP</span>
     </div>
     <div class="total" id="totalAmount">Total: 0 EGP</div>
   </div>
 
   <!-- SHIPPING + PAYMENT FORM -->
-  <form class="checkout-form">
+  <form class="checkout-form" id="checkoutForm">
     <h2>Shipping Information</h2>
     <label for="fullName">Full Name</label>
     <input type="text" id="fullName" placeholder="Your name" required>
@@ -252,11 +261,18 @@ footer {
 
 <script>
 function renderCheckout() {
-  const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const orderContainer = document.getElementById('orderItems');
   const totalEl = document.getElementById('totalAmount');
+  const shippingEl = document.getElementById('shippingFee');
+  const taxEl = document.getElementById('taxFee');
+  const discountEl = document.getElementById('discountFee');
+
   orderContainer.innerHTML = '';
   let total = 0;
+  const shipping = 0; // FREE
+  const taxRate = 0.05; // 5% tax
+  const discount = 0; // default discount
 
   if(cart.length === 0){
     orderContainer.innerHTML = '<p style="text-align:center;">Your cart is empty.</p>';
@@ -271,13 +287,37 @@ function renderCheckout() {
     orderContainer.innerHTML += `
       <div class="order-item">
         <span><img src="${item.img}" alt="${item.name}"> ${item.name} x ${item.qty}</span>
-        <span>${itemTotal} EGP</span>
+        <span>${itemTotal.toFixed(2)} EGP</span>
       </div>
     `;
   });
 
-  totalEl.textContent = 'Total: ' + total + ' EGP';
+  const taxAmount = total * taxRate;
+  const finalTotal = total + taxAmount + shipping - discount;
+
+  shippingEl.textContent = shipping === 0 ? 'FREE' : shipping.toFixed(2) + ' EGP';
+  taxEl.textContent = taxAmount.toFixed(2) + ' EGP';
+  discountEl.textContent = discount.toFixed(2) + ' EGP';
+  totalEl.textContent = 'Total: ' + finalTotal.toFixed(2) + ' EGP';
 }
+
+// Submit form handler
+document.getElementById('checkoutForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fullName = document.getElementById('fullName').value;
+  const address = document.getElementById('address').value;
+  const phone = document.getElementById('phone').value;
+  const payment = document.querySelector('input[name="payment"]:checked')?.value;
+
+  if(!fullName || !address || !phone || !payment){
+    alert("Please fill all required fields!");
+    return;
+  }
+
+  alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment}`);
+  localStorage.removeItem('cart');
+  window.location.href = 'index.html';
+});
 
 renderCheckout();
 </script>
