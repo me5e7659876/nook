@@ -18,24 +18,23 @@ body {
 /* HEADER */
 header {
   background-color: #4b0e1f;
-  padding: 20px;
+  padding: 15px 10px;
   text-align: center;
-  position: relative;
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
-header img.logo { width: 150px; max-width: 80%; }
+header img.logo { width: 140px; max-width: 80%; }
 .header-icons {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 10px;
   display: flex;
-  gap: 15px;
+  gap: 12px;
 }
-.header-icons a { color: #fff; text-decoration: none; font-size: 26px; }
+.header-icons a { color: #fff; text-decoration: none; font-size: 24px; }
 
 /* PROGRESS STEPS */
 .steps-container {
-  margin: 20px auto;
+  margin: 15px auto;
   width: 95%;
   display: flex;
   justify-content: space-between;
@@ -44,10 +43,10 @@ header img.logo { width: 150px; max-width: 80%; }
 .steps-container::before {
   content: "";
   position: absolute;
-  top: 20px;
+  top: 17px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   background: rgba(255,255,255,0.2);
   z-index: 1;
 }
@@ -56,8 +55,8 @@ header img.logo { width: 150px; max-width: 80%; }
   z-index: 2;
 }
 .step .circle {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background: #ffb3c6;
   color: #4b0e1f;
   margin: auto;
@@ -66,18 +65,18 @@ header img.logo { width: 150px; max-width: 80%; }
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 16px;
-  box-shadow: 0 0 8px rgba(255,179,198,0.6);
+  font-size: 14px;
+  box-shadow: 0 0 6px rgba(255,179,198,0.6);
 }
 .step.active .circle { background: #fff; color: #4b0e1f; }
 .step.completed .circle { background: #ffd1dd; color: #4b0e1f; }
-.step p { margin-top: 5px; font-size: 13px; }
+.step p { margin-top: 4px; font-size: 12px; }
 
 /* CONTAINER */
 .checkout-container {
   display: flex;
-  gap: 15px;
-  padding: 15px;
+  gap: 10px;
+  padding: 10px;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 100%;
@@ -87,54 +86,54 @@ header img.logo { width: 150px; max-width: 80%; }
 /* ORDER SUMMARY */
 .order-summary {
   background: rgba(59,10,26,0.95);
-  padding: 15px;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 10px;
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
 }
-.order-summary h2 { margin-top: 0; color: #ffb3c6; font-size: 18px; }
+.order-summary h2 { margin-top: 0; color: #ffb3c6; font-size: 16px; }
 .order-item {
   display: flex;
   justify-content: space-between;
-  margin: 8px 0;
+  margin: 6px 0;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
 }
 .order-item img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-right: 10px;
+  border-radius: 6px;
+  margin-right: 8px;
 }
 .total {
   font-weight: 700;
-  margin-top: 12px;
-  font-size: 16px;
+  margin-top: 10px;
+  font-size: 14px;
   border-top: 1px solid rgba(255,255,255,0.2);
-  padding-top: 8px;
+  padding-top: 6px;
 }
 
 /* FORM */
 .checkout-form {
   background: rgba(59,10,26,0.95);
-  padding: 15px;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 10px;
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
 }
-.checkout-form h2 { color: #ffb3c6; margin-top: 0; font-size: 18px; }
-.checkout-form label { display: block; margin-top: 10px; font-size: 13px; }
+.checkout-form h2 { color: #ffb3c6; margin-top: 0; font-size: 16px; }
+.checkout-form label { display: block; margin-top: 8px; font-size: 12px; }
 .checkout-form input, 
 .checkout-form select {
   width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border-radius: 6px;
+  padding: 6px;
+  margin-top: 3px;
+  border-radius: 4px;
   border: none;
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
 }
 .checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
 
@@ -142,14 +141,14 @@ header img.logo { width: 150px; max-width: 80%; }
 .payment-methods label {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  padding: 6px 8px;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 5px 6px;
   background: rgba(255,179,198,0.1);
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 12px;
 }
 .payment-methods input[type="radio"] { margin: 0; }
 
@@ -158,31 +157,31 @@ header img.logo { width: 150px; max-width: 80%; }
 /* PAYMENT FIELDS INLINE */
 .payment-fields-inline {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   margin-left: 4px;
   flex-wrap: wrap;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 .payment-fields-inline input {
-  padding: 4px;
-  font-size: 12px;
+  padding: 3px;
+  font-size: 11px;
   background: rgba(255,255,255,0.08);
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   color: #fff;
   width: 100%;
-  flex: 1 1 60px;
+  flex: 1 1 50px;
 }
 
 /* SUBMIT BUTTON */
 .confirm-btn {
   width: 100%;
-  padding: 12px;
-  margin-top: 20px;
+  padding: 10px;
+  margin-top: 15px;
   background: #ffb3c6;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 14px;
   color: #4b0e1f;
   font-weight: 700;
   cursor: pointer;
@@ -193,21 +192,21 @@ header img.logo { width: 150px; max-width: 80%; }
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 15px;
+  padding: 10px;
   background-color: #4b0e1f;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px){
   body { padding: 0; margin:0; }
-  .checkout-container { flex-direction: column; gap: 10px; padding: 10px; width: 100%; margin: 0; }
-  .order-summary, .checkout-form { width: 100%; max-width: 100%; padding: 10px; }
-  .steps-container { flex-direction: row; gap: 10px; width: 95%; margin: auto; }
-  .steps-container::before { top: 18px; height: 2px; }
-  .payment-fields-inline { flex-direction: row; margin-left:0; gap:3px; }
-  .checkout-form input, .checkout-form select { font-size: 12px; padding: 6px; }
-  .confirm-btn { font-size: 16px; padding: 10px; }
+  .checkout-container { flex-direction: column; gap: 8px; padding: 5px; width: 100%; margin: 0; }
+  .order-summary, .checkout-form { width: 100%; max-width: 100%; padding: 8px; }
+  .steps-container { flex-direction: row; gap: 5px; width: 95%; margin: auto; }
+  .steps-container::before { top: 16px; height: 2px; }
+  .payment-fields-inline { flex-direction: row; margin-left:0; gap:2px; }
+  .checkout-form input, .checkout-form select { font-size: 11px; padding: 4px; }
+  .confirm-btn { font-size: 14px; padding: 8px; }
 }
 </style>
 </head>
@@ -223,22 +222,10 @@ footer {
 </header>
 
 <div class="steps-container">
-  <div class="step completed">
-    <div class="circle">1</div>
-    <p>Cart</p>
-  </div>
-  <div class="step active">
-    <div class="circle">2</div>
-    <p>Shipping</p>
-  </div>
-  <div class="step">
-    <div class="circle">3</div>
-    <p>Payment</p>
-  </div>
-  <div class="step">
-    <div class="circle">4</div>
-    <p>Review</p>
-  </div>
+  <div class="step completed"><div class="circle">1</div><p>Cart</p></div>
+  <div class="step active"><div class="circle">2</div><p>Shipping</p></div>
+  <div class="step"><div class="circle">3</div><p>Payment</p></div>
+  <div class="step"><div class="circle">4</div><p>Review</p></div>
 </div>
 
 <div class="checkout-container">
@@ -247,15 +234,9 @@ footer {
   <div class="order-summary">
     <h2>Order Summary</h2>
     <div id="orderItems"></div>
-    <div class="order-item" style="margin-top:10px;">
-      <span>Shipping</span><span id="shippingFee">FREE</span>
-    </div>
-    <div class="order-item">
-      <span>Tax</span><span id="taxFee">0 EGP</span>
-    </div>
-    <div class="order-item">
-      <span>Discount</span><span id="discountFee">0 EGP</span>
-    </div>
+    <div class="order-item" style="margin-top:8px;"><span>Shipping</span><span id="shippingFee">FREE</span></div>
+    <div class="order-item"><span>Tax</span><span id="taxFee">0 EGP</span></div>
+    <div class="order-item"><span>Discount</span><span id="discountFee">0 EGP</span></div>
     <div class="total" id="totalAmount">Total: 0 EGP</div>
   </div>
 
@@ -264,18 +245,16 @@ footer {
     <h2>Shipping Information</h2>
     <label for="fullName">Full Name</label>
     <input type="text" id="fullName" placeholder="Your name" required>
-
     <label for="address">Address</label>
     <input type="text" id="address" placeholder="Street, City, Country" required>
-
     <label for="phone">Phone Number</label>
     <input type="tel" id="phone" placeholder="010XXXXXXXX" required>
 
     <h2>Payment Method</h2>
     <div class="payment-methods">
       <label>
-        <input type="radio" name="payment" value="credit" required> 
-        <img src="https://i.postimg.cc/7LqQfZJ6/credit-card.png" alt="Credit Card"> Credit/Debit Card
+        <input type="radio" name="payment" value="credit" required>
+        <img src="https://i.postimg.cc/5yVLRWp5/shrwt-ʿml-fyza-kard-bnk-msr-wma-hy-afdl-btaqt-aytmanyt-fy-msr.jpg" alt="Credit Card"> Credit/Debit Card
         <div class="payment-fields-inline" id="creditFields">
           <input type="text" placeholder="Card Number" id="cardNumber" maxlength="16">
           <input type="text" placeholder="MM/YY" id="expiry" maxlength="5">
@@ -283,8 +262,8 @@ footer {
         </div>
       </label>
       <label>
-        <input type="radio" name="payment" value="instapay"> 
-        <img src="https://i.postimg.cc/dt3N92M7/instapay.png" alt="Instapay"> Instapay
+        <input type="radio" name="payment" value="instapay">
+        <img src="https://i.postimg.cc/nhZSQ6JR/anstabay-Instapay-lthwyl-alamwal-anthy-mshwar-albnk-mʿ-ansta-bay-aljwalat.jpg" alt="Instapay"> Instapay
         <div class="payment-fields-inline" id="instapayFields">
           <input type="text" placeholder="Account / Phone" id="instaAccount">
         </div>
@@ -335,7 +314,6 @@ function renderCheckout() {
 
   const taxAmount = total * taxRate;
   const finalTotal = total + taxAmount + shipping - discount;
-
   shippingEl.textContent = shipping === 0 ? 'FREE' : shipping.toFixed(2) + ' EGP';
   taxEl.textContent = taxAmount.toFixed(2) + ' EGP';
   discountEl.textContent = discount.toFixed(2) + ' EGP';
