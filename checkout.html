@@ -235,7 +235,6 @@ footer {
     <h2>Order Summary</h2>
     <div id="orderItems"></div>
     <div class="order-item" style="margin-top:8px;"><span>Shipping</span><span id="shippingFee">FREE</span></div>
-    <div class="order-item"><span>Tax</span><span id="taxFee">0 EGP</span></div>
     <div class="order-item"><span>Discount</span><span id="discountFee">0 EGP</span></div>
     <div class="total" id="totalAmount">Total: 0 EGP</div>
   </div>
@@ -286,7 +285,6 @@ function renderCheckout() {
   const orderContainer = document.getElementById('orderItems');
   const totalEl = document.getElementById('totalAmount');
   const shippingEl = document.getElementById('shippingFee');
-  const taxEl = document.getElementById('taxFee');
   const discountEl = document.getElementById('discountFee');
 
   orderContainer.innerHTML = '';
