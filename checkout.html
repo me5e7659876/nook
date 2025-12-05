@@ -142,7 +142,7 @@ header img.logo { width: 150px; max-width: 80%; }
 .payment-methods label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: 10px;
   padding: 6px 8px;
   background: rgba(255,179,198,0.1);
@@ -152,13 +152,14 @@ header img.logo { width: 150px; max-width: 80%; }
   font-size: 13px;
 }
 .payment-methods input[type="radio"] { margin: 0; }
-.payment-methods label:hover { background: rgba(255,179,198,0.25); }
+
+.payment-methods img { width: 25px; height: 25px; object-fit: contain; vertical-align: middle; }
 
 /* PAYMENT FIELDS INLINE */
 .payment-fields-inline {
   display: flex;
   gap: 4px;
-  margin-left: 8px;
+  margin-left: 4px;
   flex-wrap: wrap;
   margin-top: 4px;
 }
@@ -200,18 +201,8 @@ footer {
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px){
   body { padding: 0; margin:0; }
-  .checkout-container {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    width: 100%;
-    margin: 0;
-  }
-  .order-summary, .checkout-form {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-  }
+  .checkout-container { flex-direction: column; gap: 10px; padding: 10px; width: 100%; margin: 0; }
+  .order-summary, .checkout-form { width: 100%; max-width: 100%; padding: 10px; }
   .steps-container { flex-direction: row; gap: 10px; width: 95%; margin: auto; }
   .steps-container::before { top: 18px; height: 2px; }
   .payment-fields-inline { flex-direction: row; margin-left:0; gap:3px; }
@@ -283,7 +274,8 @@ footer {
     <h2>Payment Method</h2>
     <div class="payment-methods">
       <label>
-        <input type="radio" name="payment" value="credit" required> Credit/Debit Card
+        <input type="radio" name="payment" value="credit" required> 
+        <img src="https://i.postimg.cc/7LqQfZJ6/credit-card.png" alt="Credit Card"> Credit/Debit Card
         <div class="payment-fields-inline" id="creditFields">
           <input type="text" placeholder="Card Number" id="cardNumber" maxlength="16">
           <input type="text" placeholder="MM/YY" id="expiry" maxlength="5">
@@ -291,7 +283,8 @@ footer {
         </div>
       </label>
       <label>
-        <input type="radio" name="payment" value="instapay"> Instapay
+        <input type="radio" name="payment" value="instapay"> 
+        <img src="https://i.postimg.cc/dt3N92M7/instapay.png" alt="Instapay"> Instapay
         <div class="payment-fields-inline" id="instapayFields">
           <input type="text" placeholder="Account / Phone" id="instaAccount">
         </div>
