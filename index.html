@@ -84,7 +84,7 @@ header .title-text {
   top: 20px;
   right: 20px;
   display: flex;
-  gap: 15px;
+  gap: 12px;
   font-size: 28px;
   align-items: center;
 }
@@ -96,6 +96,7 @@ header .title-text {
   user-select: none;
 }
 
+/* search button */
 #searchBtn {
   display: inline-flex;
   align-items: center;
@@ -106,6 +107,24 @@ header .title-text {
 }
 #searchBtn:active { transform: scale(0.98); }
 #searchBtn:hover { background: rgba(255,255,255,0.03); }
+
+/* SIGN IN BUTTON (new) */
+.signin-btn {
+  padding: 6px 12px;
+  border: 1px solid #ffb3c6;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #ffb3c6;
+  text-decoration: none;
+  transition: 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.signin-btn:hover {
+  background: #ffb3c6;
+  color: #4b0e1f;
+}
 
 /* Menu icon */
 .menu-icon {
@@ -153,6 +172,22 @@ header .title-text {
   transition: 0.3s;
 }
 #menuOverlay .overlay-content a:hover { color: #fff; transform: scale(1.05); }
+
+/* make the "Sign In" link in menu look like a button */
+#menuOverlay .overlay-content a.menu-signin {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 1px solid #ffb3c6;
+  color: #fff;
+  background: transparent;
+  font-size: 20px;
+}
+#menuOverlay .overlay-content a.menu-signin:hover {
+  background: #ffb3c6;
+  color: #4b0e1f;
+}
 
 /* SEARCH BAR */
 .top-bar {
@@ -267,6 +302,10 @@ footer {
   .sidebar { display: none !important; }
   .content { grid-template-columns: repeat(2,1fr); }
   .card img { height: 200px !important; }
+
+  /* make header icons horizontally smaller on mobile */
+  .header-icons { right: 12px; gap: 8px; font-size: 22px; }
+  .signin-btn { padding: 6px 10px; font-size: 14px; }
 }
 
 </style>
@@ -291,9 +330,12 @@ footer {
     <a data-cat="Furniture">Furniture</a>
     <a data-cat="Cushions">Cushions</a>
     <a data-cat="Wooden Rack">Wooden Rack</a>
-    <a data-cat="Games">Games</a>
     <a data-cat="Glass and Small Vases">Glass and Small Vases</a>
+    <a data-cat="Games">Games</a>
     <a data-cat="Wall Art">Wall Art</a>
+
+    <!-- Sign In in menu -->
+    <a href="login.html" class="menu-signin">Sign In</a>
   </div>
 </div>
 
@@ -304,6 +346,10 @@ footer {
 
   <div class="header-icons">
     <span id="searchBtn">🔍</span>
+
+    <!-- SIGN IN BUTTON (linked to external login.html) -->
+    <a href="login.html" class="signin-btn" id="signinHeader">Sign In</a>
+
     <a href="cart.html">🛒</a>
   </div>
 </header>
@@ -413,11 +459,13 @@ function closeMenu(){
   document.getElementById("menuOverlay").style.height="0%"; 
 }
 
+/* toggle search bar */
 document.getElementById("searchBtn").onclick = function () {
   const bar = document.getElementById("searchBarContainer");
   bar.style.display = bar.style.display === "none" ? "block" : "none";
 };
 
+/* clear search */
 document.getElementById("clearSearch").onclick = function () {
   document.getElementById("searchInput").value = "";
   filterCards();
@@ -425,6 +473,7 @@ document.getElementById("clearSearch").onclick = function () {
 
 document.getElementById("searchInput").addEventListener("input", filterCards);
 
+/* filtering cards by title or category */
 function filterCards() {
   const query = document.getElementById("searchInput").value.toLowerCase();
   const cards = document.querySelectorAll(".card");
