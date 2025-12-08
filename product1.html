@@ -1,1 +1,215 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Vases Collection - Nook Decor</title> <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> <style> body { margin: 0; background:#4b0e1f; font-family:'Poppins',sans-serif; color:#fff; } header { background:#4b0e1f; padding:18px; text-align:center; font-size:30px; font-family:'Didot',serif; position:relative; color:#ffb3c6; } #langSelect{ position:absolute; right:20px; top:50%; transform:translateY(-50%); padding:6px 10px; border:none; border-radius:8px; background:#ffb3c6; font-weight:bold; color:#4b0e1f; } .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; padding:30px; justify-items:center; } .item { background-color: rgba(255,255,255,0.1); border-radius:15px; padding:15px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s ease; position:relative; overflow:hidden; } .item:hover { transform: scale(1.05); } .item img { width:100%; max-width:350px; height:420px; object-fit:cover; border-radius:15px; } .price { font-size:20px; font-weight:bold; color:#ffb3c6; margin-top:10px; font-family:'Didot', serif; } .desc { font-size:15px; color:#ffe3eb; margin-top:8px; line-height:1.5; opacity:0; transform:translateY(10px); transition:opacity 0.4s ease, transform 0.4s ease; font-family:'Poppins', sans-serif; } .item:hover .desc { opacity:1; transform:translateY(0); } .btn { background-color:#ffb3c6; border:none; color:#4b0e1f; padding:10px 20px; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px; transition:0.3s; font-family:'Poppins', sans-serif; } .btn:hover { background-color:#ffc7d3; } .back-link { display:block; text-align:center; margin:30px 0; color:#ffb3c6; text-decoration:none; font-weight:500; font-family:'Poppins',sans-serif; } </style> </head> <body> <header> Vases Collection <select id="langSelect"> <option value="en">English</option> <option value="ar">العربية</option> </select> </header> <div class="gallery" id="productContainer"></div> <a href="index.html" class="back-link" id="backLink">← Back to Home</a> <script> const images = [ "https://i.postimg.cc/KzPMH8y5/1.png", "https://i.postimg.cc/63rvmpNS/11.png", "https://i.postimg.cc/j5H7FSbV/12.png", "https://i.postimg.cc/LXt1b8MG/13.png", "https://i.postimg.cc/ZR8dM5Sz/14.png", "https://i.postimg.cc/C5wqTpF9/15.png", "https://i.postimg.cc/rsqrX2Vc/16.png", "https://i.postimg.cc/7hq28rHb/1765056409325-019af58e-fe60-7ff8-8b93-603830eb802a.png", "https://i.postimg.cc/90c75Hm4/1765058892154-019af5b4-ece1-7f5e-ba9e-2cad0e8c14ed.png", "https://i.postimg.cc/x8gb9p8f/1765059063444-019af5b7-399a-761b-8418-7d57129776be.png", "https://i.postimg.cc/fy50MqyX/1765059790105-019af5c2-c446-73c9-8c74-d30558cb87c9.png", "https://i.postimg.cc/Hn37Tvnb/1765059923892-019af5c4-aac9-7795-97c4-74e14529e570.png", "https://i.postimg.cc/Xqxyn1qw/1765060012678-019af5c6-3ce3-70e2-b342-07a92c6ae6f2.png", "https://i.postimg.cc/2yTBC9yG/1765060033354-019af5c6-3ce3-7406-82c8-2e885ca1de23.png", "https://i.postimg.cc/tRz6dJk0/1765060229616-019af5c9-40aa-7cc7-9199-c676ce1e5337.png", "https://i.postimg.cc/ZYLNPnHR/1765079330820-019af6ec-bed6-7796-a027-1fef91c42aab.png", "https://i.postimg.cc/dQ9CR36C/1765079633441-019af6f1-51b5-7704-af05-b3b4e6afd14.png", "https://i.postimg.cc/59mz5ygL/1765131100399-019afa02-8c49-7f50-a711-3bb3b999cb33.png", "https://i.postimg.cc/tRz6dJkh/1765131679038-019afa0b-5686-74d6-8ccf-5f3fa051ddff.png", "https://i.postimg.cc/XqnCS6jq/271dfcf4-9f92-4847-a850-bdd7c223f254.png", "https://i.postimg.cc/XJfCzY0s/5f969a41-a9c0-4295-ad88-692ee9cfc941.jpg", "https://i.postimg.cc/1Xyqh1m5/88a482f7-379a-41b5-aefd-8336bc6ad95d.png", "https://i.postimg.cc/CLLqc0rd/a-htly-alfazh-alkhdraʾ.png", "https://i.postimg.cc/NffHdtCx/a-htly-alfazh-alkhdraʾm.png", "https://i.postimg.cc/TYYDtxNn/a-htly-alfazh-alzrqaʾ.png", "https://i.postimg.cc/L661xSQy/b-htly-alfazh-alkhdraʾ.png", "https://i.postimg.cc/PrrwSHVS/b-htly-alfazh-alkhdraʾm.png", "https://i.postimg.cc/8PP6ZGXw/c3b04e8e-4994-40e4-b0c4-ca2dc5b250dd.jpg", "https://i.postimg.cc/bNC2M54g/DD.png", "https://i.postimg.cc/Pr38c70R/fe596a78-8fff-4381-9c34-91ea52d6f41f.png", "https://i.postimg.cc/xTxb7ZWj/gemini-3-pro-image-preview-2k-(nano-banana-pro)-a-htly-alshjrh-albynk-j.png", "https://i.postimg.cc/02WJ34ht/Whats-App-Image-2025-11-30-at-12-24-06-AM.jpg" ]; function renderProducts(lang){ const container=document.getElementById("productContainer"); container.innerHTML=""; images.forEach((img,i)=>{ const div=document.createElement("div"); div.className="item"; div.innerHTML= <img src="${img}" alt="Vase ${i+1}"> <div class="price">2000 جنيه</div> <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p> <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button> ; container.appendChild(div); }); attachCartListeners(lang); } function attachCartListeners(lang){ document.querySelectorAll(".btn").forEach(btn=>{ btn.addEventListener("click",()=>{ btn.innerText=lang==="ar"?"تم الإضافة!":"Added!"; btn.style.background="#fff"; btn.style.color="#4b0e1f"; setTimeout(()=>{ btn.innerText=lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200); }); }); } document.getElementById("langSelect").addEventListener("change",()=>{ const lang=document.getElementById("langSelect").value; document.body.dir=lang==="ar"?"rtl":"ltr"; renderProducts(lang); document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home"; }); renderProducts("en"); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vases Collection - Nook Decor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    background:#4b0e1f;
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+  }
+
+  header {
+    background:#4b0e1f;
+    padding:18px;
+    text-align:center;
+    font-size:30px;
+    font-family:'Didot',serif;
+    position:relative;
+    color:#ffb3c6;
+  }
+
+  #langSelect{
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    padding:6px 10px;
+    border:none;
+    border-radius:8px;
+    background:#ffb3c6;
+    font-weight:bold;
+    color:#4b0e1f;
+  }
+
+  .gallery {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+    gap:30px;
+    padding:30px;
+    justify-items:center;
+  }
+
+  .item {
+    background-color: rgba(255,255,255,0.1);
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    transition:transform 0.3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .item:hover { transform: scale(1.05); }
+
+  .item img {
+    width:100%;
+    max-width:350px;
+    height:420px;
+    object-fit:cover;
+    border-radius:15px;
+  }
+
+  .price {
+    font-size:20px;
+    font-weight:bold;
+    color:#ffb3c6;
+    margin-top:10px;
+    font-family:'Didot', serif;
+  }
+
+  .desc {
+    font-size:15px;
+    color:#ffe3eb;
+    margin-top:8px;
+    line-height:1.5;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.4s ease, transform 0.4s ease;
+    font-family:'Poppins', sans-serif;
+  }
+
+  .item:hover .desc {
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .btn {
+    background-color:#ffb3c6;
+    border:none;
+    color:#4b0e1f;
+    padding:10px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+    font-family:'Poppins', sans-serif;
+  }
+
+  .btn:hover { background-color:#ffc7d3; }
+
+  .back-link {
+    display:block;
+    text-align:center;
+    margin:30px 0;
+    color:#ffb3c6;
+    text-decoration:none;
+    font-weight:500;
+    font-family:'Poppins',sans-serif;
+  }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  Vases Collection
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
+
+<div class="gallery" id="productContainer"></div>
+
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+
+<script>
+const images = [
+  "https://i.postimg.cc/KzPMH8y5/1.png",
+  "https://i.postimg.cc/63rvmpNS/11.png",
+  "https://i.postimg.cc/j5H7FSbV/12.png",
+  "https://i.postimg.cc/LXt1b8MG/13.png",
+  "https://i.postimg.cc/ZR8dM5Sz/14.png",
+  "https://i.postimg.cc/C5wqTpF9/15.png",
+  "https://i.postimg.cc/rsqrX2Vc/16.png",
+  "https://i.postimg.cc/7hq28rHb/1765056409325-019af58e-fe60-7ff8-8b93-603830eb802a.png",
+  "https://i.postimg.cc/90c75Hm4/1765058892154-019af5b4-ece1-7f5e-ba9e-2cad0e8c14ed.png",
+  "https://i.postimg.cc/x8gb9p8f/1765059063444-019af5b7-399a-761b-8418-7d57129776be.png",
+  "https://i.postimg.cc/fy50MqyX/1765059790105-019af5c2-c446-73c9-8c74-d30558cb87c9.png",
+  "https://i.postimg.cc/Hn37Tvnb/1765059923892-019af5c4-aac9-7795-97c4-74e14529e570.png",
+  "https://i.postimg.cc/Xqxyn1qw/1765060012678-019af5c6-3ce3-70e2-b342-07a92c6ae6f2.png",
+  "https://i.postimg.cc/2yTBC9yG/1765060033354-019af5c6-3ce3-7406-82c8-2e885ca1de23.png",
+  "https://i.postimg.cc/tRz6dJk0/1765060229616-019af5c9-40aa-7cc7-9199-c676ce1e5337.png",
+  "https://i.postimg.cc/ZYLNPnHR/1765079330820-019af6ec-bed6-7796-a027-1fef91c42aab.png",
+  "https://i.postimg.cc/dQ9CR36C/1765079633441-019af6f1-51b5-7704-af05-b3b4e6afd14.png",
+  "https://i.postimg.cc/59mz5ygL/1765131100399-019afa02-8c49-7f50-a711-3bb3b999cb33.png",
+  "https://i.postimg.cc/tRz6dJkh/1765131679038-019afa0b-5686-74d6-8ccf-5f3fa051ddff.png",
+  "https://i.postimg.cc/XqnCS6jq/271dfcf4-9f92-4847-a850-bdd7c223f254.png",
+  "https://i.postimg.cc/XJfCzY0s/5f969a41-a9c0-4295-ad88-692ee9cfc941.jpg",
+  "https://i.postimg.cc/1Xyqh1m5/88a482f7-379a-41b5-aefd-8336bc6ad95d.png",
+  "https://i.postimg.cc/CLLqc0rd/a-htly-alfazh-alkhdraʾ.png",
+  "https://i.postimg.cc/NffHdtCx/a-htly-alfazh-alkhdraʾm.png",
+  "https://i.postimg.cc/TYYDtxNn/a-htly-alfazh-alzrqaʾ.png",
+  "https://i.postimg.cc/L661xSQy/b-htly-alfazh-alkhdraʾ.png",
+  "https://i.postimg.cc/PrrwSHVS/b-htly-alfazh-alkhdraʾm.png",
+  "https://i.postimg.cc/8PP6ZGXw/c3b04e8e-4994-40e4-b0c4-ca2dc5b250dd.jpg",
+  "https://i.postimg.cc/bNC2M54g/DD.png",
+  "https://i.postimg.cc/Pr38c70R/fe596a78-8fff-4381-9c34-91ea52d6f41f.png",
+  "https://i.postimg.cc/xTxb7ZWj/gemini-3-pro-image-preview-2k-(nano-banana-pro)-a-htly-alshjrh-albynk-j.png",
+  "https://i.postimg.cc/02WJ34ht/Whats-App-Image-2025-11-30-at-12-24-06-AM.jpg"
+];
+
+function renderProducts(lang){
+  const container=document.getElementById("productContainer");
+  container.innerHTML="";
+  images.forEach((img,i)=>{
+    const div=document.createElement("div");
+    div.className="item";
+    div.innerHTML=`
+      <img src="${img}" alt="Vase ${i+1}">
+      <div class="price">2000 جنيه</div>
+      <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
+      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(div);
+  });
+  attachCartListeners(lang);
+}
+
+function attachCartListeners(lang){
+  document.querySelectorAll(".btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      btn.innerText=lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff";
+      btn.style.color="#4b0e1f";
+      setTimeout(()=>{
+        btn.innerText=lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="#ffb3c6";
+        btn.style.color="#4b0e1f";
+      },1200);
+    });
+  });
+}
+
+document.getElementById("langSelect").addEventListener("change",()=>{
+  const lang=document.getElementById("langSelect").value;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  renderProducts(lang);
+  document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+});
+
+renderProducts("en");
+</script>
+
+</body>
+</html>
