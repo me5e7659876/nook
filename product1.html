@@ -65,6 +65,7 @@
     height:420px;
     object-fit:cover;
     border-radius:15px;
+    transition: height 0.3s ease;
   }
 
   .price {
@@ -114,6 +115,13 @@
     text-decoration:none;
     font-weight:500;
     font-family:'Poppins',sans-serif;
+  }
+
+  /* تعديل ارتفاع الصور على الموبايل ليظهر أطول */
+  @media(max-width:600px){
+    .item img {
+      height:300px; /* أطول من السابق على الموبايل */
+    }
   }
 
 </style>
