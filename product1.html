@@ -38,79 +38,100 @@
     color:#4b0e1f;
   }
 
-  .grid {
+  .gallery {
     display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    gap:25px;
-    padding:25px;
+    grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+    gap:30px;
+    padding:30px;
+    justify-items:center;
   }
 
-  .card {
-    background:#5c1326;
+  .item {
+    background-color: rgba(255,255,255,0.1);
     border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,0.4);
-    transition:0.3s;
-  }
-
-  .card:hover {
-    transform:scale(1.03);
-  }
-
-  .card img {
-    width:100%;
-    height:320px;
-    object-fit:cover;
-  }
-
-  .card .info {
     padding:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    transition:transform 0.3s ease;
+    position:relative;
+    overflow:hidden;
   }
 
-  .name {
-    font-size:20px;
-    font-family:'Didot',serif;
-    margin:0 0 10px;
-    color:#ffb3c6;
-  }
+  .item:hover { transform: scale(1.05); }
 
-  .desc {
-    font-size:14px;
-    opacity:0.9;
-    line-height:1.5;
+  .item img {
+    width:100%;
+    max-width:350px;
+    height:420px;
+    object-fit:cover;
+    border-radius:15px;
   }
 
   .price {
-    margin:12px 0;
-    font-size:18px;
+    font-size:20px;
     font-weight:bold;
+    color:#ffb3c6;
+    margin-top:10px;
+    font-family:'Didot', serif;
+  }
+
+  .desc {
+    font-size:15px;
+    color:#ffe3eb;
+    margin-top:8px;
+    line-height:1.5;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.4s ease, transform 0.4s ease;
+    font-family:'Poppins', sans-serif;
+  }
+
+  .item:hover .desc {
+    opacity:1;
+    transform:translateY(0);
   }
 
   .btn {
-    background:#ffb3c6;
+    background-color:#ffb3c6;
     border:none;
     color:#4b0e1f;
-    padding:10px 18px;
+    padding:10px 20px;
     border-radius:10px;
     font-weight:bold;
     cursor:pointer;
-    width:100%;
-    font-size:15px;
+    margin-top:10px;
+    transition:0.3s;
+    font-family:'Poppins', sans-serif;
   }
+
+  .btn:hover { background-color:#ffc7d3; }
+
+  .back-link {
+    display:block;
+    text-align:center;
+    margin:30px 0;
+    color:#ffb3c6;
+    text-decoration:none;
+    font-weight:500;
+    font-family:'Poppins',sans-serif;
+  }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <span id="title">Vases Collection</span>
+  Vases Collection
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
-<div class="grid" id="products"></div>
+<div class="gallery" id="productContainer"></div>
+
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
 const images = [
@@ -130,7 +151,7 @@ const images = [
   "https://i.postimg.cc/2yTBC9yG/1765060033354-019af5c6-3ce3-7406-82c8-2e885ca1de23.png",
   "https://i.postimg.cc/tRz6dJk0/1765060229616-019af5c9-40aa-7cc7-9199-c676ce1e5337.png",
   "https://i.postimg.cc/ZYLNPnHR/1765079330820-019af6ec-bed6-7796-a027-1fef91c42aab.png",
-  "https://i.postimg.cc/dQ9CR36C/1765079633441-019af6f1-51b5-7704-af05-b3b4e6afd14b.png",
+  "https://i.postimg.cc/dQ9CR36C/1765079633441-019af6f1-51b5-7704-af05-b3b4e6afd14.png",
   "https://i.postimg.cc/59mz5ygL/1765131100399-019afa02-8c49-7f50-a711-3bb3b999cb33.png",
   "https://i.postimg.cc/tRz6dJkh/1765131679038-019afa0b-5686-74d6-8ccf-5f3fa051ddff.png",
   "https://i.postimg.cc/XqnCS6jq/271dfcf4-9f92-4847-a850-bdd7c223f254.png",
@@ -148,21 +169,46 @@ const images = [
   "https://i.postimg.cc/02WJ34ht/Whats-App-Image-2025-11-30-at-12-24-06-AM.jpg"
 ];
 
-const container = document.getElementById("products");
+function renderProducts(lang){
+  const container=document.getElementById("productContainer");
+  container.innerHTML="";
+  images.forEach((img,i)=>{
+    const div=document.createElement("div");
+    div.className="item";
+    div.innerHTML=`
+      <img src="${img}" alt="Vase ${i+1}">
+      <div class="price">2000 جنيه</div>
+      <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
+      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+    `;
+    container.appendChild(div);
+  });
+  attachCartListeners(lang);
+}
 
-images.forEach((src, i) => {
-  container.innerHTML += `
-    <div class="card">
-      <img src="${src}" alt="Vase ${i+1}">
-      <div class="info">
-        <h3 class="name">Classic Vase ${i+1}</h3>
-        <p class="desc">مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.</p>
-        <div class="price">2000 جنيه</div>
-        <button class="btn">أضف إلى السلة</button>
-      </div>
-    </div>
-  `;
+function attachCartListeners(lang){
+  document.querySelectorAll(".btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      btn.innerText=lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff";
+      btn.style.color="#4b0e1f";
+      setTimeout(()=>{
+        btn.innerText=lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="#ffb3c6";
+        btn.style.color="#4b0e1f";
+      },1200);
+    });
+  });
+}
+
+document.getElementById("langSelect").addEventListener("change",()=>{
+  const lang=document.getElementById("langSelect").value;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  renderProducts(lang);
+  document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
 });
+
+renderProducts("en");
 </script>
 
 </body>
