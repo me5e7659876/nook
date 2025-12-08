@@ -65,6 +65,7 @@
     height:420px;
     object-fit:cover;
     border-radius:15px;
+    transition: height 0.3s ease;
   }
 
   .price {
@@ -101,7 +102,7 @@
     cursor:pointer;
     margin-top:10px;
     transition:0.3s;
-    font-family:'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
   }
 
   .btn:hover { background-color:#ffc7d3; }
@@ -114,6 +115,13 @@
     text-decoration:none;
     font-weight:500;
     font-family:'Poppins',sans-serif;
+  }
+
+  /* ارتفاع الصور على الموبايل ديناميكي حسب ارتفاع الشاشة */
+  @media(max-width:700px){
+    .item img {
+      height:calc(80vh); /* 80% من ارتفاع الشاشة */
+    }
   }
 
 </style>
