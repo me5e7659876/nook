@@ -55,16 +55,20 @@
     transition:transform 0.3s ease;
     position:relative;
     overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
   .item:hover { transform: scale(1.05); }
 
   .item img {
     width:100%;
-    max-width:350px;
-    height:420px;
-    object-fit:cover;
+    height:auto;
+    max-width:100%;
     border-radius:15px;
+    object-fit:cover;
+    aspect-ratio: 1/1.2; /* تملي الكرت أكثر على الموبايل */
   }
 
   .price {
@@ -73,6 +77,16 @@
     color:#ffb3c6;
     margin-top:10px;
     font-family:'Didot', serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .price span {
+    margin-left:5px;
+    font-size:16px;
+    font-weight:500;
+    font-family:'Poppins',sans-serif;
   }
 
   .desc {
@@ -116,6 +130,11 @@
     font-family:'Poppins',sans-serif;
   }
 
+  @media(max-width:600px){
+    .item img {
+      aspect-ratio: 1/1.1; /* زيادة ارتفاع الصورة على الموبايل */
+    }
+  }
 </style>
 </head>
 
@@ -177,7 +196,7 @@ function renderProducts(lang){
     div.className="item";
     div.innerHTML=`
       <img src="${img}" alt="Vase ${i+1}">
-      <div class="price">2000 جنيه</div>
+      <div class="price">2000<span>eg</span></div>
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
       <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
