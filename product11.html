@@ -124,8 +124,12 @@
   /* صور داخل صفحة الباكدج */
   .inner-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 22px;
+  }
+
+  .inner-grid img:first-child {
+    grid-column: span 2;
   }
 
   .inner-grid img {
@@ -134,6 +138,15 @@
     height: 300px;
     object-fit: cover;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .inner-grid {
+      grid-template-columns: 1fr;
+    }
+    .inner-grid img:first-child {
+      grid-column: span 1;
+    }
   }
 
   .package-details {
@@ -178,8 +191,7 @@ style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decorati
 ← Back to Home
 </a>
 
-<!-- صفحة OFFICE -->
-
+<!-- OFFICE PAGE -->
 <div id="office" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
 
@@ -194,16 +206,15 @@ style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decorati
   <div class="package-details">
     <h3>Office Package Includes:</h3>
 
-    <p>• 3 بورتريهات ديكورية عالية الجودة</p>
-    <p>• 2 فازة كبيرة مناسبة للمكاتب</p>
-    <p>• 1 فازة صغيرة مودرن</p>
+    <p>• 3 high-quality decorative portraits</p>
+    <p>• 2 large elegant office vases</p>
+    <p>• 1 modern small vase</p>
 
-    <div class="price-tag">السعر: 7000 جنيه</div>
+    <div class="price-tag">Price: 7000 EGP</div>
   </div>
-
 </div>
 
-<!-- باقي الصفحات الافتراضية -->
+<!-- باقي الصفحات -->
 <div id="gym" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Gym Package</h2>
