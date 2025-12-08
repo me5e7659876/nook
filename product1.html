@@ -63,10 +63,10 @@
   .item:hover { transform: scale(1.05); }
 
   .item img {
-    width:100%;
-    height:auto;
+    width:90%;
+    height:250px; /* حجم أصغر للحفاظ على الجودة */
     border-radius:15px 15px 0 0;
-    object-fit:cover;
+    object-fit:contain; /* يظهر الصورة كاملة بدون تشويه */
   }
 
   .price {
@@ -131,9 +131,8 @@
 
   @media(max-width:600px){
     .item img {
-      height: auto;
-      width: 100%;
-      object-fit:cover;
+      width:95%;
+      height:180px; /* أصغر على الموبايل */
     }
     .desc {
       opacity:1; /* الوصف يظهر دائمًا على الموبايل */
