@@ -108,13 +108,19 @@
     font-weight: 500;
   }
 
+  /* --- تصغير الصور على الموبايل فقط --- */
   @media (max-width: 768px) {
     .product-container {
       flex-direction: column;
       padding: 20px;
     }
 
-    .product-image, .product-details {
+    .product-image {
+      max-width: 80%;   /* ←← تصغير الصورة على الموبايل */
+      margin: 0 auto;
+    }
+
+    .product-details {
       max-width: 100%;
     }
 
@@ -188,7 +194,7 @@
   </div>
 </div>
 
-<!-- PRODUCT 3 (NEW) -->
+<!-- PRODUCT 3 -->
 <div class="product-container">
   <img 
     src="https://i.postimg.cc/g0yRtkW8/download-(25).jpg"
