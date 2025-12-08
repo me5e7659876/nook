@@ -43,7 +43,7 @@
     font-size: 14px;
   }
 
-  /* كروت الباكدجات */
+  /* الكروت */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -67,11 +67,18 @@
     transform: scale(1.05);
   }
 
+  /* الصور — تم ضبطها */
   .collection-card img {
     width: 100%;
-    height: 400px;
+    height: 460px;     /* ✓ مظبوطة للديسكتوب */
     object-fit: cover;
     display: block;
+  }
+
+  @media (max-width: 600px) {
+    .collection-card img {
+      height: 380px;  /* ✓ ممتاز على الموبايل */
+    }
   }
 
   .collection-info {
@@ -86,7 +93,7 @@
     font-family: 'Didot', serif;
   }
 
-  .view-btn {
+  .view-btn, .add-btn {
     display: inline-block;
     background: #ffb3c6;
     color: #4b0e1f;
@@ -96,13 +103,15 @@
     text-decoration: none;
     transition: 0.3s;
     cursor: pointer;
+    margin: 5px;
   }
 
-  .view-btn:hover {
+  .view-btn:hover, .add-btn:hover {
     background: #ff87a0;
     transform: translateY(-2px);
   }
 
+  /* صفحة الباكدج */
   .collection-page {
     display: none;
     padding: 25px;
@@ -121,7 +130,6 @@
     font-size: 18px;
   }
 
-  /* صور داخل صفحة الباكدج */
   .inner-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -135,7 +143,7 @@
   .inner-grid img {
     width: 100%;
     border-radius: 10px;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
@@ -199,7 +207,7 @@ style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decorati
 
   <div class="inner-grid">
     <img src="https://i.postimg.cc/Dm38cQtX/1765159432471-019afbb3-19c1-7701-abd8-1634b5b71365.png">
-    <img src="https://i.postimg.cc/fWG5VJ8Y/1765159054157-019afbad-2d72-722f-bcb6-b0556cff07d9.png">
+    <img src="https://i.postimg.cc/fWG5VJ8Y/1765159054157-019afbad-2d72-722f-bcb6cff07d9.png">
     <img src="https://i.postimg.cc/q7J1pS1n/1765159638592-019afbb6-6a85-7106-af2f-c72a3daf89b9.png">
   </div>
 
@@ -211,48 +219,27 @@ style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decorati
     <p>• 1 modern small vase</p>
 
     <div class="price-tag">Price: 7000 EGP</div>
+
+    <button class="add-btn" onclick="addToCart('Office Package',7000)">Add to Cart</button>
   </div>
 </div>
 
-<!-- باقي الصفحات -->
-<div id="gym" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Gym Package</h2>
-  <div class="inner-grid"></div>
-</div>
-
-<div id="clinic" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Clinic Package</h2>
-  <div class="inner-grid"></div>
-</div>
-
-<div id="entrance" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Entrance Area</h2>
-  <div class="inner-grid"></div>
-</div>
-
-<div id="indoor" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Indoor Café</h2>
-  <div class="inner-grid"></div>
-</div>
-
-<div id="outdoor" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Outdoor Café</h2>
-  <div class="inner-grid"></div>
-</div>
+<!-- الصفحات التانية -->
+<div id="gym" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Gym Package</h2></div>
+<div id="clinic" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Clinic Package</h2></div>
+<div id="entrance" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Entrance Area</h2></div>
+<div id="indoor" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Indoor Café</h2></div>
+<div id="outdoor" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Outdoor Café</h2></div>
 
 <script>
+
 const packages = [
-  {id:"office", img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:{en:"Office Package", ar:"باكدج مكتب"}},
-  {id:"gym", img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg", name:{en:"Gym Package", ar:"باكدج جيم"}},
-  {id:"clinic", img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:{en:"Clinic Package", ar:"باكدج عيادة"}},
-  {id:"entrance", img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:{en:"Entrance Area", ar:"منطقة مدخل"}},
-  {id:"indoor", img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:{en:"Indoor Café", ar:"كافيه داخلي"}},
-  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:{en:"Outdoor Café", ar:"كافيه خارجي"}}
+  {id:"office", img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:{en:"Office Package", ar:"باكدج مكتب"}, price:7000},
+  {id:"gym", img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg", name:{en:"Gym Package", ar:"باكدج جيم"}, price:6500},
+  {id:"clinic", img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:{en:"Clinic Package", ar:"باكدج عيادة"}, price:6200},
+  {id:"entrance", img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:{en:"Entrance Area", ar:"منطقة مدخل"}, price:6000},
+  {id:"indoor", img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:{en:"Indoor Café", ar:"كافيه داخلي"}, price:6800},
+  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:{en:"Outdoor Café", ar:"كافيه خارجي"}, price:6900}
 ];
 
 function renderPackages(lang){
@@ -265,11 +252,16 @@ function renderPackages(lang){
       <img src="${p.img}">
       <div class="collection-info">
         <h3>${p.name[lang]}</h3>
-        <a class="view-btn" onclick='openPackage("${p.id}")'>View Package</a>
+        <a class="view-btn" onclick='openPackage("${p.id}")'>View</a>
+        <a class="add-btn" onclick='addToCart("${p.name[lang]}",${p.price})'>Add to Cart</a>
       </div>
     `;
     container.appendChild(card);
   });
+}
+
+function addToCart(name, price){
+  alert(`${name} added to cart (Price: ${price} EGP)`);
 }
 
 function openPackage(id){
