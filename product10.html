@@ -1,117 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vases Collection</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decor Piece - Nook Decor</title>
+
+<!-- استيراد الخطوط -->
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #4b0e1f;
+    color: #fff;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 10px;
-  }
-
-  h1 {
-    font-family: "Didot", serif;
-    font-size: 42px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-  }
-
-  .item {
-    background: #fff;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px #0001;
-    transition: 0.25s;
-  }
-
-  .item:hover {
-    transform: scale(1.03);
-  }
-
-  .item img {
-    width: 100%;
-    height: 430px;
-    object-fit: cover;
-    display: block;
-  }
-
-  @media(max-width:600px){
-    .item img {
-      height: 650px; /* الصورة أطول على الموبايل */
-    }
-  }
-
-  .info {
+  header {
+    background-color: #4b0e1f;
     padding: 15px;
     text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,200,210,0.5);
+    position: relative;
+    font-family: 'Didot', serif;
   }
 
-  .title {
-    font-family: "Didot", serif;
-    font-size: 22px;
-    margin-bottom: 6px;
+  #langSelect {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffb3c6;
+    color: #4b0e1f;
+    font-size: 14px;
+  }
+
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+    border-bottom: 1px solid #ffffff33;
+    margin-bottom: 40px;
+  }
+
+  .product-image {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    flex: 1 1 300px;
+    width: 100%;
+  }
+
+  .product-details {
+    max-width: 400px;
+    flex: 1 1 300px;
+  }
+
+  .product-details h1 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #ffb3c6;
+    font-family: 'Didot', serif;
+  }
+
+  .product-details p {
+    line-height: 1.6;
+    font-size: 16px;
   }
 
   .price {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
   }
 
+  .btn {
+    background-color: #ffb3c6;
+    border: none;
+    color: #4b0e1f;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #ffc7d3;
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffb3c6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .product-container {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .product-image, .product-details {
+      max-width: 100%;
+    }
+
+    .product-details h1 {
+      font-size: 24px;
+    }
+
+    .price {
+      font-size: 20px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Vases Collection</h1>
+<header>
+  <span id="pageTitle">Nook Decor</span>
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
+</header>
 
-  <div class="grid">
+<!-- PRODUCT 1 -->
+<div class="product-container">
+  <img 
+    src="https://i.postimg.cc/tCg1dNJt/download-(19).jpg"
+    alt="Decor Item"
+    class="product-image"
+  />
 
-    <!-- المنتج الأول (اللي كان موجود قبل كده) -->
-    <div class="item">
-      <img src="https://i.postimg.cc/25gLJkVj/photo-2024-12-03-05-33-59.jpg">
-      <div class="info">
-        <div class="title">Vase 01</div>
-        <div class="price">850 EGP</div>
-      </div>
-    </div>
+  <div class="product-details">
+    <h1 data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة" class="product-name">
+      Premium Decor Piece
+    </h1>
 
-    <!-- المنتج الثاني الجديد -->
-    <div class="item">
-      <img src="https://i.postimg.cc/2yWCT3pj/download-(17).jpg">
-      <div class="info">
-        <div class="title">Vase 02</div>
-        <div class="price">1000 EGP</div>
-      </div>
-    </div>
+    <p data-en="A beautifully crafted decor piece designed to add elegance and character to any space."
+       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والطابع لأي مكان."
+       class="product-desc">
+       A beautifully crafted decor piece designed to add elegance and character to any space.
+    </p>
 
-    <!-- المنتج الثالث الجديد -->
-    <div class="item">
-      <img src="https://i.postimg.cc/g0yRtkW8/download-(25).jpg">
-      <div class="info">
-        <div class="title">Vase 03</div>
-        <div class="price">1000 EGP</div>
-      </div>
-    </div>
+    <div class="price" data-price="5665">5665 EGP</div>
 
+    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
   </div>
 </div>
+
+<!-- PRODUCT 2 -->
+<div class="product-container">
+  <img 
+    src="https://i.postimg.cc/2yWCT3pj/download-(17).jpg"
+    alt="Decor Item 2"
+    class="product-image"
+  />
+
+  <div class="product-details">
+    <h1 data-en="Modern Decor Vase" data-ar="مزهرية ديكور حديثة" class="product-name">
+      Modern Decor Vase
+    </h1>
+
+    <p data-en="Stylish decorative vase perfect for luxury and modern interiors."
+       data-ar="مزهرية ديكور أنيقة مناسبة للمساحات العصرية والفاخرة."
+       class="product-desc">
+       Stylish decorative vase perfect for luxury and modern interiors.
+    </p>
+
+    <div class="price" data-price="1000">1000 EGP</div>
+
+    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+  </div>
+</div>
+
+<!-- PRODUCT 3 (NEW) -->
+<div class="product-container">
+  <img 
+    src="https://i.postimg.cc/g0yRtkW8/download-(25).jpg"
+    alt="Decor Item 3"
+    class="product-image"
+  />
+
+  <div class="product-details">
+    <h1 data-en="Elegant Decor Vase" data-ar="مزهرية ديكور أنيقة" class="product-name">
+      Elegant Decor Vase
+    </h1>
+
+    <p data-en="A refined decorative vase that brings style and elegance to any room."
+       data-ar="مزهرية راقية تضيف أناقة وجمال لأي غرفة."
+       class="product-desc">
+       A refined decorative vase that brings style and elegance to any room.
+    </p>
+
+    <div class="price" data-price="1000">1000 EGP</div>
+
+    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+  </div>
+</div>
+
+<a href="index.html" class="back-link" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
+
+<script>
+const langSelect = document.getElementById('langSelect');
+const pageTitle = document.getElementById('pageTitle');
+
+langSelect.addEventListener('change', () => {
+  const lang = langSelect.value;
+
+  pageTitle.textContent = lang === 'en' ? "Nook Decor" : "نوك ديكور";
+
+  document.querySelectorAll('.product-name').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll('.product-desc').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll('.add-to-cart').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+  });
+
+  document.querySelectorAll('.back-link').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+  });
+});
+</script>
 
 </body>
 </html>
