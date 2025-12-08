@@ -11,7 +11,7 @@
 <style>
   body {
     margin: 0;
-    font-family: 'Poppins', sans-serif; /* النصوص */
+    font-family: 'Poppins', sans-serif;
     background-color: #4b0e1f;
     color: #fff;
   }
@@ -24,7 +24,7 @@
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255,200,210,0.5);
     position: relative;
-    font-family: 'Didot', serif; /* العنوان الكبير */
+    font-family: 'Didot', serif;
   }
 
   #langSelect {
@@ -39,7 +39,6 @@
     cursor: pointer;
     background: #ffb3c6;
     color: #4b0e1f;
-    font-family: 'Poppins', sans-serif;
     font-size: 14px;
   }
 
@@ -50,6 +49,8 @@
     align-items: flex-start;
     padding: 30px;
     gap: 30px;
+    border-bottom: 1px solid #ffffff33;
+    margin-bottom: 40px;
   }
 
   .product-image {
@@ -69,20 +70,18 @@
     margin-top: 0;
     font-size: 28px;
     color: #ffb3c6;
-    font-family: 'Didot', serif; /* عنوان المنتج */
+    font-family: 'Didot', serif;
   }
 
   .product-details p {
     line-height: 1.6;
     font-size: 16px;
-    font-family: 'Poppins', sans-serif;
   }
 
   .price {
     font-size: 22px;
     font-weight: bold;
     margin: 15px 0;
-    font-family: 'Poppins', sans-serif;
   }
 
   .btn {
@@ -94,7 +93,6 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    font-family: 'Poppins', sans-serif;
   }
 
   .btn:hover {
@@ -108,13 +106,11 @@
     color: #ffb3c6;
     text-decoration: none;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
   }
 
   @media (max-width: 768px) {
     .product-container {
       flex-direction: column;
-      align-items: center;
       padding: 20px;
     }
 
@@ -142,9 +138,8 @@
   </select>
 </header>
 
+<!-- PRODUCT 1 -->
 <div class="product-container">
-
-  <!-- PRODUCT IMAGE — UPDATED -->
   <img 
     src="https://i.postimg.cc/tCg1dNJt/download-(19).jpg"
     alt="Decor Item"
@@ -152,22 +147,48 @@
   />
 
   <div class="product-details">
-    <h1 data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة" class="product-name">Premium Decor Piece</h1>
+    <h1 data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة" class="product-name">
+      Premium Decor Piece
+    </h1>
 
-    <p data-en="A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling."
-       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والطابع الخاص لأي مكان. مثالية للديكورات الحديثة والمنازل الفاخرة."
+    <p data-en="A beautifully crafted decor piece designed to add elegance and character to any space."
+       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والطابع لأي مكان."
        class="product-desc">
-      A beautifully crafted decor piece designed to add elegance and character to any space. Perfect for modern interiors and luxury home styling.
+       A beautifully crafted decor piece designed to add elegance and character to any space.
     </p>
 
-    <div class="price" data-price="5665" data-currency="EGP">5665 EGP</div>
+    <div class="price" data-price="5665">5665 EGP</div>
 
     <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
-
-    <a href="index.html" class="back-link" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
   </div>
-
 </div>
+
+<!-- PRODUCT 2 (NEW) -->
+<div class="product-container">
+  <img 
+    src="https://i.postimg.cc/2yWCT3pj/download-(17).jpg"
+    alt="Decor Item 2"
+    class="product-image"
+  />
+
+  <div class="product-details">
+    <h1 data-en="Modern Decor Vase" data-ar="مزهرية ديكور حديثة" class="product-name">
+      Modern Decor Vase
+    </h1>
+
+    <p data-en="Stylish decorative vase perfect for luxury and modern interiors."
+       data-ar="مزهرية ديكور أنيقة مناسبة للمساحات العصرية والفاخرة."
+       class="product-desc">
+       Stylish decorative vase perfect for luxury and modern interiors.
+    </p>
+
+    <div class="price" data-price="1000">1000 EGP</div>
+
+    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+  </div>
+</div>
+
+<a href="index.html" class="back-link" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
 
 <script>
 const langSelect = document.getElementById('langSelect');
@@ -176,25 +197,20 @@ const pageTitle = document.getElementById('pageTitle');
 langSelect.addEventListener('change', () => {
   const lang = langSelect.value;
 
-  // العنوان
   pageTitle.textContent = lang === 'en' ? "Nook Decor" : "نوك ديكور";
 
-  // اسم المنتج
   document.querySelectorAll('.product-name').forEach(el => {
     el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
   });
 
-  // وصف المنتج
   document.querySelectorAll('.product-desc').forEach(el => {
     el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
   });
 
-  // زر الشراء
   document.querySelectorAll('.add-to-cart').forEach(el => {
     el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
   });
 
-  // رابط العودة
   document.querySelectorAll('.back-link').forEach(el => {
     el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
   });
