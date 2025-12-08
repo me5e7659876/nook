@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Space Packages - Nook Decor</title>
 
-<!-- استيراد الخطوط -->
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -43,7 +42,6 @@
     font-size: 14px;
   }
 
-  /* الكروت */
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -67,12 +65,10 @@
     transform: scale(1.05);
   }
 
-  /* الصور — كله موحد */
   .collection-card img {
     width: 100%;
     height: 460px;
     object-fit: cover;
-    display: block;
   }
 
   @media (max-width: 600px) {
@@ -106,16 +102,9 @@
     margin: 5px;
   }
 
-  .view-btn:hover {
-    background: #ff87a0;
-    transform: translateY(-2px);
-  }
-
-  /* صفحة الباكدج */
   .collection-page {
     display: none;
     padding: 25px;
-    font-family: 'Poppins', sans-serif;
   }
 
   .back-btn {
@@ -148,12 +137,18 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
 
+  /* الصورة كاملة على الموبايل */
   @media (max-width: 600px) {
     .inner-grid {
       grid-template-columns: 1fr;
     }
     .inner-grid img:first-child {
       grid-column: span 1;
+    }
+    .inner-grid img {
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important;
     }
   }
 
@@ -180,24 +175,15 @@
   }
 
   .add-btn {
-    display: inline-block;
     background: #ffb3c6;
     color: #4b0e1f;
     font-weight: bold;
     padding: 10px 22px;
     border-radius: 12px;
-    text-decoration: none;
-    transition: 0.3s;
-    cursor: pointer;
     margin-top: 18px;
     font-size: 18px;
+    cursor: pointer;
   }
-
-  .add-btn:hover {
-    background: #ff87a0;
-    transform: translateY(-2px);
-  }
-
 </style>
 </head>
 
@@ -205,6 +191,7 @@
 
 <header>
   <span id="headerTitle">Space Packages</span>
+
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
@@ -213,16 +200,18 @@
 
 <div class="collections-grid" id="packagesContainer"></div>
 
-<a href="index.html" class="back-link" id="backLink" 
+<a id="backLink" href="index.html"
 style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decoration:none;font-size:22px;font-weight:bold;">
 ← Back to Home
 </a>
 
 <!-- OFFICE PAGE -->
 <div id="office" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
+  <button class="back-btn" id="officeBackBtn">← Back</button>
 
-  <h2 style="font-family:'Didot'; font-size:32px; margin-bottom:25px;">Office Package</h2>
+  <h2 id="officeTitle" style="font-family:'Didot'; font-size:32px; margin-bottom:25px;">
+    Office Package
+  </h2>
 
   <div class="inner-grid">
     <img src="https://i.postimg.cc/Dm38cQtX/1765159432471-019afbb3-19c1-7701-abd8-1634b5b71365.png">
@@ -231,26 +220,57 @@ style="display:block;text-align:center;margin:40px 0;color:#ffb3c6;text-decorati
   </div>
 
   <div class="package-details">
-    <h3>Office Package Includes:</h3>
+    <h3 id="officeIncludesTitle">Office Package Includes:</h3>
 
-    <p>• 3 high-quality decorative portraits</p>
-    <p>• 2 large elegant office vases</p>
-    <p>• 1 modern small vase</p>
+    <p id="officeLi1">• 3 high-quality decorative portraits</p>
+    <p id="officeLi2">• 2 large elegant office vases</p>
+    <p id="officeLi3">• 1 modern small vase</p>
 
-    <div class="price-tag">Price: 7000 EGP</div>
+    <div class="price-tag" id="officePrice">Price: 7000 EGP</div>
 
-    <button class="add-btn" onclick="addToCart('Office Package',7000)">Add to Cart</button>
+    <button class="add-btn" id="officeAddBtn">Add to Cart</button>
   </div>
 </div>
 
-<!-- الصفحات التانية -->
+<!-- باقي الصفحات فاضية عادي -->
 <div id="gym" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Gym Package</h2></div>
 <div id="clinic" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Clinic Package</h2></div>
 <div id="entrance" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Entrance Area</h2></div>
 <div id="indoor" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Indoor Café</h2></div>
 <div id="outdoor" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button><h2>Outdoor Café</h2></div>
 
+
 <script>
+
+const translations = {
+  en: {
+    header: "Nook Decor - Space Packages",
+    backHome: "← Back to Home",
+
+    officeTitle: "Office Package",
+    includes: "Office Package Includes:",
+    li1: "• 3 high-quality decorative portraits",
+    li2: "• 2 large elegant office vases",
+    li3: "• 1 modern small vase",
+    price: "Price: 7000 EGP",
+    add: "Add to Cart",
+    back: "← Back"
+  },
+
+  ar: {
+    header: "نوك ديكور - باكدجات المساحات",
+    backHome: "← العودة للرئيسية",
+
+    officeTitle: "باكدج مكتب",
+    includes: "يشمل باكدج المكتب:",
+    li1: "• ٣ بورتريهات ديكورية عالية الجودة",
+    li2: "• ٢ فازات مكتب كبيرة أنيقة",
+    li3: "• ١ فازة صغيرة مودرن",
+    price: "السعر: 7000 جنيه",
+    add: "أضف للسلة",
+    back: "← رجوع"
+  }
+};
 
 const packages = [
   {id:"office", img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:{en:"Office Package", ar:"باكدج مكتب"}, price:7000},
@@ -271,37 +291,35 @@ function renderPackages(lang){
       <img src="${p.img}">
       <div class="collection-info">
         <h3>${p.name[lang]}</h3>
-        <a class="view-btn" onclick='openPackage("${p.id}")'>View</a>
+        <a class="view-btn" onclick='openPackage("${p.id}")'>${lang==="ar"?"عرض":"View"}</a>
       </div>
     `;
     container.appendChild(card);
   });
 }
 
-function addToCart(name, price){
-  alert(`${name} added to cart (Price: ${price} EGP)`);
-}
+function changeLang(lang){
+  const t = translations[lang];
 
-function openPackage(id){
-  document.getElementById("packagesContainer").style.display = "none";
-  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
-  document.getElementById(id).style.display = "block";
-  window.scrollTo(0,0);
-}
+  document.body.dir = lang==="ar" ? "rtl" : "ltr";
 
-function goHome(){
-  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
-  document.getElementById("packagesContainer").style.display = "grid";
-  window.scrollTo(0,0);
+  document.getElementById("headerTitle").textContent = t.header;
+  document.getElementById("backLink").textContent = t.backHome;
+
+  document.getElementById("officeTitle").textContent = t.officeTitle;
+  document.getElementById("officeIncludesTitle").textContent = t.includes;
+  document.getElementById("officeLi1").textContent = t.li1;
+  document.getElementById("officeLi2").textContent = t.li2;
+  document.getElementById("officeLi3").textContent = t.li3;
+  document.getElementById("officePrice").textContent = t.price;
+  document.getElementById("officeAddBtn").textContent = t.add;
+  document.getElementById("officeBackBtn").textContent = t.back;
+
+  renderPackages(lang);
 }
 
 langSelect.addEventListener("change", ()=>{
-  const lang = langSelect.value;
-  document.body.dir = lang==="ar"?"rtl":"ltr";
-  document.getElementById("headerTitle").textContent = lang==="ar"?
-    "نوك ديكور - باكدجات المساحات" : "Nook Decor - Space Packages";
-  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
-  renderPackages(lang);
+  changeLang(langSelect.value);
 });
 
 renderPackages("en");
