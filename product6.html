@@ -8,134 +8,112 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #4b0e1f;
-  color: #fff;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#4b0e1f;
+  color:#fff;
 }
 
-header {
-  background-color: #4b0e1f;
-  padding: 15px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(255,200,210,0.5);
-  position: relative;
-  font-family: 'Didot', serif !important;
+header{
+  background:#4b0e1f;
+  padding:15px;
+  text-align:center;
+  font-size:28px;
+  font-family:'Didot',serif;
+  position:relative;
 }
 
-#langSelect {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 6px 10px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  background: #ffb3c6;
-  color: #4b0e1f;
+#langSelect{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  background:#ffb3c6;
+  color:#4b0e1f;
+  cursor:pointer;
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  gap: 35px;
-  padding: 35px;
-  justify-items: center;
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:35px;
+  padding:35px;
 }
 
-.item {
-  background-color: rgba(255,255,255,0.1);
-  border-radius: 15px;
-  padding: 18px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  overflow: hidden;
-  max-width: 430px;
-  width: 100%;
+.item{
+  background:rgba(255,255,255,0.1);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.3);
+  transition:.35s;
+  text-decoration:none;
+  color:#fff;
+  max-width:430px;
 }
 
-.item:hover { transform: scale(1.05); }
-
-.slider {
-  width: 100%;
-  height: 460px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
+.item:hover{
+  transform:scale(1.05);
 }
 
-.slide {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+.slider{
+  width:100%;
+  height:460px;
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
 }
 
-.slide.active { opacity: 1; }
-
-.next-btn {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  background: rgba(255,179,198,0.8);
-  border: none;
-  border-radius: 50%;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 18px;
-  color: #4b0e1f;
+.slide{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  opacity:0;
+  transition:.8s;
 }
 
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffb3c6;
-  margin-top: 10px;
-  font-family: 'Didot', serif;
+.slide.active{opacity:1}
+
+.next-btn{
+  position:absolute;
+  top:50%;
+  right:10px;
+  transform:translateY(-50%);
+  background:rgba(255,179,198,.85);
+  border:none;
+  border-radius:50%;
+  padding:8px 12px;
+  font-size:18px;
+  cursor:pointer;
+  color:#4b0e1f;
 }
 
-.desc {
-  font-size: 15px;
-  color: #ffe3eb;
-  margin-top: 8px;
-  line-height: 1.5;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.4s;
+.price{
+  font-size:20px;
+  font-family:'Didot',serif;
+  color:#ffb3c6;
+  margin-top:12px;
 }
 
-.item:hover .desc {
-  opacity: 1;
-  transform: translateY(0);
+.desc{
+  font-size:15px;
+  line-height:1.6;
+  color:#ffe3eb;
+  margin-top:6px;
+  opacity:.85;
 }
 
-.btn {
-  background-color: #ffb3c6;
-  border: none;
-  color: #4b0e1f;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.back-link {
-  display: block;
-  text-align: center;
-  margin: 30px 0;
-  color: #ffb3c6;
-  text-decoration: none;
+.back-link{
+  display:block;
+  text-align:center;
+  margin:30px 0;
+  color:#ffb3c6;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -155,14 +133,14 @@ header {
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-const products = [
+const products=[
 {
   img:[
     "https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png",
     "https://i.postimg.cc/mk2Bf4Wy/N.png"
   ],
   price:1000,
-  name:{en:"Decorative Wall Hanging", ar:"معلقة حائط ديكورية"},
+  name:{en:"Decorative Wall Hanging",ar:"معلقة حائط ديكورية"},
   desc:{
     en:"Elegant decorative wall hanging with a flexible plant holder up to 3 meters.",
     ar:"معلقة حائط ديكورية بحامل زرع مرن يصل حتى 3 متر."
@@ -171,41 +149,37 @@ const products = [
 {
   img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg"],
   price:1200,
-  name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"},
-  desc:{en:"Strong solid wood rack.", ar:"رف خشبي قوي."}
+  name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},
+  desc:{en:"Strong solid wood rack.",ar:"رف خشبي قوي."}
 }
 ];
 
 function renderProducts(lang){
-  const container=document.getElementById("galleryContainer");
-  container.innerHTML="";
+  galleryContainer.innerHTML="";
   products.forEach(p=>{
-    const item=document.createElement("div");
+    const item=document.createElement("a");
     item.className="item";
-    item.dataset.name=p.name[lang];
-    item.dataset.price=p.price;
-    item.dataset.img=p.img[0];
+    item.href=`product.html?name=${encodeURIComponent(p.name[lang])}&price=${p.price}&img=${p.img[0]}&desc=${encodeURIComponent(p.desc[lang])}`;
 
     item.innerHTML=`
       <div class="slider">
-        ${p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("")}
+        ${p.img.map((img,i)=>`<img src="${img}" class="slide ${i==0?'active':''}">`).join("")}
         <button class="next-btn">›</button>
       </div>
       <div class="price">${p.price} EGP</div>
-      <p class="desc">${p.desc[lang]}</p>
-      <button class="btn add-to-cart">${lang=="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+      <div class="desc">${p.desc[lang]}</div>
     `;
-    container.appendChild(item);
+    galleryContainer.appendChild(item);
   });
   sliders();
-  cart(lang);
 }
 
 function sliders(){
   document.querySelectorAll(".slider").forEach(slider=>{
     const slides=slider.querySelectorAll(".slide");
     let i=0;
-    slider.querySelector(".next-btn").onclick=()=>{
+    slider.querySelector(".next-btn").onclick=e=>{
+      e.preventDefault();
       slides[i].classList.remove("active");
       i=(i+1)%slides.length;
       slides[i].classList.add("active");
@@ -213,20 +187,11 @@ function sliders(){
   });
 }
 
-function cart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
-    btn.onclick=()=>{
-      btn.innerText=lang=="ar"?"تمت الإضافة":"Added!";
-      setTimeout(()=>btn.innerText=lang=="ar"?"أضف إلى السلة":"Add to Cart",1000);
-    }
-  });
-}
-
 langSelect.onchange=()=>{
   const lang=langSelect.value;
-  document.body.dir=lang=="ar"?"rtl":"ltr";
-  headerTitle.innerText=lang=="ar"?"رفوف خشبية":"Wooden Racks";
-  backLink.innerText=lang=="ar"?"← العودة للرئيسية":"← Back to Home";
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  headerTitle.innerText=lang==="ar"?"رفوف خشبية":"Wooden Racks";
+  backLink.innerText=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
 };
 
