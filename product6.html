@@ -8,113 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:#4b0e1f;
-  color:#fff;
-}
-
-header{
-  background:#4b0e1f;
-  padding:15px;
-  text-align:center;
-  font-size:28px;
-  font-family:'Didot',serif;
-  position:relative;
-}
-
-#langSelect{
-  position:absolute;
-  right:20px;
-  top:50%;
-  transform:translateY(-50%);
-  padding:6px 10px;
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  background:#ffb3c6;
-  color:#4b0e1f;
-  cursor:pointer;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
-  gap:35px;
-  padding:35px;
-}
-
-.item{
-  background:rgba(255,255,255,0.1);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 4px 15px rgba(0,0,0,.3);
-  transition:.35s;
-  text-decoration:none;
-  color:#fff;
-  max-width:430px;
-}
-
-.item:hover{
-  transform:scale(1.05);
-}
-
-.slider{
-  width:100%;
-  height:460px;
-  position:relative;
-  overflow:hidden;
-  border-radius:14px;
-}
-
-.slide{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  position:absolute;
-  opacity:0;
-  transition:.8s;
-}
-
+body{margin:0;font-family:'Poppins',sans-serif;background:#4b0e1f;color:#fff}
+header{background:#4b0e1f;padding:15px;text-align:center;font-size:28px;font-family:'Didot',serif;position:relative}
+#langSelect{position:absolute;right:20px;top:50%;transform:translateY(-50%);padding:6px 10px;border:none;border-radius:8px;font-weight:bold;background:#ffb3c6;color:#4b0e1f;cursor:pointer}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:35px;padding:35px;justify-items:center}
+.item{background:rgba(255,255,255,.1);border-radius:15px;padding:18px;box-shadow:0 4px 15px rgba(0,0,0,.3);transition:.3s;max-width:430px;width:100%;text-align:center}
+.item:hover{transform:scale(1.05)}
+.slider{width:100%;height:460px;position:relative;overflow:hidden;border-radius:15px}
+.slide{width:100%;height:100%;object-fit:cover;position:absolute;opacity:0;transition:.8s}
 .slide.active{opacity:1}
-
-.next-btn{
-  position:absolute;
-  top:50%;
-  right:10px;
-  transform:translateY(-50%);
-  background:rgba(255,179,198,.85);
-  border:none;
-  border-radius:50%;
-  padding:8px 12px;
-  font-size:18px;
-  cursor:pointer;
-  color:#4b0e1f;
-}
-
-.price{
-  font-size:20px;
-  font-family:'Didot',serif;
-  color:#ffb3c6;
-  margin-top:12px;
-}
-
-.desc{
-  font-size:15px;
-  line-height:1.6;
-  color:#ffe3eb;
-  margin-top:6px;
-  opacity:.85;
-}
-
-.back-link{
-  display:block;
-  text-align:center;
-  margin:30px 0;
-  color:#ffb3c6;
-  text-decoration:none;
-}
+.next-btn{position:absolute;top:50%;right:10px;transform:translateY(-50%);background:rgba(255,179,198,.85);border:none;border-radius:50%;padding:8px 12px;font-size:18px;cursor:pointer;color:#4b0e1f}
+.price{font-size:20px;color:#ffb3c6;margin-top:10px;font-family:'Didot',serif}
+.desc{font-size:15px;color:#ffe3eb;margin-top:8px;line-height:1.5;opacity:0;transform:translateY(10px);transition:.4s}
+.item:hover .desc{opacity:1;transform:translateY(0)}
+.btn{background:#ffb3c6;border:none;color:#4b0e1f;padding:10px 20px;border-radius:10px;font-weight:bold;cursor:pointer;margin-top:10px;width:100%}
+.back-link{display:block;text-align:center;margin:30px 0;color:#ffb3c6;text-decoration:none}
 </style>
 </head>
 
@@ -129,70 +37,58 @@ header{
 </header>
 
 <div class="gallery" id="galleryContainer"></div>
-
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-const products=[
-{
-  img:[
-    "https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png",
-    "https://i.postimg.cc/mk2Bf4Wy/N.png"
-  ],
-  price:1000,
-  name:{en:"Decorative Wall Hanging",ar:"معلقة حائط ديكورية"},
-  desc:{
-    en:"Elegant decorative wall hanging with a flexible plant holder up to 3 meters.",
-    ar:"معلقة حائط ديكورية بحامل زرع مرن يصل حتى 3 متر."
+const products = [
+  { img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/66fQRyST/21cf0404-974a-47f9-8182-b1ec9a0b0223.jpg"], price:1200, name:{en:"Solid Wood Rack", ar:"رف خشبي صلب"}, desc:{en:"Strong solid wood rack — perfect for plants, décor items, and modern home styling.", ar:"رف خشبي صلب — مثالي للنباتات وزينة المنزل."}},
+  { img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"], price:600, name:{en:"Minimal Modern Rack", ar:"رف عصري بسيط"}, desc:{en:"Minimal modern wooden rack — ideal for small spaces and stylish organization.", ar:"رف خشبي عصري — مثالي للمساحات الصغيرة."}},
+  { img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"], price:300, name:{en:"Decorative Wooden Stand", ar:"حامل خشبي زخرفي"}, desc:{en:"Decorative wooden stand — great for showcasing plants and décor.", ar:"حامل خشبي زخرفي — رائع للزينة."}},
+  { img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/XNLVqtGH/c37d44dd-15a7-4672-bd77-0c27df4f1449.jpg"], price:200, name:{en:"Compact Wooden Shelf", ar:"رف خشبي صغير"}, desc:{en:"Compact wooden shelf — perfect for tight areas.", ar:"رف خشبي صغير للمساحات الضيقة."}},
+  { img:["https://i.postimg.cc/4yFpHzCS/4.png","https://i.postimg.cc/P5D1NpSD/10.png"], price:350, name:{en:"Wooden Shelf", ar:"رف خشبي"}, desc:{en:"Wooden shelf — strong and elegant.", ar:"رف خشبي قوي وأنيق."}},
+  { img:["https://i.postimg.cc/LX9Pyy2x/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg","https://i.postimg.cc/kX6bhR3k/9.png"], price:350, name:{en:"White Wooden Shelf", ar:"رف خشبي أبيض"}, desc:{en:"White wooden shelf — stylish & modern.", ar:"رف خشبي أبيض أنيق."}},
+
+  /* ✅ المنتج الجديد – آخر منتج */
+  {
+    img:[
+      "https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png",
+      "https://i.postimg.cc/mk2Bf4Wy/N.png"
+    ],
+    price:1000,
+    name:{en:"Decorative Wall Hanging", ar:"معلقة حائط ديكورية"},
+    desc:{
+      en:"Elegant decorative wall hanging featuring a flexible plant holder up to 3 meters — perfect for adding greenery with a modern floating touch.",
+      ar:"معلقة حائط ديكورية بحامل زرع فليكسابل يصل حتى 3 متر — لمسة عصرية أنيقة للنباتات."
+    }
   }
-},
-{
-  img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg"],
-  price:1200,
-  name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},
-  desc:{en:"Strong solid wood rack.",ar:"رف خشبي قوي."}
-}
 ];
 
 function renderProducts(lang){
   galleryContainer.innerHTML="";
   products.forEach(p=>{
-    const item=document.createElement("a");
+    const item=document.createElement("div");
     item.className="item";
-    item.href=`product.html?name=${encodeURIComponent(p.name[lang])}&price=${p.price}&img=${p.img[0]}&desc=${encodeURIComponent(p.desc[lang])}`;
-
+    let slides=p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("");
     item.innerHTML=`
-      <div class="slider">
-        ${p.img.map((img,i)=>`<img src="${img}" class="slide ${i==0?'active':''}">`).join("")}
-        <button class="next-btn">›</button>
-      </div>
+      <div class="slider">${slides}<button class="next-btn">›</button></div>
       <div class="price">${p.price} EGP</div>
-      <div class="desc">${p.desc[lang]}</div>
+      <p class="desc">${p.desc[lang]}</p>
+      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     galleryContainer.appendChild(item);
   });
-  sliders();
-}
-
-function sliders(){
-  document.querySelectorAll(".slider").forEach(slider=>{
-    const slides=slider.querySelectorAll(".slide");
-    let i=0;
-    slider.querySelector(".next-btn").onclick=e=>{
-      e.preventDefault();
-      slides[i].classList.remove("active");
-      i=(i+1)%slides.length;
-      slides[i].classList.add("active");
-    }
+  document.querySelectorAll(".slider").forEach(sl=>{
+    const slides=sl.querySelectorAll(".slide");let i=0;
+    sl.querySelector(".next-btn").onclick=()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active")};
   });
 }
 
 langSelect.onchange=()=>{
-  const lang=langSelect.value;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  headerTitle.innerText=lang==="ar"?"رفوف خشبية":"Wooden Racks";
-  backLink.innerText=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
-  renderProducts(lang);
+  const l=langSelect.value;
+  document.body.dir=l==="ar"?"rtl":"ltr";
+  headerTitle.textContent=l==="ar"?"رفوف خشبية":"Wooden Racks";
+  backLink.textContent=l==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(l);
 };
 
 renderProducts("en");
