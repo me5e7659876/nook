@@ -159,8 +159,8 @@ const products=[
   price:1200,
   name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},
   desc:{
-    en:"Premium solid wood rack crafted for durability and elegance. Ideal for displaying plants, décor pieces, and daily essentials.",
-    ar:"رف خشبي صلب بتصميم فاخر وجودة عالية، مثالي لعرض النباتات والديكور والاستخدام اليومي."
+    en:"Premium solid wood rack crafted for durability and elegance. Ideal for plants and décor. Price shown is per single piece.",
+    ar:"رف خشبي صلب بتصميم فاخر وجودة عالية، مثالي للنباتات والديكور. السعر الموضح للقطعة الواحدة."
   }
 },
 {
@@ -168,8 +168,8 @@ const products=[
   price:600,
   name:{en:"Minimal Modern Rack",ar:"رف عصري بسيط"},
   desc:{
-    en:"Modern minimalist wooden rack designed to blend seamlessly with contemporary interiors.",
-    ar:"رف خشبي عصري بتصميم بسيط ينسجم مع الديكور الحديث بكل أناقة."
+    en:"Modern minimalist wooden rack designed for contemporary interiors. Price applies to one unit only.",
+    ar:"رف خشبي عصري بتصميم بسيط يناسب الديكور الحديث. السعر خاص بالقطعة الواحدة."
   }
 },
 {
@@ -177,8 +177,8 @@ const products=[
   price:300,
   name:{en:"Decorative Wooden Stand",ar:"حامل خشبي زخرفي"},
   desc:{
-    en:"Elegant decorative wooden stand that adds warmth and character to any corner.",
-    ar:"حامل خشبي زخرفي أنيق يضيف لمسة جمالية ودفء لأي مساحة."
+    en:"Elegant decorative wooden stand adding warmth to any space. Listed price is for one piece.",
+    ar:"حامل خشبي زخرفي أنيق يضيف لمسة جمالية لأي مكان. السعر المعروض للقطعة الواحدة."
   }
 },
 {
@@ -186,8 +186,8 @@ const products=[
   price:200,
   name:{en:"Compact Wooden Shelf",ar:"رف خشبي صغير"},
   desc:{
-    en:"Compact wooden shelf perfect for small spaces while maintaining functionality and style.",
-    ar:"رف خشبي صغير مثالي للمساحات الضيقة مع الحفاظ على العملية والشكل الأنيق."
+    en:"Compact wooden shelf ideal for small spaces and light décor. Price is calculated per single shelf.",
+    ar:"رف خشبي صغير مناسب للمساحات الضيقة والديكور الخفيف. السعر محسوب للقطعة الواحدة."
   }
 },
 {
@@ -195,8 +195,8 @@ const products=[
   price:350,
   name:{en:"Wooden Shelf",ar:"رف خشبي"},
   desc:{
-    en:"Versatile wooden shelf suitable for living rooms, bedrooms, and office spaces.",
-    ar:"رف خشبي عملي يناسب غرف المعيشة والنوم والمكاتب."
+    en:"Versatile wooden shelf suitable for multiple rooms. Displayed price refers to one unit.",
+    ar:"رف خشبي عملي يناسب مختلف الغرف. السعر الموضح خاص بالقطعة الواحدة."
   }
 },
 {
@@ -204,8 +204,8 @@ const products=[
   price:350,
   name:{en:"White Wooden Shelf",ar:"رف خشبي أبيض"},
   desc:{
-    en:"White wooden shelf with a clean finish, perfect for bright and modern interiors.",
-    ar:"رف خشبي أبيض بتشطيب ناعم، مثالي للديكورات العصرية والمضيئة."
+    en:"Clean white wooden shelf perfect for modern interiors. Price shown is per piece.",
+    ar:"رف خشبي أبيض بتصميم أنيق للديكورات العصرية. السعر للقطعة الواحدة."
   }
 },
 {
@@ -222,11 +222,8 @@ const products=[
 function addToCart(product){
   let cart=JSON.parse(localStorage.getItem("cart"))||[];
   const found=cart.find(i=>i.name.en===product.name.en);
-  if(found){
-    found.qty+=1;
-  }else{
-    cart.push({...product,qty:1});
-  }
+  if(found){found.qty+=1;}
+  else{cart.push({...product,qty:1});}
   localStorage.setItem("cart",JSON.stringify(cart));
   alert("Added to cart ✔");
 }
@@ -236,9 +233,7 @@ function renderProducts(lang){
   products.forEach(p=>{
     const item=document.createElement("div");
     item.className="item";
-
     const slides=p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("");
-
     item.innerHTML=`
       <div class="slider">
         ${slides}
@@ -250,7 +245,6 @@ function renderProducts(lang){
         <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>
     `;
-
     item.querySelector(".btn").onclick=()=>addToCart(p);
     galleryContainer.appendChild(item);
   });
