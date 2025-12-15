@@ -5,135 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Decor Piece - Nook Decor</title>
 
-<!-- استيراد الخطوط -->
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
-  }
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#4b0e1f;
+  color:#fff;
+}
 
-  header {
-    background-color: #4b0e1f;
-    padding: 15px;
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255,200,210,0.5);
-    position: relative;
-    font-family: 'Didot', serif;
-  }
+header{
+  background:#4b0e1f;
+  padding:15px;
+  text-align:center;
+  font-size:28px;
+  font-family:'Didot',serif;
+  position:relative;
+}
 
-  #langSelect {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 6px 10px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #ffb3c6;
-    color: #4b0e1f;
-    font-size: 14px;
-  }
+#langSelect{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  background:#ffb3c6;
+  color:#4b0e1f;
+  cursor:pointer;
+}
 
-  .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 30px;
-    gap: 30px;
-    border-bottom: 1px solid #ffffff33;
-    margin-bottom: 40px;
-  }
+.product-container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-start;
+  padding:30px;
+  gap:30px;
+  border-bottom:1px solid #ffffff33;
+}
 
-  .product-image {
-    max-width: 400px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    flex: 1 1 300px;
-    width: 100%;
-  }
+.slider{
+  position:relative;
+  max-width:400px;
+  width:100%;
+}
 
-  .product-details {
-    max-width: 400px;
-    flex: 1 1 300px;
-  }
+.slide{
+  width:100%;
+  border-radius:15px;
+  display:none;
+}
 
-  .product-details h1 {
-    margin-top: 0;
-    font-size: 28px;
-    color: #ffb3c6;
-    font-family: 'Didot', serif;
-  }
+.slide.active{
+  display:block;
+}
 
-  .product-details p {
-    line-height: 1.6;
-    font-size: 16px;
-  }
+.product-details{
+  max-width:400px;
+}
 
-  .price {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 15px 0;
-  }
+.product-details h1{
+  font-family:'Didot',serif;
+  color:#ffb3c6;
+}
 
-  .btn {
-    background-color: #ffb3c6;
-    border: none;
-    color: #4b0e1f;
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+.price{
+  font-size:22px;
+  margin:15px 0;
+}
 
-  .btn:hover {
-    background-color: #ffc7d3;
-  }
+.btn{
+  background:#ffb3c6;
+  border:none;
+  padding:12px 24px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  color:#4b0e1f;
+}
 
-  .back-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #ffb3c6;
-    text-decoration: none;
-    font-weight: 500;
-  }
+.back-link{
+  display:block;
+  text-align:center;
+  margin:30px;
+  color:#ffb3c6;
+  text-decoration:none;
+}
 
-  /* --- تصغير الصور على الموبايل فقط --- */
-  @media (max-width: 768px) {
-    .product-container {
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .product-image {
-      max-width: 80%;   /* ←← تصغير الصورة على الموبايل */
-      margin: 0 auto;
-    }
-
-    .product-details {
-      max-width: 100%;
-    }
-
-    .product-details h1 {
-      font-size: 24px;
-    }
-
-    .price {
-      font-size: 20px;
-    }
-  }
+@media(max-width:768px){
+  .product-container{flex-direction:column}
+  .slider{max-width:80%;margin:auto}
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -144,107 +113,51 @@
   </select>
 </header>
 
-<!-- PRODUCT 1 -->
-<div class="product-container">
-  <img 
-    src="https://i.postimg.cc/tCg1dNJt/download-(19).jpg"
-    alt="Decor Item"
-    class="product-image"
-  />
+<!-- TEMPLATE PRODUCT -->
+<script>
+const products = [
+  ["https://i.postimg.cc/W43w12QH/t-a-m.png","https://i.postimg.cc/gkWy6yCV/t-abyd.png"],
+  ["https://i.postimg.cc/pL0K7wph/t-b-m.png","https://i.postimg.cc/9fKZXyPD/t-b.png"],
+  ["https://i.postimg.cc/BQpFLrc0/t-h-m.jpg","https://i.postimg.cc/PJ4CDDDr/t-h.jpg"],
+  ["https://i.postimg.cc/3NKR3wqT/t-s-m.png","https://i.postimg.cc/t41gqwBg/t-s.jpg"],
+  ["https://i.postimg.cc/9XJXGCSX/s-m.jpg","https://i.postimg.cc/QxzXySjB/s.jpg"],
+  ["https://i.postimg.cc/WpWjdSFt/th-m.jpg","https://i.postimg.cc/FRF5RJ99/th.png"],
+  ["https://i.postimg.cc/s2yb6ZGy/ʿ-a-m.png","https://i.postimg.cc/xTz79PKY/ʿ-a.jpg"],
+  ["https://i.postimg.cc/LX5Cwk94/ʿ-s-m.jpg","https://i.postimg.cc/NG3t8FDR/ʿ-s.jpg"],
+  ["https://i.postimg.cc/Vk42hkqr/f-la-m.png","https://i.postimg.cc/T1r4Jd25/f-la.jpg"],
+  ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"]
+];
 
-  <div class="product-details">
-    <h1 data-en="Premium Decor Piece" data-ar="قطعة ديكور فاخرة" class="product-name">
-      Premium Decor Piece
-    </h1>
+products.forEach((imgs,i)=>{
+  document.write(`
+  <div class="product-container">
+    <div class="slider">
+      <img src="${imgs[0]}" class="slide active">
+      <img src="${imgs[1]}" class="slide">
+    </div>
 
-    <p data-en="A beautifully crafted decor piece designed to add elegance and character to any space."
-       data-ar="قطعة ديكور مصممة بعناية لإضافة الأناقة والطابع لأي مكان."
-       class="product-desc">
-       A beautifully crafted decor piece designed to add elegance and character to any space.
-    </p>
-
-    <div class="price" data-price="5665">5665 EGP</div>
-
-    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+    <div class="product-details">
+      <h1>Decor Piece ${i+1}</h1>
+      <p>Elegant decor piece – shown with and without vase.</p>
+      <div class="price">500 EGP</div>
+      <button class="btn">Add to Cart</button>
+    </div>
   </div>
-</div>
+  `);
+});
+</script>
 
-<!-- PRODUCT 2 -->
-<div class="product-container">
-  <img 
-    src="https://i.postimg.cc/2yWCT3pj/download-(17).jpg"
-    alt="Decor Item 2"
-    class="product-image"
-  />
-
-  <div class="product-details">
-    <h1 data-en="Modern Decor Vase" data-ar="مزهرية ديكور حديثة" class="product-name">
-      Modern Decor Vase
-    </h1>
-
-    <p data-en="Stylish decorative vase perfect for luxury and modern interiors."
-       data-ar="مزهرية ديكور أنيقة مناسبة للمساحات العصرية والفاخرة."
-       class="product-desc">
-       Stylish decorative vase perfect for luxury and modern interiors.
-    </p>
-
-    <div class="price" data-price="1000">1000 EGP</div>
-
-    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
-  </div>
-</div>
-
-<!-- PRODUCT 3 -->
-<div class="product-container">
-  <img 
-    src="https://i.postimg.cc/g0yRtkW8/download-(25).jpg"
-    alt="Decor Item 3"
-    class="product-image"
-  />
-
-  <div class="product-details">
-    <h1 data-en="Elegant Decor Vase" data-ar="مزهرية ديكور أنيقة" class="product-name">
-      Elegant Decor Vase
-    </h1>
-
-    <p data-en="A refined decorative vase that brings style and elegance to any room."
-       data-ar="مزهرية راقية تضيف أناقة وجمال لأي غرفة."
-       class="product-desc">
-       A refined decorative vase that brings style and elegance to any room.
-    </p>
-
-    <div class="price" data-price="1000">1000 EGP</div>
-
-    <button class="btn add-to-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
-  </div>
-</div>
-
-<a href="index.html" class="back-link" data-en="← Back to Home" data-ar="← العودة للرئيسية">← Back to Home</a>
+<a href="index.html" class="back-link">← Back to Home</a>
 
 <script>
-const langSelect = document.getElementById('langSelect');
-const pageTitle = document.getElementById('pageTitle');
-
-langSelect.addEventListener('change', () => {
-  const lang = langSelect.value;
-
-  pageTitle.textContent = lang === 'en' ? "Nook Decor" : "نوك ديكور";
-
-  document.querySelectorAll('.product-name').forEach(el => {
-    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
-  });
-
-  document.querySelectorAll('.product-desc').forEach(el => {
-    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
-  });
-
-  document.querySelectorAll('.add-to-cart').forEach(el => {
-    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
-  });
-
-  document.querySelectorAll('.back-link').forEach(el => {
-    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
-  });
+document.querySelectorAll('.slider').forEach(slider=>{
+  const slides = slider.querySelectorAll('.slide');
+  let i = 0;
+  setInterval(()=>{
+    slides[i].classList.remove('active');
+    i = (i+1)%slides.length;
+    slides[i].classList.add('active');
+  },4000);
 });
 </script>
 
