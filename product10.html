@@ -40,16 +40,16 @@ header{
 
 /* ================= CARD ================= */
 .product-card{
-  max-width:900px;
+  width:fit-content;          /* ⬅️ الكارت على قد المحتوى */
   margin:30px auto;
   background:rgba(255,255,255,.08);
   border-radius:18px;
-  padding:25px;
+  padding:18px;
 }
 
 .product-container{
   display:flex;
-  gap:30px;
+  gap:25px;
   align-items:center;
   flex-wrap:wrap;
 }
@@ -59,7 +59,6 @@ header{
   position:relative;
   width:100%;
   max-width:420px;
-  margin:auto;
 }
 
 .slide{
@@ -86,7 +85,7 @@ header{
 
 /* ================= DETAILS ================= */
 .product-details{
-  max-width:400px;
+  max-width:380px;
 }
 
 .product-details h1{
@@ -121,19 +120,29 @@ header{
 @media(max-width:768px){
   .product-container{
     flex-direction:column;
+    gap:18px;
+  }
+
+  .product-card{
+    padding:14px;
   }
 
   .slider{
-    max-width:80%;   /* ⬅️ أصغر عشان الجودة */
+    max-width:95%;       /* ⬅️ الصورة أكبر على الموبايل */
   }
 
   .slide{
-    max-height:380px; /* ⬅️ تقليل الارتفاع */
+    max-height:480px;
     object-fit:contain;
   }
 
   .arrow{
-    font-size:42px;
+    font-size:44px;
+  }
+
+  .product-details{
+    max-width:95%;
+    text-align:center;
   }
 }
 </style>
