@@ -38,20 +38,27 @@ header{
   cursor:pointer;
 }
 
-.product-container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:flex-start;
-  padding:30px;
-  gap:30px;
-  border-bottom:1px solid #ffffff33;
+/* ================= CARD ================= */
+.product-card{
+  max-width:900px;
+  margin:30px auto;
+  background:rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:25px;
 }
 
+.product-container{
+  display:flex;
+  gap:30px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* ================= SLIDER ================= */
 .slider{
   position:relative;
-  max-width:400px;
   width:100%;
+  max-width:420px;
 }
 
 .slide{
@@ -60,10 +67,24 @@ header{
   display:none;
 }
 
-.slide.active{
-  display:block;
+.slide.active{display:block}
+
+/* arrows */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  font-size:36px;
+  color:#ffb3c6;
+  cursor:pointer;
 }
 
+.arrow.left{left:10px}
+.arrow.right{right:10px}
+
+/* ================= DETAILS ================= */
 .product-details{
   max-width:400px;
 }
@@ -91,14 +112,24 @@ header{
 .back-link{
   display:block;
   text-align:center;
-  margin:30px;
+  margin:40px;
   color:#ffb3c6;
   text-decoration:none;
 }
 
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   .product-container{flex-direction:column}
-  .slider{max-width:80%;margin:auto}
+  .slider{
+    max-width:100%;
+  }
+  .slide{
+    max-height:520px;
+    object-fit:contain;
+  }
+  .arrow{
+    font-size:44px; /* ⬅️ سهم أكبر على الموبايل */
+  }
 }
 </style>
 </head>
@@ -113,7 +144,6 @@ header{
   </select>
 </header>
 
-<!-- TEMPLATE PRODUCT -->
 <script>
 const products = [
   ["https://i.postimg.cc/W43w12QH/t-a-m.png","https://i.postimg.cc/gkWy6yCV/t-abyd.png"],
@@ -130,17 +160,21 @@ const products = [
 
 products.forEach((imgs,i)=>{
   document.write(`
-  <div class="product-container">
-    <div class="slider">
-      <img src="${imgs[0]}" class="slide active">
-      <img src="${imgs[1]}" class="slide">
-    </div>
+  <div class="product-card">
+    <div class="product-container">
+      <div class="slider">
+        <img src="${imgs[0]}" class="slide active">
+        <img src="${imgs[1]}" class="slide">
+        <button class="arrow left">‹</button>
+        <button class="arrow right">›</button>
+      </div>
 
-    <div class="product-details">
-      <h1>Decor Piece ${i+1}</h1>
-      <p>Elegant decor piece – shown with and without vase.</p>
-      <div class="price">500 EGP</div>
-      <button class="btn">Add to Cart</button>
+      <div class="product-details">
+        <h1>Decor Piece ${i+1}</h1>
+        <p>Elegant decor piece – shown with and without vase.</p>
+        <div class="price">500 EGP</div>
+        <button class="btn">Add to Cart</button>
+      </div>
     </div>
   </div>
   `);
@@ -152,12 +186,20 @@ products.forEach((imgs,i)=>{
 <script>
 document.querySelectorAll('.slider').forEach(slider=>{
   const slides = slider.querySelectorAll('.slide');
+  const nextBtn = slider.querySelector('.arrow.right');
+  const prevBtn = slider.querySelector('.arrow.left');
   let i = 0;
-  setInterval(()=>{
+
+  function show(n){
     slides[i].classList.remove('active');
-    i = (i+1)%slides.length;
+    i = (n + slides.length) % slides.length;
     slides[i].classList.add('active');
-  },4000);
+  }
+
+  nextBtn.onclick = ()=>show(i+1);
+  prevBtn.onclick = ()=>show(i-1);
+
+  setInterval(()=>show(i+1),7000); // ⬅️ تلقائي كل 7 ثواني
 });
 </script>
 
