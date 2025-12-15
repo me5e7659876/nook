@@ -91,7 +91,19 @@ header{
   cursor:pointer;
   color:#4b0e1f;
   z-index:2;
-  box-shadow:none; /* ✅ إزالة الظل */
+
+  /* ❌ إزالة أي ظل أو تأثير نهائيًا */
+  box-shadow:none !important;
+  filter:none !important;
+  outline:none !important;
+  text-shadow:none !important;
+}
+
+.next-btn:focus,
+.next-btn:active{
+  box-shadow:none !important;
+  filter:none !important;
+  outline:none !important;
 }
 
 .info{
@@ -253,7 +265,11 @@ function renderProducts(lang){
   document.querySelectorAll(".slider").forEach(sl=>{
     const slides=sl.querySelectorAll(".slide");
     let i=0;
-    const next=()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active")};
+    const next=()=>{
+      slides[i].classList.remove("active");
+      i=(i+1)%slides.length;
+      slides[i].classList.add("active");
+    };
     sl.querySelector(".next-btn").onclick=next;
     setInterval(next,7000);
   });
