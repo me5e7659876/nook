@@ -59,6 +59,7 @@ header{
   position:relative;
   width:100%;
   max-width:420px;
+  margin:auto;
 }
 
 .slide{
@@ -69,7 +70,7 @@ header{
 
 .slide.active{display:block}
 
-/* arrows */
+/* arrow (RIGHT ONLY) */
 .arrow{
   position:absolute;
   top:50%;
@@ -81,7 +82,6 @@ header{
   cursor:pointer;
 }
 
-.arrow.left{left:10px}
 .arrow.right{right:10px}
 
 /* ================= DETAILS ================= */
@@ -119,14 +119,21 @@ header{
 
 /* ================= MOBILE ================= */
 @media(max-width:768px){
-  .product-container{flex-direction:column}
-  .slider{max-width:100%}
+  .product-container{
+    flex-direction:column;
+  }
+
+  .slider{
+    max-width:80%;   /* ⬅️ أصغر عشان الجودة */
+  }
+
   .slide{
-    max-height:520px;
+    max-height:380px; /* ⬅️ تقليل الارتفاع */
     object-fit:contain;
   }
+
   .arrow{
-    font-size:44px;
+    font-size:42px;
   }
 }
 </style>
@@ -154,8 +161,6 @@ const products = [
   ["https://i.postimg.cc/LX5Cwk94/ʿ-s-m.jpg","https://i.postimg.cc/NG3t8FDR/ʿ-s.jpg"],
   ["https://i.postimg.cc/Vk42hkqr/f-la-m.png","https://i.postimg.cc/T1r4Jd25/f-la.jpg"],
   ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"],
-
-  /* ===== NEW PRODUCTS ===== */
   ["https://i.postimg.cc/XvSxQMhB/b-m.png","https://i.postimg.cc/gjTHh18G/b.jpg"],
   ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
   ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
@@ -171,7 +176,6 @@ products.forEach((imgs,i)=>{
       <div class="slider">
         <img src="${imgs[0]}" class="slide active">
         <img src="${imgs[1]}" class="slide">
-        <button class="arrow left">‹</button>
         <button class="arrow right">›</button>
       </div>
 
@@ -193,19 +197,16 @@ products.forEach((imgs,i)=>{
 document.querySelectorAll('.slider').forEach(slider=>{
   const slides = slider.querySelectorAll('.slide');
   const nextBtn = slider.querySelector('.arrow.right');
-  const prevBtn = slider.querySelector('.arrow.left');
   let i = 0;
 
-  function show(n){
+  function show(){
     slides[i].classList.remove('active');
-    i = (n + slides.length) % slides.length;
+    i = (i + 1) % slides.length;
     slides[i].classList.add('active');
   }
 
-  nextBtn.onclick = ()=>show(i+1);
-  prevBtn.onclick = ()=>show(i-1);
-
-  setInterval(()=>show(i+1),7000);
+  nextBtn.onclick = show;
+  setInterval(show,7000);
 });
 </script>
 
