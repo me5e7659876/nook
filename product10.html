@@ -40,7 +40,7 @@ header{
 
 /* ================= CARD ================= */
 .product-card{
-  width:fit-content;          /* ⬅️ الكارت على قد المحتوى */
+  width:fit-content;
   margin:30px auto;
   background:rgba(255,255,255,.08);
   border-radius:18px;
@@ -69,7 +69,6 @@ header{
 
 .slide.active{display:block}
 
-/* arrow (RIGHT ONLY) */
 .arrow{
   position:absolute;
   top:50%;
@@ -123,12 +122,8 @@ header{
     gap:18px;
   }
 
-  .product-card{
-    padding:14px;
-  }
-
   .slider{
-    max-width:95%;       /* ⬅️ الصورة أكبر على الموبايل */
+    max-width:95%;
   }
 
   .slide{
@@ -160,10 +155,13 @@ header{
 
 <script>
 const products = [
-  ["https://i.postimg.cc/W43w12QH/t-a-m.png","https://i.postimg.cc/gkWy6yCV/t-abyd.png"],
-  ["https://i.postimg.cc/pL0K7wph/t-b-m.png","https://i.postimg.cc/9fKZXyPD/t-b.png"],
-  ["https://i.postimg.cc/BQpFLrc0/t-h-m.jpg","https://i.postimg.cc/PJ4CDDDr/t-h.jpg"],
-  ["https://i.postimg.cc/3NKR3wqT/t-s-m.png","https://i.postimg.cc/t41gqwBg/t-s.jpg"],
+  /* === PRODUCTS 12 → 15 (بقوا 1 → 4) === */
+  ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
+  ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
+  ["https://i.postimg.cc/13cvtmJy/l-h-m.png","https://i.postimg.cc/50jgnw1y/l-h.jpg"],
+  ["https://i.postimg.cc/FzLZQNY7/l-s-m.jpg","https://i.postimg.cc/BZrpBLzp/l-s.jpg"],
+
+  /* === PRODUCTS 5 → 11 (زي ما هي) === */
   ["https://i.postimg.cc/9XJXGCSX/s-m.jpg","https://i.postimg.cc/QxzXySjB/s.jpg"],
   ["https://i.postimg.cc/WpWjdSFt/th-m.jpg","https://i.postimg.cc/FRF5RJ99/th.png"],
   ["https://i.postimg.cc/s2yb6ZGy/ʿ-a-m.png","https://i.postimg.cc/xTz79PKY/ʿ-a.jpg"],
@@ -171,10 +169,13 @@ const products = [
   ["https://i.postimg.cc/Vk42hkqr/f-la-m.png","https://i.postimg.cc/T1r4Jd25/f-la.jpg"],
   ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"],
   ["https://i.postimg.cc/XvSxQMhB/b-m.png","https://i.postimg.cc/gjTHh18G/b.jpg"],
-  ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
-  ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
-  ["https://i.postimg.cc/13cvtmJy/l-h-m.png","https://i.postimg.cc/50jgnw1y/l-h.jpg"],
-  ["https://i.postimg.cc/FzLZQNY7/l-s-m.jpg","https://i.postimg.cc/BZrpBLzp/l-s.jpg"],
+
+  /* === PRODUCTS 1 → 4 (بقوا 12 → 15) === */
+  ["https://i.postimg.cc/W43w12QH/t-a-m.png","https://i.postimg.cc/gkWy6yCV/t-abyd.png"],
+  ["https://i.postimg.cc/pL0K7wph/t-b-m.png","https://i.postimg.cc/9fKZXyPD/t-b.png"],
+  ["https://i.postimg.cc/BQpFLrc0/t-h-m.jpg","https://i.postimg.cc/PJ4CDDDr/t-h.jpg"],
+  ["https://i.postimg.cc/3NKR3wqT/t-s-m.png","https://i.postimg.cc/t41gqwBg/t-s.jpg"],
+
   ["https://i.postimg.cc/fL37xDjj/y-m.png","https://i.postimg.cc/2S2nMV0d/y.jpg"]
 ];
 
