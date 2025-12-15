@@ -60,7 +60,7 @@ header{
 
 .slider{
   width:100%;
-  height:420px; /* ✅ أصغر */
+  height:420px;
   position:relative;
   overflow:hidden;
 }
@@ -108,7 +108,7 @@ header{
   font-size:15px;
   color:#ffe3eb;
   margin-top:8px;
-  line-height:1.5;
+  line-height:1.6;
 }
 
 .btn{
@@ -119,7 +119,7 @@ header{
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  margin-top:10px;
+  margin-top:12px;
   width:100%;
 }
 
@@ -133,12 +133,8 @@ header{
 
 /* 📱 موبايل */
 @media(max-width:480px){
-  .slider{
-    height:450px; /* ✅ أصغر على التليفون */
-  }
-  .slide{
-    object-fit:contain; /* ✅ الصورة كاملة */
-  }
+  .slider{height:450px}
+  .slide{object-fit:contain}
 }
 </style>
 </head>
@@ -158,26 +154,91 @@ header{
 
 <script>
 const products=[
-  {img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/NM1mCW1N/M.png"],price:1200,name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},desc:{en:"Strong solid wood rack — perfect for plants, décor items.",ar:"رف خشبي صلب — مثالي للنباتات."}},
-  {img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"],price:600,name:{en:"Minimal Modern Rack",ar:"رف عصري بسيط"},desc:{en:"Minimal modern wooden rack.",ar:"رف خشبي عصري."}},
-  {img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"],price:300,name:{en:"Decorative Wooden Stand",ar:"حامل خشبي زخرفي"},desc:{en:"Decorative wooden stand.",ar:"حامل خشبي زخرفي."}},
-  {img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/v8KbScZt/6.png"],price:200,name:{en:"Compact Wooden Shelf",ar:"رف خشبي صغير"},desc:{en:"Compact wooden shelf.",ar:"رف خشبي صغير."}},
-  {img:["https://i.postimg.cc/gc7LqcFd/4.png","https://i.postimg.cc/ZnvRD3tm/10.png"],price:350,name:{en:"Wooden Shelf",ar:"رف خشبي"},desc:{en:"Wooden shelf.",ar:"رف خشبي."}},
-  {img:["https://i.postimg.cc/C588n9K5/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg","https://i.postimg.cc/jjkngRw2/9.png"],price:350,name:{en:"White Wooden Shelf",ar:"رف خشبي أبيض"},desc:{en:"White wooden shelf.",ar:"رف خشبي أبيض."}},
-  {
-    img:["https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png","https://i.postimg.cc/mk2Bf4Wy/N.png"],
-    price:1000,
-    name:{en:"Decorative Wall Hanging",ar:"معلقة حائط ديكورية"},
-    desc:{en:"Elegant decorative wall hanging with flexible plant holder up to 3 meters.",ar:"معلقة حائط ديكورية بحامل زرع فليكسابل حتى 3 متر."}
+{
+  img:["https://i.postimg.cc/x1vQTRF8/46f15070-b4f7-4e91-a4b8-6af19fcb9ccb.jpg","https://i.postimg.cc/NM1mCW1N/M.png"],
+  price:1200,
+  name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},
+  desc:{
+    en:"Premium solid wood rack crafted for durability and elegance. Ideal for displaying plants, décor pieces, and daily essentials.",
+    ar:"رف خشبي صلب بتصميم فاخر وجودة عالية، مثالي لعرض النباتات والديكور والاستخدام اليومي."
   }
+},
+{
+  img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"],
+  price:600,
+  name:{en:"Minimal Modern Rack",ar:"رف عصري بسيط"},
+  desc:{
+    en:"Modern minimalist wooden rack designed to blend seamlessly with contemporary interiors.",
+    ar:"رف خشبي عصري بتصميم بسيط ينسجم مع الديكور الحديث بكل أناقة."
+  }
+},
+{
+  img:["https://i.postimg.cc/ZRmYPqCY/7136c9bf-e47d-4974-a150-9ff32acd9c80.jpg","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"],
+  price:300,
+  name:{en:"Decorative Wooden Stand",ar:"حامل خشبي زخرفي"},
+  desc:{
+    en:"Elegant decorative wooden stand that adds warmth and character to any corner.",
+    ar:"حامل خشبي زخرفي أنيق يضيف لمسة جمالية ودفء لأي مساحة."
+  }
+},
+{
+  img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/v8KbScZt/6.png"],
+  price:200,
+  name:{en:"Compact Wooden Shelf",ar:"رف خشبي صغير"},
+  desc:{
+    en:"Compact wooden shelf perfect for small spaces while maintaining functionality and style.",
+    ar:"رف خشبي صغير مثالي للمساحات الضيقة مع الحفاظ على العملية والشكل الأنيق."
+  }
+},
+{
+  img:["https://i.postimg.cc/gc7LqcFd/4.png","https://i.postimg.cc/ZnvRD3tm/10.png"],
+  price:350,
+  name:{en:"Wooden Shelf",ar:"رف خشبي"},
+  desc:{
+    en:"Versatile wooden shelf suitable for living rooms, bedrooms, and office spaces.",
+    ar:"رف خشبي عملي يناسب غرف المعيشة والنوم والمكاتب."
+  }
+},
+{
+  img:["https://i.postimg.cc/C588n9K5/40a7a8e1-018d-4c59-a885-d5bfe95ec20b.jpg","https://i.postimg.cc/jjkngRw2/9.png"],
+  price:350,
+  name:{en:"White Wooden Shelf",ar:"رف خشبي أبيض"},
+  desc:{
+    en:"White wooden shelf with a clean finish, perfect for bright and modern interiors.",
+    ar:"رف خشبي أبيض بتشطيب ناعم، مثالي للديكورات العصرية والمضيئة."
+  }
+},
+{
+  img:["https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png","https://i.postimg.cc/mk2Bf4Wy/N.png"],
+  price:1000,
+  name:{en:"Decorative Wall Hanging",ar:"معلقة حائط ديكورية"},
+  desc:{
+    en:"Elegant decorative wall hanging with flexible plant holder up to 3 meters.",
+    ar:"معلقة حائط ديكورية بحامل زرع فليكسابل حتى 3 متر."
+  }
+}
 ];
+
+function addToCart(product){
+  let cart=JSON.parse(localStorage.getItem("cart"))||[];
+  const found=cart.find(i=>i.name.en===product.name.en);
+  if(found){
+    found.qty+=1;
+  }else{
+    cart.push({...product,qty:1});
+  }
+  localStorage.setItem("cart",JSON.stringify(cart));
+  alert("Added to cart ✔");
+}
 
 function renderProducts(lang){
   galleryContainer.innerHTML="";
   products.forEach(p=>{
     const item=document.createElement("div");
     item.className="item";
+
     const slides=p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("");
+
     item.innerHTML=`
       <div class="slider">
         ${slides}
@@ -189,6 +250,8 @@ function renderProducts(lang){
         <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>
     `;
+
+    item.querySelector(".btn").onclick=()=>addToCart(p);
     galleryContainer.appendChild(item);
   });
 
@@ -197,7 +260,7 @@ function renderProducts(lang){
     let i=0;
     const next=()=>{slides[i].classList.remove("active");i=(i+1)%slides.length;slides[i].classList.add("active")};
     sl.querySelector(".next-btn").onclick=next;
-    setInterval(next,7000); /* ✅ كل 7 ثواني */
+    setInterval(next,7000);
   });
 }
 
