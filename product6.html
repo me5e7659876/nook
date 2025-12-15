@@ -38,9 +38,7 @@ header{
   cursor:pointer;
 }
 
-/* ===================== */
-/* 🖥️ DESKTOP GALLERY */
-/* ===================== */
+/* 🖥️ Desktop */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -53,7 +51,7 @@ header{
   background:rgba(255,255,255,.1);
   border-radius:14px;
   transition:.3s;
-  max-width:340px; /* ⬅️ أصغر على الديسكتوب */
+  max-width:340px;
   width:100%;
   overflow:hidden;
 }
@@ -62,7 +60,7 @@ header{
 
 .slider{
   width:100%;
-  height:330px; /* ⬅️ أقل على الديسكتوب */
+  height:330px;
   position:relative;
   overflow:hidden;
 }
@@ -80,9 +78,7 @@ header{
 
 .slide.active{opacity:1}
 
-/* ===================== */
-/* ➡️ ARROW ONLY BUTTON */
-/* ===================== */
+/* ➡️ Arrow */
 .next-btn{
   position:absolute;
   top:50%;
@@ -143,10 +139,16 @@ header{
   text-decoration:none;
 }
 
-/* 📱 موبايل */
+/* 📱 Mobile */
 @media(max-width:480px){
   .slider{height:450px}
   .slide{object-fit:contain}
+
+  /* ⬅️ تكبير السهم على الموبايل */
+  .next-btn{
+    font-size:40px;
+    right:14px;
+  }
 }
 </style>
 </head>
