@@ -120,15 +120,13 @@ header{
 /* ================= MOBILE ================= */
 @media(max-width:768px){
   .product-container{flex-direction:column}
-  .slider{
-    max-width:100%;
-  }
+  .slider{max-width:100%}
   .slide{
     max-height:520px;
     object-fit:contain;
   }
   .arrow{
-    font-size:44px; /* ⬅️ سهم أكبر على الموبايل */
+    font-size:44px;
   }
 }
 </style>
@@ -155,7 +153,15 @@ const products = [
   ["https://i.postimg.cc/s2yb6ZGy/ʿ-a-m.png","https://i.postimg.cc/xTz79PKY/ʿ-a.jpg"],
   ["https://i.postimg.cc/LX5Cwk94/ʿ-s-m.jpg","https://i.postimg.cc/NG3t8FDR/ʿ-s.jpg"],
   ["https://i.postimg.cc/Vk42hkqr/f-la-m.png","https://i.postimg.cc/T1r4Jd25/f-la.jpg"],
-  ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"]
+  ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"],
+
+  /* ===== NEW PRODUCTS ===== */
+  ["https://i.postimg.cc/XvSxQMhB/b-m.png","https://i.postimg.cc/gjTHh18G/b.jpg"],
+  ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
+  ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
+  ["https://i.postimg.cc/13cvtmJy/l-h-m.png","https://i.postimg.cc/50jgnw1y/l-h.jpg"],
+  ["https://i.postimg.cc/FzLZQNY7/l-s-m.jpg","https://i.postimg.cc/BZrpBLzp/l-s.jpg"],
+  ["https://i.postimg.cc/fL37xDjj/y-m.png","https://i.postimg.cc/2S2nMV0d/y.jpg"]
 ];
 
 products.forEach((imgs,i)=>{
@@ -199,7 +205,7 @@ document.querySelectorAll('.slider').forEach(slider=>{
   nextBtn.onclick = ()=>show(i+1);
   prevBtn.onclick = ()=>show(i-1);
 
-  setInterval(()=>show(i+1),7000); // ⬅️ تلقائي كل 7 ثواني
+  setInterval(()=>show(i+1),7000);
 });
 </script>
 
