@@ -38,7 +38,7 @@ header{
   cursor:pointer;
 }
 
-/* 🖥️ Desktop */
+/* ===== Desktop Gallery ===== */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -50,10 +50,10 @@ header{
 .item{
   background:rgba(255,255,255,.1);
   border-radius:14px;
-  transition:.3s;
   max-width:340px;
   width:100%;
   overflow:hidden;
+  transition:.3s;
 }
 
 .item:hover{transform:scale(1.03)}
@@ -62,44 +62,37 @@ header{
   width:100%;
   height:330px;
   position:relative;
-  overflow:hidden;
+  background:#3b0b18;
 }
 
 .slide{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;   /* ✅ صورة كاملة على الديسكتوب */
   position:absolute;
   top:0;
   left:0;
   opacity:0;
-  transition:.8s;
+  transition:.7s;
 }
 
 .slide.active{opacity:1}
 
-/* ➡️ Arrow */
+/* Arrow */
 .next-btn{
   position:absolute;
   top:50%;
-  right:10px;
+  right:12px;
   transform:translateY(-50%);
-  background:transparent;
+  background:none;
   border:none;
   font-size:28px;
   cursor:pointer;
   color:#ffb3c6;
   z-index:2;
-  padding:0;
-
-  box-shadow:none !important;
-  outline:none !important;
-  text-shadow:none !important;
 }
 
-.next-btn:hover{
-  color:#ffffff;
-}
+.next-btn:hover{color:#fff}
 
 .info{
   padding:14px;
@@ -139,15 +132,14 @@ header{
   text-decoration:none;
 }
 
-/* 📱 Mobile */
+/* ===== Mobile ===== */
 @media(max-width:480px){
   .slider{height:450px}
   .slide{object-fit:contain}
 
-  /* ⬅️ تكبير السهم على الموبايل */
   .next-btn{
     font-size:40px;
-    right:14px;
+    right:16px;
   }
 }
 </style>
@@ -167,90 +159,73 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-const products=[
+const products = [
 {
   img:["https://i.postimg.cc/26PVtXV7/1765784858126-019b20f9-6ac9-775d-8b1a-f60916749d0f.png","https://i.postimg.cc/NM1mCW1N/M.png"],
   price:1200,
-  name:{en:"Solid Wood Rack",ar:"رف خشبي صلب"},
   desc:{
-    en:"Premium solid wood rack crafted for durability and elegance. Ideal for plants and décor. Price shown is per single piece.",
-    ar:"رف خشبي صلب بتصميم فاخر وجودة عالية، مثالي للنباتات والديكور. السعر الموضح للقطعة الواحدة."
+    en:"Premium solid wood rack crafted for durability and elegance. Price per piece.",
+    ar:"رف خشبي صلب بتصميم فاخر وجودة عالية. السعر للقطعة الواحدة."
   }
 },
 {
   img:["https://i.postimg.cc/qvJh8j6t/855fb229-e1c7-45d1-a1af-3858cbbf45e7.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"],
   price:600,
-  name:{en:"Minimal Modern Rack",ar:"رف عصري بسيط"},
   desc:{
-    en:"Modern minimalist wooden rack designed for contemporary interiors. Price applies to one unit only.",
-    ar:"رف خشبي عصري بتصميم بسيط يناسب الديكور الحديث. السعر خاص بالقطعة الواحدة."
+    en:"Modern minimalist wooden rack. Price per unit.",
+    ar:"رف خشبي عصري بتصميم بسيط. السعر للقطعة الواحدة."
   }
 },
 {
   img:["https://i.postimg.cc/J0N427wy/1765785215422-019b20fe-d974-74e5-8ecd-a17e87f66336.png","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"],
   price:300,
-  name:{en:"Decorative Wooden Stand",ar:"حامل خشبي زخرفي"},
   desc:{
-    en:"Elegant decorative wooden stand adding warmth to any space. Listed price is for one piece.",
-    ar:"حامل خشبي زخرفي أنيق يضيف لمسة جمالية لأي مكان. السعر المعروض للقطعة الواحدة."
+    en:"Decorative wooden stand. Price per piece.",
+    ar:"حامل خشبي زخرفي. السعر للقطعة الواحدة."
   }
 },
 {
   img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/bJQhz6mm/1765785393291-019b2102-483f-7693-9a85-0f55a4fa1161.png"],
   price:200,
-  name:{en:"Compact Wooden Shelf",ar:"رف خشبي صغير"},
   desc:{
-    en:"Compact wooden shelf ideal for small spaces and light décor. Price is calculated per single shelf.",
-    ar:"رف خشبي صغير مناسب للمساحات الضيقة والديكور الخفيف. السعر محسوب للقطعة الواحدة."
+    en:"Compact wooden shelf. Price per shelf.",
+    ar:"رف خشبي صغير. السعر للقطعة الواحدة."
   }
 },
 {
   img:["https://i.postimg.cc/gc7LqcFd/4.png","https://i.postimg.cc/ZnvRD3tm/10.png"],
   price:350,
-  name:{en:"Wooden Shelf",ar:"رف خشبي"},
   desc:{
-    en:"Versatile wooden shelf suitable for multiple rooms. Displayed price refers to one unit.",
-    ar:"رف خشبي عملي يناسب مختلف الغرف. السعر الموضح خاص بالقطعة الواحدة."
+    en:"Wooden shelf suitable for multiple spaces.",
+    ar:"رف خشبي عملي يناسب مختلف المساحات."
   }
 },
 {
   img:["https://i.postimg.cc/sXCk0Y3R/1765785011656-019b20fb-a849-76dc-ac1e-717ba976a99b.png","https://i.postimg.cc/jjkngRw2/9.png"],
   price:350,
-  name:{en:"White Wooden Shelf",ar:"رف خشبي أبيض"},
   desc:{
-    en:"Clean white wooden shelf perfect for modern interiors. Price shown is per piece.",
-    ar:"رف خشبي أبيض بتصميم أنيق للديكورات العصرية. السعر للقطعة الواحدة."
+    en:"White wooden shelf for modern interiors.",
+    ar:"رف خشبي أبيض للديكور العصري."
   }
 },
 {
   img:["https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png","https://i.postimg.cc/mk2Bf4Wy/N.png"],
   price:1000,
-  name:{en:"Decorative Wall Hanging",ar:"معلقة حائط ديكورية"},
   desc:{
-    en:"Elegant decorative wall hanging with flexible plant holder up to 3 meters.",
-    ar:"معلقة حائط ديكورية بحامل زرع فليكسابل حتى 3 متر."
+    en:"Decorative wall hanging with flexible plant holder.",
+    ar:"معلقة حائط ديكورية بحامل زرع فليكسابل."
   }
 }
 ];
-
-function addToCart(product){
-  let cart=JSON.parse(localStorage.getItem("cart"))||[];
-  const found=cart.find(i=>i.name.en===product.name.en);
-  if(found){found.qty+=1;}
-  else{cart.push({...product,qty:1});}
-  localStorage.setItem("cart",JSON.stringify(cart));
-  alert("Added to cart ✔");
-}
 
 function renderProducts(lang){
   galleryContainer.innerHTML="";
   products.forEach(p=>{
     const item=document.createElement("div");
     item.className="item";
-    const slides=p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("");
     item.innerHTML=`
       <div class="slider">
-        ${slides}
+        ${p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("")}
         <button class="next-btn">›</button>
       </div>
       <div class="info">
@@ -259,7 +234,6 @@ function renderProducts(lang){
         <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>
     `;
-    item.querySelector(".btn").onclick=()=>addToCart(p);
     galleryContainer.appendChild(item);
   });
 
