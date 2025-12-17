@@ -40,33 +40,44 @@ header{
 /* HOME GRID */
 .collections-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:1fr;
   gap:25px;
   padding:25px;
 }
 
-.collection-card{
-  background:#5c1228;
-  border-radius:22px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.3s;
+/* DESKTOP: 2 x 2 BIG CARDS */
+@media(min-width:992px){
+  .collections-grid{
+    grid-template-columns:repeat(2, 1fr);
+    max-width:1200px;
+    margin:auto;
+  }
 }
 
-.collection-card:hover{transform:scale(1.04);}
+.collection-card{
+  background:#5c1228;
+  border-radius:26px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.35s;
+}
+
+.collection-card:hover{
+  transform:scale(1.03);
+}
 
 .collection-card img{
   width:100%;
-  height:420px;
+  height:480px;
   object-fit:cover;
 }
 
 .collection-info{
-  padding:10px;
+  padding:14px;
   text-align:center;
   font-family:'Didot',serif;
   color:#ffb3c6;
-  font-size:20px;
+  font-size:22px;
 }
 
 /* INNER PAGE */
@@ -252,7 +263,7 @@ function openCollection(id){
   document.getElementById("homePage").style.display="none";
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
-  scrollTo(0,0);
+  window.scrollTo(0,0);
 }
 
 function goHome(){
