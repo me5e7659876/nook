@@ -45,10 +45,9 @@ header{
   padding:25px;
 }
 
-/* DESKTOP: 2 x 2 BIG CARDS */
 @media(min-width:992px){
   .collections-grid{
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
     max-width:1200px;
     margin:auto;
   }
@@ -62,9 +61,7 @@ header{
   transition:.35s;
 }
 
-.collection-card:hover{
-  transform:scale(1.03);
-}
+.collection-card:hover{transform:scale(1.03);}
 
 .collection-card img{
   width:100%;
@@ -97,7 +94,7 @@ header{
   margin-bottom:20px;
 }
 
-/* PACKAGE GRID */
+/* PACKAGE */
 .package-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -134,10 +131,27 @@ header{
   opacity:.9;
 }
 
-.price{
+/* PACKAGE TOTAL */
+.package-total{
+  margin-top:30px;
+  background:#ffb3c6;
+  color:#4b0e1f;
+  text-align:center;
+  padding:18px;
+  border-radius:18px;
+  font-family:'Didot',serif;
+}
+
+.package-total h3{
+  margin:0;
+  font-size:26px;
+}
+
+.package-total span{
+  display:block;
   margin-top:6px;
-  font-weight:bold;
   font-size:16px;
+  font-family:'Poppins',sans-serif;
 }
 
 /* RESPONSIVE */
@@ -195,7 +209,6 @@ header{
         <h4>Decor Vase</h4>
         <p>Qty: 1</p>
         <p>Size: Medium</p>
-        <div class="price">10000 EGP</div>
       </div>
     </div>
 
@@ -205,7 +218,6 @@ header{
         <h4>Wall Frame</h4>
         <p>Qty: 2</p>
         <p>Size: 40×60 cm</p>
-        <div class="price">10000 EGP</div>
       </div>
     </div>
 
@@ -215,7 +227,6 @@ header{
         <h4>Side Decor</h4>
         <p>Qty: 1</p>
         <p>Size: Large</p>
-        <div class="price">10000 EGP</div>
       </div>
     </div>
 
@@ -225,7 +236,6 @@ header{
         <h4>Flower Pot</h4>
         <p>Qty: 1</p>
         <p>Size: Small</p>
-        <div class="price">10000 EGP</div>
       </div>
     </div>
 
@@ -235,11 +245,17 @@ header{
         <h4>Table Accessory</h4>
         <p>Qty: 3</p>
         <p>Size: Mixed</p>
-        <div class="price">10000 EGP</div>
       </div>
     </div>
 
   </div>
+
+  <!-- TOTAL PACKAGE PRICE -->
+  <div class="package-total">
+    <h3>10000 EGP</h3>
+    <span>Total Package Price</span>
+  </div>
+
 </div>
 
 <!-- OTHER MOODS -->
