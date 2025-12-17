@@ -33,6 +33,8 @@ header{
   border-radius:6px;
   border:none;
   font-weight:bold;
+  background:#ffb3c6;
+  color:#4b0e1f;
 }
 
 /* HOME GRID */
@@ -64,6 +66,7 @@ header{
   text-align:center;
   font-family:'Didot',serif;
   color:#ffb3c6;
+  font-size:20px;
 }
 
 /* INNER PAGE */
@@ -83,7 +86,7 @@ header{
   margin-bottom:20px;
 }
 
-/* PRODUCT PACKAGE */
+/* PACKAGE GRID */
 .package-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -108,7 +111,7 @@ header{
 }
 
 .product-info h4{
-  margin:5px 0;
+  margin:6px 0;
   font-family:'Didot',serif;
   color:#ffb3c6;
   font-size:18px;
@@ -143,22 +146,38 @@ header{
   </select>
 </header>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="homePage" class="collections-grid">
+
   <div class="collection-card" onclick="openCollection('sunflower')">
     <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
     <div class="collection-info">Sun Flower</div>
   </div>
+
+  <div class="collection-card" onclick="openCollection('modern')">
+    <img src="https://i.postimg.cc/JnJ2Lh72/0a473957-0cd9-47e5-9ab4-254bec94bb67.jpg">
+    <div class="collection-info">Modern</div>
+  </div>
+
+  <div class="collection-card" onclick="openCollection('classic')">
+    <img src="https://i.postimg.cc/mrfW0KBw/ec487ce9-c6e5-44f0-a661-2846161e4576.jpg">
+    <div class="collection-info">Classic</div>
+  </div>
+
+  <div class="collection-card" onclick="openCollection('pinky')">
+    <img src="https://i.postimg.cc/fyQ28hsd/af6b0667-18a7-41fc-92c4-76f81747b752.jpg">
+    <div class="collection-info">Pinky</div>
+  </div>
+
 </div>
 
-<!-- SUN FLOWER PACKAGE -->
+<!-- SUN FLOWER -->
 <div id="sunflower" class="collection-page">
   <button class="back-btn" onclick="goHome()">← Back</button>
   <h2>Sun Flower Package</h2>
 
   <div class="package-grid">
 
-    <!-- PRODUCT 1 -->
     <div class="product-card">
       <img src="https://i.postimg.cc/XvsPfK8C/91w-O68u-OXt-L-AC-SX522.jpg">
       <div class="product-info">
@@ -169,7 +188,6 @@ header{
       </div>
     </div>
 
-    <!-- PRODUCT 2 -->
     <div class="product-card">
       <img src="https://i.postimg.cc/jqw1f7Jx/810seek-QIs-L.jpg">
       <div class="product-info">
@@ -180,7 +198,6 @@ header{
       </div>
     </div>
 
-    <!-- PRODUCT 3 -->
     <div class="product-card">
       <img src="https://i.postimg.cc/Kvtsqhf1/1765134279883-019afa32-d906-76b6-8583-fa768de31688.jpg">
       <div class="product-info">
@@ -191,7 +208,6 @@ header{
       </div>
     </div>
 
-    <!-- PRODUCT 4 -->
     <div class="product-card">
       <img src="https://i.postimg.cc/6QbH2WWq/1765780424699-019b20b6-af4c-7fdb-b7d2-58f288f0c788.png">
       <div class="product-info">
@@ -202,7 +218,6 @@ header{
       </div>
     </div>
 
-    <!-- PRODUCT 5 -->
     <div class="product-card">
       <img src="https://i.postimg.cc/yxcnb0FL/1765780554485-019b20b8-afeb-76a4-b7ce-28c25ef269e1.png">
       <div class="product-info">
@@ -213,19 +228,36 @@ header{
       </div>
     </div>
 
-    <!-- باقي الصور بنفس الشكل -->
   </div>
+</div>
+
+<!-- OTHER MOODS -->
+<div id="modern" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Modern</h2>
+</div>
+
+<div id="classic" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Classic</h2>
+</div>
+
+<div id="pinky" class="collection-page">
+  <button class="back-btn" onclick="goHome()">← Back</button>
+  <h2>Pinky</h2>
 </div>
 
 <script>
 function openCollection(id){
-  homePage.style.display="none";
+  document.getElementById("homePage").style.display="none";
+  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
   scrollTo(0,0);
 }
+
 function goHome(){
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
-  homePage.style.display="grid";
+  document.getElementById("homePage").style.display="grid";
 }
 </script>
 
