@@ -94,13 +94,14 @@ header{
   margin-bottom:20px;
 }
 
-/* MOOD IMAGES (NO CARDS) */
+/* MOOD IMAGES (DEFAULT – باقي المودز) */
 .mood-images{
   display:flex;
   flex-direction:column;
   gap:20px;
   margin:25px 0;
 }
+
 .mood-images img{
   width:100%;
   height:auto;
@@ -159,6 +160,7 @@ header{
   margin:0;
   font-size:26px;
 }
+
 .package-total span{
   display:block;
   margin-top:6px;
@@ -168,6 +170,31 @@ header{
 /* RESPONSIVE */
 @media(min-width:768px){
   .product-card img{height:280px;}
+}
+
+/* ============================= */
+/* SUN FLOWER IMAGES ONLY */
+/* ============================= */
+
+#sunflower .mood-images{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  margin:30px 0;
+}
+
+#sunflower .mood-images img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:0;
+  display:block;
+}
+
+@media(max-width:768px){
+  #sunflower .mood-images img{
+    height:260px;
+  }
 }
 </style>
 </head>
@@ -277,6 +304,7 @@ function openCollection(id){
   document.getElementById(id).style.display="block";
   window.scrollTo(0,0);
 }
+
 function goHome(){
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById("homePage").style.display="grid";
