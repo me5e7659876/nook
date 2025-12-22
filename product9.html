@@ -94,7 +94,7 @@ header{
   margin-bottom:20px;
 }
 
-/* DEFAULT MOODS */
+/* DEFAULT باقي المودز */
 .mood-images{
   display:flex;
   flex-direction:column;
@@ -109,7 +109,7 @@ header{
 }
 
 /* ============================= */
-/* SUN FLOWER + PINKY STYLE */
+/* SUN FLOWER + PINKY (FULL IMAGE) */
 /* ============================= */
 
 #sunflower .mood-images,
@@ -123,15 +123,17 @@ header{
 #sunflower .mood-images img,
 #pinky .mood-images img{
   width:100%;
-  height:300px;
-  object-fit:cover;
+  height:320px;
+  object-fit:contain;
+  background:#3b0a1a;
   display:block;
 }
 
+/* موبايل */
 @media(max-width:768px){
   #sunflower .mood-images img,
   #pinky .mood-images img{
-    height:260px;
+    height:220px;
   }
 }
 </style>
