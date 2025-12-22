@@ -94,7 +94,10 @@ header{
   margin-bottom:20px;
 }
 
+/* ============================= */
 /* DEFAULT باقي المودز */
+/* ============================= */
+
 .mood-images{
   display:flex;
   flex-direction:column;
@@ -109,7 +112,7 @@ header{
 }
 
 /* ============================= */
-/* SUN FLOWER + PINKY (FULL IMAGE) */
+/* SUN FLOWER + PINKY (NO CARD) */
 /* ============================= */
 
 #sunflower .mood-images,
@@ -125,7 +128,9 @@ header{
   width:100%;
   height:320px;
   object-fit:contain;
-  background:#3b0a1a;
+  background:transparent;   /* لا كرت */
+  border-radius:0;          /* لا حواف */
+  box-shadow:none;          /* لا ظل */
   display:block;
 }
 
