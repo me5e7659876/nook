@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Outdoor Flooring - Nook Decor</title>
 
-<!-- استيراد الخطوط -->
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,7 +15,6 @@
     color: #fff;
   }
 
-  /* العنوان بخط Didot */
   header {
     background-color: #4b0e1f;
     padding: 20px 15px;
@@ -28,11 +26,10 @@
     font-family: 'Didot', serif !important;
   }
 
-  /* زر تغيير اللغة — أصغر + مسافة واضحة */
   #langSelect {
     position: absolute;
     right: 15px;
-    top: 62%; /* ينزل تحت العنوان ويعمل مسافة  */
+    top: 62%;
     transform: translateY(-50%);
     padding: 3px 6px;
     border: none;
@@ -42,10 +39,8 @@
     background: #ffb3c6;
     color: #4b0e1f;
     font-size: 11px;
-    font-family: 'Poppins', sans-serif;
   }
 
-  /* للموبايل */
   @media (max-width: 768px) {
     #langSelect {
       padding: 2px 5px;
@@ -53,7 +48,6 @@
       right: 10px;
       top: 65%;
     }
-
     header {
       font-size: 26px;
       padding: 18px;
@@ -77,7 +71,6 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-    font-family: 'Poppins', sans-serif;
   }
 
   .slider {
@@ -111,9 +104,7 @@
     color: #fff;
     border: none;
     font-size: 28px;
-    padding: 0;
     cursor: pointer;
-    z-index: 2;
     right: 10px;
   }
 
@@ -130,7 +121,6 @@
     transition: opacity 1s ease, transform 1s ease;
     max-height: 100px;
     overflow: hidden;
-    font-family: 'Poppins', sans-serif;
   }
 
   .product-card:hover p.description {
@@ -138,14 +128,12 @@
     transform: translateX(0);
   }
 
-  .price, .btn {
+  .price {
     margin-top: 5px;
     font-size: 14px;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+    color: #ffb3c6;
   }
-
-  .price { color: #ffb3c6; }
 
   .btn {
     background-color: #ffb3c6;
@@ -173,6 +161,7 @@
 </head>
 
 <body>
+
 <header>
   <span id="headerTitle">Outdoor Flooring</span>
   <select id="langSelect">
@@ -186,8 +175,6 @@
 <a href="./index.html" class="back-home" id="backHome">← Back to Home</a>
 
 <script>
-/* جميع السكربت كما هو بدون تعديل لأنه شغال تمام */
-
 const products = [
   {img:["https://i.postimg.cc/3w3xyp8J/Transformative-Appeal-of-Artificial-Grass-22-Artificial-Grass-Balcony-Designs-for-Urban-Greenery.jpg","https://i.postimg.cc/3RJNqGz0/download-(48).jpg"], price:650, name:{en:"Artificial Grass", ar:"عشب صناعي"}, desc:{en:"High-quality artificial grass perfect for balconies and outdoor areas.", ar:"عشب صناعي عالي الجودة مثالي للشرفات والمساحات الخارجية."}},
   {img:["https://i.postimg.cc/Hs9LchCf/ss.jpg","https://i.postimg.cc/Gmz9NS79/nd-10-13-21v2-60x90.jpg"], price:2400, name:{en:"Outdoor Rug ", ar:"سجادة خارجية "}, desc:{en:"Stylish outdoor rug that enhances your relaxing space beautifully.", ar:"سجادة خارجية أنيقة تعزز مساحتك للاسترخاء بشكل رائع."}},
@@ -202,16 +189,20 @@ const products = [
 function renderProducts(lang){
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
-  products.forEach(p=>{
+
+  products.forEach((p,index)=>{
     const card = document.createElement("div");
     card.className = "product-card";
     card.dataset.name = p.name[lang];
     card.dataset.price = p.price;
     card.dataset.img = p.img[0];
 
-    let sliderImages = p.img
-      .map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`)
-      .join("");
+    let sliderImages = p.img.map((src,i)=>`<img src="${src}" class="${i===0?'active':''}">`).join("");
+
+    const priceText =
+      index === 0
+      ? `${p.price} EGP / m²`
+      : `${p.price} EGP`;
 
     card.innerHTML = `
       <div class="slider">
@@ -220,7 +211,7 @@ function renderProducts(lang){
       </div>
       <h2>${p.name[lang]}</h2>
       <p class="description">${p.desc[lang]}</p>
-      <p class="price">${p.price} EGP</p>
+      <p class="price">${priceText}</p>
       <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     container.appendChild(card);
@@ -229,6 +220,8 @@ function renderProducts(lang){
   attachCartListeners(lang);
   attachSliders();
 }
+
+/* باقي السكربت كما هو بدون أي تعديل */
 
 const langSelectEl = document.getElementById("langSelect");
 langSelectEl.addEventListener("change", ()=>{
@@ -244,19 +237,13 @@ function attachSliders(){
     const images = slider.querySelectorAll("img");
     const nextBtn = slider.querySelector(".next");
     let index = 0;
-
-    function showImage(i){
-      images.forEach((img,idx)=> img.classList.toggle("active", idx===i));
-    }
-
     nextBtn.addEventListener("click", ()=>{
       index=(index+1)%images.length;
-      showImage(index);
+      images.forEach((img,i)=>img.classList.toggle("active",i===index));
     });
-
     setInterval(()=>{
       index=(index+1)%images.length;
-      showImage(index);
+      images.forEach((img,i)=>img.classList.toggle("active",i===index));
     },7000);
   });
 }
@@ -279,7 +266,6 @@ function attachCartListeners(lang){
       let existing = cart.find(p=>p.name===product.name);
       if(existing) existing.qty++;
       else cart.push(product);
-
       saveCart(cart);
 
       btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
