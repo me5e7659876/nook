@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nook Decor</title>
 
 <style>
+/* ------------------------------------ */
+/* FULL DIDOT WEBFONT FOR ALL DEVICES */
+/* ------------------------------------ */
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2');
@@ -17,44 +20,14 @@
   font-weight: 700;
 }
 
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'DidotWeb','Didot','Georgia',serif;
-  background:#000;
+  background:#4b0e1f;
   color:#fff;
 }
 
-/* ================= HEADER ================= */
-header{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  padding:30px 50px;
-  z-index:20;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.brand img{width:36px}
-.brand span{
-  font-size:18px;
-  letter-spacing:4px;
-}
-.header-icons{
-  display:flex;
-  gap:22px;
-  font-size:20px;
-  opacity:.85;
-}
-
-/* ================= HERO ================= */
+/* ================= HERO SLIDER ================= */
 .hero{
   position:relative;
   height:100vh;
@@ -65,7 +38,7 @@ header{
   inset:0;
   opacity:0;
   transform:scale(1.05);
-  transition:opacity 1.6s ease, transform 6s ease;
+  transition:opacity 1.4s ease, transform 6s ease;
 }
 .hero-slide.active{
   opacity:1;
@@ -80,13 +53,10 @@ header{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    rgba(0,0,0,.55),
-    rgba(0,0,0,.15)
-  );
+  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.15));
 }
 
-/* ================= HERO CONTENT ================= */
+/* HERO CONTENT */
 .hero-content{
   position:absolute;
   inset:0;
@@ -98,25 +68,22 @@ header{
   text-align:center;
 }
 .hero-content h1{
-  font-size:68px;
+  font-size:64px;
   letter-spacing:8px;
-  font-weight:400;
   margin:0;
 }
 .hero-content p{
-  margin:18px 0 40px;
   font-family:'Poppins',sans-serif;
   letter-spacing:4px;
   font-size:13px;
   opacity:.85;
+  margin:20px 0 40px;
 }
-
-/* BUTTON */
 .hero-btn{
   padding:14px 38px;
   border:1px solid rgba(255,255,255,.6);
-  text-decoration:none;
   color:#fff;
+  text-decoration:none;
   letter-spacing:3px;
   font-size:12px;
   transition:.4s;
@@ -126,32 +93,32 @@ header{
   color:#000;
 }
 
-/* ================= ARROWS ================= */
+/* ARROWS */
 .hero-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  z-index:3;
-  font-size:26px;
+  font-size:28px;
   opacity:.35;
   cursor:pointer;
-  padding:14px;
+  padding:16px;
+  z-index:3;
 }
-.hero-arrow:hover{opacity:.9}
+.hero-arrow:hover{opacity:1}
 .hero-arrow.left{left:30px}
 .hero-arrow.right{right:30px}
 
-/* ================= SCROLL DOWN ================= */
+/* SCROLL DOWN */
 .scroll-down{
   position:absolute;
   bottom:28px;
   left:50%;
   transform:translateX(-50%);
-  z-index:4;
   font-size:26px;
   opacity:.7;
   animation:float 2s infinite;
   cursor:pointer;
+  z-index:4;
 }
 @keyframes float{
   0%{transform:translate(-50%,0)}
@@ -159,54 +126,59 @@ header{
   100%{transform:translate(-50%,0)}
 }
 
-/* ================= CONTENT ================= */
-.section{
-  padding:80px 50px;
-  background:#4b0e1f;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:40px;
-}
-.card img{
-  width:100%;
-  height:380px;
-  object-fit:cover;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  padding:60px 20px;
+/* ================= HEADER (كما هو) ================= */
+header{
+  background-color:#4b0e1f;
+  padding:20px;
   text-align:center;
-  font-size:12px;
-  letter-spacing:2px;
-  background:#000;
-  color:#aaa;
+  position:relative;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+}
+header img.logo{
+  width:200px;
+  animation:floatLogo 3s ease-in-out infinite;
+}
+@keyframes floatLogo{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
+}
+.header-icons{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:28px;
+  display:flex;
+  gap:15px;
+}
+.menu-icon{
+  position:absolute;
+  top:20px;
+  left:20px;
+  font-size:34px;
+  cursor:pointer;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= باقي ستايلك زي ما هو ================= */
+.container{display:flex;padding:20px;gap:20px;margin-top:40px}
+.sidebar{width:230px;background:#3b0a1a;padding:20px;border-radius:12px}
+.content{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card img{width:100%;height:260px;border-radius:16px;object-fit:cover}
+footer{text-align:center;padding:40px;background:#4b0e1f;font-size:13px}
+
 @media(max-width:768px){
-  header{padding:20px}
-  .hero-content h1{font-size:38px}
   .hero{height:85vh}
+  .hero-content h1{font-size:38px}
+  header img.logo{width:150px}
+  .sidebar{display:none}
+  .content{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png">
-    <span>NOOK DECOR</span>
-  </div>
-  <div class="header-icons">
-    <span>🛒</span>
-    <span>👤</span>
-  </div>
-</header>
-
+<!-- HERO SLIDER -->
 <section class="hero">
   <div class="hero-slide active">
     <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
@@ -218,50 +190,38 @@ footer{
   <div class="hero-content">
     <h1>NOOK DECOR</h1>
     <p>LUXURY INTERIOR LIFESTYLE</p>
-    <a href="#collections" class="hero-btn">DISCOVER COLLECTION</a>
+    <a href="#content" class="hero-btn">DISCOVER</a>
   </div>
 
   <div class="hero-arrow left" onclick="prevSlide()">‹</div>
   <div class="hero-arrow right" onclick="nextSlide()">›</div>
-
-  <div class="scroll-down" onclick="scrollNext()">⌄</div>
+  <div class="scroll-down" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">⌄</div>
 </section>
 
-<section id="collections" class="section">
-  <div class="cards">
-    <div class="card">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-    </div>
-    <div class="card">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-    </div>
-  </div>
-</section>
+<!-- HEADER -->
+<header>
+  <div class="menu-icon">☰</div>
+  <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
+  <div class="header-icons">🔍 🛒 👤</div>
+</header>
 
-<footer>© 2025 NOOK DECOR</footer>
+<!-- باقي الموقع كما هو -->
+<div class="container" id="content">
+  <!-- sidebar + content عندك -->
+</div>
+
+<footer>© 2025 Nook Decor</footer>
 
 <script>
-let slides = document.querySelectorAll('.hero-slide');
-let index = 0;
-
-function showSlide(i){
+let slides=document.querySelectorAll('.hero-slide');
+let i=0;
+function showSlide(n){
   slides.forEach(s=>s.classList.remove('active'));
-  slides[i].classList.add('active');
+  slides[n].classList.add('active');
 }
-function nextSlide(){
-  index = (index+1)%slides.length;
-  showSlide(index);
-}
-function prevSlide(){
-  index = (index-1+slides.length)%slides.length;
-  showSlide(index);
-}
+function nextSlide(){i=(i+1)%slides.length;showSlide(i);}
+function prevSlide(){i=(i-1+slides.length)%slides.length;showSlide(i);}
 setInterval(nextSlide,10000);
-
-function scrollNext(){
-  document.getElementById('collections')
-    .scrollIntoView({behavior:'smooth'});
-}
 </script>
 
 </body>
