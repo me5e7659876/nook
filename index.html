@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nook Decor</title>
 
 <style>
@@ -17,60 +17,60 @@
   font-weight: 700;
 }
 
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'DidotWeb','Didot','Georgia',serif;
-  background:#4b0e1f;
+  background:#000;
   color:#fff;
 }
 
-/* ================= HEADER (GLOBAL STYLE) ================= */
+/* ================= HEADER ================= */
 header{
   position:absolute;
   top:0;
   left:0;
   width:100%;
+  padding:30px 50px;
   z-index:20;
-  padding:26px 40px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
-
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
 }
-.brand img{
-  width:34px;
-}
+.brand img{width:36px}
 .brand span{
   font-size:18px;
-  letter-spacing:3px;
-  font-weight:400;
+  letter-spacing:4px;
 }
-
 .header-icons{
   display:flex;
-  gap:18px;
+  gap:22px;
   font-size:20px;
-  opacity:.9;
+  opacity:.85;
 }
 
 /* ================= HERO ================= */
 .hero{
   position:relative;
-  height:85vh;
+  height:100vh;
   overflow:hidden;
 }
 .hero-slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity 1.2s ease;
+  transform:scale(1.05);
+  transition:opacity 1.6s ease, transform 6s ease;
 }
-.hero-slide.active{opacity:1}
+.hero-slide.active{
+  opacity:1;
+  transform:scale(1);
+}
 .hero-slide img{
   width:100%;
   height:100%;
@@ -81,12 +81,12 @@ header{
   position:absolute;
   inset:0;
   background:linear-gradient(
-    rgba(0,0,0,.45),
+    rgba(0,0,0,.55),
     rgba(0,0,0,.15)
   );
 }
 
-/* TEXT CENTER */
+/* ================= HERO CONTENT ================= */
 .hero-content{
   position:absolute;
   inset:0;
@@ -98,86 +98,98 @@ header{
   text-align:center;
 }
 .hero-content h1{
-  font-size:62px;
-  letter-spacing:6px;
+  font-size:68px;
+  letter-spacing:8px;
   font-weight:400;
   margin:0;
 }
 .hero-content p{
+  margin:18px 0 40px;
   font-family:'Poppins',sans-serif;
-  letter-spacing:3px;
+  letter-spacing:4px;
   font-size:13px;
-  margin-top:14px;
   opacity:.85;
 }
 
-/* ARROWS */
+/* BUTTON */
+.hero-btn{
+  padding:14px 38px;
+  border:1px solid rgba(255,255,255,.6);
+  text-decoration:none;
+  color:#fff;
+  letter-spacing:3px;
+  font-size:12px;
+  transition:.4s;
+}
+.hero-btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* ================= ARROWS ================= */
 .hero-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   z-index:3;
-  font-size:24px;
-  color:#fff;
-  opacity:.6;
+  font-size:26px;
+  opacity:.35;
   cursor:pointer;
-  padding:10px;
+  padding:14px;
 }
-.hero-arrow:hover{opacity:1}
+.hero-arrow:hover{opacity:.9}
 .hero-arrow.left{left:30px}
 .hero-arrow.right{right:30px}
 
-/* ================= CONTENT ================= */
-.container{
-  display:flex;
-  gap:30px;
-  padding:60px 40px;
+/* ================= SCROLL DOWN ================= */
+.scroll-down{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:4;
+  font-size:26px;
+  opacity:.7;
+  animation:float 2s infinite;
+  cursor:pointer;
 }
-.sidebar{
-  width:240px;
+@keyframes float{
+  0%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,12px)}
+  100%{transform:translate(-50%,0)}
 }
-.categories{
-  list-style:none;
-  padding:0;
-}
-.categories a{
-  display:block;
-  padding:10px 0;
-  color:#fff;
-  text-decoration:none;
-  letter-spacing:1px;
-  opacity:.8;
-}
-.categories a:hover{opacity:1}
 
-.content{
-  flex:1;
+/* ================= CONTENT ================= */
+.section{
+  padding:80px 50px;
+  background:#4b0e1f;
+}
+.cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
 }
 .card img{
   width:100%;
-  height:320px;
+  height:380px;
   object-fit:cover;
 }
 
 /* ================= FOOTER ================= */
 footer{
+  padding:60px 20px;
   text-align:center;
-  padding:50px 20px;
   font-size:12px;
-  letter-spacing:1px;
+  letter-spacing:2px;
+  background:#000;
   color:#aaa;
 }
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
   header{padding:20px}
-  .hero{height:65vh}
-  .hero-content h1{font-size:36px}
-  .sidebar{display:none}
-  .container{padding:40px 20px}
+  .hero-content h1{font-size:38px}
+  .hero{height:85vh}
 }
 </style>
 </head>
@@ -195,7 +207,6 @@ footer{
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-slide active">
     <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
@@ -207,31 +218,25 @@ footer{
   <div class="hero-content">
     <h1>NOOK DECOR</h1>
     <p>LUXURY INTERIOR LIFESTYLE</p>
+    <a href="#collections" class="hero-btn">DISCOVER COLLECTION</a>
   </div>
 
   <div class="hero-arrow left" onclick="prevSlide()">‹</div>
   <div class="hero-arrow right" onclick="nextSlide()">›</div>
+
+  <div class="scroll-down" onclick="scrollNext()">⌄</div>
 </section>
 
-<div class="container">
-  <aside class="sidebar">
-    <ul class="categories">
-      <li><a>ALL</a></li>
-      <li><a>MOODS</a></li>
-      <li><a>SPACE PACKAGES</a></li>
-      <li><a>OUTDOOR FLOORING</a></li>
-    </ul>
-  </aside>
-
-  <main class="content">
-    <a class="card">
+<section id="collections" class="section">
+  <div class="cards">
+    <div class="card">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-    </a>
-    <a class="card">
+    </div>
+    <div class="card">
       <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-    </a>
-  </main>
-</div>
+    </div>
+  </div>
+</section>
 
 <footer>© 2025 NOOK DECOR</footer>
 
@@ -252,6 +257,11 @@ function prevSlide(){
   showSlide(index);
 }
 setInterval(nextSlide,10000);
+
+function scrollNext(){
+  document.getElementById('collections')
+    .scrollIntoView({behavior:'smooth'});
+}
 </script>
 
 </body>
