@@ -37,47 +37,35 @@ header{
   position:relative;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
 }
-
 .header-inner{
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
 }
-
-/* text logo */
 .text-logo{
   position:absolute;
   left:60px;
   font-size:22px;
-  letter-spacing:1px;
 }
-
-/* image logo */
-header img.logo{
-  width:120px;
-}
-
-/* icons */
+header img.logo{width:120px}
 .header-icons{
   position:absolute;
   right:20px;
   font-size:24px;
   display:flex;
-  gap:15px;
+  gap:15px
 }
-
-/* menu */
 .menu-icon{
   position:absolute;
   left:20px;
   top:50%;
   transform:translateY(-50%);
   font-size:30px;
-  cursor:pointer;
+  cursor:pointer
 }
 
-/* ---------------- HERO SLIDER ---------------- */
+/* ---------------- HERO ---------------- */
 .hero{
   position:relative;
   width:100%;
@@ -107,21 +95,14 @@ header img.logo{
   left:6%;
   bottom:18%;
 }
-.hero-content p{
-  font-size:22px;
-  margin-bottom:6px;
-}
-.hero-content h1{
-  font-size:56px;
-  margin-bottom:18px;
-}
+.hero-content p{font-size:22px}
+.hero-content h1{font-size:56px;margin:12px 0}
 .hero-content button{
   padding:14px 34px;
   border:none;
   border-radius:30px;
   background:#fff;
-  font-size:16px;
-  cursor:pointer;
+  cursor:pointer
 }
 
 /* dots */
@@ -131,13 +112,13 @@ header img.logo{
   left:50%;
   transform:translateX(-50%);
   display:flex;
-  gap:10px;
+  gap:10px
 }
 .dot{
   width:30px;
   height:4px;
   background:#bbb;
-  cursor:pointer;
+  cursor:pointer
 }
 .dot.active{background:#fff}
 
@@ -147,8 +128,7 @@ header img.logo{
   top:50%;
   transform:translateY(-50%);
   font-size:32px;
-  cursor:pointer;
-  padding:10px;
+  cursor:pointer
 }
 .arrow.left{left:20px}
 .arrow.right{right:20px}
@@ -175,15 +155,26 @@ header img.logo{
 .content{
   flex:1;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px
 }
-.card{text-align:center;text-decoration:none;color:#fff}
+
+/* ✅ SMALL CARDS LIKE MOBILE */
+.card{
+  text-align:center;
+  text-decoration:none;
+  color:#fff
+}
 .card img{
   width:100%;
-  height:260px;
-  border-radius:16px;
+  height:180px;        /* أصغر */
+  border-radius:12px;  /* أنعم */
   object-fit:cover
+}
+.card h3{
+  font-size:16px;
+  margin-top:8px;
+  font-weight:400
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -207,17 +198,13 @@ footer{
 
 <header>
   <div class="menu-icon">☰</div>
-
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
-
     <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
-
     <div class="header-icons">🔍 🛒 👤</div>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="slide active">
     <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
@@ -248,7 +235,6 @@ footer{
   </div>
 </section>
 
-<!-- CONTENT -->
 <div class="container">
   <aside class="sidebar">
     <ul class="categories">
@@ -274,7 +260,6 @@ footer{
 const slides=document.querySelectorAll('.slide');
 const dots=document.querySelectorAll('.dot');
 let index=0;
-
 function showSlide(i){
   slides.forEach(s=>s.classList.remove('active'));
   dots.forEach(d=>d.classList.remove('active'));
