@@ -6,72 +6,43 @@
 <title>Nook Decor</title>
 
 <style>
-/* ------------------------------------ */
-/* FULL DIDOT WEBFONT FOR ALL DEVICES */
-/* ------------------------------------ */
 @font-face {
   font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2');
   font-weight: 400;
 }
 @font-face {
   font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2');
   font-weight: 700;
 }
 
 body{
-  font-family:'DidotWeb','Didot','Georgia',serif;
   margin:0;
+  font-family:'DidotWeb','Didot','Georgia',serif;
   background:#4b0e1f;
   color:#fff;
 }
 
-:root{
-  --accent-hover: rgba(255,179,198,0.12);
-}
-
 /* HEADER */
 header{
-  background:#4b0e1f;
-  padding:20px;
+  position:absolute;
+  top:0;
+  width:100%;
+  z-index:10;
+  padding:25px;
   text-align:center;
-  position:relative;
-  box-shadow:0 8px 20px rgba(0,0,0,.5);
 }
-header img.logo{
-  width:200px;
-}
-header .title-text{
-  font-size:38px;
-  font-weight:700;
-}
-
-.menu-icon{
-  position:absolute;
-  left:20px;
-  top:20px;
-  font-size:34px;
-  cursor:pointer;
-}
-.header-icons{
-  position:absolute;
-  right:20px;
-  top:20px;
-  display:flex;
-  gap:15px;
-  font-size:26px;
+header img{
+  width:180px;
 }
 
 /* =============================== */
-/* 🔥 HERO SLIDER – EL SALLAB STYLE */
+/* HERO – EL SALLAB STYLE */
 /* =============================== */
 .hero{
   position:relative;
-  width:100%;
-  height:72vh;
+  height:100vh;
   overflow:hidden;
 }
 .hero-slide{
@@ -80,9 +51,7 @@ header .title-text{
   opacity:0;
   transition:opacity 1s ease;
 }
-.hero-slide.active{
-  opacity:1;
-}
+.hero-slide.active{opacity:1}
 .hero-slide img{
   width:100%;
   height:100%;
@@ -95,120 +64,86 @@ header .title-text{
   background:rgba(0,0,0,.35);
 }
 
-/* TEXT */
+/* CENTER TEXT */
 .hero-content{
   position:absolute;
   inset:0;
+  z-index:2;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  z-index:2;
+  flex-direction:column;
   text-align:center;
 }
 .hero-content h1{
-  font-size:64px;
-  letter-spacing:4px;
+  font-size:72px;
+  letter-spacing:6px;
   margin:0;
 }
-.hero-content p{
+.hero-content span{
   font-family:'Poppins',sans-serif;
-  letter-spacing:2px;
+  letter-spacing:3px;
   opacity:.9;
 }
 
-/* ARROWS */
+/* SIDE ARROWS */
 .hero-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   z-index:3;
-  font-size:26px;
-  background:rgba(255,255,255,.25);
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  font-size:28px;
   cursor:pointer;
-  user-select:none;
+  padding:10px;
+  opacity:.8;
 }
-.hero-arrow:hover{
-  background:rgba(255,255,255,.4);
+.hero-arrow:hover{opacity:1}
+.hero-arrow.left{left:30px}
+.hero-arrow.right{right:30px}
+
+/* SCROLL DOWN ARROW */
+.scroll-down{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:4;
+  font-size:26px;
+  animation:float 1.8s infinite;
+  cursor:pointer;
 }
-.hero-arrow.left{left:20px;}
-.hero-arrow.right{right:20px;}
+@keyframes float{
+  0%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,10px)}
+  100%{transform:translate(-50%,0)}
+}
 
 @media(max-width:768px){
-  .hero{height:60vh}
-  .hero-content h1{font-size:38px}
+  .hero-content h1{font-size:40px}
 }
 
-/* باقي الموقع */
+/* CONTENT */
 .top-bar{
-  display:flex;
-  justify-content:center;
-  margin:15px 0;
+  padding:30px;
+  text-align:center;
 }
 .search-bar{
-  display:flex;
+  display:inline-flex;
   background:#3b0a1a;
-  padding:8px 12px;
-  border-radius:10px;
+  padding:10px 14px;
+  border-radius:12px;
 }
 .search-bar input{
-  border:none;
   background:none;
-  color:#fff;
+  border:none;
   outline:none;
+  color:#fff;
   width:260px;
 }
 
-.container{
-  display:flex;
-  gap:20px;
-  padding:20px;
-}
-.sidebar{
-  width:230px;
-  background:#3b0a1a;
-  padding:20px;
-  border-radius:12px;
-}
-.categories{
-  list-style:none;
-  padding:0;
-}
-.categories a{
-  display:block;
-  padding:8px 10px;
-  border-radius:8px;
-  color:#fff;
-  text-decoration:none;
-}
-.categories a:hover{
-  background:var(--accent-hover);
-}
-.content{
-  flex:1;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card img{
-  width:100%;
-  height:260px;
-  border-radius:16px;
-  object-fit:cover;
-}
-@media(max-width:768px){
-  .sidebar{display:none}
-  .content{grid-template-columns:repeat(2,1fr)}
-}
 footer{
   text-align:center;
-  padding:40px;
+  padding:50px 20px;
   font-size:13px;
   color:#aaa;
 }
@@ -217,17 +152,11 @@ footer{
 
 <body>
 
-<div class="menu-icon">☰</div>
-
 <header>
-  <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
-  <div class="title-text">Nook Decor</div>
-  <div class="header-icons">
-    <span>🔍</span><span>🛒</span><span>👤</span>
-  </div>
+  <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png">
 </header>
 
-<!-- 🔥 HERO SLIDER -->
+<!-- 🔥 HERO -->
 <section class="hero">
   <div class="hero-slide active">
     <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
@@ -238,39 +167,20 @@ footer{
 
   <div class="hero-content">
     <h1>NOOK DECOR</h1>
-    <p>Luxury Interior Lifestyle</p>
+    <span>LUXURY INTERIOR</span>
   </div>
 
   <div class="hero-arrow left" onclick="prevSlide()">‹</div>
   <div class="hero-arrow right" onclick="nextSlide()">›</div>
+
+  <!-- SCROLL -->
+  <div class="scroll-down" onclick="scrollNext()">⌄</div>
 </section>
 
-<div class="top-bar">
+<div id="next-section" class="top-bar">
   <div class="search-bar">
     <input placeholder="Search for anything...">
   </div>
-</div>
-
-<div class="container">
-  <aside class="sidebar">
-    <ul class="categories">
-      <li><a>All</a></li>
-      <li><a>Moods</a></li>
-      <li><a>Space Packages</a></li>
-      <li><a>Outdoor Flooring</a></li>
-    </ul>
-  </aside>
-
-  <main class="content">
-    <a class="card">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a class="card">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
-    </a>
-  </main>
 </div>
 
 <footer>© 2025 Nook Decor</footer>
@@ -283,18 +193,20 @@ function showSlide(i){
   slides.forEach(s=>s.classList.remove('active'));
   slides[i].classList.add('active');
 }
-
 function nextSlide(){
-  index = (index + 1) % slides.length;
+  index = (index+1)%slides.length;
   showSlide(index);
 }
-
 function prevSlide(){
-  index = (index - 1 + slides.length) % slides.length;
+  index = (index-1+slides.length)%slides.length;
   showSlide(index);
 }
-
 setInterval(nextSlide,10000);
+
+function scrollNext(){
+  document.getElementById('next-section')
+    .scrollIntoView({behavior:'smooth'});
+}
 </script>
 
 </body>
