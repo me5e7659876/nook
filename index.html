@@ -6,6 +6,7 @@
 <title>Nook Decor</title>
 
 <style>
+/* ---------------- FONT ---------------- */
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2');
@@ -17,224 +18,248 @@
   font-weight: 700;
 }
 
+/* ---------------- BASE ---------------- */
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:'DidotWeb','Didot','Georgia',serif;
-  margin:0;
+  font-family:'DidotWeb','Georgia',serif;
   background:#4b0e1f;
   color:#fff;
 }
-
-/* ================== ELSALLAB HERO ================== */
-.hero{
-  position:relative;
-  width:100%;
-  height:75vh;
-  background:#000;
-  overflow:hidden;
-}
-.hero img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.5),
-    rgba(0,0,0,.2),
-    rgba(0,0,0,.55)
-  );
-}
-.hero-content{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:2;
-}
-.hero-content h1{
-  font-size:56px;
-  letter-spacing:6px;
-  margin:0;
-}
-.hero-content p{
-  font-family:'Poppins',sans-serif;
-  letter-spacing:3px;
-  font-size:13px;
-  margin-top:16px;
-}
-.scroll-arrow{
-  position:absolute;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:30px;
-  animation:float 2s infinite;
-  cursor:pointer;
-  z-index:3;
-}
-@keyframes float{
-  0%{transform:translate(-50%,0)}
-  50%{transform:translate(-50%,10px)}
-  100%{transform:translate(-50%,0)}
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
 }
 
-/* ================= HEADER ================= */
+/* ---------------- HEADER ---------------- */
 header{
   background:#4b0e1f;
   padding:20px;
   text-align:center;
   position:relative;
-  box-shadow:0 8px 20px rgba(0,0,0,.5);
+  box-shadow:0 8px 20px rgba(0,0,0,.5)
+}
+header img.logo{width:180px}
+.header-icons{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:26px;
+  display:flex;
+  gap:15px
 }
 .menu-icon{
   position:absolute;
-  left:20px;
   top:20px;
+  left:20px;
   font-size:34px;
+  cursor:pointer
+}
+
+/* ---------------- HERO SLIDER ---------------- */
+.hero{
+  position:relative;
+  width:100%;
+  height:85vh;
+  overflow:hidden;
+}
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:.8s ease-in-out;
+}
+.slide.active{opacity:1}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.35);
+}
+.hero-content{
+  position:absolute;
+  left:6%;
+  bottom:18%;
+}
+.hero-content p{
+  font-size:22px;
+  margin-bottom:6px;
+}
+.hero-content h1{
+  font-size:56px;
+  margin-bottom:18px;
+}
+.hero-content button{
+  padding:14px 34px;
+  border:none;
+  border-radius:30px;
+  background:#fff;
+  font-size:16px;
   cursor:pointer;
 }
-header img.logo{
-  width:200px;
-  animation:floatLogo 3s infinite ease-in-out;
-}
-@keyframes floatLogo{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
-  100%{transform:translateY(0)}
-}
-.header-icons{
+
+/* dots */
+.dots{
   position:absolute;
-  right:20px;
-  top:20px;
+  bottom:35px;
+  left:50%;
+  transform:translateX(-50%);
   display:flex;
-  gap:15px;
-  font-size:28px;
+  gap:10px;
 }
+.dot{
+  width:30px;
+  height:4px;
+  background:#bbb;
+  cursor:pointer;
+}
+.dot.active{background:#fff}
 
-/* ================= SEARCH ================= */
-.top-bar{
-  display:none;
-  justify-content:center;
-  margin:15px 0;
+/* arrows */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  cursor:pointer;
+  padding:10px;
 }
-.search-bar{
-  background:#3b0a1a;
-  padding:8px 12px;
-  border-radius:10px;
-}
-.search-bar input{
-  background:none;
-  border:none;
-  color:#fff;
-  outline:none;
-  width:260px;
-}
+.arrow.left{left:20px}
+.arrow.right{right:20px}
 
-/* ================= CONTENT ================= */
-.container{
-  display:flex;
-  gap:20px;
-  padding:20px;
-  margin-top:40px;
-}
+/* ---------------- SEARCH + CONTENT ---------------- */
+.top-bar{margin:20px;text-align:center}
+.container{display:flex;padding:20px;gap:20px}
 .sidebar{
   width:230px;
-  background:#3b0a1a;
   padding:20px;
-  border-radius:12px;
+  background:#3b0a1a;
+  border-radius:12px
 }
-.categories{
-  list-style:none;
-  padding:0;
-}
+.categories{list-style:none}
 .categories a{
   display:block;
-  padding:8px 10px;
-  border-radius:8px;
+  padding:8px;
   color:#fff;
   text-decoration:none;
+  border-radius:8px
 }
-.categories a:hover{
-  background:rgba(255,179,198,0.12);
-}
+.categories a:hover{background:var(--accent-hover)}
+.categories a.active{outline:2px solid var(--active-outline)}
+
 .content{
   flex:1;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  gap:20px
 }
+.card{text-align:center;text-decoration:none;color:#fff}
 .card img{
   width:100%;
   height:260px;
   border-radius:16px;
-  object-fit:cover;
-}
-.card h3{
-  text-align:center;
+  object-fit:cover
 }
 
-/* ================= FOOTER ================= */
+/* ---------------- FOOTER ---------------- */
 footer{
-  text-align:center;
-  padding:40px;
-  font-size:13px;
-  color:#aaa;
+  background:#4b0e1f;
+  padding:40px 20px;
+  text-align:center
 }
+footer a{color:#bbb;text-decoration:none}
+footer a:hover{color:#fff}
 
-/* ================= MOBILE ================= */
+/* ---------------- MOBILE ---------------- */
 @media(max-width:768px){
-  .hero{height:55vh}
-  .hero-content h1{font-size:34px}
-  header img.logo{width:150px}
+  .hero{height:65vh}
+  .hero-content h1{font-size:38px}
   .sidebar{display:none}
-  .content{grid-template-columns:repeat(2,1fr)}
-  .card img{height:200px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
-  <div class="hero-content">
-    <h1>NOOK DECOR</h1>
-    <p>LUXURY INTERIOR LIFESTYLE</p>
-  </div>
-  <div class="scroll-arrow" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">⌄</div>
-</section>
+<div class="menu-icon">☰</div>
 
 <header>
-  <div class="menu-icon">☰</div>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
   <div class="header-icons">🔍 🛒 👤</div>
 </header>
 
-<div class="container" id="main">
+<!-- HERO -->
+<section class="hero">
+  <div class="slide active">
+    <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="arrow left" onclick="prevSlide()">❮</div>
+  <div class="arrow right" onclick="nextSlide()">❯</div>
+
+  <div class="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+  </div>
+</section>
+
+<!-- ORIGINAL CONTENT -->
+<div class="container">
   <aside class="sidebar">
     <ul class="categories">
-      <li><a>All</a></li>
+      <li><a class="active">All</a></li>
       <li><a>Moods</a></li>
-      <li><a>Space Packages</a></li>
-      <li><a>Outdoor Flooring</a></li>
+      <li><a>Vases</a></li>
+      <li><a>Lighting</a></li>
     </ul>
   </aside>
 
   <main class="content">
-    <a class="card"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
+    <a class="card"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
+    <a class="card"><img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"><h3>Cushions</h3></a>
+    <a class="card"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
   </main>
 </div>
 
-<footer>© 2025 Nook Decor</footer>
+<footer>
+  <p>© 2025 Nook Decor</p>
+</footer>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+let index=0;
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[i].classList.add('active');
+  dots[i].classList.add('active');
+}
+function nextSlide(){index=(index+1)%slides.length;showSlide(index)}
+function prevSlide(){index=(index-1+slides.length)%slides.length;showSlide(index)}
+function goToSlide(i){index=i;showSlide(index)}
+setInterval(nextSlide,5000);
+</script>
 
 </body>
 </html>
