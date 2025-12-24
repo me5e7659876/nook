@@ -25,41 +25,58 @@ body{
   background:#4b0e1f;
   color:#fff;
 }
-:root{
-  --accent-hover: rgba(255,179,198,0.12);
-  --active-outline: rgba(255,179,198,0.28);
-}
 
 /* ---------------- HEADER ---------------- */
 header{
   background:#4b0e1f;
-  padding:20px;
-  text-align:center;
-  position:relative;
-  box-shadow:0 8px 20px rgba(0,0,0,.5)
-}
-header img.logo{width:180px}
-.header-icons{
-  position:absolute;
-  top:20px;
-  right:20px;
-  font-size:26px;
+  padding:10px 30px; /* أقل مسافة */
   display:flex;
-  gap:15px
-}
-.menu-icon{
-  position:absolute;
-  top:20px;
-  left:20px;
-  font-size:34px;
-  cursor:pointer
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  box-shadow:0 6px 16px rgba(0,0,0,.4);
 }
 
-/* ---------------- HERO SLIDER ---------------- */
+/* left brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand img{
+  width:90px; /* لوجو أصغر */
+}
+.brand span{
+  font-size:26px;
+  font-weight:700;
+}
+
+/* menu */
+nav{
+  display:flex;
+  gap:22px;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  opacity:.85;
+}
+nav a:hover{opacity:1}
+
+/* icons */
+.header-icons{
+  display:flex;
+  gap:15px;
+  font-size:24px;
+}
+
+/* ---------------- HERO ---------------- */
 .hero{
   position:relative;
   width:100%;
-  height:85vh;
+  height:80vh;
+  margin-top:0; /* مفيش فراغ */
   overflow:hidden;
 }
 .slide{
@@ -84,13 +101,10 @@ header img.logo{width:180px}
   left:6%;
   bottom:18%;
 }
-.hero-content p{
-  font-size:22px;
-  margin-bottom:6px;
-}
+.hero-content p{font-size:22px}
 .hero-content h1{
   font-size:56px;
-  margin-bottom:18px;
+  margin:12px 0 18px;
 }
 .hero-content button{
   padding:14px 34px;
@@ -130,14 +144,17 @@ header img.logo{width:180px}
 .arrow.left{left:20px}
 .arrow.right{right:20px}
 
-/* ---------------- SEARCH + CONTENT ---------------- */
-.top-bar{margin:20px;text-align:center}
-.container{display:flex;padding:20px;gap:20px}
+/* ---------------- CONTENT ---------------- */
+.container{
+  display:flex;
+  padding:30px;
+  gap:20px;
+}
 .sidebar{
   width:230px;
   padding:20px;
   background:#3b0a1a;
-  border-radius:12px
+  border-radius:12px;
 }
 .categories{list-style:none}
 .categories a{
@@ -145,36 +162,34 @@ header img.logo{width:180px}
   padding:8px;
   color:#fff;
   text-decoration:none;
-  border-radius:8px
+  border-radius:8px;
 }
-.categories a:hover{background:var(--accent-hover)}
-.categories a.active{outline:2px solid var(--active-outline)}
+.categories a:hover{background:rgba(255,179,198,.12)}
 
 .content{
   flex:1;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px
+  gap:20px;
 }
 .card{text-align:center;text-decoration:none;color:#fff}
 .card img{
   width:100%;
   height:260px;
   border-radius:16px;
-  object-fit:cover
+  object-fit:cover;
 }
 
 /* ---------------- FOOTER ---------------- */
 footer{
   background:#4b0e1f;
   padding:40px 20px;
-  text-align:center
+  text-align:center;
 }
-footer a{color:#bbb;text-decoration:none}
-footer a:hover{color:#fff}
 
 /* ---------------- MOBILE ---------------- */
 @media(max-width:768px){
+  nav{display:none}
   .hero{height:65vh}
   .hero-content h1{font-size:38px}
   .sidebar{display:none}
@@ -184,14 +199,24 @@ footer a:hover{color:#fff}
 
 <body>
 
-<div class="menu-icon">☰</div>
-
 <header>
-  <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
-  <div class="header-icons">🔍 🛒 👤</div>
+  <div class="brand">
+    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png">
+    <span>Nook Decor</span>
+  </div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Categories</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="header-icons">
+    🔍 🛒 👤
+  </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="slide active">
     <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
@@ -222,33 +247,10 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<!-- ORIGINAL CONTENT -->
-<div class="container">
-  <aside class="sidebar">
-    <ul class="categories">
-      <li><a class="active">All</a></li>
-      <li><a>Moods</a></li>
-      <li><a>Vases</a></li>
-      <li><a>Lighting</a></li>
-    </ul>
-  </aside>
-
-  <main class="content">
-    <a class="card"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"><h3>Cushions</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
-  </main>
-</div>
-
-<footer>
-  <p>© 2025 Nook Decor</p>
-</footer>
-
 <script>
 const slides=document.querySelectorAll('.slide');
 const dots=document.querySelectorAll('.dot');
 let index=0;
-
 function showSlide(i){
   slides.forEach(s=>s.classList.remove('active'));
   dots.forEach(d=>d.classList.remove('active'));
