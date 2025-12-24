@@ -6,9 +6,6 @@
 <title>Nook Decor</title>
 
 <style>
-/* ------------------------------------ */
-/* FULL DIDOT WEBFONT FOR ALL DEVICES */
-/* ------------------------------------ */
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2');
@@ -21,122 +18,91 @@
 }
 
 body{
-  margin:0;
   font-family:'DidotWeb','Didot','Georgia',serif;
+  margin:0;
   background:#4b0e1f;
   color:#fff;
 }
 
-/* ================= HERO SLIDER ================= */
+/* ================== ELSALLAB HERO ================== */
 .hero{
   position:relative;
-  height:100vh;
+  width:100%;
+  height:75vh;
+  background:#000;
   overflow:hidden;
 }
-.hero-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transform:scale(1.05);
-  transition:opacity 1.4s ease, transform 6s ease;
-}
-.hero-slide.active{
-  opacity:1;
-  transform:scale(1);
-}
-.hero-slide img{
+.hero img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
 }
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.15));
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.5),
+    rgba(0,0,0,.2),
+    rgba(0,0,0,.55)
+  );
 }
-
-/* HERO CONTENT */
 .hero-content{
   position:absolute;
   inset:0;
-  z-index:2;
   display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
+  z-index:2;
 }
 .hero-content h1{
-  font-size:64px;
-  letter-spacing:8px;
+  font-size:56px;
+  letter-spacing:6px;
   margin:0;
 }
 .hero-content p{
   font-family:'Poppins',sans-serif;
-  letter-spacing:4px;
-  font-size:13px;
-  opacity:.85;
-  margin:20px 0 40px;
-}
-.hero-btn{
-  padding:14px 38px;
-  border:1px solid rgba(255,255,255,.6);
-  color:#fff;
-  text-decoration:none;
   letter-spacing:3px;
-  font-size:12px;
-  transition:.4s;
+  font-size:13px;
+  margin-top:16px;
 }
-.hero-btn:hover{
-  background:#fff;
-  color:#000;
-}
-
-/* ARROWS */
-.hero-arrow{
+.scroll-arrow{
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:28px;
-  opacity:.35;
-  cursor:pointer;
-  padding:16px;
-  z-index:3;
-}
-.hero-arrow:hover{opacity:1}
-.hero-arrow.left{left:30px}
-.hero-arrow.right{right:30px}
-
-/* SCROLL DOWN */
-.scroll-down{
-  position:absolute;
-  bottom:28px;
+  bottom:25px;
   left:50%;
   transform:translateX(-50%);
-  font-size:26px;
-  opacity:.7;
+  font-size:30px;
   animation:float 2s infinite;
   cursor:pointer;
-  z-index:4;
+  z-index:3;
 }
 @keyframes float{
   0%{transform:translate(-50%,0)}
-  50%{transform:translate(-50%,12px)}
+  50%{transform:translate(-50%,10px)}
   100%{transform:translate(-50%,0)}
 }
 
-/* ================= HEADER (كما هو) ================= */
+/* ================= HEADER ================= */
 header{
-  background-color:#4b0e1f;
+  background:#4b0e1f;
   padding:20px;
   text-align:center;
   position:relative;
-  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+  box-shadow:0 8px 20px rgba(0,0,0,.5);
+}
+.menu-icon{
+  position:absolute;
+  left:20px;
+  top:20px;
+  font-size:34px;
+  cursor:pointer;
 }
 header img.logo{
   width:200px;
-  animation:floatLogo 3s ease-in-out infinite;
+  animation:floatLogo 3s infinite ease-in-out;
 }
 @keyframes floatLogo{
   0%{transform:translateY(0)}
@@ -145,84 +111,130 @@ header img.logo{
 }
 .header-icons{
   position:absolute;
-  top:20px;
   right:20px;
-  font-size:28px;
+  top:20px;
   display:flex;
   gap:15px;
-}
-.menu-icon{
-  position:absolute;
-  top:20px;
-  left:20px;
-  font-size:34px;
-  cursor:pointer;
+  font-size:28px;
 }
 
-/* ================= باقي ستايلك زي ما هو ================= */
-.container{display:flex;padding:20px;gap:20px;margin-top:40px}
-.sidebar{width:230px;background:#3b0a1a;padding:20px;border-radius:12px}
-.content{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card img{width:100%;height:260px;border-radius:16px;object-fit:cover}
-footer{text-align:center;padding:40px;background:#4b0e1f;font-size:13px}
+/* ================= SEARCH ================= */
+.top-bar{
+  display:none;
+  justify-content:center;
+  margin:15px 0;
+}
+.search-bar{
+  background:#3b0a1a;
+  padding:8px 12px;
+  border-radius:10px;
+}
+.search-bar input{
+  background:none;
+  border:none;
+  color:#fff;
+  outline:none;
+  width:260px;
+}
 
+/* ================= CONTENT ================= */
+.container{
+  display:flex;
+  gap:20px;
+  padding:20px;
+  margin-top:40px;
+}
+.sidebar{
+  width:230px;
+  background:#3b0a1a;
+  padding:20px;
+  border-radius:12px;
+}
+.categories{
+  list-style:none;
+  padding:0;
+}
+.categories a{
+  display:block;
+  padding:8px 10px;
+  border-radius:8px;
+  color:#fff;
+  text-decoration:none;
+}
+.categories a:hover{
+  background:rgba(255,179,198,0.12);
+}
+.content{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card img{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  object-fit:cover;
+}
+.card h3{
+  text-align:center;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:40px;
+  font-size:13px;
+  color:#aaa;
+}
+
+/* ================= MOBILE ================= */
 @media(max-width:768px){
-  .hero{height:85vh}
-  .hero-content h1{font-size:38px}
+  .hero{height:55vh}
+  .hero-content h1{font-size:34px}
   header img.logo{width:150px}
   .sidebar{display:none}
   .content{grid-template-columns:repeat(2,1fr)}
+  .card img{height:200px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO SLIDER -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-slide active">
-    <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
-  </div>
-  <div class="hero-slide">
-    <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
-  </div>
-
+  <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
   <div class="hero-content">
     <h1>NOOK DECOR</h1>
     <p>LUXURY INTERIOR LIFESTYLE</p>
-    <a href="#content" class="hero-btn">DISCOVER</a>
   </div>
-
-  <div class="hero-arrow left" onclick="prevSlide()">‹</div>
-  <div class="hero-arrow right" onclick="nextSlide()">›</div>
-  <div class="scroll-down" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">⌄</div>
+  <div class="scroll-arrow" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">⌄</div>
 </section>
 
-<!-- HEADER -->
 <header>
   <div class="menu-icon">☰</div>
   <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
   <div class="header-icons">🔍 🛒 👤</div>
 </header>
 
-<!-- باقي الموقع كما هو -->
-<div class="container" id="content">
-  <!-- sidebar + content عندك -->
+<div class="container" id="main">
+  <aside class="sidebar">
+    <ul class="categories">
+      <li><a>All</a></li>
+      <li><a>Moods</a></li>
+      <li><a>Space Packages</a></li>
+      <li><a>Outdoor Flooring</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <a class="card"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
+    <a class="card"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
+  </main>
 </div>
 
 <footer>© 2025 Nook Decor</footer>
-
-<script>
-let slides=document.querySelectorAll('.hero-slide');
-let i=0;
-function showSlide(n){
-  slides.forEach(s=>s.classList.remove('active'));
-  slides[n].classList.add('active');
-}
-function nextSlide(){i=(i+1)%slides.length;showSlide(i);}
-function prevSlide(){i=(i-1+slides.length)%slides.length;showSlide(i);}
-setInterval(nextSlide,10000);
-</script>
 
 </body>
 </html>
