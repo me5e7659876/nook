@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nook Decor</title>
 
 <style>
@@ -19,22 +19,23 @@
 }
 
 /* ---------------- BASE ---------------- */
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'DidotWeb','Georgia',serif;
   background:#4b0e1f;
   color:#fff;
 }
-a{text-decoration:none;color:inherit;}
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
+}
 
 /* ---------------- HEADER ---------------- */
 header{
   background:#4b0e1f;
-  padding:12px 20px;
+  padding:10px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position:relative;
 }
 .header-inner{
   display:flex;
@@ -42,59 +43,44 @@ header{
   justify-content:center;
   position:relative;
 }
-.menu-icon{
-  position:absolute;
-  left:20px;
-  font-size:30px;
-  cursor:pointer;
-}
 .text-logo{
   position:absolute;
-  left:70px;
+  left:60px;
   font-size:22px;
   letter-spacing:1px;
 }
 .logo{
-  width:110px;
+  width:120px;
 }
 .header-icons{
   position:absolute;
   right:20px;
+  font-size:22px;
   display:flex;
   gap:15px;
-  font-size:22px;
+}
+.menu-icon{
+  position:absolute;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:30px;
   cursor:pointer;
 }
-
-/* ---------------- SEARCH ---------------- */
-.top-bar{display:none;background:#3b0a1a;padding:10px;}
-.search-bar{
-  max-width:500px;
-  margin:auto;
-  display:flex;
-  background:#fff;
-  border-radius:30px;
-  padding:6px 12px;
-  align-items:center;
-}
-.search-bar input{
-  flex:1;
-  border:none;
-  outline:none;
-}
-.search-bar i{cursor:pointer}
 
 /* ---------------- HERO ---------------- */
 .hero{
   position:relative;
-  height:80vh;
+  width:100%;
+  height:85vh;
   overflow:hidden;
+  margin-top:6px;
 }
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:.8s;
+  transition:opacity .8s ease-in-out;
 }
 .slide.active{opacity:1}
 .slide img{
@@ -112,100 +98,56 @@ header{
   left:6%;
   bottom:18%;
 }
-.hero-content h1{font-size:54px;margin:10px 0;}
-.hero-content p{font-size:20px;}
+.hero-content p{
+  font-size:22px;
+  letter-spacing:1px;
+}
+.hero-content h1{
+  font-size:56px;
+  margin:12px 0;
+}
 .hero-content button{
-  padding:12px 30px;
+  padding:14px 34px;
   border:none;
   border-radius:30px;
+  background:#fff;
+  font-size:16px;
   cursor:pointer;
 }
 
-/* arrows & dots */
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:32px;
-  cursor:pointer;
-}
-.arrow.left{left:20px;}
-.arrow.right{right:20px;}
+/* ---------------- SLIDER CONTROLS ---------------- */
 .dots{
   position:absolute;
-  bottom:25px;
+  bottom:35px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:10px;
 }
 .dot{
-  width:28px;
+  width:30px;
   height:4px;
-  background:#aaa;
+  background:#bbb;
   cursor:pointer;
 }
-.dot.active{background:#fff;}
+.dot.active{background:#fff}
 
-/* ---------------- LAYOUT ---------------- */
-.container{
-  display:flex;
-  gap:20px;
-  padding:20px;
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  cursor:pointer;
+  user-select:none;
 }
-.sidebar{
-  width:230px;
-  background:#3b0a1a;
-  padding:20px;
-  border-radius:14px;
-}
-.categories li{list-style:none;}
-.categories a{
-  display:block;
-  padding:8px;
-  border-radius:8px;
-  margin-bottom:4px;
-}
-.categories a:hover,
-.categories a.active{
-  background:rgba(255,255,255,.1);
-}
-
-/* ---------------- CARDS ---------------- */
-.content{
-  flex:1;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:18px;
-}
-.card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:14px;
-}
-.card h3{
-  margin-top:8px;
-  font-size:15px;
-  text-align:center;
-}
-
-/* ---------------- FOOTER ---------------- */
-footer{
-  padding:40px 20px;
-  text-align:center;
-}
-.footer-col a{
-  display:block;
-  margin:6px 0;
-  font-size:14px;
-}
+.arrow.left{left:20px}
+.arrow.right{right:20px}
 
 /* ---------------- MOBILE ---------------- */
 @media(max-width:768px){
-  .sidebar{display:none;}
-  .text-logo{display:none;}
-  .hero{height:60vh;}
+  .hero{height:65vh}
+  .hero-content h1{font-size:38px}
+  .text-logo{display:none}
 }
 </style>
 </head>
@@ -213,25 +155,26 @@ footer{
 <body>
 
 <header>
-  <div class="menu-icon" onclick="alert('Menu clicked');">☰</div>
+  <div class="menu-icon">☰</div>
+
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
-    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
+
+    <img
+      src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png"
+      alt="Nook Decor Logo"
+      class="logo"
+    />
+
     <div class="header-icons">
-      <span id="searchBtn">🔍</span>
-      🛒 👤
+      🔍 🛒 👤
     </div>
   </div>
 </header>
 
-<div class="top-bar" id="searchBarContainer">
-  <div class="search-bar">
-    <input id="searchInput" placeholder="Search...">
-    <i id="clearSearch">✖</i>
-  </div>
-</div>
-
+<!-- ---------------- HERO / SLIDER ---------------- -->
 <section class="hero">
+
   <div class="slide active">
     <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
     <div class="hero-overlay"></div>
@@ -259,101 +202,160 @@ footer{
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
   </div>
+
 </section>
 
-<div class="container">
-  <aside class="sidebar">
-    <ul class="categories">
-      <li><a class="active" data-cat="All">All</a></li>
-      <li><a data-cat="Moods">Moods</a></li>
-      <li><a data-cat="Space Packages">Space Packages</a></li>
-      <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-      <li><a data-cat="Vases">Vases</a></li>
-      <li><a data-cat="Lighting">Lighting</a></li>
-      <li><a data-cat="Glass Candles">Glass Candles</a></li>
-      <li><a data-cat="Cushions">Cushions</a></li>
-      <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-      <li><a data-cat="Games">Games</a></li>
-      <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
-      <li><a data-cat="Wall Art">Wall Art</a></li>
-    </ul>
-  </aside>
-
-  <main class="content">
-    <a class="card" data-cat="Moods"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
-    <a class="card" data-cat="Space Packages"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
-    <a class="card" data-cat="Outdoor Flooring"><img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png"><h3>Outdoor Flooring</h3></a>
-    <a class="card" data-cat="Vases"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
-    <a class="card" data-cat="Lighting"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
-    <a class="card" data-cat="Glass Candles"><img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png"><h3>Glass Candles</h3></a>
-    <a class="card" data-cat="Cushions"><img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"><h3>Cushions</h3></a>
-    <a class="card" data-cat="Wooden Rack"><img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg"><h3>Wooden Rack</h3></a>
-    <a class="card" data-cat="Games"><img src="https://i.postimg.cc/6624GtwG/chess.jpg"><h3>Games</h3></a>
-    <a class="card" data-cat="Glass and Small Vases"><img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg"><h3>Glass and Small Vases</h3></a>
-    <a class="card" data-cat="Wall Art"><img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png"><h3>Wall Art</h3></a>
-    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
-  </main>
-</div>
-
-<footer>
-  <div class="footer-col">
-    <h4>Information</h4>
-    <a href="#">Terms & Conditions</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Shipping Policy</a>
-    <a href="#">Return & Refund</a>
-  </div>
-  <p>© 2025 Nook Decor</p>
-</footer>
-
 <script>
-/* Slider */
-const slides=document.querySelectorAll('.slide');
-const dots=document.querySelectorAll('.dot');
-let index=0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let index = 0;
+
 function showSlide(i){
-  slides.forEach(s=>s.classList.remove('active'));
-  dots.forEach(d=>d.classList.remove('active'));
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-function nextSlide(){index=(index+1)%slides.length;showSlide(index);}
-function prevSlide(){index=(index-1+slides.length)%slides.length;showSlide(index);}
-function goToSlide(i){index=i;showSlide(index);}
-setInterval(nextSlide,5000);
 
-/* Search filter */
-const searchBtn=document.getElementById("searchBtn");
-const searchBarContainer=document.getElementById("searchBarContainer");
-const searchInput=document.getElementById("searchInput");
-const clearSearch=document.getElementById("clearSearch");
-const cards=document.querySelectorAll(".card");
-const noResults=document.getElementById("noResults");
-
-searchBtn.onclick=()=>searchBarContainer.style.display=
-searchBarContainer.style.display==="block"?"none":"block";
-
-clearSearch.onclick=()=>{
-  searchInput.value="";
-  filterCards();
-};
-
-searchInput.addEventListener("input",filterCards);
-
-function filterCards(){
-  const query=searchInput.value.toLowerCase();
-  let visible=0;
-  cards.forEach(card=>{
-    const title=card.querySelector("h3").innerText.toLowerCase();
-    const cat=card.dataset.cat.toLowerCase();
-    if(title.includes(query)||cat.includes(query)){
-      card.style.display="block";
-      visible++;
-    } else { card.style.display="none"; }
-  });
-  noResults.setAttribute("aria-hidden",visible===0?"false":"true");
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
 }
+
+function prevSlide(){
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+function goToSlide(i){
+  index = i;
+  showSlide(index);
+}
+
+setInterval(nextSlide, 5000);
 </script>
 
+</body>
+</html>
+<div class="menu-icon" onclick="openMenu()">☰</div>
+<div id="menuOverlay">
+  <a class="closebtn" onclick="closeMenu()">×</a>
+  <div class="overlay-content" id="menuLinks">
+    <a data-cat="All">All</a>
+    <a data-cat="Moods">Moods</a>
+    <a data-cat="Space Packages">Space Packages</a>
+    <a data-cat="Outdoor Flooring">Outdoor Flooring</a>
+    <a data-cat="Vases">Vases</a>
+    <a data-cat="Lighting">Lighting</a>
+    <a data-cat="Glass Candles">Glass Candles</a>
+    <a data-cat="Cushions">Cushions</a>
+    <a data-cat="Wooden Rack">Wooden Rack</a>
+    <a data-cat="Games">Games</a>
+    <a data-cat="Glass and Small Vases">Glass and Small Vases</a>
+    <a data-cat="Wall Art">Wall Art</a>
+  </div>
+</div>
+<header>
+  <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo">
+  <div class="title-text" id="titleText">Nook Decor</div>
+  <div class="header-icons">
+    <span id="searchBtn">🔍</span>
+    <a href="cart.html">🛒</a>
+    <a href="login.html" class="user-icon">👤</a>
+  </div>
+</header>
+<div class="top-bar" id="searchBarContainer">
+  <div class="search-bar">
+    <input id="searchInput" placeholder="Search for anything..." />
+    <i id="clearSearch">✖</i>
+  </div>
+</div>
+<div class="mood-text" id="moodText">Create your own mood</div>
+<div class="container">
+<aside class="sidebar" id="desktopSidebar">
+<h2 id="categoriesTitle">Categories</h2>
+<ul class="categories" id="categoriesList">
+  <li><a class="active" data-cat="All">All</a></li>
+  <li><a data-cat="Moods">Moods</a></li>
+  <li><a data-cat="Space Packages">Space Packages</a></li>
+  <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
+  <li><a data-cat="Vases">Vases</a></li>
+  <li><a data-cat="Lighting">Lighting</a></li>
+  <li><a data-cat="Glass Candles">Glass Candles</a></li>
+  <li><a data-cat="Cushions">Cushions</a></li>
+  <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
+  <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
+  <li><a data-cat="Games">Games</a></li>
+  <li><a data-cat="Wall Art">Wall Art</a></li>
+</ul>
+</aside>
+<main class="content" id="content">
+<a href="product9.html" class="card" data-cat="Moods">
+<img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
+<h3>Moods</h3>
+</a>
+<a href="product11.html" class="card" data-cat="Space Packages">
+<img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
+<h3>Space Packages</h3>
+</a>
+<a href="product1.html" class="card" data-cat="Vases">
+<img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
+<h3>Vases</h3>
+</a>
+<a href="product2.html" class="card" data-cat="Cushions">
+<img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
+<h3>Cushions</h3>
+</a>
+<a href="product3.html" class="card" data-cat="Lighting">
+<img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
+<h3>Lighting</h3>
+</a>
+<a href="product4.html" class="card" data-cat="Glass Candles">
+<img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
+<h3>Glass Candles</h3>
+</a>
+<a href="product5.html" class="card" data-cat="Outdoor Flooring">
+<img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
+<h3>Outdoor Flooring</h3>
+</a>
+<a href="product6.html" class="card" data-cat="Wooden Rack">
+<img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
+<h3>Wooden Rack</h3>
+</a>
+<a href="product7.html" class="card" data-cat="Wall Art">
+<img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
+<h3>Wall Art</h3>
+</a>
+<a href="product8.html" class="card" data-cat="Games">
+<img src="https://i.postimg.cc/6624GtwG/chess.jpg">
+<h3>Games</h3>
+</a>
+<a href="product10.html" class="card" data-cat="Glass and Small Vases">
+<img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
+<h3>Glass and Small Vases</h3>
+</a>
+<div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
+</main>
+</div>
+<footer>
+  <div class="footer-container">
+    <div class="footer-col" style="text-align:left; display:flex; flex-direction:column; gap:8px;">
+      <h4>Information</h4>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="shipping.html">Shipping Policy</a>
+      <a href="returns.html">Return & Refund</a>
+    </div>
+  </div>
+  <p class="copy">© 2025 Nook Decor. All Rights Reserved</p>
+</footer>
+<script>
+function openMenu(){document.getElementById("menuOverlay").style.height="100%";}
+function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
+document.getElementById("searchBtn").onclick=function(){const bar=document.getElementById("searchBarContainer");bar.style.display=bar.style.display==="none"?"block":"none";};
+document.getElementById("clearSearch").onclick=function(){document.getElementById("searchInput").value="";filterCards();};
+document.getElementById("searchInput").addEventListener("input",filterCards);
+function filterCards(){const query=document.getElementById("searchInput").value.toLowerCase();const cards=document.querySelectorAll(".card");let visible=0;cards.forEach(card=>{const title=card.querySelector("h3").innerText.toLowerCase();const cat=card.dataset.cat.toLowerCase();if(title.includes(query)||cat.includes(query)){card.style.display="block";visible++;}else{card.style.display="none";}});document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");}
+</script>
 </body>
 </html>
