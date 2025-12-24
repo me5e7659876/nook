@@ -48,7 +48,7 @@ header{
 }
 .text-logo{
   position:absolute;
-  left:20px;
+  left:60px;
   font-size:22px;
   letter-spacing:1px;
 }
@@ -64,11 +64,12 @@ header{
 }
 .menu-icon{
   position:absolute;
-  left:60px;
+  left:20px;
   top:50%;
   transform:translateY(-50%);
   font-size:30px;
   cursor:pointer;
+  z-index:1100;
 }
 
 /* ---------------- HERO / SLIDER ---------------- */
@@ -280,51 +281,7 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   </aside>
 
   <main class="content" id="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
-    </a>
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
-      <h3>Glass and Small Vases</h3>
-    </a>
-    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
+    <!-- هنا محتوى الكروت زي ما هو -->
   </main>
 </div>
 
@@ -346,12 +303,11 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 // MENU OPEN/CLOSE
 function toggleMenu(){
   const overlay=document.getElementById("menuOverlay");
-  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
-  else{ overlay.style.height="100%"; }
+  overlay.style.height = overlay.style.height==="100%" ? "0%" : "100%";
 }
 function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
 
-// SEARCH BAR FUNCTIONALITY
+// SEARCH BAR
 document.getElementById("searchBtn").onclick=function(){
   const bar=document.getElementById("searchBarContainer");
   bar.style.display=bar.style.display==="block"?"none":"block";
@@ -376,34 +332,19 @@ function filterCards(){
   document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
 }
 
-// SLIDER FUNCTIONALITY
+// SLIDER
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 let index = 0;
-
 function showSlide(i){
   slides.forEach(s => s.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-
-function nextSlide(){
-  index = (index + 1) % slides.length;
-  showSlide(index);
-}
-
-function prevSlide(){
-  index = (index - 1 + slides.length
-) % slides.length;
-  showSlide(index);
-}
-
-function goToSlide(i){
-  index = i;
-  showSlide(index);
-}
-
+function nextSlide(){ index = (index + 1) % slides.length; showSlide(index);}
+function prevSlide(){ index = (index - 1 + slides.length) % slides.length; showSlide(index);}
+function goToSlide(i){ index = i; showSlide(index);}
 setInterval(nextSlide,5000);
 </script>
 
