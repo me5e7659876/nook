@@ -224,6 +224,15 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 <!-- HERO SLIDER -->
 <section class="hero">
   <div class="slide active">
+    <img src="https://i.postimg.cc/Znj95nnk/4054a32e-e6b5-4db0-8612-ae69e18dc3da.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+  <div class="slide">
     <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -246,6 +255,7 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   <div class="dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
   </div>
 </section>
 
@@ -256,7 +266,6 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
     <i id="clearSearch">✖</i>
   </div>
 </div>
-
 <div class="mood-text" id="moodText">Create your own mood</div>
 
 <!-- MAIN CONTENT -->
@@ -346,12 +355,11 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 // MENU OPEN/CLOSE
 function toggleMenu(){
   const overlay=document.getElementById("menuOverlay");
-  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
-  else{ overlay.style.height="100%"; }
+  overlay.style.height = overlay.style.height==="100%" ? "0%" : "100%";
 }
 function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
 
-// SEARCH BAR FUNCTIONALITY
+// SEARCH BAR
 document.getElementById("searchBtn").onclick=function(){
   const bar=document.getElementById("searchBarContainer");
   bar.style.display=bar.style.display==="block"?"none":"block";
@@ -376,36 +384,30 @@ function filterCards(){
   document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
 }
 
-// SLIDER FUNCTIONALITY
+// SLIDER
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 let index = 0;
-
 function showSlide(i){
   slides.forEach(s => s.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
-  slides[i].classList.add('active');
+  slides[i].
+slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-
 function nextSlide(){
   index = (index + 1) % slides.length;
   showSlide(index);
 }
-
 function prevSlide(){
-  index = (index - 1 + slides.length
-) % slides.length;
+  index = (index - 1 + slides.length ) % slides.length;
   showSlide(index);
 }
-
 function goToSlide(i){
   index = i;
   showSlide(index);
 }
-
 setInterval(nextSlide,5000);
 </script>
-
 </body>
 </html>
