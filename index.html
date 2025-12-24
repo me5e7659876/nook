@@ -49,6 +49,7 @@ header{
 .text-logo{
   position:absolute;
   left:20px;
+  top:10px;
   font-size:22px;
   letter-spacing:1px;
 }
@@ -64,11 +65,11 @@ header{
 }
 .menu-icon{
   position:absolute;
-  left:60px;
-  top:50%;
-  transform:translateY(-50%);
+  left:10px;
+  top:10px;
   font-size:30px;
   cursor:pointer;
+  z-index:1001;
 }
 
 /* ---------------- HERO / SLIDER ---------------- */
@@ -266,6 +267,7 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
     <i id="clearSearch">✖</i>
   </div>
 </div>
+
 <div class="mood-text" id="moodText">Create your own mood</div>
 
 <!-- MAIN CONTENT -->
@@ -355,11 +357,12 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 // MENU OPEN/CLOSE
 function toggleMenu(){
   const overlay=document.getElementById("menuOverlay");
-  overlay.style.height = overlay.style.height==="100%" ? "0%" : "100%";
+  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
+  else{ overlay.style.height="100%"; }
 }
 function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
 
-// SEARCH BAR
+// SEARCH BAR FUNCTIONALITY
 document.getElementById("searchBtn").onclick=function(){
   const bar=document.getElementById("searchBarContainer");
   bar.style.display=bar.style.display==="block"?"none":"block";
@@ -381,33 +384,39 @@ function filterCards(){
       visible++;
     } else { card.style.display="none"; }
   });
-  document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
+  document.getElementById("noResults").setAttribute("
+aria-hidden",visible===0?"false":"true");
 }
 
-// SLIDER
+// SLIDER FUNCTIONALITY
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 let index = 0;
+
 function showSlide(i){
   slides.forEach(s => s.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
-  slides[i].
-slides[i].classList.add('active');
+  slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
+
 function nextSlide(){
   index = (index + 1) % slides.length;
   showSlide(index);
 }
+
 function prevSlide(){
   index = (index - 1 + slides.length ) % slides.length;
   showSlide(index);
 }
+
 function goToSlide(i){
   index = i;
   showSlide(index);
 }
+
 setInterval(nextSlide,5000);
 </script>
+
 </body>
 </html>
