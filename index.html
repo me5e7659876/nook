@@ -18,53 +18,57 @@
 }
 
 body{
-  font-family:'DidotWeb','Didot','Georgia',serif;
   margin:0;
+  font-family:'DidotWeb','Didot','Georgia',serif;
   background:#4b0e1f;
   color:#fff;
 }
 
-/* HEADER */
+/* ================= HEADER (GLOBAL STYLE) ================= */
 header{
   position:absolute;
   top:0;
   left:0;
   width:100%;
-  z-index:10;
-  padding:25px 30px;
+  z-index:20;
+  padding:26px 40px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
-/* LOGO TEXT (EL SALLAB STYLE) */
-.site-title{
-  font-size:20px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand img{
+  width:34px;
+}
+.brand span{
+  font-size:18px;
   letter-spacing:3px;
   font-weight:400;
 }
 
-/* ICONS */
 .header-icons{
   display:flex;
   gap:18px;
-  font-size:22px;
+  font-size:20px;
   opacity:.9;
 }
 
-/* =============================== */
-/* HERO SLIDER */
-/* =============================== */
+/* ================= HERO ================= */
 .hero{
   position:relative;
-  height:72vh;
+  height:85vh;
   overflow:hidden;
 }
 .hero-slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity 1s ease;
+  transition:opacity 1.2s ease;
 }
 .hero-slide.active{opacity:1}
 .hero-slide img{
@@ -76,7 +80,35 @@ header{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.35);
+  background:linear-gradient(
+    rgba(0,0,0,.45),
+    rgba(0,0,0,.15)
+  );
+}
+
+/* TEXT CENTER */
+.hero-content{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero-content h1{
+  font-size:62px;
+  letter-spacing:6px;
+  font-weight:400;
+  margin:0;
+}
+.hero-content p{
+  font-family:'Poppins',sans-serif;
+  letter-spacing:3px;
+  font-size:13px;
+  margin-top:14px;
+  opacity:.85;
 }
 
 /* ARROWS */
@@ -85,38 +117,24 @@ header{
   top:50%;
   transform:translateY(-50%);
   z-index:3;
-  font-size:26px;
-  background:rgba(255,255,255,.25);
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  font-size:24px;
+  color:#fff;
+  opacity:.6;
   cursor:pointer;
+  padding:10px;
 }
-.hero-arrow:hover{
-  background:rgba(255,255,255,.4);
-}
-.hero-arrow.left{left:20px;}
-.hero-arrow.right{right:20px;}
+.hero-arrow:hover{opacity:1}
+.hero-arrow.left{left:30px}
+.hero-arrow.right{right:30px}
 
-@media(max-width:768px){
-  .site-title{font-size:16px}
-  .hero{height:60vh}
-}
-
-/* باقي الموقع */
+/* ================= CONTENT ================= */
 .container{
   display:flex;
-  gap:20px;
-  padding:20px;
+  gap:30px;
+  padding:60px 40px;
 }
 .sidebar{
-  width:230px;
-  background:#3b0a1a;
-  padding:20px;
-  border-radius:12px;
+  width:240px;
 }
 .categories{
   list-style:none;
@@ -124,36 +142,42 @@ header{
 }
 .categories a{
   display:block;
-  padding:8px 10px;
-  border-radius:8px;
+  padding:10px 0;
   color:#fff;
   text-decoration:none;
+  letter-spacing:1px;
+  opacity:.8;
 }
-.categories a:hover{
-  background:rgba(255,179,198,0.12);
-}
+.categories a:hover{opacity:1}
+
 .content{
   flex:1;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
 .card img{
   width:100%;
-  height:260px;
-  border-radius:16px;
+  height:320px;
   object-fit:cover;
 }
-@media(max-width:768px){
-  .sidebar{display:none}
-  .content{grid-template-columns:repeat(2,1fr)}
-}
 
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
-  padding:40px;
-  font-size:13px;
+  padding:50px 20px;
+  font-size:12px;
+  letter-spacing:1px;
   color:#aaa;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  header{padding:20px}
+  .hero{height:65vh}
+  .hero-content h1{font-size:36px}
+  .sidebar{display:none}
+  .container{padding:40px 20px}
 }
 </style>
 </head>
@@ -161,7 +185,10 @@ footer{
 <body>
 
 <header>
-  <div class="site-title">NOOK DECOR</div>
+  <div class="brand">
+    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png">
+    <span>NOOK DECOR</span>
+  </div>
   <div class="header-icons">
     <span>🛒</span>
     <span>👤</span>
@@ -177,6 +204,11 @@ footer{
     <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
   </div>
 
+  <div class="hero-content">
+    <h1>NOOK DECOR</h1>
+    <p>LUXURY INTERIOR LIFESTYLE</p>
+  </div>
+
   <div class="hero-arrow left" onclick="prevSlide()">‹</div>
   <div class="hero-arrow right" onclick="nextSlide()">›</div>
 </section>
@@ -184,26 +216,24 @@ footer{
 <div class="container">
   <aside class="sidebar">
     <ul class="categories">
-      <li><a>All</a></li>
-      <li><a>Moods</a></li>
-      <li><a>Space Packages</a></li>
-      <li><a>Outdoor Flooring</a></li>
+      <li><a>ALL</a></li>
+      <li><a>MOODS</a></li>
+      <li><a>SPACE PACKAGES</a></li>
+      <li><a>OUTDOOR FLOORING</a></li>
     </ul>
   </aside>
 
   <main class="content">
     <a class="card">
       <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
     </a>
     <a class="card">
       <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
     </a>
   </main>
 </div>
 
-<footer>© 2025 Nook Decor</footer>
+<footer>© 2025 NOOK DECOR</footer>
 
 <script>
 let slides = document.querySelectorAll('.hero-slide');
@@ -214,11 +244,11 @@ function showSlide(i){
   slides[i].classList.add('active');
 }
 function nextSlide(){
-  index = (index + 1) % slides.length;
+  index = (index+1)%slides.length;
   showSlide(index);
 }
 function prevSlide(){
-  index = (index - 1 + slides.length) % slides.length;
+  index = (index-1+slides.length)%slides.length;
   showSlide(index);
 }
 setInterval(nextSlide,10000);
