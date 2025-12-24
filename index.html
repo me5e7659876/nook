@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nook Decor</title>
 
 <style>
-/* ================= FONT ================= */
-@font-face {
-  font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2');
-  font-weight: 400;
+@font-face{
+  font-family:DidotWeb;
+  src:url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2')
 }
-@font-face {
-  font-family: 'DidotWeb';
-  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2');
-  font-weight: 700;
-}
-
-/* ================= BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:'DidotWeb','Georgia',serif;
+  margin:0;
+  font-family:DidotWeb,Georgia,serif;
   background:#4b0e1f;
-  color:#fff;
+  color:#fff
 }
+a{color:inherit;text-decoration:none}
 
 /* ================= HEADER ================= */
 header{
@@ -32,169 +24,160 @@ header{
   top:0;
   z-index:999;
   background:#4b0e1f;
-  box-shadow:0 6px 18px rgba(0,0,0,.45);
+  box-shadow:0 6px 18px rgba(0,0,0,.45)
 }
 .header-inner{
   display:flex;
   align-items:center;
   justify-content:center;
   padding:12px 20px;
-  position:relative;
+  position:relative
 }
 .menu-icon{
   position:absolute;
   left:20px;
   font-size:30px;
-  cursor:pointer;
+  cursor:pointer
 }
-.logo{
-  width:125px;
-}
+.logo{width:120px}
 .header-icons{
   position:absolute;
   right:20px;
   display:flex;
   gap:16px;
-  font-size:22px;
+  font-size:22px
 }
 
 /* ================= HERO ================= */
 .hero{
+  height:85vh;
   position:relative;
-  width:100%;
-  height:88vh;
-  overflow:hidden;
+  overflow:hidden
 }
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity .9s ease;
+  transition:.8s
 }
 .slide.active{opacity:1}
 .slide img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover
 }
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.45),
-    rgba(0,0,0,.15),
-    rgba(0,0,0,.55)
-  );
+  background:rgba(0,0,0,.4)
 }
 .hero-content{
   position:absolute;
   left:6%;
-  bottom:20%;
+  bottom:18%
 }
-.hero-content p{
-  font-size:22px;
-}
-.hero-content h1{
-  font-size:58px;
-  margin:10px 0 18px;
-}
-.hero-content button{
-  padding:14px 36px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  cursor:pointer;
-}
+.hero-content h1{font-size:56px}
+.hero-content p{font-size:22px}
 
-/* ================= SLIDER CONTROLS ================= */
+/* ================= CONTROLS ================= */
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   font-size:34px;
-  cursor:pointer;
-  user-select:none;
+  cursor:pointer
 }
 .arrow.left{left:20px}
 .arrow.right{right:20px}
 
 .dots{
   position:absolute;
-  bottom:32px;
+  bottom:30px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
-  gap:12px;
+  gap:10px
 }
 .dot{
-  width:34px;
+  width:32px;
   height:4px;
   background:#aaa;
-  cursor:pointer;
+  cursor:pointer
 }
 .dot.active{background:#fff}
 
 /* ================= LAYOUT ================= */
 .container{
   display:flex;
-  gap:24px;
-  padding:30px;
+  gap:25px;
+  padding:30px
 }
 .sidebar{
-  width:240px;
+  width:240px
 }
-.categories{
+.categories li{
   list-style:none;
+  margin-bottom:8px
 }
 .categories a{
   display:block;
   padding:10px;
-  color:#fff;
-  text-decoration:none;
   border-radius:8px;
+  cursor:pointer
 }
-.categories a:hover{
-  background:rgba(255,255,255,.1);
+.categories a:hover,
+.categories a.active{
+  background:rgba(255,255,255,.12)
 }
 
 .content{
   flex:1;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:22px
 }
 .card{
-  text-align:center;
-  color:#fff;
-  text-decoration:none;
+  text-align:center
 }
 .card img{
   width:100%;
   height:260px;
   object-fit:cover;
-  border-radius:18px;
+  border-radius:18px
 }
-.card h3{
-  margin-top:12px;
-  font-size:20px;
-}
+.card h3{margin-top:10px}
 
 /* ================= FOOTER ================= */
 footer{
-  padding:40px;
+  background:#3b0a1a;
+  padding:40px 20px;
+  margin-top:40px
+}
+.footer-links{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap
+}
+.footer-links a{
+  color:#bbb;
+  font-size:14px
+}
+.footer-links a:hover{color:#fff}
+.copy{
+  margin-top:20px;
   text-align:center;
-  color:#aaa;
+  font-size:13px;
+  color:#888
 }
 
 /* ================= MOBILE ================= */
 @media(max-width:768px){
-  .hero{height:65vh}
-  .hero-content h1{font-size:38px}
   .sidebar{display:none}
+  .hero{height:65vh}
+  .hero-content h1{font-size:36px}
   .content{grid-template-columns:repeat(2,1fr)}
   .card img{height:200px}
-  .logo{width:105px}
 }
 </style>
 </head>
@@ -216,7 +199,6 @@ footer{
     <div class="hero-content">
       <p>Check Our</p>
       <h1>Decor Collection</h1>
-      <button>Show More</button>
     </div>
   </div>
 
@@ -226,7 +208,6 @@ footer{
     <div class="hero-content">
       <p>Create</p>
       <h1>Your Own Mood</h1>
-      <button>Show More</button>
     </div>
   </div>
 
@@ -242,37 +223,37 @@ footer{
 <div class="container">
   <aside class="sidebar">
     <ul class="categories">
-      <li><a>All</a></li>
-      <li><a>Moods</a></li>
-      <li><a>Space Packages</a></li>
-      <li><a>Outdoor Flooring</a></li>
-      <li><a>Vases</a></li>
-      <li><a>Lighting</a></li>
-      <li><a>Glass Candles</a></li>
-      <li><a>Cushions</a></li>
-      <li><a>Wooden Rack</a></li>
-      <li><a>Games</a></li>
-      <li><a>Wall Art</a></li>
+      <li><a class="active" data-cat="all">All</a></li>
+      <li><a data-cat="Moods">Moods</a></li>
+      <li><a data-cat="Vases">Vases</a></li>
+      <li><a data-cat="Lighting">Lighting</a></li>
+      <li><a data-cat="Games">Games</a></li>
     </ul>
   </aside>
 
   <main class="content">
-    <a class="card"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"><h3>Cushions</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
-    <a class="card"><img src="https://i.postimg.cc/6624GtwG/chess.jpg"><h3>Games</h3></a>
+    <a class="card" data-cat="Moods"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
+    <a class="card" data-cat="Vases"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
+    <a class="card" data-cat="Lighting"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
+    <a class="card" data-cat="Games"><img src="https://i.postimg.cc/6624GtwG/chess.jpg"><h3>Games</h3></a>
   </main>
 </div>
 
-<footer>© 2025 Nook Decor</footer>
+<footer>
+  <div class="footer-links">
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="shipping.html">Shipping Policy</a>
+    <a href="returns.html">Return & Refund</a>
+  </div>
+  <div class="copy">© 2025 Nook Decor. All Rights Reserved</div>
+</footer>
 
 <script>
+/* ===== SLIDER ===== */
+let index=0;
 const slides=document.querySelectorAll('.slide');
 const dots=document.querySelectorAll('.dot');
-let index=0;
-
 function showSlide(i){
   slides.forEach(s=>s.classList.remove('active'));
   dots.forEach(d=>d.classList.remove('active'));
@@ -283,6 +264,24 @@ function nextSlide(){index=(index+1)%slides.length;showSlide(index)}
 function prevSlide(){index=(index-1+slides.length)%slides.length;showSlide(index)}
 function goToSlide(i){index=i;showSlide(index)}
 setInterval(nextSlide,5000);
+
+/* ===== CATEGORY FILTER ===== */
+const cats=document.querySelectorAll('.categories a');
+const cards=document.querySelectorAll('.card');
+
+cats.forEach(cat=>{
+  cat.onclick=()=>{
+    cats.forEach(c=>c.classList.remove('active'));
+    cat.classList.add('active');
+
+    const type=cat.dataset.cat;
+    cards.forEach(card=>{
+      card.style.display =
+        type==="all" || card.dataset.cat===type
+        ? "block" : "none";
+    });
+  }
+});
 </script>
 
 </body>
