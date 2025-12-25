@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[1:52 pm, 25/12/2025] Mama: <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -18,7 +18,27 @@
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
        url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
   font-weight: 700;
-  font-style: normal;
+  font-style:…
+[2:31 pm, 25/12/2025] Mama: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nook Decor</title>
+
+<style>
+/* ---------------- FONT ---------------- */
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
+  font-weight: 700;
 }
 
 /* ---------------- BASE ---------------- */
@@ -38,7 +58,6 @@ header{
   background:#4b0e1f;
   padding:10px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
-  position:relative;
 }
 .header-inner{
   display:flex;
@@ -51,11 +70,8 @@ header{
   left:20px;
   top:10px;
   font-size:22px;
-  letter-spacing:1px;
 }
-.logo{
-  width:120px;
-}
+.logo{width:120px;}
 .header-icons{
   position:absolute;
   right:20px;
@@ -72,19 +88,18 @@ header{
   z-index:1001;
 }
 
-/* ---------------- HERO / SLIDER ---------------- */
+/* ---------------- HERO ---------------- */
 .hero{
   position:relative;
   width:100%;
   height:85vh;
   overflow:hidden;
-  margin-top:6px;
 }
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity .8s ease-in-out;
+  transition:.8s;
 }
 .slide.active{opacity:1;}
 .slide img{
@@ -102,22 +117,7 @@ header{
   left:6%;
   bottom:18%;
 }
-.hero-content p{
-  font-size:22px;
-  letter-spacing:1px;
-}
-.hero-content h1{
-  font-size:56px;
-  margin:12px 0;
-}
-.hero-content button{
-  padding:14px 34px;
-  border:none;
-  border-radius:30px;
-  background:#fff;
-  font-size:16px;
-  cursor:pointer;
-}
+.hero-content h1{font-size:56px;margin:12px 0;}
 
 /* ---------------- SLIDER CONTROLS ---------------- */
 .dots{
@@ -141,59 +141,86 @@ header{
   transform:translateY(-50%);
   font-size:32px;
   cursor:pointer;
-  user-select:none;
 }
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
 
-/* ---------------- SIDEBAR / CONTENT ---------------- */
-.top-bar { display:none; flex-direction:column; align-items:center; margin:15px 10px 0; gap:8px; }
-.top-bar .search-bar { display:flex; align-items:center; gap:8px; background: rgba(59,10,26,0.9); padding:8px 12px; border-radius:10px; }
-.top-bar .search-bar input { border:none; outline:none; background:transparent; color:#fff; font-size:16px; width:260px; font-family:'DidotWeb'; }
-#moodText { text-align:center; font-size:24px; font-weight:600; margin:15px 0; letter-spacing:0.5px; }
+/* ---------------- MENU OVERLAY ---------------- */
+#menuOverlay{
+  position:fixed;
+  inset:0;
+  height:0%;
+  background:#4b0e1f;
+  overflow:hidden;
+  transition:.4s;
+  z-index:1000;
+}
+#menuOverlay a{
+  color:#fff;
+  font-size:22px;
+  text-decoration:none;
+  cursor:pointer;
+}
+.overlay-content{
+  padding:90px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
 
-.container { display:flex; padding:20px; gap:20px; margin-top:20px; }
-.sidebar { width:230px; padding:20px; background-color:#3b0a1a; border-radius:12px; }
-.sidebar h2 { font-size:22px; margin-bottom:15px; }
-.categories { list-style:none; padding:0; }
-.categories li { margin:10px 0; }
-.categories a { text-decoration:none; color:#fff; font-weight:500; display:block; padding:8px 10px; border-radius:8px; transition:background 0.18s ease; }
-.categories a:hover { background:var(--accent-hover); }
-.categories a.active { outline:2px solid var(--active-outline); }
+/* ---------------- CONTENT ---------------- */
+.container{display:flex;padding:20px;gap:20px;}
+.sidebar{
+  width:230px;
+  padding:20px;
+  background:#3b0a1a;
+  border-radius:12px;
+}
+.categories{list-style:none;}
+.categories a{
+  display:block;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.categories a:hover{background:var(--accent-hover);}
+.categories a.active{outline:2px solid var(--active-outline);}
 
-.content { flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-.card { text-align:center; transition:transform 0.25s ease; text-decoration:none; }
-.card:hover { transform:translateY(-6px); }
-.card img { width:100%; height:260px; border-radius:16px; object-fit:cover; }
-.card h3 { color:#fff; margin-top:12px; font-size:18px; }
-.no-results { grid-column:1/-1; text-align:center; font-size:18px; padding:40px 0; color:#ffb3c6; }
-.no-results[aria-hidden="true"] { display:none; }
-
-/* ---------------- FOOTER ---------------- */
-footer { background-color:#4b0e1f; text-align:center; padding:40px 20px; font-family:'DidotWeb'; }
-footer a { color:#bbb; text-decoration:none; margin:0 5px; }
-footer a:hover { color:#fff; }
-footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; }
+.content{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{text-decoration:none;color:#fff;}
+.card img{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  object-fit:cover;
+}
+.no-results{
+  grid-column:1/-1;
+  text-align:center;
+  padding:40px;
+  display:none;
+}
 
 /* ---------------- RESPONSIVE ---------------- */
 @media(max-width:768px){
+  .sidebar{display:none;}
   .hero{height:65vh;}
-  .hero-content h1{font-size:38px;}
-  .text-logo{display:none;}
-  .container{flex-direction:column;}
-  .sidebar{display:none !important;}
-  .content{grid-template-columns:repeat(2,1fr);}
-  .card img{height:200px !important;}
 }
 </style>
 </head>
+
 <body>
 
-<!-- MENU OVERLAY -->
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
-<div id="menuOverlay" style="position:fixed; top:0; left:0; width:100%; height:0%; background-color:#4b0e1f; overflow-y:auto; transition:0.5s; z-index:1000;">
-  <a class="closebtn" onclick="closeMenu()" style="position:absolute; top:20px; right:35px; font-size:40px; cursor:pointer;">×</a>
-  <div class="overlay-content" id="menuLinks" style="display:flex; flex-direction:column; padding:80px 20px; gap:15px;">
+
+<div id="menuOverlay">
+  <a style="position:absolute;top:20px;right:30px;font-size:40px" onclick="closeMenu()">×</a>
+  <div class="overlay-content">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
     <a data-cat="Space Packages">Space Packages</a>
@@ -209,72 +236,25 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
-    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo" />
-    <div class="header-icons">
-      <span id="searchBtn">🔍</span>
-      <a href="cart.html">🛒</a>
-      <a href="login.html" class="user-icon">👤</a>
-    </div>
+    <img class="logo" src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png">
+    <div class="header-icons">🔍 🛒 👤</div>
   </div>
 </header>
 
-<!-- HERO SLIDER -->
 <section class="hero">
   <div class="slide active">
     <img src="https://i.postimg.cc/Znj95nnk/4054a32e-e6b5-4db0-8612-ae69e18dc3da.jpg">
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-  <div class="slide">
-    <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-  <div class="slide">
-    <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-  <div class="arrow left" onclick="prevSlide()">❮</div>
-  <div class="arrow right" onclick="nextSlide()">❯</div>
-  <div class="dots">
-    <div class="dot active" onclick="goToSlide(0)"></div>
-    <div class="dot" onclick="goToSlide(1)"></div>
-    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="hero-content"><h1>Decor Collection</h1></div>
   </div>
 </section>
 
-<!-- SEARCH BAR -->
-<div class="top-bar" id="searchBarContainer">
-  <div class="search-bar">
-    <input id="searchInput" placeholder="Search for anything..." />
-    <i id="clearSearch">✖</i>
-  </div>
-</div>
-
-<div class="mood-text" id="moodText">Create your own mood</div>
-
-<!-- MAIN CONTENT -->
 <div class="container">
-  <aside class="sidebar" id="desktopSidebar">
-    <h2 id="categoriesTitle">Categories</h2>
-    <ul class="categories" id="categoriesList">
+  <aside class="sidebar">
+    <ul class="categories">
       <li><a class="active" data-cat="All">All</a></li>
       <li><a data-cat="Moods">Moods</a></li>
       <li><a data-cat="Space Packages">Space Packages</a></li>
@@ -284,138 +264,48 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
       <li><a data-cat="Glass Candles">Glass Candles</a></li>
       <li><a data-cat="Cushions">Cushions</a></li>
       <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-      <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
       <li><a data-cat="Games">Games</a></li>
+      <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
       <li><a data-cat="Wall Art">Wall Art</a></li>
     </ul>
   </aside>
 
   <main class="content" id="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
-    </a>
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
-      <h3>Glass and Small Vases</h3>
-    </a>
-    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
+    <a class="card" data-cat="Moods"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
+    <a class="card" data-cat="Space Packages"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
+    <a class="card" data-cat="Vases"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
+    <a class="card" data-cat="Lighting"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
+    <div class="no-results" id="noResults">No products found</div>
   </main>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-container">
-    <div class="footer-col" style="text-align:left; display:flex; flex-direction:column; gap:8px;">
-      <h4>Information</h4>
-      <a href="terms.html">Terms & Conditions</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="shipping.html">Shipping Policy</a>
-      <a href="returns.html">Return & Refund</a>
-    </div>
-  </div>
-  <p class="copy">©️ 2025 Nook Decor. All Rights Reserved</p>
-</footer>
-
 <script>
-// MENU OPEN/CLOSE
 function toggleMenu(){
-  const overlay=document.getElementById("menuOverlay");
-  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
-  else{ overlay.style.height="100%"; }
+  menuOverlay.style.height = menuOverlay.style.height==="100%"?"0%":"100%";
 }
-function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
+function closeMenu(){menuOverlay.style.height="0%";}
 
-// SEARCH BAR FUNCTIONALITY
-document.getElementById("searchBtn").onclick=function(){
-  const bar=document.getElementById("searchBarContainer");
-  bar.style.display=bar.style.display==="block"?"none":"block";
-};
-document.getElementById("clearSearch").onclick=function(){
-  document.getElementById("searchInput").value="";
-  filterCards();
-};
-document.getElementById("searchInput").addEventListener("input",filterCards);
-function filterCards(){
-  const query=document.getElementById("searchInput").value.toLowerCase();
-  const cards=document.querySelectorAll(".card");
-  let visible=0;
-  cards.forEach(card=>{
-    const title=card.querySelector("h3").innerText.toLowerCase();
-    const cat=card.dataset.cat.toLowerCase();
-    if(title.includes(query)||cat.includes(query)){
-      card.style.display="block";
-      visible++;
-    } else { card.style.display="none"; }
-  });
-  document.getElementById("noResults").setAttribute("
-aria-hidden",visible===0?"false":"true");
-}
+const categoryLinks=document.querySelectorAll('[data-cat]');
+const cards=document.querySelectorAll('.card');
+const noResults=document.getElementById("noResults");
 
-// SLIDER FUNCTIONALITY
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-let index = 0;
+categoryLinks.forEach(link=>{
+  link.onclick=()=>{
+    const cat=link.dataset.cat;
+    categoryLinks.forEach(l=>l.classList.remove("active"));
+    document.querySelectorAll([data-cat="${cat}"]).forEach(l=>l.classList.add("active"));
 
-function showSlide(i){
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  slides[i].classList.add('active');
-  dots[i].classList.add('active');
-}
-
-function nextSlide(){
-  index = (index + 1) % slides.length;
-  showSlide(index);
-}
-
-function prevSlide(){
-  index = (index - 1 + slides.length ) % slides.length;
-  showSlide(index);
-}
-
-function goToSlide(i){
-  index = i;
-  showSlide(index);
-}
-
-setInterval(nextSlide,5000);
+    let visible=0;
+    cards.forEach(card=>{
+      if(cat==="All"||card.dataset.cat===cat){
+        card.style.display="block";
+        visible++;
+      } else card.style.display="none";
+    });
+    noResults.style.display=visible===0?"block":"none";
+    closeMenu();
+  };
+});
 </script>
 
 </body>
