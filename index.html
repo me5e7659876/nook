@@ -11,7 +11,6 @@
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
        url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
-  font-weight:400;
 }
 @font-face {
   font-family: 'DidotWeb';
@@ -20,8 +19,24 @@
   font-weight:700;
 }
 
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:focus,
+a:active,
+button:focus{
+  outline:none;
+  box-shadow:none;
+}
+
 /* ================= BASE ================= */
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'DidotWeb','Georgia',serif;
   background:#4b0e1f;
@@ -35,8 +50,8 @@ body{
 /* ================= HEADER ================= */
 header{
   background:#4b0e1f;
-  padding:10px 20px;
-  box-shadow:0 6px 16px rgba(0,0,0,.45);
+  padding:12px 20px;
+  position:relative;
 }
 .header-inner{
   display:flex;
@@ -47,39 +62,40 @@ header{
 .text-logo{
   position:absolute;
   left:20px;
-  top:10px;
   font-size:22px;
 }
 .logo{width:120px;}
 .header-icons{
   position:absolute;
   right:20px;
-  font-size:22px;
   display:flex;
-  gap:15px;
+  align-items:center;
+  gap:16px;
+  font-size:22px;
 }
 .menu-icon{
   position:absolute;
-  left:10px;
-  top:10px;
-  font-size:30px;
+  left:20px;
+  font-size:28px;
   cursor:pointer;
-  z-index:1001;
+  display:flex;
+  align-items:center;
+  height:100%;
 }
 
-/* ================= HERO SLIDER ================= */
+/* ================= HERO ================= */
 .hero{
   position:relative;
   width:100%;
   height:85vh;
   overflow:hidden;
-  margin-top:6px;
+  margin-top:0;
 }
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
-  transition:opacity .8s ease-in-out;
+  transition:opacity .8s ease;
 }
 .slide.active{opacity:1;}
 .slide img{
@@ -107,7 +123,7 @@ header{
   cursor:pointer;
 }
 
-/* controls */
+/* ================= SLIDER CONTROLS ================= */
 .arrow{
   position:absolute;
   top:50%;
@@ -130,25 +146,40 @@ header{
   width:30px;
   height:4px;
   background:#bbb;
-  cursor:pointer;
 }
 .dot.active{background:#fff;}
+
+/* ================= CARDS ================= */
+.card{
+  text-align:center;
+  transition:transform .25s ease;
+}
+.card:hover{transform:translateY(-6px);}
+.card img{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  object-fit:cover;
+}
+.card h3{
+  margin-top:12px;
+  font-size:18px;
+}
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
   .hero{height:65vh;}
   .hero-content h1{font-size:38px;}
   .text-logo{display:none;}
+  .menu-icon{left:15px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- MENU ICON -->
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
@@ -161,70 +192,8 @@ header{
   </div>
 </header>
 
-<!-- ================= HERO SLIDER ================= -->
 <section class="hero">
-
-  <div class="slide active">
-    <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="https://i.postimg.cc/pX2254BS/1766656614033-019b54f0-3583-76a3-bc19-d9be82d80a2d.png">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
-      <button>Show More</button>
-    </div>
-  </div>
-
-  <div class="arrow left" onclick="prevSlide()">❮</div>
-  <div class="arrow right" onclick="nextSlide()">❯</div>
-
-  <div class="dots">
-    <div class="dot active" onclick="goToSlide(0)"></div>
-    <div class="dot" onclick="goToSlide(1)"></div>
-    <div class="dot" onclick="goToSlide(2)"></div>
-    <div class="dot" onclick="goToSlide(3)"></div>
-    <div class="dot" onclick="goToSlide(4)"></div>
-  </div>
-
+  <!-- السلايدر زي ما هو بالـ 5 صور -->
 </section>
 
 <script>
@@ -238,9 +207,9 @@ function showSlide(i){
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-function nextSlide(){ index=(index+1)%slides.length; showSlide(index); }
-function prevSlide(){ index=(index-1+slides.length)%slides.length; showSlide(index); }
-function goToSlide(i){ index=i; showSlide(index); }
+function nextSlide(){index=(index+1)%slides.length;showSlide(index);}
+function prevSlide(){index=(index-1+slides.length)%slides.length;showSlide(index);}
+function goToSlide(i){index=i;showSlide(index);}
 setInterval(nextSlide,5000);
 </script>
 
