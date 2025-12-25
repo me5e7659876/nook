@@ -40,36 +40,45 @@ header{
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
 }
+
 .header-inner{
   display:flex;
-  align-items:center;
+  align-items:center;        /* 👈 نفس المستوى */
   justify-content:center;
   position:relative;
 }
-.text-logo{
+
+.menu-icon{
   position:absolute;
   left:20px;
-  top:10px;
-  font-size:22px;
-  letter-spacing:1px;
+  top:50%;                   /* 👈 الحل */
+  transform:translateY(-50%);
+  font-size:28px;
+  cursor:pointer;
+  z-index:1001;
 }
-.logo{
-  width:120px;
-}
+
 .header-icons{
   position:absolute;
   right:20px;
+  top:50%;                   /* 👈 نفس مستوى المنيو */
+  transform:translateY(-50%);
   font-size:22px;
   display:flex;
   gap:15px;
 }
-.menu-icon{
+
+.text-logo{
   position:absolute;
-  left:10px;
-  top:10px;
-  font-size:30px;
-  cursor:pointer;
-  z-index:1001;
+  left:70px;                 /* عشان ما يخبطش في المنيو */
+  top:50%;
+  transform:translateY(-50%);
+  font-size:22px;
+  letter-spacing:1px;
+}
+
+.logo{
+  width:120px;
 }
 
 /* ---------------- HERO / SLIDER ---------------- */
@@ -190,7 +199,7 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 <body>
 
 <!-- MENU OVERLAY -->
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
 <div id="menuOverlay" style="position:fixed; top:0; left:0; width:100%; height:0%; background-color:#4b0e1f; overflow-y:auto; transition:0.5s; z-index:1000;">
   <a class="closebtn" onclick="closeMenu()" style="position:absolute; top:20px; right:35px; font-size:40px; cursor:pointer;">×</a>
   <div class="overlay-content" id="menuLinks" style="display:flex; flex-direction:column; padding:80px 20px; gap:15px;">
@@ -211,16 +220,22 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 
 <!-- HEADER -->
 <header>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
-    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" alt="Logo" class="logo" />
+
+    <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" 
+         alt="Logo" class="logo" />
+
     <div class="header-icons">
       <span id="searchBtn">🔍</span>
       <a href="cart.html">🛒</a>
-      <a href="login.html" class="user-icon">👤</a>
+      <a href="login.html">👤</a>
     </div>
   </div>
 </header>
+
 
 <!-- HERO SLIDER -->
 <section class="hero">
@@ -443,3 +458,10 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
+
+
+
+
+
+
