@@ -227,31 +227,52 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   <div class="slide active">
     <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png">
     <div class="hero-overlay"></div>
-    <div class="hero-content"><h1>Decor Collection</h1></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
   </div>
   <div class="slide">
     <img src="https://i.postimg.cc/pX2254BS/1766656614033-019b54f0-3583-76a3-bc19-d9be82d80a2d.png">
     <div class="hero-overlay"></div>
-    <div class="hero-content"><h1>Decor Collection</h1></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
   </div>
   <div class="slide">
     <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg">
     <div class="hero-overlay"></div>
-    <div class="hero-content"><h1>Your Own Mood</h1></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
   </div>
   <div class="slide">
     <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg">
     <div class="hero-overlay"></div>
-    <div class="hero-content"><h1>Your Own Mood</h1></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
   </div>
   <div class="slide">
     <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png">
     <div class="hero-overlay"></div>
-    <div class="hero-content"><h1>Your Own Mood</h1></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
   </div>
 
   <div class="arrow left" onclick="prevSlide()">❮</div>
   <div class="arrow right" onclick="nextSlide()">❯</div>
+
   <div class="dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
@@ -361,7 +382,8 @@ function toggleMenu(){
   if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
   else{ overlay.style.height="100%"; }
 }
-function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
+function closeMenu(){document.getElementById
+("menuOverlay").style.height="0%";}
 
 // SEARCH BAR FUNCTIONALITY
 document.getElementById("searchBtn").onclick=function(){
@@ -369,29 +391,23 @@ document.getElementById("searchBtn").onclick=function(){
   bar.style.display=bar.style.display==="block"?"none":"block";
 };
 document.getElementById("clearSearch").onclick=function(){
-  document.getElementById("searchInput
-.value="";
+  document.getElementById("searchInput").value="";
   filterCards();
 };
-document.getElementById("searchInput").addEventListener("input", filterCards);
-function filterCards() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-  let visible = 0;
-  cards.forEach(card => {
-    const title = card.querySelector("h3").innerText.toLowerCase();
-    const cat = card.dataset.cat.toLowerCase();
-    if (title.includes(query) || cat.includes(query)) {
-      card.style.display = "block";
+document.getElementById("searchInput").addEventListener("input",filterCards);
+function filterCards(){
+  const query=document.getElementById("searchInput").value.toLowerCase();
+  const cards=document.querySelectorAll(".card");
+  let visible=0;
+  cards.forEach(card=>{
+    const title=card.querySelector("h3").innerText.toLowerCase();
+    const cat=card.dataset.cat.toLowerCase();
+    if(title.includes(query)||cat.includes(query)){
+      card.style.display="block";
       visible++;
-    } else {
-      card.style.display = "none";
-    }
+    } else { card.style.display="none"; }
   });
-  document.getElementById("noResults").setAttribute(
-    "aria-hidden",
-    visible === 0 ? "false" : "true"
-  );
+  document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
 }
 
 // SLIDER FUNCTIONALITY
@@ -412,7 +428,7 @@ function nextSlide(){
 }
 
 function prevSlide(){
-  index = (index - 1 + slides.length) % slides.length;
+  index = (index - 1 + slides.length ) % slides.length;
   showSlide(index);
 }
 
@@ -421,32 +437,8 @@ function goToSlide(i){
   showSlide(index);
 }
 
-setInterval(nextSlide, 5000);
-
-// CATEGORY FILTER FUNCTIONALITY
-const categoryLinks = document.querySelectorAll(".categories a");
-categoryLinks.forEach(link => {
-  link.addEventListener("click", function(e) {
-    e.preventDefault();
-    categoryLinks.forEach(l => l.classList.remove("active"));
-    this.classList.add("active");
-    const cat = this.dataset.cat.toLowerCase();
-    const cards = document.querySelectorAll(".card");
-    let visible = 0;
-    cards.forEach(card => {
-      if(cat === "all" || card.dataset.cat.toLowerCase() === cat){
-        card.style.display = "block";
-        visible++;
-      } else {
-        card.style.display = "none";
-      }
-    });
-    document.getElementById("noResults").setAttribute(
-      "aria-hidden",
-      visible === 0 ? "false" : "true"
-    );
-  });
-});
+// AUTO SLIDE EVERY 5 SECONDS
+setInterval(nextSlide,5000);
 </script>
 
 </body>
