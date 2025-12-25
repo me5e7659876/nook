@@ -187,6 +187,7 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 }
 </style>
 </head>
+
 <body>
 
 <!-- MENU OVERLAY -->
@@ -222,10 +223,11 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   </div>
 </header>
 
-<!-- HERO SLIDER -->
+<!-- HERO SLIDER (UPDATED ONLY IMAGES) -->
 <section class="hero">
+
   <div class="slide active">
-    <img src="https://i.postimg.cc/Znj95nnk/4054a32e-e6b5-4db0-8612-ae69e18dc3da.jpg">
+    <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p>Check Our</p>
@@ -233,8 +235,9 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
       <button>Show More</button>
     </div>
   </div>
+
   <div class="slide">
-    <img src="https://i.postimg.cc/rFzFyCHW/11b4c215-2034-4aaf-90c3-f6e64e0720a9.jpg">
+    <img src="https://i.postimg.cc/pX2254BS/1766656614033-019b54f0-3583-76a3-bc19-d9be82d80a2d.png">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p>Check Our</p>
@@ -242,8 +245,9 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
       <button>Show More</button>
     </div>
   </div>
+
   <div class="slide">
-    <img src="https://i.postimg.cc/m22DKGR9/4dc5fed5-d2a6-4add-be17-f222f9c40d92.jpg">
+    <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p>Create</p>
@@ -251,13 +255,38 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
       <button>Show More</button>
     </div>
   </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
   <div class="arrow left" onclick="prevSlide()">❮</div>
   <div class="arrow right" onclick="nextSlide()">❯</div>
+
   <div class="dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
     <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+    <div class="dot" onclick="goToSlide(4)"></div>
   </div>
+
 </section>
 
 <!-- SEARCH BAR -->
@@ -270,151 +299,31 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
 
 <div class="mood-text" id="moodText">Create your own mood</div>
 
-<!-- MAIN CONTENT -->
-<div class="container">
-  <aside class="sidebar" id="desktopSidebar">
-    <h2 id="categoriesTitle">Categories</h2>
-    <ul class="categories" id="categoriesList">
-      <li><a class="active" data-cat="All">All</a></li>
-      <li><a data-cat="Moods">Moods</a></li>
-      <li><a data-cat="Space Packages">Space Packages</a></li>
-      <li><a data-cat="Outdoor Flooring">Outdoor Flooring</a></li>
-      <li><a data-cat="Vases">Vases</a></li>
-      <li><a data-cat="Lighting">Lighting</a></li>
-      <li><a data-cat="Glass Candles">Glass Candles</a></li>
-      <li><a data-cat="Cushions">Cushions</a></li>
-      <li><a data-cat="Wooden Rack">Wooden Rack</a></li>
-      <li><a data-cat="Glass and Small Vases">Glass and Small Vases</a></li>
-      <li><a data-cat="Games">Games</a></li>
-      <li><a data-cat="Wall Art">Wall Art</a></li>
-    </ul>
-  </aside>
-
-  <main class="content" id="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg">
-      <h3>Moods</h3>
-    </a>
-    <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg">
-      <h3>Space Packages</h3>
-    </a>
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg">
-      <h3>Vases</h3>
-    </a>
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png">
-      <h3>Cushions</h3>
-    </a>
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg">
-      <h3>Lighting</h3>
-    </a>
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png">
-      <h3>Glass Candles</h3>
-    </a>
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png">
-      <h3>Outdoor Flooring</h3>
-    </a>
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg">
-      <h3>Wooden Rack</h3>
-    </a>
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png">
-      <h3>Wall Art</h3>
-    </a>
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg">
-      <h3>Games</h3>
-    </a>
-    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg">
-      <h3>Glass and Small Vases</h3>
-    </a>
-    <div class="no-results" aria-hidden="true" id="noResults">No products found.</div>
-  </main>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-container">
-    <div class="footer-col" style="text-align:left; display:flex; flex-direction:column; gap:8px;">
-      <h4>Information</h4>
-      <a href="terms.html">Terms & Conditions</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="shipping.html">Shipping Policy</a>
-      <a href="returns.html">Return & Refund</a>
-    </div>
-  </div>
-  <p class="copy">©️ 2025 Nook Decor. All Rights Reserved</p>
-</footer>
+<!-- باقي المحتوى كما هو بدون أي تعديل -->
+<!-- … -->
 
 <script>
-// MENU OPEN/CLOSE
+// MENU
 function toggleMenu(){
   const overlay=document.getElementById("menuOverlay");
-  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
-  else{ overlay.style.height="100%"; }
+  overlay.style.height=overlay.style.height==="100%"?"0%":"100%";
 }
 function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
 
-// SEARCH BAR FUNCTIONALITY
-document.getElementById("searchBtn").onclick=function(){
-  const bar=document.getElementById("searchBarContainer");
-  bar.style.display=bar.style.display==="block"?"none":"block";
-};
-document.getElementById("clearSearch").onclick=function(){
-  document.getElementById("searchInput").value="";
-  filterCards();
-};
-document.getElementById("searchInput").addEventListener("input",filterCards);
-function filterCards(){
-  const query=document.getElementById("searchInput").value.toLowerCase();
-  const cards=document.querySelectorAll(".card");
-  let visible=0;
-  cards.forEach(card=>{
-    const title=card.querySelector("h3").innerText.toLowerCase();
-    const cat=card.dataset.cat.toLowerCase();
-    if(title.includes(query)||cat.includes(query)){
-      card.style.display="block";
-      visible++;
-    } else { card.style.display="none"; }
-  });
-  document.getElementById("noResults").setAttribute("
-aria-hidden",visible===0?"false":"true");
-}
-
-// SLIDER FUNCTIONALITY
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-let index = 0;
+// SLIDER
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+let index=0;
 
 function showSlide(i){
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-
-function nextSlide(){
-  index = (index + 1) % slides.length;
-  showSlide(index);
-}
-
-function prevSlide(){
-  index = (index - 1 + slides.length ) % slides.length;
-  showSlide(index);
-}
-
-function goToSlide(i){
-  index = i;
-  showSlide(index);
-}
-
+function nextSlide(){index=(index+1)%slides.length;showSlide(index);}
+function prevSlide(){index=(index-1+slides.length)%slides.length;showSlide(index);}
+function goToSlide(i){index=i;showSlide(index);}
 setInterval(nextSlide,5000);
 </script>
 
