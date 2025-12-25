@@ -40,37 +40,45 @@ header{
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
 }
+
 .header-inner{
   display:flex;
-  align-items:center;
+  align-items:center;        /* 👈 نفس المستوى */
   justify-content:center;
   position:relative;
 }
-.text-logo{
+
+.menu-icon{
   position:absolute;
   left:20px;
-  top:10px;
-  font-size:22px;
-  letter-spacing:1px;
+  top:50%;                   /* 👈 الحل */
+  transform:translateY(-50%);
+  font-size:28px;
+  cursor:pointer;
+  z-index:1001;
 }
-.logo{
-  width:120px;
-}
+
 .header-icons{
   position:absolute;
   right:20px;
+  top:50%;                   /* 👈 نفس مستوى المنيو */
+  transform:translateY(-50%);
   font-size:22px;
   display:flex;
   gap:15px;
 }
-.menu-icon{
+
+.text-logo{
   position:absolute;
-  left:20px;
-  top:22px;
-font-size:30px;
-  gap:15px;
-  cursor:pointer;
-  z-index:1001;
+  left:70px;                 /* عشان ما يخبطش في المنيو */
+  top:50%;
+  transform:translateY(-50%);
+  font-size:22px;
+  letter-spacing:1px;
+}
+
+.logo{
+  width:120px;
 }
 
 /* ---------------- HERO / SLIDER ---------------- */
@@ -444,6 +452,7 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
 
 
 
