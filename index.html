@@ -36,6 +36,7 @@ header{
   background:#4b0e1f;
   padding:10px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
+  position:relative;
 }
 .header-inner{
   display:flex;
@@ -90,27 +91,19 @@ header{
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.15));
+  background:rgba(0,0,0,.35);
 }
 .hero-content{
   position:absolute;
   left:6%;
   bottom:18%;
-  max-width:500px;
 }
-.hero-content span{
-  font-size:14px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  opacity:.85;
+.hero-content p{
+  font-size:22px;
 }
 .hero-content h1{
   font-size:56px;
   margin:12px 0;
-}
-.hero-content p{
-  font-size:16px;
-  margin-bottom:22px;
 }
 .hero-content button{
   padding:14px 34px;
@@ -147,21 +140,13 @@ header{
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
 
-/* ---------------- TRUST BAR ---------------- */
-.trust-bar{
-  display:flex;
-  justify-content:space-around;
-  padding:14px;
-  background:#3b0a1a;
-  font-size:13px;
-}
-
 /* ---------------- CONTENT ---------------- */
 .mood-text{
-  margin-top:60px;
   text-align:center;
-  font-size:26px;
+  font-size:24px;
+  margin:20px 0;
 }
+
 .container{
   display:flex;
   padding:20px;
@@ -173,6 +158,7 @@ header{
   background:#3b0a1a;
   border-radius:12px;
 }
+.categories{list-style:none;}
 .categories li{margin:10px 0;}
 .categories a{
   color:#fff;
@@ -231,13 +217,11 @@ footer .copy{
 <body>
 
 <header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <div class="menu-icon">☰</div>
   <div class="header-inner">
     <div class="text-logo">Nook Decor</div>
     <img src="https://i.postimg.cc/VLdBwSc7/Chat-GPT-Image-Nov-27-2025-03-59-19-AM.png" class="logo">
-    <div class="header-icons">
-      🔍 🛒 👤
-    </div>
+    <div class="header-icons">🔍 🛒 👤</div>
   </div>
 </header>
 
@@ -246,35 +230,54 @@ footer .copy{
     <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span>Premium Home & Outdoor Decor</span>
+      <p>Check Our</p>
       <h1>Decor Collection</h1>
-      <p>Handpicked pieces to create warm elegant spaces</p>
-      <button>Shop Collection</button>
+      <button>Show More</button>
     </div>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div>⭐ Premium Quality</div>
-  <div>🚚 Fast Delivery</div>
-  <div>🔒 Secure Payment</div>
-</div>
-
 <div class="mood-text">Create your own mood</div>
 
 <div class="container">
-  <!-- SIDEBAR + CONTENT + CARDS زي ما بعته بالظبط -->
+
+<aside class="sidebar">
+  <h2>Categories</h2>
+  <ul class="categories">
+    <li><a class="active">All</a></li>
+    <li><a>Moods</a></li>
+    <li><a>Space Packages</a></li>
+    <li><a>Outdoor Flooring</a></li>
+    <li><a>Vases</a></li>
+    <li><a>Lighting</a></li>
+    <li><a>Glass Candles</a></li>
+    <li><a>Cushions</a></li>
+    <li><a>Wooden Rack</a></li>
+    <li><a>Games</a></li>
+    <li><a>Glass and Small Vases</a></li>
+    <li><a>Wall Art</a></li>
+  </ul>
+</aside>
+
+<main class="content">
+  <a class="card"><img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"><h3>Moods</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"><h3>Space Packages</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg"><h3>Vases</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"><h3>Cushions</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg"><h3>Lighting</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png"><h3>Glass Candles</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png"><h3>Outdoor Flooring</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg"><h3>Wooden Rack</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png"><h3>Wall Art</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/6624GtwG/chess.jpg"><h3>Games</h3></a>
+  <a class="card"><img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg"><h3>Glass and Small Vases</h3></a>
+</main>
+
 </div>
 
 <footer>
   <p class="copy">© 2025 Nook Decor. All Rights Reserved</p>
 </footer>
-
-<script>
-function toggleMenu(){
-  alert("Menu works – overlay code موجود زي ما هو");
-}
-</script>
 
 </body>
 </html>
