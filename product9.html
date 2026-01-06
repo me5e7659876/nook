@@ -94,13 +94,8 @@ header{
   margin-bottom:20px;
 }
 
-/* ============================= */
-/* SUNFLOWER + PINKY + CLASSIC */
-/* ============================= */
-
-#sunflower .mood-images,
-#pinky .mood-images,
-#classic .mood-images{
+/* MOODS GRID */
+.mood-images{
   display:grid;
   gap:14px;
   margin:20px 0;
@@ -108,30 +103,20 @@ header{
 
 /* 📱 موبايل */
 @media(max-width:768px){
-  #sunflower .mood-images,
-  #pinky .mood-images,
-  #classic .mood-images{
+  .mood-images{
     grid-template-columns:repeat(2,1fr);
   }
-
-  #sunflower .mood-images img,
-  #pinky .mood-images img,
-  #classic .mood-images img{
+  .mood-images img{
     height:170px;
   }
 }
 
 /* 💻 ديسكتوب */
 @media(min-width:769px){
-  #sunflower .mood-images,
-  #pinky .mood-images,
-  #classic .mood-images{
+  .mood-images{
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   }
-
-  #sunflower .mood-images img,
-  #pinky .mood-images img,
-  #classic .mood-images img{
+  .mood-images img{
     height:300px;
   }
 }
@@ -156,7 +141,7 @@ header{
   </select>
 </header>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div id="homePage" class="collections-grid">
 
   <div class="collection-card" onclick="openCollection('sunflower')">
@@ -181,30 +166,65 @@ header{
 
 </div>
 
-<!-- CLASSIC -->
-<div id="classic" class="collection-page">
-  <button class="back-btn" onclick="goHome()">← Back</button>
-  <h2>Classic Mood</h2>
+<!-- SUN FLOWER -->
+<div id="sunflower" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Sun Flower Package</h2>
 
-  <div class="mood-images">
-    <img src="https://i.postimg.cc/L401x2x8/1.png">
-    <img src="https://i.postimg.cc/3RxkZcp7/1765781472450-019b20c6-971a-79fe-90b5-a4263f5d3fbe.jpg">
-    <img src="https://i.postimg.cc/90vzCXky/1767732685191-019b9513-c5cd-7e18-91e5-9befbc71ee4b.png">
-    <img src="https://i.postimg.cc/KYZjZH0D/810seek-QIs-L.jpg">
-    <img src="https://i.postimg.cc/PJ8r3sqn/1766234688527-019b3bc9-f867-700e-9e7d-110e6ba12749.png">
-    <img src="https://i.postimg.cc/bYKQzqkb/1766241606577-019b3c33-aef9-7849-90ef-f420c1adc240.png">
-    <img src="https://i.postimg.cc/4x1tbtqC/1767732532499-019b9511-6996-719b-ab57-afa5269f7c53.png">
-    <img src="https://i.postimg.cc/yd2SYTJw/1766241882552-019b3c37-e05a-704e-b025-e1a5f3675df4.jpg">
-    <img src="https://i.postimg.cc/CLTf3mpj/1766417001925-019b46a7-d166-7ad8-b2a2-5164f06aeda6.png">
-    <img src="https://i.postimg.cc/x19NC8CT/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
-    <img src="https://i.postimg.cc/zGpbRNHD/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
-  </div>
+<div class="mood-images">
+<img src="https://i.postimg.cc/6qbR4k7f/91w-O68u-OXt-L-AC-SX522.jpg">
+<img src="https://i.postimg.cc/vZ8Z2fLn/1765134279883-019afa32-d906-76b6-8583-fa768de31688.jpg">
+<img src="https://i.postimg.cc/Y9wQDVqG/1766070718706-019b3203-f183-78ec-988a-45e1cd88a9a5.png">
+<img src="https://i.postimg.cc/BQ1QtvCQ/1765781472450-019b20c6-971a-79fe-90b5-a4263f5d3fbe.jpg">
+<img src="https://i.postimg.cc/bvD84TGg/1765780424699-019b20b6-af4c-7fdb-b7d2-58f288f0c788.png">
+<img src="https://i.postimg.cc/DwD3QXC0/1765780554485-019b20b8-afeb-76a4-b7ce-28c25ef269e1.png">
+<img src="https://i.postimg.cc/1zR8gQtG/1765782081560-019b20ce-eadf-78d4-8e35-f683c8dca394.png">
+<img src="https://i.postimg.cc/wMz8v6xp/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
+<img src="https://i.postimg.cc/d1KSR4by/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
+</div>
 </div>
 
-<!-- باقي التصنيفات بدون تغيير -->
-<div id="sunflower" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button></div>
-<div id="pinky" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button></div>
-<div id="modern" class="collection-page"><button class="back-btn" onclick="goHome()">← Back</button></div>
+<!-- PINKY -->
+<div id="pinky" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Pinky Mood</h2>
+
+<div class="mood-images">
+<img src="https://i.postimg.cc/YC563BXr/1766232987178-019b3baf-f547-7a4c-adcb-c2c245a9ec7d.png">
+<img src="https://i.postimg.cc/6qbR4k7f/91w-O68u-OXt-L-AC-SX522.jpg">
+<img src="https://i.postimg.cc/7L12nGGH/1766235122741-019b3bd0-cc92-79ea-890c-67732e0b1795.png">
+<img src="https://i.postimg.cc/j22nTM81/1766235624279-019b3bd8-52f0-7b45-bffa-906165111a03.png">
+<img src="https://i.postimg.cc/7YCJQQJY/1766240816041-019b3c27-9148-7372-917b-54d0d9001c4c.png">
+<img src="https://i.postimg.cc/xdPXbwhg/1766239260041-019b3c10-198c-7ca5-86cd-7c266f03cd95.png">
+<img src="https://i.postimg.cc/j2B2btn2/74ba2871-337a-475e-ae3d-4f7ed1b4c921.jpg">
+<img src="https://i.postimg.cc/5tf01PyF/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
+<img src="https://i.postimg.cc/0QB2YPf9/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
+</div>
+</div>
+
+<!-- CLASSIC -->
+<div id="classic" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Classic Mood</h2>
+
+<div class="mood-images">
+<img src="https://i.postimg.cc/L401x2x8/1.png">
+<img src="https://i.postimg.cc/3RxkZcp7/1765781472450-019b20c6-971a-79fe-90b5-a4263f5d3fbe.jpg">
+<img src="https://i.postimg.cc/90vzCXky/1767732685191-019b9513-c5cd-7e18-91e5-9befbc71ee4b.png">
+<img src="https://i.postimg.cc/KYZjZH0D/810seek-QIs-L.jpg">
+<img src="https://i.postimg.cc/PJ8r3sqn/1766234688527-019b3bc9-f867-700e-9e7d-110e6ba12749.png">
+<img src="https://i.postimg.cc/bYKQzqkb/1766241606577-019b3c33-aef9-7849-90ef-f420c1adc240.png">
+<img src="https://i.postimg.cc/4x1tbtqC/1767732532499-019b9511-6996-719b-ab57-afa5269f7c53.png">
+<img src="https://i.postimg.cc/yd2SYTJw/1766241882552-019b3c37-e05a-704e-b025-e1a5f3675df4.jpg">
+<img src="https://i.postimg.cc/CLTf3mpj/1766417001925-019b46a7-d166-7ad8-b2a2-5164f06aeda6.png">
+<img src="https://i.postimg.cc/x19NC8CT/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
+<img src="https://i.postimg.cc/zGpbRNHD/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
+</div>
+</div>
+
+<div id="modern" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+</div>
 
 <script>
 function openCollection(id){
