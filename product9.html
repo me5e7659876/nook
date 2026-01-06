@@ -94,57 +94,46 @@ header{
   margin-bottom:20px;
 }
 
-/* PRODUCTS GRID */
+/* PRICE */
+.mood-price{
+  text-align:center;
+  font-family:'Didot',serif;
+  font-size:26px;
+  color:#ffb3c6;
+  margin:10px 0 20px;
+}
+
+/* MOODS GRID */
 .mood-images{
   display:grid;
-  gap:16px;
+  gap:14px;
   margin:20px 0;
 }
 
-/* PRODUCT CARD */
-.product-card{
-  text-align:center;
-}
-
-.product-card img{
-  width:100%;
-  object-fit:contain;
-  height:300px;
-}
-
-/* TEXT */
-.product-name{
-  font-size:15px;
-  margin-top:6px;
-}
-
-.product-count{
-  font-size:13px;
-  opacity:.8;
-}
-
-.product-price{
-  font-size:16px;
-  font-weight:600;
-  color:#ffb3c6;
-  margin-top:2px;
-}
-
-/* 📱 موبايل */
 @media(max-width:768px){
   .mood-images{
     grid-template-columns:repeat(2,1fr);
   }
-  .product-card img{
+  .mood-images img{
     height:170px;
   }
 }
 
-/* 💻 ديسكتوب */
 @media(min-width:769px){
   .mood-images{
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   }
+  .mood-images img{
+    height:300px;
+  }
+}
+
+.mood-images img{
+  width:100%;
+  object-fit:contain;
+  background:transparent;
+  border-radius:0;
+  display:block;
 }
 </style>
 </head>
@@ -152,14 +141,13 @@ header{
 <body>
 
 <header>
-  <span>Mood Collections</span>
+  <span id="pageTitle">Mood Collections</span>
   <select id="langSelect">
-    <option>English</option>
-    <option>العربية</option>
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
   </select>
 </header>
 
-<!-- HOME -->
 <div id="homePage" class="collections-grid">
   <div class="collection-card" onclick="openCollection('sunflower')">
     <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
@@ -182,27 +170,40 @@ header{
   </div>
 </div>
 
-<!-- مثال على تطبيقه (ينطبق على كل المودز بنفس الشكل) -->
+<!-- SUN FLOWER -->
+<div id="sunflower" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Sun Flower Package</h2>
+<div class="mood-price">10000</div>
+<div class="mood-images">
+  <!-- الصور كما هي -->
+</div>
+</div>
+
+<!-- PINKY -->
+<div id="pinky" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Pinky Mood</h2>
+<div class="mood-price">10000</div>
+<div class="mood-images">
+</div>
+</div>
+
+<!-- CLASSIC -->
+<div id="classic" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Classic Mood</h2>
+<div class="mood-price">10000</div>
+<div class="mood-images">
+</div>
+</div>
+
+<!-- MODERN -->
 <div id="modern" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Modern Mood</h2>
-
+<div class="mood-price">10000</div>
 <div class="mood-images">
-
-  <div class="product-card">
-    <img src="https://i.postimg.cc/zfzDm271/91w-O68u-OXt-L-AC-SX522.jpg">
-    <div class="product-name">Modern Product</div>
-    <div class="product-count">1 Piece</div>
-    <div class="product-price">10000</div>
-  </div>
-
-  <div class="product-card">
-    <img src="https://i.postimg.cc/65CGtSrL/1767734596259-019b9530-fc2e-7b45-b265-2d35a8a4536c.png">
-    <div class="product-name">Modern Product</div>
-    <div class="product-count">1 Piece</div>
-    <div class="product-price">10000</div>
-  </div>
-
 </div>
 </div>
 
@@ -211,6 +212,7 @@ function openCollection(id){
   document.getElementById("homePage").style.display="none";
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
+  window.scrollTo(0,0);
 }
 
 function goHome(){
