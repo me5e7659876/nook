@@ -14,37 +14,18 @@ body{
   background:#4b0e1f;
   color:#fff;
 }
-
-/* HEADER */
 header{
   padding:15px;
   text-align:center;
   font-family:'Didot',serif;
   font-size:28px;
-  position:relative;
 }
-
-#langSelect{
-  position:absolute;
-  right:15px;
-  top:50%;
-  transform:translateY(-50%);
-  padding:4px 8px;
-  border-radius:6px;
-  border:none;
-  font-weight:bold;
-  background:#ffb3c6;
-  color:#4b0e1f;
-}
-
-/* HOME GRID */
 .collections-grid{
   display:grid;
   grid-template-columns:1fr;
   gap:25px;
   padding:25px;
 }
-
 @media(min-width:992px){
   .collections-grid{
     grid-template-columns:repeat(2,1fr);
@@ -52,7 +33,6 @@ header{
     margin:auto;
   }
 }
-
 .collection-card{
   background:#5c1228;
   border-radius:26px;
@@ -60,15 +40,12 @@ header{
   cursor:pointer;
   transition:.35s;
 }
-
 .collection-card:hover{transform:scale(1.03);}
-
 .collection-card img{
   width:100%;
   height:480px;
   object-fit:cover;
 }
-
 .collection-info{
   padding:14px;
   text-align:center;
@@ -76,13 +53,7 @@ header{
   color:#ffb3c6;
   font-size:22px;
 }
-
-/* INNER PAGE */
-.collection-page{
-  display:none;
-  padding:16px;
-}
-
+.collection-page{display:none;padding:16px;}
 .back-btn{
   background:#ffb3c6;
   color:#4b0e1f;
@@ -91,200 +62,79 @@ header{
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  margin-bottom:20px;
 }
-
-/* MOODS GRID */
 .mood-images{
   display:grid;
   gap:14px;
   margin:20px 0;
 }
-
-/* 📱 موبايل */
 @media(max-width:768px){
-  .mood-images{
-    grid-template-columns:repeat(2,1fr);
-  }
-  .mood-images img{
-    height:170px;
-  }
+  .mood-images{grid-template-columns:repeat(2,1fr);}
+  .mood-images img{height:170px;}
 }
-
-/* 💻 ديسكتوب */
 @media(min-width:769px){
-  .mood-images{
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  }
-  .mood-images img{
-    height:300px;
-  }
+  .mood-images{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+  .mood-images img{height:300px;}
 }
-
 .mood-images img{
   width:100%;
   object-fit:contain;
-  background:transparent;
-  border-radius:0;
-  display:block;
 }
-/* ===============================
-   PACKAGE BOX – MOOD (LIKE SPACE PACKAGES)
-================================ */
-
 .package-details{
   margin-top:30px;
   background:#5c1228;
   padding:24px;
-  border-radius:16px;
-  box-shadow:0 6px 25px rgba(0,0,0,.4);
-  max-width:900px;
+  border-radius:18px;
 }
-
-.package-details h3{
-  font-family:'Didot',serif;
-  color:#ffb3c6;
-  font-size:26px;
-  margin-bottom:14px;
-}
-
-.package-details p{
-  font-size:16px;
-  line-height:1.9;
-  margin:6px 0;
-}
-
-.price-tag{
+.price-tag,.mood-price{
   font-size:28px;
   color:#ffb3c6;
   font-weight:bold;
-  margin-top:14px;
 }
-
-/* ADD TO CART */
 .add-btn{
   margin-top:20px;
   background:#ffb3c6;
   color:#4b0e1f;
-  padding:14px 32px;
+  padding:14px 34px;
   border:none;
-  border-radius:16px;
-  font-weight:bold;
+  border-radius:30px;
   font-size:18px;
+  font-weight:700;
   cursor:pointer;
-  transition:.3s;
 }
 
-.add-btn:hover{
-  background:#ff8fab;
-  transform:translateY(-2px);
+/* CART */
+#cartToggle{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#ffb3c6;
+  color:#4b0e1f;
+  border:none;
+  border-radius:30px;
+  padding:12px 18px;
+  font-weight:bold;
+  cursor:pointer;
 }
-
-/* MOBILE */
-@media(max-width:768px){
-  .package-details{
-    padding:18px;
-  }
-
-  .price-tag{
-    font-size:24px;
-  }
-
-  .add-btn{
-    width:100%;
-  }
+#cartBox{
+  position:fixed;
+  right:20px;
+  bottom:80px;
+  width:340px;
+  background:#5c1228;
+  padding:18px;
+  border-radius:20px;
+  display:none;
 }
-/* FORCE PACKAGE BOX STYLE – MOODS */
-
-.package-details{
-  background:#5c1228 !important;
-  padding:24px !important;
-  border-radius:18px !important;
-  margin-top:30px !important;
-  box-shadow:0 6px 25px rgba(0,0,0,.45) !important;
-  max-width:900px !important;
-}
-
-.package-details h3{
-  color:#ffb3c6 !important;
-  font-size:26px !important;
-  margin-bottom:14px !important;
-  font-family:'DidotWeb',serif !important;
-}
-
-.package-details p{
-  font-size:16px !important;
-  line-height:1.9 !important;
-  margin:6px 0 !important;
-  color:#fff !important;
-}
-
-.price,
-.price-tag,
-.mood-price{
-  font-size:28px !important;
-  color:#ffb3c6 !important;
-  font-weight:700 !important;
-  margin-top:14px !important;
-}
-
-/* ADD TO CART BUTTON */
-.add-btn,
-.add-to-cart,
-button.add-cart{
-  display:inline-block !important;
-  margin-top:20px !important;
-  background:#ffb3c6 !important;
-  color:#4b0e1f !important;
-  padding:14px 34px !important;
-  border:none !important;
-  border-radius:30px !important;
-  font-size:18px !important;
-  font-weight:700 !important;
-  cursor:pointer !important;
-  transition:.3s !important;
-}
-
-.add-btn:hover,
-.add-to-cart:hover,
-button.add-cart:hover{
-  background:#ff8fab !important;
-  transform:translateY(-2px) !important;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .package-details{
-    padding:18px !important;
-  }
-  .price,
-  .price-tag,
-  .mood-price{
-    font-size:24px !important;
-  }
-  .add-btn,
-  .add-to-cart,
-  button.add-cart{
-    width:100% !important;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
-  <span id="pageTitle">Mood Collections</span>
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
-  </select>
-</header>
+<header>Mood Collections</header>
 
 <!-- HOME -->
 <div id="homePage" class="collections-grid">
-
   <div class="collection-card" onclick="openCollection('sunflower')">
     <img src="https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png">
     <div class="collection-info">Sun Flower</div>
@@ -304,13 +154,12 @@ button.add-cart:hover{
     <img src="https://i.postimg.cc/fyQ28hsd/af6b0667-18a7-41fc-92c4-76f81747b752.jpg">
     <div class="collection-info">Pinky</div>
   </div>
-
 </div>
 
 <!-- SUN FLOWER -->
 <div id="sunflower" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
-<h2>Sun Flower Package</h2>
+<h2>Sun Flower Mood</h2>
 <div class="mood-images">
 <img src="https://i.postimg.cc/6qbR4k7f/91w-O68u-OXt-L-AC-SX522.jpg">
 <img src="https://i.postimg.cc/vZ8Z2fLn/1765134279883-019afa32-d906-76b6-8583-fa768de31688.jpg">
@@ -322,30 +171,10 @@ button.add-cart:hover{
 <img src="https://i.postimg.cc/wMz8v6xp/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
 <img src="https://i.postimg.cc/d1KSR4by/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
 </div>
-
-<h2>Sun Flower Package</h2>
-<div class="mood-price">10000</div>
-
 <div class="package-details">
-  <h3>Package Includes:</h3>
-
-  <p>• Sunflower Tree</p>
-  <p>• 10-meter Decorative Light Branch</p>
-  <p>• 3 Square Meters of Dense Artificial Grass</p>
-  <p>• Dense Sunflower Pot</p>
-  <p>• 3 Custom Art Frames (As Preferred)</p>
-  <p>• Macramé Wall Decor</p>
-  <p>• Sunflower Glass Vase</p>
-  <p>• 3 Round Candles</p>
-  <p>• 1 Large Candle</p>
-
-  <div class="price-tag">Price: 10000 EGP</div>
-
-  <button class="add-btn" onclick="addToCart('Sun Flower Package',10000)">
-    Add to Cart
-  </button>
+<div class="price-tag">10000 EGP</div>
+<button class="add-btn" onclick="addToCart('Sun Flower Package',10000)">Add to Cart</button>
 </div>
-
 </div>
 
 <!-- PINKY -->
@@ -363,30 +192,10 @@ button.add-cart:hover{
 <img src="https://i.postimg.cc/5tf01PyF/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
 <img src="https://i.postimg.cc/0QB2YPf9/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
 </div>
-<h2>Pinky Package</h2>
-<div class="mood-price">10000</div>
-
 <div class="package-details">
-  <h3>Package Includes:</h3>
-
-  <p>• Pink Decorative Tree</p>
-  <p>• Soft Light Branch</p>
-  <p>• 3 Square Meters of Artificial Grass</p>
-  <p>• Elegant Pink Vase</p>
-  <p>• 2 White Wooden Stands with Small Vases</p>
-  <p>• 3 Custom Art Frames</p>
-  <p>• Macramé Wall Decor</p>
-  <p>• Decorative Glass Vase</p>
-  <p>• 3 Round Candles</p>
-  <p>• 1 Large Candle</p>
-
-  <div class="price-tag">Price: 10000 EGP</div>
-
-  <button class="add-btn" onclick="addToCart('Pinky Package',10000)">
-    Add to Cart
-  </button>
+<div class="price-tag">10000 EGP</div>
+<button class="add-btn" onclick="addToCart('Pinky Package',10000)">Add to Cart</button>
 </div>
-
 </div>
 
 <!-- CLASSIC -->
@@ -406,38 +215,16 @@ button.add-cart:hover{
 <img src="https://i.postimg.cc/x19NC8CT/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
 <img src="https://i.postimg.cc/zGpbRNHD/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
 </div>
-<h2>Classic Package</h2>
-<div class="mood-price">10000</div>
-
 <div class="package-details">
-  <h3>Package Includes:</h3>
-
-  <p>• Classic Decorative Tree</p>
-  <p>• Warm Light Branch</p>
-  <p>• Classic Rug (115 × 75 cm)</p>
-  <p>• 2 Wooden Stands with Small Vases</p>
-  <p>• 2 Classic Wall Sconces</p>
-  <p>• Dense Green & White Floral Pot</p>
-  <p>• 3 Classic Art Frames</p>
-  <p>• Macramé Wall Decor</p>
-  <p>• Glass Decorative Vase</p>
-  <p>• 3 Round Candles</p>
-  <p>• 1 Large Candle</p>
-
-  <div class="price-tag">Price: 10000 EGP</div>
-
-  <button class="add-btn" onclick="addToCart('Classic Package',10000)">
-    Add to Cart
-  </button>
+<div class="price-tag">10000 EGP</div>
+<button class="add-btn" onclick="addToCart('Classic Package',10000)">Add to Cart</button>
 </div>
-
 </div>
 
 <!-- MODERN -->
 <div id="modern" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Modern Mood</h2>
-
 <div class="mood-images">
 <img src="https://i.postimg.cc/zfzDm271/91w-O68u-OXt-L-AC-SX522.jpg">
 <img src="https://i.postimg.cc/65CGtSrL/1767734596259-019b9530-fc2e-7b45-b265-2d35a8a4536c.png">
@@ -450,43 +237,56 @@ button.add-cart:hover{
 <img src="https://i.postimg.cc/x19NC8CT/1765780887500-019b20bd-c50c-7c4a-a2d0-b8f6e5392b94.png">
 <img src="https://i.postimg.cc/zGpbRNHD/1765782992346-019b20dc-ee4f-7692-99a7-d57276651d0d.png">
 </div>
-<h2>Modern Package</h2>
-<div class="mood-price">10000</div>
-
 <div class="package-details">
-  <h3>Package Includes:</h3>
-
-  <p>• Modern Decorative Tree</p>
-  <p>• Minimal LED Light Branch</p>
-  <p>• 3 Square Meters of Artificial Grass</p>
-  <p>• 2 Wooden Stands with Small Vases</p>
-  <p>• Modern Matte Vase</p>
-  <p>• Macramé Round Mirror</p>
-  <p>• 3 Modern Art Frames</p>
-  <p>• Macramé Wall Decor</p>
-  <p>• 3 Round Candles</p>
-  <p>• 1 Large Candle</p>
-
-  <div class="price-tag">Price: 10000 EGP</div>
-
-  <button class="add-btn" onclick="addToCart('Modern Package',10000)">
-    Add to Cart
-  </button>
+<div class="price-tag">10000 EGP</div>
+<button class="add-btn" onclick="addToCart('Modern Package',10000)">Add to Cart</button>
+</div>
 </div>
 
+<!-- CART -->
+<button id="cartToggle" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+<div id="cartBox">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+  <div id="cartTotal"></div>
+  <button class="add-btn" onclick="checkout()">Complete Purchase</button>
 </div>
 
 <script>
 function openCollection(id){
-  document.getElementById("homePage").style.display="none";
+  homePage.style.display="none";
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
-  window.scrollTo(0,0);
 }
-
 function goHome(){
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
-  document.getElementById("homePage").style.display="grid";
+  homePage.style.display="grid";
+}
+
+let cart=[];
+function addToCart(name,price){
+  cart.push({name,price});
+  updateCart();
+  cartBox.style.display="block";
+}
+function updateCart(){
+  cartItems.innerHTML="";
+  let total=0;
+  cart.forEach(i=>{
+    total+=i.price;
+    cartItems.innerHTML+=`<div>${i.name} - ${i.price} EGP</div>`;
+  });
+  cartTotal.innerHTML="Total: "+total+" EGP";
+  cartCount.innerText=cart.length;
+}
+function toggleCart(){
+  cartBox.style.display=cartBox.style.display==="block"?"none":"block";
+}
+function checkout(){
+  alert("Order Completed ✅");
+  cart=[];
+  updateCart();
+  cartBox.style.display="none";
 }
 </script>
 
