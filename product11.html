@@ -15,17 +15,17 @@ body{
   color:#fff;
 }
 
-/* ---------- HEADER ---------- */
+/* HEADER */
 header{
   background:#4b0e1f;
-  padding:15px 20px;
+  padding:15px;
   text-align:center;
   font-family:'Didot',serif;
   font-size:28px;
   font-weight:bold;
 }
 
-/* ---------- MAIN CARDS ---------- */
+/* MAIN CARDS */
 .collections-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -34,7 +34,7 @@ header{
 }
 .collection-card{
   background:#5c1228;
-  border-radius:8px;
+  border-radius:10px;
   overflow:hidden;
   box-shadow:0 4px 25px rgba(0,0,0,.4);
   transition:.3s;
@@ -56,14 +56,14 @@ header{
 .view-btn{
   background:#ffb3c6;
   color:#4b0e1f;
-  padding:10px 20px;
-  border-radius:12px;
+  padding:10px 22px;
+  border-radius:14px;
   font-weight:bold;
   text-decoration:none;
   display:inline-block;
 }
 
-/* ---------- PACKAGE PAGE ---------- */
+/* PACKAGE PAGE */
 .collection-page{
   display:none;
   padding:25px;
@@ -79,7 +79,7 @@ header{
   margin-bottom:20px;
 }
 
-/* 🔥 FULL IMAGE FIX */
+/* INNER IMAGES – FULL VIEW */
 .inner-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -88,22 +88,19 @@ header{
 .inner-grid img{
   width:100%;
   height:420px;
-  object-fit:contain;   /* 🔑 الحل */
+  object-fit:contain;
   background:#3b0a1a;
   border-radius:14px;
   box-shadow:0 6px 20px rgba(0,0,0,.45);
 }
 
-/* ---------- MOBILE ---------- */
+/* MOBILE */
 @media(max-width:600px){
   .collection-card img{height:380px;}
-  .inner-grid img{
-    height:300px;
-    object-fit:contain; /* Gym + باقي الصور كاملة */
-  }
+  .inner-grid img{height:300px;}
 }
 
-/* ---------- DETAILS ---------- */
+/* DETAILS */
 .package-details{
   margin-top:30px;
   background:#5c1228;
@@ -154,9 +151,9 @@ header{
 </div>
 <div class="package-details">
 <h3>Package Includes:</h3>
-<p>• 3 decorative wall portraits</p>
+<p>• 3 decorative portraits</p>
 <p>• 2 large office vases</p>
-<p>• 1 modern small vase</p>
+<p>• 1 modern vase</p>
 <div class="price-tag">7000 EGP</div>
 <button class="add-btn" onclick="addToCart('Office Package',7000)">Add to Cart</button>
 </div>
@@ -172,17 +169,87 @@ header{
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• Large decorative vase</p>
-<p>• Medium decorative vase</p>
+<p>• Medium vase</p>
 <p>• Glass vase</p>
 <div class="price-tag">3500 EGP</div>
 <button class="add-btn" onclick="addToCart('Gym Package',3500)">Add to Cart</button>
 </div>
 </div>
 
+<!-- CLINIC -->
+<div id="clinic" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Clinic Package</h2>
+<div class="inner-grid">
+<img src="https://i.postimg.cc/cJRs7sCj/1766676310440-019b561c-f61e-7eea-98cd-aa4e1a01524b.png">
+<img src="https://i.postimg.cc/pdHvLgCJ/1766678241023-019b563a-2b54-7ee2-b37f-df93cce1fd3a.png">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• Large vase</p>
+<p>• Glass vase</p>
+<p>• 3 decorative portraits</p>
+<div class="price-tag">3500 EGP</div>
+<button class="add-btn" onclick="addToCart('Clinic Package',3500)">Add to Cart</button>
+</div>
+</div>
+
+<!-- ENTRANCE -->
+<div id="entrance" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Entrance Area</h2>
+<div class="inner-grid">
+<img src="https://i.postimg.cc/KjBSbfT6/1766501762491-019b4bb5-66e4-7713-97ed-ba285f718a36.png">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• 2 large vases</p>
+<p>• 1 medium vase</p>
+<div class="price-tag">5000 EGP</div>
+<button class="add-btn" onclick="addToCart('Entrance Area',5000)">Add to Cart</button>
+</div>
+</div>
+
+<!-- INDOOR -->
+<div id="indoor" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Indoor Café</h2>
+<div class="inner-grid">
+<img src="https://i.postimg.cc/bNpFdqfZ/1766580812601-019b5065-daf2-72bf-95f7-520ab03b6455.png">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• 3 large vases</p>
+<p>• 1 medium vase</p>
+<div class="price-tag">6000 EGP</div>
+<button class="add-btn" onclick="addToCart('Indoor Café',6000)">Add to Cart</button>
+</div>
+</div>
+
+<!-- OUTDOOR -->
+<div id="outdoor" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Outdoor Café</h2>
+<div class="inner-grid">
+<img src="https://i.postimg.cc/j5RJP3xm/1766579329266-019b5054-e5ab-7220-9e39-03778f2effff.png">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• 3 large vases</p>
+<p>• 1 medium vase</p>
+<div class="price-tag">6000 EGP</div>
+<button class="add-btn" onclick="addToCart('Outdoor Café',6000)">Add to Cart</button>
+</div>
+</div>
+
 <script>
 const packages=[
 {id:"office",img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",name:"Office Package"},
-{id:"gym",img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",name:"Gym Package"}
+{id:"gym",img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",name:"Gym Package"},
+{id:"clinic",img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",name:"Clinic Package"},
+{id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",name:"Entrance Area"},
+{id:"indoor",img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",name:"Indoor Café"},
+{id:"outdoor",img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",name:"Outdoor Café"}
 ];
 
 const container=document.getElementById("packagesContainer");
@@ -209,7 +276,7 @@ function goHome(){
   container.style.display="grid";
 }
 function addToCart(name,price){
-  alert(name+" added to cart - "+price+" EGP");
+  alert(name+" added to cart – "+price+" EGP");
 }
 </script>
 
