@@ -23,6 +23,24 @@ header{
   font-family:'Didot',serif;
   font-size:28px;
   font-weight:bold;
+  position:relative;
+}
+
+/* CART ICON */
+.cart-btn{
+  position:absolute;
+  right:20px;
+  top:15px;
+  cursor:pointer;
+  font-size:18px;
+}
+.cart-count{
+  background:#ffb3c6;
+  color:#4b0e1f;
+  border-radius:50%;
+  padding:2px 8px;
+  margin-left:6px;
+  font-weight:bold;
 }
 
 /* MAIN CARDS */
@@ -59,8 +77,8 @@ header{
   padding:10px 22px;
   border-radius:14px;
   font-weight:bold;
-  text-decoration:none;
-  display:inline-block;
+  border:none;
+  cursor:pointer;
 }
 
 /* PACKAGE PAGE */
@@ -79,7 +97,7 @@ header{
   margin-bottom:20px;
 }
 
-/* INNER IMAGES – FULL VIEW */
+/* INNER IMAGES */
 .inner-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -91,13 +109,6 @@ header{
   object-fit:contain;
   background:#3b0a1a;
   border-radius:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,.45);
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  .collection-card img{height:380px;}
-  .inner-grid img{height:300px;}
 }
 
 /* DETAILS */
@@ -115,7 +126,6 @@ header{
   font-size:26px;
   color:#ffb3c6;
   font-weight:bold;
-  margin-top:10px;
 }
 .add-btn{
   margin-top:18px;
@@ -128,18 +138,54 @@ header{
   font-size:18px;
   cursor:pointer;
 }
-.add-btn:hover{
-  background:#ff8fab;
-  transform:translateY(-2px);
+
+/* CART */
+.cart{
+  position:fixed;
+  right:-380px;
+  top:0;
+  width:340px;
+  height:100%;
+  background:#5c1228;
+  padding:20px;
+  transition:.4s;
+  z-index:999;
+}
+.cart.active{right:0;}
+.cart h3{color:#ffb3c6;}
+.cart-item{
+  border-bottom:1px solid #ffb3c6;
+  padding:10px 0;
+}
+.checkout-btn{
+  background:#ffb3c6;
+  color:#4b0e1f;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  margin-top:15px;
 }
 </style>
 </head>
 
 <body>
 
-<header>Space Packages</header>
+<header>
+Space Packages
+<span class="cart-btn" onclick="toggleCart()">🛒 <span id="cartCount" class="cart-count">0</span></span>
+</header>
 
 <div class="collections-grid" id="packagesContainer"></div>
+
+<!-- CART -->
+<div class="cart" id="cart">
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<h3 id="totalPrice"></h3>
+<button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
 
 <!-- OFFICE -->
 <div id="office" class="collection-page">
@@ -252,6 +298,8 @@ const packages=[
 {id:"outdoor",img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",name:"Outdoor Café"}
 ];
 
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
 const container=document.getElementById("packagesContainer");
 packages.forEach(p=>{
   const card=document.createElement("div");
@@ -260,7 +308,7 @@ packages.forEach(p=>{
     <img src="${p.img}">
     <div class="collection-info">
       <h3>${p.name}</h3>
-      <a class="view-btn" onclick="openPackage('${p.id}')">View</a>
+      <button class="view-btn" onclick="openPackage('${p.id}')">View</button>
     </div>`;
   container.appendChild(card);
 });
@@ -271,13 +319,43 @@ function openPackage(id){
   document.getElementById(id).style.display="block";
   window.scrollTo(0,0);
 }
+
 function goHome(){
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   container.style.display="grid";
 }
+
 function addToCart(name,price){
-  alert(name+" added to cart – "+price+" EGP");
+  cart.push({name,price});
+  localStorage.setItem("cart",JSON.stringify(cart));
+  updateCart();
 }
+
+function updateCart(){
+  document.getElementById("cartCount").innerText=cart.length;
+  const items=document.getElementById("cartItems");
+  items.innerHTML="";
+  let total=0;
+  cart.forEach(i=>{
+    total+=i.price;
+    items.innerHTML+=`<div class="cart-item">${i.name} - ${i.price} EGP</div>`;
+  });
+  document.getElementById("totalPrice").innerText="Total: "+total+" EGP";
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function checkout(){
+  alert("Order placed successfully!");
+  cart=[];
+  localStorage.removeItem("cart");
+  updateCart();
+  toggleCart();
+}
+
+updateCart();
 </script>
 
 </body>
