@@ -194,6 +194,80 @@ header{
     width:100%;
   }
 }
+/* FORCE PACKAGE BOX STYLE – MOODS */
+
+.package-details{
+  background:#5c1228 !important;
+  padding:24px !important;
+  border-radius:18px !important;
+  margin-top:30px !important;
+  box-shadow:0 6px 25px rgba(0,0,0,.45) !important;
+  max-width:900px !important;
+}
+
+.package-details h3{
+  color:#ffb3c6 !important;
+  font-size:26px !important;
+  margin-bottom:14px !important;
+  font-family:'DidotWeb',serif !important;
+}
+
+.package-details p{
+  font-size:16px !important;
+  line-height:1.9 !important;
+  margin:6px 0 !important;
+  color:#fff !important;
+}
+
+.price,
+.price-tag,
+.mood-price{
+  font-size:28px !important;
+  color:#ffb3c6 !important;
+  font-weight:700 !important;
+  margin-top:14px !important;
+}
+
+/* ADD TO CART BUTTON */
+.add-btn,
+.add-to-cart,
+button.add-cart{
+  display:inline-block !important;
+  margin-top:20px !important;
+  background:#ffb3c6 !important;
+  color:#4b0e1f !important;
+  padding:14px 34px !important;
+  border:none !important;
+  border-radius:30px !important;
+  font-size:18px !important;
+  font-weight:700 !important;
+  cursor:pointer !important;
+  transition:.3s !important;
+}
+
+.add-btn:hover,
+.add-to-cart:hover,
+button.add-cart:hover{
+  background:#ff8fab !important;
+  transform:translateY(-2px) !important;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .package-details{
+    padding:18px !important;
+  }
+  .price,
+  .price-tag,
+  .mood-price{
+    font-size:24px !important;
+  }
+  .add-btn,
+  .add-to-cart,
+  button.add-cart{
+    width:100% !important;
+  }
+}
 
 </style>
 </head>
