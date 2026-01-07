@@ -34,7 +34,10 @@ header{
   border-radius:20px;
   background:#ffb3c6;
   font-weight:bold;
+  cursor:pointer;
 }
+
+/* الكروت الخارجية */
 .collections-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -47,6 +50,7 @@ header{
   overflow:hidden;
   box-shadow:0 4px 25px rgba(0,0,0,.4);
   transition:.3s;
+  cursor:pointer;
 }
 .collection-card:hover{transform:scale(1.05);}
 .collection-card img{
@@ -72,6 +76,7 @@ header{
   display:inline-block;
 }
 
+/* صفحة الباكدج */
 .collection-page{
   display:none;
   padding:25px;
@@ -84,7 +89,10 @@ header{
   border-radius:12px;
   font-weight:bold;
   cursor:pointer;
+  margin-bottom:20px;
 }
+
+/* صور جوه الباكدج */
 .inner-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -101,6 +109,8 @@ header{
   .inner-grid{grid-template-columns:1fr;}
   .inner-grid img:first-child{grid-column:span 1;}
 }
+
+/* التفاصيل */
 .package-details{
   margin-top:30px;
   background:#5c1228;
@@ -123,22 +133,25 @@ header{
 <body>
 
 <header>
-  <span id="headerTitle">Space Packages</span>
+  <span>Space Packages</span>
   <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
+    <option>English</option>
+    <option>العربية</option>
   </select>
 </header>
 
+<!-- الكروت -->
 <div class="collections-grid" id="packagesContainer"></div>
 
-<!-- GYM -->
+<!-- ================= GYM ================= -->
 <div id="gym" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Gym Package</h2>
+
 <div class="inner-grid">
 <img src="https://i.postimg.cc/HkW41xD2/1766675741879-019b5614-49a3-7972-8998-5b7e922ecc4b.png">
 </div>
+
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• فازه كبيره</p>
@@ -148,14 +161,16 @@ header{
 </div>
 </div>
 
-<!-- CLINIC -->
+<!-- ================= CLINIC ================= -->
 <div id="clinic" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Clinic Package</h2>
+
 <div class="inner-grid">
 <img src="https://i.postimg.cc/cJRs7sCj/1766676310440-019b561c-f61e-7eea-98cd-aa4e1a01524b.png">
 <img src="https://i.postimg.cc/pdHvLgCJ/1766678241023-019b563a-2b54-7ee2-b37f-df93cce1fd3a.png">
 </div>
+
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• فازه كبيره</p>
@@ -165,13 +180,15 @@ header{
 </div>
 </div>
 
-<!-- ENTRANCE -->
+<!-- ================= ENTRANCE ================= -->
 <div id="entrance" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Entrance Area</h2>
+
 <div class="inner-grid">
 <img src="https://i.postimg.cc/KjBSbfT6/1766501762491-019b4bb5-66e4-7713-97ed-ba285f718a36.png">
 </div>
+
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• 2 فازه كبيره</p>
@@ -180,13 +197,15 @@ header{
 </div>
 </div>
 
-<!-- INDOOR -->
+<!-- ================= INDOOR ================= -->
 <div id="indoor" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Indoor Café</h2>
+
 <div class="inner-grid">
 <img src="https://i.postimg.cc/bNpFdqfZ/1766580812601-019b5065-daf2-72bf-95f7-520ab03b6455.png">
 </div>
+
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• 3 فازه كبيره</p>
@@ -195,13 +214,15 @@ header{
 </div>
 </div>
 
-<!-- OUTDOOR -->
+<!-- ================= OUTDOOR ================= -->
 <div id="outdoor" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Outdoor Café</h2>
+
 <div class="inner-grid">
 <img src="https://i.postimg.cc/j5RJP3xm/1766579329266-019b5054-e5ab-7220-9e39-03778f2effff.png">
 </div>
+
 <div class="package-details">
 <h3>Package Includes:</h3>
 <p>• 3 فازه كبيره</p>
@@ -212,24 +233,46 @@ header{
 
 <script>
 const packages=[
-{id:"gym",img:"https://i.postimg.cc/HkW41xD2/1766675741879-019b5614-49a3-7972-8998-5b7e922ecc4b.png",name:"Gym Package"},
-{id:"clinic",img:"https://i.postimg.cc/cJRs7sCj/1766676310440-019b561c-f61e-7eea-98cd-aa4e1a01524b.png",name:"Clinic Package"},
-{id:"entrance",img:"https://i.postimg.cc/KjBSbfT6/1766501762491-019b4bb5-66e4-7713-97ed-ba285f718a36.png",name:"Entrance Area"},
-{id:"indoor",img:"https://i.postimg.cc/bNpFdqfZ/1766580812601-019b5065-daf2-72bf-95f7-520ab03b6455.png",name:"Indoor Café"},
-{id:"outdoor",img:"https://i.postimg.cc/j5RJP3xm/1766579329266-019b5054-e5ab-7220-9e39-03778f2effff.png",name:"Outdoor Café"}
+{
+  id:"gym",
+  img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",
+  name:"Gym Package"
+},
+{
+  id:"clinic",
+  img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",
+  name:"Clinic Package"
+},
+{
+  id:"entrance",
+  img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",
+  name:"Entrance Area"
+},
+{
+  id:"indoor",
+  img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",
+  name:"Indoor Café"
+},
+{
+  id:"outdoor",
+  img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",
+  name:"Outdoor Café"
+}
 ];
 
 const container=document.getElementById("packagesContainer");
+
 packages.forEach(p=>{
-  const c=document.createElement("div");
-  c.className="collection-card";
-  c.innerHTML=`
+  const card=document.createElement("div");
+  card.className="collection-card";
+  card.innerHTML=`
     <img src="${p.img}">
     <div class="collection-info">
       <h3>${p.name}</h3>
       <a class="view-btn" onclick="openPackage('${p.id}')">View</a>
-    </div>`;
-  container.appendChild(c);
+    </div>
+  `;
+  container.appendChild(card);
 });
 
 function openPackage(id){
