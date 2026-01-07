@@ -19,21 +19,6 @@ header{
   text-align:center;
   font-family:'Didot',serif;
   font-size:28px;
-  position:relative;
-}
-.cart-btn{
-  position:absolute;
-  right:20px;
-  top:15px;
-  cursor:pointer;
-}
-.cart-count{
-  background:#ffb3c6;
-  color:#4b0e1f;
-  border-radius:50%;
-  padding:2px 8px;
-  margin-left:6px;
-  font-weight:bold;
 }
 .collections-grid{
   display:grid;
@@ -101,7 +86,7 @@ header{
   padding:24px;
   border-radius:18px;
 }
-.price-tag{
+.price-tag,.mood-price{
   font-size:28px;
   color:#ffb3c6;
   font-weight:bold;
@@ -119,42 +104,34 @@ header{
 }
 
 /* CART */
-.cart{
+#cartToggle{
   position:fixed;
-  right:-380px;
-  top:0;
-  width:340px;
-  height:100%;
-  background:#5c1228;
-  padding:20px;
-  transition:.4s;
-  z-index:999;
-}
-.cart.active{right:0;}
-.cart h3{color:#ffb3c6;}
-.cart-item{
-  border-bottom:1px solid #ffb3c6;
-  padding:10px 0;
-}
-.checkout-btn{
+  right:20px;
+  bottom:20px;
   background:#ffb3c6;
   color:#4b0e1f;
-  width:100%;
-  padding:12px;
   border:none;
-  border-radius:12px;
+  border-radius:30px;
+  padding:12px 18px;
   font-weight:bold;
-  margin-top:15px;
+  cursor:pointer;
+}
+#cartBox{
+  position:fixed;
+  right:20px;
+  bottom:80px;
+  width:340px;
+  background:#5c1228;
+  padding:18px;
+  border-radius:20px;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-Mood Collections
-<span class="cart-btn" onclick="toggleCart()">🛒 <span id="cartCount" class="cart-count">0</span></span>
-</header>
+<header>Mood Collections</header>
 
 <!-- HOME -->
 <div id="homePage" class="collections-grid">
@@ -179,7 +156,7 @@ Mood Collections
   </div>
 </div>
 
-<!-- SUNFLOWER -->
+<!-- SUN FLOWER -->
 <div id="sunflower" class="collection-page">
 <button class="back-btn" onclick="goHome()">← Back</button>
 <h2>Sun Flower Mood</h2>
@@ -267,56 +244,50 @@ Mood Collections
 </div>
 
 <!-- CART -->
-<div class="cart" id="cart">
-<h3>Your Cart</h3>
-<div id="cartItems"></div>
-<h3 id="totalPrice"></h3>
-<button class="checkout-btn" onclick="checkout()">Checkout</button>
+<button id="cartToggle" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+<div id="cartBox">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+  <div id="cartTotal"></div>
+  <button class="add-btn" onclick="checkout()">Complete Purchase</button>
 </div>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 function openCollection(id){
   homePage.style.display="none";
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   document.getElementById(id).style.display="block";
-  window.scrollTo(0,0);
 }
 function goHome(){
   document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
   homePage.style.display="grid";
 }
+
+let cart=[];
 function addToCart(name,price){
   cart.push({name,price});
-  localStorage.setItem("cart",JSON.stringify(cart));
   updateCart();
-  toggleCart(true);
+  cartBox.style.display="block";
 }
 function updateCart(){
-  document.getElementById("cartCount").innerText = cart.length;
-  const items = document.getElementById("cartItems");
-  items.innerHTML="";
+  cartItems.innerHTML="";
   let total=0;
   cart.forEach(i=>{
     total+=i.price;
-    items.innerHTML+=`<div class="cart-item">${i.name} - ${i.price} EGP</div>`;
+    cartItems.innerHTML+=`<div>${i.name} - ${i.price} EGP</div>`;
   });
-  document.getElementById("totalPrice").innerText="Total: "+total+" EGP";
+  cartTotal.innerHTML="Total: "+total+" EGP";
+  cartCount.innerText=cart.length;
 }
-function toggleCart(forceOpen=false){
-  const c=document.getElementById("cart");
-  if(forceOpen){c.classList.add("active");}
-  else{c.classList.toggle("active");}
+function toggleCart(){
+  cartBox.style.display=cartBox.style.display==="block"?"none":"block";
 }
 function checkout(){
-  alert("Order placed successfully ✅");
+  alert("Order Completed ✅");
   cart=[];
-  localStorage.removeItem("cart");
   updateCart();
-  toggleCart();
+  cartBox.style.display="none";
 }
-updateCart();
 </script>
 
 </body>
