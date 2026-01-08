@@ -127,7 +127,71 @@ header{
   font-size:16px;
   cursor:pointer;
 }
+/* ---------------- FEATURED PRODUCTS STRIP ---------------- */
+.featured-strip{
+  background:#3b0a1a;
+  padding:30px 20px;
+}
 
+.featured-title{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:20px;
+  letter-spacing:1px;
+}
+
+.featured-wrapper{
+  position:relative;
+  max-width:1200px;
+  margin:auto;
+  overflow:hidden;
+}
+
+.featured-track{
+  display:flex;
+  gap:20px;
+  transition:transform .5s ease;
+}
+
+.featured-item{
+  min-width:220px;
+  flex:0 0 auto;
+  background:#4b0e1f;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);
+}
+
+.featured-item img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+.featured-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  cursor:pointer;
+  background:rgba(0,0,0,.4);
+  padding:8px 14px;
+  border-radius:50%;
+  user-select:none;
+}
+.featured-arrow.left{left:0;}
+.featured-arrow.right{right:0;}
+
+@media(max-width:768px){
+  .featured-item{
+    min-width:160px;
+  }
+  .featured-item img{
+    height:180px;
+  }
+}
+
+  
 /* ---------------- SLIDER CONTROLS ---------------- */
 .dots{
   position:absolute;
@@ -296,6 +360,34 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
     <div class="dot" onclick="goToSlide(4)"></div>
   </div>
 </section>
+<!-- FEATURED PRODUCTS -->
+<section class="featured-strip">
+  <div class="featured-title">Featured Products</div>
+
+  <div class="featured-wrapper">
+    <div class="featured-arrow left" onclick="moveFeatured(-1)">❮</div>
+
+    <div class="featured-track" id="featuredTrack">
+      <div class="featured-item">
+        <img src="https://i.postimg.cc/j2mqPtPm/1767831276804-019b9af4-50d6-719c-88c0-9348957f804a.png">
+      </div>
+      <div class="featured-item">
+        <img src="https://i.postimg.cc/t40CgRXg/43ae55be-d9e8-48e8-9bb5-16e6fc69195c.jpg">
+      </div>
+      <div class="featured-item">
+        <img src="https://i.postimg.cc/PqytKm1r/15cf30ad-d3e0-41f6-b5e7-8eda9078f748.jpg">
+      </div>
+      <div class="featured-item">
+        <img src="https://i.postimg.cc/hj3KRcyG/1767831154712-019b9af2-6af9-7afa-8eb0-d176bd7331d3.png">
+      </div>
+      <div class="featured-item">
+        <img src="https://i.postimg.cc/pV4P0V5q/1767831379775-019b9af5-e337-7731-8a15-4d5390ca5729.png">
+      </div>
+    </div>
+
+    <div class="featured-arrow right" onclick="moveFeatured(1)">❯</div>
+  </div>
+</section>
 
 <!-- SEARCH BAR -->
 <div class="top-bar" id="searchBarContainer">
@@ -454,10 +546,25 @@ function goToSlide(i){
 
 // AUTO SLIDE EVERY 5 SECONDS
 setInterval(nextSlide,5000);
+<script>
+let featuredIndex = 0;
+
+function moveFeatured(dir){
+  const track = document.getElementById("featuredTrack");
+  const itemWidth = track.children[0].offsetWidth + 20;
+  featuredIndex += dir;
+
+  const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
+  if(featuredIndex < 0) featuredIndex = 0;
+  if(featuredIndex > maxIndex) featuredIndex = maxIndex;
+
+  track.style.transform = `translateX(-${featuredIndex * itemWidth}px)`;
+}
 </script>
 
 </body>
 </html>
+
 
 
 
