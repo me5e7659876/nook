@@ -8,146 +8,126 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    background:#4b0e1f;
-    font-family:'Poppins',sans-serif;
-    color:#fff;
-  }
+body{
+  margin:0;
+  background:#4b0e1f;
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+}
 
-  header {
-    background:#4b0e1f;
-    padding:18px;
-    text-align:center;
-    font-size:30px;
-    font-family:'Didot',serif;
-    position:relative;
-    color:#ffb3c6;
-  }
+header{
+  background:#4b0e1f;
+  padding:18px;
+  text-align:center;
+  font-size:30px;
+  font-family:'Didot',serif;
+  position:relative;
+  color:#ffb3c6;
+}
 
-  #langSelect{
-    position:absolute;
-    right:20px;
-    top:50%;
-    transform:translateY(-50%);
-    padding:6px 10px;
-    border:none;
-    border-radius:8px;
-    background:#ffb3c6;
-    font-weight:bold;
-    color:#4b0e1f;
-  }
+#langSelect{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  background:#ffb3c6;
+  font-weight:bold;
+  color:#4b0e1f;
+}
 
-  .gallery {
+.gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
   padding:20px;
 }
 
-
- .item {
+.item{
   width:100%;
   max-width:420px;
-  padding:0;
-  background:none;
-  box-shadow:none;
-  border-radius:0;
+  margin:auto;
   text-align:center;
 }
 
-
-
-  .item:hover { transform: scale(1.05); }
-
-.item img {
+.img-slider{
+  position:relative;
   width:100%;
-  height:auto;
-  max-height:85vh;        /* الصورة ما تطولش زيادة */
-  object-fit:contain;     /* صورة كاملة */
+}
+
+.img-slider img{
+  width:100%;
+  max-height:85vh;
+  object-fit:contain;
+  display:none;
+}
+
+.img-slider img.active{
   display:block;
-  margin:auto;
 }
 
-
-  .price {
-    font-size:20px;
-    font-weight:bold;
-    color:#ffb3c6;
-    margin-top:10px;
-    font-family:'Didot', serif;
-  }
-
-  .desc {
-    font-size:15px;
-    color:#ffe3eb;
-    margin-top:8px;
-    line-height:1.5;
-    opacity:0;
-    transform:translateY(10px);
-    transition:opacity 0.4s ease, transform 0.4s ease;
-    font-family:'Poppins', sans-serif;
-  }
-
-  .item:hover .desc {
-    opacity:1;
-    transform:translateY(0);
-  }
-
-  .btn {
-    background-color:#ffb3c6;
-    border:none;
-    color:#4b0e1f;
-    padding:10px 20px;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:10px;
-    transition:0.3s;
-    font-family:'Poppins',sans-serif;
-  }
-
-  .btn:hover { background-color:#ffc7d3; }
-
-  .back-link {
-    display:block;
-    text-align:center;
-    margin:30px 0;
-    color:#ffb3c6;
-    text-decoration:none;
-    font-weight:500;
-    font-family:'Poppins',sans-serif;
-  }
-
-@media (max-width:768px){
-  .gallery{
-    gap:22px;
-    padding:20px;
-  }
-
-  .item{
-    max-width:95%;
-  }
-
-  .item img{
-    height:380px;
-  }
-}
-@media (max-width:768px){
-  .gallery{
-    grid-template-columns:1fr;
-  }
-
-  .item{
-    max-width:100%;
-  }
-
-  .item img{
-    max-height:80vh;
-  }
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:#ffb3c6;
+  cursor:pointer;
+  user-select:none;
+  padding:10px;
 }
 
+.arrow.left{ left:0; }
+.arrow.right{ right:0; }
 
+.price{
+  font-size:20px;
+  font-weight:bold;
+  color:#ffb3c6;
+  margin-top:10px;
+  font-family:'Didot',serif;
+}
+
+.desc{
+  font-size:15px;
+  color:#ffe3eb;
+  margin-top:8px;
+  line-height:1.5;
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.4s;
+}
+
+.item:hover .desc{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.btn{
+  background:#ffb3c6;
+  border:none;
+  color:#4b0e1f;
+  padding:10px 20px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.back-link{
+  display:block;
+  text-align:center;
+  margin:30px 0;
+  color:#ffb3c6;
+  text-decoration:none;
+}
+
+@media(max-width:768px){
+  .gallery{grid-template-columns:1fr;}
+  .arrow{font-size:48px;}
+}
 </style>
 </head>
 
@@ -166,6 +146,7 @@
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+/* كل الصور زي ما هي من غير حذف */
 const images = [
   "https://i.postimg.cc/Z52hdwvZ/1765751662380-019b1eff-e12c-7295-a25f-84b95fd451ef.png",
   "https://i.postimg.cc/TP3b8TJ2/1765800045379-019b21e2-1a65-7e6d-82ed-098cf5008437.png",
@@ -201,43 +182,68 @@ const images = [
   "https://i.postimg.cc/02WJ34ht/Whats-App-Image-2025-11-30-at-12-24-06-AM.jpg"
 ];
 
+/* تحويل الصور لأزواج */
+const pairedImages=[];
+for(let i=0;i<images.length;i+=2){
+  pairedImages.push([images[i],images[i+1]||images[i]]);
+}
+
 function renderProducts(lang){
   const container=document.getElementById("productContainer");
   container.innerHTML="";
-  images.forEach((img,i)=>{
+
+  pairedImages.forEach(pair=>{
     const div=document.createElement("div");
     div.className="item";
     div.innerHTML=`
-      <img src="${img}" alt="Vase ${i+1}">
+      <div class="img-slider">
+        <img src="${pair[0]}" class="active">
+        <img src="${pair[1]}">
+        <span class="arrow left">‹</span>
+        <span class="arrow right">›</span>
+      </div>
       <div class="price">2000 جنيه</div>
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
       <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     container.appendChild(div);
   });
-  attachCartListeners(lang);
+
+  initSliders();
 }
 
-function attachCartListeners(lang){
-  document.querySelectorAll(".btn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      btn.innerText=lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff";
-      btn.style.color="#4b0e1f";
-      setTimeout(()=>{
-        btn.innerText=lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="#ffb3c6";
-        btn.style.color="#4b0e1f";
-      },1200);
-    });
+function initSliders(){
+  document.querySelectorAll(".img-slider").forEach(slider=>{
+    const imgs=slider.querySelectorAll("img");
+    let index=0;
+
+    const show=i=>{
+      imgs.forEach(img=>img.classList.remove("active"));
+      imgs[i].classList.add("active");
+    };
+
+    slider.querySelector(".left").onclick=()=>{
+      index=(index-1+imgs.length)%imgs.length;
+      show(index);
+    };
+
+    slider.querySelector(".right").onclick=()=>{
+      index=(index+1)%imgs.length;
+      show(index);
+    };
+
+    setInterval(()=>{
+      index=(index+1)%imgs.length;
+      show(index);
+    },10000);
   });
 }
 
 document.getElementById("langSelect").addEventListener("change",()=>{
-  const lang=document.getElementById("langSelect").value;
+  const lang=langSelect.value;
   document.body.dir=lang==="ar"?"rtl":"ltr";
   renderProducts(lang);
-  document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  backLink.textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
 });
 
 renderProducts("en");
