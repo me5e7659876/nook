@@ -426,35 +426,26 @@ footer p.copy{
 </footer>
 
 <script>
-function toggleMenu(){
-  const overlay=document.getElementById("menuOverlay");
-  overlay.style.height = overlay.style.height==="100%"?"0%":"100%";
-}
-function closeMenu(){
-  document.getElementById("menuOverlay").style.height="0%";
-}
+let featuredIndex = 0;
 
-/* SLIDER */
-const slides=document.querySelectorAll('.slide');
-let index=0;
-function nextSlide(){
-  slides[index].classList.remove('active');
-  index=(index+1)%slides.length;
-  slides[index].classList.add('active');
-}
-setInterval(nextSlide,5000);
-
-/* FEATURED */
-let featuredIndex=0;
 function moveFeatured(dir){
-  const track=document.getElementById("featuredTrack");
-  const itemWidth=track.children[0].offsetWidth+20;
-  featuredIndex+=dir;
-  if(featuredIndex<0)featuredIndex=0;
-  if(featuredIndex>track.children.length-1)featuredIndex=track.children.length-1;
-  track.style.transform=translateX(-${featuredIndex*itemWidth}px);
+  const track = document.getElementById("featuredTrack");
+  const items = track.children;
+  const wrapper = track.parentElement;
+
+  const itemWidth = items[0].getBoundingClientRect().width + 20;
+  const visibleItems = Math.max(1, Math.floor(wrapper.offsetWidth / itemWidth));
+
+  featuredIndex += dir;
+
+  const maxIndex = items.length - visibleItems;
+  if (featuredIndex < 0) featuredIndex = 0;
+  if (featuredIndex > maxIndex) featuredIndex = maxIndex;
+
+  track.style.transform = translateX(-${featuredIndex * itemWidth}px);
 }
 </script>
 
 </body>
 </html>
+
