@@ -292,6 +292,21 @@ footer p.copy{
     background: #4b0e1f;
   }
 }
+  @media (max-width: 768px) {
+  .featured-item {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+}
+  @media (max-width: 768px) {
+  .featured-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
 </style>
 </head>
 
@@ -465,5 +480,6 @@ function moveFeatured(dir){
 
 </body>
 </html>
+
 
 
