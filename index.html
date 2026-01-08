@@ -258,6 +258,79 @@ footer p.copy { text-align:center; margin-top:20px; font-size:13px; color:#777; 
   .content{grid-template-columns:repeat(2,1fr);}
   .card img{height:200px !important;}
 }
+  /* ========================= */
+/* GLOBAL IMAGE FIX */
+/* ========================= */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ========================= */
+/* PRODUCTS / MOODS GRID */
+/* ========================= */
+
+.mood-grid,
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ========================= */
+/* IMAGE CARD */
+/* ========================= */
+
+.mood-card,
+.product-card {
+  width: 100%;
+  overflow: hidden;
+}
+
+.mood-card img,
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover; /* ديسكتوب */
+}
+
+/* ========================= */
+/* MOBILE FIX */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .mood-grid,
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* نفس الصور مش أقل */
+  }
+
+  .mood-card img,
+  .product-card img {
+    height: 220px;
+    object-fit: contain; /* الصورة كاملة */
+    background: #f5f5f5;
+  }
+}
+
+/* ========================= */
+/* SMALL PHONES */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  .mood-grid,
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mood-card img,
+  .product-card img {
+    height: 200px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -564,6 +637,7 @@ function moveFeatured(dir){
 
 </body>
 </html>
+
 
 
 
