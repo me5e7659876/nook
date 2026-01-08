@@ -515,34 +515,88 @@ footer p.copy{
 </main>
 </div>
 
+<!-- FOOTER -->
 <footer>
-<p class="copy">© 2025 Nook Decor. All Rights Reserved</p>
+  <div class="footer-container">
+    <div class="footer-col" style="text-align:left; display:flex; flex-direction:column; gap:8px;">
+      <h4>Information</h4>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="shipping.html">Shipping Policy</a>
+      <a href="returns.html">Return & Refund</a>
+    </div>
+  </div>
+  <p class="copy">©️ 2025 Nook Decor. All Rights Reserved</p>
 </footer>
 
 <script>
-let featuredIndex = 0;
-
-function moveFeatured(dir){
-  const track = document.getElementById("featuredTrack");
-  const items = track.children;
-  const wrapper = track.parentElement;
-
-  const itemWidth = items[0].getBoundingClientRect().width + 20;
-  const visibleItems = Math.max(1, Math.floor(wrapper.offsetWidth / itemWidth));
-
-  featuredIndex += dir;
-
-  const maxIndex = items.length - visibleItems;
-  if (featuredIndex < 0) featuredIndex = 0;
-  if (featuredIndex > maxIndex) featuredIndex = maxIndex;
-
-  track.style.transform = translateX(-${featuredIndex * itemWidth}px);
+// MENU OPEN/CLOSE
+function toggleMenu(){
+  const overlay=document.getElementById("menuOverlay");
+  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
+  else{ overlay.style.height="100%"; }
 }
+function closeMenu(){document.getElementById
+("menuOverlay").style.height="0%";}
+
+// SEARCH BAR FUNCTIONALITY
+document.getElementById("searchBtn").onclick=function(){
+  const bar=document.getElementById("searchBarContainer");
+  bar.style.display=bar.style.display==="block"?"none":"block";
+};
+document.getElementById("clearSearch").onclick=function(){
+  document.getElementById("searchInput").value="";
+  filterCards();
+};
+document.getElementById("searchInput").addEventListener("input",filterCards);
+function filterCards(){
+  const query=document.getElementById("searchInput").value.toLowerCase();
+  const cards=document.querySelectorAll(".card");
+  let visible=0;
+  cards.forEach(card=>{
+    const title=card.querySelector("h3").innerText.toLowerCase();
+    const cat=card.dataset.cat.toLowerCase();
+    if(title.includes(query)||cat.includes(query)){
+      card.style.display="block";
+      visible++;
+    } else { card.style.display="none"; }
+  });
+  document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
+}
+
+// SLIDER FUNCTIONALITY
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[i].classList.add('active');
+  dots[i].classList.add('active');
+}
+
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide(){
+  index = (index - 1 + slides.length ) % slides.length;
+  showSlide(index);
+}
+
+function goToSlide(i){
+  index = i;
+  showSlide(index);
+}
+
+// AUTO SLIDE EVERY 5 SECONDS
+setInterval(nextSlide,5000);
 </script>
 
 </body>
 </html>
-
 
 
 
