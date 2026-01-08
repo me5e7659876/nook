@@ -274,7 +274,24 @@ footer p.copy{
   .content{grid-template-columns:repeat(2,1fr);}
   .card img{height:200px;}
 }
+@media (max-width: 768px) {
+  .featured-wrapper {
+    overflow-x: auto;
+  }
 
+  .featured-track {
+    scroll-snap-type: x mandatory;
+  }
+
+  .featured-item {
+    scroll-snap-align: start;
+  }
+
+  .featured-item img {
+    object-fit: contain;
+    background: #4b0e1f;
+  }
+}
 </style>
 </head>
 
@@ -448,4 +465,5 @@ function moveFeatured(dir){
 
 </body>
 </html>
+
 
