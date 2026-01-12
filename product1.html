@@ -124,7 +124,7 @@ header{
 
 <script>
 /* ================= CART ================= */
-function addToCartReal(product){
+ function addToCartReal(product, btn, lang){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const existing = cart.find(i => i.name === product.name && i.img === product.img);
 
@@ -142,11 +142,19 @@ function addToCartReal(product){
   localStorage.setItem("cart", JSON.stringify(cart));
   localStorage.setItem("cartItems", JSON.stringify(cart));
 
-  alert(
-    langSelect.value === "ar"
-    ? "✅ تم إضافة المنتج إلى السلة"
-    : "✅ Product added to cart"
-  );
+  // تغيير شكل الزرار (زي games)
+  btn.innerText = lang === "ar" ? "تمت الإضافة ✓" : "Added to Cart ✓";
+  btn.style.background = "#fff";
+  btn.style.color = "#4b0e1f";
+
+  setTimeout(()=>{
+    btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
+    btn.style.background = "#ffb3c6";
+    btn.style.color = "#4b0e1f";
+  },1200);
+}
+
+
 }
 
 /* كل الصور كاملة بدون حذف */
@@ -220,9 +228,15 @@ function renderProducts(lang){
       </div>
       <div class="price">2000 جنيه</div>
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
-      <button class="btn" onclick="addToCartReal({name:'Decorative Vase',price:2000,img:'${pair[0]}'})">
-        ${lang==="ar"?"أضف إلى السلة":"Add to Cart"}
-      </button>
+     <button class="btn"
+onclick="addToCartReal(
+  {name:'Decorative Vase', price:2000, img:'${pair[0]}'},
+  this,
+  langSelect.value
+)">
+  ${lang==="ar"?"أضف إلى السلة":"Add to Cart"}
+</button>
+
     `;
     container.appendChild(div);
   });
