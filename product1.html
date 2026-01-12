@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vases Collection - Nook Decor</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,6 +34,7 @@ header{
   background:#ffb3c6;
   font-weight:bold;
   color:#4b0e1f;
+  cursor:pointer;
 }
 .gallery{
   display:grid;
@@ -123,41 +124,33 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-/* ================= CART ================= */
- function addToCartReal(product, btn, lang){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const existing = cart.find(i => i.name === product.name && i.img === product.img);
+// =================== CART FUNCTIONS ===================
+function getCart(){
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
-  if(existing){
-    existing.qty += 1;
-  }else{
-    cart.push({
-      name: product.name,
-      price: product.price,
-      img: product.img,
-      qty: 1
-    });
-  }
-
+function saveCart(cart){
   localStorage.setItem("cart", JSON.stringify(cart));
   localStorage.setItem("cartItems", JSON.stringify(cart));
+}
 
-  // تغيير شكل الزرار (زي games)
-  btn.innerText = lang === "ar" ? "تمت الإضافة ✓" : "Added to Cart ✓";
-  btn.style.background = "#fff";
-  btn.style.color = "#4b0e1f";
+function handleAddToCart(btn, product, lang){
+  let cart = getCart();
+  const existing = cart.find(i => i.name === product.name && i.img === product.img);
+  if(existing){ existing.qty += 1; }
+  else { cart.push({...product, qty:1}); }
+  saveCart(cart);
 
+  // تغيير الزرار زي Games
+  btn.innerText = lang==="ar" ? "تمت الإضافة ✓" : "Added to Cart ✓";
+  btn.style.background="#fff"; btn.style.color="#4b0e1f";
   setTimeout(()=>{
-    btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
-    btn.style.background = "#ffb3c6";
-    btn.style.color = "#4b0e1f";
+    btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
+    btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f";
   },1200);
 }
 
-
-}
-
-/* كل الصور كاملة بدون حذف */
+// =================== IMAGES ===================
 const images = [
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg",
  "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png",
@@ -203,22 +196,21 @@ const images = [
  "https://i.postimg.cc/DwG7HQ2B/1768003939954-019ba53e-b94d-70a3-9fd8-813a83954a38.png"
 ];
 
-/* تحويل الصور لأزواج */
 const pairedImages=[];
-for(let i=0;i<images.length;i+=2){
-  pairedImages.push([images[i],images[i+1]||images[i]]);
-}
+for(let i=0;i<images.length;i+=2){ pairedImages.push([images[i],images[i+1]||images[i]]); }
 
-const langSelect=document.getElementById("langSelect");
-const backLink=document.getElementById("backLink");
+const langSelect = document.getElementById("langSelect");
+const backLink = document.getElementById("backLink");
 
+// =================== RENDER PRODUCTS ===================
 function renderProducts(lang){
-  const container=document.getElementById("productContainer");
+  const container = document.getElementById("productContainer");
   container.innerHTML="";
 
   pairedImages.forEach(pair=>{
-    const div=document.createElement("div");
+    const div = document.createElement("div");
     div.className="item";
+
     div.innerHTML=`
       <div class="img-slider">
         <img src="${pair[0]}" class="active">
@@ -228,44 +220,43 @@ function renderProducts(lang){
       </div>
       <div class="price">2000 جنيه</div>
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
-     <button class="btn"
-onclick="addToCartReal(
-  {name:'Decorative Vase', price:2000, img:'${pair[0]}'},
-  this,
-  langSelect.value
-)">
-  ${lang==="ar"?"أضف إلى السلة":"Add to Cart"}
-</button>
-
     `;
+
+    const btn = document.createElement("button");
+    btn.className="btn";
+    btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+    btn.addEventListener("click", ()=>handleAddToCart(btn,{name:"Decorative Vase", price:2000, img:pair[0]}, lang));
+    div.appendChild(btn);
+
     container.appendChild(div);
   });
 
   initSliders();
 }
 
+// =================== SLIDER ===================
 function initSliders(){
   document.querySelectorAll(".img-slider").forEach(slider=>{
-    const imgs=slider.querySelectorAll("img");
-    let index=0;
-    const show=i=>{
-      imgs.forEach(img=>img.classList.remove("active"));
-      imgs[i].classList.add("active");
-    };
-    slider.querySelector(".left").onclick=()=>{index=(index-1+imgs.length)%imgs.length;show(index);};
-    slider.querySelector(".right").onclick=()=>{index=(index+1)%imgs.length;show(index);};
-    setInterval(()=>{index=(index+1)%imgs.length;show(index);},10000);
+    const imgs = slider.querySelectorAll("img");
+    let index = 0;
+    const show = i=>{ imgs.forEach(img=>img.classList.remove("active")); imgs[i].classList.add("active"); };
+    slider.querySelector(".left").onclick = ()=>{ index=(index-1+imgs.length)%imgs.length; show(index); };
+    slider.querySelector(".right").onclick = ()=>{ index=(index+1)%imgs.length; show(index); };
+    setInterval(()=>{ index=(index+1)%imgs.length; show(index); },10000);
   });
 }
 
-langSelect.addEventListener("change",()=>{
-  const lang=langSelect.value;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  backLink.textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+// =================== LANGUAGE SWITCH ===================
+langSelect.addEventListener("change", ()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  backLink.textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
 });
 
+// =================== INITIAL RENDER ===================
 renderProducts("en");
+
 </script>
 
 </body>
