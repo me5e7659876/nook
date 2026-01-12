@@ -82,26 +82,18 @@ header{
   height:85vh;
   overflow:hidden;
 }
-
-/* Slider Track */
-.hero-track{
-  display:flex;
-  width:500%; /* 5 صور */
-  height:100%;
-  transition: transform 0.8s ease-in-out;
-}
 .slide{
-  width:20%; /* 1/5 */
-  height:100%;
-  flex-shrink:0;
-  position:relative;
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .8s ease-in-out;
 }
+.slide.active{opacity:1;}
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
-
 .hero-overlay{
   position:absolute;
   inset:0;
@@ -111,7 +103,6 @@ header{
   position:absolute;
   left:6%;
   bottom:18%;
-  z-index:10;
 }
 .hero-content p{font-size:22px;}
 .hero-content h1{font-size:56px;margin:12px 0;}
@@ -131,16 +122,30 @@ header{
   font-size:32px;
   cursor:pointer;
   user-select:none;
-  z-index:10;
 }
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
+
+.dots{
+  position:absolute;
+  bottom:35px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+}
+.dot{
+  width:30px;
+  height:4px;
+  background:#bbb;
+  cursor:pointer;
+}
+.dot.active{background:#fff;}
 
 /* ---------------- FEATURED ---------------- */
 .featured-strip{
   background:#3b0a1a;
   padding:30px 20px;
-  margin-bottom:40px;
 }
 .featured-title{
   text-align:center;
@@ -178,6 +183,27 @@ header{
 }
 .featured-arrow.left{left:0;}
 .featured-arrow.right{right:0;}
+
+/* ---------------- SEARCH ---------------- */
+.top-bar{
+  display:none;
+  justify-content:center;
+  margin:15px;
+}
+.search-bar{
+  display:flex;
+  gap:8px;
+  background:#3b0a1a;
+  padding:8px 12px;
+  border-radius:10px;
+}
+.search-bar input{
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#fff;
+  width:260px;
+}
 
 /* ---------------- CONTENT ---------------- */
 .container{
@@ -248,12 +274,48 @@ footer p.copy{
   .content{grid-template-columns:repeat(2,1fr);}
   .card img{height:200px;}
 }
+@media (max-width: 768px) {
+  .featured-wrapper {
+    overflow-x: auto;
+  }
 
-/* Hide featured arrows on mobile */
-@media(max-width:768px){
-  .featured-arrow{display:none;}
-  .featured-item{min-width:200px;}
+  .featured-track {
+    scroll-snap-type: x mandatory;
+  }
+
+  .featured-item {
+    scroll-snap-align: start;
+  }
+
+  .featured-item img {
+    object-fit: contain;
+    background: #4b0e1f;
+  }
 }
+  @media (max-width: 768px) {
+  .featured-item {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+}
+  @media (max-width: 768px) {
+  .featured-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+  .featured-arrow,
+.arrow-left,
+.arrow-right {
+  display: none !important;
+}
+  .featured-strip {
+  margin-bottom: 40px; /* المسافة بين الصور والكاتيجوريز */
+}
+  
 </style>
 </head>
 
@@ -294,40 +356,71 @@ footer p.copy{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-track" id="heroTrack">
-    <div class="slide">
-      <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1">
-      <div class="hero-overlay"></div>
-    </div>
-    <div class="slide">
-      <img src="https://i.postimg.cc/2SqnB7LH/df8b8bbe-bb45-41ff-8a31-9fe46ad31c04.jpg" alt="Decor Collection 2">
-      <div class="hero-overlay"></div>
-    </div>
-    <div class="slide">
-      <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Mood 1">
-      <div class="hero-overlay"></div>
-    </div>
-    <div class="slide">
-      <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Mood 2">
-      <div class="hero-overlay"></div>
-    </div>
-    <div class="slide">
-      <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Mood 3">
-      <div class="hero-overlay"></div>
+  <div class="slide active">
+    <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
     </div>
   </div>
 
-  <div class="hero-content">
-    <p id="heroText">Check Our</p>
-    <h1 id="heroTitle">Decor Collection</h1>
-    <button>Show More</button>
+  <div class="slide">
+    <img src="https://i.postimg.cc/2SqnB7LH/df8b8bbe-bb45-41ff-8a31-9fe46ad31c04.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
   </div>
 
+  <div class="slide">
+    <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Create Your Own Mood 1">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Create Your Own Mood 2">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Create Your Own Mood 3">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <!-- الأسهم -->
   <div class="arrow left" onclick="prevSlide()">❮</div>
   <div class="arrow right" onclick="nextSlide()">❯</div>
+
+  <!-- النقاط -->
+  <div class="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+    <div class="dot" onclick="goToSlide(4)"></div>
+  </div>
 </section>
 
-<!-- FEATURED PRODUCTS -->
+<!-- FEATURED -->
 <section class="featured-strip">
   <div class="featured-title">Featured Products</div>
   <div class="featured-wrapper">
@@ -443,70 +536,21 @@ function toggleMenu(){
   if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
   else{ overlay.style.height="100%"; }
 }
-function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
+function closeMenu(){document.getElementById
+("menuOverlay").style.height="0%";}
 
-// SLIDER HERO
-const track = document.getElementById('heroTrack');
-const slides = document.querySelectorAll('.slide');
-const heroText = document.getElementById('heroText');
-const heroTitle = document.getElementById('heroTitle');
-
-let index = 0;
-
-const texts = [
-  {p:'Check Our', h:'Decor Collection'},
-  {p:'Check Our', h:'Decor Collection'},
-  {p:'Create', h:'Your Own Mood'},
-  {p:'Create', h:'Your Own Mood'},
-  {p:'Create', h:'Your Own Mood'}
-];
-
-function updateSlide() {
-  track.style.transform = translateX(-${index * 20}%);
-  heroText.textContent = texts[index].p;
-  heroTitle.textContent = texts[index].h;
-}
-
-function nextSlide() {
-  index = (index + 1) % slides.length;
-  updateSlide();
-}
-
-function prevSlide() {
-  index = (index - 1 + slides.length) % slides.length;
-  updateSlide();
-}
-
-// AUTO SLIDE
-setInterval(nextSlide, 5000);
-
-// FEATURED SLIDER
-const featuredTrack = document.getElementById('featuredTrack');
-let featuredIndex = 0;
-
-function moveFeatured(direction) {
-  const items = document.querySelectorAll('.featured-item');
-  featuredIndex += direction;
-  if (featuredIndex < 0) featuredIndex = 0;
-  if (featuredIndex > items.length - 1) featuredIndex = items.length - 1;
-  const offset = -featuredIndex * (items[0].offsetWidth + 20); // 20px gap
-  featuredTrack.style.transform = translateX(${offset}px);
-}
-
-// SEARCH FUNCTIONALITY
+// SEARCH BAR FUNCTIONALITY
 document.getElementById("searchBtn").onclick=function(){
   const bar=document.getElementById("searchBarContainer");
-  if(bar) bar.style.display=bar.style.display==="block"?"none":"block";
+  bar.style.display=bar.style.display==="block"?"none":"block";
 };
-document.getElementById("clearSearch")?.addEventListener('click', function(){
-  const input = document.getElementById("searchInput");
-  if(input) input.value="";
+document.getElementById("clearSearch").onclick=function(){
+  document.getElementById("searchInput").value="";
   filterCards();
-});
-document.getElementById("searchInput")?.addEventListener("input",filterCards);
-
+};
+document.getElementById("searchInput").addEventListener("input",filterCards);
 function filterCards(){
-  const query=document.getElementById("searchInput")?.value.toLowerCase() || "";
+  const query=document.getElementById("searchInput").value.toLowerCase();
   const cards=document.querySelectorAll(".card");
   let visible=0;
   cards.forEach(card=>{
@@ -517,30 +561,47 @@ function filterCards(){
       visible++;
     } else { card.style.display="none"; }
   });
-  const noResults = document.getElementById("noResults");
-  if(noResults) noResults.setAttribute("aria-hidden", visible===0?"false":"true");
+  document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
 }
 
-// CATEGORIES FILTER
-const categoryLinks = document.querySelectorAll('.categories a');
-categoryLinks.forEach(link=>{
-  link.addEventListener('click',()=>{
-    categoryLinks.forEach(l=>l.classList.remove('active'));
-    link.classList.add('active');
-    const cat = link.dataset.cat.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    let visible=0;
-    cards.forEach(card=>{
-      if(cat==='all' || card.dataset.cat.toLowerCase()===cat){
-        card.style.display="block";
-        visible++;
-      } else { card.style.display="none"; }
-    });
-    const noResults = document.getElementById("noResults");
-    if(noResults) noResults.setAttribute("aria-hidden", visible===0?"false":"true");
-  });
-});
+// SLIDER FUNCTIONALITY
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let index = 0;
+
+function showSlide(i){
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[i].classList.add('active');
+  dots[i].classList.add('active');
+}
+
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide(){
+  index = (index - 1 + slides.length ) % slides.length;
+  showSlide(index);
+}
+
+function goToSlide(i){
+  index = i;
+  showSlide(index);
+}
+
+// AUTO SLIDE EVERY 5 SECONDS
+setInterval(nextSlide,5000);
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
