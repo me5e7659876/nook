@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Decor Piece - Nook Decor</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@ header{
   font-size:28px;
   font-family:'Didot',serif;
   position:relative;
+  color:#ffb3c6;
 }
 
 #langSelect{
@@ -146,22 +147,28 @@ header{
 <body>
 
 <header>
-  <span id="pageTitle">Nook Decor</span>
+  <span id="pageTitle">Decor Pieces</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
+<div id="productsContainer"></div>
+
+<a href="index.html" class="back-link" id="backLink">← Back to Home</a>
+
 <script>
+// ================= CART FUNCTIONS =================
+function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
+function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
+
+// ================= PRODUCT DATA =================
 const products = [
-  /* === PRODUCTS 12 → 15 (بقوا 1 → 4) === */
   ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
   ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
   ["https://i.postimg.cc/13cvtmJy/l-h-m.png","https://i.postimg.cc/50jgnw1y/l-h.jpg"],
   ["https://i.postimg.cc/FzLZQNY7/l-s-m.jpg","https://i.postimg.cc/BZrpBLzp/l-s.jpg"],
-
-  /* === PRODUCTS 5 → 11 (زي ما هي) === */
   ["https://i.postimg.cc/9XJXGCSX/s-m.jpg","https://i.postimg.cc/QxzXySjB/s.jpg"],
   ["https://i.postimg.cc/WpWjdSFt/th-m.jpg","https://i.postimg.cc/FRF5RJ99/th.png"],
   ["https://i.postimg.cc/s2yb6ZGy/ʿ-a-m.png","https://i.postimg.cc/xTz79PKY/ʿ-a.jpg"],
@@ -169,55 +176,90 @@ const products = [
   ["https://i.postimg.cc/Vk42hkqr/f-la-m.png","https://i.postimg.cc/T1r4Jd25/f-la.jpg"],
   ["https://i.postimg.cc/KYwpXkRG/f-la-a-m.jpg","https://i.postimg.cc/L5BxZxvk/f-la.png"],
   ["https://i.postimg.cc/XvSxQMhB/b-m.png","https://i.postimg.cc/gjTHh18G/b.jpg"],
-
-  /* === PRODUCTS 1 → 4 (بقوا 12 → 15) === */
   ["https://i.postimg.cc/W43w12QH/t-a-m.png","https://i.postimg.cc/gkWy6yCV/t-abyd.png"],
   ["https://i.postimg.cc/pL0K7wph/t-b-m.png","https://i.postimg.cc/9fKZXyPD/t-b.png"],
   ["https://i.postimg.cc/BQpFLrc0/t-h-m.jpg","https://i.postimg.cc/PJ4CDDDr/t-h.jpg"],
   ["https://i.postimg.cc/3NKR3wqT/t-s-m.png","https://i.postimg.cc/t41gqwBg/t-s.jpg"],
-
   ["https://i.postimg.cc/fL37xDjj/y-m.png","https://i.postimg.cc/2S2nMV0d/y.jpg"]
 ];
 
-products.forEach((imgs,i)=>{
-  document.write(`
-  <div class="product-card">
-    <div class="product-container">
-      <div class="slider">
-        <img src="${imgs[0]}" class="slide active">
-        <img src="${imgs[1]}" class="slide">
-        <button class="arrow right">›</button>
+// ================= RENDER PRODUCTS =================
+const container = document.getElementById("productsContainer");
+
+function renderProducts(lang){
+  container.innerHTML = "";
+
+  products.forEach((imgs,i)=>{
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <div class="product-container">
+        <div class="slider">
+          <img src="${imgs[0]}" class="slide active">
+          <img src="${imgs[1]}" class="slide">
+          <button class="arrow right">›</button>
+        </div>
+
+        <div class="product-details">
+          <h1>${lang==="ar"?"قطعة ديكور":"Decor Piece"} ${i+1}</h1>
+          <p>${lang==="ar"?"قطعة ديكور أنيقة – تظهر مع وبدون مزهرية.":"Elegant decor piece – shown with and without vase."}</p>
+          <div class="price">500 EGP</div>
+          <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+        </div>
       </div>
+    `;
 
-      <div class="product-details">
-        <h1>Decor Piece ${i+1}</h1>
-        <p>Elegant decor piece – shown with and without vase.</p>
-        <div class="price">500 EGP</div>
-        <button class="btn">Add to Cart</button>
-      </div>
-    </div>
-  </div>
-  `);
+    const btn = card.querySelector(".btn");
+    btn.addEventListener("click", ()=> handleAddToCart(
+      btn,
+      {name:`Decor Piece ${i+1}`, price:500, img:imgs[0]},
+      lang
+    ));
+
+    container.appendChild(card);
+  });
+
+  initSliders();
+}
+
+// ================= SLIDER FUNCTION =================
+function initSliders(){
+  document.querySelectorAll('.slider').forEach(slider=>{
+    const slides = slider.querySelectorAll('.slide');
+    const nextBtn = slider.querySelector('.arrow.right');
+    let i=0;
+
+    const show = ()=>{
+      slides.forEach(s=>s.classList.remove('active'));
+      slides[i].classList.add('active');
+    }
+
+    nextBtn.onclick = ()=>{
+      i = (i+1)%slides.length;
+      show();
+    }
+
+    setInterval(()=>{
+      i = (i+1)%slides.length;
+      show();
+    },7000);
+  });
+}
+
+// ================= LANGUAGE SWITCH =================
+const langSelect = document.getElementById("langSelect");
+const backLink = document.getElementById("backLink");
+
+langSelect.addEventListener("change", ()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar"?"rtl":"ltr";
+  backLink.textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(lang);
 });
-</script>
 
-<a href="index.html" class="back-link">← Back to Home</a>
-
-<script>
-document.querySelectorAll('.slider').forEach(slider=>{
-  const slides = slider.querySelectorAll('.slide');
-  const nextBtn = slider.querySelector('.arrow.right');
-  let i = 0;
-
-  function show(){
-    slides[i].classList.remove('active');
-    i = (i + 1) % slides.length;
-    slides[i].classList.add('active');
-  }
-
-  nextBtn.onclick = show;
-  setInterval(show,7000);
-});
+// ================= INITIAL RENDER =================
+renderProducts("en");
 </script>
 
 </body>
