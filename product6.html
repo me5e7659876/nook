@@ -135,19 +135,8 @@ header{
 
 /* ===== Mobile ===== */
 @media(max-width:480px){
-  .slider{
-    height:460px;
-  }
-
-  .slide{
-    object-fit:cover;
-  }
-
-  /* السهم أكبر وعلى أقصى يمين الكرت */
-  .next-btn{
-    font-size:46px;
-    right:-6px;
-  }
+  .slider{height:460px}
+  .next-btn{font-size:46px;right:-6px}
 }
 </style>
 </head>
@@ -166,6 +155,32 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+// ================= CART (نفس الجيمز) =================
+function getCart(){
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+function saveCart(cart){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+function addToCart(btn, product, lang){
+  let cart = getCart();
+  let existing = cart.find(p => p.name === product.name);
+  if(existing) existing.qty += 1;
+  else { product.qty = 1; cart.push(product); }
+  saveCart(cart);
+
+  btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+  btn.style.background="#fff";
+  btn.style.color="#4b0e1f";
+
+  setTimeout(()=>{
+    btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+    btn.style.background="#ffb3c6";
+    btn.style.color="#4b0e1f";
+  },1200);
+}
+
+// ================= PRODUCTS =================
 const products = [
 {
   img:["https://i.postimg.cc/26PVtXV7/1765784858126-019b20f9-6ac9-775d-8b1a-f60916749d0f.png","https://i.postimg.cc/NM1mCW1N/M.png"],
@@ -204,6 +219,7 @@ const products = [
 }
 ];
 
+// ================= RENDER =================
 function renderProducts(lang){
   galleryContainer.innerHTML="";
   products.forEach(p=>{
@@ -211,16 +227,23 @@ function renderProducts(lang){
     item.className="item";
     item.innerHTML=`
       <div class="slider">
-        ${p.img.map((s,i)=>`<img src="${s}" class="slide ${i==0?'active':''}">`).join("")}
+        ${p.img.map((s,i)=>`<img src="${s}" class="slide ${i===0?'active':''}">`).join("")}
         <button class="next-btn">›</button>
       </div>
       <div class="info">
         <div class="price">${p.price} EGP</div>
         <div class="desc">${p.desc[lang]}</div>
-        <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+        <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>
     `;
     galleryContainer.appendChild(item);
+
+    const btn=item.querySelector(".add-to-cart");
+    btn.onclick=()=>addToCart(btn,{
+      name:p.desc.en,
+      price:p.price,
+      img:p.img[0]
+    },lang);
   });
 
   document.querySelectorAll(".slider").forEach(sl=>{
@@ -236,6 +259,7 @@ function renderProducts(lang){
   });
 }
 
+// ================= LANGUAGE =================
 langSelect.onchange=()=>{
   const l=langSelect.value;
   document.body.dir=l==="ar"?"rtl":"ltr";
