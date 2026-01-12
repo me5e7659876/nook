@@ -576,13 +576,16 @@ function showSlide(i){
   dots[i].classList.add('active');
 }
 
+// ✅ تشغيل أول صورة رسميًا
+showSlide(index);
+
 function nextSlide(){
   index = (index + 1) % slides.length;
   showSlide(index);
 }
 
 function prevSlide(){
-  index = (index - 1 + slides.length ) % slides.length;
+  index = (index - 1 + slides.length) % slides.length;
   showSlide(index);
 }
 
@@ -591,12 +594,13 @@ function goToSlide(i){
   showSlide(index);
 }
 
-// AUTO SLIDE EVERY 5 SECONDS
-setInterval(nextSlide,5000);
+// AUTO SLIDE
+setInterval(nextSlide, 5000);
 </script>
 
 </body>
 </html>
+
 
 
 
