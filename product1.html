@@ -146,7 +146,28 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-/* كل الصور زي ما هي من غير حذف */
+function addToCartReal(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existing = cart.find(item =>
+    item.name === product.name && item.img === product.img
+  );
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      qty: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart));
+}
+ / * كل الصور زي ما هي من غير حذف */
 const images = [
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg",
   "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png",
@@ -214,8 +235,15 @@ function renderProducts(lang){
       </div>
       <div class="price">2000 جنيه</div>
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
-      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
-    `;
+      <button class="btn"
+onclick="addToCartReal({
+  name: 'Decorative Vase',
+  price: 2000,
+  img: '${pair[0]}'
+})">
+${lang==="ar"?"أضف إلى السلة":"Add to Cart"}
+</button>
+
     container.appendChild(div);
   });
 
