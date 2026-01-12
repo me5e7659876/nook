@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glass and Small Vases- Nook Decor</title>
+<title>Decor Piece - Nook Decor</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -160,40 +160,31 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-// ================= CART (SAME AS GAMES) =================
-function getCart(){
-  return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart){
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+// ================= CART =================
+function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
+function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
 
 function addToCart(btn, product, lang){
   let cart = getCart();
   let existing = cart.find(p => p.name === product.name);
 
-  if(existing){
-    existing.qty += 1;
-  }else{
-    product.qty = 1;
-    cart.push(product);
-  }
+  if(existing) existing.qty += 1;
+  else { product.qty = 1; cart.push(product); }
 
   saveCart(cart);
 
-  btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
-  btn.style.background = "#fff";
-  btn.style.color = "#4b0e1f";
+  btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+  btn.style.background="#fff";
+  btn.style.color="#4b0e1f";
 
   setTimeout(()=>{
-    btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
-    btn.style.background = "#ffb3c6";
-    btn.style.color = "#4b0e1f";
+    btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+    btn.style.background="#ffb3c6";
+    btn.style.color="#4b0e1f";
   },1200);
 }
 
-// ================= PRODUCT DATA =================
+// ================= DATA =================
 const products = [
   ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
   ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
@@ -217,13 +208,13 @@ const products = [
 const container = document.getElementById("productsContainer");
 
 function renderProducts(lang){
-  container.innerHTML = "";
+  container.innerHTML="";
 
   products.forEach((imgs,i)=>{
-    const card = document.createElement("div");
-    card.className = "product-card";
+    const card=document.createElement("div");
+    card.className="product-card";
 
-    card.innerHTML = `
+    card.innerHTML=`
       <div class="product-container">
         <div class="slider">
           <img src="${imgs[0]}" class="slide active">
@@ -240,14 +231,8 @@ function renderProducts(lang){
       </div>
     `;
 
-    const btn = card.querySelector(".add-to-cart");
-    btn.addEventListener("click",()=>{
-      addToCart(btn,{
-        name:`Decor Piece ${i+1}`,
-        price:500,
-        img:imgs[0]
-      },lang);
-    });
+    const btn=card.querySelector(".add-to-cart");
+    btn.onclick=()=>addToCart(btn,{name:`Decor Piece ${i+1}`,price:500,img:imgs[0]},lang);
 
     container.appendChild(card);
   });
@@ -255,29 +240,31 @@ function renderProducts(lang){
   initSliders();
 }
 
-// ================= SLIDER =================
+// ================= SLIDER (12s) =================
 function initSliders(){
-  document.querySelectorAll('.slider').forEach(slider=>{
-    const slides = slider.querySelectorAll('.slide');
-    const nextBtn = slider.querySelector('.arrow.right');
+  document.querySelectorAll(".slider").forEach(slider=>{
+    const slides=slider.querySelectorAll(".slide");
+    const next=slider.querySelector(".arrow.right");
     let i=0;
 
     const show=()=>{
-      slides.forEach(s=>s.classList.remove('active'));
-      slides[i].classList.add('active');
-    }
+      slides.forEach(s=>s.classList.remove("active"));
+      slides[i].classList.add("active");
+    };
 
-    nextBtn.onclick=()=>{
+    next.onclick=()=>{
       i=(i+1)%slides.length;
       show();
-    }
+    };
+
+    setInterval(()=>{
+      i=(i+1)%slides.length;
+      show();
+    },12000); // ✅ 12 ثانية
   });
 }
 
 // ================= LANGUAGE =================
-const langSelect=document.getElementById("langSelect");
-const backLink=document.getElementById("backLink");
-
 langSelect.addEventListener("change",()=>{
   const lang=langSelect.value;
   document.body.dir=lang==="ar"?"rtl":"ltr";
