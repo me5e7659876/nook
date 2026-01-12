@@ -7,6 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+
 <style>
 body{
   margin:0;
@@ -17,11 +18,12 @@ body{
 
 header{
   background:#4b0e1f;
-  padding:20px;
+  padding:15px;
   text-align:center;
-  font-size:30px;
+  font-size:28px;
   font-family:'Didot',serif;
   position:relative;
+  color:#ffb3c6;
 }
 
 #langSelect{
@@ -29,118 +31,116 @@ header{
   right:20px;
   top:50%;
   transform:translateY(-50%);
-  background:#ffb3c6;
-  border:none;
   padding:6px 10px;
-  border-radius:10px;
+  border:none;
+  border-radius:8px;
   font-weight:bold;
+  background:#ffb3c6;
   color:#4b0e1f;
   cursor:pointer;
 }
 
-/* ===== GRID ===== */
-.product-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-  padding:30px;
-  justify-items:center;
-}
-
-/* ===== CARD ===== */
+/* ================= CARD ================= */
 .product-card{
-  background:#5c1024;
-  border-radius:15px;
-  padding:15px;
-  max-width:260px;
-  width:100%;
-  box-shadow:0 4px 15px rgba(0,0,0,.3);
-  text-align:center;
-  transition:.3s;
+  width:fit-content;
+  margin:30px auto;
+  background:rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:18px;
 }
 
-.product-card:hover{
-  transform:scale(1.03);
+.product-container{
+  display:flex;
+  gap:25px;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-/* ===== SLIDER ===== */
+/* ================= SLIDER ================= */
 .slider{
   position:relative;
+  width:100%;
+  max-width:420px;
 }
 
-/* ✅ التعديل المهم هنا */
 .slide{
   width:100%;
-  aspect-ratio: 3 / 4;
-  height:auto;
-  object-fit:contain;
   border-radius:15px;
   display:none;
-  background:transparent;
 }
 
-.slide.active{
-  display:block;
-}
+.slide.active{display:block}
 
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  font-size:34px;
   background:none;
   border:none;
+  font-size:36px;
   color:#ffb3c6;
   cursor:pointer;
-  user-select:none;
 }
 
-.arrow.left{left:5px}
-.arrow.right{right:5px}
+.arrow.right{right:10px}
 
-/* ===== TEXT ===== */
-.product-card h2{
+/* ================= DETAILS ================= */
+.product-details{
+  max-width:380px;
+}
+
+.product-details h1{
   font-family:'Didot',serif;
-  font-size:20px;
-  margin:12px 0 5px;
+  color:#ffb3c6;
 }
 
 .price{
-  font-size:18px;
-  font-weight:bold;
-  margin:8px 0;
+  font-size:22px;
+  margin:15px 0;
 }
 
 .btn{
   background:#ffb3c6;
   border:none;
-  color:#4b0e1f;
-  padding:10px;
+  padding:12px 24px;
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  width:100%;
-  transition:.25s;
+  color:#4b0e1f;
 }
-
-.btn:hover{transform:scale(1.05)}
 
 .back-link{
-  color:#ffb3c6;
-  text-align:center;
   display:block;
-  margin:40px 0;
+  text-align:center;
+  margin:40px;
+  color:#ffb3c6;
   text-decoration:none;
-  font-size:20px;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:420px){
-  .slide{
-    aspect-ratio: 2 / 3;
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .product-container{
+    flex-direction:column;
+    gap:18px;
   }
-  .price{font-size:16px}
-  .btn{font-size:14px}
+
+  .slider{
+    max-width:95%;
+  }
+
+  .slide{
+    max-height:480px;
+    object-fit:contain;
+  }
+
+  .arrow{
+    font-size:44px;
+  }
+
+  .product-details{
+    max-width:95%;
+    text-align:center;
+  }
 }
 </style>
 </head>
