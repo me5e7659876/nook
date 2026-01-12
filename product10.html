@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Glass and Small Vases - Nook Decor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glass and Small Vases- Nook Decor</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -107,6 +106,7 @@ header{
   font-weight:bold;
   cursor:pointer;
   color:#4b0e1f;
+  width:100%;
 }
 
 .back-link{
@@ -148,21 +148,52 @@ header{
 <body>
 
 <header>
-  <span id="headerTitle">Decor Pieces</span>
+  <span id="pageTitle">Decor Pieces</span>
   <select id="langSelect">
     <option value="en">English</option>
     <option value="ar">العربية</option>
   </select>
 </header>
 
-<div class="product-container" id="productContainer"></div>
+<div id="productsContainer"></div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
-function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
+// ================= CART (SAME AS GAMES) =================
+function getCart(){
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
 
+function saveCart(cart){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function addToCart(btn, product, lang){
+  let cart = getCart();
+  let existing = cart.find(p => p.name === product.name);
+
+  if(existing){
+    existing.qty += 1;
+  }else{
+    product.qty = 1;
+    cart.push(product);
+  }
+
+  saveCart(cart);
+
+  btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
+  btn.style.background = "#fff";
+  btn.style.color = "#4b0e1f";
+
+  setTimeout(()=>{
+    btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
+    btn.style.background = "#ffb3c6";
+    btn.style.color = "#4b0e1f";
+  },1200);
+}
+
+// ================= PRODUCT DATA =================
 const products = [
   ["https://i.postimg.cc/fRxYWV2Y/l-a-m.jpg","https://i.postimg.cc/Bbr1432g/l-a.jpg"],
   ["https://i.postimg.cc/CKcBdkjZ/l-b-m.png","https://i.postimg.cc/BtftRgGT/l-b.jpg"],
@@ -182,81 +213,77 @@ const products = [
   ["https://i.postimg.cc/fL37xDjj/y-m.png","https://i.postimg.cc/2S2nMV0d/y.jpg"]
 ];
 
+// ================= RENDER =================
+const container = document.getElementById("productsContainer");
+
 function renderProducts(lang){
-  const container=document.getElementById("productContainer");
-  container.innerHTML="";
+  container.innerHTML = "";
 
   products.forEach((imgs,i)=>{
-    const card=document.createElement("div");
-    card.className="product-card";
-    card.dataset.name=`Decor Piece ${i+1}`;
-    card.dataset.price="500";
-    card.dataset.img=imgs[0];
+    const card = document.createElement("div");
+    card.className = "product-card";
 
-    card.innerHTML=`
-      <div class="slider">
-        <img src="${imgs[0]}" class="slide active">
-        <img src="${imgs[1]}" class="slide">
-        <button class="arrow left">‹</button>
-        <button class="arrow right">›</button>
+    card.innerHTML = `
+      <div class="product-container">
+        <div class="slider">
+          <img src="${imgs[0]}" class="slide active">
+          <img src="${imgs[1]}" class="slide">
+          <button class="arrow right">›</button>
+        </div>
+
+        <div class="product-details">
+          <h1>${lang==="ar"?"قطعة ديكور":"Decor Piece"} ${i+1}</h1>
+          <p>${lang==="ar"?"قطعة ديكور أنيقة – تظهر مع وبدون مزهرية.":"Elegant decor piece – shown with and without vase."}</p>
+          <div class="price">500 EGP</div>
+          <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+        </div>
       </div>
-
-      <h2>${lang==="ar"?"قطعة ديكور":"Decor Piece"} ${i+1}</h2>
-      <div class="price">500 EGP</div>
-      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
+
+    const btn = card.querySelector(".add-to-cart");
+    btn.addEventListener("click",()=>{
+      addToCart(btn,{
+        name:`Decor Piece ${i+1}`,
+        price:500,
+        img:imgs[0]
+      },lang);
+    });
+
     container.appendChild(card);
   });
 
   initSliders();
-  attachCart(lang);
 }
 
+// ================= SLIDER =================
 function initSliders(){
-  document.querySelectorAll(".slider").forEach(slider=>{
-    const slides=slider.querySelectorAll(".slide");
+  document.querySelectorAll('.slider').forEach(slider=>{
+    const slides = slider.querySelectorAll('.slide');
+    const nextBtn = slider.querySelector('.arrow.right');
     let i=0;
-    const show=()=>{
-      slides.forEach(s=>s.classList.remove("active"));
-      slides[i].classList.add("active");
-    };
 
-    slider.querySelector(".left").onclick=()=>{
-      i=(i-1+slides.length)%slides.length;
-      show();
-    };
-    slider.querySelector(".right").onclick=()=>{
+    const show=()=>{
+      slides.forEach(s=>s.classList.remove('active'));
+      slides[i].classList.add('active');
+    }
+
+    nextBtn.onclick=()=>{
       i=(i+1)%slides.length;
       show();
-    };
+    }
   });
 }
 
-function attachCart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
-    btn.onclick=()=>{
-      const card=btn.closest(".product-card");
-      let cart=getCart();
-      let existing=cart.find(p=>p.name===card.dataset.name);
-      if(existing) existing.qty+=1;
-      else cart.push({name:card.dataset.name,price:500,img:card.dataset.img,qty:1});
-      saveCart(cart);
+// ================= LANGUAGE =================
+const langSelect=document.getElementById("langSelect");
+const backLink=document.getElementById("backLink");
 
-      btn.textContent=lang==="ar"?"تم الإضافة!":"Added!";
-      setTimeout(()=>{
-        btn.textContent=lang==="ar"?"أضف إلى السلة":"Add to Cart";
-      },1200);
-    };
-  });
-}
-
-langSelect.onchange=()=>{
+langSelect.addEventListener("change",()=>{
   const lang=langSelect.value;
   document.body.dir=lang==="ar"?"rtl":"ltr";
-  headerTitle.textContent=lang==="ar"?"قطع ديكور":"Decor Pieces";
   backLink.textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
-};
+});
 
 renderProducts("en");
 </script>
