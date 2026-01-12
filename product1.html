@@ -14,7 +14,6 @@ body{
   font-family:'Poppins',sans-serif;
   color:#fff;
 }
-
 header{
   background:#4b0e1f;
   padding:18px;
@@ -24,7 +23,6 @@ header{
   position:relative;
   color:#ffb3c6;
 }
-
 #langSelect{
   position:absolute;
   right:20px;
@@ -37,37 +35,26 @@ header{
   font-weight:bold;
   color:#4b0e1f;
 }
-
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
   padding:20px;
 }
-
 .item{
   width:100%;
   max-width:420px;
   margin:auto;
   text-align:center;
 }
-
-.img-slider{
-  position:relative;
-  width:100%;
-}
-
+.img-slider{position:relative;width:100%;}
 .img-slider img{
   width:100%;
   max-height:85vh;
   object-fit:contain;
   display:none;
 }
-
-.img-slider img.active{
-  display:block;
-}
-
+.img-slider img.active{display:block;}
 .arrow{
   position:absolute;
   top:50%;
@@ -78,10 +65,8 @@ header{
   user-select:none;
   padding:10px;
 }
-
-.arrow.left{ left:0; }
-.arrow.right{ right:0; }
-
+.arrow.left{left:0;}
+.arrow.right{right:0;}
 .price{
   font-size:20px;
   font-weight:bold;
@@ -89,7 +74,6 @@ header{
   margin-top:10px;
   font-family:'Didot',serif;
 }
-
 .desc{
   font-size:15px;
   color:#ffe3eb;
@@ -99,12 +83,7 @@ header{
   transform:translateY(10px);
   transition:0.4s;
 }
-
-.item:hover .desc{
-  opacity:1;
-  transform:translateY(0);
-}
-
+.item:hover .desc{opacity:1;transform:translateY(0);}
 .btn{
   background:#ffb3c6;
   border:none;
@@ -115,7 +94,6 @@ header{
   cursor:pointer;
   margin-top:10px;
 }
-
 .back-link{
   display:block;
   text-align:center;
@@ -123,7 +101,6 @@ header{
   color:#ffb3c6;
   text-decoration:none;
 }
-
 @media(max-width:768px){
   .gallery{grid-template-columns:1fr;}
   .arrow{font-size:48px;}
@@ -147,16 +124,13 @@ header{
 
 <script>
 /* ================= CART ================= */
-function addToCartReal(product) {
+function addToCartReal(product){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(i => i.name === product.name && i.img === product.img);
 
-  const existing = cart.find(
-    item => item.name === product.name && item.img === product.img
-  );
-
-  if (existing) {
+  if(existing){
     existing.qty += 1;
-  } else {
+  }else{
     cart.push({
       name: product.name,
       price: product.price,
@@ -169,103 +143,111 @@ function addToCartReal(product) {
   localStorage.setItem("cartItems", JSON.stringify(cart));
 
   alert(
-    document.getElementById("langSelect").value === "ar"
-      ? "✅ تم إضافة المنتج إلى السلة"
-      : "✅ Product added to cart"
+    langSelect.value === "ar"
+    ? "✅ تم إضافة المنتج إلى السلة"
+    : "✅ Product added to cart"
   );
 }
 
-/* كل الصور زي ما هي من غير حذف */
+/* كل الصور كاملة بدون حذف */
 const images = [
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg",
  "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png",
  "https://i.postimg.cc/zfRHdHQc/1767991948003-019ba487-95c3-7aa2-a5fb-409b9bfb8865.png",
- "https://i.postimg.cc/RF76m54j/1768006466036-019ba564-be23-7be7-9aea-3d61f55179c1.png"
- /* باقي الصور مكملة زي ما عندك */
+ "https://i.postimg.cc/RF76m54j/1768006466036-019ba564-be23-7be7-9aea-3d61f55179c1.png",
+ "https://i.postimg.cc/jjKY1G37/1767917286961-019ba014-b850-74b5-9ecf-fe77694a2f90.png",
+ "https://i.postimg.cc/Gt4WYrtx/1767917932124-019ba01e-5656-7545-9317-2e3e84e9f8ba.jpg",
+ "https://i.postimg.cc/W4sx80tT/1767918236946-019ba023-30ea-78a6-afd9-9ba2015ea02b.png",
+ "https://i.postimg.cc/4xGJC7mN/1767893075214-019b9ea2-e669-79cd-9908-eef65dac6424.jpg",
+ "https://i.postimg.cc/vBxN0h76/1768007343385-019ba571-dfbe-7add-98d8-55ef39e7b0e6.jpg",
+ "https://i.postimg.cc/PJmFjqRk/1767893861015-019b9eae-f629-72bd-80e6-cf3319aecb83.png",
+ "https://i.postimg.cc/wv1z5Dbv/1767884097127-019b9e1a-4c91-710a-b6f5-e5e73f06d009.png",
+ "https://i.postimg.cc/qRWT1gPr/1767887829633-019b9e52-f4ae-7b99-9096-a40870a48bf6.png",
+ "https://i.postimg.cc/nLPbLCcQ/1767918432011-019ba025-85f1-70a0-9a92-2dab303dfc73.jpg",
+ "https://i.postimg.cc/G3Ywc308/1767893413791-019b9ea8-290d-7af7-b879-c85a237cd754.png",
+ "https://i.postimg.cc/1RThSgY1/1767919075017-019ba030-0109-7e9b-9f10-992e4336d590.png",
+ "https://i.postimg.cc/pXC2HV89/1767893156996-019b9ea4-67e7-7a1e-8f10-ed94f1480b6b.jpg",
+ "https://i.postimg.cc/DykhsJQJ/1767918547717-019ba027-56db-7853-9bf1-d0da24f0cc33.jpg",
+ "https://i.postimg.cc/fWBz4TYj/1767893400105-019b9ea8-290d-7783-ac51-06f3a6c766ec.jpg",
+ "https://i.postimg.cc/FHr2gjYf/1768000867783-019ba50f-6cba-7658-a655-163f9c5d477c.jpg",
+ "https://i.postimg.cc/fbFpNpBR/1768002842018-019ba52a-fe87-7717-9dc7-f26c0622e6c0.png",
+ "https://i.postimg.cc/FzbB0RmL/1768000183993-019ba505-0bae-71c8-b5bc-42c55331c3a3.png",
+ "https://i.postimg.cc/Cxr6G9ys/1768004241476-019ba543-6d20-78e1-92a1-04efae7a22c8.jpg",
+ "https://i.postimg.cc/W3svKQ3K/1768007104035-019ba56f-0237-7003-862d-d5ffd410326a.png",
+ "https://i.postimg.cc/qqg9H0d8/1767893761189-019b9ead-73c8-75af-a38b-a28406d7143d.png",
+ "https://i.postimg.cc/KYFwvt24/1768007243848-019ba571-19dc-7ded-8267-304451ca63c3.png",
+ "https://i.postimg.cc/4dx0pZnJ/1767893576603-019b9eaa-cc35-7394-91e1-e09dc321bccd.jpg",
+ "https://i.postimg.cc/rpvnbWwd/1767919109228-019ba030-0109-7843-ad3c-4eb5bc2b296b.jpg",
+ "https://i.postimg.cc/Hnt6Vh4v/1768004716826-019ba54a-db78-751c-a63f-9b6e904ee9bd.png",
+ "https://i.postimg.cc/fRPBtXXK/1767919226383-019ba031-dbb3-7a25-9dfb-c02f32b0c91d.jpg",
+ "https://i.postimg.cc/7hqV8N8z/1768004550144-019ba548-07e7-7fb5-927b-7eda12793ab7.png",
+ "https://i.postimg.cc/PfMyb0Y3/1767999614620-019ba4fc-4f5f-75d6-a970-3b5456bf6a7c.png",
+ "https://i.postimg.cc/t4szjTfP/1768003389805-019ba535-5f98-7edf-9dd5-321644487752.png",
+ "https://i.postimg.cc/FzPjt5VV/1767998602454-019ba4ed-8d40-7378-a898-97ec389631c2.png",
+ "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png",
+ "https://i.postimg.cc/gjB6SyYp/1768002041826-019ba521-dcff-7719-b780-d51ec2012a7f.png",
+ "https://i.postimg.cc/L6w1jVC1/1768006252344-019ba561-9982-7e2b-8d12-7fbe04c58782.png",
+ "https://i.postimg.cc/Qxk2XmCM/1767882682662-019b9e04-a153-7852-8292-a05f7c31bf9b.png",
+ "https://i.postimg.cc/9fD6dqPS/1767882894281-019b9e07-95d6-7478-bb0c-4e7e7186e2b4.png",
+ "https://i.postimg.cc/BnbTwhSQ/1767919917373-019ba03b-dbad-7aff-9c70-f012e73e6b10.jpg",
+ "https://i.postimg.cc/63JCqtdc/1768227242460-019bb28d-4f3f-75ce-9a36-dd0e62094dfe.jpg",
+ "https://i.postimg.cc/6QLt594L/1768001229974-019ba515-2679-7e1a-ba64-201ca3547e44.jpg",
+ "https://i.postimg.cc/DwG7HQ2B/1768003939954-019ba53e-b94d-70a3-9fd8-813a83954a38.png"
 ];
 
 /* تحويل الصور لأزواج */
-const pairedImages = [];
-for (let i = 0; i < images.length; i += 2) {
-  pairedImages.push([images[i], images[i + 1] || images[i]]);
+const pairedImages=[];
+for(let i=0;i<images.length;i+=2){
+  pairedImages.push([images[i],images[i+1]||images[i]]);
 }
 
-const langSelect = document.getElementById("langSelect");
-const backLink   = document.getElementById("backLink");
+const langSelect=document.getElementById("langSelect");
+const backLink=document.getElementById("backLink");
 
-function renderProducts(lang) {
-  const container = document.getElementById("productContainer");
-  container.innerHTML = "";
+function renderProducts(lang){
+  const container=document.getElementById("productContainer");
+  container.innerHTML="";
 
-  pairedImages.forEach(pair => {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    div.innerHTML = `
+  pairedImages.forEach(pair=>{
+    const div=document.createElement("div");
+    div.className="item";
+    div.innerHTML=`
       <div class="img-slider">
         <img src="${pair[0]}" class="active">
         <img src="${pair[1]}">
         <span class="arrow left">‹</span>
         <span class="arrow right">›</span>
       </div>
-
       <div class="price">2000 جنيه</div>
-
-      <p class="desc">
-        ${lang==="ar"
-          ? "مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية."
-          : "Elegant vase adding a luxurious touch to any interior space."}
-      </p>
-
-      <button class="btn"
-        onclick="addToCartReal({
-          name:'Decorative Vase',
-          price:2000,
-          img:'${pair[0]}'
-        })">
+      <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p>
+      <button class="btn" onclick="addToCartReal({name:'Decorative Vase',price:2000,img:'${pair[0]}'})">
         ${lang==="ar"?"أضف إلى السلة":"Add to Cart"}
       </button>
     `;
-
     container.appendChild(div);
   });
 
   initSliders();
 }
 
-function initSliders() {
-  document.querySelectorAll(".img-slider").forEach(slider => {
-    const imgs = slider.querySelectorAll("img");
-    let index = 0;
-
-    const show = i => {
-      imgs.forEach(img => img.classList.remove("active"));
+function initSliders(){
+  document.querySelectorAll(".img-slider").forEach(slider=>{
+    const imgs=slider.querySelectorAll("img");
+    let index=0;
+    const show=i=>{
+      imgs.forEach(img=>img.classList.remove("active"));
       imgs[i].classList.add("active");
     };
-
-    slider.querySelector(".left").onclick = () => {
-      index = (index - 1 + imgs.length) % imgs.length;
-      show(index);
-    };
-
-    slider.querySelector(".right").onclick = () => {
-      index = (index + 1) % imgs.length;
-      show(index);
-    };
-
-    setInterval(() => {
-      index = (index + 1) % imgs.length;
-      show(index);
-    }, 10000);
+    slider.querySelector(".left").onclick=()=>{index=(index-1+imgs.length)%imgs.length;show(index);};
+    slider.querySelector(".right").onclick=()=>{index=(index+1)%imgs.length;show(index);};
+    setInterval(()=>{index=(index+1)%imgs.length;show(index);},10000);
   });
 }
 
-langSelect.addEventListener("change", () => {
-  const lang = langSelect.value;
-  document.body.dir = lang === "ar" ? "rtl" : "ltr";
-  backLink.textContent = lang === "ar"
-    ? "← العودة للرئيسية"
-    : "← Back to Home";
+langSelect.addEventListener("change",()=>{
+  const lang=langSelect.value;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  backLink.textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
 });
 
