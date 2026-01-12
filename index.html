@@ -181,6 +181,16 @@ header{
   height:260px;
   object-fit:cover;
 }
+  @media(max-width:768px){
+  .featured-item{
+    min-width:140px;
+  }
+  .featured-item img{
+    height:160px;
+    object-fit:contain;
+    object-position:center;
+  }
+}
 .featured-arrow{
   position:absolute;
   top:50%;
@@ -611,6 +621,7 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
 
 
 
