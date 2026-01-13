@@ -343,12 +343,18 @@ footer p.copy{
   .mood-text{
   text-align: center;
   font-family: 'DidotWeb','Georgia',serif;
-  font-size: 56px;
+  font-size: 40px;       /* أصغر على الديسكتوب */
   color: #ffffff;
-  margin: 60px 0 40px;
-  letter-spacing: 2px;
-  animation: glowWhite 2.5s ease-in-out infinite;
+  margin: 20px 0 35px;   /* أقرب للـ Featured */
+  letter-spacing: 1.5px;
 }
+@media(max-width:768px){
+  .mood-text{
+    font-size: 28px;     /* أصغر على الموبايل */
+    margin: 18px 0 30px;
+  }
+}
+
 
 @keyframes glowWhite {
   0% {
@@ -660,6 +666,7 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
 
 
 
