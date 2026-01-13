@@ -379,8 +379,86 @@ footer p.copy{
 </header>
 
 <!-- HERO -->
+<section class="hero">
+  <div class="slide active">
+    <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
+  </div>
 
-<!-- HERO --> <section class="hero"> <div class="slide active"> <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1"> <div class="hero-overlay"></div> <div class="hero-content"> <p>Check Our</p> <h1>Decor Collection</h1> <button>Show More</button> </div> </div> <div class="slide active "> <img src="https://i.postimg.cc/2SqnB7LH/df8b8bbe-bb45-41ff-8a31-9fe46ad31c04.jpg"> <div class="hero-overlay"></div> <div class="hero-content"> <p>Check Our</p> <h1>Decor Collection</h1> <button>Show More</button> </div> </div> <div class="slide active"> <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Create Your Own Mood 1"> <div class="hero-overlay"></div> <div class="hero-content"> <p>Create</p> <h1>Your Own Mood</h1> <button>Show More</button> </div> </div> <div class="slide active"> <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Create Your Own Mood 2"> <div class="hero-overlay"></div> <div class="hero-content"> <p>Create</p> <h1>Your Own Mood</h1> <button>Show More</button> </div> </div> <div class="slide active"> <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Create Your Own Mood 3"> <div class="hero-overlay"></div> <div class="hero-content"> <p>Create</p> <h1>Your Own Mood</h1> <button>Show More</button> </div> </div> <!-- الأسهم --> <div class="arrow left" onclick="prevSlide()">❮</div> <div class="arrow right" onclick="nextSlide()">❯</div> <!-- النقاط --> <div class="dots"> <div class="dot active" ="goToSlide(0)"></div> <div class="dot active" ="goToSlide(1)"></div> <div class="dot active" onclick="goToSlide(2)"></div> <div class="dot active" onclick="goToSlide(3)"></div> <div class="dot active" onclick="goToSlide(4)"></div> </div> </section>
+  <div class="slide">
+    <img src="https://i.postimg.cc/2SqnB7LH/df8b8bbe-bb45-41ff-8a31-9fe46ad31c04.jpg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Check Our</p>
+      <h1>Decor Collection</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Create Your Own Mood 1">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Create Your Own Mood 2">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Create Your Own Mood 3">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p>Create</p>
+      <h1>Your Own Mood</h1>
+      <button>Show More</button>
+    </div>
+  </div>
+
+  <!-- الأسهم -->
+  <div class="arrow left" onclick="prevSlide()">❮</div>
+  <div class="arrow right" onclick="nextSlide()">❯</div>
+
+  <!-- النقاط -->
+  <div class="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+    <div class="dot" onclick="goToSlide(4)"></div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured-strip">
+  <div class="featured-title">Featured Products</div>
+  <div class="featured-wrapper">
+    <div class="featured-arrow left" onclick="moveFeatured(-1)">❮</div>
+    <div class="featured-track" id="featuredTrack">
+      <div class="featured-item"><img src="https://i.postimg.cc/j2mqPtPm/1767831276804-019b9af4-50d6-719c-88c0-9348957f804a.png"></div>
+      <div class="featured-item"><img src="https://i.postimg.cc/t40CgRXg/43ae55be-d9e8-48e8-9bb5-16e6fc69195c.jpg"></div>
+      <div class="featured-item"><img src="https://i.postimg.cc/PqytKm1r/15cf30ad-d3e0-41f6-b5e7-8eda9078f748.jpg"></div>
+      <div class="featured-item"><img src="https://i.postimg.cc/hj3KRcyG/1767831154712-019b9af2-6af9-7afa-8eb0-d176bd7331d3.png"></div>
+      <div class="featured-item"><img src="https://i.postimg.cc/pV4P0V5q/1767831379775-019b9af5-e337-7731-8a15-4d5390ca5729.png"></div>
+    </div>
+    <div class="featured-arrow right" onclick="moveFeatured(1)">❯</div>
+  </div>
+</section>
 
 <!-- MAIN CONTENT -->
 <div class="container">
@@ -543,14 +621,6 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
