@@ -438,6 +438,18 @@ footer p.copy{
 
 <!-- HEADER -->
 <header>
+  <!-- SEARCH BAR -->
+<div class="top-bar" id="searchBarContainer">
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search products..."
+    >
+    <span id="clearSearch" style="cursor:pointer;">✕</span>
+  </div>
+</div>
+
   <div class="menu-icon" onclick="toggleMenu()">
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
     <line x1="3" y1="6" x2="21" y2="6"/>
@@ -661,29 +673,52 @@ function closeMenu(){document.getElementById
 ("menuOverlay").style.height="0%";}
 
 // SEARCH BAR FUNCTIONALITY
-document.getElementById("searchBtn").onclick=function(){
-  const bar=document.getElementById("searchBarContainer");
-  bar.style.display=bar.style.display==="block"?"none":"block";
+const searchBtn = document.getElementById("searchBtn");
+const searchBar = document.getElementById("searchBarContainer");
+const searchInput = document.getElementById("searchInput");
+const clearSearch = document.getElementById("clearSearch");
+const noResults = document.getElementById("noResults");
+
+searchBtn.onclick = () => {
+  searchBar.style.display =
+    searchBar.style.display === "flex" ? "none" : "flex";
+  searchInput.focus();
 };
-document.getElementById("clearSearch").onclick=function(){
-  document.getElementById("searchInput").value="";
+
+clearSearch.onclick = () => {
+  searchInput.value = "";
   filterCards();
 };
-document.getElementById("searchInput").addEventListener("input",filterCards);
-function filterCards(){
-  const query=document.getElementById("searchInput").value.toLowerCase();
-  const cards=document.querySelectorAll(".card");
-  let visible=0;
-  cards.forEach(card=>{
-    const title=card.querySelector("h3").innerText.toLowerCase();
-    const cat=card.dataset.cat.toLowerCase();
-    if(title.includes(query)||cat.includes(query)){
-      card.style.display="block";
+
+searchInput.addEventListener("input", filterCards);
+
+function filterCards() {
+  const query = searchInput.value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".card");
+  let visible = 0;
+
+  cards.forEach(card => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+    const cat = card.dataset.cat.toLowerCase();
+
+    if (
+      title.includes(query) ||
+      cat.includes(query) ||
+      query === ""
+    ) {
+      card.style.display = "block";
       visible++;
-    } else { card.style.display="none"; }
+    } else {
+      card.style.display = "none";
+    }
   });
-  document.getElementById("noResults").setAttribute("aria-hidden",visible===0?"false":"true");
+
+  noResults.setAttribute(
+    "aria-hidden",
+    visible === 0 ? "false" : "true"
+  );
 }
+
 
 // SLIDER FUNCTIONALITY
 const slides = document.querySelectorAll('.slide');
@@ -718,6 +753,7 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
 
 
 
