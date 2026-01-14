@@ -43,11 +43,13 @@ header{
   position:relative;
 }
 .header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* اللوجو في النص */
 }
+
 .menu-icon{
   position:absolute;
   left:20px;
@@ -58,14 +60,14 @@ header{
   z-index:1001;
 }
 .header-icons{
-  position:absolute;
-  right:20px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:22px;
-  display:flex;
-  gap:15px;
+  position: absolute;
+  right: 24px;       /* مسافة من يمين الشاشة */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 18px;         /* مسافة بين الأيقونات */
 }
+
   .header-icons a,
 .header-icons span {
   outline: none;
@@ -79,7 +81,14 @@ header{
   transform:translateY(-50%);
   font-size:22px;
 }
-.logo{width:120px;}
+.logo{
+  width:120px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 /* ---------------- HERO ---------------- */
 .hero{
@@ -753,6 +762,7 @@ setInterval(nextSlide,5000);
 
 </body>
 </html>
+
 
 
 
