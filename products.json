@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Classic Vase",
+    "category": "Vases",
+    "url": "product1.html",
+    "image": "https://i.postimg.cc/Xvc3ctLt/download-41.jpg"
+  },
+  {
+    "name": "Cozy Cushions Set",
+    "category": "Cushions",
+    "url": "product2.html",
+    "image": "https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png"
+  },
+  {
+    "name": "Modern Lighting",
+    "category": "Lighting",
+    "url": "product3.html",
+    "image": "https://i.postimg.cc/G3GLcMZH/download-39.jpg"
+  },
+  {
+    "name": "Glass Candles Set",
+    "category": "Glass Candles",
+    "url": "product4.html",
+    "image": "https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png"
+  },
+  {
+    "name": "Outdoor Flooring",
+    "category": "Outdoor Flooring",
+    "url": "product5.html",
+    "image": "https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png"
+  },
+  {
+    "name": "Wooden Rack",
+    "category": "Wooden Rack",
+    "url": "product6.html",
+    "image": "https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg"
+  },
+  {
+    "name": "Wall Art Frame",
+    "category": "Wall Art",
+    "url": "product7.html",
+    "image": "https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png"
+  },
+  {
+    "name": "Chess Game",
+    "category": "Games",
+    "url": "product8.html",
+    "image": "https://i.postimg.cc/6624GtwG/chess.jpg"
+  },
+  {
+    "name": "Mood Board Decor",
+    "category": "Moods",
+    "url": "product9.html",
+    "image": "https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg"
+  },
+  {
+    "name": "Cherry Blossom Glass Vase",
+    "category": "Glass and Small Vases",
+    "url": "product10.html",
+    "image": "https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg"
+  },
+  {
+    "name": "Pink Office Package",
+    "category": "Space Packages",
+    "url": "product11.html",
+    "image": "https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg"
+  }
+]
