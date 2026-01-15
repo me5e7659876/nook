@@ -41,8 +41,12 @@ header{
   padding:12px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
-  margin-bottom: 22px;
+
+  /* ✅ مسافة بين الهيدر والـ Announcement Bar */
+  margin-bottom: 10px;
 }
+
+/* ✅ زوّدنا ارتفاع الهيدر عشان اللوجو والأيقونات يبانوا كاملين */
 .header-inner{
   position: relative;
   min-height: 74px;
@@ -50,6 +54,7 @@ header{
   align-items: center;
   justify-content: center;
 }
+
 .menu-icon{
   position:absolute;
   left:20px;
@@ -59,6 +64,7 @@ header{
   cursor:pointer;
   z-index:1001;
 }
+
 .header-icons{
   position: absolute;
   right: 20px;
@@ -67,6 +73,7 @@ header{
   display: flex;
   gap: 12px;
 }
+
 .header-icons a,
 .header-icons span {
   outline: none;
@@ -75,6 +82,7 @@ header{
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
+
 .text-logo{
   position:absolute;
   left:70px;
@@ -82,6 +90,7 @@ header{
   transform:translateY(-50%);
   font-size:22px;
 }
+
 .logo{
   width:120px;
   max-width: 44vw;
@@ -91,6 +100,7 @@ header{
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .icon-box{
   width:28px;
   height:28px;
@@ -113,6 +123,53 @@ header{
 }
 #menuOverlay a.active{
   outline:2px solid var(--active-outline);
+}
+
+/* ---------------- ANNOUNCEMENT BAR (NEW) ---------------- */
+.announcement-wrap{
+  width:100%;
+  background: linear-gradient(90deg, #3b0a1a, #4b0e1f, #3b0a1a);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+  margin-bottom: 12px; /* ✅ مسافة بينه وبين البانر */
+}
+
+.announcement-track{
+  display:flex;
+  align-items:center;
+  gap: 28px;
+  white-space: nowrap;
+  padding: 10px 0;
+  will-change: transform;
+  animation: marquee 14s linear infinite;
+}
+
+.announcement-item{
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  opacity: 0.95;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.22),
+    0 0 18px rgba(255,179,198,0.18);
+}
+
+.announcement-dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 0 10px rgba(255,179,198,0.35);
+}
+
+.announcement-wrap:hover .announcement-track{
+  animation-play-state: paused; /* ✅ يقف لو وقفتي عليه بالماوس */
+}
+
+@keyframes marquee{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* ---------------- HERO ---------------- */
@@ -165,6 +222,7 @@ header{
 }
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
+
 .dots{
   position:absolute;
   bottom:35px;
@@ -216,7 +274,9 @@ header{
   object-fit:cover;
 }
 @media(max-width:768px){
-  .featured-item{ min-width:220px; }
+  .featured-item{
+    min-width:220px;
+  }
   .featured-item img{
     height:220px;
     object-fit:contain;
@@ -324,11 +384,15 @@ footer p.copy{
   .content{grid-template-columns:repeat(2,1fr);}
   .card img{height:200px;}
 
-  header{ padding: 12px 16px; margin-bottom: 18px; }
+  header{ padding: 12px 16px; margin-bottom: 8px; }
   .header-inner{ min-height: 78px; }
   .menu-icon{ left:16px; }
   .header-icons{ right:16px; gap:10px; }
   .logo{ width:108px; max-width: 46vw; }
+
+  .announcement-item{ font-size: 14px; letter-spacing: 1px; }
+  .announcement-track{ animation-duration: 12s; }
+  .announcement-wrap{ margin-bottom: 10px; }
 }
 
 /* Featured scrolling on mobile */
@@ -421,6 +485,30 @@ footer p.copy{
     </div>
   </div>
 </header>
+
+<!-- ✅ ANNOUNCEMENT BAR (between header icons and hero banner) -->
+<div class="announcement-wrap" aria-label="Announcement">
+  <!-- duplicate content to make seamless loop -->
+  <div class="announcement-track" id="announcementTrack">
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+    <span class="announcement-item">Create Your Own Mood</span>
+    <span class="announcement-dot"></span>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
