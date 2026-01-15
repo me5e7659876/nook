@@ -49,10 +49,10 @@ header{
 /* ✅ زوّدنا ارتفاع الهيدر عشان اللوجو والأيقونات يبانوا كاملين */
 .header-inner{
   position: relative;
-  min-height: 74px;       /* بدل 60px */
+  min-height: 74px;
   display: flex;
   align-items: center;
-  justify-content: center; /* اللوجو في النص */
+  justify-content: center;
 }
 
 .menu-icon{
@@ -67,7 +67,7 @@ header{
 
 .header-icons{
   position: absolute;
-  right: 20px;            /* ✅ بدل 50px عشان ما تتقصش على الموبايل */
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -91,15 +91,38 @@ header{
   font-size:22px;
 }
 
-/* ✅ خلي اللوجو Responsive وميتكبسش */
 .logo{
   width:120px;
-  max-width: 44vw;       /* ✅ عشان يفضل ظاهر حتى على الموبايل */
+  max-width: 44vw;
   height:auto;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.icon-box{
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ---------------- MENU OVERLAY LINKS STYLE ---------------- */
+#menuOverlay a{
+  color:#fff;
+  text-decoration:none;
+  padding:12px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:18px;
+}
+#menuOverlay a:hover{
+  background: var(--accent-hover);
+}
+#menuOverlay a.active{
+  outline:2px solid var(--active-outline);
 }
 
 /* ---------------- HERO ---------------- */
@@ -314,7 +337,6 @@ footer p.copy{
   .content{grid-template-columns:repeat(2,1fr);}
   .card img{height:200px;}
 
-  /* ✅ عشان اللوجو والأيقونات يفضلوا ظاهرين ومش متداخلين */
   header{ padding: 12px 16px; margin-bottom: 18px; }
   .header-inner{ min-height: 78px; }
   .menu-icon{ left:16px; }
@@ -322,66 +344,23 @@ footer p.copy{
   .logo{ width:108px; max-width: 46vw; }
 }
 
+/* Featured scrolling on mobile */
 @media (max-width: 768px) {
-  .featured-wrapper {
-    overflow-x: auto;
-  }
-  .featured-track {
-    scroll-snap-type: x mandatory;
-  }
-  .featured-item {
-    scroll-snap-align: start;
-  }
-  .featured-item img {
-    object-fit: contain;
-    background: #4b0e1f;
-  }
+  .featured-wrapper { overflow-x: auto; }
+  .featured-track { scroll-snap-type: x mandatory; }
+  .featured-item { scroll-snap-align: start; }
+  .featured-item img { object-fit: contain; background: #4b0e1f; }
 }
 @media (max-width: 768px) {
-  .featured-item {
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    border-radius: 18px;
-  }
+  .featured-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; }
 }
 @media (max-width: 768px) {
-  .featured-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
+  .featured-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 }
 
-/* ✅ إخفاء الأسهم على الموبايل لو حابة */
+/* Hide arrows on mobile */
 @media (max-width: 768px) {
-  .featured-arrow,
-  .hero .arrow {
-    display: none !important;
-  }
-}
-
-.mood-text{
-  text-align: center;
-  font-family: 'DidotWeb','Georgia',serif;
-  font-size: 40px;
-  color: #ffffff;
-  margin: 20px 0 35px;
-  letter-spacing: 1.5px;
-}
-@media(max-width:768px){
-  .mood-text{
-    font-size: 36px;
-    margin: 40px 0 30px;
-  }
-}
-
-.icon-box{
-  width:28px;
-  height:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  .featured-arrow, .hero .arrow { display: none !important; }
 }
 
 </style>
@@ -413,11 +392,7 @@ footer p.copy{
   <!-- SEARCH BAR -->
   <div class="top-bar" id="searchBarContainer">
     <div class="search-bar">
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Search products..."
-      >
+      <input type="text" id="searchInput" placeholder="Search products...">
       <span id="clearSearch" style="cursor:pointer;">✕</span>
     </div>
   </div>
@@ -507,11 +482,9 @@ footer p.copy{
     </div>
   </div>
 
-  <!-- الأسهم -->
   <div class="arrow left" onclick="prevSlide()">❮</div>
   <div class="arrow right" onclick="nextSlide()">❯</div>
 
-  <!-- النقاط -->
   <div class="dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
@@ -631,15 +604,29 @@ footer p.copy{
 </footer>
 
 <script>
-// MENU OPEN/CLOSE
+/* ===========================
+   MENU OPEN/CLOSE
+=========================== */
 function toggleMenu(){
-  const overlay=document.getElementById("menuOverlay");
-  if(overlay.style.height==="100%"){ overlay.style.height="0%"; }
-  else{ overlay.style.height="100%"; }
-}
-function closeMenu(){document.getElementById("menuOverlay").style.height="0%";}
+  const overlay = document.getElementById("menuOverlay");
 
-// SEARCH BAR FUNCTIONALITY
+  // لو هيفتح
+  if (overlay.style.height !== "100%") {
+    overlay.style.height = "100%";
+
+    // ✅ أول ما تفتحي المينيو على الموبايل خليه يعمل All
+    applyCategory("All");
+  } else {
+    overlay.style.height = "0%";
+  }
+}
+function closeMenu(){
+  document.getElementById("menuOverlay").style.height = "0%";
+}
+
+/* ===========================
+   SEARCH
+=========================== */
 const searchBtn = document.getElementById("searchBtn");
 const searchBar = document.getElementById("searchBarContainer");
 const searchInput = document.getElementById("searchInput");
@@ -647,8 +634,7 @@ const clearSearch = document.getElementById("clearSearch");
 const noResults = document.getElementById("noResults");
 
 searchBtn.onclick = () => {
-  searchBar.style.display =
-    searchBar.style.display === "flex" ? "none" : "flex";
+  searchBar.style.display = (searchBar.style.display === "flex") ? "none" : "flex";
   searchInput.focus();
 };
 
@@ -659,6 +645,51 @@ clearSearch.onclick = () => {
 
 searchInput.addEventListener("input", filterCards);
 
+/* ===========================
+   CATEGORY FILTER (DESKTOP + MOBILE)
+=========================== */
+let currentCategory = "All";
+
+const sidebarCats = document.querySelectorAll(".sidebar .categories a[data-cat]");
+const overlayCats = document.querySelectorAll("#menuOverlay a[data-cat]");
+
+function setActiveCategory(cat){
+  // sidebar active
+  sidebarCats.forEach(a => a.classList.toggle("active", a.dataset.cat === cat));
+  // overlay active
+  overlayCats.forEach(a => a.classList.toggle("active", a.dataset.cat === cat));
+}
+
+function applyCategory(cat){
+  currentCategory = cat;
+  setActiveCategory(cat);
+  filterCards();
+}
+
+/* click handlers for sidebar */
+sidebarCats.forEach(a => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    applyCategory(a.dataset.cat);
+  });
+});
+
+/* click handlers for overlay (mobile menu) */
+overlayCats.forEach(a => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    applyCategory(a.dataset.cat);
+
+    // ✅ على الموبايل بعد الاختيار اقفل المينيو
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      closeMenu();
+    }
+  });
+});
+
+/* ===========================
+   FILTER CARDS (CATEGORY + SEARCH)
+=========================== */
 function filterCards() {
   const query = searchInput.value.toLowerCase().trim();
   const cards = document.querySelectorAll(".card");
@@ -666,9 +697,15 @@ function filterCards() {
 
   cards.forEach(card => {
     const title = card.querySelector("h3").innerText.toLowerCase();
-    const cat = card.dataset.cat.toLowerCase();
+    const cat = card.dataset.cat;
 
-    if (title.includes(query) || cat.includes(query) || query === "") {
+    const matchesSearch = (query === "") || title.includes(query) || cat.toLowerCase().includes(query);
+
+    const matchesCategory =
+      (currentCategory === "All") ||
+      (cat === currentCategory);
+
+    if (matchesSearch && matchesCategory) {
       card.style.display = "block";
       visible++;
     } else {
@@ -679,7 +716,9 @@ function filterCards() {
   noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
 }
 
-// SLIDER FUNCTIONALITY
+/* ===========================
+   SLIDER
+=========================== */
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 let index = 0;
@@ -706,8 +745,12 @@ function goToSlide(i){
   showSlide(index);
 }
 
-// AUTO SLIDE EVERY 5 SECONDS
 setInterval(nextSlide,5000);
+
+/* ===========================
+   INITIAL STATE
+=========================== */
+applyCategory("All");
 </script>
 
 </body>
