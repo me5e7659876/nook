@@ -41,12 +41,8 @@ header{
   padding:12px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
-
-  /* ✅ مسافة بين الهيدر والبانر */
   margin-bottom: 22px;
 }
-
-/* ✅ زوّدنا ارتفاع الهيدر عشان اللوجو والأيقونات يبانوا كاملين */
 .header-inner{
   position: relative;
   min-height: 74px;
@@ -54,7 +50,6 @@ header{
   align-items: center;
   justify-content: center;
 }
-
 .menu-icon{
   position:absolute;
   left:20px;
@@ -64,7 +59,6 @@ header{
   cursor:pointer;
   z-index:1001;
 }
-
 .header-icons{
   position: absolute;
   right: 20px;
@@ -73,7 +67,6 @@ header{
   display: flex;
   gap: 12px;
 }
-
 .header-icons a,
 .header-icons span {
   outline: none;
@@ -82,7 +75,6 @@ header{
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
-
 .text-logo{
   position:absolute;
   left:70px;
@@ -90,7 +82,6 @@ header{
   transform:translateY(-50%);
   font-size:22px;
 }
-
 .logo{
   width:120px;
   max-width: 44vw;
@@ -100,7 +91,6 @@ header{
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 .icon-box{
   width:28px;
   height:28px;
@@ -175,7 +165,6 @@ header{
 }
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
-
 .dots{
   position:absolute;
   bottom:35px;
@@ -227,9 +216,7 @@ header{
   object-fit:cover;
 }
 @media(max-width:768px){
-  .featured-item{
-    min-width:220px;
-  }
+  .featured-item{ min-width:220px; }
   .featured-item img{
     height:220px;
     object-fit:contain;
@@ -585,6 +572,9 @@ footer p.copy{
       <h3>Glass and Small Vases</h3>
     </a>
 
+    <!-- ✅ نتائج السيرش هتظهر هنا (من search.js) -->
+    <div id="searchResults" style="display:none; width:100%; grid-column:1/-1;"></div>
+
     <div class="no-results" id="noResults" aria-hidden="true">No products found.</div>
   </main>
 </div>
@@ -605,16 +595,15 @@ footer p.copy{
 
 <script>
 /* ===========================
-   MENU OPEN/CLOSE
+   MENU OPEN/CLOSE + CATEGORY FILTER + SLIDER
+   (✅ السيرش اتنقل لملف search.js)
 =========================== */
+
+/* MENU OPEN/CLOSE */
 function toggleMenu(){
   const overlay = document.getElementById("menuOverlay");
-
-  // لو هيفتح
   if (overlay.style.height !== "100%") {
     overlay.style.height = "100%";
-
-    // ✅ أول ما تفتحي المينيو على الموبايل خليه يعمل All
     applyCategory("All");
   } else {
     overlay.style.height = "0%";
@@ -624,49 +613,28 @@ function closeMenu(){
   document.getElementById("menuOverlay").style.height = "0%";
 }
 
-/* ===========================
-   SEARCH
-=========================== */
-const searchBtn = document.getElementById("searchBtn");
-const searchBar = document.getElementById("searchBarContainer");
-const searchInput = document.getElementById("searchInput");
-const clearSearch = document.getElementById("clearSearch");
-const noResults = document.getElementById("noResults");
-
-searchBtn.onclick = () => {
-  searchBar.style.display = (searchBar.style.display === "flex") ? "none" : "flex";
-  searchInput.focus();
-};
-
-clearSearch.onclick = () => {
-  searchInput.value = "";
-  filterCards();
-};
-
-searchInput.addEventListener("input", filterCards);
-
-/* ===========================
-   CATEGORY FILTER (DESKTOP + MOBILE)
-=========================== */
+/* CATEGORY FILTER (DESKTOP + MOBILE) */
 let currentCategory = "All";
 
 const sidebarCats = document.querySelectorAll(".sidebar .categories a[data-cat]");
 const overlayCats = document.querySelectorAll("#menuOverlay a[data-cat]");
 
 function setActiveCategory(cat){
-  // sidebar active
   sidebarCats.forEach(a => a.classList.toggle("active", a.dataset.cat === cat));
-  // overlay active
   overlayCats.forEach(a => a.classList.toggle("active", a.dataset.cat === cat));
 }
 
 function applyCategory(cat){
   currentCategory = cat;
   setActiveCategory(cat);
-  filterCards();
+
+  // ✅ لو السيرش شغال (فيه نص) ما نغيرش عرض السيرش
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput && searchInput.value.trim() !== "") return;
+
+  filterCategoryCardsOnly();
 }
 
-/* click handlers for sidebar */
 sidebarCats.forEach(a => {
   a.addEventListener("click", (e) => {
     e.preventDefault();
@@ -674,38 +642,26 @@ sidebarCats.forEach(a => {
   });
 });
 
-/* click handlers for overlay (mobile menu) */
 overlayCats.forEach(a => {
   a.addEventListener("click", (e) => {
     e.preventDefault();
     applyCategory(a.dataset.cat);
 
-    // ✅ على الموبايل بعد الاختيار اقفل المينيو
     if (window.matchMedia("(max-width: 768px)").matches) {
       closeMenu();
     }
   });
 });
 
-/* ===========================
-   FILTER CARDS (CATEGORY + SEARCH)
-=========================== */
-function filterCards() {
-  const query = searchInput.value.toLowerCase().trim();
-  const cards = document.querySelectorAll(".card");
+function filterCategoryCardsOnly(){
+  const cards = document.querySelectorAll("main.content > a.card");
   let visible = 0;
 
   cards.forEach(card => {
-    const title = card.querySelector("h3").innerText.toLowerCase();
-    const cat = card.dataset.cat;
+    const cat = card.dataset.cat || "";
+    const matchesCategory = (currentCategory === "All") || (cat === currentCategory);
 
-    const matchesSearch = (query === "") || title.includes(query) || cat.toLowerCase().includes(query);
-
-    const matchesCategory =
-      (currentCategory === "All") ||
-      (cat === currentCategory);
-
-    if (matchesSearch && matchesCategory) {
+    if (matchesCategory) {
       card.style.display = "block";
       visible++;
     } else {
@@ -713,12 +669,13 @@ function filterCards() {
     }
   });
 
-  noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+  const noResults = document.getElementById("noResults");
+  if (noResults) {
+    noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+  }
 }
 
-/* ===========================
-   SLIDER
-=========================== */
+/* SLIDER */
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 let index = 0;
@@ -729,29 +686,45 @@ function showSlide(i){
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-
 function nextSlide(){
   index = (index + 1) % slides.length;
   showSlide(index);
 }
-
 function prevSlide(){
   index = (index - 1 + slides.length ) % slides.length;
   showSlide(index);
 }
-
 function goToSlide(i){
   index = i;
   showSlide(index);
 }
-
 setInterval(nextSlide,5000);
 
-/* ===========================
-   INITIAL STATE
-=========================== */
+/* FEATURED (عشان onclick ما يطلعش Error) */
+let featuredIndex = 0;
+function moveFeatured(direction){
+  const track = document.getElementById("featuredTrack");
+  if(!track) return;
+
+  const items = track.querySelectorAll(".featured-item");
+  if(items.length === 0) return;
+
+  const gap = 40; // نفس gap في CSS
+  const itemWidth = items[0].getBoundingClientRect().width + gap;
+  const maxIndex = Math.max(0, items.length - 1);
+
+  featuredIndex = featuredIndex + direction;
+  featuredIndex = Math.max(0, Math.min(maxIndex, featuredIndex));
+
+  track.style.transform = `translateX(-${featuredIndex * itemWidth}px)`;
+}
+
+/* INITIAL */
 applyCategory("All");
 </script>
+
+<!-- ✅ ربط السيرش بملف منفصل (بيقرأ products.json) -->
+<script src="search.js"></script>
 
 </body>
 </html>
