@@ -425,6 +425,28 @@ footer p.copy{
   }
 
 }
+
+/* ===================== FIXES (ADDED WITHOUT DELETING ANYTHING) ===================== */
+/* Fix 1: enforce header bottom spacing even if previous CSS block breaks */
+header{
+  margin-bottom: 40px;
+}
+
+/* Fix 2: hide arrows correctly on mobile (your arrows are .arrow.left/.arrow.right) */
+@media (max-width: 768px) {
+  .hero .arrow,
+  .featured-arrow {
+    display: none !important;
+  }
+}
+
+/* Fix 3: optional - if you want logo slightly away from right icons on mobile reliably */
+@media (max-width: 768px) {
+  .logo{
+    left: 45%;
+  }
+}
+/* ================================================================================ */
 </style>
 </head>
 
@@ -760,48 +782,17 @@ function goToSlide(i){
 
 // AUTO SLIDE EVERY 5 SECONDS
 setInterval(nextSlide,5000);
+
+/* ===================== JS FIX (WITHOUT REMOVING ANYTHING) ===================== */
+/* Ensure header spacing even if CSS parsing breaks due to the stray margin-bottom block */
+(function(){
+  const header = document.querySelector("header");
+  if(header){
+    header.style.marginBottom = "40px";
+  }
+})();
+/* ============================================================================== */
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
