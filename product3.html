@@ -29,14 +29,10 @@
 /* COLORS (Beige System) */
 /* ---------------------- */
 :root{
-  /* Beige (darker than #F9F2E5) */
   --beige: #F1E6D3;
   --beige-2: #E9DCC5;
-
-  /* Burgundy text */
   --burgundy: #4b0e1f;
 
-  /* Soft border */
   --line: rgba(75,14,31,0.14);
   --shadow-soft: 0 10px 24px rgba(0,0,0,0.10);
 }
@@ -83,37 +79,46 @@ header{
 /* ---------------------- */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
   gap:30px;
   padding:30px;
-  justify-items:center;
+  justify-items:center;        /* يوسّط كل عنصر جوه الخلية */
+  align-items:start;
+  max-width: 1200px;           /* شكل أشيك على الديسكتوب */
+  margin: 0 auto;              /* توسيط الجاليري نفسها */
 }
 
-/* ✅ شيلنا الكارت اللي ورا الصورة */
+/* ✅ مفيش كارت */
 .item{
-  background: transparent;        /* كان فيه خلفية */
-  border-radius: 0;              /* مش ضروري بس عشان فعلاً ميبقاش Card */
-  padding: 0;                    /* شيلنا الـ padding اللي بيحسسك بكارت */
+  background: transparent;
+  box-shadow:none;
+  padding:0;
+  border-radius:0;
+
+  /* ✅ ده اللي هيخلي كل حاجة متوسطة (خصوصا على الموبايل) */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   text-align:center;
-  box-shadow: none;              /* شيلنا الشادو */
-  transition: transform 0.3s ease;
-  position:relative;
-  overflow: visible;
+
+  width:100%;
+  transition: transform 0.25s ease;
 }
 
 .item:hover{ transform: scale(1.03); }
 
-/* ✅ نفس المقاس على كل الأجهزة */
+/* ✅ نفس المقاس على كل الأجهزة + توسيط الصورة */
 .item img{
   width:100%;
-  max-width:350px;   /* زي ما هو */
-  height:420px;      /* زي ما هو */
+  max-width:350px;
+  height:420px;
   object-fit:cover;
   border-radius:15px;
   display:block;
+  margin: 0 auto;              /* توسيط الصورة */
 }
 
-/* السعر (كان بيبي بينك -> بقى بيرجوندي) */
+/* السعر */
 .price{
   font-size:20px;
   font-weight:bold;
@@ -125,14 +130,16 @@ header{
 /* الوصف */
 .desc{
   font-size:15px;
-  color: rgba(75,14,31,0.78); /* بورجوندي softer */
+  color: rgba(75,14,31,0.78);
   margin-top:8px;
   line-height:1.5;
+
   opacity:0;
   transform:translateY(10px);
-  transition:opacity 0.4s ease, transform 0.4s ease;
-  font-family:'Poppins', sans-serif;
+  transition:opacity 0.35s ease, transform 0.35s ease;
+  max-width: 350px;            /* نفس عرض الصورة عشان يبقى متظبط */
 }
+
 .item:hover .desc{
   opacity:1;
   transform:translateY(0);
@@ -151,8 +158,8 @@ header{
   cursor:pointer;
   margin-top:10px;
   transition:0.25s ease;
-  font-family:'Poppins', sans-serif;
 }
+
 .btn:hover{ transform: scale(1.05); }
 
 /* ---------------------- */
@@ -168,10 +175,29 @@ header{
   font-family:'Poppins', sans-serif;
 }
 
-/* ✅ على الموبايل نفضل محافظين على نفس نسب الصورة */
+/* ---------------------- */
+/* MOBILE TWEAKS */
+/* ---------------------- */
 @media (max-width: 768px){
-  .gallery{ padding:22px 16px; gap:22px; }
-  .item img{ max-width:350px; height:420px; } /* نفس المقاس */
+  .gallery{
+    padding:22px 14px;
+    gap:22px;
+    grid-template-columns: 1fr;    /* عمود واحد = كل حاجة في النص */
+    justify-items:center;
+  }
+
+  .item{
+    align-items:center;            /* تأكيد التوسيط */
+  }
+
+  .item img{
+    max-width:350px;
+    height:420px;
+  }
+
+  .desc{
+    max-width:350px;
+  }
 }
 </style>
 </head>
@@ -186,16 +212,11 @@ header{
   </select>
 </header>
 
-<div class="gallery" id="productContainer">
-  <!-- المنتجات ستولد ديناميكياً -->
-</div>
+<div class="gallery" id="productContainer"></div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-/* ---------------------- */
-/* PRODUCTS DATA */
-/* ---------------------- */
 const products = [
   {img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png", price:1500, name:{en:"Modern Lamp 1", ar:"مصباح مودرن 1"}, desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.", ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}},
   {img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png", price:2200, name:{en:"Modern Lamp 2", ar:"مصباح مودرن 2"}, desc:{en:"A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.", ar:"مصباح مودرن فاخر يضيف الرقي والسحر لغرفة المعيشة أو النوم."}},
@@ -223,9 +244,6 @@ const products = [
   {img:"https://i.postimg.cc/13tLq7CC/5.png", price:250, name:{en:"Wall Light 4", ar:"أباليك حائط 4"}, desc:{en:"Compact and affordable wall light perfect for small cozy corners.", ar:"أباليك حائط صغير وبسعر مناسب مثالي للزوايا الصغيرة المريحة."}}
 ];
 
-/* ---------------------- */
-/* RENDER PRODUCTS FUNCTION */
-/* ---------------------- */
 function renderProducts(lang){
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
@@ -243,9 +261,6 @@ function renderProducts(lang){
   attachCartListeners(lang);
 }
 
-/* ---------------------- */
-/* CART SYSTEM */
-/* ---------------------- */
 function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
 function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
 
@@ -275,9 +290,6 @@ function attachCartListeners(lang){
   });
 }
 
-/* ---------------------- */
-/* LANGUAGE TOGGLE */
-/* ---------------------- */
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change", ()=>{
   const lang = langSelect.value;
@@ -286,9 +298,6 @@ langSelect.addEventListener("change", ()=>{
   document.getElementById("backLink").textContent = lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
 });
 
-/* ---------------------- */
-/* INITIAL LOAD */
-/* ---------------------- */
 renderProducts("en");
 </script>
 
