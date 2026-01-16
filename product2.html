@@ -21,15 +21,10 @@
   font-style: normal;
 }
 
-/* ✅ اللون زي ما طلبتي */
 :root{
   --beige:#DFC9AB;
   --burgundy:#4b0e1f;
   --line:rgba(75,14,31,.18);
-
-  /* كارت شيك */
-  --card: rgba(255,255,255,0.22);
-  --shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
 
 body{
@@ -72,15 +67,15 @@ header{
   padding:34px 18px;
 }
 
-/* ✅ رجّعنا الكارت الفعلي */
+/* ✅ شيلنا الكرت اللي ورا الصور */
 .item{
   width: 380px;
   text-align:center;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  padding: 14px 14px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
   transition: transform .25s ease;
 }
 
@@ -97,13 +92,13 @@ header{
   margin: 0 auto;
   border-radius: 15px;
 
-  /* ✅ أفضل كواليتي عرض ممكنة من CSS */
+  /* ✅ أفضل عرض ممكن للصورة */
   image-rendering: auto;
   transform: translateZ(0);
   backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
+/* Title */
 .title{
   font-family:'DidotWeb', serif;
   font-size:22px;
@@ -111,6 +106,7 @@ header{
   font-weight:700;
 }
 
+/* Desc */
 .desc{
   font-size:14px;
   color: rgba(75,14,31,0.85);
@@ -129,12 +125,14 @@ header{
   transform: translateY(0);
 }
 
+/* Price */
 .price{
   font-size:18px;
   font-weight:bold;
   margin:12px 0;
 }
 
+/* Button */
 .btn{
   background-color: var(--burgundy);
   border:none;
@@ -145,6 +143,7 @@ header{
   cursor:pointer;
   transition:.2s ease;
 }
+
 .btn:hover{
   transform: scale(1.04);
 }
@@ -160,7 +159,7 @@ header{
   font-family:'DidotWeb', serif;
 }
 
-/* ✅ الموبايل: أصغر + في النص + مناسب لكل الشاشات */
+/* ✅ الموبايل: نفس المقاس على كل التليفونات (ثابت) + في النص */
 @media (max-width: 768px){
   .container{
     padding: 26px 14px;
@@ -168,13 +167,15 @@ header{
   }
 
   .item{
-    width: min(92vw, 340px);
-    padding: 12px 12px 14px;
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
   .item img{
-    width: min(86vw, 300px);   /* ✅ أصغر من 350 عشان يبقى مظبوط على كل الموبايل */
-    height: 360px;             /* ✅ شكل قريب من desktop بس مناسب للموبايل */
+    width: 300px;     /* ✅ ثابت لكل الموبايلات */
+    height: 360px;    /* ✅ ثابت لكل الموبايلات */
     object-fit: cover;
     margin: 0 auto;
   }
