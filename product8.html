@@ -8,180 +8,131 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --beige:#DFC9AB;
-    --burgundy:#4b0e1f;
-    --line:rgba(75,14,31,.18);
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--beige);
+  color: var(--burgundy);
+}
+
+header {
+  background-color: var(--beige);
+  padding: 20px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+  font-family: 'Didot', serif;
+}
+
+#langSelect {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--burgundy);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--beige);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ✅ المسافة بين الكروت على الديسكتوب */
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 45px;              /* ⭐ التعديل هنا */
+  padding: 40px;          /* ⭐ إحساس أرقى */
+  justify-items: center;
+}
+
+/* ❌ مفيش كرت */
+.product-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  transition: transform .25s ease;
+}
+
+.product-card:hover{
+  transform: scale(1.02);
+}
+
+/* ✅ Desktop image size = 350×420 */
+.product-card img {
+  width: 350px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.product-card h2 {
+  font-family: 'Didot', serif;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.btn {
+  background-color: var(--burgundy);
+  border: none;
+  color: var(--beige);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+a.back-link {
+  color: var(--burgundy);
+  text-align: center;
+  display: block;
+  margin: 40px 0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* ✅ الموبايل بدون تغيير */
+@media (max-width: 768px){
+  .product-container{
+    gap: 22px;
+    padding: 26px 14px;
   }
 
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--beige);
-    color: var(--burgundy);
-  }
-
-  header {
-    background-color: var(--beige);
-    padding: 20px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    position: relative;
-    font-family: 'Didot', serif;
-    color: var(--burgundy);
-    border-bottom: 1px solid var(--line);
-  }
-
-  #langSelect {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--burgundy);
-    border: none;
-    padding: 6px 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: var(--beige);
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-  }
-
-  .product-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    padding: 30px;
-    justify-items: center;
-  }
-
-  /* ✅ شيلنا الكرت اللي ورا الصور */
-  .product-card{
-    width: 380px;
-    text-align:center;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-    transition: transform .25s ease;
-    display:flex;
-    flex-direction:column;
-    align-items:center; /* ✅ في النص */
-  }
-
-  .product-card:hover{
-    transform: scale(1.02);
-  }
-
-  /* ✅ Desktop image size = 350×420 */
   .product-card img{
-    width: 350px;
-    height: 420px;
-    object-fit: cover;
-    display:block;
-    margin: 0 auto;
-    border-radius: 15px;
-
-    /* ✅ أفضل عرض ممكن للصورة */
-    image-rendering: auto;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    width: 300px;
+    height: 360px;
   }
-
-  .product-card h2 {
-    font-family: 'Didot', serif;
-    font-size: 20px;
-    margin: 12px 0 8px;
-    color: var(--burgundy);
-  }
-
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
-    font-family: 'Poppins', sans-serif;
-    color: var(--burgundy);
-  }
-
-  /* ✅ add to cart بورجوندي */
-  .btn {
-    background-color: var(--burgundy);
-    border: none;
-    color: var(--beige);
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 350px; /* نفس عرض الصورة على الديسكتوب */
-    transition: 0.25s;
-    font-family: 'Poppins', sans-serif;
-    margin-top: 10px;
-  }
-
-  .btn:hover {
-    transform: scale(1.05);
-  }
-
-  a.back-link {
-    color: var(--burgundy);
-    text-align: center;
-    display: block;
-    margin: 40px 0;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  /* ✅ الموبايل: نفس المقاس على كل التليفونات (ثابت) + في النص */
-  @media (max-width: 768px){
-    .product-container{
-      padding: 26px 14px;
-      gap: 22px;
-    }
-
-    .product-card{
-      width: 100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
-
-    .product-card img{
-      width: 300px;     /* ✅ ثابت لكل الموبايلات */
-      height: 360px;    /* ✅ ثابت لكل الموبايلات */
-      object-fit: cover;
-      margin: 0 auto;
-    }
-
-    .btn{
-      width: 300px;     /* نفس عرض الصورة على الموبايل */
-    }
-  }
-
-  @media (max-width: 420px) {
-    .price {
-      font-size: 16px;
-    }
-    .btn {
-      font-size: 14px;
-      padding: 8px;
-    }
-    .product-card h2 {
-      font-size: 18px;
-    }
-
-    #langSelect { 
-      font-size: 12px;
-      padding: 4px 8px;
-      right: 12px;
-    }
-  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -205,7 +156,7 @@ const products = [
    name:{en:"Premium Playing Cards", ar:"ورق لعب فاخر"}},
 
   {img:"https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png", price:90,
-   name:{en:"UNO Card Game", ar:"لعبة أورنو"}},
+   name:{en:"UNO Card Game", ar:"لعبة أونو"}},
 
   {img:"https://i.postimg.cc/7LgrZ9vb/download-(48).png", price:250,
    name:{en:"Classic Domino", ar:"دومينو كلاسيك"}}
@@ -214,6 +165,7 @@ const products = [
 function renderProducts(lang){
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
+
   products.forEach(p=>{
     const card = document.createElement("div");
     card.className = "product-card";
@@ -229,6 +181,7 @@ function renderProducts(lang){
     `;
     container.appendChild(card);
   });
+
   attachCart(lang);
 }
 
@@ -239,36 +192,40 @@ function attachCart(lang){
   document.querySelectorAll(".add-to-cart").forEach(btn=>{
     btn.addEventListener("click",()=>{
       const card = btn.closest(".product-card");
-      const product = {name:card.dataset.name, price:parseFloat(card.dataset.price), img:card.dataset.img, qty:1};
+      const product = {
+        name: card.dataset.name,
+        price: parseFloat(card.dataset.price),
+        img: card.dataset.img,
+        qty: 1
+      };
+
       let cart = getCart();
       let existing = cart.find(p=>p.name===product.name);
-      if(existing) existing.qty+=1; else cart.push(product);
+      if(existing) existing.qty += 1;
+      else cart.push(product);
       saveCart(cart);
 
       btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff"; 
-      btn.style.color="#4b0e1f";
+      btn.style.background="#fff";
+      btn.style.color=var(--burgundy);
 
       setTimeout(()=>{
         btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="var(--burgundy)";
-        btn.style.color="var(--beige)";
+        btn.style.background=var(--burgundy);
+        btn.style.color=var(--beige);
       },1200);
     });
   });
 }
 
-// Language switch
-const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change",()=>{
   const lang = langSelect.value;
   document.body.dir = lang==="ar"?"rtl":"ltr";
-  document.getElementById("headerTitle").textContent = lang==="ar"?"نوك ديكور - الألعاب":"Nook Decor - Games";
-  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  headerTitle.textContent = lang==="ar"?"نوك ديكور - الألعاب":"Games";
+  backLink.textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
 });
 
-// Initial render
 renderProducts("en");
 </script>
 
