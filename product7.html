@@ -62,7 +62,7 @@
     justify-items: center;
   }
 
-  /* ✅ شيل الكرت اللي ورا الصور */
+  /* ✅ مفيش كرت ورا الصور */
   .item {
     background: transparent;
     border-radius: 0;
@@ -74,7 +74,6 @@
     overflow: visible;
     font-family: 'Poppins', sans-serif;
 
-    /* ✅ تمركز على كل الأجهزة */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +82,7 @@
 
   .item:hover { transform: scale(1.05); }
 
-  /* ✅ نفس مقاس الصورة كما هو */
+  /* ✅ الديسكتوب: زي ما هو (350×420) */
   .item img {
     width: 100%;
     max-width: 350px;
@@ -91,7 +90,6 @@
     object-fit: cover;
     border-radius: 15px;
 
-    /* ✅ في النص + تحسين ريندر */
     display: block;
     margin: 0 auto;
     transform: translateZ(0);
@@ -124,7 +122,6 @@
     transform: translateY(0);
   }
 
-  /* ✅ الزر بيرجوندي */
   .btn {
     background-color: var(--burgundy);
     border: none;
@@ -165,18 +162,29 @@
   }
   .gold-text:hover { transform: scale(1.03); }
 
+  /* ✅✅ التعديل اللي بيخلي الصور كاملة على جميع التليفونات */
   @media (max-width: 768px) {
-    /* ✅ حافظت على نفس المقاس زي ما هو في كودك */
-    .item img { max-width: 450px; height: 520px; }
+    .item img{
+      max-width: min(450px, 92vw);   /* مناسب لكل الشاشات */
+      height: min(520px, 120vw);     /* مساحة كفاية للصورة */
+      object-fit: contain;           /* ✅ أهم حاجة: تظهر كاملة بدون قص */
+      background: transparent;
+    }
     .gold-text { font-size: 28px; }
+    .btn, .desc { max-width: min(450px, 92vw); }
   }
 
   @media (max-width: 420px) {
-    .item img { max-height: 380px; }
+    .item img{
+      max-width: 92vw;               /* ✅ متجاوب مع أي موبايل */
+      height: 78vh;                  /* ✅ مساحة كبيرة للصورة */
+      max-height: 420px;             /* ✅ مايكبرش زيادة */
+      object-fit: contain;           /* ✅ كاملة */
+    }
+
     .price { font-size: 16px; }
     .desc { font-size: 14px; }
-    .btn { padding: 6px 16px; font-size: 14px; }
-    .gold-text { font-size: 24px; }
+    .btn { padding: 8px 16px; font-size: 14px; }
 
     #langSelect { 
       font-size: 10px; 
@@ -282,11 +290,11 @@ function attachCart(lang){
       saveCart(cart);
 
       btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff"; 
+      btn.style.background="#fff";
       btn.style.color="#4b0e1f";
       setTimeout(()=>{
-        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; 
-        btn.style.background="var(--burgundy)"; 
+        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="var(--burgundy)";
         btn.style.color="var(--beige)";
       },1200);
     });
