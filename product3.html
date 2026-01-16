@@ -4,56 +4,190 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Modern Lamp - Nook Decor</title>
+
 <style>
 /* ---------------------- */
 /* WEB FONTS */
 /* ---------------------- */
-@font-face { font-family: 'DidotWeb'; src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff'); font-weight: 400; font-style: normal; }
-@font-face { font-family: 'DidotWeb'; src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff'); font-weight: 700; font-style: normal; }
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DidotWeb';
+  src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ---------------------- */
+/* COLORS (Beige System) */
+/* ---------------------- */
+:root{
+  /* Beige (darker than #F9F2E5) */
+  --beige: #F1E6D3;
+  --beige-2: #E9DCC5;
+
+  /* Burgundy text */
+  --burgundy: #4b0e1f;
+
+  /* Soft border */
+  --line: rgba(75,14,31,0.14);
+  --shadow-soft: 0 10px 24px rgba(0,0,0,0.10);
+}
 
 /* ---------------------- */
 /* GLOBAL STYLE */
 /* ---------------------- */
-body { margin:0; font-family:'Poppins', sans-serif; background:#4b0e1f; color:#fff; }
-header { background:#4b0e1f; padding:15px; text-align:center; font-size:32px; font-weight:700; text-shadow:0 0 10px rgba(255,200,210,0.5); position:relative; font-family:'DidotWeb', serif; }
-#langSelect { position:absolute; right:20px; top:50%; transform:translateY(-50%); padding:6px 10px; border:none; border-radius:8px; font-weight:bold; cursor:pointer; background:#ffb3c6; color:#4b0e1f; }
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background: var(--beige);
+  color: var(--burgundy);
+}
+
+header{
+  background: var(--beige);
+  padding:15px;
+  text-align:center;
+  font-size:32px;
+  font-weight:700;
+  position:relative;
+  font-family:'DidotWeb', serif;
+  color: var(--burgundy);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+#langSelect{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  padding:8px 12px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  background: var(--burgundy);
+  color: var(--beige);
+}
 
 /* ---------------------- */
 /* GALLERY */
 /* ---------------------- */
-.gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; padding:30px; justify-items:center; }
-.item { background-color: rgba(255,255,255,0.1); border-radius:15px; padding:15px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s ease; position:relative; overflow:hidden; }
-.item:hover { transform: scale(1.05); }
-.item img { width:100%; max-width:350px; height:420px; object-fit:cover; border-radius:15px; }
-.price { font-size:20px; font-weight:bold; color:#ffb3c6; margin-top:10px; font-family:'DidotWeb', serif; }
-.desc { font-size:15px; color:#ffe3eb; margin-top:8px; line-height:1.5; opacity:0; transform:translateY(10px); transition:opacity 0.4s ease, transform 0.4s ease; font-family:'Poppins', sans-serif; }
-.item:hover .desc { opacity:1; transform:translateY(0); }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:30px;
+  padding:30px;
+  justify-items:center;
+}
+
+/* ✅ شيلنا الكارت اللي ورا الصورة */
+.item{
+  background: transparent;        /* كان فيه خلفية */
+  border-radius: 0;              /* مش ضروري بس عشان فعلاً ميبقاش Card */
+  padding: 0;                    /* شيلنا الـ padding اللي بيحسسك بكارت */
+  text-align:center;
+  box-shadow: none;              /* شيلنا الشادو */
+  transition: transform 0.3s ease;
+  position:relative;
+  overflow: visible;
+}
+
+.item:hover{ transform: scale(1.03); }
+
+/* ✅ نفس المقاس على كل الأجهزة */
+.item img{
+  width:100%;
+  max-width:350px;   /* زي ما هو */
+  height:420px;      /* زي ما هو */
+  object-fit:cover;
+  border-radius:15px;
+  display:block;
+}
+
+/* السعر (كان بيبي بينك -> بقى بيرجوندي) */
+.price{
+  font-size:20px;
+  font-weight:bold;
+  color: var(--burgundy);
+  margin-top:10px;
+  font-family:'DidotWeb', serif;
+}
+
+/* الوصف */
+.desc{
+  font-size:15px;
+  color: rgba(75,14,31,0.78); /* بورجوندي softer */
+  margin-top:8px;
+  line-height:1.5;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 0.4s ease, transform 0.4s ease;
+  font-family:'Poppins', sans-serif;
+}
+.item:hover .desc{
+  opacity:1;
+  transform:translateY(0);
+}
 
 /* ---------------------- */
 /* BUTTON */
 /* ---------------------- */
-.btn { background-color:#ffb3c6; border:none; color:#4b0e1f; padding:10px 20px; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px; transition:0.3s; font-family:'Poppins', sans-serif; }
-.btn:hover { background-color:#ffc7d3; }
+.btn{
+  background-color: var(--burgundy);
+  border:none;
+  color: var(--beige);
+  padding:10px 20px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.25s ease;
+  font-family:'Poppins', sans-serif;
+}
+.btn:hover{ transform: scale(1.05); }
 
 /* ---------------------- */
 /* BACK LINK */
 /* ---------------------- */
-.back-link { display:block; text-align:center; margin:30px 0; color:#ffb3c6; text-decoration:none; font-weight:500; font-family:'Poppins', sans-serif; }
+.back-link{
+  display:block;
+  text-align:center;
+  margin:30px 0;
+  color: var(--burgundy);
+  text-decoration:none;
+  font-weight:600;
+  font-family:'Poppins', sans-serif;
+}
+
+/* ✅ على الموبايل نفضل محافظين على نفس نسب الصورة */
+@media (max-width: 768px){
+  .gallery{ padding:22px 16px; gap:22px; }
+  .item img{ max-width:350px; height:420px; } /* نفس المقاس */
+}
 </style>
 </head>
+
 <body>
 
 <header>
-Lighting
-<select id="langSelect">
-<option value="en">English</option>
-<option value="ar">العربية</option>
-</select>
+  Lighting
+  <select id="langSelect">
+    <option value="en">English</option>
+    <option value="ar">العربية</option>
+  </select>
 </header>
 
 <div class="gallery" id="productContainer">
-<!-- المنتجات ستولد ديناميكياً -->
+  <!-- المنتجات ستولد ديناميكياً -->
 </div>
 
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
@@ -99,10 +233,10 @@ function renderProducts(lang){
     const div = document.createElement("div");
     div.className = "item";
     div.innerHTML = `
-      <img src="${p.img}">
+      <img src="${p.img}" alt="">
       <div class="price" data-price="${p.price}">${p.price} EGP</div>
       <p class="desc">${p.desc[lang]}</p>
-      <button class="btn add-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+      <button class="btn add-cart">${lang==="ar" ? "أضف إلى السلة" : "Add to Cart"}</button>
     `;
     container.appendChild(div);
   });
@@ -122,18 +256,20 @@ function attachCartListeners(lang){
       const name = item.querySelector(".desc").textContent;
       const price = Number(item.querySelector(".price").getAttribute("data-price"));
       const img = item.querySelector("img").src;
+
       let cart = getCart();
       const found = cart.find(p=>p.img===img);
       if(found) found.qty++;
       else cart.push({name, price, img, qty:1});
       saveCart(cart);
-      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff";
-      btn.style.color="#4b0e1f";
+
+      btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
+      btn.style.background = "#fff";
+      btn.style.color = "#4b0e1f";
       setTimeout(()=>{
-        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="#ffb3c6";
-        btn.style.color="#4b0e1f";
+        btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
+        btn.style.background = "#4b0e1f";
+        btn.style.color = "#F1E6D3";
       },1200);
     });
   });
@@ -145,9 +281,9 @@ function attachCartListeners(lang){
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change", ()=>{
   const lang = langSelect.value;
-  document.body.dir = lang==="ar"?"rtl":"ltr";
+  document.body.dir = lang==="ar" ? "rtl" : "ltr";
   renderProducts(lang);
-  document.getElementById("backLink").textContent = lang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  document.getElementById("backLink").textContent = lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
 });
 
 /* ---------------------- */
@@ -155,5 +291,6 @@ langSelect.addEventListener("change", ()=>{
 /* ---------------------- */
 renderProducts("en");
 </script>
+
 </body>
 </html>
