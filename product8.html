@@ -5,25 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Games - Nook Decor</title>
 
-<!-- استيراد الخطوط -->
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+  :root{
+    --beige:#DFC9AB;
+    --burgundy:#4b0e1f;
+    --line:rgba(75,14,31,.18);
+  }
+
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #4b0e1f;
-    color: #fff;
+    background-color: var(--beige);
+    color: var(--burgundy);
   }
 
   header {
-    background-color: #4b0e1f;
+    background-color: var(--beige);
     padding: 20px;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     position: relative;
-    font-family: 'Didot', serif; /* العنوان الكبير */
+    font-family: 'Didot', serif;
+    color: var(--burgundy);
+    border-bottom: 1px solid var(--line);
   }
 
   #langSelect {
@@ -31,12 +38,12 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background: #ffb3c6;
+    background: var(--burgundy);
     border: none;
-    padding: 6px 10px; /* أصغر حجم */
+    padding: 6px 10px;
     border-radius: 10px;
     font-weight: bold;
-    color: #4b0e1f;
+    color: var(--beige);
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -50,29 +57,45 @@
     justify-items: center;
   }
 
-  .product-card {
-    background: #5c1024;
-    border-radius: 15px;
-    padding: 15px;
-    max-width: 260px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    text-align: center;
-    transition: 0.3s;
-    font-family: 'Poppins', sans-serif; /* الخط للوصف والكلام */
+  /* ✅ شيلنا الكرت اللي ورا الصور */
+  .product-card{
+    width: 380px;
+    text-align:center;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    transition: transform .25s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center; /* ✅ في النص */
   }
 
-  .product-card img {
-    width: 100%;
+  .product-card:hover{
+    transform: scale(1.02);
+  }
+
+  /* ✅ Desktop image size = 350×420 */
+  .product-card img{
+    width: 350px;
     height: 420px;
     object-fit: cover;
+    display:block;
+    margin: 0 auto;
     border-radius: 15px;
-    margin-bottom: 10px;
+
+    /* ✅ أفضل عرض ممكن للصورة */
+    image-rendering: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .product-card h2 {
-    font-family: 'Didot', serif; /* عنوان المنتج */
+    font-family: 'Didot', serif;
     font-size: 20px;
-    margin: 10px 0;
+    margin: 12px 0 8px;
+    color: var(--burgundy);
   }
 
   .price {
@@ -80,19 +103,22 @@
     font-weight: bold;
     margin: 10px 0;
     font-family: 'Poppins', sans-serif;
+    color: var(--burgundy);
   }
 
+  /* ✅ add to cart بورجوندي */
   .btn {
-    background-color: #ffb3c6;
+    background-color: var(--burgundy);
     border: none;
-    color: #4b0e1f;
+    color: var(--beige);
     padding: 10px;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    width: 100%;
+    width: 350px; /* نفس عرض الصورة على الديسكتوب */
     transition: 0.25s;
     font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
   }
 
   .btn:hover {
@@ -100,7 +126,7 @@
   }
 
   a.back-link {
-    color: #ffb3c6;
+    color: var(--burgundy);
     text-align: center;
     display: block;
     margin: 40px 0;
@@ -110,19 +136,33 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  @media (min-width: 768px) {
-    .product-container {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* ✅ الموبايل: نفس المقاس على كل التليفونات (ثابت) + في النص */
+  @media (max-width: 768px){
+    .product-container{
+      padding: 26px 14px;
+      gap: 22px;
     }
-    .product-card img {
-      height: 460px;
+
+    .product-card{
+      width: 100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .product-card img{
+      width: 300px;     /* ✅ ثابت لكل الموبايلات */
+      height: 360px;    /* ✅ ثابت لكل الموبايلات */
+      object-fit: cover;
+      margin: 0 auto;
+    }
+
+    .btn{
+      width: 300px;     /* نفس عرض الصورة على الموبايل */
     }
   }
 
   @media (max-width: 420px) {
-    .product-card img {
-      height: 350px;
-    }
     .price {
       font-size: 16px;
     }
@@ -132,6 +172,12 @@
     }
     .product-card h2 {
       font-size: 18px;
+    }
+
+    #langSelect { 
+      font-size: 12px;
+      padding: 4px 8px;
+      right: 12px;
     }
   }
 </style>
@@ -198,9 +244,16 @@ function attachCart(lang){
       let existing = cart.find(p=>p.name===product.name);
       if(existing) existing.qty+=1; else cart.push(product);
       saveCart(cart);
+
       btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff"; btn.style.color="#4b0e1f";
-      setTimeout(()=>{ btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f"; },1200);
+      btn.style.background="#fff"; 
+      btn.style.color="#4b0e1f";
+
+      setTimeout(()=>{
+        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="var(--burgundy)";
+        btn.style.color="var(--beige)";
+      },1200);
     });
   });
 }
