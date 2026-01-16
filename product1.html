@@ -9,13 +9,13 @@
 <style> 
 body{ 
   margin:0; 
-  background:#F9F2E5; 
+  background:#DFC9AB; 
   font-family:'Poppins',sans-serif; 
   color:#4b0e1f; 
 } 
 
 header{ 
-  background:#F9F2E5; 
+  background:#DFC9AB; 
   padding:18px; 
   text-align:center; 
   font-size:30px; 
@@ -34,7 +34,7 @@ header{
   border-radius:8px; 
   background:#4b0e1f; 
   font-weight:bold; 
-  color:#F9F2E5; 
+  color:#DFC9AB; 
   cursor:pointer; 
 } 
 
@@ -100,7 +100,7 @@ header{
 .btn{ 
   background:#4b0e1f; 
   border:none; 
-  color:#F9F2E5; 
+  color:#DFC9AB; 
   padding:10px 20px; 
   border-radius:10px; 
   font-weight:bold; 
@@ -268,7 +268,7 @@ function initSliders(){
       show(index); 
     }; 
     slider.querySelector(".right").onclick = ()=>{ 
-      index=(index+imgs.length)%imgs.length; 
+      index=(index+1+imgs.length)%imgs.length; 
       show(index); 
     }; 
     setInterval(()=>{ 
