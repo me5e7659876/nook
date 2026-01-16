@@ -33,6 +33,9 @@ header{
   top:15px;
   cursor:pointer;
   font-size:18px;
+  user-select:none;
+  text-decoration:none;
+  color:#fff;
 }
 .cart-count{
   background:#ffb3c6;
@@ -70,6 +73,7 @@ header{
 .collection-info h3{
   font-family:'Didot',serif;
   color:#ffb3c6;
+  margin: 6px 0 10px;
 }
 .view-btn{
   background:#ffb3c6;
@@ -139,53 +143,41 @@ header{
   cursor:pointer;
 }
 
-/* CART */
-.cart{
-  position:fixed;
-  right:-380px;
-  top:0;
-  width:340px;
-  height:100%;
-  background:#5c1228;
-  padding:20px;
-  transition:.4s;
-  z-index:999;
+/* ✅ little confirmation toast */
+.toast{
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  background: rgba(59,10,26,.95);
+  border: 1px solid rgba(255,179,198,.35);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s;
+  z-index: 9999;
+  font-size: 14px;
 }
-.cart.active{right:0;}
-.cart h3{color:#ffb3c6;}
-.cart-item{
-  border-bottom:1px solid #ffb3c6;
-  padding:10px 0;
-}
-.checkout-btn{
-  background:#ffb3c6;
-  color:#4b0e1f;
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  font-weight:bold;
-  margin-top:15px;
-}
+.toast.show{ opacity: 1; }
+
 </style>
 </head>
 
 <body>
 
 <header>
-Space Packages
-<span class="cart-btn" onclick="toggleCart()">🛒 <span id="cartCount" class="cart-count">0</span></span>
+  Space Packages
+
+  <!-- ✅ real cart (opens cart.html) -->
+  <a class="cart-btn" href="cart.html" aria-label="Open cart">
+    🛒 <span id="cartCount" class="cart-count">0</span>
+  </a>
 </header>
 
 <div class="collections-grid" id="packagesContainer"></div>
-
-<!-- CART -->
-<div class="cart" id="cart">
-<h3>Your Cart</h3>
-<div id="cartItems"></div>
-<h3 id="totalPrice"></h3>
-<button class="checkout-btn" onclick="checkout()">Checkout</button>
-</div>
 
 <!-- OFFICE -->
 <div id="office" class="collection-page">
@@ -201,7 +193,7 @@ Space Packages
 <p>• 2 large office vases</p>
 <p>• 1 modern vase</p>
 <div class="price-tag">7000 EGP</div>
-<button class="add-btn" onclick="addToCart('Office Package',7000)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('office','Office Package',7000)">Add to Cart</button>
 </div>
 </div>
 
@@ -218,7 +210,7 @@ Space Packages
 <p>• Medium vase</p>
 <p>• Glass vase</p>
 <div class="price-tag">3500 EGP</div>
-<button class="add-btn" onclick="addToCart('Gym Package',3500)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('gym','Gym Package',3500)">Add to Cart</button>
 </div>
 </div>
 
@@ -236,7 +228,7 @@ Space Packages
 <p>• Glass vase</p>
 <p>• 3 decorative portraits</p>
 <div class="price-tag">3500 EGP</div>
-<button class="add-btn" onclick="addToCart('Clinic Package',3500)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('clinic','Clinic Package',3500)">Add to Cart</button>
 </div>
 </div>
 
@@ -252,7 +244,7 @@ Space Packages
 <p>• 2 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">5000 EGP</div>
-<button class="add-btn" onclick="addToCart('Entrance Area',5000)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('entrance','Entrance Area',5000)">Add to Cart</button>
 </div>
 </div>
 
@@ -268,7 +260,7 @@ Space Packages
 <p>• 3 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">6000 EGP</div>
-<button class="add-btn" onclick="addToCart('Indoor Café',6000)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('indoor','Indoor Café',6000)">Add to Cart</button>
 </div>
 </div>
 
@@ -284,28 +276,57 @@ Space Packages
 <p>• 3 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">6000 EGP</div>
-<button class="add-btn" onclick="addToCart('Outdoor Café',6000)">Add to Cart</button>
+<button class="add-btn" onclick="addToCart('outdoor','Outdoor Café',6000)">Add to Cart</button>
 </div>
 </div>
+
+<div class="toast" id="toast">Added to cart ✅</div>
 
 <script>
-const packages=[
-{id:"office",img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",name:"Office Package"},
-{id:"gym",img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",name:"Gym Package"},
-{id:"clinic",img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",name:"Clinic Package"},
-{id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",name:"Entrance Area"},
-{id:"indoor",img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",name:"Indoor Café"},
-{id:"outdoor",img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",name:"Outdoor Café"}
-];
+/* ============================
+   REAL CART SYSTEM (same as Moods)
+============================ */
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+const CART_KEY = "nook_cart";
+
+/* ✅ migrate old cart if exists */
+(function migrateOldCart(){
+  try{
+    const oldCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const newCart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+    if(newCart.length === 0 && oldCart.length > 0){
+      // old items were {name, price} بدون qty/img
+      const migrated = oldCart.map((it, idx) => ({
+        id: it.id || (`legacy_${idx}_${(it.name||"item").toLowerCase().replace(/\s+/g,"_")}`),
+        name: it.name || "Item",
+        price: Number(it.price) || 0,
+        qty: Number(it.qty) || 1,
+        img: it.img || "",
+        category: it.category || "General",
+        page: it.page || "",
+        addedAt: it.addedAt || new Date().toISOString()
+      }));
+      localStorage.setItem(CART_KEY, JSON.stringify(migrated));
+    }
+  }catch(e){}
+})();
+
+const packages=[
+  {id:"office",  img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:"Office Package"},
+  {id:"gym",     img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg", name:"Gym Package"},
+  {id:"clinic",  img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:"Clinic Package"},
+  {id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:"Entrance Area"},
+  {id:"indoor",  img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:"Indoor Café"},
+  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:"Outdoor Café"}
+];
 
 const container=document.getElementById("packagesContainer");
 packages.forEach(p=>{
   const card=document.createElement("div");
   card.className="collection-card";
   card.innerHTML=`
-    <img src="${p.img}">
+    <img src="${p.img}" alt="${p.name}">
     <div class="collection-info">
       <h3>${p.name}</h3>
       <button class="view-btn" onclick="openPackage('${p.id}')">View</button>
@@ -325,37 +346,65 @@ function goHome(){
   container.style.display="grid";
 }
 
-function addToCart(name,price){
-  cart.push({name,price});
-  localStorage.setItem("cart",JSON.stringify(cart));
-  updateCart();
+/* ===== CART HELPERS ===== */
+function getCart(){
+  try{ return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch(e){ return []; }
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // ✅ for checkout page
 }
 
-function updateCart(){
-  document.getElementById("cartCount").innerText=cart.length;
-  const items=document.getElementById("cartItems");
-  items.innerHTML="";
-  let total=0;
-  cart.forEach(i=>{
-    total+=i.price;
-    items.innerHTML+=`<div class="cart-item">${i.name} - ${i.price} EGP</div>`;
-  });
-  document.getElementById("totalPrice").innerText="Total: "+total+" EGP";
+function cartQtyCount(cart){
+  return cart.reduce((sum, it) => sum + (Number(it.qty) || 1), 0);
 }
 
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
+function updateCartCount(){
+  const cart = getCart();
+  document.getElementById("cartCount").textContent = cartQtyCount(cart);
 }
 
-function checkout(){
-  alert("Order placed successfully!");
-  cart=[];
-  localStorage.removeItem("cart");
-  updateCart();
-  toggleCart();
+/* ✅ Real addToCart (with img + qty + category + page) */
+function addToCart(id, name, price){
+  const p = packages.find(x => x.id === id);
+  const img = p ? p.img : "";
+
+  const cart = getCart();
+  const itemId = `space_${id}`;
+
+  const existing = cart.find(it => it.id === itemId);
+  if(existing){
+    existing.qty = (Number(existing.qty) || 1) + 1;
+  }else{
+    cart.push({
+      id: itemId,
+      name: name,
+      price: Number(price) || 0,
+      qty: 1,
+      img: img,
+      category: "Space Packages",
+      page: `${location.pathname}#${id}`,
+      addedAt: new Date().toISOString()
+    });
+  }
+
+  saveCart(cart);
+  updateCartCount();
+  showToast(`${name} added ✅`);
 }
 
-updateCart();
+/* ✅ toast */
+let toastTimer = null;
+function showToast(text){
+  const t = document.getElementById("toast");
+  t.textContent = text;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove("show"), 1600);
+}
+
+updateCartCount();
 </script>
 
 </body>
