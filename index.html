@@ -34,9 +34,14 @@ body{
   --accent-hover: rgba(255,179,198,0.12);
   --active-outline: rgba(255,179,198,0.28);
 
-  /* ✅ NEW: Champagne color */
+  /* ✅ Champagne color */
   --champagne: #EDE2CC;
-  --champagne-text: #2A1716; /* readable dark text on champagne */
+  --champagne-text: #2A1716;
+}
+
+/* ✅ NEW: wrapper لونه شامبين عشان أي فراغات تبقى بيج */
+.champagne-zone{
+  background: var(--champagne);
 }
 
 /* ---------------- HEADER ---------------- */
@@ -45,12 +50,9 @@ header{
   padding:12px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
-
-  /* ✅ مسافة بين الهيدر والـ Announcement Bar */
   margin-bottom: 10px;
 }
 
-/* ✅ زوّدنا ارتفاع الهيدر عشان اللوجو والأيقونات يبانوا كاملين */
 .header-inner{
   position: relative;
   min-height: 74px;
@@ -136,7 +138,9 @@ header{
   border-top: 1px solid rgba(42,23,22,0.14);
   border-bottom: 1px solid rgba(42,23,22,0.14);
   overflow:hidden;
-  margin-bottom: 12px; /* ✅ مسافة بينه وبين البانر */
+
+  /* ✅ خلي المسافة تحتها زي ما هي بس هتطلع بيج لأن الأب شامبين */
+  margin-bottom: 12px;
 }
 
 .announcement-track{
@@ -184,27 +188,25 @@ header{
   height:85vh;
   overflow:hidden;
 
-  /* ✅ NEW: خلي أي فراغ/تحميل صور/حواف تبقى شامبين */
+  /* ✅ مهم: أي فراغ/تحميل صور يبقى شامبين */
   background: var(--champagne);
 }
-
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
   transition:opacity .8s ease-in-out;
 
-  /* ✅ NEW: لو فيه فراغ حوالين الصورة يبقى شامبين */
+  /* ✅ مهم: لو ظهر فراغ داخل السلايد يبقى شامبين */
   background: var(--champagne);
 }
 .slide.active{opacity:1;}
-
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
 
-  /* ✅ NEW: لو الصورة فيها شفافية/تحميل */
+  /* ✅ مهم: خلفية الصورة نفسها لو حصل أي فراغ */
   background: var(--champagne);
 }
 
@@ -213,7 +215,6 @@ header{
   inset:0;
   background:rgba(0,0,0,.35);
 }
-
 .hero-content{
   position:absolute;
   left:6%;
@@ -261,19 +262,20 @@ header{
 .featured-strip{
   background: var(--champagne);
   padding:30px 20px;
+
+  /* ✅ خليها زي ما هي… الفراغ اللي فوقها هيبقى بيج لأن الأب شامبين */
   margin-top:60px;
+
   margin-bottom: 40px;
   border-top: 1px solid rgba(42,23,22,0.12);
   border-bottom: 1px solid rgba(42,23,22,0.12);
 }
-
 .featured-title{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
   color: var(--champagne-text);
 }
-
 .featured-wrapper{
   position:relative;
   max-width:1200px;
@@ -285,7 +287,6 @@ header{
   gap:40px;
   transition:transform .5s ease;
 }
-
 .featured-item{
   min-width:220px;
   background: #F4EBD7;
@@ -293,24 +294,19 @@ header{
   overflow:hidden;
   box-shadow: 0 10px 18px rgba(42,23,22,0.10);
 }
-
 .featured-item img{
   width:100%;
   height:260px;
   object-fit:cover;
 }
-
 @media(max-width:768px){
-  .featured-item{
-    min-width:220px;
-  }
+  .featured-item{ min-width:220px; }
   .featured-item img{
     height:220px;
     object-fit:contain;
     object-position:center;
   }
 }
-
 .featured-arrow{
   position:absolute;
   top:50%;
@@ -515,103 +511,108 @@ footer p.copy{
   </div>
 </header>
 
-<!-- ✅ ANNOUNCEMENT BAR -->
-<div class="announcement-wrap" aria-label="Announcement">
-  <div class="announcement-track" id="announcementTrack">
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
+<!-- ✅ NEW: كل المنطقة دي شامبين، ف أي فراغات هتبقى بيج -->
+<div class="champagne-zone">
 
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-    <span class="announcement-item">Create Your Own Mood</span>
-    <span class="announcement-dot"></span>
-  </div>
-</div>
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-wrap" aria-label="Announcement">
+    <div class="announcement-track" id="announcementTrack">
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="slide active">
-    <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span>
+      <span class="announcement-dot"></span>
     </div>
   </div>
 
-  <div class="slide">
-    <img src="https://i.postimg.cc/d0cbzrct/1766656614033-019b54f0-3583-76a3-bc19-d9be82d80a2d.png" alt="Decor Collection 2">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Check Our</p>
-      <h1>Decor Collection</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="slide active">
+      <img src="https://i.postimg.cc/xCM0LS7Z/1766656454917-019b54ed-c757-7bec-9816-7cfcc25e7e2d.png" alt="Decor Collection 1">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p>Check Our</p>
+        <h1>Decor Collection</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="slide">
-    <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Create Your Own Mood 1">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
+    <div class="slide">
+      <img src="https://i.postimg.cc/d0cbzrct/1766656614033-019b54f0-3583-76a3-bc19-d9be82d80a2d.png" alt="Decor Collection 2">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p>Check Our</p>
+        <h1>Decor Collection</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="slide">
-    <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Create Your Own Mood 2">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
+    <div class="slide">
+      <img src="https://i.postimg.cc/yNSBzHV3/1766656226604-019b54ea-4cfc-7ce6-b341-a45bb278251d.jpg" alt="Create Your Own Mood 1">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p>Create</p>
+        <h1>Your Own Mood</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="slide">
-    <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Create Your Own Mood 3">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p>Create</p>
-      <h1>Your Own Mood</h1>
+    <div class="slide">
+      <img src="https://i.postimg.cc/q7nf5xGP/1766656980037-019b54f5-a88b-7d26-afe5-6f7bbab4192f.jpg" alt="Create Your Own Mood 2">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p>Create</p>
+        <h1>Your Own Mood</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="arrow left" onclick="prevSlide()">❮</div>
-  <div class="arrow right" onclick="nextSlide()">❯</div>
-
-  <div class="dots">
-    <div class="dot active" onclick="goToSlide(0)"></div>
-    <div class="dot" onclick="goToSlide(1)"></div>
-    <div class="dot" onclick="goToSlide(2)"></div>
-    <div class="dot" onclick="goToSlide(3)"></div>
-    <div class="dot" onclick="goToSlide(4)"></div>
-  </div>
-</section>
-
-<!-- FEATURED -->
-<section class="featured-strip">
-  <div class="featured-title">Featured Products</div>
-  <div class="featured-wrapper">
-    <div class="featured-arrow left" onclick="moveFeatured(-1)">❮</div>
-    <div class="featured-track" id="featuredTrack">
-      <div class="featured-item"><img src="https://i.postimg.cc/j2mqPtPm/1767831276804-019b9af4-50d6-719c-88c0-9348957f804a.png" alt=""></div>
-      <div class="featured-item"><img src="https://i.postimg.cc/t40CgRXg/43ae55be-d9e8-48e8-9bb5-16e6fc69195c.jpg" alt=""></div>
-      <div class="featured-item"><img src="https://i.postimg.cc/PqytKm1r/15cf30ad-d3e0-41f6-b5e7-8eda9078f748.jpg" alt=""></div>
-      <div class="featured-item"><img src="https://i.postimg.cc/hj3KRcyG/1767831154712-019b9af2-6af9-7afa-8eb0-d176bd7331d3.png" alt=""></div>
-      <div class="featured-item"><img src="https://i.postimg.cc/pV4P0V5q/1767831379775-019b9af5-e337-7731-8a15-4d5390ca5729.png" alt=""></div>
+    <div class="slide">
+      <img src="https://i.postimg.cc/prWgybtn/1766657312838-019b54fa-de87-7600-870c-bb55aca59707.png" alt="Create Your Own Mood 3">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p>Create</p>
+        <h1>Your Own Mood</h1>
+      </div>
     </div>
-    <div class="featured-arrow right" onclick="moveFeatured(1)">❯</div>
-  </div>
-</section>
+
+    <div class="arrow left" onclick="prevSlide()">❮</div>
+    <div class="arrow right" onclick="nextSlide()">❯</div>
+
+    <div class="dots">
+      <div class="dot active" onclick="goToSlide(0)"></div>
+      <div class="dot" onclick="goToSlide(1)"></div>
+      <div class="dot" onclick="goToSlide(2)"></div>
+      <div class="dot" onclick="goToSlide(3)"></div>
+      <div class="dot" onclick="goToSlide(4)"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="featured-strip">
+    <div class="featured-title">Featured Products</div>
+    <div class="featured-wrapper">
+      <div class="featured-arrow left" onclick="moveFeatured(-1)">❮</div>
+      <div class="featured-track" id="featuredTrack">
+        <div class="featured-item"><img src="https://i.postimg.cc/j2mqPtPm/1767831276804-019b9af4-50d6-719c-88c0-9348957f804a.png" alt=""></div>
+        <div class="featured-item"><img src="https://i.postimg.cc/t40CgRXg/43ae55be-d9e8-48e8-9bb5-16e6fc69195c.jpg" alt=""></div>
+        <div class="featured-item"><img src="https://i.postimg.cc/PqytKm1r/15cf30ad-d3e0-41f6-b5e7-8eda9078f748.jpg" alt=""></div>
+        <div class="featured-item"><img src="https://i.postimg.cc/hj3KRcyG/1767831154712-019b9af2-6af9-7afa-8eb0-d176bd7331d3.png" alt=""></div>
+        <div class="featured-item"><img src="https://i.postimg.cc/pV4P0V5q/1767831379775-019b9af5-e337-7731-8a15-4d5390ca5729.png" alt=""></div>
+      </div>
+      <div class="featured-arrow right" onclick="moveFeatured(1)">❯</div>
+    </div>
+  </section>
+
+</div><!-- /champagne-zone -->
 
 <!-- MAIN CONTENT -->
 <div class="container">
