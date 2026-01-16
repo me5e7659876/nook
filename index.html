@@ -23,38 +23,30 @@
   font-style: normal;
 }
 
-/* ---------------- THEME (LIGHT BURGUNDY LUXE) ---------------- */
-:root{
-  --bg: #F6F1F3;          /* Background */
-  --card: #EFE3E7;        /* Cards / Panels */
-  --text: #2A1D22;        /* Text */
-  --accent: #8B3A55;      /* Accent */
-
-  /* Derived (premium feel) */
-  --panel-2: #E7D4DA;     /* Slightly deeper panel */
-  --border-soft: rgba(42,29,34,0.16);
-  --accent-hover: rgba(139,58,85,0.14);
-  --active-outline: rgba(139,58,85,0.55);
-  --shadow-soft: 0 16px 34px rgba(42,29,34,.12);
-}
-
 /* ---------------- BASE ---------------- */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'DidotWeb','Georgia',serif;
-  background: var(--bg);
-  color: var(--text);
+  background:#4b0e1f;
+  color:#fff;
+}
+:root{
+  --accent-hover: rgba(255,179,198,0.12);
+  --active-outline: rgba(255,179,198,0.28);
 }
 
 /* ---------------- HEADER ---------------- */
 header{
-  background: var(--card);
+  background:#4b0e1f;
   padding:12px 20px;
-  box-shadow: var(--shadow-soft);
+  box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
+
+  /* ✅ مسافة بين الهيدر والـ Announcement Bar */
   margin-bottom: 10px;
 }
 
+/* ✅ زوّدنا ارتفاع الهيدر عشان اللوجو والأيقونات يبانوا كاملين */
 .header-inner{
   position: relative;
   min-height: 74px;
@@ -97,7 +89,6 @@ header{
   top:50%;
   transform:translateY(-50%);
   font-size:22px;
-  color: var(--text);
 }
 
 .logo{
@@ -120,24 +111,28 @@ header{
 
 /* ---------------- MENU OVERLAY LINKS STYLE ---------------- */
 #menuOverlay a{
-  color: var(--text);
+  color:#fff;
   text-decoration:none;
   padding:12px 14px;
   border-radius:12px;
   cursor:pointer;
   font-size:18px;
 }
-#menuOverlay a:hover{ background: var(--accent-hover); }
-#menuOverlay a.active{ outline:2px solid var(--active-outline); }
+#menuOverlay a:hover{
+  background: var(--accent-hover);
+}
+#menuOverlay a.active{
+  outline:2px solid var(--active-outline);
+}
 
-/* ---------------- ANNOUNCEMENT BAR ---------------- */
+/* ---------------- ANNOUNCEMENT BAR (NEW) ---------------- */
 .announcement-wrap{
   width:100%;
-  background: linear-gradient(90deg, var(--panel-2), var(--card), var(--panel-2));
-  border-top: 1px solid var(--border-soft);
-  border-bottom: 1px solid var(--border-soft);
+  background: linear-gradient(90deg, #3b0a1a, #4b0e1f, #3b0a1a);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   overflow:hidden;
-  margin-bottom: 12px;
+  margin-bottom: 12px; /* ✅ مسافة بينه وبين البانر */
 }
 
 .announcement-track{
@@ -155,22 +150,21 @@ header{
   letter-spacing: 1.2px;
   text-transform: uppercase;
   opacity: 0.95;
-  color: var(--text);
   text-shadow:
-    0 0 10px rgba(42,29,34,0.08),
-    0 0 18px rgba(139,58,85,0.12);
+    0 0 10px rgba(255,255,255,0.22),
+    0 0 18px rgba(255,179,198,0.18);
 }
 
 .announcement-dot{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(139,58,85,0.80);
-  box-shadow: 0 0 12px rgba(139,58,85,0.25);
+  background: rgba(255,255,255,0.6);
+  box-shadow: 0 0 10px rgba(255,179,198,0.35);
 }
 
 .announcement-wrap:hover .announcement-track{
-  animation-play-state: paused;
+  animation-play-state: paused; /* ✅ يقف لو وقفتي عليه بالماوس */
 }
 
 @keyframes marquee{
@@ -200,13 +194,12 @@ header{
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.42);
+  background:rgba(0,0,0,.35);
 }
 .hero-content{
   position:absolute;
   left:6%;
   bottom:18%;
-  color:#fff;
 }
 .hero-content p{font-size:22px;}
 .hero-content h1{font-size:56px;margin:12px 0;}
@@ -226,7 +219,6 @@ header{
   font-size:32px;
   cursor:pointer;
   user-select:none;
-  color:#fff;
 }
 .arrow.left{left:20px;}
 .arrow.right{right:20px;}
@@ -242,25 +234,22 @@ header{
 .dot{
   width:30px;
   height:4px;
-  background: rgba(139,58,85,0.55);
+  background:#bbb;
   cursor:pointer;
 }
 .dot.active{background:#fff;}
 
 /* ---------------- FEATURED ---------------- */
 .featured-strip{
-  background: var(--card);
+  background:#3b0a1a;
   padding:30px 20px;
   margin-top:60px;
   margin-bottom: 40px;
-  border-top: 1px solid var(--border-soft);
-  border-bottom: 1px solid var(--border-soft);
 }
 .featured-title{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
-  color: var(--text);
 }
 .featured-wrapper{
   position:relative;
@@ -275,10 +264,9 @@ header{
 }
 .featured-item{
   min-width:220px;
-  background: var(--card);
+  background:#4b0e1f;
   border-radius:18px;
   overflow:hidden;
-  border: 1px solid var(--border-soft);
 }
 .featured-item img{
   width:100%;
@@ -286,7 +274,9 @@ header{
   object-fit:cover;
 }
 @media(max-width:768px){
-  .featured-item{ min-width:220px; }
+  .featured-item{
+    min-width:220px;
+  }
   .featured-item img{
     height:220px;
     object-fit:contain;
@@ -299,7 +289,6 @@ header{
   transform:translateY(-50%);
   font-size:32px;
   cursor:pointer;
-  color: var(--text);
 }
 .featured-arrow.left{left:0;}
 .featured-arrow.right{right:0;}
@@ -313,16 +302,15 @@ header{
 .search-bar{
   display:flex;
   gap:8px;
-  background: var(--card);
+  background:#3b0a1a;
   padding:8px 12px;
   border-radius:10px;
-  border:1px solid var(--border-soft);
 }
 .search-bar input{
   background:transparent;
   border:none;
   outline:none;
-  color: var(--text);
+  color:#fff;
   width:260px;
 }
 
@@ -334,15 +322,14 @@ header{
 }
 .sidebar{
   width:230px;
-  background: var(--card);
+  background:#3b0a1a;
   padding:20px;
   border-radius:12px;
-  border:1px solid var(--border-soft);
 }
 .categories{list-style:none;}
 .categories li{margin:10px 0;}
 .categories a{
-  color: var(--text);
+  color:#fff;
   text-decoration:none;
   padding:8px;
   display:block;
@@ -364,14 +351,14 @@ header{
   border-radius:16px;
   object-fit:cover;
 }
-.card h3{margin-top:12px;color: var(--text);}
+.card h3{margin-top:12px;color:#fff;}
 
 .no-results{
   grid-column:1/-1;
   text-align:center;
   font-size:18px;
   padding:40px;
-  color: rgba(139,58,85,0.95);
+  color:#ffb3c6;
 }
 .no-results[aria-hidden="true"]{display:none;}
 
@@ -380,15 +367,12 @@ footer{
   padding:40px 20px;
   text-align:center;
 }
-footer a{
-  color: rgba(42,29,34,0.72);
-  text-decoration:none;
-}
-footer a:hover{color: var(--text);}
+footer a{color:#bbb;text-decoration:none;}
+footer a:hover{color:#fff;}
 footer p.copy{
   margin-top:20px;
   font-size:13px;
-  color: rgba(42,29,34,0.55);
+  color:#777;
 }
 
 /* ---------------- RESPONSIVE ---------------- */
@@ -416,7 +400,7 @@ footer p.copy{
   .featured-wrapper { overflow-x: auto; }
   .featured-track { scroll-snap-type: x mandatory; }
   .featured-item { scroll-snap-align: start; }
-  .featured-item img { object-fit: contain; background: var(--card); }
+  .featured-item img { object-fit: contain; background: #4b0e1f; }
 }
 @media (max-width: 768px) {
   .featured-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; }
@@ -436,8 +420,8 @@ footer p.copy{
 <body>
 
 <!-- MENU OVERLAY -->
-<div id="menuOverlay" style="position:fixed;top:0;left:0;width:100%;height:0%;background:#EFE3E7;overflow-y:auto;transition:.5s;z-index:1000;">
-  <a onclick="closeMenu()" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;color:#2A1D22;">×</a>
+<div id="menuOverlay" style="position:fixed;top:0;left:0;width:100%;height:0%;background:#4b0e1f;overflow-y:auto;transition:.5s;z-index:1000;">
+  <a onclick="closeMenu()" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;">×</a>
   <div style="display:flex;flex-direction:column;padding:80px 20px;gap:15px;">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
@@ -460,12 +444,12 @@ footer p.copy{
   <div class="top-bar" id="searchBarContainer">
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search products...">
-      <span id="clearSearch" style="cursor:pointer;color:#2A1D22;">✕</span>
+      <span id="clearSearch" style="cursor:pointer;">✕</span>
     </div>
   </div>
 
   <div class="menu-icon" onclick="toggleMenu()">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
       <line x1="3" y1="6" x2="21" y2="6"/>
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="18" x2="21" y2="18"/>
@@ -478,14 +462,14 @@ footer p.copy{
 
     <div class="header-icons">
       <span id="searchBtn" class="icon-box">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
           <circle cx="11" cy="11" r="8"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </span>
 
       <a href="cart.html" class="icon-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
           <circle cx="9" cy="21" r="1"/>
           <circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.6 13h11.4l2-8h-14"/>
@@ -493,7 +477,7 @@ footer p.copy{
       </a>
 
       <a href="login.html" class="icon-box">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2A1D22" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="7" r="4"/>
           <path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>
         </svg>
@@ -502,8 +486,9 @@ footer p.copy{
   </div>
 </header>
 
-<!-- ANNOUNCEMENT BAR -->
+<!-- ✅ ANNOUNCEMENT BAR (between header icons and hero banner) -->
 <div class="announcement-wrap" aria-label="Announcement">
+  <!-- duplicate content to make seamless loop -->
   <div class="announcement-track" id="announcementTrack">
     <span class="announcement-item">Create Your Own Mood</span>
     <span class="announcement-dot"></span>
@@ -675,15 +660,18 @@ footer p.copy{
       <h3>Glass and Small Vases</h3>
     </a>
 
+    <!-- ✅ نتائج السيرش هتظهر هنا (من search.js) -->
     <div id="searchResults" style="display:none; width:100%; grid-column:1/-1;"></div>
+
     <div class="no-results" id="noResults" aria-hidden="true">No products found.</div>
   </main>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-container">
     <div class="footer-col" style="text-align:left; display:flex; flex-direction:column; gap:8px;">
-      <h4 style="color:#2A1D22;">Information</h4>
+      <h4>Information</h4>
       <a href="terms.html">Terms & Conditions</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="shipping.html">Shipping Policy</a>
@@ -696,8 +684,10 @@ footer p.copy{
 <script>
 /* ===========================
    MENU OPEN/CLOSE + CATEGORY FILTER + SLIDER
+   (✅ السيرش اتنقل لملف search.js)
 =========================== */
 
+/* MENU OPEN/CLOSE */
 function toggleMenu(){
   const overlay = document.getElementById("menuOverlay");
   if (overlay.style.height !== "100%") {
@@ -707,9 +697,13 @@ function toggleMenu(){
     overlay.style.height = "0%";
   }
 }
-function closeMenu(){ document.getElementById("menuOverlay").style.height = "0%"; }
+function closeMenu(){
+  document.getElementById("menuOverlay").style.height = "0%";
+}
 
+/* CATEGORY FILTER (DESKTOP + MOBILE) */
 let currentCategory = "All";
+
 const sidebarCats = document.querySelectorAll(".sidebar .categories a[data-cat]");
 const overlayCats = document.querySelectorAll("#menuOverlay a[data-cat]");
 
@@ -721,29 +715,52 @@ function setActiveCategory(cat){
 function applyCategory(cat){
   currentCategory = cat;
   setActiveCategory(cat);
+
+  // ✅ لو السيرش شغال (فيه نص) ما نغيرش عرض السيرش
   const searchInput = document.getElementById("searchInput");
   if (searchInput && searchInput.value.trim() !== "") return;
+
   filterCategoryCardsOnly();
 }
 
-sidebarCats.forEach(a => a.addEventListener("click", (e) => { e.preventDefault(); applyCategory(a.dataset.cat); }));
-overlayCats.forEach(a => a.addEventListener("click", (e) => {
-  e.preventDefault();
-  applyCategory(a.dataset.cat);
-  if (window.matchMedia("(max-width: 768px)").matches) closeMenu();
-}));
+sidebarCats.forEach(a => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    applyCategory(a.dataset.cat);
+  });
+});
+
+overlayCats.forEach(a => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    applyCategory(a.dataset.cat);
+
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      closeMenu();
+    }
+  });
+});
 
 function filterCategoryCardsOnly(){
   const cards = document.querySelectorAll("main.content > a.card");
   let visible = 0;
+
   cards.forEach(card => {
     const cat = card.dataset.cat || "";
     const matchesCategory = (currentCategory === "All") || (cat === currentCategory);
-    if (matchesCategory) { card.style.display = "block"; visible++; }
-    else { card.style.display = "none"; }
+
+    if (matchesCategory) {
+      card.style.display = "block";
+      visible++;
+    } else {
+      card.style.display = "none";
+    }
   });
+
   const noResults = document.getElementById("noResults");
-  if (noResults) noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+  if (noResults) {
+    noResults.setAttribute("aria-hidden", visible === 0 ? "false" : "true");
+  }
 }
 
 /* SLIDER */
@@ -757,29 +774,44 @@ function showSlide(i){
   slides[i].classList.add('active');
   dots[i].classList.add('active');
 }
-function nextSlide(){ index = (index + 1) % slides.length; showSlide(index); }
-function prevSlide(){ index = (index - 1 + slides.length ) % slides.length; showSlide(index); }
-function goToSlide(i){ index = i; showSlide(index); }
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+function prevSlide(){
+  index = (index - 1 + slides.length ) % slides.length;
+  showSlide(index);
+}
+function goToSlide(i){
+  index = i;
+  showSlide(index);
+}
 setInterval(nextSlide,5000);
 
-/* FEATURED */
+/* FEATURED (عشان onclick ما يطلعش Error) */
 let featuredIndex = 0;
 function moveFeatured(direction){
   const track = document.getElementById("featuredTrack");
   if(!track) return;
+
   const items = track.querySelectorAll(".featured-item");
   if(items.length === 0) return;
-  const gap = 40;
+
+  const gap = 40; // نفس gap في CSS
   const itemWidth = items[0].getBoundingClientRect().width + gap;
   const maxIndex = Math.max(0, items.length - 1);
+
   featuredIndex = featuredIndex + direction;
   featuredIndex = Math.max(0, Math.min(maxIndex, featuredIndex));
+
   track.style.transform = `translateX(-${featuredIndex * itemWidth}px)`;
 }
 
+/* INITIAL */
 applyCategory("All");
 </script>
 
+<!-- ✅ ربط السيرش بملف منفصل (بيقرأ products.json) -->
 <script src="search.js"></script>
 
 </body>
