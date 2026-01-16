@@ -37,9 +37,13 @@ body{
   /* ✅ Champagne color */
   --champagne: #EDE2CC;
   --champagne-text: #2A1716;
+
+  /* ✅ NEW: Burgundy glow (lighter) للـ featured shadows */
+  --burgundy-glow: rgba(75,14,31,0.32);
+  --burgundy-glow-strong: rgba(75,14,31,0.42);
 }
 
-/* ✅ NEW: wrapper لونه شامبين عشان أي فراغات تبقى بيج */
+/* ✅ wrapper لونه شامبين عشان أي فراغات تبقى بيج */
 .champagne-zone{
   background: var(--champagne);
 }
@@ -131,15 +135,13 @@ header{
   outline:2px solid var(--active-outline);
 }
 
-/* ---------------- ANNOUNCEMENT BAR (CHAMPAGNE) ---------------- */
+/* ---------------- ANNOUNCEMENT BAR (TOP) ---------------- */
 .announcement-wrap{
   width:100%;
   background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
   border-top: 1px solid rgba(42,23,22,0.14);
   border-bottom: 1px solid rgba(42,23,22,0.14);
   overflow:hidden;
-
-  /* ✅ خلي المسافة تحتها زي ما هي بس هتطلع بيج لأن الأب شامبين */
   margin-bottom: 12px;
 }
 
@@ -187,8 +189,6 @@ header{
   width:100%;
   height:85vh;
   overflow:hidden;
-
-  /* ✅ مهم: أي فراغ/تحميل صور يبقى شامبين */
   background: var(--champagne);
 }
 .slide{
@@ -196,8 +196,6 @@ header{
   inset:0;
   opacity:0;
   transition:opacity .8s ease-in-out;
-
-  /* ✅ مهم: لو ظهر فراغ داخل السلايد يبقى شامبين */
   background: var(--champagne);
 }
 .slide.active{opacity:1;}
@@ -205,8 +203,6 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
-
-  /* ✅ مهم: خلفية الصورة نفسها لو حصل أي فراغ */
   background: var(--champagne);
 }
 
@@ -258,47 +254,123 @@ header{
 }
 .dot.active{background:#fff;}
 
+/* ---------------- NEW: ANNOUNCEMENT BAR UNDER HERO ---------------- */
+.bottom-announce{
+  width:100%;
+  background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
+  border-top: 1px solid rgba(42,23,22,0.14);
+  border-bottom: 1px solid rgba(42,23,22,0.14);
+  overflow:hidden;
+
+  /* ✅ ده بيبقى “بين البانر والـ featured” */
+  margin-top: 14px;
+  margin-bottom: 22px;
+}
+
+.bottom-announce-track{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  white-space: nowrap;
+  padding: 12px 0;
+  animation: marqueeBottom 12s linear infinite;
+}
+
+.bottom-announce-item{
+  font-size: 15px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--champagne-text);
+  opacity: 0.95;
+  text-shadow: 0 0 10px rgba(42,23,22,0.06);
+}
+
+.bottom-announce-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(75,14,31,0.22);
+  background: rgba(75,14,31,0.08);
+  color: var(--champagne-text);
+  letter-spacing: 1px;
+}
+
+.bottom-announce-dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(75,14,31,0.65);
+  box-shadow: 0 0 10px rgba(75,14,31,0.18);
+}
+
+@keyframes marqueeBottom{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.bottom-announce:hover .bottom-announce-track{
+  animation-play-state: paused;
+}
+
 /* ---------------- FEATURED (CHAMPAGNE SECTION) ---------------- */
 .featured-strip{
   background: var(--champagne);
   padding:30px 20px;
-
-  /* ✅ خليها زي ما هي… الفراغ اللي فوقها هيبقى بيج لأن الأب شامبين */
-  margin-top:60px;
-
+  margin-top:0; /* ✅ عشان المسافة بقت من البار الجديد */
   margin-bottom: 40px;
   border-top: 1px solid rgba(42,23,22,0.12);
   border-bottom: 1px solid rgba(42,23,22,0.12);
 }
+
 .featured-title{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
   color: var(--champagne-text);
 }
+
 .featured-wrapper{
   position:relative;
   max-width:1200px;
   margin:auto;
   overflow:hidden;
 }
+
 .featured-track{
   display:flex;
   gap:40px;
   transition:transform .5s ease;
 }
+
 .featured-item{
   min-width:220px;
   background: #F4EBD7;
   border-radius:18px;
   overflow:hidden;
-  box-shadow: 0 10px 18px rgba(42,23,22,0.10);
+
+  /* ✅ CHANGED: Burgundy glow shadow (lighter & eye-catching) */
+  box-shadow:
+    0 18px 34px var(--burgundy-glow),
+    0 0 0 1px rgba(75,14,31,0.08);
+
+  transition: transform .25s ease, box-shadow .25s ease;
 }
+
+.featured-item:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 44px var(--burgundy-glow-strong),
+    0 0 0 1px rgba(75,14,31,0.12);
+}
+
 .featured-item img{
   width:100%;
   height:260px;
   object-fit:cover;
 }
+
 @media(max-width:768px){
   .featured-item{ min-width:220px; }
   .featured-item img{
@@ -307,6 +379,7 @@ header{
     object-position:center;
   }
 }
+
 .featured-arrow{
   position:absolute;
   top:50%;
@@ -418,6 +491,9 @@ footer p.copy{
   .announcement-item{ font-size: 14px; letter-spacing: 1px; }
   .announcement-track{ animation-duration: 12s; }
   .announcement-wrap{ margin-bottom: 10px; }
+
+  .bottom-announce-item{ font-size: 13px; letter-spacing: 1.1px; }
+  .bottom-announce-track{ animation-duration: 10s; }
 }
 
 /* Featured scrolling on mobile */
@@ -511,10 +587,10 @@ footer p.copy{
   </div>
 </header>
 
-<!-- ✅ NEW: كل المنطقة دي شامبين، ف أي فراغات هتبقى بيج -->
+<!-- ✅ Champagne zone -->
 <div class="champagne-zone">
 
-  <!-- ANNOUNCEMENT BAR -->
+  <!-- TOP ANNOUNCEMENT -->
   <div class="announcement-wrap" aria-label="Announcement">
     <div class="announcement-track" id="announcementTrack">
       <span class="announcement-item">Create Your Own Mood</span>
@@ -595,6 +671,29 @@ footer p.copy{
       <div class="dot" onclick="goToSlide(4)"></div>
     </div>
   </section>
+
+  <!-- ✅ NEW: ANNOUNCEMENT BAR تحت البانر -->
+  <div class="bottom-announce" aria-label="Free Shipping Announcement">
+    <div class="bottom-announce-track">
+      <span class="bottom-announce-badge">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+
+      <span class="bottom-announce-badge">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-item">Free shipping on your first order</span>
+      <span class="bottom-announce-dot"></span>
+    </div>
+  </div>
 
   <!-- FEATURED -->
   <section class="featured-strip">
