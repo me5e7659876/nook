@@ -237,52 +237,30 @@ header{
 }
 .dot.active{background:#fff;}
 
-/* ---------------- ✅ PREMIUM SHIPPING BAR UNDER HERO ---------------- */
+/* ---------------- ✅ FREE SHIPPING BAR (BURGUNDY + TRUCK ICON) ---------------- */
 .bottom-announce{
   width:100%;
-  background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
-  border-top: 1px solid rgba(42,23,22,0.16);
-  border-bottom: 1px solid rgba(42,23,22,0.16);
+  background: linear-gradient(90deg, #3b0a1a, var(--burgundy), #3b0a1a);
+  border-top: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
 
   margin-top: 16px;
   margin-bottom: 26px;
   overflow:hidden;
 
-  /* ✅ Luxury depth */
-  box-shadow: 0 14px 28px rgba(42,23,22,0.10);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.22);
 }
 
 .bottom-announce-track{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:18px;
   white-space:nowrap;
   padding: 12px 0;
   will-change: transform;
   animation: marqueeBottom 11s linear infinite;
 }
 
-/* ✅ tiny premium icon (pure CSS) */
-.ship-icon{
-  width:14px;
-  height:14px;
-  border-radius:4px;
-  background: rgba(75,14,31,0.16);
-  border: 1px solid rgba(75,14,31,0.22);
-  box-shadow: 0 8px 18px rgba(75,14,31,0.10);
-  display:inline-block;
-  position: relative;
-}
-.ship-icon:after{
-  content:"";
-  position:absolute;
-  left:3px; top:3px;
-  width:6px; height:6px;
-  border-radius:2px;
-  background: rgba(75,14,31,0.35);
-}
-
-/* ✅ Main badge */
 .bottom-announce-badge{
   display:inline-flex;
   align-items:center;
@@ -290,37 +268,48 @@ header{
   padding:8px 16px;
   border-radius:999px;
 
-  /* ✅ burgundy glassy chip */
-  background: rgba(75,14,31,0.10);
-  border: 1px solid rgba(75,14,31,0.26);
-  color: var(--champagne-text);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
 
   letter-spacing: 1.3px;
   text-transform: uppercase;
   font-size: 14px;
 
   box-shadow:
-    0 18px 36px rgba(75,14,31,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.35);
+    0 18px 36px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.22);
 }
 
-/* ✅ Secondary text style */
 .bottom-announce-item{
   font-size: 14px;
   letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: var(--champagne-text);
-  opacity: 0.88;
+  color: rgba(255,255,255,0.92);
+  opacity: 0.92;
 }
 
-/* ✅ separator */
 .bottom-announce-sep{
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: rgba(75,14,31,0.55);
-  box-shadow: 0 0 14px rgba(75,14,31,0.18);
-  opacity: .85;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 0 14px rgba(255,255,255,0.14);
+  opacity: .8;
+}
+
+.truck-icon{
+  width:18px;
+  height:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.truck-icon svg{
+  width:18px;
+  height:18px;
+  stroke:#fff;
+  opacity:0.95;
 }
 
 @keyframes marqueeBottom{
@@ -361,7 +350,6 @@ header{
   border-radius:18px;
   overflow:hidden;
 
-  /* ✅ CHANGED: eye-catching light burgundy shadow */
   box-shadow:
     0 20px 40px var(--burgundy-glow),
     0 0 0 1px rgba(75,14,31,0.10);
@@ -671,10 +659,21 @@ footer p.copy{
     </div>
   </section>
 
-  <!-- ✅ PREMIUM SHIPPING BAR -->
+  <!-- ✅ FREE SHIPPING BAR (Burgundy) -->
   <div class="bottom-announce" aria-label="Free Shipping Announcement">
     <div class="bottom-announce-track">
-      <span class="bottom-announce-badge"><span class="ship-icon"></span> Free shipping on your first order</span>
+      <span class="bottom-announce-badge">
+        <span class="truck-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v10H3z"></path>
+            <path d="M14 10h4l3 3v4h-7z"></path>
+            <circle cx="7" cy="19" r="1.5"></circle>
+            <circle cx="18" cy="19" r="1.5"></circle>
+          </svg>
+        </span>
+        Free shipping on your first order
+      </span>
+
       <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
       <span class="bottom-announce-sep"></span>
@@ -683,7 +682,18 @@ footer p.copy{
       <span class="bottom-announce-item">Free shipping on your first order</span>
       <span class="bottom-announce-sep"></span>
 
-      <span class="bottom-announce-badge"><span class="ship-icon"></span> Free shipping on your first order</span>
+      <span class="bottom-announce-badge">
+        <span class="truck-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v10H3z"></path>
+            <path d="M14 10h4l3 3v4h-7z"></path>
+            <circle cx="7" cy="19" r="1.5"></circle>
+            <circle cx="18" cy="19" r="1.5"></circle>
+          </svg>
+        </span>
+        Free shipping on your first order
+      </span>
+
       <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
       <span class="bottom-announce-sep"></span>
