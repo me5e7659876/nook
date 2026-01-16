@@ -8,100 +8,149 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --beige: #F9F2E5;
+  --burgundy: #4b0e1f;
+  --burgundy-dark: #3b0a1a;
+  --soft-burgundy: rgba(75,14,31,0.12);
+  --soft-burgundy-2: rgba(75,14,31,0.18);
+}
+
+/* BASE */
 body{
   margin:0;
-  background:#4b0e1f;
+  background: var(--beige);
   font-family:'Poppins',sans-serif;
-  color:#fff;
+  color: var(--burgundy);
 }
+
+/* HEADER */
 header{
-  background:#4b0e1f;
+  background: var(--beige);
   padding:18px;
   text-align:center;
   font-size:30px;
   font-family:'Didot',serif;
   position:relative;
-  color:#ffb3c6;
+  color: var(--burgundy);
+  border-bottom: 1px solid var(--soft-burgundy-2);
 }
+
+/* LANG SELECT */
 #langSelect{
   position:absolute;
   right:20px;
   top:50%;
   transform:translateY(-50%);
   padding:6px 10px;
-  border:none;
-  border-radius:8px;
-  background:#ffb3c6;
+  border:1px solid var(--soft-burgundy-2);
+  border-radius:10px;
+  background: #fff;
   font-weight:bold;
-  color:#4b0e1f;
+  color: var(--burgundy);
   cursor:pointer;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
 }
+
+/* GALLERY */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
   padding:20px;
 }
+
+/* ITEM CARD */
 .item{
   width:100%;
   max-width:420px;
   margin:auto;
   text-align:center;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--soft-burgundy);
+  border-radius:16px;
+  padding:14px 14px 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
 }
+
+/* IMAGE SLIDER */
 .img-slider{position:relative;width:100%;}
 .img-slider img{
   width:100%;
   max-height:85vh;
   object-fit:contain;
   display:none;
+  border-radius:14px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid var(--soft-burgundy);
 }
 .img-slider img.active{display:block;}
+
+/* ARROWS */
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
   font-size:40px;
-  color:#ffb3c6;
+  color: var(--burgundy);
   cursor:pointer;
   user-select:none;
   padding:10px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid var(--soft-burgundy-2);
+  border-radius:12px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.10);
 }
-.arrow.left{left:0;}
-.arrow.right{right:0;}
+.arrow.left{left:8px;}
+.arrow.right{right:8px;}
+
+/* PRICE */
 .price{
   font-size:20px;
   font-weight:bold;
-  color:#ffb3c6;
-  margin-top:10px;
+  color: var(--burgundy);
+  margin-top:12px;
   font-family:'Didot',serif;
 }
+
+/* DESC */
 .desc{
   font-size:15px;
-  color:#ffe3eb;
+  color: rgba(75,14,31,0.86);
   margin-top:8px;
-  line-height:1.5;
+  line-height:1.6;
   opacity:0;
   transform:translateY(10px);
   transition:0.4s;
 }
 .item:hover .desc{opacity:1;transform:translateY(0);}
+
+/* BUTTON */
 .btn{
-  background:#ffb3c6;
+  background: var(--burgundy);
   border:none;
-  color:#4b0e1f;
+  color: var(--beige);
   padding:10px 20px;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:bold;
   cursor:pointer;
-  margin-top:10px;
+  margin-top:12px;
+  box-shadow: 0 18px 34px rgba(75,14,31,0.22);
+  transition: transform .2s ease, opacity .2s ease;
 }
+.btn:hover{ transform: translateY(-1px); opacity: 0.95; }
+
+/* BACK LINK */
 .back-link{
   display:block;
   text-align:center;
   margin:30px 0;
-  color:#ffb3c6;
+  color: var(--burgundy);
   text-decoration:none;
+  font-weight:600;
 }
+.back-link:hover{ text-decoration: underline; }
+
 @media(max-width:768px){
   .gallery{grid-template-columns:1fr;}
   .arrow{font-size:48px;}
@@ -146,7 +195,7 @@ function handleAddToCart(btn, product, lang){
   btn.style.background="#fff"; btn.style.color="#4b0e1f";
   setTimeout(()=>{
     btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
-    btn.style.background="#ffb3c6"; btn.style.color="#4b0e1f";
+    btn.style.background="#4b0e1f"; btn.style.color="#F9F2E5";
   },1200);
 }
 
