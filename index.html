@@ -34,29 +34,30 @@ body{
   --accent-hover: rgba(255,179,198,0.12);
   --active-outline: rgba(255,179,198,0.28);
 
-  /* ✅ Champagne color */
+  /* ✅ Champagne */
   --champagne: #EDE2CC;
   --champagne-text: #2A1716;
 
-  /* ✅ NEW: Burgundy glow (lighter) للـ featured shadows */
-  --burgundy-glow: rgba(75,14,31,0.32);
-  --burgundy-glow-strong: rgba(75,14,31,0.42);
+  /* ✅ Burgundy system */
+  --burgundy: #4b0e1f;
+  --burgundy-dark: #3b0a1a;
+
+  /* ✅ Premium glow (lighter burgundy) */
+  --burgundy-glow: rgba(75,14,31,0.26);
+  --burgundy-glow-strong: rgba(75,14,31,0.38);
 }
 
-/* ✅ wrapper لونه شامبين عشان أي فراغات تبقى بيج */
-.champagne-zone{
-  background: var(--champagne);
-}
+/* ✅ wrapper for champagne section */
+.champagne-zone{ background: var(--champagne); }
 
 /* ---------------- HEADER ---------------- */
 header{
-  background:#4b0e1f;
+  background: var(--burgundy);
   padding:12px 20px;
   box-shadow:0 6px 16px rgba(0,0,0,.45);
   position:relative;
   margin-bottom: 10px;
 }
-
 .header-inner{
   position: relative;
   min-height: 74px;
@@ -64,7 +65,6 @@ header{
   align-items: center;
   justify-content: center;
 }
-
 .menu-icon{
   position:absolute;
   left:20px;
@@ -74,7 +74,6 @@ header{
   cursor:pointer;
   z-index:1001;
 }
-
 .header-icons{
   position: absolute;
   right: 20px;
@@ -83,16 +82,14 @@ header{
   display: flex;
   gap: 12px;
 }
-
 .header-icons a,
-.header-icons span {
+.header-icons span{
   outline: none;
   box-shadow: none;
   border: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
-
 .text-logo{
   position:absolute;
   left:70px;
@@ -100,7 +97,6 @@ header{
   transform:translateY(-50%);
   font-size:22px;
 }
-
 .logo{
   width:120px;
   max-width: 44vw;
@@ -110,7 +106,6 @@ header{
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 .icon-box{
   width:28px;
   height:28px;
@@ -128,14 +123,10 @@ header{
   cursor:pointer;
   font-size:18px;
 }
-#menuOverlay a:hover{
-  background: var(--accent-hover);
-}
-#menuOverlay a.active{
-  outline:2px solid var(--active-outline);
-}
+#menuOverlay a:hover{ background: var(--accent-hover); }
+#menuOverlay a.active{ outline:2px solid var(--active-outline); }
 
-/* ---------------- ANNOUNCEMENT BAR (TOP) ---------------- */
+/* ---------------- TOP ANNOUNCEMENT (Create Your Own Mood) ---------------- */
 .announcement-wrap{
   width:100%;
   background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
@@ -144,7 +135,6 @@ header{
   overflow:hidden;
   margin-bottom: 12px;
 }
-
 .announcement-track{
   display:flex;
   align-items:center;
@@ -154,7 +144,6 @@ header{
   will-change: transform;
   animation: marquee 14s linear infinite;
 }
-
 .announcement-item{
   font-size: 16px;
   letter-spacing: 1.2px;
@@ -165,7 +154,6 @@ header{
     0 0 10px rgba(42,23,22,0.06),
     0 0 18px rgba(75,14,31,0.10);
 }
-
 .announcement-dot{
   width: 6px;
   height: 6px;
@@ -173,11 +161,7 @@ header{
   background: rgba(75,14,31,0.65);
   box-shadow: 0 0 10px rgba(75,14,31,0.18);
 }
-
-.announcement-wrap:hover .announcement-track{
-  animation-play-state: paused;
-}
-
+.announcement-wrap:hover .announcement-track{ animation-play-state: paused; }
 @keyframes marquee{
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -205,7 +189,6 @@ header{
   object-fit:cover;
   background: var(--champagne);
 }
-
 .hero-overlay{
   position:absolute;
   inset:0;
@@ -254,123 +237,148 @@ header{
 }
 .dot.active{background:#fff;}
 
-/* ---------------- NEW: ANNOUNCEMENT BAR UNDER HERO ---------------- */
+/* ---------------- ✅ PREMIUM SHIPPING BAR UNDER HERO ---------------- */
 .bottom-announce{
   width:100%;
   background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
-  border-top: 1px solid rgba(42,23,22,0.14);
-  border-bottom: 1px solid rgba(42,23,22,0.14);
+  border-top: 1px solid rgba(42,23,22,0.16);
+  border-bottom: 1px solid rgba(42,23,22,0.16);
+
+  margin-top: 16px;
+  margin-bottom: 26px;
   overflow:hidden;
 
-  /* ✅ ده بيبقى “بين البانر والـ featured” */
-  margin-top: 14px;
-  margin-bottom: 22px;
+  /* ✅ Luxury depth */
+  box-shadow: 0 14px 28px rgba(42,23,22,0.10);
 }
 
 .bottom-announce-track{
   display:flex;
   align-items:center;
-  gap:18px;
-  white-space: nowrap;
+  gap:16px;
+  white-space:nowrap;
   padding: 12px 0;
-  animation: marqueeBottom 12s linear infinite;
+  will-change: transform;
+  animation: marqueeBottom 11s linear infinite;
 }
 
-.bottom-announce-item{
-  font-size: 15px;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: var(--champagne-text);
-  opacity: 0.95;
-  text-shadow: 0 0 10px rgba(42,23,22,0.06);
+/* ✅ tiny premium icon (pure CSS) */
+.ship-icon{
+  width:14px;
+  height:14px;
+  border-radius:4px;
+  background: rgba(75,14,31,0.16);
+  border: 1px solid rgba(75,14,31,0.22);
+  box-shadow: 0 8px 18px rgba(75,14,31,0.10);
+  display:inline-block;
+  position: relative;
+}
+.ship-icon:after{
+  content:"";
+  position:absolute;
+  left:3px; top:3px;
+  width:6px; height:6px;
+  border-radius:2px;
+  background: rgba(75,14,31,0.35);
 }
 
+/* ✅ Main badge */
 .bottom-announce-badge{
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  padding:6px 12px;
+  gap:10px;
+  padding:8px 16px;
   border-radius:999px;
-  border:1px solid rgba(75,14,31,0.22);
-  background: rgba(75,14,31,0.08);
+
+  /* ✅ burgundy glassy chip */
+  background: rgba(75,14,31,0.10);
+  border: 1px solid rgba(75,14,31,0.26);
   color: var(--champagne-text);
-  letter-spacing: 1px;
+
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  font-size: 14px;
+
+  box-shadow:
+    0 18px 36px rgba(75,14,31,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.35);
 }
 
-.bottom-announce-dot{
-  width: 6px;
-  height: 6px;
+/* ✅ Secondary text style */
+.bottom-announce-item{
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--champagne-text);
+  opacity: 0.88;
+}
+
+/* ✅ separator */
+.bottom-announce-sep{
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(75,14,31,0.65);
-  box-shadow: 0 0 10px rgba(75,14,31,0.18);
+  background: rgba(75,14,31,0.55);
+  box-shadow: 0 0 14px rgba(75,14,31,0.18);
+  opacity: .85;
 }
 
 @keyframes marqueeBottom{
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
-.bottom-announce:hover .bottom-announce-track{
-  animation-play-state: paused;
-}
+.bottom-announce:hover .bottom-announce-track{ animation-play-state: paused; }
 
 /* ---------------- FEATURED (CHAMPAGNE SECTION) ---------------- */
 .featured-strip{
   background: var(--champagne);
   padding:30px 20px;
-  margin-top:0; /* ✅ عشان المسافة بقت من البار الجديد */
+  margin-top:0;
   margin-bottom: 40px;
   border-top: 1px solid rgba(42,23,22,0.12);
   border-bottom: 1px solid rgba(42,23,22,0.12);
 }
-
 .featured-title{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
   color: var(--champagne-text);
 }
-
 .featured-wrapper{
   position:relative;
   max-width:1200px;
   margin:auto;
   overflow:hidden;
 }
-
 .featured-track{
   display:flex;
   gap:40px;
   transition:transform .5s ease;
 }
-
 .featured-item{
   min-width:220px;
   background: #F4EBD7;
   border-radius:18px;
   overflow:hidden;
 
-  /* ✅ CHANGED: Burgundy glow shadow (lighter & eye-catching) */
+  /* ✅ CHANGED: eye-catching light burgundy shadow */
   box-shadow:
-    0 18px 34px var(--burgundy-glow),
-    0 0 0 1px rgba(75,14,31,0.08);
+    0 20px 40px var(--burgundy-glow),
+    0 0 0 1px rgba(75,14,31,0.10);
 
   transition: transform .25s ease, box-shadow .25s ease;
 }
-
 .featured-item:hover{
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow:
-    0 22px 44px var(--burgundy-glow-strong),
-    0 0 0 1px rgba(75,14,31,0.12);
+    0 26px 54px var(--burgundy-glow-strong),
+    0 0 0 1px rgba(75,14,31,0.14);
 }
-
 .featured-item img{
   width:100%;
   height:260px;
   object-fit:cover;
 }
-
 @media(max-width:768px){
   .featured-item{ min-width:220px; }
   .featured-item img{
@@ -379,7 +387,6 @@ header{
     object-position:center;
   }
 }
-
 .featured-arrow{
   position:absolute;
   top:50%;
@@ -492,8 +499,9 @@ footer p.copy{
   .announcement-track{ animation-duration: 12s; }
   .announcement-wrap{ margin-bottom: 10px; }
 
-  .bottom-announce-item{ font-size: 13px; letter-spacing: 1.1px; }
   .bottom-announce-track{ animation-duration: 10s; }
+  .bottom-announce-badge{ font-size: 12.5px; padding:8px 14px; letter-spacing: 1.1px; }
+  .bottom-announce-item{ font-size: 12.5px; letter-spacing: 1.1px; }
 }
 
 /* Featured scrolling on mobile */
@@ -587,29 +595,20 @@ footer p.copy{
   </div>
 </header>
 
-<!-- ✅ Champagne zone -->
 <div class="champagne-zone">
 
   <!-- TOP ANNOUNCEMENT -->
   <div class="announcement-wrap" aria-label="Announcement">
     <div class="announcement-track" id="announcementTrack">
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
 
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
-      <span class="announcement-item">Create Your Own Mood</span>
-      <span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
+      <span class="announcement-item">Create Your Own Mood</span><span class="announcement-dot"></span>
     </div>
   </div>
 
@@ -672,26 +671,26 @@ footer p.copy{
     </div>
   </section>
 
-  <!-- ✅ NEW: ANNOUNCEMENT BAR تحت البانر -->
+  <!-- ✅ PREMIUM SHIPPING BAR -->
   <div class="bottom-announce" aria-label="Free Shipping Announcement">
     <div class="bottom-announce-track">
-      <span class="bottom-announce-badge">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-badge"><span class="ship-icon"></span> Free shipping on your first order</span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
 
-      <span class="bottom-announce-badge">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-badge"><span class="ship-icon"></span> Free shipping on your first order</span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
       <span class="bottom-announce-item">Free shipping on your first order</span>
-      <span class="bottom-announce-dot"></span>
+      <span class="bottom-announce-sep"></span>
     </div>
   </div>
 
