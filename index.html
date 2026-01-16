@@ -27,22 +27,27 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'DidotWeb','Georgia',serif;
-  background:#4b0e1f;
-  color:#fff;
+
+  /* ✅ Light Burgundy Background */
+  background:#F6EDEF;
+  color:#2A0F18;
 }
+
+/* ✅ Accent variables (lighter + elegant) */
 :root{
-  --accent-hover: rgba(255,179,198,0.12);
-  --active-outline: rgba(255,179,198,0.28);
+  --accent-hover: rgba(139,58,85,0.10);
+  --active-outline: rgba(139,58,85,0.26);
 }
 
 /* ---------------- HEADER ---------------- */
 header{
-  background:#4b0e1f;
+  /* ✅ Light Burgundy Header */
+  background:#F3E3E7;
   padding:12px 20px;
-  box-shadow:0 6px 16px rgba(0,0,0,.45);
-  position:relative;
 
-  /* ✅ مسافة بين الهيدر والـ Announcement Bar */
+  /* ✅ softer shadow */
+  box-shadow:0 10px 22px rgba(42,15,24,.14);
+  position:relative;
   margin-bottom: 10px;
 }
 
@@ -89,6 +94,7 @@ header{
   top:50%;
   transform:translateY(-50%);
   font-size:22px;
+  color:#2A0F18;
 }
 
 .logo{
@@ -111,7 +117,7 @@ header{
 
 /* ---------------- MENU OVERLAY LINKS STYLE ---------------- */
 #menuOverlay a{
-  color:#fff;
+  color:#2A0F18;
   text-decoration:none;
   padding:12px 14px;
   border-radius:12px;
@@ -125,14 +131,17 @@ header{
   outline:2px solid var(--active-outline);
 }
 
-/* ---------------- ANNOUNCEMENT BAR (NEW) ---------------- */
+/* ---------------- ANNOUNCEMENT BAR (LIGHT) ---------------- */
 .announcement-wrap{
   width:100%;
-  background: linear-gradient(90deg, #3b0a1a, #4b0e1f, #3b0a1a);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  /* ✅ Light burgundy gradient */
+  background: linear-gradient(90deg, #EED8DE, #F3E3E7, #EED8DE);
+
+  border-top: 1px solid rgba(42,15,24,0.10);
+  border-bottom: 1px solid rgba(42,15,24,0.10);
   overflow:hidden;
-  margin-bottom: 12px; /* ✅ مسافة بينه وبين البانر */
+  margin-bottom: 12px;
 }
 
 .announcement-track{
@@ -149,22 +158,28 @@ header{
   font-size: 16px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  opacity: 0.95;
+  opacity: 0.92;
+
+  /* ✅ Dark text for readability */
+  color:#2A0F18;
+
   text-shadow:
-    0 0 10px rgba(255,255,255,0.22),
-    0 0 18px rgba(255,179,198,0.18);
+    0 0 10px rgba(42,15,24,0.06),
+    0 0 18px rgba(139,58,85,0.10);
 }
 
 .announcement-dot{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.6);
-  box-shadow: 0 0 10px rgba(255,179,198,0.35);
+
+  /* ✅ accent dot */
+  background: rgba(139,58,85,0.55);
+  box-shadow: 0 0 10px rgba(139,58,85,0.18);
 }
 
 .announcement-wrap:hover .announcement-track{
-  animation-play-state: paused; /* ✅ يقف لو وقفتي عليه بالماوس */
+  animation-play-state: paused;
 }
 
 @keyframes marquee{
@@ -234,14 +249,15 @@ header{
 .dot{
   width:30px;
   height:4px;
-  background:#bbb;
+  background:rgba(42,15,24,0.25);
   cursor:pointer;
 }
 .dot.active{background:#fff;}
 
 /* ---------------- FEATURED ---------------- */
 .featured-strip{
-  background:#3b0a1a;
+  /* ✅ Light burgundy section */
+  background:#EED8DE;
   padding:30px 20px;
   margin-top:60px;
   margin-bottom: 40px;
@@ -250,6 +266,7 @@ header{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
+  color:#2A0F18;
 }
 .featured-wrapper{
   position:relative;
@@ -264,9 +281,11 @@ header{
 }
 .featured-item{
   min-width:220px;
-  background:#4b0e1f;
+  /* ✅ Light card */
+  background:#F3E3E7;
   border-radius:18px;
   overflow:hidden;
+  box-shadow:0 10px 22px rgba(42,15,24,.10);
 }
 .featured-item img{
   width:100%;
@@ -289,6 +308,7 @@ header{
   transform:translateY(-50%);
   font-size:32px;
   cursor:pointer;
+  color:#2A0F18;
 }
 .featured-arrow.left{left:0;}
 .featured-arrow.right{right:0;}
@@ -302,15 +322,18 @@ header{
 .search-bar{
   display:flex;
   gap:8px;
-  background:#3b0a1a;
+
+  /* ✅ Light search bar */
+  background:#EED8DE;
   padding:8px 12px;
   border-radius:10px;
+  box-shadow:0 10px 22px rgba(42,15,24,.10);
 }
 .search-bar input{
   background:transparent;
   border:none;
   outline:none;
-  color:#fff;
+  color:#2A0F18;
   width:260px;
 }
 
@@ -322,14 +345,17 @@ header{
 }
 .sidebar{
   width:230px;
-  background:#3b0a1a;
+
+  /* ✅ Light sidebar */
+  background:#EED8DE;
   padding:20px;
   border-radius:12px;
+  box-shadow:0 10px 22px rgba(42,15,24,.10);
 }
 .categories{list-style:none;}
 .categories li{margin:10px 0;}
 .categories a{
-  color:#fff;
+  color:#2A0F18;
   text-decoration:none;
   padding:8px;
   display:block;
@@ -351,14 +377,17 @@ header{
   border-radius:16px;
   object-fit:cover;
 }
-.card h3{margin-top:12px;color:#fff;}
+.card h3{
+  margin-top:12px;
+  color:#2A0F18;
+}
 
 .no-results{
   grid-column:1/-1;
   text-align:center;
   font-size:18px;
   padding:40px;
-  color:#ffb3c6;
+  color:#8B3A55;
 }
 .no-results[aria-hidden="true"]{display:none;}
 
@@ -367,12 +396,15 @@ footer{
   padding:40px 20px;
   text-align:center;
 }
-footer a{color:#bbb;text-decoration:none;}
-footer a:hover{color:#fff;}
+footer a{
+  color: rgba(42,15,24,0.65);
+  text-decoration:none;
+}
+footer a:hover{color:#2A0F18;}
 footer p.copy{
   margin-top:20px;
   font-size:13px;
-  color:#777;
+  color: rgba(42,15,24,0.50);
 }
 
 /* ---------------- RESPONSIVE ---------------- */
@@ -400,7 +432,7 @@ footer p.copy{
   .featured-wrapper { overflow-x: auto; }
   .featured-track { scroll-snap-type: x mandatory; }
   .featured-item { scroll-snap-align: start; }
-  .featured-item img { object-fit: contain; background: #4b0e1f; }
+  .featured-item img { object-fit: contain; background: #F3E3E7; }
 }
 @media (max-width: 768px) {
   .featured-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; }
@@ -420,8 +452,8 @@ footer p.copy{
 <body>
 
 <!-- MENU OVERLAY -->
-<div id="menuOverlay" style="position:fixed;top:0;left:0;width:100%;height:0%;background:#4b0e1f;overflow-y:auto;transition:.5s;z-index:1000;">
-  <a onclick="closeMenu()" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;">×</a>
+<div id="menuOverlay" style="position:fixed;top:0;left:0;width:100%;height:0%;background:#F3E3E7;overflow-y:auto;transition:.5s;z-index:1000;">
+  <a onclick="closeMenu()" style="position:absolute;top:20px;right:35px;font-size:40px;cursor:pointer;color:#2A0F18;">×</a>
   <div style="display:flex;flex-direction:column;padding:80px 20px;gap:15px;">
     <a data-cat="All">All</a>
     <a data-cat="Moods">Moods</a>
@@ -444,12 +476,12 @@ footer p.copy{
   <div class="top-bar" id="searchBarContainer">
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search products...">
-      <span id="clearSearch" style="cursor:pointer;">✕</span>
+      <span id="clearSearch" style="cursor:pointer;color:#2A0F18;">✕</span>
     </div>
   </div>
 
   <div class="menu-icon" onclick="toggleMenu()">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#2A0F18" stroke-width="2" stroke-linecap="round">
       <line x1="3" y1="6" x2="21" y2="6"/>
       <line x1="3" y1="12" x2="21" y2="12"/>
       <line x1="3" y1="18" x2="21" y2="18"/>
@@ -462,14 +494,14 @@ footer p.copy{
 
     <div class="header-icons">
       <span id="searchBtn" class="icon-box">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2A0F18" stroke-width="2" stroke-linecap="round">
           <circle cx="11" cy="11" r="8"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </span>
 
       <a href="cart.html" class="icon-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2A0F18" stroke-width="2" stroke-linecap="round">
           <circle cx="9" cy="21" r="1"/>
           <circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.6 13h11.4l2-8h-14"/>
@@ -477,7 +509,7 @@ footer p.copy{
       </a>
 
       <a href="login.html" class="icon-box">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2A0F18" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="7" r="4"/>
           <path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>
         </svg>
@@ -488,7 +520,6 @@ footer p.copy{
 
 <!-- ✅ ANNOUNCEMENT BAR (between header icons and hero banner) -->
 <div class="announcement-wrap" aria-label="Announcement">
-  <!-- duplicate content to make seamless loop -->
   <div class="announcement-track" id="announcementTrack">
     <span class="announcement-item">Create Your Own Mood</span>
     <span class="announcement-dot"></span>
@@ -660,9 +691,7 @@ footer p.copy{
       <h3>Glass and Small Vases</h3>
     </a>
 
-    <!-- ✅ نتائج السيرش هتظهر هنا (من search.js) -->
     <div id="searchResults" style="display:none; width:100%; grid-column:1/-1;"></div>
-
     <div class="no-results" id="noResults" aria-hidden="true">No products found.</div>
   </main>
 </div>
@@ -684,7 +713,6 @@ footer p.copy{
 <script>
 /* ===========================
    MENU OPEN/CLOSE + CATEGORY FILTER + SLIDER
-   (✅ السيرش اتنقل لملف search.js)
 =========================== */
 
 /* MENU OPEN/CLOSE */
@@ -716,7 +744,6 @@ function applyCategory(cat){
   currentCategory = cat;
   setActiveCategory(cat);
 
-  // ✅ لو السيرش شغال (فيه نص) ما نغيرش عرض السيرش
   const searchInput = document.getElementById("searchInput");
   if (searchInput && searchInput.value.trim() !== "") return;
 
@@ -797,7 +824,7 @@ function moveFeatured(direction){
   const items = track.querySelectorAll(".featured-item");
   if(items.length === 0) return;
 
-  const gap = 40; // نفس gap في CSS
+  const gap = 40;
   const itemWidth = items[0].getBoundingClientRect().width + gap;
   const maxIndex = Math.max(0, items.length - 1);
 
@@ -811,7 +838,6 @@ function moveFeatured(direction){
 applyCategory("All");
 </script>
 
-<!-- ✅ ربط السيرش بملف منفصل (بيقرأ products.json) -->
 <script src="search.js"></script>
 
 </body>
