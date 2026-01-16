@@ -3,12 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Lamp - Nook Decor</title>
+<title>Lighting - Nook Decor</title>
 
 <style>
-/* ---------------------- */
-/* WEB FONTS */
-/* ---------------------- */
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
@@ -23,19 +20,12 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* ---------------------- */
-/* COLORS */
-/* ---------------------- */
 :root{
-  --beige:#DFC9AB;        /* أغمق */
-  --beige-2:#D2BA99;
+  --beige:#DFC9AB;
   --burgundy:#4b0e1f;
-  --line:rgba(75,14,31,0.18);
+  --line:rgba(75,14,31,.18);
 }
 
-/* ---------------------- */
-/* GLOBAL */
-/* ---------------------- */
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
@@ -48,8 +38,8 @@ header{
   padding:15px;
   text-align:center;
   font-size:32px;
-  font-weight:700;
   font-family:'DidotWeb',serif;
+  font-weight:700;
   position:relative;
   border-bottom:1px solid var(--line);
 }
@@ -68,9 +58,6 @@ header{
   cursor:pointer;
 }
 
-/* ---------------------- */
-/* GALLERY */
-/* ---------------------- */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -79,18 +66,16 @@ header{
   justify-items:center;
 }
 
-/* بدون كارت */
 .item{
   background:none;
   box-shadow:none;
   padding:0;
   text-align:center;
-  transition:transform .3s;
+  transition:.3s;
 }
 
 .item:hover{transform:scale(1.03);}
 
-/* الصور */
 .item img{
   width:100%;
   max-width:350px;
@@ -101,7 +86,6 @@ header{
   margin:0 auto;
 }
 
-/* السعر */
 .price{
   font-size:20px;
   font-weight:bold;
@@ -109,7 +93,6 @@ header{
   font-family:'DidotWeb',serif;
 }
 
-/* الوصف */
 .desc{
   font-size:15px;
   color:rgba(75,14,31,.8);
@@ -125,7 +108,6 @@ header{
   transform:translateY(0);
 }
 
-/* زرار */
 .btn{
   background:var(--burgundy);
   color:var(--beige);
@@ -140,7 +122,6 @@ header{
 
 .btn:hover{transform:scale(1.05);}
 
-/* BACK */
 .back-link{
   display:block;
   text-align:center;
@@ -150,13 +131,9 @@ header{
   text-decoration:none;
 }
 
-/* MOBILE */
 @media(max-width:768px){
   .gallery{padding:20px 14px;}
-  .item img{
-    max-width:100%;
-    height:420px;
-  }
+  .item img{height:420px;}
 }
 </style>
 </head>
@@ -164,11 +141,11 @@ header{
 <body>
 
 <header>
-  Lighting
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="ar">العربية</option>
-  </select>
+Lighting
+<select id="langSelect">
+  <option value="en">English</option>
+  <option value="ar">العربية</option>
+</select>
 </header>
 
 <div class="gallery" id="productContainer"></div>
@@ -176,8 +153,32 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-const products=[{img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png",price:1500,desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.",ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}},
-{img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png",price:2200,desc:{en:"A luxurious modern lamp that adds sophistication and charm.",ar:"مصباح مودرن فاخر يضيف الرقي والسحر."}}];
+const products = [
+  {img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png",price:1500,desc:{en:"A warm and elegant touch in every corner.",ar:"لمسة دافئة وأنيقة في كل زاوية."}},
+  {img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png",price:2200,desc:{en:"Luxurious modern lamp.",ar:"مصباح مودرن فاخر."}},
+  {img:"https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png",price:1800,desc:{en:"Minimal artistic lighting.",ar:"إضاءة فنية بسيطة."}},
+  {img:"https://i.postimg.cc/Xq1c0rqg/b387512d-d9a-4a21-9cdf-255bb1e9da06.png",price:2200,desc:{en:"Geometric modern design.",ar:"تصميم هندسي مودرن."}},
+  {img:"https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png",price:1800,desc:{en:"Cozy stylish lamp.",ar:"مصباح دافئ وأنيق."}},
+  {img:"https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png",price:1500,desc:{en:"Simple & chic lighting.",ar:"إضاءة بسيطة وأنيقة."}},
+  {img:"https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png",price:2000,desc:{en:"Positive energy lamp.",ar:"مصباح بطابع إيجابي."}},
+  {img:"https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png",price:2200,desc:{en:"Art meets function.",ar:"الفن مع الوظيفة."}},
+  {img:"https://i.postimg.cc/1X0dfx5v/7.png",price:2000,desc:{en:"Artistic glow.",ar:"توهج فني."}},
+  {img:"https://i.postimg.cc/wj4GtQgv/5.png",price:700,desc:{en:"Minimal cozy lamp.",ar:"مصباح بسيط ودافئ."}},
+  {img:"https://i.postimg.cc/xjg0wvWp/re5.png",price:2000,desc:{en:"Timeless beauty.",ar:"جمال خالد."}},
+  {img:"https://i.postimg.cc/nL8Z40QN/re6.png",price:2000,desc:{en:"Soft luxury lighting.",ar:"إضاءة فاخرة ناعمة."}},
+  {img:"https://i.postimg.cc/D0zKvNtC/re9.png",price:1500,desc:{en:"Modern harmony.",ar:"انسجام مودرن."}},
+  {img:"https://i.postimg.cc/kMWV0fyL/10.png",price:800,desc:{en:"Affordable elegance.",ar:"أناقة بسعر مناسب."}},
+  {img:"https://i.postimg.cc/d0DkgFWD/3.png",price:2200,desc:{en:"Statement lamp.",ar:"مصباح مميز."}},
+  {img:"https://i.postimg.cc/J0jBKQpd/2.png",price:1500,desc:{en:"Curved modern design.",ar:"تصميم منحني مودرن."}},
+  {img:"https://i.postimg.cc/rFv73zFR/yyyyshs.png",price:2000,desc:{en:"Contemporary style.",ar:"ستايل معاصر."}},
+  {img:"https://i.postimg.cc/44Hvm6Q5/1.png",price:2500,desc:{en:"High-end lighting.",ar:"إضاءة فاخرة."}},
+  {img:"https://i.postimg.cc/LszfF3Q2/11.png",price:2500,desc:{en:"Luxury chandelier.",ar:"ثريا فاخرة."}},
+  {img:"https://i.postimg.cc/nLVYzN06/6.png",price:800,desc:{en:"Minimal chandelier.",ar:"ثريا بسيطة."}},
+  {img:"https://i.postimg.cc/pT69P66q/9.png",price:700,desc:{en:"Wall light decor.",ar:"إضاءة حائط."}},
+  {img:"https://i.postimg.cc/C1NNJSdJ/8.png",price:400,desc:{en:"Sleek wall light.",ar:"إضاءة حائط أنيقة."}},
+  {img:"https://i.postimg.cc/g0htVCvR/7.png",price:500,desc:{en:"Decorative wall light.",ar:"أبليك ديكوري."}},
+  {img:"https://i.postimg.cc/13tLq7CC/5.png",price:250,desc:{en:"Compact wall light.",ar:"أبليك صغير."}}
+];
 
 function renderProducts(lang){
   const c=document.getElementById("productContainer");
