@@ -16,7 +16,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
@@ -29,23 +28,29 @@
 /* 2) BASE STYLES        */
 /* --------------------- */
 
+:root{
+  --burgundy:#4b0e1f;
+  --beige:#EFE4D2;        /* ✅ بيج أغمق شوية */
+  --beige-2:#E8DCC7;      /* ✅ درجة أغمق للهيدر/تفاصيل بسيطة */
+}
+
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif; /* الوصف والكلام */
-  background-color: #F9F2E5;
-  color: #4b0e1f;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--beige);
+  color: var(--burgundy);
   direction: ltr;
 }
 
 header {
-  background-color: #F9F2E5;
+  background-color: var(--beige-2);
   padding: 15px;
   text-align: center;
   font-size: 32px;
   font-weight: 700;
-  font-family: 'DidotWeb', serif; /* العنوان الرئيسي */
+  font-family: 'DidotWeb', serif;
   position: relative;
-  color: #4b0e1f;
+  color: var(--burgundy);
 }
 
 #langSelect {
@@ -53,12 +58,12 @@ header {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #4b0e1f;
+  background-color: var(--burgundy);
   border: none;
   padding: 8px 12px;
   border-radius: 10px;
   font-weight: bold;
-  color: #F9F2E5;
+  color: var(--beige);
   cursor: pointer;
 }
 
@@ -74,47 +79,51 @@ header {
   padding: 40px 20px;
 }
 
+/* ✅ شلنا الكرت/البوكس اللي ورا الصورة */
 .item {
   width: 260px;
   text-align: center;
-  background: rgba(75,14,31,0.06);
-  padding: 15px;
-  border-radius: 18px;
-  box-shadow: 0px 4px 14px rgba(0,0,0,0.18);
-  overflow: hidden;
+  background: transparent;     /* ✅ no card */
+  padding: 0;                  /* ✅ no padding box */
+  border-radius: 0;            /* ✅ remove rounding of box */
+  box-shadow: none;            /* ✅ remove shadow */
+  overflow: visible;
   position: relative;
   transition: transform 0.3s ease;
 }
 
 .item:hover { transform: scale(1.03); }
 
+/* ✅ ثابتين نفس حجم الصورة على كل الأجهزة */
 .item img {
-  width: 100%;
-  height: 360px;
-  object-fit: contain;
-  border-radius: 15px;
+  width: 260px;           /* ✅ نفس عرض الكرت */
+  height: 360px;          /* ✅ نفس ارتفاع ثابت */
+  object-fit: contain;    /* ✅ يحافظ على الصورة كاملة */
+  display: block;
+  margin: 0 auto;
+  border-radius: 15px;    /* ✅ نفس ستايل الصور */
 }
 
-/* اسم المنتج (عنوان) */
+/* اسم المنتج */
 .title {
-  font-family: 'DidotWeb', serif; /* عناوين المنتجات */
+  font-family: 'DidotWeb', serif;
   font-size: 22px;
-  margin-top: 10px;
+  margin-top: 12px;
   font-weight: 700;
-  color: #4b0e1f;
+  color: var(--burgundy);
 }
 
 /* وصف المنتج */
 .desc {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  color: #4b0e1f;
+  color: var(--burgundy);
   opacity: 0;
   transform: translateY(20px);
   max-height: 0;
   overflow: hidden;
   transition: .45s ease-out;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .item:hover .desc {
@@ -129,16 +138,16 @@ header {
   font-size: 18px;
   font-weight: bold;
   margin: 12px 0;
-  color: #4b0e1f;
+  color: var(--burgundy);
 }
 
 .btn {
-  background-color: #4b0e1f;
+  background-color: var(--burgundy);
   border: none;
   padding: 10px 20px;
   border-radius: 12px;
   font-weight: bold;
-  color: #F9F2E5;
+  color: var(--beige);
   cursor: pointer;
   transition: .25s;
 }
@@ -149,11 +158,26 @@ header {
   display: block;
   text-align: center;
   margin: 40px 0;
-  color: #4b0e1f;
+  color: var(--burgundy);
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
   font-family: 'DidotWeb', serif;
+}
+
+/* ✅ نفس شكل الصور على الموبايل والديسكتوب (بدون تغيير المقاسات) */
+@media (max-width: 768px){
+  .container{
+    gap: 26px;
+    padding: 30px 16px;
+  }
+  .item{
+    width: 260px; /* ثابت */
+  }
+  .item img{
+    width: 260px; /* ثابت */
+    height: 360px; /* ثابت */
+  }
 }
 </style>
 </head>
@@ -221,7 +245,7 @@ function renderProducts(lang) {
     const div = document.createElement("div");
     div.className = "item";
     div.innerHTML = `
-      <img src="${prod.img}">
+      <img src="${prod.img}" alt="">
       <div class="title">${prod.name[lang]}</div>
       <div class="desc">${prod.desc[lang]}</div>
       <div class="price">${prod.price} EGP</div>
@@ -246,7 +270,7 @@ function attachCartListeners(lang) {
 
       let cart = getCart();
       let existing = cart.find(p => p.name === name);
-      if (existing) { existing.qty += 1; } 
+      if (existing) { existing.qty += 1; }
       else { cart.push({ name, price, img, qty: 1 }); }
 
       saveCart(cart);
@@ -257,7 +281,7 @@ function attachCartListeners(lang) {
       setTimeout(() => {
         btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
         btn.style.background = "#4b0e1f";
-        btn.style.color = "#F9F2E5";
+        btn.style.color = "#EFE4D2";
       }, 1200);
     });
   });
