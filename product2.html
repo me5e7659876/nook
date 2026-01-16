@@ -32,19 +32,20 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif; /* الوصف والكلام */
-  background-color: #4b0e1f;
-  color: #fff;
+  background-color: #F9F2E5;
+  color: #4b0e1f;
   direction: ltr;
 }
 
 header {
-  background-color: #4b0e1f;
+  background-color: #F9F2E5;
   padding: 15px;
   text-align: center;
   font-size: 32px;
   font-weight: 700;
   font-family: 'DidotWeb', serif; /* العنوان الرئيسي */
   position: relative;
+  color: #4b0e1f;
 }
 
 #langSelect {
@@ -52,12 +53,12 @@ header {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #ffb3c6;
+  background-color: #4b0e1f;
   border: none;
   padding: 8px 12px;
   border-radius: 10px;
   font-weight: bold;
-  color: #4b0e1f;
+  color: #F9F2E5;
   cursor: pointer;
 }
 
@@ -76,10 +77,10 @@ header {
 .item {
   width: 260px;
   text-align: center;
-  background: rgba(255,255,255,0.05);
+  background: rgba(75,14,31,0.06);
   padding: 15px;
   border-radius: 18px;
-  box-shadow: 0px 4px 14px rgba(0,0,0,0.45);
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.18);
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease;
@@ -100,13 +101,14 @@ header {
   font-size: 22px;
   margin-top: 10px;
   font-weight: 700;
-  color: #ffb3c6;
+  color: #4b0e1f;
 }
 
 /* وصف المنتج */
 .desc {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
+  color: #4b0e1f;
   opacity: 0;
   transform: translateY(20px);
   max-height: 0;
@@ -127,15 +129,16 @@ header {
   font-size: 18px;
   font-weight: bold;
   margin: 12px 0;
+  color: #4b0e1f;
 }
 
 .btn {
-  background-color: #ffb3c6;
+  background-color: #4b0e1f;
   border: none;
   padding: 10px 20px;
   border-radius: 12px;
   font-weight: bold;
-  color: #4b0e1f;
+  color: #F9F2E5;
   cursor: pointer;
   transition: .25s;
 }
@@ -146,7 +149,7 @@ header {
   display: block;
   text-align: center;
   margin: 40px 0;
-  color: #ffb3c6;
+  color: #4b0e1f;
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
@@ -253,8 +256,8 @@ function attachCartListeners(lang) {
       btn.style.color = "#4b0e1f";
       setTimeout(() => {
         btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
-        btn.style.background = "#ffb3c6";
-        btn.style.color = "#4b0e1f";
+        btn.style.background = "#4b0e1f";
+        btn.style.color = "#F9F2E5";
       }, 1200);
     });
   });
