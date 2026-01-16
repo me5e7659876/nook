@@ -14,50 +14,44 @@
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff2') format('woff2'),
        url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Regular.woff') format('woff');
   font-weight: 400;
-  font-style: normal;
 }
 @font-face {
   font-family: 'DidotWeb';
   src: url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff2') format('woff2'),
        url('https://cdn.jsdelivr.net/gh/saif-0x/didot-webfont/Didot-Bold.woff') format('woff');
   font-weight: 700;
-  font-style: normal;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* ---------------------- */
-/* COLORS (Beige System) */
+/* COLORS */
 /* ---------------------- */
 :root{
-  --beige: #F1E6D3;
-  --beige-2: #E9DCC5;
-  --burgundy: #4b0e1f;
-
-  --line: rgba(75,14,31,0.14);
-  --shadow-soft: 0 10px 24px rgba(0,0,0,0.10);
+  --beige:#DFC9AB;        /* أغمق */
+  --beige-2:#D2BA99;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,0.18);
 }
 
 /* ---------------------- */
-/* GLOBAL STYLE */
+/* GLOBAL */
 /* ---------------------- */
 body{
   margin:0;
-  font-family:'Poppins', sans-serif;
-  background: var(--beige);
-  color: var(--burgundy);
+  font-family:'Poppins',sans-serif;
+  background:var(--beige);
+  color:var(--burgundy);
 }
 
 header{
-  background: var(--beige);
+  background:var(--beige);
   padding:15px;
   text-align:center;
   font-size:32px;
   font-weight:700;
+  font-family:'DidotWeb',serif;
   position:relative;
-  font-family:'DidotWeb', serif;
-  color: var(--burgundy);
-  border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
+  border-bottom:1px solid var(--line);
 }
 
 #langSelect{
@@ -65,13 +59,13 @@ header{
   right:20px;
   top:50%;
   transform:translateY(-50%);
-  padding:8px 12px;
+  background:var(--burgundy);
+  color:var(--beige);
   border:none;
+  padding:8px 12px;
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  background: var(--burgundy);
-  color: var(--beige);
 }
 
 /* ---------------------- */
@@ -79,35 +73,24 @@ header{
 /* ---------------------- */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:30px;
   padding:30px;
-  justify-items:center;        /* يوسّط كل عنصر جوه الخلية */
-  align-items:start;
-  max-width: 1200px;           /* شكل أشيك على الديسكتوب */
-  margin: 0 auto;              /* توسيط الجاليري نفسها */
+  justify-items:center;
 }
 
-/* ✅ مفيش كارت */
+/* بدون كارت */
 .item{
-  background: transparent;
+  background:none;
   box-shadow:none;
   padding:0;
-  border-radius:0;
-
-  /* ✅ ده اللي هيخلي كل حاجة متوسطة (خصوصا على الموبايل) */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
   text-align:center;
-
-  width:100%;
-  transition: transform 0.25s ease;
+  transition:transform .3s;
 }
 
-.item:hover{ transform: scale(1.03); }
+.item:hover{transform:scale(1.03);}
 
-/* ✅ نفس المقاس على كل الأجهزة + توسيط الصورة */
+/* الصور */
 .item img{
   width:100%;
   max-width:350px;
@@ -115,29 +98,26 @@ header{
   object-fit:cover;
   border-radius:15px;
   display:block;
-  margin: 0 auto;              /* توسيط الصورة */
+  margin:0 auto;
 }
 
 /* السعر */
 .price{
   font-size:20px;
   font-weight:bold;
-  color: var(--burgundy);
   margin-top:10px;
-  font-family:'DidotWeb', serif;
+  font-family:'DidotWeb',serif;
 }
 
 /* الوصف */
 .desc{
   font-size:15px;
-  color: rgba(75,14,31,0.78);
+  color:rgba(75,14,31,.8);
   margin-top:8px;
   line-height:1.5;
-
   opacity:0;
   transform:translateY(10px);
-  transition:opacity 0.35s ease, transform 0.35s ease;
-  max-width: 350px;            /* نفس عرض الصورة عشان يبقى متظبط */
+  transition:.4s;
 }
 
 .item:hover .desc{
@@ -145,58 +125,37 @@ header{
   transform:translateY(0);
 }
 
-/* ---------------------- */
-/* BUTTON */
-/* ---------------------- */
+/* زرار */
 .btn{
-  background-color: var(--burgundy);
+  background:var(--burgundy);
+  color:var(--beige);
   border:none;
-  color: var(--beige);
-  padding:10px 20px;
+  padding:10px 22px;
   border-radius:12px;
   font-weight:bold;
   cursor:pointer;
   margin-top:10px;
-  transition:0.25s ease;
+  transition:.25s;
 }
 
-.btn:hover{ transform: scale(1.05); }
+.btn:hover{transform:scale(1.05);}
 
-/* ---------------------- */
-/* BACK LINK */
-/* ---------------------- */
+/* BACK */
 .back-link{
   display:block;
   text-align:center;
-  margin:30px 0;
-  color: var(--burgundy);
-  text-decoration:none;
+  margin:35px 0;
+  color:var(--burgundy);
   font-weight:600;
-  font-family:'Poppins', sans-serif;
+  text-decoration:none;
 }
 
-/* ---------------------- */
-/* MOBILE TWEAKS */
-/* ---------------------- */
-@media (max-width: 768px){
-  .gallery{
-    padding:22px 14px;
-    gap:22px;
-    grid-template-columns: 1fr;    /* عمود واحد = كل حاجة في النص */
-    justify-items:center;
-  }
-
-  .item{
-    align-items:center;            /* تأكيد التوسيط */
-  }
-
+/* MOBILE */
+@media(max-width:768px){
+  .gallery{padding:20px 14px;}
   .item img{
-    max-width:350px;
+    max-width:100%;
     height:420px;
-  }
-
-  .desc{
-    max-width:350px;
   }
 }
 </style>
@@ -217,85 +176,30 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-const products = [
-  {img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png", price:1500, name:{en:"Modern Lamp 1", ar:"مصباح مودرن 1"}, desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.", ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}},
-  {img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png", price:2200, name:{en:"Modern Lamp 2", ar:"مصباح مودرن 2"}, desc:{en:"A luxurious modern lamp that adds sophistication and charm to your living or bedroom space.", ar:"مصباح مودرن فاخر يضيف الرقي والسحر لغرفة المعيشة أو النوم."}},
-  {img:"https://i.postimg.cc/vTY3yRzD/122a3c30-72b0-4c53-8f87-4aad0d8c6268.png", price:1800, name:{en:"Modern Lamp 3", ar:"مصباح مودرن 3"}, desc:{en:"Soft lighting with a minimal artistic design — the perfect piece to create a relaxing evening mood.", ar:"إضاءة ناعمة مع تصميم فني بسيط — القطعة المثالية لخلق أجواء هادئة في المساء."}},
-  {img:"https://i.postimg.cc/Xq1c0rqg/b387512d-d9a-4a21-9cdf-255bb1e9da06.png", price:2200, name:{en:"Modern Lamp 4", ar:"مصباح مودرن 4"}, desc:{en:"A sleek geometric design with gentle brightness that balances beauty and comfort in your decor.", ar:"تصميم هندسي أنيق مع إضاءة لطيفة يوازن بين الجمال والراحة في ديكورك."}},
-  {img:"https://i.postimg.cc/sXw5pMYv/3538f412-050a-418e-ac5b-1985e14d70cb.png", price:1800, name:{en:"Modern Lamp 5", ar:"مصباح مودرن 5"}, desc:{en:"A modern elegant lamp that brings a cozy and stylish touch to your corners and small spaces.", ar:"مصباح مودرن أنيق يضيف لمسة دافئة وعصرية لزواياك والمساحات الصغيرة."}},
-  {img:"https://i.postimg.cc/PqMDjCFY/1ac100ea-86f3-496b-ad6f-3e4ab5826485.png", price:1500, name:{en:"Modern Lamp 6", ar:"مصباح مودرن 6"}, desc:{en:"A chic and affordable decor piece that combines simplicity with charming, relaxing lighting.", ar:"قطعة ديكور أنيقة وبسعر مناسب تجمع بين البساطة والإضاءة المريحة والجذابة."}},
-  {img:"https://i.postimg.cc/02JJNWBj/02fbfcae-6a5b-42f3-9cea-dea2b0fe8a72.png", price:2000, name:{en:"Modern Lamp 7", ar:"مصباح مودرن 7"}, desc:{en:"A unique lamp that radiates positive energy and highlights your furniture with soft elegant light.", ar:"مصباح فريد يشع طاقة إيجابية ويبرز أثاثك بضوء ناعم وأنيق."}},
-  {img:"https://i.postimg.cc/4nCytGFq/e2c29b83-33a3-4b42-8ffa-52db9df24a63.png", price:2200, name:{en:"Modern Lamp 8", ar:"مصباح مودرن 8"}, desc:{en:"The perfect blend of art and function — this lamp adds luxury and brilliance to any interior space.", ar:"المزيج المثالي بين الفن والوظيفة — هذا المصباح يضيف الفخامة والبهاء لأي مساحة داخلية."}},
-  {img:"https://i.postimg.cc/1X0dfx5v/7.png", price:2000, name:{en:"Modern Lamp New 1", ar:"مصباح مودرن جديد 1"}, desc:{en:"Modern style lamp featuring a stunning artistic glow that enhances your home’s ambiance beautifully.", ar:"مصباح مودرن مع توهج فني رائع يعزز أجواء منزلك بشكل جميل."}},
-  {img:"https://i.postimg.cc/wj4GtQgv/5.png", price:700, name:{en:"Modern Lamp New 2", ar:"مصباح مودرن جديد 2"}, desc:{en:"A minimalist lamp that fits every corner — perfect for cozy, intimate lighting at an affordable price.", ar:"مصباح بسيط يناسب كل زاوية — مثالي لإضاءة دافئة وحميمة بسعر مناسب."}},
-  {img:"https://i.postimg.cc/xjg0wvWp/re5.png", price:2000, name:{en:"Modern Lamp New 3", ar:"مصباح مودرن جديد 3"}, desc:{en:"Elegant yet simple — this modern lamp blends functionality with timeless beauty for your home decor.", ar:"أنيق وبسيط — هذا المصباح المودرن يجمع بين الوظائف والجمال الخالد لديكور منزلك."}},
-  {img:"https://i.postimg.cc/nL8Z40QN/re6.png", price:2000, name:{en:"Modern Lamp New 4", ar:"مصباح مودرن جديد 4"}, desc:{en:"Soft lighting with a touch of modern luxury — ideal for your bedroom or living area.", ar:"إضاءة ناعمة مع لمسة من الفخامة المودرن — مثالي لغرفة النوم أو المعيشة."}},
-  {img:"https://i.postimg.cc/D0zKvNtC/re9.png", price:1500, name:{en:"Modern Lamp New 5", ar:"مصباح مودرن جديد 5"}, desc:{en:"Contemporary lighting piece that gives your space warmth and harmony with a minimal look.", ar:"قطعة إضاءة معاصرة تمنح مساحتك الدفء والانسجام بمظهر بسيط."}},
-  {img:"https://i.postimg.cc/kMWV0fyL/10.png", price:800, name:{en:"Modern Lamp New 6", ar:"مصباح مودرن جديد 6"}, desc:{en:"Affordable modern lamp with soft tones that make any room instantly feel more elegant.", ar:"مصباح مودرن بأسعار مناسبة مع ألوان ناعمة تجعل أي غرفة تبدو أكثر أناقة فوراً."}},
-  {img:"https://i.postimg.cc/d0DkgFWD/3.png", price:2200, name:{en:"Modern Lamp New 7", ar:"مصباح مودرن جديد 7"}, desc:{en:"A statement lamp that elevates any modern home with its stylish and artistic glow.", ar:"مصباح بارز يرفع مستوى أي منزل مودرن بضوءه العصري والفني."}},
-  {img:"https://i.postimg.cc/J0jBKQpd/2.png", price:1500, name:{en:"Modern Lamp New 8", ar:"مصباح مودرن جديد 8"}, desc:{en:"Modern lamp combining soft curves and bright tones for a perfect decor enhancement.", ar:"مصباح مودرن يجمع بين المنحنيات الناعمة والألوان الزاهية لتعزيز الديكور بشكل مثالي."}},
-  {img:"https://i.postimg.cc/rFv73zFR/yyyyshs.png", price:2000, name:{en:"Modern Lamp New 9", ar:"مصباح مودرن جديد 9"}, desc:{en:"Contemporary design that reflects both simplicity and class — ideal for modern homes.", ar:"تصميم معاصر يجمع بين البساطة والفخامة — مثالي للمنازل المودرن."}},
-  {img:"https://i.postimg.cc/44Hvm6Q5/1.png", price:2500, name:{en:"Modern Lamp New 10", ar:"مصباح مودرن جديد 10"}, desc:{en:"High-end lamp offering warm and ambient lighting to bring elegance into your living space.", ar:"مصباح فاخر يوفر إضاءة دافئة وجوياً ليضفي الأناقة على مساحة المعيشة الخاصة بك."}},
-  {img:"https://i.postimg.cc/LszfF3Q2/11.png", price:2500, name:{en:"Chandelier 1", ar:"ثريا 1"}, desc:{en:"Elegant chandelier with a modern luxurious design that elevates your space.", ar:"ثريا أنيقة بتصميم فاخر مودرن يرفع مستوى المساحة لديك."}},
-  {img:"https://i.postimg.cc/nLVYzN06/6.png", price:800, name:{en:"Chandelier 2", ar:"ثريا 2"}, desc:{en:"Simple and stylish chandelier — perfect for modern minimalist spaces.", ar:"ثريا بسيطة وأنيقة — مثالية للمساحات المودرن البسيطة."}},
-  {img:"https://i.postimg.cc/pT69P66q/9.png", price:700, name:{en:"Wall Light 1", ar:"أباليك حائط 1"}, desc:{en:"Modern wall light that adds a warm and decorative glow to your walls.", ar:"إضاءة حائط مودرن تضيف توهجاً دافئاً وزخرفياً لجدرانك."}},
-  {img:"https://i.postimg.cc/C1NNJSdJ/8.png", price:400, name:{en:"Wall Light 2", ar:"أباليك حائط 2"}, desc:{en:"Sleek minimal wall light ideal for bedrooms and hallways.", ar:"أباليك حائط أنيق وبسيط مثالي لغرف النوم والممرات."}},
-  {img:"https://i.postimg.cc/g0htVCvR/7.png", price:500, name:{en:"Wall Light 3", ar:"أباليك حائط 3"}, desc:{en:"Decorative wall sconce that combines modern elegance with soft warm lighting.", ar:"أباليك حائط زخرفي يجمع بين الأناقة المودرن والإضاءة الدافئة."}},
-  {img:"https://i.postimg.cc/13tLq7CC/5.png", price:250, name:{en:"Wall Light 4", ar:"أباليك حائط 4"}, desc:{en:"Compact and affordable wall light perfect for small cozy corners.", ar:"أباليك حائط صغير وبسعر مناسب مثالي للزوايا الصغيرة المريحة."}}
-];
+const products=[{img:"https://i.postimg.cc/SKCMGtt1/1c31540e-623d-4bee-9394-759589f8cce6.png",price:1500,desc:{en:"A warm and elegant touch in every corner — this modern lamp brings soft, relaxing light to your home.",ar:"لمسة دافئة وأنيقة في كل زاوية — هذا المصباح المودرن يضفي ضوءاً ناعماً ومريحاً على منزلك."}},
+{img:"https://i.postimg.cc/RVCD5ts6/f6993712-be6a-4d75-8b39-d0728d09f5e4.png",price:2200,desc:{en:"A luxurious modern lamp that adds sophistication and charm.",ar:"مصباح مودرن فاخر يضيف الرقي والسحر."}}];
 
 function renderProducts(lang){
-  const container = document.getElementById("productContainer");
-  container.innerHTML = "";
+  const c=document.getElementById("productContainer");
+  c.innerHTML="";
   products.forEach(p=>{
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `
-      <img src="${p.img}" alt="">
-      <div class="price" data-price="${p.price}">${p.price} EGP</div>
+    const d=document.createElement("div");
+    d.className="item";
+    d.innerHTML=`
+      <img src="${p.img}">
+      <div class="price">${p.price} EGP</div>
       <p class="desc">${p.desc[lang]}</p>
-      <button class="btn add-cart">${lang==="ar" ? "أضف إلى السلة" : "Add to Cart"}</button>
+      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
-    container.appendChild(div);
-  });
-  attachCartListeners(lang);
-}
-
-function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
-function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
-
-function attachCartListeners(lang){
-  document.querySelectorAll(".add-cart").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const item = btn.closest(".item");
-      const name = item.querySelector(".desc").textContent;
-      const price = Number(item.querySelector(".price").getAttribute("data-price"));
-      const img = item.querySelector("img").src;
-
-      let cart = getCart();
-      const found = cart.find(p=>p.img===img);
-      if(found) found.qty++;
-      else cart.push({name, price, img, qty:1});
-      saveCart(cart);
-
-      btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
-      btn.style.background = "#fff";
-      btn.style.color = "#4b0e1f";
-      setTimeout(()=>{
-        btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
-        btn.style.background = "#4b0e1f";
-        btn.style.color = "#F1E6D3";
-      },1200);
-    });
+    c.appendChild(d);
   });
 }
 
-const langSelect = document.getElementById("langSelect");
-langSelect.addEventListener("change", ()=>{
-  const lang = langSelect.value;
-  document.body.dir = lang==="ar" ? "rtl" : "ltr";
+document.getElementById("langSelect").addEventListener("change",e=>{
+  const lang=e.target.value;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  document.getElementById("backLink").textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
   renderProducts(lang);
-  document.getElementById("backLink").textContent = lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
 });
 
 renderProducts("en");
