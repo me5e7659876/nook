@@ -8,21 +8,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#4b0e1f;
-  color:#fff;
+  background:var(--beige);            /* ✅ بيج */
+  color:var(--burgundy);              /* ✅ بيرجوندي */
 }
 
 header{
-  background:#4b0e1f;
+  background:var(--beige);            /* ✅ بيج */
   padding:15px;
   text-align:center;
   font-size:28px;
   font-family:'Didot',serif;
   position:relative;
-  color:#ffb3c6;
+  color:var(--burgundy);              /* ✅ بيرجوندي */
+  border-bottom:1px solid var(--line);
 }
 
 #langSelect{
@@ -34,18 +41,19 @@ header{
   border:none;
   border-radius:8px;
   font-weight:bold;
-  background:#ffb3c6;
-  color:#4b0e1f;
+  background:var(--burgundy);         /* ✅ بيرجوندي */
+  color:var(--beige);                 /* ✅ بيج */
   cursor:pointer;
 }
 
 /* ================= CARD ================= */
+/* ✅ شيلنا الكرت اللي ورا الصور (بدون حذف أي عنصر) */
 .product-card{
   width:fit-content;
   margin:30px auto;
-  background:rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:18px;
+  background:transparent;             /* ✅ بدل الكرت */
+  border-radius:0;                    /* ✅ */
+  padding:0;                          /* ✅ */
 }
 
 .product-container{
@@ -53,23 +61,37 @@ header{
   gap:25px;
   align-items:center;
   flex-wrap:wrap;
+  justify-content:center;             /* ✅ عشان كل حاجة تبقى في النص */
 }
 
 /* ================= SLIDER ================= */
 .slider{
   position:relative;
   width:100%;
-  max-width:420px;
+  max-width:420px;                    /* ✅ نفس المقاس */
+  display:flex;                       /* ✅ تمركز */
+  justify-content:center;             /* ✅ تمركز */
 }
 
 .slide{
   width:100%;
   border-radius:15px;
   display:none;
+  margin:0 auto;                      /* ✅ في النص */
+  image-rendering:auto;               /* ✅ */
 }
 
 .slide.active{display:block}
 
+/* ✅ تحسين شكل الصورة وجودتها بدون تغيير المقاس */
+.slider .slide{
+  object-fit:contain;                 /* ✅ زي ما هو في الموبايل (موجود أصلاً) */
+  transform:translateZ(0);            /* ✅ يقلل blur */
+  backface-visibility:hidden;         /* ✅ */
+  -webkit-font-smoothing:antialiased; /* ✅ */
+}
+
+/* سهم */
 .arrow{
   position:absolute;
   top:50%;
@@ -77,8 +99,9 @@ header{
   background:none;
   border:none;
   font-size:36px;
-  color:#ffb3c6;
+  color:var(--burgundy);              /* ✅ بيرجوندي */
   cursor:pointer;
+  user-select:none;
 }
 
 .arrow.right{right:10px}
@@ -90,22 +113,30 @@ header{
 
 .product-details h1{
   font-family:'Didot',serif;
-  color:#ffb3c6;
+  color:var(--burgundy);              /* ✅ بيرجوندي */
+  margin:0 0 10px;
+}
+
+.product-details p{
+  margin:0;
+  color:rgba(75,14,31,.85);
 }
 
 .price{
   font-size:22px;
   margin:15px 0;
+  color:var(--burgundy);              /* ✅ بيرجوندي */
 }
 
+/* ✅ الزرار بيرجوندي */
 .btn{
-  background:#ffb3c6;
+  background:var(--burgundy);
   border:none;
   padding:12px 24px;
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  color:#4b0e1f;
+  color:var(--beige);
   width:100%;
 }
 
@@ -113,7 +144,7 @@ header{
   display:block;
   text-align:center;
   margin:40px;
-  color:#ffb3c6;
+  color:var(--burgundy);              /* ✅ بيرجوندي */
   text-decoration:none;
 }
 
@@ -122,25 +153,31 @@ header{
   .product-container{
     flex-direction:column;
     gap:18px;
+    align-items:center;
   }
 
   .slider{
-    max-width:95%;
+    max-width:95%;                    /* ✅ نفس اللي كان */
   }
 
   .slide{
-    max-height:480px;
-    object-fit:contain;
+    max-height:480px;                 /* ✅ نفس اللي كان */
+    object-fit:contain;               /* ✅ نفس اللي كان */
   }
 
   .arrow{
-    font-size:44px;
+    font-size:44px;                   /* ✅ نفس اللي كان */
   }
 
   .product-details{
     max-width:95%;
     text-align:center;
   }
+}
+
+/* ✅ تحسين تمركز الصورة على شاشات أصغر (بدون تغيير مقاسها) */
+@media(max-width:420px){
+  .slider{ max-width:92%; }
 }
 </style>
 </head>
@@ -179,8 +216,8 @@ function addToCart(btn, product, lang){
 
   setTimeout(()=>{
     btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-    btn.style.background="#ffb3c6";
-    btn.style.color="#4b0e1f";
+    btn.style.background="var(--burgundy)";
+    btn.style.color="var(--beige)";
   },1200);
 }
 
@@ -204,6 +241,45 @@ const products = [
   ["https://i.postimg.cc/fL37xDjj/y-m.png","https://i.postimg.cc/2S2nMV0d/y.jpg"]
 ];
 
+// ================= NAMES + DESCS =================
+const names = [
+  {en:"Classic White Glass Vase", ar:"مزهرية زجاج كلاسيك أبيض"},
+  {en:"Classic Fuchsia Pink Glass Vase", ar:"مزهرية زجاج كلاسيك فوشيا"},
+  {en:"Classic Red Glass Vase", ar:"مزهرية زجاج كلاسيك أحمر"},
+  {en:"Classic Yellow Glass Vase", ar:"مزهرية زجاج كلاسيك أصفر"},
+  {en:"Glass Vase", ar:"مزهرية زجاج"},
+  {en:"Sun Flower Glass Vase", ar:"مزهرية زجاج دوّار الشمس"},
+  {en:"White Sun Flower Glass Vase", ar:"مزهرية دوّار الشمس أبيض"},
+  {en:"Yellow Sun Flower Glass Vase", ar:"مزهرية دوّار الشمس أصفر"},
+  {en:"Purple Glass Vase", ar:"مزهرية زجاج بنفسجي"},
+  {en:"White Glass Vase", ar:"مزهرية زجاج أبيض"},
+  {en:"Purple Glass Vase", ar:"مزهرية زجاج بنفسجي"},
+  {en:"Modern White Glass Vase", ar:"مزهرية زجاج مودرن أبيض"},
+  {en:"Modern Pink Glass Vase", ar:"مزهرية زجاج مودرن وردي"},
+  {en:"Modern Red Glass Vase", ar:"مزهرية زجاج مودرن أحمر"},
+  {en:"Modern Yellow Glass Vase", ar:"مزهرية زجاج مودرن أصفر"},
+  {en:"Baby Pink Glass Vase", ar:"مزهرية زجاج وردي فاتح"}
+];
+
+const descs = [
+  {en:"Timeless clear design that complements any table or shelf.", ar:"تصميم كلاسيكي أنيق يناسب أي ترابيزة أو رف."},
+  {en:"Bold fuchsia tone for a vibrant, stylish accent.", ar:"لون فوشيا جريء يدي لمسة ستايل مميزة."},
+  {en:"Classic red glass that adds warmth and character.", ar:"زجاج أحمر كلاسيكي يضيف دفء وشخصية للمكان."},
+  {en:"Sunny yellow finish to brighten your décor instantly.", ar:"أصفر مشرق ينوّر الديكور فورًا."},
+  {en:"A clean everyday glass vase—simple and elegant.", ar:"مزهرية زجاج بسيطة وأنيقة للاستخدام اليومي."},
+  {en:"Sunflower-inspired piece for a cheerful decorative touch.", ar:"مستوحاة من دوّار الشمس… لمسة بهجة للديكور."},
+  {en:"White sunflower vibe with a soft, airy look.", ar:"دوّار الشمس بالأبيض… شكل هادي وخفيف."},
+  {en:"Yellow sunflower feel—perfect for lively corners.", ar:"دوّار الشمس بالأصفر… مثالي للزوايا الحيوية."},
+  {en:"Deep purple glass for a luxe statement look.", ar:"زجاج بنفسجي عميق لإحساس فخم ولافت."},
+  {en:"Minimal white glass that fits modern spaces perfectly.", ar:"زجاج أبيض مينيمال يناسب المودرن جدًا."},
+  {en:"Purple glass with a sleek silhouette for elegant styling.", ar:"زجاج بنفسجي بسيلويت أنيق لستايل راقي."},
+  {en:"Modern white vase with a clean contemporary shape.", ar:"مزهرية مودرن أبيض بشكل معاصر ونضيف."},
+  {en:"Modern pink tone that adds a soft feminine touch.", ar:"وردي مودرن يضيف لمسة ناعمة وأنثوية."},
+  {en:"Modern red glass with a bold, artistic presence.", ar:"أحمر مودرن بحضور قوي وفني."},
+  {en:"Modern yellow glass to refresh your décor with color.", ar:"أصفر مودرن ينعش الديكور بلون حلو."},
+  {en:"Baby pink glass for a calm, cute aesthetic.", ar:"وردي فاتح لإحساس هادي وكيوت."}
+];
+
 // ================= RENDER =================
 const container = document.getElementById("productsContainer");
 
@@ -214,17 +290,20 @@ function renderProducts(lang){
     const card=document.createElement("div");
     card.className="product-card";
 
+    const title = names[i] ? names[i][lang] : (lang==="ar" ? "مزهرية زجاج" : "Glass Vase");
+    const desc  = descs[i] ? descs[i][lang] : (lang==="ar" ? "قطعة ديكور أنيقة تضيف لمسة مميزة." : "Elegant decor piece that adds a refined touch.");
+
     card.innerHTML=`
       <div class="product-container">
         <div class="slider">
-          <img src="${imgs[0]}" class="slide active">
-          <img src="${imgs[1]}" class="slide">
-          <button class="arrow right">›</button>
+          <img src="${imgs[0]}" class="slide active" alt="">
+          <img src="${imgs[1]}" class="slide" alt="">
+          <button class="arrow right" aria-label="next">›</button>
         </div>
 
         <div class="product-details">
-          <h1>${lang==="ar"?"قطعة ديكور":"Decor Piece"} ${i+1}</h1>
-          <p>${lang==="ar"?"قطعة ديكور أنيقة – تظهر مع وبدون مزهرية.":"Elegant decor piece – shown with and without vase."}</p>
+          <h1>${title}</h1>
+          <p>${desc}</p>
           <div class="price">500 EGP</div>
           <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
         </div>
@@ -232,7 +311,7 @@ function renderProducts(lang){
     `;
 
     const btn=card.querySelector(".add-to-cart");
-    btn.onclick=()=>addToCart(btn,{name:`Decor Piece ${i+1}`,price:500,img:imgs[0]},lang);
+    btn.onclick=()=>addToCart(btn,{name:title,price:500,img:imgs[0]},lang);
 
     container.appendChild(card);
   });
@@ -240,7 +319,7 @@ function renderProducts(lang){
   initSliders();
 }
 
-// ================= SLIDER (12s) =================
+// ================= SLIDER (7s) =================
 function initSliders(){
   document.querySelectorAll(".slider").forEach(slider=>{
     const slides=slider.querySelectorAll(".slide");
@@ -260,7 +339,7 @@ function initSliders(){
     setInterval(()=>{
       i=(i+1)%slides.length;
       show();
-    },7000); // ✅ 7 ثانية
+    },7000);
   });
 }
 
