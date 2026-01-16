@@ -132,10 +132,7 @@ header{
 /* ---------------- ANNOUNCEMENT BAR (CHAMPAGNE) ---------------- */
 .announcement-wrap{
   width:100%;
-
-  /* ✅ CHANGED: champagne background */
   background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
-
   border-top: 1px solid rgba(42,23,22,0.14);
   border-bottom: 1px solid rgba(42,23,22,0.14);
   overflow:hidden;
@@ -157,10 +154,7 @@ header{
   letter-spacing: 1.2px;
   text-transform: uppercase;
   opacity: 0.95;
-
-  /* ✅ CHANGED: readable text on champagne */
   color: var(--champagne-text);
-
   text-shadow:
     0 0 10px rgba(42,23,22,0.06),
     0 0 18px rgba(75,14,31,0.10);
@@ -170,14 +164,12 @@ header{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-
-  /* ✅ CHANGED: burgundy dot for luxury */
   background: rgba(75,14,31,0.65);
   box-shadow: 0 0 10px rgba(75,14,31,0.18);
 }
 
 .announcement-wrap:hover .announcement-track{
-  animation-play-state: paused; /* ✅ يقف لو وقفتي عليه بالماوس */
+  animation-play-state: paused;
 }
 
 @keyframes marquee{
@@ -191,24 +183,37 @@ header{
   width:100%;
   height:85vh;
   overflow:hidden;
+
+  /* ✅ NEW: خلي أي فراغ/تحميل صور/حواف تبقى شامبين */
+  background: var(--champagne);
 }
+
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
   transition:opacity .8s ease-in-out;
+
+  /* ✅ NEW: لو فيه فراغ حوالين الصورة يبقى شامبين */
+  background: var(--champagne);
 }
 .slide.active{opacity:1;}
+
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
+
+  /* ✅ NEW: لو الصورة فيها شفافية/تحميل */
+  background: var(--champagne);
 }
+
 .hero-overlay{
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.35);
 }
+
 .hero-content{
   position:absolute;
   left:6%;
@@ -254,14 +259,10 @@ header{
 
 /* ---------------- FEATURED (CHAMPAGNE SECTION) ---------------- */
 .featured-strip{
-  /* ✅ CHANGED: champagne from announcement -> featured */
   background: var(--champagne);
-
   padding:30px 20px;
   margin-top:60px;
   margin-bottom: 40px;
-
-  /* subtle separation */
   border-top: 1px solid rgba(42,23,22,0.12);
   border-bottom: 1px solid rgba(42,23,22,0.12);
 }
@@ -270,8 +271,6 @@ header{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
-
-  /* ✅ readable */
   color: var(--champagne-text);
 }
 
@@ -289,13 +288,9 @@ header{
 
 .featured-item{
   min-width:220px;
-
-  /* ✅ CHANGED: light card on champagne */
   background: #F4EBD7;
-
   border-radius:18px;
   overflow:hidden;
-
   box-shadow: 0 10px 18px rgba(42,23,22,0.10);
 }
 
@@ -322,8 +317,6 @@ header{
   transform:translateY(-50%);
   font-size:32px;
   cursor:pointer;
-
-  /* ✅ readable */
   color: var(--champagne-text);
 }
 .featured-arrow.left{left:0;}
