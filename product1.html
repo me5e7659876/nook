@@ -7,21 +7,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> 
 
 <style> 
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
 body{ 
   margin:0; 
-  background:#DFC9AB; 
+  background:var(--beige); 
   font-family:'Poppins',sans-serif; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
 } 
 
 header{ 
-  background:#DFC9AB; 
+  background:var(--beige); 
   padding:18px; 
   text-align:center; 
   font-size:30px; 
   font-family:'Didot',serif; 
   position:relative; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
 } 
 
 #langSelect{ 
@@ -32,9 +38,9 @@ header{
   padding:6px 10px; 
   border:none; 
   border-radius:8px; 
-  background:#4b0e1f; 
+  background:var(--burgundy); 
   font-weight:bold; 
-  color:#DFC9AB; 
+  color:var(--beige); 
   cursor:pointer; 
 } 
 
@@ -68,7 +74,7 @@ header{
   top:50%; 
   transform:translateY(-50%); 
   font-size:40px; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
   cursor:pointer; 
   user-select:none; 
   padding:10px; 
@@ -80,14 +86,14 @@ header{
 .price{ 
   font-size:20px; 
   font-weight:bold; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
   margin-top:10px; 
   font-family:'Didot',serif; 
 } 
 
 .desc{ 
   font-size:15px; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
   margin-top:8px; 
   line-height:1.5; 
   opacity:0; 
@@ -98,9 +104,9 @@ header{
 .item:hover .desc{opacity:1;transform:translateY(0);} 
 
 .btn{ 
-  background:#4b0e1f; 
+  background:var(--burgundy); 
   border:none; 
-  color:#DFC9AB; 
+  color:var(--beige); 
   padding:10px 20px; 
   border-radius:10px; 
   font-weight:bold; 
@@ -112,7 +118,7 @@ header{
   display:block; 
   text-align:center; 
   margin:30px 0; 
-  color:#4b0e1f; 
+  color:var(--burgundy); 
   text-decoration:none; 
 } 
 
@@ -268,7 +274,7 @@ function initSliders(){
       show(index); 
     }; 
     slider.querySelector(".right").onclick = ()=>{ 
-      index=(index+1+imgs.length)%imgs.length; 
+      index=(index+1)%imgs.length; 
       show(index); 
     }; 
     setInterval(()=>{ 
