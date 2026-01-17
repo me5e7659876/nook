@@ -165,9 +165,9 @@
   /* ✅✅ التعديل اللي بيخلي الصور كاملة على جميع التليفونات */
   @media (max-width: 768px) {
     .item img{
-      max-width: min(450px, 92vw);   /* مناسب لكل الشاشات */
-      height: min(520px, 120vw);     /* مساحة كفاية للصورة */
-      object-fit: contain;           /* ✅ أهم حاجة: تظهر كاملة بدون قص */
+      max-width: min(450px, 92vw);
+      height: min(520px, 120vw);
+      object-fit: contain;
       background: transparent;
     }
     .gold-text { font-size: 28px; }
@@ -176,19 +176,19 @@
 
   @media (max-width: 420px) {
     .item img{
-      max-width: 92vw;               /* ✅ متجاوب مع أي موبايل */
-      height: 78vh;                  /* ✅ مساحة كبيرة للصورة */
-      max-height: 420px;             /* ✅ مايكبرش زيادة */
-      object-fit: contain;           /* ✅ كاملة */
+      max-width: 92vw;
+      height: 78vh;
+      max-height: 420px;
+      object-fit: contain;
     }
 
     .price { font-size: 16px; }
     .desc { font-size: 14px; }
     .btn { padding: 8px 16px; font-size: 14px; }
 
-    #langSelect { 
-      font-size: 10px; 
-      padding: 2px 4px; 
+    #langSelect {
+      font-size: 10px;
+      padding: 2px 4px;
       right: 10px;
     }
 
@@ -255,9 +255,63 @@ const products = [
    desc:{en:"Handcrafted premium macrame wall piece.", ar:"قطعة ماكرامي جداري فاخرة مصنوعة يدويًا."}}
 ];
 
+/* =================== CART (UNIFIED) =================== */
+const CART_KEY = "nook_cart";
+
+function safeParse(v){ try { return JSON.parse(v); } catch(e){ return null; } }
+function getCart(){
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart));
+}
+function makeId(category, name, price, img){
+  const s = `${category}__${name}__${price}__${img}`.toLowerCase().trim();
+  return s.replace(/\s+/g,"_").replace(/[^\w\-]+/g,"");
+}
+
+function attachCart(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const item = btn.closest(".item");
+      const category = "Wall Art & Macrame";
+
+      const product = {
+        name: item.dataset.name,
+        price: parseFloat(item.dataset.price),
+        img: item.dataset.img,
+        category
+      };
+
+      const id = makeId(category, product.name, product.price, product.img);
+
+      let cart = getCart();
+      let existing = cart.find(p=>p.id===id);
+
+      if(existing) existing.qty = (Number(existing.qty)||1) + 1;
+      else cart.push({ id, ...product, qty:1, page: location.pathname, addedAt: new Date().toISOString() });
+
+      saveCart(cart);
+
+      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
+      btn.style.background="#fff";
+      btn.style.color="#4b0e1f";
+      setTimeout(()=>{
+        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
+        btn.style.background="var(--burgundy)";
+        btn.style.color="var(--beige)";
+      },1200);
+    });
+  });
+}
+
+/* =================== RENDER =================== */
 function renderProducts(lang){
   const container = document.getElementById("galleryContainer");
   container.innerHTML = "";
+
   products.forEach(p=>{
     const item = document.createElement("div");
     item.className = "item";
@@ -273,32 +327,8 @@ function renderProducts(lang){
     `;
     container.appendChild(item);
   });
+
   attachCart(lang);
-}
-
-function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
-function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
-
-function attachCart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      const item = btn.closest(".item");
-      const product = {name:item.dataset.name, price:parseFloat(item.dataset.price), img:item.dataset.img, qty:1};
-      let cart = getCart();
-      let existing = cart.find(p=>p.name===product.name);
-      if(existing) existing.qty+=1; else cart.push(product);
-      saveCart(cart);
-
-      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff";
-      btn.style.color="#4b0e1f";
-      setTimeout(()=>{
-        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="var(--burgundy)";
-        btn.style.color="var(--beige)";
-      },1200);
-    });
-  });
 }
 
 const langSelect = document.getElementById("langSelect");
