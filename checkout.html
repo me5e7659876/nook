@@ -8,19 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  background-color: #4b0e1f;
-  color: #fff;
+  background-color: var(--beige);
+  color: var(--burgundy);
 }
 
 /* HEADER */
 header {
-  background-color: #4b0e1f;
+  background-color: var(--beige);
   padding: 15px 10px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  position: relative;
+  border-bottom: 1px solid var(--line);
 }
 header img.logo { width: 140px; max-width: 80%; }
 .header-icons {
@@ -30,7 +38,7 @@ header img.logo { width: 140px; max-width: 80%; }
   display: flex;
   gap: 12px;
 }
-.header-icons a { color: #fff; text-decoration: none; font-size: 24px; }
+.header-icons a { color: var(--burgundy); text-decoration: none; font-size: 24px; }
 
 /* PROGRESS STEPS */
 .steps-container {
@@ -47,18 +55,15 @@ header img.logo { width: 140px; max-width: 80%; }
   left: 0;
   width: 100%;
   height: 2px;
-  background: rgba(255,255,255,0.2);
+  background: var(--line);
   z-index: 1;
 }
-.step {
-  text-align: center;
-  z-index: 2;
-}
+.step { text-align: center; z-index: 2; }
 .step .circle {
   width: 30px;
   height: 30px;
-  background: #ffb3c6;
-  color: #4b0e1f;
+  background: var(--burgundy);
+  color: var(--beige);
   margin: auto;
   border-radius: 50%;
   display: flex;
@@ -66,11 +71,11 @@ header img.logo { width: 140px; max-width: 80%; }
   align-items: center;
   font-weight: 700;
   font-size: 14px;
-  box-shadow: 0 0 6px rgba(255,179,198,0.6);
+  box-shadow: 0 0 6px rgba(75,14,31,0.35);
 }
-.step.active .circle { background: #fff; color: #4b0e1f; }
-.step.completed .circle { background: #ffd1dd; color: #4b0e1f; }
-.step p { margin-top: 4px; font-size: 12px; }
+.step.active .circle { background: var(--burgundy); color: var(--beige); }
+.step.completed .circle { background: var(--burgundy); color: var(--beige); }
+.step p { margin-top: 4px; font-size: 12px; color: var(--burgundy); }
 
 /* CONTAINER */
 .checkout-container {
@@ -85,19 +90,21 @@ header img.logo { width: 140px; max-width: 80%; }
 
 /* ORDER SUMMARY */
 .order-summary {
-  background: rgba(59,10,26,0.95);
+  background: rgba(223,201,171,0.92);
   padding: 10px;
   border-radius: 10px;
   width: 100%;
   max-width: 360px;
+  border: 1px solid var(--line);
 }
-.order-summary h2 { margin-top: 0; color: #ffb3c6; font-size: 16px; }
+.order-summary h2 { margin-top: 0; color: var(--burgundy); font-size: 16px; }
 .order-item {
   display: flex;
   justify-content: space-between;
   margin: 6px 0;
   align-items: center;
   font-size: 13px;
+  color: var(--burgundy);
 }
 .order-item img {
   width: 40px;
@@ -110,32 +117,35 @@ header img.logo { width: 140px; max-width: 80%; }
   font-weight: 700;
   margin-top: 10px;
   font-size: 14px;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-top: 1px solid var(--line);
   padding-top: 6px;
+  color: var(--burgundy);
 }
 
 /* FORM */
 .checkout-form {
-  background: rgba(59,10,26,0.95);
+  background: rgba(223,201,171,0.92);
   padding: 10px;
   border-radius: 10px;
   width: 100%;
   max-width: 360px;
+  border: 1px solid var(--line);
 }
-.checkout-form h2 { color: #ffb3c6; margin-top: 0; font-size: 16px; }
-.checkout-form label { display: block; margin-top: 8px; font-size: 12px; }
+.checkout-form h2 { color: var(--burgundy); margin-top: 0; font-size: 16px; }
+.checkout-form label { display: block; margin-top: 8px; font-size: 12px; color: var(--burgundy); }
+
 .checkout-form input, 
 .checkout-form select {
   width: 100%;
   padding: 6px;
   margin-top: 3px;
   border-radius: 4px;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: #fff;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.45);
+  color: var(--burgundy);
   font-size: 12px;
 }
-.checkout-form input:focus, .checkout-form select:focus { outline: 2px solid #ffb3c6; }
+.checkout-form input:focus, .checkout-form select:focus { outline: 2px solid var(--burgundy); }
 
 /* PAYMENT METHODS INLINE */
 .payment-methods label {
@@ -144,11 +154,13 @@ header img.logo { width: 140px; max-width: 80%; }
   gap: 4px;
   margin-top: 8px;
   padding: 5px 6px;
-  background: rgba(255,179,198,0.1);
+  background: rgba(75,14,31,0.06);
+  border: 1px solid var(--line);
   border-radius: 6px;
   cursor: pointer;
   flex-wrap: wrap;
   font-size: 12px;
+  color: var(--burgundy);
 }
 .payment-methods input[type="radio"] { margin: 0; }
 .payment-methods img { width: 25px; height: 25px; object-fit: contain; vertical-align: middle; }
@@ -164,10 +176,10 @@ header img.logo { width: 140px; max-width: 80%; }
 .payment-fields-inline input {
   padding: 3px;
   font-size: 11px;
-  background: rgba(255,255,255,0.08);
-  border: none;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid var(--line);
   border-radius: 3px;
-  color: #fff;
+  color: var(--burgundy);
   width: 100%;
   flex: 1 1 50px;
 }
@@ -177,23 +189,25 @@ header img.logo { width: 140px; max-width: 80%; }
   width: 100%;
   padding: 10px;
   margin-top: 15px;
-  background: #ffb3c6;
+  background: var(--burgundy);
   border: none;
   border-radius: 8px;
   font-size: 14px;
-  color: #4b0e1f;
+  color: var(--beige);
   font-weight: 700;
   cursor: pointer;
   transition: 0.25s;
 }
-.confirm-btn:hover { background: #ffd1dd; }
+.confirm-btn:hover { opacity: 0.92; }
 
 /* FOOTER */
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #4b0e1f;
+  background-color: var(--beige);
   margin-top: 15px;
+  color: var(--burgundy);
+  border-top: 1px solid var(--line);
 }
 
 /* RESPONSIVE MOBILE */
@@ -279,8 +293,25 @@ footer {
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
 
 <script>
+/* ✅ NEW CART KEY */
+const CART_KEY = "nook_cart";
+
+function safeParse(v){
+  try { return JSON.parse(v); } catch(e){ return null; }
+}
+
+function getCart(){
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
+}
+
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // compatibility
+}
+
 function renderCheckout() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = getCart();  /* ✅ كان localStorage.getItem('cart') */
   const orderContainer = document.getElementById('orderItems');
   const totalEl = document.getElementById('totalAmount');
   const shippingEl = document.getElementById('shippingFee');
@@ -298,15 +329,16 @@ function renderCheckout() {
   }
 
   cart.forEach(item => {
-    // تحويل السعر للرقم حتى لو كان String
-    const priceNum = parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
-    const qtyNum = parseInt(item.qty);
+    const priceNum = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+    const qtyNum = Math.max(1, parseInt(item.qty) || 1);
     const itemTotal = priceNum * qtyNum;
     total += itemTotal;
 
+    const safeName = String(item.name || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
     orderContainer.innerHTML += `
       <div class="order-item">
-        <span><img src="${item.img}" alt="${item.name}"> ${item.name} x ${qtyNum}</span>
+        <span><img src="${item.img}" alt="${safeName}"> ${safeName} x ${qtyNum}</span>
         <span>${itemTotal.toFixed(2)} EGP</span>
       </div>
     `;
@@ -363,7 +395,11 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e){
   if(!validatePayment(payment)) return;
 
   alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment}`);
-  localStorage.removeItem('cart');
+
+  /* ✅ clear NEW cart */
+  localStorage.removeItem(CART_KEY);
+  localStorage.removeItem("cartItems");
+
   window.location.href = 'index.html';
 });
 
