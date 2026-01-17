@@ -190,15 +190,41 @@ const products = [
   }
 ];
 
+/* ✅ UNIFIED CART KEY (same as Cart page) */
+const CART_KEY = "nook_cart";
+
+function safeParse(v){
+  try { return JSON.parse(v); } catch(e){ return null; }
+}
+function getCart(){
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // for checkout
+}
+function makeId(category, name, price, img){
+  return `${category}__${name}__${price}__${img}`.toLowerCase()
+    .replace(/\s+/g,"_")
+    .replace(/[^\w\-]+/g,"");
+}
+
 function renderProducts(lang){
   const container=document.getElementById("productContainer");
   container.innerHTML="";
+
   products.forEach(p=>{
     const card=document.createElement("div");
     card.className="product-card";
-    card.dataset.name=p.name[lang];
-    card.dataset.price=p.price;
-    card.dataset.img=p.img;
+
+    const productName = p.name[lang];
+    const id = makeId("glass_candles", productName, p.price, p.img);
+
+    card.dataset.id = id;
+    card.dataset.name = productName;
+    card.dataset.price = p.price;
+    card.dataset.img = p.img;
 
     card.innerHTML=`
       <img src="${p.img}">
@@ -209,26 +235,31 @@ function renderProducts(lang){
     `;
     container.appendChild(card);
   });
+
   attachCart(lang);
 }
-
-function getCart(){ return JSON.parse(localStorage.getItem("cart"))||[]; }
-function saveCart(cart){ localStorage.setItem("cart",JSON.stringify(cart)); }
 
 function attachCart(lang){
   document.querySelectorAll(".add-to-cart").forEach(btn=>{
     btn.onclick=()=>{
       const card=btn.closest(".product-card");
-      const product={
-        name:card.dataset.name,
-        price:+card.dataset.price,
-        img:card.dataset.img,
-        qty:1
+
+      const product = {
+        id: card.dataset.id,
+        name: card.dataset.name,
+        price: Number(card.dataset.price) || 0,
+        img: card.dataset.img,
+        qty: 1,
+        category: "Glass Candles",
+        page: location.pathname,
+        addedAt: new Date().toISOString()
       };
+
       let cart=getCart();
-      let existing=cart.find(p=>p.name===product.name);
-      if(existing) existing.qty++;
+      const existing=cart.find(p=>p.id===product.id);
+      if(existing) existing.qty = (Number(existing.qty)||1) + 1;
       else cart.push(product);
+
       saveCart(cart);
 
       btn.textContent=lang==="ar"?"تم الإضافة!":"Added!";
@@ -238,6 +269,10 @@ function attachCart(lang){
     };
   });
 }
+
+/* Language switch */
+const langSelect = document.getElementById("langSelect");
+const backLink = document.getElementById("backLink");
 
 langSelect.onchange=()=>{
   const lang=langSelect.value;
