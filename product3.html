@@ -180,20 +180,65 @@ const products = [
   {img:"https://i.postimg.cc/13tLq7CC/5.png",price:250,desc:{en:"Compact wall light.",ar:"أبليك صغير."}}
 ];
 
+/* ✅ CART (LocalStorage) */
+function getCart(){
+  try{ return JSON.parse(localStorage.getItem("cart")) || []; }
+  catch(e){ return []; }
+}
+function saveCart(cart){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function attachCart(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const item = btn.closest(".item");
+      const product = {
+        name: item.dataset.name,
+        price: parseFloat(item.dataset.price),
+        img: item.dataset.img,
+        qty: 1
+      };
+
+      let cart = getCart();
+      const existing = cart.find(p => p.name === product.name);
+      if(existing) existing.qty += 1;
+      else cart.push(product);
+      saveCart(cart);
+
+      btn.innerText = (lang==="ar") ? "تم الإضافة!" : "Added!";
+      btn.style.background = "#fff";
+      btn.style.color = "#4b0e1f";
+
+      setTimeout(()=>{
+        btn.innerText = (lang==="ar") ? "أضف إلى السلة" : "Add to Cart";
+        btn.style.background = "var(--burgundy)";
+        btn.style.color = "var(--beige)";
+      }, 1200);
+    });
+  });
+}
+
 function renderProducts(lang){
   const c=document.getElementById("productContainer");
   c.innerHTML="";
   products.forEach(p=>{
     const d=document.createElement("div");
     d.className="item";
+    d.dataset.name = p.desc[lang];   // ✅ نفس فكرة الصفحات اللي عندك: الاسم حسب اللغة
+    d.dataset.price = p.price;
+    d.dataset.img = p.img;
+
     d.innerHTML=`
       <img src="${p.img}">
       <div class="price">${p.price} EGP</div>
       <p class="desc">${p.desc[lang]}</p>
-      <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+      <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     c.appendChild(d);
   });
+
+  attachCart(lang);
 }
 
 document.getElementById("langSelect").addEventListener("change",e=>{
