@@ -7,11 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#4b0e1f;
-  color:#fff;
+  background:var(--beige);
+  color:var(--burgundy);
 }
 
 /* HEADER */
@@ -21,6 +27,8 @@ header{
   font-family:'Didot',serif;
   font-size:28px;
   position:relative;
+  background:var(--beige);
+  color:var(--burgundy);
 }
 #langSelect{
   position:absolute;
@@ -31,8 +39,8 @@ header{
   border-radius:6px;
   border:none;
   font-weight:bold;
-  background:#ffb3c6;
-  color:#4b0e1f;
+  background:var(--burgundy);
+  color:var(--beige);
 }
 
 /* HOME GRID */
@@ -50,7 +58,8 @@ header{
   }
 }
 .collection-card{
-  background:#5c1228;
+  background:rgba(255,255,255,.18); /* كان بورجوندي - بقى لون فاتح على البيج */
+  border:1px solid var(--line);
   border-radius:26px;
   overflow:hidden;
   cursor:pointer;
@@ -66,7 +75,7 @@ header{
   padding:14px;
   text-align:center;
   font-family:'Didot',serif;
-  color:#ffb3c6;
+  color:var(--burgundy);
   font-size:22px;
 }
 
@@ -74,10 +83,12 @@ header{
 .collection-page{
   display:none;
   padding:16px;
+  background:var(--beige);
+  color:var(--burgundy);
 }
 .back-btn{
-  background:#ffb3c6;
-  color:#4b0e1f;
+  background:var(--burgundy);
+  color:var(--beige);
   padding:10px 18px;
   border:none;
   border-radius:10px;
@@ -113,15 +124,16 @@ header{
 /* =============================== PACKAGE BOX – MOOD (LIKE SPACE PACKAGES) ================================ */
 .package-details{
   margin-top:30px;
-  background:#5c1228;
+  background:rgba(255,255,255,.18); /* كان بورجوندي - بقى فاتح على البيج */
+  border:1px solid var(--line);
   padding:24px;
   border-radius:16px;
-  box-shadow:0 6px 25px rgba(0,0,0,.4);
+  box-shadow:0 6px 25px rgba(0,0,0,.18);
   max-width:900px;
 }
 .package-details h3{
   font-family:'Didot',serif;
-  color:#ffb3c6;
+  color:var(--burgundy);
   font-size:26px;
   margin-bottom:14px;
 }
@@ -129,10 +141,11 @@ header{
   font-size:16px;
   line-height:1.9;
   margin:6px 0;
+  color:var(--burgundy);
 }
 .price-tag{
   font-size:28px;
-  color:#ffb3c6;
+  color:var(--burgundy);
   font-weight:bold;
   margin-top:14px;
 }
@@ -140,8 +153,8 @@ header{
 /* ADD TO CART */
 .add-btn{
   margin-top:20px;
-  background:#ffb3c6;
-  color:#4b0e1f;
+  background:var(--burgundy);
+  color:var(--beige);
   padding:14px 32px;
   border:none;
   border-radius:16px;
@@ -151,7 +164,7 @@ header{
   transition:.3s;
 }
 .add-btn:hover{
-  background:#ff8fab;
+  background:var(--burgundy);
   transform:translateY(-2px);
 }
 
@@ -164,15 +177,16 @@ header{
 
 /* FORCE PACKAGE BOX STYLE – MOODS */
 .package-details{
-  background:#5c1228 !important;
+  background:rgba(255,255,255,.18) !important; /* كان بورجوندي */
+  border:1px solid var(--line) !important;
   padding:24px !important;
   border-radius:18px !important;
   margin-top:30px !important;
-  box-shadow:0 6px 25px rgba(0,0,0,.45) !important;
+  box-shadow:0 6px 25px rgba(0,0,0,.18) !important;
   max-width:900px !important;
 }
 .package-details h3{
-  color:#ffb3c6 !important;
+  color:var(--burgundy) !important;
   font-size:26px !important;
   margin-bottom:14px !important;
   font-family:'DidotWeb',serif !important;
@@ -181,11 +195,11 @@ header{
   font-size:16px !important;
   line-height:1.9 !important;
   margin:6px 0 !important;
-  color:#fff !important;
+  color:var(--burgundy) !important; /* كان أبيض */
 }
 .price, .price-tag, .mood-price{
   font-size:28px !important;
-  color:#ffb3c6 !important;
+  color:var(--burgundy) !important; /* كان وردي */
   font-weight:700 !important;
   margin-top:14px !important;
 }
@@ -194,8 +208,8 @@ header{
 .add-btn, .add-to-cart, button.add-cart{
   display:inline-block !important;
   margin-top:20px !important;
-  background:#ffb3c6 !important;
-  color:#4b0e1f !important;
+  background:var(--burgundy) !important;
+  color:var(--beige) !important;
   padding:14px 34px !important;
   border:none !important;
   border-radius:30px !important;
@@ -205,7 +219,7 @@ header{
   transition:.3s !important;
 }
 .add-btn:hover, .add-to-cart:hover, button.add-cart:hover{
-  background:#ff8fab !important;
+  background:var(--burgundy) !important;
   transform:translateY(-2px) !important;
 }
 @media(max-width:768px){
@@ -220,8 +234,8 @@ header{
   left:50%;
   bottom:24px;
   transform:translateX(-50%);
-  background:rgba(0,0,0,0.75);
-  color:#fff;
+  background:rgba(75,14,31,.92); /* كان أسود */
+  color:var(--beige);
   padding:12px 16px;
   border-radius:14px;
   font-size:14px;
@@ -235,7 +249,7 @@ header{
   opacity:1;
   transform:translateX(-50%) translateY(-6px);
 }
-.toast b{ color:#ffb3c6; }
+.toast b{ color:#fff; }
 
 </style>
 </head>
