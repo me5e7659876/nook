@@ -6,6 +6,11 @@
 <title>Create Account - Nook Decor</title>
 
 <style>
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
 
 /* DIDOT FONT */
 @font-face {
@@ -16,23 +21,24 @@
 body {
   margin: 0;
   font-family: 'DidotWeb', serif;
-  background-color: #4b0e1f;
+  background-color: var(--beige);        /* ✅ بيج */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: #fff;
+  color: var(--burgundy);                /* ✅ بيرجوندي */
 }
 
 /* BOX */
 .signup-box {
-  background: rgba(59,10,26,0.95);
+  background: rgba(223,201,171,0.95);    /* ✅ بيج */
   padding: 35px;
   width: 380px;
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+  box-shadow: 0 8px 25px rgba(75,14,31,0.25);
   text-align: center;
   animation: fadeIn 0.6s ease;
+  border: 1px solid var(--line);
 }
 
 @keyframes fadeIn {
@@ -43,7 +49,7 @@ body {
 .signup-box h2 {
   margin-bottom: 20px;
   font-size: 28px;
-  color: #ffb3c6;
+  color: var(--burgundy);               /* ✅ بدل البينك */
 }
 
 /* INPUTS */
@@ -52,22 +58,30 @@ body {
   margin: 15px 0;
   text-align: left;
 }
+
 .input-field label {
   font-size: 15px;
-  color: #ffb3c6;
+  color: var(--burgundy);               /* ✅ بدل البينك */
 }
+
 .input-field input {
   width: 100%;
   padding: 12px 14px;
   margin-top: 6px;
   border-radius: 10px;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: #fff;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.35);
+  color: var(--burgundy);
   font-size: 15px;
 }
+
+.input-field input::placeholder{
+  color: rgba(75,14,31,0.6);
+}
+
 .input-field input:focus {
-  outline: 2px solid #ffb3c6;
+  outline: 2px solid var(--burgundy);   /* ✅ بدل البينك */
+  background: #fff;
 }
 
 /* BUTTON */
@@ -75,30 +89,32 @@ body {
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background: #ffb3c6;
+  background: var(--burgundy);          /* ✅ بدل البينك */
   border: none;
   border-radius: 10px;
   font-size: 16px;
-  color: #4b0e1f;
+  color: var(--beige);                  /* ✅ بيج */
   font-weight: 700;
   cursor: pointer;
   transition: 0.25s;
 }
+
 .signup-btn:hover {
-  background: #ffd1dd;
+  opacity: 0.9;
+  transform: scale(1.02);
 }
 
 /* LINKS */
 .extra-links {
   margin-top: 15px;
   font-size: 14px;
-  color: #ffb3c6;
-}
-.extra-links a {
-  color: #fff;
-  text-decoration: underline;
+  color: var(--burgundy);               /* ✅ بدل البينك */
 }
 
+.extra-links a {
+  color: var(--burgundy);
+  text-decoration: underline;
+}
 </style>
 </head>
 
