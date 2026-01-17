@@ -37,8 +37,11 @@ body{
   --accent-hover: rgba(255,179,198,0.12);
   --active-outline: rgba(255,179,198,0.28);
 
-  /* ✅ Champagne */
-  --champagne: #EDE2CC;
+  /* ✅ NEW: Beige ثابت ومحايد (بيطلع Beige على AMOLED ومش بيقلب بني) */
+  --beige: #F9F2E5;
+
+  /* ✅ استخدمنا نفس البيج للـ champagne عشان يبقى موحد على كل الصفحة */
+  --champagne: var(--beige);
   --champagne-text: #2A1716;
 
   /* ✅ Burgundy system */
@@ -132,7 +135,7 @@ header{
 /* ---------------- TOP ANNOUNCEMENT (Create Your Own Mood) ---------------- */
 .announcement-wrap{
   width:100%;
-  background: linear-gradient(90deg, #E7D9BE, var(--champagne), #E7D9BE);
+  background: linear-gradient(90deg, var(--champagne), var(--champagne), var(--champagne));
   border-top: 1px solid rgba(42,23,22,0.14);
   border-bottom: 1px solid rgba(42,23,22,0.14);
   overflow:hidden;
@@ -349,7 +352,7 @@ header{
 }
 .featured-item{
   min-width:220px;
-  background: #F4EBD7;
+  background: var(--champagne);
   border-radius:18px;
   overflow:hidden;
 
@@ -509,7 +512,7 @@ footer p.copy{
   .featured-wrapper { overflow-x: auto; }
   .featured-track { scroll-snap-type: x mandatory; }
   .featured-item { scroll-snap-align: start; }
-  .featured-item img { object-fit: contain; background: #F4EBD7; }
+  .featured-item img { object-fit: contain; background: var(--champagne); }
 }
 @media (max-width: 768px) {
   .featured-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; }
