@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
@@ -7,27 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> 
 
 <style> 
-:root{
-  --beige:#DFC9AB;
-  --burgundy:#4b0e1f;
-  --line:rgba(75,14,31,.18);
-}
-
 body{ 
   margin:0; 
-  background:var(--beige); 
+  background:#F9F2E5; 
   font-family:'Poppins',sans-serif; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
 } 
 
 header{ 
-  background:var(--beige); 
+  background:#F9F2E5; 
   padding:18px; 
   text-align:center; 
   font-size:30px; 
   font-family:'Didot',serif; 
   position:relative; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
 } 
 
 #langSelect{ 
@@ -38,9 +33,9 @@ header{
   padding:6px 10px; 
   border:none; 
   border-radius:8px; 
-  background:var(--burgundy); 
+  background:#4b0e1f; 
   font-weight:bold; 
-  color:var(--beige); 
+  color:#F9F2E5; 
   cursor:pointer; 
 } 
 
@@ -74,7 +69,7 @@ header{
   top:50%; 
   transform:translateY(-50%); 
   font-size:40px; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
   cursor:pointer; 
   user-select:none; 
   padding:10px; 
@@ -86,14 +81,14 @@ header{
 .price{ 
   font-size:20px; 
   font-weight:bold; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
   margin-top:10px; 
   font-family:'Didot',serif; 
 } 
 
 .desc{ 
   font-size:15px; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
   margin-top:8px; 
   line-height:1.5; 
   opacity:0; 
@@ -104,9 +99,9 @@ header{
 .item:hover .desc{opacity:1;transform:translateY(0);} 
 
 .btn{ 
-  background:var(--burgundy); 
+  background:#4b0e1f; 
   border:none; 
-  color:var(--beige); 
+  color:#F9F2E5; 
   padding:10px 20px; 
   border-radius:10px; 
   font-weight:bold; 
@@ -118,7 +113,7 @@ header{
   display:block; 
   text-align:center; 
   margin:30px 0; 
-  color:var(--burgundy); 
+  color:#4b0e1f; 
   text-decoration:none; 
 } 
 
@@ -144,64 +139,38 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a> 
 
 <script> 
-/* =================== CART (UNIFIED) =================== */
-const CART_KEY = "nook_cart";
-const FALLBACK_IMG = "https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png";
-
-function safeParse(v){
-  try { return JSON.parse(v); } catch(e){ return null; }
-}
-
+// =================== CART FUNCTIONS =================== 
 function getCart(){ 
-  const data = safeParse(localStorage.getItem(CART_KEY));
-  return Array.isArray(data) ? data : [];
+  return JSON.parse(localStorage.getItem("cart")) || []; 
 } 
 
 function saveCart(cart){ 
-  localStorage.setItem(CART_KEY, JSON.stringify(cart)); 
+  localStorage.setItem("cart", JSON.stringify(cart)); 
   localStorage.setItem("cartItems", JSON.stringify(cart)); 
 } 
 
-function makeId(name, price, img, category){
-  const s = `${category}__${name}__${price}__${img}`.toLowerCase().trim();
-  return s.replace(/\s+/g,"_").replace(/[^\w\-]+/g,"");
-}
-
 function handleAddToCart(btn, product, lang){ 
-  let cart = getCart();
-
-  const category = product.category || "Vases";
-  const img = product.img || FALLBACK_IMG;
-  const id = makeId(product.name, product.price, img, category);
-
-  const existing = cart.find(i => i.id === id);
+  let cart = getCart(); 
+  const existing = cart.find(i => i.name === product.name && i.img === product.img); 
   if(existing){ 
-    existing.qty = (Number(existing.qty) || 1) + 1; 
+    existing.qty += 1; 
   } else { 
-    cart.push({
-      id,
-      name: product.name || "Item",
-      price: Number(product.price) || 0,
-      qty: 1,
-      img: img,
-      category: category,
-      page: location.pathname,
-      addedAt: new Date().toISOString()
-    }); 
+    cart.push({...product, qty:1}); 
   } 
   saveCart(cart); 
 
+  // تغيير الزرار زي Games 
   btn.innerText = lang==="ar" ? "تمت الإضافة ✓" : "Added to Cart ✓"; 
   btn.style.background="#fff"; 
   btn.style.color="#4b0e1f"; 
   setTimeout(()=>{ 
     btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart"; 
-    btn.style.background="var(--burgundy)"; 
-    btn.style.color="var(--beige)"; 
+    btn.style.background="#4b0e1f"; 
+    btn.style.color="#F9F2E5"; 
   },1200); 
 } 
 
-/* =================== IMAGES =================== */
+// =================== IMAGES =================== 
 const images = [ 
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg", 
  "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png", 
@@ -246,30 +215,28 @@ const images = [
  "https://i.postimg.cc/6QLt594L/1768001229974-019ba515-2679-7e1a-ba64-201ca3547e44.jpg", 
  "https://i.postimg.cc/DwG7HQ2B/1768003939954-019ba53e-b94d-70a3-9fd8-813a83954a38.png" 
 ]; 
-/* ✅ Deduplicate by URL (fix repeated products) */
-const uniqueImages = Array.from(new Set(images.filter(Boolean)));
 
 const pairedImages=[]; 
-for(let i=0;i<uniqueImages.length;i+=2){ 
-  pairedImages.push([uniqueImages[i], uniqueImages[i+1] || uniqueImages[i]]); 
+for(let i=0;i<images.length;i+=2){ 
+  pairedImages.push([images[i],images[i+1]||images[i]]); 
 } 
 
 const langSelect = document.getElementById("langSelect"); 
 const backLink = document.getElementById("backLink"); 
 
-/* =================== RENDER PRODUCTS =================== */
+// =================== RENDER PRODUCTS =================== 
 function renderProducts(lang){ 
   const container = document.getElementById("productContainer"); 
   container.innerHTML=""; 
 
-  pairedImages.forEach((pair, idx)=>{ 
+  pairedImages.forEach(pair=>{ 
     const div = document.createElement("div"); 
     div.className="item"; 
 
     div.innerHTML=`
       <div class="img-slider"> 
-        <img src="${pair[0]}" class="active" alt="Vase ${idx+1} image 1"> 
-        <img src="${pair[1]}" alt="Vase ${idx+1} image 2"> 
+        <img src="${pair[0]}" class="active"> 
+        <img src="${pair[1]}"> 
         <span class="arrow left">‹</span> 
         <span class="arrow right">›</span> 
       </div> 
@@ -280,16 +247,7 @@ function renderProducts(lang){
     const btn = document.createElement("button"); 
     btn.className="btn"; 
     btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; 
-
-    const productName = lang==="ar" ? `مزهرية ديكور ${idx+1}` : `Decorative Vase ${idx+1}`;
-
-    btn.addEventListener("click", ()=>handleAddToCart(btn,{
-      name: productName,
-      price: 2000,
-      img: pair[0],
-      category: "Vases"
-    }, lang)); 
-
+    btn.addEventListener("click", ()=>handleAddToCart(btn,{name:"Decorative Vase", price:2000, img:pair[0]}, lang)); 
     div.appendChild(btn); 
     container.appendChild(div); 
   }); 
@@ -297,29 +255,23 @@ function renderProducts(lang){
   initSliders(); 
 } 
 
-/* =================== SLIDER =================== */
+// =================== SLIDER =================== 
 function initSliders(){ 
   document.querySelectorAll(".img-slider").forEach(slider=>{ 
-    // ✅ prevent multiple intervals after language switch
-    if(slider.dataset.timer === "1") return;
-    slider.dataset.timer = "1";
-
     const imgs = slider.querySelectorAll("img"); 
     let index = 0; 
     const show = i=>{ 
       imgs.forEach(img=>img.classList.remove("active")); 
       imgs[i].classList.add("active"); 
     }; 
-
     slider.querySelector(".left").onclick = ()=>{ 
       index=(index-1+imgs.length)%imgs.length; 
       show(index); 
     }; 
     slider.querySelector(".right").onclick = ()=>{ 
-      index=(index+1)%imgs.length; 
+      index=(index+imgs.length)%imgs.length; 
       show(index); 
     }; 
-
     setInterval(()=>{ 
       index=(index+1)%imgs.length; 
       show(index); 
@@ -327,7 +279,7 @@ function initSliders(){
   }); 
 } 
 
-/* =================== LANGUAGE SWITCH =================== */
+// =================== LANGUAGE SWITCH =================== 
 langSelect.addEventListener("change", ()=>{ 
   const lang = langSelect.value; 
   document.body.dir = lang==="ar"?"rtl":"ltr"; 
@@ -335,7 +287,7 @@ langSelect.addEventListener("change", ()=>{
   renderProducts(lang); 
 }); 
 
-/* =================== INITIAL RENDER =================== */
+// =================== INITIAL RENDER =================== 
 renderProducts("en"); 
 </script> 
 
