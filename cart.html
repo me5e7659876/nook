@@ -8,9 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --beige:#DFC9AB;
+  --burgundy:#4b0e1f;
+  --line:rgba(75,14,31,.18);
+}
+
 body {
-  background:#4b0e1f;
-  color:#fff;
+  background: var(--beige);          /* ✅ بيج */
+  color: var(--burgundy);            /* ✅ بيرجوندي */
   font-family:'Poppins',sans-serif;
   padding:20px;
   direction: ltr;
@@ -19,8 +25,9 @@ body {
 h1 {
   text-align:center;
   margin-bottom:30px;
-  text-shadow:0 0 10px rgba(255,200,210,0.5);
+  text-shadow: 0 0 10px rgba(75,14,31,0.12);  /* ✅ نفس الإحساس بس بورجوندي */
   font-family: 'Didot', serif;
+  color: var(--burgundy);            /* ✅ بيرجوندي */
 }
 
 /* LANG */
@@ -30,15 +37,15 @@ h1 {
   border-radius:8px;
   border:none;
   font-weight:bold;
-  color:#4b0e1f;
-  background:#ffb3c6;
+  background: var(--burgundy);       /* ✅ بيرجوندي */
+  color: var(--beige);               /* ✅ بيج */
   cursor:pointer;
   font-family: 'Poppins', sans-serif;
 }
 
 /* CART ITEM */
 .cart-item {
-  background:#3b0a1a;
+  background: var(--beige);          /* ✅ كرت بيج */
   padding:15px;
   border-radius:12px;
   margin-bottom:15px;
@@ -46,7 +53,9 @@ h1 {
   gap:15px;
   align-items:center;
   flex-wrap: wrap;
+  border: 1px solid var(--line);     /* ✅ خط بسيط بنفس ستايل الموقع */
 }
+
 .cart-item img {
   width:100px;
   height:100px;
@@ -55,27 +64,33 @@ h1 {
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
+
 .item-info { flex:1; }
+
 .item-info h3 {
   margin:0;
   font-family: 'Didot', serif;
   font-size:18px;
-  color:#ffb3c6;
+  color: var(--burgundy);            /* ✅ بيرجوندي */
 }
+
 .price {
   font-size:18px;
   font-weight:bold;
   margin:5px 0;
   font-family: 'Poppins', sans-serif;
+  color: var(--burgundy);            /* ✅ بيرجوندي */
 }
+
 .qty-box {
   display:flex;
   align-items:center;
   gap:10px;
   margin-top:10px;
 }
+
 .qty-box button {
-  background:#ffb3c6;
+  background:#ffb3c6;                /* (سيبناه زي ما هو) */
   color:#4b0e1f;
   border:none;
   padding:5px 10px;
@@ -84,8 +99,9 @@ h1 {
   cursor:pointer;
   font-family: 'Poppins', sans-serif;
 }
+
 .remove-btn {
-  background:#ff5f5f;
+  background:#ff5f5f;                /* (سيبناه زي ما هو) */
   color:#fff;
   border:none;
   padding:8px 12px;
@@ -97,7 +113,7 @@ h1 {
 
 /* TOTAL */
 .total-box {
-  background:#3b0a1a;
+  background: var(--beige);          /* ✅ بيج */
   padding:20px;
   border-radius:15px;
   text-align:center;
@@ -105,13 +121,15 @@ h1 {
   font-size:22px;
   font-weight:bold;
   font-family: 'Poppins', sans-serif;
+  color: var(--burgundy);            /* ✅ بيرجوندي */
+  border: 1px solid var(--line);     /* ✅ نفس الستايل */
 }
 
 /* CHECKOUT BUTTON */
 #checkoutBtn {
   display:block;
   text-align:center;
-  background:#ffb3c6;
+  background:#ffb3c6;                /* (سيبناه زي ما هو) */
   color:#4b0e1f;
   margin-top:20px;
   padding:15px;
@@ -120,7 +138,7 @@ h1 {
   font-size:20px;
   text-decoration:none;
   font-family:'Poppins',sans-serif;
-  box-shadow:0 0 12px rgba(255,179,198,0.4);
+  box-shadow:0 0 12px rgba(75,14,31,0.10); /* ✅ ظل أخف مناسب للبيج */
   transition:0.25s;
 }
 #checkoutBtn:hover { background:#ffc2d2; transform:scale(1.03); }
@@ -129,7 +147,7 @@ h1 {
 .back-link {
   display:block;
   text-align:center;
-  color:#ffb3c6;
+  color: var(--burgundy);            /* ✅ بيرجوندي */
   margin-top:35px;
   font-size:18px;
   font-family: 'Poppins', sans-serif;
