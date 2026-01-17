@@ -192,8 +192,11 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
-/* =================== CART (UNIFIED + NO DUPLICATES) =================== */
+/* =================== CART (UNIFIED + MIGRATION) =================== */
 const CART_KEY = "nook_cart";
+const OLD_CART_KEY = "cart";
+const MIGRATION_FLAG = "nook_cart_migrated_v1";
+const FALLBACK_IMG = "https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png";
 
 function safeParse(v){
   try { return JSON.parse(v); } catch(e){ return null; }
@@ -207,6 +210,65 @@ function getCart(){
 function saveCart(cart){
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
   localStorage.setItem("cartItems", JSON.stringify(cart)); // compatibility
+}
+
+function readCartRaw(key){
+  const data = safeParse(localStorage.getItem(key));
+  return Array.isArray(data) ? data : [];
+}
+
+function normalizeItem(it){
+  const id = it && it.id ? String(it.id) : "";
+  const name = it && it.name ? String(it.name) : "Item";
+  const price = Number(it && it.price) || 0;
+  const qty = Math.max(1, Number(it && it.qty) || 1);
+  const img = it && it.img ? String(it.img) : FALLBACK_IMG;
+
+  return {
+    id: id || ("legacy_" + name.toLowerCase().replace(/\s+/g,"_") + "_" + price),
+    name,
+    price,
+    qty,
+    img,
+    category: it && it.category ? String(it.category) : "General",
+    page: it && it.page ? String(it.page) : "",
+    addedAt: it && it.addedAt ? String(it.addedAt) : new Date().toISOString()
+  };
+}
+
+function mergeDedup(arrA, arrB){
+  const map = new Map();
+  [...arrA, ...arrB].forEach(raw=>{
+    const item = normalizeItem(raw);
+    const key = item.id;
+    if(!map.has(key)){
+      map.set(key, {...item});
+    }else{
+      const existing = map.get(key);
+      existing.qty = (Number(existing.qty)||1) + (Number(item.qty)||1);
+      if((existing.img === FALLBACK_IMG) && item.img && item.img !== FALLBACK_IMG){
+        existing.img = item.img;
+      }
+      map.set(key, existing);
+    }
+  });
+  return Array.from(map.values());
+}
+
+function migrateOldCartOnce(){
+  const already = localStorage.getItem(MIGRATION_FLAG) === "1";
+  if(already) return;
+
+  const newCart = readCartRaw(CART_KEY);
+  const oldCart = readCartRaw(OLD_CART_KEY);
+
+  if(oldCart.length){
+    const merged = mergeDedup(newCart, oldCart);
+    saveCart(merged);
+    localStorage.removeItem(OLD_CART_KEY); // stop duplication forever
+  }
+
+  localStorage.setItem(MIGRATION_FLAG, "1");
 }
 
 /* ================= DATA ================= */
@@ -270,21 +332,17 @@ const descs = [
 /* ================= ADD TO CART (BY ID) ================= */
 function addToCart(btn, product, lang){
   let cart = getCart();
-
-  // ✅ ID ثابت (لا يتغير مع اللغة)
   const existing = cart.find(p => p.id === product.id);
 
   if(existing){
     existing.qty = (Number(existing.qty) || 1) + 1;
-
-    // اختياري: خلي الاسم يتحدث حسب اللغة الحالية (بدون ما يكرر)
-    existing.name = product.name;
+    existing.name = product.name; // update display name based on current lang
   }else{
     cart.push({
       id: product.id,
       name: product.name,
       price: Number(product.price) || 0,
-      img: product.img,
+      img: product.img || FALLBACK_IMG,
       qty: 1,
       category: "Glass Vases",
       page: location.pathname,
@@ -318,14 +376,13 @@ function renderProducts(lang){
     const title = names[i] ? names[i][lang] : (lang==="ar" ? "مزهرية زجاج" : "Glass Vase");
     const desc  = descs[i] ? descs[i][lang] : (lang==="ar" ? "قطعة ديكور أنيقة تضيف لمسة مميزة." : "Elegant decor piece that adds a refined touch.");
 
-    // ✅ ID ثابت بناءً على index (حل مضمون ضد تكرار اللغة)
     const productId = `glass_vase_${i+1}`;
 
     card.innerHTML=`
       <div class="product-container">
         <div class="slider">
-          <img src="${imgs[0]}" class="slide active" alt="">
-          <img src="${imgs[1]}" class="slide" alt="">
+          <img src="${imgs[0]}" class="slide active" alt="" onerror="this.src='${FALLBACK_IMG}'">
+          <img src="${imgs[1]}" class="slide" alt="" onerror="this.src='${FALLBACK_IMG}'">
           <button class="arrow right" aria-label="next">›</button>
         </div>
 
@@ -377,14 +434,26 @@ function initSliders(){
 }
 
 /* ================= LANGUAGE ================= */
+const langSelect = document.getElementById("langSelect");
+const backLink = document.getElementById("backLink");
+
+let currentLang = localStorage.getItem("siteLang") || "en";
+langSelect.value = currentLang;
+
 langSelect.addEventListener("change",()=>{
-  const lang=langSelect.value;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  backLink.textContent=lang==="ar"?"← العودة للرئيسية":"← Back to Home";
-  renderProducts(lang);
+  currentLang = langSelect.value;
+  localStorage.setItem("siteLang", currentLang);
+
+  document.body.dir=currentLang==="ar"?"rtl":"ltr";
+  backLink.textContent=currentLang==="ar"?"← العودة للرئيسية":"← Back to Home";
+  renderProducts(currentLang);
 });
 
-renderProducts("en");
+/* ✅ run once + initial render */
+migrateOldCartOnce();
+document.body.dir=currentLang==="ar"?"rtl":"ltr";
+backLink.textContent=currentLang==="ar"?"← العودة للرئيسية":"← Back to Home";
+renderProducts(currentLang);
 </script>
 
 </body>
