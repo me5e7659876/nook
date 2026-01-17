@@ -10,10 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --beige:#DFC9AB;
+      --burgundy:#4b0e1f;
+      --line:rgba(75,14,31,.18);
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #4b0e1f;
+      background-color: var(--burgundy);
       color: #fff;
       background-image: url('https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png');
       background-size: cover;
@@ -60,20 +66,22 @@
       gap: 30px;
     }
 
+    /* ✅ الكارت بقى بيج */
     .product-card {
-      background-color: rgba(75, 14, 31, 0.9);
+      background-color: var(--beige);
+      border: 1px solid var(--line);
       border-radius: 15px;
       padding: 12px;
       max-width: 270px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
       transition: 0.3s;
       overflow: hidden;
       position: relative;
     }
 
     .product-card:hover {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     }
 
     .product-card img {
@@ -84,9 +92,10 @@
       margin-bottom: 10px;
     }
 
+    /* ✅ العنوان بورجوندي */
     .product-card h1 {
       font-size: 20px;
-      color: #ffb3c6;
+      color: var(--burgundy);
       
       /* TITLE FONT */
       font-family: 'Didot', serif;
@@ -94,9 +103,11 @@
       margin-bottom: 8px;
     }
 
+    /* ✅ الوصف بورجوندي */
     .product-card p {
       line-height: 1.5;
       font-size: 14px;
+      color: var(--burgundy);
 
       /* DESCRIPTION FONT */
       font-family: 'Poppins', sans-serif;
@@ -116,17 +127,20 @@
       transform: translateY(0);
     }
 
+    /* ✅ السعر بورجوندي */
     .price {
       font-size: 18px;
       font-weight: bold;
       margin: 8px 0;
       font-family: 'Poppins', sans-serif;
+      color: var(--burgundy);
     }
 
+    /* ✅ زر Add to cart بورجوندي */
     .btn {
-      background-color: #ffb3c6;
+      background-color: var(--burgundy);
       border: none;
-      color: #4b0e1f;
+      color: var(--beige);
       padding: 8px 18px;
       border-radius: 10px;
       font-weight: bold;
@@ -137,15 +151,16 @@
     }
 
     .btn:hover {
-      background-color: #ffc7d3;
+      opacity: .92;
     }
 
+    /* ✅ اللينك بورجوندي */
     .back-link {
       display: block;
       text-align: center;
       margin-top: 150px;
       margin-bottom: 40px;
-      color: #ffb3c6;
+      color: var(--burgundy);
       text-decoration: none;
       font-size: 20px;
       font-weight: 500;
@@ -246,8 +261,8 @@
 
           setTimeout(() => {
             btn.innerText = lang === "ar" ? "أضف إلى السلة" : "Add to Cart";
-            btn.style.background = "#ffb3c6";
-            btn.style.color = "#4b0e1f";
+            btn.style.background = "var(--burgundy)";
+            btn.style.color = "var(--beige)";
           }, 1200);
         });
       });
