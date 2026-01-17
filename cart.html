@@ -178,6 +178,7 @@ h1 {
 
 const CART_KEY = "nook_cart";     // الجديد
 const OLD_CART_KEY = "cart";      // القديم
+const MIGRATION_FLAG = "nook_cart_migrated_v1";
 const FALLBACK_IMG = "https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png";
 
 const langData = {
@@ -203,35 +204,30 @@ function safeParse(v){
   try { return JSON.parse(v); } catch(e){ return null; }
 }
 
-/* LANG */
-const langSelect = document.getElementById("langSelect");
-let currentLang = localStorage.getItem("siteLang") || "en";
-langSelect.value = currentLang;
-
-langSelect.addEventListener("change", ()=> {
-  currentLang = langSelect.value;
-  localStorage.setItem("siteLang", currentLang);
-  renderCart();
-});
-
-/* ---------------------------
-   ✅ MERGE ALL PRODUCTS (NEW + OLD)
----------------------------- */
 function readCartRaw(key){
   const data = safeParse(localStorage.getItem(key));
   return Array.isArray(data) ? data : [];
 }
 
+function slugify(s){
+  return String(s || "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "_")
+    .replace(/[^\w\-]+/g, "");
+}
+
 /* normalize any item shape into one standard shape */
-function normalizeItem(it, idx, source){
+function normalizeItem(it){
   const name = (it && it.name) ? String(it.name) : "Item";
   const price = Number(it && it.price) || 0;
   const qty = Math.max(1, Number(it && it.qty) || 1);
   const img = (it && it.img) ? String(it.img) : FALLBACK_IMG;
 
-  // لو عنده id تمام، لو لأ نعمل id ثابت حسب الاسم+السعر+المصدر
-  const baseId = (it && it.id) ? String(it.id) : `${source}_${name.toLowerCase().replace(/\s+/g,"_")}_${price}_${idx}`;
-  const id = baseId;
+  // ✅ stable id (NO index) to prevent duplicates
+  const id =
+    (it && it.id) ? String(it.id) :
+    `p_${slugify(name)}_${price}_${slugify(img)}`;
 
   return {
     id,
@@ -245,43 +241,71 @@ function normalizeItem(it, idx, source){
   };
 }
 
-/* merge + dedupe + sum qty for same product */
-function mergeAllCarts(){
-  const newCart = readCartRaw(CART_KEY).map((it, i) => normalizeItem(it, i, "new"));
-  const oldCart = readCartRaw(OLD_CART_KEY).map((it, i) => normalizeItem(it, i, "old"));
+/* ✅ merge + dedupe + sum qty (one-time use in migration) */
+function mergeDedup(arrA, arrB){
+  const map = new Map();
 
-  const mergedMap = new Map();
+  [...arrA, ...arrB].forEach(raw => {
+    const item = normalizeItem(raw);
+    const key = item.id || `${item.name.toLowerCase()}__${item.price}`;
 
-  // key: prefer item.id if exists, otherwise name+price is good enough
-  function keyOf(item){
-    // لو id معمول كويس هيمسك المنتج
-    if (item.id) return item.id;
-    return `${item.name.toLowerCase()}__${item.price}`;
-  }
-
-  [...newCart, ...oldCart].forEach(item => {
-    const key = keyOf(item);
-    if (!mergedMap.has(key)){
-      mergedMap.set(key, {...item});
-    } else {
-      const existing = mergedMap.get(key);
+    if(!map.has(key)){
+      map.set(key, {...item});
+    }else{
+      const existing = map.get(key);
       existing.qty = (Number(existing.qty) || 1) + (Number(item.qty) || 1);
-      // لو existing img fallback و item عنده img حقيقي
-      if (existing.img === FALLBACK_IMG && item.img && item.img !== FALLBACK_IMG) {
+      if((existing.img === FALLBACK_IMG) && item.img && item.img !== FALLBACK_IMG){
         existing.img = item.img;
       }
-      mergedMap.set(key, existing);
+      map.set(key, existing);
     }
   });
 
-  const merged = Array.from(mergedMap.values())
-    .filter(it => it && (it.name || it.id));
+  return Array.from(map.values()).filter(x => x && x.name);
+}
 
-  // ✅ احفظ كله في nook_cart عشان يبقى المصدر الرسمي
+/* ✅ One-time migration: OLD cart -> NEW cart (then delete old to stop repetition) */
+function migrateOldCartOnce(){
+  const already = localStorage.getItem(MIGRATION_FLAG) === "1";
+  if(already) return;
+
+  const newCart = readCartRaw(CART_KEY);
+  const oldCart = readCartRaw(OLD_CART_KEY);
+
+  if(oldCart.length === 0){
+    localStorage.setItem(MIGRATION_FLAG, "1");
+    return;
+  }
+
+  // merge once
+  const merged = mergeDedup(newCart, oldCart);
+
   localStorage.setItem(CART_KEY, JSON.stringify(merged));
   localStorage.setItem("cartItems", JSON.stringify(merged)); // for checkout
 
-  return merged;
+  // ✅ delete old cart so it never duplicates again
+  localStorage.removeItem(OLD_CART_KEY);
+
+  localStorage.setItem(MIGRATION_FLAG, "1");
+}
+
+/* LANG */
+const langSelect = document.getElementById("langSelect");
+let currentLang = localStorage.getItem("siteLang") || "en";
+langSelect.value = currentLang;
+
+langSelect.addEventListener("change", ()=> {
+  currentLang = langSelect.value;
+  localStorage.setItem("siteLang", currentLang);
+  renderCart();
+});
+
+/* ---------------------------
+   CART STORAGE
+---------------------------- */
+function getCart(){
+  const cart = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(cart) ? cart : [];
 }
 
 function saveCart(cart){
@@ -293,7 +317,7 @@ function saveCart(cart){
    UI RENDER
 ---------------------------- */
 function renderCart() {
-  let cart = mergeAllCarts(); // ✅ يجمع كل منتجات السايت فعليًا
+  const cart = getCart();
   let container = document.getElementById("cartItems");
   const data = langData[currentLang];
 
@@ -345,11 +369,6 @@ function renderCart() {
 /* ---------------------------
    ACTIONS (by id)
 ---------------------------- */
-function getCart(){
-  const cart = safeParse(localStorage.getItem(CART_KEY));
-  return Array.isArray(cart) ? cart : [];
-}
-
 function increaseQty(id) {
   let cart = getCart();
   const item = cart.find(x => x.id === id);
@@ -376,6 +395,8 @@ function removeItem(id) {
   renderCart();
 }
 
+/* ✅ run once */
+migrateOldCartOnce();
 renderCart();
 </script>
 
