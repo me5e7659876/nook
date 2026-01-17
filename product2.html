@@ -207,20 +207,63 @@ const products = [
   { img:"https://i.postimg.cc/Pf8WtsPr/re1.png", price:370, name:{en:"Ultra Soft Cushion", ar:"وسادة فائقة النعومة"}, desc:{en:"Maximum comfort.", ar:"أقصى راحة."}}
 ];
 
+/* ✅ CART (LocalStorage) - نفس فكرة الصفحات اللي عندك */
+function getCart(){ 
+  try { return JSON.parse(localStorage.getItem("cart")) || []; }
+  catch(e){ return []; }
+}
+function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
+
+function attachCart(lang){
+  document.querySelectorAll(".add-to-cart").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const item = btn.closest(".item");
+      const product = {
+        name: item.dataset.name,
+        price: parseFloat(item.dataset.price),
+        img: item.dataset.img,
+        qty: 1
+      };
+
+      let cart = getCart();
+      let existing = cart.find(p => p.name === product.name);
+      if(existing) existing.qty += 1;
+      else cart.push(product);
+      saveCart(cart);
+
+      btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
+      setTimeout(()=>{
+        btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
+      }, 1200);
+    });
+  });
+}
+
 function renderProducts(lang){
   const c = document.getElementById("productContainer");
   c.innerHTML="";
   products.forEach(p=>{
     c.innerHTML += `
-      <div class="item">
+      <div class="item" data-name="${p.name[lang]}" data-price="${p.price}" data-img="${p.img}">
         <img src="${p.img}" alt="">
         <div class="title">${p.name[lang]}</div>
         <div class="desc">${p.desc[lang]}</div>
         <div class="price">${p.price} EGP</div>
-        <button class="btn">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
+        <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>`;
   });
+
+  attachCart(lang);
 }
+
+/* Language switch (بدون تغيير ستايل) */
+const langSelect = document.getElementById("langSelect");
+langSelect.addEventListener("change", ()=>{
+  const lang = langSelect.value;
+  document.body.dir = lang==="ar" ? "rtl" : "ltr";
+  renderProducts(lang);
+  document.getElementById("backLink").textContent = lang==="ar" ? "← العودة للرئيسية" : "← Back to Home";
+});
 
 renderProducts("en");
 </script>
