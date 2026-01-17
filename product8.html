@@ -60,8 +60,8 @@
   /* ✅ التعديل الوحيد: مسافة أكبر على الديسكتوب */
   @media (min-width: 1024px){
     .product-container{
-      gap: 55px;       /* ✅ مسافة أكبر بين المنتجات */
-      padding: 45px;   /* ✅ هوامش أكبر شوية */
+      gap: 55px;
+      padding: 45px;
     }
   }
 
@@ -77,7 +77,7 @@
     transition: transform .25s ease;
     display:flex;
     flex-direction:column;
-    align-items:center; /* ✅ في النص */
+    align-items:center;
   }
 
   .product-card:hover{
@@ -92,8 +92,6 @@
     display:block;
     margin: 0 auto;
     border-radius: 15px;
-
-    /* ✅ أفضل عرض ممكن للصورة */
     image-rendering: auto;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -114,7 +112,6 @@
     color: var(--burgundy);
   }
 
-  /* ✅ add to cart بورجوندي */
   .btn {
     background-color: var(--burgundy);
     border: none;
@@ -123,7 +120,7 @@
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    width: 350px; /* نفس عرض الصورة على الديسكتوب */
+    width: 350px;
     transition: 0.25s;
     font-family: 'Poppins', sans-serif;
     margin-top: 10px;
@@ -144,7 +141,7 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  /* ✅ الموبايل: نفس المقاس على كل التليفونات (ثابت) + في النص */
+  /* ✅ الموبايل */
   @media (max-width: 768px){
     .product-container{
       padding: 26px 14px;
@@ -159,28 +156,21 @@
     }
 
     .product-card img{
-      width: 300px;     /* ✅ ثابت لكل الموبايلات */
-      height: 360px;    /* ✅ ثابت لكل الموبايلات */
+      width: 300px;
+      height: 360px;
       object-fit: cover;
       margin: 0 auto;
     }
 
     .btn{
-      width: 300px;     /* نفس عرض الصورة على الموبايل */
+      width: 300px;
     }
   }
 
   @media (max-width: 420px) {
-    .price {
-      font-size: 16px;
-    }
-    .btn {
-      font-size: 14px;
-      padding: 8px;
-    }
-    .product-card h2 {
-      font-size: 18px;
-    }
+    .price { font-size: 16px; }
+    .btn { font-size: 14px; padding: 8px; }
+    .product-card h2 { font-size: 18px; }
 
     #langSelect { 
       font-size: 12px;
@@ -205,29 +195,80 @@
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a>
 
 <script>
+/* =================== PRODUCTS =================== */
 const products = [
-  {img:"https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg", price:450,
-   name:{en:"Chess", ar:"شطرنج"}},
+  { id:"game_chess_450", img:"https://i.postimg.cc/XJx00561/The-Art-of-Chess.jpg", price:450,
+    name:{en:"Chess", ar:"شطرنج"}},
 
-  {img:"https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png", price:70,
-   name:{en:"Premium Playing Cards", ar:"ورق لعب فاخر"}},
+  { id:"game_cards_70", img:"https://i.postimg.cc/3wCsgGNW/5df79d6b-5a6d-4fd3-a20d-e2e730acbf6a.png", price:70,
+    name:{en:"Premium Playing Cards", ar:"ورق لعب فاخر"}},
 
-  {img:"https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png", price:90,
-   name:{en:"UNO Card Game", ar:"لعبة أورنو"}},
+  { id:"game_uno_90", img:"https://i.postimg.cc/pr84L5wH/b3e6623c-62d3-4782-a1dc-a91de8316c01.png", price:90,
+    name:{en:"UNO Card Game", ar:"لعبة أورنو"}},
 
-  {img:"https://i.postimg.cc/7LgrZ9vb/download-(48).png", price:250,
-   name:{en:"Classic Domino", ar:"دومينو كلاسيك"}}
+  { id:"game_domino_250", img:"https://i.postimg.cc/7LgrZ9vb/download-(48).png", price:250,
+    name:{en:"Classic Domino", ar:"دومينو كلاسيك"}}
 ];
 
+/* =================== CART (UNIFIED) =================== */
+const CART_KEY = "nook_cart";
+
+function safeParse(v){
+  try { return JSON.parse(v); } catch(e){ return null; }
+}
+function getCart(){
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // checkout compatibility
+}
+
+function addToCart(btn, product, lang){
+  let cart = getCart();
+
+  const id = product.id; // ✅ ثابت، لا يتأثر باللغة
+  const existing = cart.find(p => p.id === id);
+
+  if(existing){
+    existing.qty = (Number(existing.qty) || 1) + 1;
+    // تحديث الاسم حسب اللغة الحالية (اختياري)
+    existing.name = product.name;
+  }else{
+    cart.push({
+      id,
+      name: product.name,
+      price: Number(product.price) || 0,
+      img: product.img,
+      qty: 1,
+      category: "Games",
+      page: location.pathname,
+      addedAt: new Date().toISOString()
+    });
+  }
+
+  saveCart(cart);
+
+  btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
+  btn.style.background="#fff"; 
+  btn.style.color="#4b0e1f";
+
+  setTimeout(()=>{
+    btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart";
+    btn.style.background="var(--burgundy)";
+    btn.style.color="var(--beige)";
+  },1200);
+}
+
+/* =================== RENDER =================== */
 function renderProducts(lang){
   const container = document.getElementById("productContainer");
   container.innerHTML = "";
+
   products.forEach(p=>{
     const card = document.createElement("div");
     card.className = "product-card";
-    card.dataset.name = p.name[lang];
-    card.dataset.price = p.price;
-    card.dataset.img = p.img;
 
     card.innerHTML = `
       <img src="${p.img}" alt="${p.name[lang]}">
@@ -236,37 +277,18 @@ function renderProducts(lang){
       <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     container.appendChild(card);
-  });
-  attachCart(lang);
-}
 
-function getCart(){ return JSON.parse(localStorage.getItem("cart")) || []; }
-function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
-
-function attachCart(lang){
-  document.querySelectorAll(".add-to-cart").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      const card = btn.closest(".product-card");
-      const product = {name:card.dataset.name, price:parseFloat(card.dataset.price), img:card.dataset.img, qty:1};
-      let cart = getCart();
-      let existing = cart.find(p=>p.name===product.name);
-      if(existing) existing.qty+=1; else cart.push(product);
-      saveCart(cart);
-
-      btn.innerText = lang==="ar"?"تم الإضافة!":"Added!";
-      btn.style.background="#fff"; 
-      btn.style.color="#4b0e1f";
-
-      setTimeout(()=>{
-        btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart";
-        btn.style.background="var(--burgundy)";
-        btn.style.color="var(--beige)";
-      },1200);
-    });
+    const btn = card.querySelector(".add-to-cart");
+    btn.onclick = ()=> addToCart(btn, {
+      id: p.id,
+      name: p.name[lang],
+      price: p.price,
+      img: p.img
+    }, lang);
   });
 }
 
-// Language switch
+/* =================== LANGUAGE SWITCH =================== */
 const langSelect = document.getElementById("langSelect");
 langSelect.addEventListener("change",()=>{
   const lang = langSelect.value;
@@ -276,7 +298,7 @@ langSelect.addEventListener("change",()=>{
   renderProducts(lang);
 });
 
-// Initial render
+/* =================== INITIAL =================== */
 renderProducts("en");
 </script>
 
