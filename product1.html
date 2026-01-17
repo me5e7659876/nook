@@ -144,38 +144,65 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a> 
 
 <script> 
-// =================== CART FUNCTIONS =================== 
+/* =================== CART (UNIFIED) =================== */
+const CART_KEY = "nook_cart";
+const FALLBACK_IMG = "https://i.postimg.cc/3RVR3GnB/ac037baf-0cb0-4349-9f9d-c1dbc61a6ddd.png";
+
+function safeParse(v){
+  try { return JSON.parse(v); } catch(e){ return null; }
+}
+
 function getCart(){ 
-  return JSON.parse(localStorage.getItem("cart")) || []; 
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
 } 
 
 function saveCart(cart){ 
-  localStorage.setItem("cart", JSON.stringify(cart)); 
+  localStorage.setItem(CART_KEY, JSON.stringify(cart)); 
   localStorage.setItem("cartItems", JSON.stringify(cart)); 
 } 
 
+function makeId(name, price, img, category){
+  const s = `${category}__${name}__${price}__${img}`.toLowerCase().trim();
+  return s.replace(/\s+/g,"_").replace(/[^\w\-]+/g,"");
+}
+
 function handleAddToCart(btn, product, lang){ 
-  let cart = getCart(); 
-  const existing = cart.find(i => i.name === product.name && i.img === product.img); 
+  let cart = getCart();
+
+  const category = product.category || "Vases";
+  const img = product.img || FALLBACK_IMG;
+  const id = makeId(product.name, product.price, img, category);
+
+  const existing = cart.find(i => i.id === id);
   if(existing){ 
-    existing.qty += 1; 
+    existing.qty = (Number(existing.qty) || 1) + 1; 
   } else { 
-    cart.push({...product, qty:1}); 
+    cart.push({
+      id,
+      name: product.name || "Item",
+      price: Number(product.price) || 0,
+      qty: 1,
+      img: img,
+      category: category,
+      page: location.pathname,
+      addedAt: new Date().toISOString()
+    }); 
   } 
   saveCart(cart); 
 
-  // تغيير الزرار زي Games 
+  // نفس ستايل الـ feedback
   btn.innerText = lang==="ar" ? "تمت الإضافة ✓" : "Added to Cart ✓"; 
   btn.style.background="#fff"; 
   btn.style.color="#4b0e1f"; 
   setTimeout(()=>{ 
     btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart"; 
-    btn.style.background="#4b0e1f"; 
-    btn.style.color="#F9F2E5"; 
+    btn.style.background="var(--burgundy)"; 
+    btn.style.color="var(--beige)"; 
   },1200); 
 } 
 
-// =================== IMAGES =================== 
+/* =================== IMAGES =================== */
 const images = [ 
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg", 
  "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png", 
@@ -221,27 +248,30 @@ const images = [
  "https://i.postimg.cc/DwG7HQ2B/1768003939954-019ba53e-b94d-70a3-9fd8-813a83954a38.png" 
 ]; 
 
+/* ✅ remove duplicate image urls (prevents repeated products) */
+const uniqueImages = Array.from(new Set(images.filter(Boolean)));
+
 const pairedImages=[]; 
-for(let i=0;i<images.length;i+=2){ 
-  pairedImages.push([images[i],images[i+1]||images[i]]); 
+for(let i=0;i<uniqueImages.length;i+=2){ 
+  pairedImages.push([uniqueImages[i], uniqueImages[i+1] || uniqueImages[i]]); 
 } 
 
 const langSelect = document.getElementById("langSelect"); 
 const backLink = document.getElementById("backLink"); 
 
-// =================== RENDER PRODUCTS =================== 
+/* =================== RENDER PRODUCTS =================== */
 function renderProducts(lang){ 
   const container = document.getElementById("productContainer"); 
   container.innerHTML=""; 
 
-  pairedImages.forEach(pair=>{ 
+  pairedImages.forEach((pair, idx)=>{ 
     const div = document.createElement("div"); 
     div.className="item"; 
 
     div.innerHTML=`
       <div class="img-slider"> 
-        <img src="${pair[0]}" class="active"> 
-        <img src="${pair[1]}"> 
+        <img src="${pair[0]}" class="active" alt="Vase ${idx+1} image 1"> 
+        <img src="${pair[1]}" alt="Vase ${idx+1} image 2"> 
         <span class="arrow left">‹</span> 
         <span class="arrow right">›</span> 
       </div> 
@@ -252,7 +282,17 @@ function renderProducts(lang){
     const btn = document.createElement("button"); 
     btn.className="btn"; 
     btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; 
-    btn.addEventListener("click", ()=>handleAddToCart(btn,{name:"Decorative Vase", price:2000, img:pair[0]}, lang)); 
+
+    // ✅ unique name per item to avoid cart confusion
+    const productName = lang==="ar" ? `مزهرية ديكور ${idx+1}` : `Decorative Vase ${idx+1}`;
+
+    btn.addEventListener("click", ()=>handleAddToCart(btn,{
+      name: productName,
+      price: 2000,
+      img: pair[0],
+      category: "Vases"
+    }, lang)); 
+
     div.appendChild(btn); 
     container.appendChild(div); 
   }); 
@@ -260,7 +300,7 @@ function renderProducts(lang){
   initSliders(); 
 } 
 
-// =================== SLIDER =================== 
+/* =================== SLIDER =================== */
 function initSliders(){ 
   document.querySelectorAll(".img-slider").forEach(slider=>{ 
     const imgs = slider.querySelectorAll("img"); 
@@ -284,7 +324,7 @@ function initSliders(){
   }); 
 } 
 
-// =================== LANGUAGE SWITCH =================== 
+/* =================== LANGUAGE SWITCH =================== */
 langSelect.addEventListener("change", ()=>{ 
   const lang = langSelect.value; 
   document.body.dir = lang==="ar"?"rtl":"ltr"; 
@@ -292,7 +332,7 @@ langSelect.addEventListener("change", ()=>{
   renderProducts(lang); 
 }); 
 
-// =================== INITIAL RENDER =================== 
+/* =================== INITIAL RENDER =================== */
 renderProducts("en"); 
 </script> 
 
