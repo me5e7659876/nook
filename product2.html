@@ -207,28 +207,53 @@ const products = [
   { img:"https://i.postimg.cc/Pf8WtsPr/re1.png", price:370, name:{en:"Ultra Soft Cushion", ar:"وسادة فائقة النعومة"}, desc:{en:"Maximum comfort.", ar:"أقصى راحة."}}
 ];
 
-/* ✅ CART (LocalStorage) - نفس فكرة الصفحات اللي عندك */
-function getCart(){ 
-  try { return JSON.parse(localStorage.getItem("cart")) || []; }
-  catch(e){ return []; }
+/* ✅ CART UNIFIED (same as moods/space packages) */
+const CART_KEY = "nook_cart";
+
+function safeParse(v){
+  try { return JSON.parse(v); } catch(e){ return null; }
 }
-function saveCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
+function getCart(){
+  const data = safeParse(localStorage.getItem(CART_KEY));
+  return Array.isArray(data) ? data : [];
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // for checkout
+}
+function makeId(category, name, price, img){
+  return `${category}__${name}__${price}__${img}`.toLowerCase().trim()
+    .replace(/\s+/g,"_").replace(/[^\w\-]+/g,"");
+}
 
 function attachCart(lang){
   document.querySelectorAll(".add-to-cart").forEach(btn=>{
     btn.addEventListener("click", ()=>{
       const item = btn.closest(".item");
-      const product = {
-        name: item.dataset.name,
-        price: parseFloat(item.dataset.price),
-        img: item.dataset.img,
-        qty: 1
-      };
+
+      const name = item.dataset.name || "Item";
+      const price = Number(item.dataset.price) || 0;
+      const img = item.dataset.img || "";
+      const category = "Soft Cushions";
+      const id = makeId(category, name, price, img);
 
       let cart = getCart();
-      let existing = cart.find(p => p.name === product.name);
-      if(existing) existing.qty += 1;
-      else cart.push(product);
+      let existing = cart.find(p => p.id === id);
+
+      if(existing) existing.qty = (Number(existing.qty) || 1) + 1;
+      else {
+        cart.push({
+          id,
+          name,
+          price,
+          qty: 1,
+          img,
+          category,
+          page: location.pathname,
+          addedAt: new Date().toISOString()
+        });
+      }
+
       saveCart(cart);
 
       btn.innerText = lang==="ar" ? "تم الإضافة!" : "Added!";
