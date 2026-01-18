@@ -525,6 +525,76 @@ footer p.copy{
 @media (max-width: 768px) {
   .featured-arrow, .hero .arrow { display: none !important; }
 }
+/* =========================================================
+   GLOBAL BEIGE FIX – AMOLED / iOS / Android / LCD
+   Color: #DFC9AB
+   (NO deletion – only override)
+========================================================= */
+
+/* ---------- COLOR SYSTEM OVERRIDE ---------- */
+:root{
+  /* ✅ Beige ثابت على كل الشاشات */
+  --beige: #DFC9AB;
+
+  /* كل الشامبين = نفس البيج */
+  --champagne: var(--beige);
+  --champagne-text: #2A1716;
+
+  /* ❌ إلغاء أي Burgundy tint في الظلال */
+  --burgundy-glow: rgba(0,0,0,0.12);
+  --burgundy-glow-strong: rgba(0,0,0,0.18);
+
+  /* UI states تفضل neutral */
+  --accent-hover: rgba(255,255,255,0.10);
+  --active-outline: rgba(255,255,255,0.28);
+}
+
+/* ---------- FORCE BEIGE BACKGROUNDS ---------- */
+.champagne-zone,
+.featured-strip,
+.featured-wrapper,
+.featured-item,
+.hero,
+.slide,
+.announcement-wrap{
+  background-color: var(--champagne) !important;
+}
+
+/* ---------- PREVENT COLOR BLEED (AMOLED FIX) ---------- */
+.featured-item,
+.hero,
+.slide,
+.featured-strip{
+  isolation: isolate;
+}
+
+/* ---------- FEATURED CARDS SHADOW FIX ---------- */
+.featured-item{
+  background: var(--champagne) !important;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* ---------- REMOVE ANY COLORED OVERLAY EFFECT ---------- */
+.hero-overlay{
+  background: rgba(0,0,0,0.32); /* ثابت – بدون صبغة لون */
+}
+
+/* ---------- TEXT COLOR SAFETY ---------- */
+.featured-title,
+.announcement-item{
+  color: var(--champagne-text) !important;
+}
+
+/* ---------- REDUCED MOTION SUPPORT ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .announcement-track,
+  .bottom-announce-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
 
 </style>
 </head>
@@ -959,3 +1029,4 @@ applyCategory("All");
 
 </body>
 </html>
+
