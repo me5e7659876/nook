@@ -282,6 +282,42 @@ header{
 </div>
 </div>
 
+<!-- ✅ ROOF (NEW) -->
+<div id="roof" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Roof Package</h2>
+<div class="inner-grid">
+  <!-- نفس الصورة على الكرت من بره -->
+  <img src="https://i.postimg.cc/0y5Z2ZPs/Crafting-the-Perfect-Fall-Dinner-Party-Your-Ultimate-Guide-to-Seasonal-Entertaining.jpg">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• Rooftop décor set</p>
+<p>• Lighting mood accessories</p>
+<p>• Decorative elements bundle</p>
+<div class="price-tag">0 EGP</div>
+<button class="add-btn" onclick="addToCart('roof','Roof Package',0)">Add to Cart</button>
+</div>
+</div>
+
+<!-- ✅ ROOM (NEW) -->
+<div id="room" class="collection-page">
+<button class="back-btn" onclick="goHome()">← Back</button>
+<h2>Room Package</h2>
+<div class="inner-grid">
+  <!-- نفس الصورة على الكرت من بره -->
+  <img src="https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• Bedroom décor set</p>
+<p>• Cozy accessories bundle</p>
+<p>• Styling essentials</p>
+<div class="price-tag">0 EGP</div>
+<button class="add-btn" onclick="addToCart('room','Room Package',0)">Add to Cart</button>
+</div>
+</div>
+
 <div class="toast" id="toast">Added to cart ✅</div>
 
 <script>
@@ -320,7 +356,11 @@ const packages=[
   {id:"clinic",  img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:"Clinic Package"},
   {id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:"Entrance Area"},
   {id:"indoor",  img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:"Indoor Café"},
-  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:"Outdoor Café"}
+  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:"Outdoor Café"},
+
+  /* ✅ NEW PACKAGES */
+  {id:"roof", img:"https://i.postimg.cc/0y5Z2ZPs/Crafting-the-Perfect-Fall-Dinner-Party-Your-Ultimate-Guide-to-Seasonal-Entertaining.jpg", name:"Roof Package"},
+  {id:"room", img:"https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg", name:"Room Package"}
 ];
 
 const container=document.getElementById("packagesContainer");
