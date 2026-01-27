@@ -34,11 +34,14 @@ header{
   border-bottom:1px solid var(--line);
 }
 
+/* CART ICON */
 .cart-btn{
   position:absolute;
   right:20px;
   top:15px;
+  cursor:pointer;
   font-size:18px;
+  user-select:none;
   text-decoration:none;
   color:var(--burgundy);
 }
@@ -70,7 +73,8 @@ header{
 }
 .collection-info h3{
   font-family:'Didot',serif;
-  margin:6px 0 10px;
+  color:var(--burgundy);
+  margin: 6px 0 10px;
 }
 .view-btn{
   background:var(--burgundy);
@@ -80,12 +84,16 @@ header{
   font-weight:bold;
   border:none;
   cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* PACKAGE PAGE */
 .collection-page{
   display:none;
   padding:25px;
+  background:var(--beige);
+  color:var(--burgundy);
 }
 .back-btn{
   background:var(--burgundy);
@@ -96,6 +104,8 @@ header{
   font-weight:bold;
   cursor:pointer;
   margin-bottom:20px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* INNER IMAGES */
@@ -108,6 +118,7 @@ header{
   width:100%;
   height:420px;
   object-fit:contain;
+  background:transparent;
   border-radius:14px;
 }
 
@@ -121,9 +132,11 @@ header{
 }
 .package-details h3{
   font-family:'Didot',serif;
+  color:var(--burgundy);
 }
 .price-tag{
   font-size:26px;
+  color:var(--burgundy);
   font-weight:bold;
 }
 .add-btn{
@@ -136,22 +149,29 @@ header{
   font-weight:bold;
   font-size:18px;
   cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-/* TOAST */
+/* ✅ little confirmation toast */
 .toast{
-  position:fixed;
-  left:50%;
-  bottom:26px;
-  transform:translateX(-50%);
-  background:rgba(75,14,31,.92);
-  color:var(--beige);
-  padding:12px 16px;
-  border-radius:14px;
-  opacity:0;
-  transition:.25s;
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  background: rgba(75,14,31,.92);
+  border: 1px solid var(--line);
+  color: var(--beige);
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s;
+  z-index: 9999;
+  font-size: 14px;
 }
-.toast.show{opacity:1;}
+.toast.show{ opacity: 1; }
 </style>
 </head>
 
@@ -159,14 +179,14 @@ header{
 
 <header>
   Space Packages
-  <a class="cart-btn" href="cart.html">🛒</a>
+  <a class="cart-btn" href="cart.html" aria-label="Open cart">🛒</a>
 </header>
 
 <div class="collections-grid" id="packagesContainer"></div>
 
 <!-- OFFICE -->
 <div id="office" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Office Package</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/Dm38cQtX/1765159432471-019afbb3-19c1-7701-abd8-1634b5b71365.png">
@@ -178,13 +198,13 @@ header{
 <p>• 2 large office vases</p>
 <p>• 1 modern vase</p>
 <div class="price-tag">7000 EGP</div>
-<button class="add-btn" onclick="addToCart('office','Office Package',7000)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('office','Office Package',7000)">Add to Cart</button>
 </div>
 </div>
 
 <!-- GYM -->
 <div id="gym" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Gym Package</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/HkW41xD2/1766675741879-019b5614-49a3-7972-8998-5b7e922ecc4b.png">
@@ -195,13 +215,13 @@ header{
 <p>• Medium vase</p>
 <p>• Glass vase</p>
 <div class="price-tag">3500 EGP</div>
-<button class="add-btn" onclick="addToCart('gym','Gym Package',3500)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('gym','Gym Package',3500)">Add to Cart</button>
 </div>
 </div>
 
 <!-- CLINIC -->
 <div id="clinic" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Clinic Package</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/cJRs7sCj/1766676310440-019b561c-f61e-7eea-98cd-aa4e1a01524b.png">
@@ -213,13 +233,13 @@ header{
 <p>• Glass vase</p>
 <p>• 3 decorative portraits</p>
 <div class="price-tag">3500 EGP</div>
-<button class="add-btn" onclick="addToCart('clinic','Clinic Package',3500)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('clinic','Clinic Package',3500)">Add to Cart</button>
 </div>
 </div>
 
 <!-- ENTRANCE -->
 <div id="entrance" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Entrance Area</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/KjBSbfT6/1766501762491-019b4bb5-66e4-7713-97ed-ba285f718a36.png">
@@ -229,13 +249,13 @@ header{
 <p>• 2 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">5000 EGP</div>
-<button class="add-btn" onclick="addToCart('entrance','Entrance Area',5000)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('entrance','Entrance Area',5000)">Add to Cart</button>
 </div>
 </div>
 
 <!-- INDOOR -->
 <div id="indoor" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Indoor Café</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/xCvxf1gn/1767795860326-019b98d7-e373-776f-997c-50447bc4d4b4.png">
@@ -245,13 +265,13 @@ header{
 <p>• 3 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">6000 EGP</div>
-<button class="add-btn" onclick="addToCart('indoor','Indoor Café',6000)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('indoor','Indoor Café',6000)">Add to Cart</button>
 </div>
 </div>
 
 <!-- OUTDOOR -->
 <div id="outdoor" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Outdoor Café</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/j5RJP3xm/1766579329266-019b5054-e5ab-7220-9e39-03778f2effff.png">
@@ -261,13 +281,13 @@ header{
 <p>• 3 large vases</p>
 <p>• 1 medium vase</p>
 <div class="price-tag">6000 EGP</div>
-<button class="add-btn" onclick="addToCart('outdoor','Outdoor Café',6000)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('outdoor','Outdoor Café',6000)">Add to Cart</button>
 </div>
 </div>
 
-<!-- ROOM (UPDATED ONLY) -->
+<!-- ROOM -->
 <div id="room" class="collection-page">
-<button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
 <h2>Room Package</h2>
 <div class="inner-grid">
 <img src="https://i.postimg.cc/c19LbLC3/1766678132759-019b5638-9e25-79f5-a1ae-7c07b23aa588.png">
@@ -275,70 +295,141 @@ header{
 </div>
 <div class="package-details">
 <h3>Package Includes:</h3>
-<p>• 3 customizable wall art pieces (designed based on preference)</p>
+<p>• 3 customizable wall art pieces (customized based on preference)</p>
 <p>• 1 round glass vase</p>
 <p>• 1 medium-sized vase</p>
 <div class="price-tag">2000 EGP</div>
-<button class="add-btn" onclick="addToCart('room','Room Package',2000)">Add to Cart</button>
+<button class="add-btn" type="button" onclick="addToCart('room','Room Package',2000)">Add to Cart</button>
 </div>
 </div>
 
 <div class="toast" id="toast">Added to cart ✅</div>
 
 <script>
-const CART_KEY="nook_cart";
+/* ============================
+   REAL CART SYSTEM
+============================ */
+
+const CART_KEY = "nook_cart";
+
+/* ✅ migrate old cart if exists */
+(function migrateOldCart(){
+  try{
+    const oldCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const newCart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+    if(newCart.length === 0 && oldCart.length > 0){
+      const migrated = oldCart.map((it, idx) => ({
+        id: it.id || (`legacy_${idx}_${(it.name||"item").toLowerCase().replace(/\s+/g,"_")}`),
+        name: it.name || "Item",
+        price: Number(it.price) || 0,
+        qty: Number(it.qty) || 1,
+        img: it.img || "",
+        category: it.category || "General",
+        page: it.page || "",
+        addedAt: it.addedAt || new Date().toISOString()
+      }));
+      localStorage.setItem(CART_KEY, JSON.stringify(migrated));
+    }
+  }catch(e){}
+})();
 
 const packages=[
-{id:"office",img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg",name:"Office Package"},
-{id:"gym",img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg",name:"Gym Package"},
-{id:"clinic",img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg",name:"Clinic Package"},
-{id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg",name:"Entrance Area"},
-{id:"indoor",img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg",name:"Indoor Café"},
-{id:"outdoor",img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg",name:"Outdoor Café"},
-{id:"room",img:"https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg",name:"Room Package"}
+  {id:"office",  img:"https://i.postimg.cc/DzLZV7KB/Elevate-Your-Workspace-Modern-Masculine-Office-Design.jpg", name:"Office Package"},
+  {id:"gym",     img:"https://i.postimg.cc/gcN0bMfZ/9a802f05-b7cb-491b-94e2-373972ed6b47.jpg", name:"Gym Package"},
+  {id:"clinic",  img:"https://i.postimg.cc/50ffZvgj/Psikolog-Odasi.jpg", name:"Clinic Package"},
+  {id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:"Entrance Area"},
+  {id:"indoor",  img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:"Indoor Café"},
+  {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:"Outdoor Café"},
+  {id:"room",    img:"https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg", name:"Room Package"}
 ];
 
-const container=document.getElementById("packagesContainer");
+const container = document.getElementById("packagesContainer");
+
+/* ✅ render cards */
 packages.forEach(p=>{
- const card=document.createElement("div");
- card.className="collection-card";
- card.innerHTML=`
- <img src="${p.img}">
- <div class="collection-info">
- <h3>${p.name}</h3>
- <button class="view-btn" onclick="openPackage('${p.id}')">View</button>
- </div>`;
- container.appendChild(card);
+  const card=document.createElement("div");
+  card.className="collection-card";
+  card.innerHTML=`
+    <img src="${p.img}" alt="${p.name}">
+    <div class="collection-info">
+      <h3>${p.name}</h3>
+      <button class="view-btn" type="button" data-open="${p.id}">View</button>
+    </div>`;
+  container.appendChild(card);
 });
 
+/* ✅ MOBILE FIX: use event delegation + touchend */
+function handleOpen(e){
+  const btn = e.target.closest("[data-open]");
+  if(!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const id = btn.getAttribute("data-open");
+  openPackage(id);
+}
+container.addEventListener("click", handleOpen, {passive:false});
+container.addEventListener("touchend", handleOpen, {passive:false});
+
 function openPackage(id){
- container.style.display="none";
- document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
- document.getElementById(id).style.display="block";
+  container.style.display="none";
+  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
+  const page = document.getElementById(id);
+  if(page) page.style.display="block";
+  window.scrollTo(0,0);
 }
 
 function goHome(){
- document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
- container.style.display="grid";
+  document.querySelectorAll(".collection-page").forEach(p=>p.style.display="none");
+  container.style.display="grid";
+  window.scrollTo(0,0);
 }
 
-function addToCart(id,name,price){
- const cart=JSON.parse(localStorage.getItem(CART_KEY))||[];
- const itemId=`space_${id}`;
- const found=cart.find(i=>i.id===itemId);
- if(found){found.qty++;}
- else{
- cart.push({id:itemId,name,price,qty:1,category:"Space Packages"});
- }
- localStorage.setItem(CART_KEY,JSON.stringify(cart));
- showToast(`${name} added ✅`);
+/* ✅ Real addToCart */
+function addToCart(id, name, price){
+  const p = packages.find(x => x.id === id);
+  const img = p ? p.img : "";
+
+  const cart = getCart();
+  const itemId = `space_${id}`;
+
+  const existing = cart.find(it => it.id === itemId);
+  if(existing){
+    existing.qty = (Number(existing.qty) || 1) + 1;
+  }else{
+    cart.push({
+      id: itemId,
+      name: name,
+      price: Number(price) || 0,
+      qty: 1,
+      img: img,
+      category: "Space Packages",
+      page: `${location.pathname}#${id}`,
+      addedAt: new Date().toISOString()
+    });
+  }
+
+  saveCart(cart);
+  showToast(`${name} added ✅`);
 }
 
-function showToast(t){
- const toast=document.getElementById("toast");
- toast.textContent=t;
- toast.classList.add("show");
- setTimeout(()=>toast.classList.remove("show"),1500);
+function getCart(){
+  try{ return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+  catch(e){ return []; }
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // for checkout
+}
+
+/* ✅ toast */
+let toastTimer = null;
+function showToast(text){
+  const t = document.getElementById("toast");
+  t.textContent = text;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> t.classList.remove("show"), 1600);
 }
 </script>
 
