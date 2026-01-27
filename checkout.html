@@ -210,6 +210,83 @@ footer {
   border-top: 1px solid var(--line);
 }
 
+/* ✅ CHIC CONFIRM MODAL */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.55);
+  z-index: 9999;
+}
+.modal.show{ display:flex; }
+
+.modal-card{
+  width: 100%;
+  max-width: 420px;
+  background: rgba(223,201,171,0.96);
+  border: 1px solid rgba(75,14,31,.22);
+  border-radius: 16px;
+  padding: 18px 16px;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+  color: var(--burgundy);
+  text-align: center;
+  transform: translateY(8px);
+  animation: popIn .22s ease forwards;
+}
+@keyframes popIn{ to { transform: translateY(0); } }
+
+.modal-icon{
+  width: 54px;
+  height: 54px;
+  margin: 2px auto 10px;
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--burgundy);
+  color: var(--beige);
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(75,14,31,0.25);
+}
+.modal-card h3{
+  margin: 0 0 6px;
+  font-size: 20px;
+  letter-spacing: .4px;
+}
+.modal-card p{
+  margin: 0 0 12px;
+  font-size: 13px;
+  opacity: .9;
+}
+.modal-details{
+  text-align: left;
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(75,14,31,.14);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 10px 0 14px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.modal-details b{ color: var(--burgundy); }
+
+.modal-btn{
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--burgundy);
+  color: var(--beige);
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+.modal-btn:hover{ opacity: .92; }
+
 /* RESPONSIVE MOBILE */
 @media (max-width: 768px){
   body { padding: 0; margin:0; }
@@ -287,6 +364,17 @@ footer {
 </div>
 
 <footer>© 2025 Nook Decor. All rights reserved.</footer>
+
+<!-- ✅ CONFIRMATION MODAL (CHIC) -->
+<div id="confirmModal" class="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-icon">✓</div>
+    <h3 id="modalTitle">Order Confirmed</h3>
+    <p id="modalMsg">Your order has been confirmed successfully.</p>
+    <div class="modal-details" id="modalDetails"></div>
+    <button type="button" class="modal-btn" id="modalOkBtn">OK</button>
+  </div>
+</div>
 
 <script>
 /* ✅ NEW CART KEY */
@@ -369,6 +457,38 @@ function validatePayment(payment) {
   return true;
 }
 
+/* ✅ Chic modal */
+function showConfirmModal({name, paymentMethod, orderId, totalText}) {
+  const modal = document.getElementById("confirmModal");
+  const details = document.getElementById("modalDetails");
+  const msg = document.getElementById("modalMsg");
+  const okBtn = document.getElementById("modalOkBtn");
+
+  const nicePay = (paymentMethod === "cod") ? "Cash on Delivery" : "Instapay";
+
+  msg.textContent = `Thanks, ${name}! Your order is confirmed.`;
+
+  details.innerHTML = `
+    <div><b>Order ID:</b> ${orderId}</div>
+    <div><b>Payment:</b> ${nicePay}</div>
+    <div><b>Total:</b> ${totalText}</div>
+  `;
+
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+
+  okBtn.onclick = () => {
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+
+    /* ✅ clear cart */
+    localStorage.removeItem(CART_KEY);
+    localStorage.removeItem("cartItems");
+
+    window.location.href = 'index.html';
+  };
+}
+
 /* Submit form handler */
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
   e.preventDefault();
@@ -385,13 +505,21 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e){
 
   if(!validatePayment(payment)) return;
 
-  alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment.toUpperCase()}`);
+  // ✅ Generate simple order id
+  const orderId = "ND-" + Math.floor(100000 + Math.random() * 900000);
 
-  /* ✅ clear cart */
-  localStorage.removeItem(CART_KEY);
-  localStorage.removeItem("cartItems");
+  // ✅ Get total text from UI
+  const totalText = (document.getElementById('totalAmount')?.textContent || 'Total: 0 EGP').replace('Total:', '').trim();
 
-  window.location.href = 'index.html';
+  // ✅ Show chic modal instead of alert
+  showConfirmModal({
+    name: fullName,
+    paymentMethod: payment,
+    orderId,
+    totalText
+  });
+
+  return;
 });
 
 renderCheckout();
