@@ -795,62 +795,8 @@ footer p.copy{
     </ul>
   </aside>
 
-  <main class="content">
-    <a href="product9.html" class="card" data-cat="Moods">
-      <img src="https://i.postimg.cc/4yTP1hFD/Home-decor-ideas-follow-us.jpg" alt="">
-      <h3>Moods</h3>
-    </a>
-
-    <a href="product11.html" class="card" data-cat="Space Packages">
-      <img src="https://i.postimg.cc/4dgk6mJC/Pink-office-highlights.jpg" alt="">
-      <h3>Space Packages</h3>
-    </a>
-
-    <a href="product1.html" class="card" data-cat="Vases">
-      <img src="https://i.postimg.cc/Xvc3ctLt/download-41.jpg" alt="">
-      <h3>Vases</h3>
-    </a>
-
-    <a href="product2.html" class="card" data-cat="Cushions">
-      <img src="https://i.postimg.cc/PrW0p1q5/nano-banana-2025-11-08T17-30-24.png" alt="">
-      <h3>Cushions</h3>
-    </a>
-
-    <a href="product3.html" class="card" data-cat="Lighting">
-      <img src="https://i.postimg.cc/G3GLcMZH/download-39.jpg" alt="">
-      <h3>Lighting</h3>
-    </a>
-
-    <a href="product4.html" class="card" data-cat="Glass Candles">
-      <img src="https://i.postimg.cc/SRyhwTQC/05fb948d-3338-4095-bbbf-f9b5fea98579.png" alt="">
-      <h3>Glass Candles</h3>
-    </a>
-
-    <a href="product5.html" class="card" data-cat="Outdoor Flooring">
-      <img src="https://i.postimg.cc/R030Bv7c/ad37e378-d46e-4cec-b8b3-a11f9a7ac58a.png" alt="">
-      <h3>Outdoor Flooring</h3>
-    </a>
-
-    <a href="product6.html" class="card" data-cat="Wooden Rack">
-      <img src="https://i.postimg.cc/X7Jd0PDk/f30ccd73-07e3-4582-a703-05929e0c36ed.jpg" alt="">
-      <h3>Wooden Rack</h3>
-    </a>
-
-    <a href="product7.html" class="card" data-cat="Wall Art">
-      <img src="https://i.postimg.cc/tg7Gszcd/fc5a2d77-e24c-4f34-a50f-b897fb4318ee.png" alt="">
-      <h3>Wall Art</h3>
-    </a>
-
-    <a href="product8.html" class="card" data-cat="Games">
-      <img src="https://i.postimg.cc/6624GtwG/chess.jpg" alt="">
-      <h3>Games</h3>
-    </a>
-
-    <a href="product10.html" class="card" data-cat="Glass and Small Vases">
-      <img src="https://i.postimg.cc/Lshx0y6D/Cherry-Blossom-Decor-Embrace-Spring-s-Delicate-Beauty.jpg" alt="">
-      <h3>Glass and Small Vases</h3>
-    </a>
-
+  <!-- ✅ هنا بقى الكروت هتيجي من Firebase -->
+  <main class="content" id="productsGrid">
     <div id="searchResults" style="display:none; width:100%; grid-column:1/-1;"></div>
     <div class="no-results" id="noResults" aria-hidden="true">No products found.</div>
   </main>
@@ -994,9 +940,10 @@ function moveFeatured(direction){
 applyCategory("All");
 </script>
 
+<!-- ✅ Firebase Products Loader -->
+<script type="module" src="./products.js"></script>
+
 <script src="search.js"></script>
 
 </body>
 </html>
-
-
