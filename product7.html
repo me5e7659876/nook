@@ -27,7 +27,7 @@
     background-color: var(--beige);
     padding: 15px;
     text-align: center;
-    font-size: 32px; /* ✅ same as Glass Candles */
+    font-size: 32px;
     font-weight: bold;
     position: relative;
     font-family: 'Didot', serif !important;
@@ -40,22 +40,21 @@
     margin-right: 15px;
   }
 
-  /* ✅ SAME AS Glass Candles */
   #langSelect {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 8px 14px;        /* ✅ same */
+    padding: 8px 14px;
     border: none;
-    border-radius: 10px;      /* ✅ same */
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     background: var(--burgundy);
     color: var(--beige);
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    transition: 0.25s ease;   /* ✅ same */
+    transition: 0.25s ease;
   }
 
   #langSelect:hover { opacity: 0.9; }
@@ -68,7 +67,6 @@
     justify-items: center;
   }
 
-  /* ✅ مفيش كرت ورا الصور */
   .item {
     background: transparent;
     border-radius: 0;
@@ -88,7 +86,6 @@
 
   .item:hover { transform: scale(1.05); }
 
-  /* ✅ الديسكتوب: زي ما هو (350×420) */
   .item img {
     width: 100%;
     max-width: 350px;
@@ -103,25 +100,23 @@
     image-rendering: auto;
   }
 
-  /* ✅ same as Glass Candles price size */
   .price {
-    font-size: 18px; /* ✅ was 20 */
+    font-size: 18px;
     font-weight: bold;
     color: var(--burgundy);
-    margin: 8px 0;   /* ✅ same vibe */
-    font-family: 'Poppins', sans-serif; /* ✅ Glass Candles uses Poppins for price */
+    margin: 8px 0;
+    font-family: 'Poppins', sans-serif;
   }
 
-  /* ✅ same as Glass Candles desc size + line-height */
   .desc {
-    line-height: 1.5; /* ✅ same */
-    font-size: 14px;  /* ✅ was 15 */
+    line-height: 1.5;
+    font-size: 14px;
     color: rgba(75,14,31,.85);
     margin-bottom: 8px;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-    transition: .35s; /* ✅ same-ish */
+    transition: .35s;
     transform: translateY(15px);
     font-family: 'Poppins', sans-serif;
     max-width: 350px;
@@ -134,13 +129,12 @@
     transform: translateY(0);
   }
 
-  /* ✅ SAME AS Glass Candles button */
   .btn {
     background-color: var(--burgundy);
     border: none;
     color: var(--beige);
-    padding: 8px 18px;        /* ✅ was 10px 20px */
-    border-radius: 10px;      /* ✅ same */
+    padding: 8px 18px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
@@ -158,8 +152,8 @@
     margin: 30px 0;
     color: var(--burgundy);
     text-decoration: none;
-    font-size: 20px;   /* ✅ keep */
-    font-weight: 500;  /* ✅ matches Glass Candles vibe */
+    font-size: 20px;
+    font-weight: 500;
     font-family: 'Poppins', sans-serif;
   }
 
@@ -176,7 +170,6 @@
   }
   .gold-text:hover { transform: scale(1.03); }
 
-  /* ✅✅ التعديل اللي بيخلي الصور كاملة على جميع التليفونات */
   @media (max-width: 768px) {
     .item img{
       max-width: min(450px, 92vw);
@@ -196,9 +189,9 @@
       object-fit: contain;
     }
 
-    .price { font-size: 18px; } /* ✅ keep aligned */
-    .desc { font-size: 14px; }  /* ✅ keep aligned */
-    .btn { padding: 8px 18px; font-size: 14px; } /* ✅ same padding */
+    .price { font-size: 18px; }
+    .desc { font-size: 14px; }
+    .btn { padding: 8px 18px; font-size: 14px; }
     #langSelect {
       font-size: 10px;
       padding: 2px 4px;
@@ -265,7 +258,15 @@ const products = [
    desc:{en:"Handmade wall macrame.", ar:"ماكرامي جداري مصنوع يدويًا."}},
   {img:"https://i.postimg.cc/mrZdnKk8/e4c6d0c1-e2fc-45fb-a2a0-00c56812d7f2.jpg", price:1300,
    name:{en:"Macrame 6", ar:"ماكرامي 6"},
-   desc:{en:"Handcrafted premium macrame wall piece.", ar:"قطعة ماكرامي جداري فاخرة مصنوعة يدويًا."}}
+   desc:{en:"Handcrafted premium macrame wall piece.", ar:"قطعة ماكرامي جداري فاخرة مصنوعة يدويًا."}},
+
+  /* ✅✅ NEW PRODUCTS (Mirrors) — added without removing anything */
+  {img:"https://i.postimg.cc/q74VV0BG/ff5ab8c4-9ca7-410d-a0a8-cb7bac919d39.png", price:500,
+   name:{en:"Mirror", ar:"مراية"},
+   desc:{en:"A chic mirror that instantly elevates your space with a clean, elegant touch.", ar:"مراية شيك بتدي لمسة فخامة وبساطة لأي ركن في بيتك."}},
+  {img:"https://i.postimg.cc/8kJ1bp7p/4e908a8a-7542-4b36-9bd1-7d1dba22df6a.png", price:500,
+   name:{en:"Mirror", ar:"مراية"},
+   desc:{en:"Minimal & stylish mirror — perfect for brightening up any corner beautifully.", ar:"مراية بسيطة وأنيقة — بتنوّر أي مساحة وتكمل الديكور بشكل جميل."}}
 ];
 
 /* =================== CART (UNIFIED) =================== */
