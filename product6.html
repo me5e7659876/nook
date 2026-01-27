@@ -137,6 +137,22 @@ header{
   font-family:'Poppins',sans-serif; /* ✅ candles price uses Poppins */
 }
 
+/* ✅ NEW (for shelves only): subtle line under price */
+.price-note{
+  margin-top:4px;
+  font-size:13px;
+  color:rgba(75,14,31,.78);
+  font-weight:500;
+}
+
+.rack-size{
+  margin-top:2px;
+  font-family:'Didot',serif;
+  font-size:14px;
+  color:rgba(75,14,31,.85);
+  letter-spacing:.4px;
+}
+
 .desc{
   line-height:1.5;    /* ✅ same */
   font-size:14px;     /* ✅ same */
@@ -263,27 +279,27 @@ const products = [
 {
   img:["https://i.postimg.cc/rpMwTJnY/1768274013470-019bb557-921f-7fcd-af3d-959fad774d16.png","https://i.postimg.cc/434jXg1L/8.png","https://i.postimg.cc/Y9GnSqLb/3.png"],
   price:600,
-  desc:{en:"Modern minimalist wooden rack. Price per unit.",ar:"رف خشبي عصري بتصميم بسيط. السعر للقطعة الواحدة."}
+  desc:{en:"Set of 2 wooden plant holders with plants. Price per set (2 pieces).",ar:"طقم ٢ حامل زرع خشب بالزرع. السعر للطقم (قطعتين)."}
 },
 {
   img:["https://i.postimg.cc/J0N427wy/1765785215422-019b20fe-d974-74e5-8ecd-a17e87f66336.png","https://i.postimg.cc/QddqtxRF/2.png","https://i.postimg.cc/rpdC1Zyk/7.png"],
   price:350,
-  desc:{en:"Decorative wooden stand. Price per piece.",ar:"حامل خشبي زخرفي. السعر للقطعة الواحدة."}
+  desc:{en:"Set of 2 wooden plant holders with plants. Price per set (2 pieces).",ar:"طقم ٢ حامل زرع خشب بالزرع. السعر للطقم (قطعتين)."}
 },
 {
   img:["https://i.postimg.cc/PfmGb2NW/1.jpg","https://i.postimg.cc/bJQhz6mm/1765785393291-019b2102-483f-7693-9a85-0f55a4fa1161.png"],
   price:250,
-  desc:{en:"Compact wooden shelf. Price per shelf.",ar:"رف خشبي صغير. السعر للقطعة الواحدة."}
+  desc:{en:"Set of 2 wooden plant holders with plants. Price per set (2 pieces).",ar:"طقم ٢ حامل زرع خشب بالزرع. السعر للطقم (قطعتين)."}
 },
 {
   img:["https://i.postimg.cc/gc7LqcFd/4.png","https://i.postimg.cc/ZnvRD3tm/10.png"],
   price:150,
-  desc:{en:"Wooden shelf suitable for multiple spaces.",ar:"رف خشبي عملي يناسب مختلف المساحات."}
+  desc:{en:"Wooden shelf suitable for multiple spaces. Price per shelf.",ar:"رف خشبي عملي يناسب مختلف المساحات. السعر للرف الواحد."}
 },
 {
   img:["https://i.postimg.cc/sXCk0Y3R/1765785011656-019b20fb-a849-76dc-ac1e-717ba976a99b.png","https://i.postimg.cc/jjkngRw2/9.png"],
   price:150,
-  desc:{en:"White wooden shelf for modern interiors.",ar:"رف خشبي أبيض للديكور العصري."}
+  desc:{en:"White wooden shelf for modern interiors. Price per shelf.",ar:"رف خشبي أبيض للديكور العصري. السعر للرف الواحد."}
 },
 {
   img:["https://i.postimg.cc/7ZpHCj0X/1765143199842-019afabb-6674-7a5f-a12c-6760729b0afb.png","https://i.postimg.cc/mk2Bf4Wy/N.png"],
@@ -300,6 +316,17 @@ function renderProducts(lang){
     const item=document.createElement("div");
     item.className="item";
 
+    // ✅ For shelves only (products 5 & 6 => idx 4,5)
+    const isShelf = (idx === 4 || idx === 5);
+
+    const priceNoteHTML = isShelf
+      ? `<div class="price-note">${lang==="ar" ? "السعر للرف الواحد" : "Price per shelf"}</div>`
+      : ``;
+
+    const sizeHTML = isShelf
+      ? `<div class="rack-size">50x15 cm</div>`
+      : ``;
+
     item.innerHTML=`
       <div class="slider">
         ${p.img.map((s,i)=>`<img src="${s}" class="slide ${i===0?'active':''}" alt="">`).join("")}
@@ -307,6 +334,8 @@ function renderProducts(lang){
       </div>
       <div class="info">
         <div class="price">${p.price} EGP</div>
+        ${priceNoteHTML}
+        ${sizeHTML}
         <div class="desc">${p.desc[lang]}</div>
         <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
       </div>
