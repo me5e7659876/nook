@@ -167,7 +167,7 @@ header img.logo { width: 140px; max-width: 80%; }
 
 /* PAYMENT FIELDS INLINE */
 .payment-fields-inline {
-  display: flex;
+  display: none; /* ✅ default hidden */
   gap: 3px;
   margin-left: 4px;
   flex-wrap: wrap;
@@ -264,28 +264,24 @@ footer {
 
     <h2>Payment Method</h2>
     <div class="payment-methods">
+
+      <!-- ✅ Instapay ONLY -->
       <label>
-        <input type="radio" name="payment" value="credit" required>
-        <img src="https://i.postimg.cc/5yVLRWp5/shrwt-ʿml-fyza-kard-bnk-msr-wma-hy-afdl-btaqt-aytmanyt-fy-msr.jpg" alt="Credit Card"> Credit/Debit Card
-        <div class="payment-fields-inline" id="creditFields">
-          <input type="text" placeholder="Card Number" id="cardNumber" maxlength="16">
-          <input type="text" placeholder="MM/YY" id="expiry" maxlength="5">
-          <input type="text" placeholder="CVC" id="cvc" maxlength="4">
-        </div>
-      </label>
-      <label>
-        <input type="radio" name="payment" value="instapay">
+        <input type="radio" name="payment" value="instapay" required>
         <img src="https://i.postimg.cc/nhZSQ6JR/anstabay-Instapay-lthwyl-alamwal-anthy-mshwar-albnk-mʿ-ansta-bay-aljwalat.jpg" alt="Instapay"> Instapay
         <div class="payment-fields-inline" id="instapayFields">
-          <input type="text" placeholder="Account / Phone" id="instaAccount">
+          <input type="text" placeholder="Instapay Account / Phone" id="instaAccount">
         </div>
       </label>
+
+      <!-- ✅ COD ONLY -->
       <label>
         <input type="radio" name="payment" value="cod"> Cash on Delivery
       </label>
+
     </div>
 
-    <button type="submit" class="confirm-btn">Confirm & Pay</button>
+    <button type="submit" class="confirm-btn">Confirm Order</button>
   </form>
 
 </div>
@@ -311,7 +307,7 @@ function saveCart(cart){
 }
 
 function renderCheckout() {
-  const cart = getCart();  /* ✅ كان localStorage.getItem('cart') */
+  const cart = getCart();
   const orderContainer = document.getElementById('orderItems');
   const totalEl = document.getElementById('totalAmount');
   const shippingEl = document.getElementById('shippingFee');
@@ -350,41 +346,36 @@ function renderCheckout() {
   totalEl.textContent = 'Total: ' + finalTotal.toFixed(2) + ' EGP';
 }
 
-// Show/hide inline payment fields
+/* ✅ Show/hide Instapay field only */
 const paymentRadios = document.querySelectorAll('input[name="payment"]');
 paymentRadios.forEach(radio => {
   radio.addEventListener('change', () => {
-    document.getElementById('creditFields').style.display = radio.value === 'credit' ? 'flex' : 'none';
-    document.getElementById('instapayFields').style.display = radio.value === 'instapay' ? 'flex' : 'none';
+    const instapayBox = document.getElementById('instapayFields');
+    if(instapayBox){
+      instapayBox.style.display = (radio.value === 'instapay') ? 'flex' : 'none';
+    }
   });
 });
 
-// Validate payment fields
+/* ✅ Validate payment */
 function validatePayment(payment) {
-  if(payment === 'credit') {
-    const card = document.getElementById('cardNumber').value.trim();
-    const expiry = document.getElementById('expiry').value.trim();
-    const cvc = document.getElementById('cvc').value.trim();
-    const cardRegex = /^\d{16}$/;
-    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    const cvcRegex = /^\d{3,4}$/;
-    if(!cardRegex.test(card)) { alert('Invalid card number'); return false; }
-    if(!expiryRegex.test(expiry)) { alert('Invalid expiry date'); return false; }
-    if(!cvcRegex.test(cvc)) { alert('Invalid CVC'); return false; }
-  } 
   if(payment === 'instapay') {
     const account = document.getElementById('instaAccount').value.trim();
-    if(account.length < 5) { alert('Please enter a valid Instapay account'); return false; }
+    if(account.length < 5) {
+      alert('Please enter a valid Instapay account / phone number');
+      return false;
+    }
   }
   return true;
 }
 
-// Submit form handler
+/* Submit form handler */
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const fullName = document.getElementById('fullName').value;
-  const address = document.getElementById('address').value;
-  const phone = document.getElementById('phone').value;
+
+  const fullName = document.getElementById('fullName').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const phone = document.getElementById('phone').value.trim();
   const payment = document.querySelector('input[name="payment"]:checked')?.value;
 
   if(!fullName || !address || !phone || !payment){
@@ -394,9 +385,9 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e){
 
   if(!validatePayment(payment)) return;
 
-  alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment}`);
+  alert(`Thank you, ${fullName}! Your order has been placed.\nPayment Method: ${payment.toUpperCase()}`);
 
-  /* ✅ clear NEW cart */
+  /* ✅ clear cart */
   localStorage.removeItem(CART_KEY);
   localStorage.removeItem("cartItems");
 
