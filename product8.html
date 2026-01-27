@@ -57,11 +57,12 @@
     justify-items: center;
   }
 
-  /* ✅ التعديل الوحيد: مسافة أكبر على الديسكتوب */
+  /* ✅ التعديل الوحيد: مسافة أكبر وواضحة على الديسكتوب */
   @media (min-width: 1024px){
     .product-container{
-      gap: 55px;
-      padding: 45px;
+      gap: 75px;        /* كان 55 */
+      row-gap: 85px;    /* ✅ جديد: يزود المسافة الرأسية بين الصفوف */
+      padding: 55px;    /* كان 45 */
     }
   }
 
@@ -233,7 +234,6 @@ function addToCart(btn, product, lang){
 
   if(existing){
     existing.qty = (Number(existing.qty) || 1) + 1;
-    // تحديث الاسم حسب اللغة الحالية (اختياري)
     existing.name = product.name;
   }else{
     cart.push({
