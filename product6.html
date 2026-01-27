@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wooden Racks - Nook Decor</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- ✅ Fonts (SAME AS Glass Candles) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -16,7 +18,7 @@
 
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
+  font-family:'Poppins',sans-serif; /* ✅ same */
   background:var(--beige);
   color:var(--burgundy);
 }
@@ -25,8 +27,9 @@ header{
   background:var(--beige);
   padding:15px;
   text-align:center;
-  font-size:28px;
-  font-family:'Didot',serif;
+  font-family:'Didot',serif; /* ✅ same */
+  font-size:32px;            /* ✅ same */
+  font-weight:bold;          /* ✅ same */
   position:relative;
   color:var(--burgundy);
   border-bottom:1px solid var(--line);
@@ -37,14 +40,17 @@ header{
   right:20px;
   top:50%;
   transform:translateY(-50%);
-  padding:6px 10px;
+  padding:8px 14px;          /* ✅ same */
   border:none;
-  border-radius:8px;
-  font-weight:bold;
+  border-radius:10px;        /* ✅ same */
+  font-weight:bold;          /* ✅ same */
   background:var(--burgundy);
   color:var(--beige);
   cursor:pointer;
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:.25s ease;             /* ✅ same behavior */
 }
+#langSelect:hover{ opacity:.9; }
 
 /* ===== Desktop Gallery ===== */
 .gallery{
@@ -125,42 +131,58 @@ header{
 }
 
 .price{
-  font-size:18px;
+  font-size:18px;     /* ✅ same as candles .price */
+  font-weight:bold;   /* ✅ same */
   color:var(--burgundy);
-  font-family:'Didot',serif;
+  font-family:'Poppins',sans-serif; /* ✅ candles price uses Poppins */
 }
 
 .desc{
-  font-size:14px;
-  color:rgba(75,14,31,.85);
+  line-height:1.5;    /* ✅ same */
+  font-size:14px;     /* ✅ same */
   margin-top:8px;
-  line-height:1.6;
+  color:rgba(75,14,31,.85);
 }
 
+/* ✅ Add to Cart button same style as candles */
 .btn{
   background:var(--burgundy);
   border:none;
   color:var(--beige);
-  padding:10px;
-  border-radius:10px;
-  font-weight:bold;
+  padding:8px 18px;     /* ✅ same */
+  border-radius:10px;   /* ✅ same */
+  font-weight:bold;     /* ✅ same */
   cursor:pointer;
   margin-top:12px;
   width:100%;
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:.3s;       /* ✅ same feel */
 }
+.btn:hover{opacity:.9}
 
 .back-link{
   display:block;
   text-align:center;
-  margin:30px 0;
+  margin-top:150px;     /* ✅ same */
+  margin-bottom:40px;   /* ✅ same */
   color:var(--burgundy);
   text-decoration:none;
+  font-size:20px;       /* ✅ same */
+  font-weight:500;      /* ✅ same */
 }
 
 /* ===== Mobile ===== */
 @media(max-width:480px){
   .slider{height:460px}
   .next-btn{font-size:46px;right:-6px}
+}
+
+/* ✅ same back link behavior on mobile/tablet like candles */
+@media (max-width: 768px) {
+  .back-link {
+    margin-top: 350px;
+    font-size: 22px;
+  }
 }
 </style>
 </head>
@@ -315,7 +337,7 @@ function initSliders(){
     let i=0;
 
     const next=()=>{
-      if(!sl.isConnected) return; // ✅ لو اتشال من الـ DOM، مايكملش
+      if(!sl.isConnected) return;
       slides[i].classList.remove("active");
       i=(i+1)%slides.length;
       slides[i].classList.add("active");
@@ -323,7 +345,6 @@ function initSliders(){
 
     sl.querySelector(".next-btn").onclick=next;
 
-    // ✅ interval يتوقف لو العنصر اتشال
     const timer = setInterval(()=>{
       if(!sl.isConnected){ clearInterval(timer); return; }
       next();
