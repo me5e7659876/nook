@@ -161,6 +161,15 @@
     color: var(--burgundy);
   }
 
+  /* ✅✅ NEW: Rug size style (شيك وتحت السعر) */
+  .rug-size{
+    margin-top: 4px;
+    font-family: 'Didot', serif;
+    font-size: 14px;
+    color: rgba(75,14,31,.85);
+    letter-spacing: .5px;
+  }
+
   .btn {
     background-color: var(--burgundy);
     border: none;
@@ -291,6 +300,11 @@ function renderProducts(lang){
       ? `${p.price} EGP / m²`
       : `${p.price} EGP`;
 
+    const rugSizeHTML =
+      index === 0
+      ? ``  /* ✅ أول منتج (نجيلة) بدون مقاس */
+      : `<div class="rug-size">115x75 cm</div>`; /* ✅ باقي المنتجات */
+
     card.innerHTML = `
       <div class="slider">
         ${sliderImages}
@@ -299,6 +313,7 @@ function renderProducts(lang){
       <h2>${p.name[lang]}</h2>
       <p class="description">${p.desc[lang]}</p>
       <p class="price">${priceText}</p>
+      ${rugSizeHTML}
       <button class="btn add-to-cart">${lang==="ar"?"أضف إلى السلة":"Add to Cart"}</button>
     `;
     container.appendChild(card);
