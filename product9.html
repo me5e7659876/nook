@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mood Collections - Nook Decor</title>
-<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- ✅ Fonts (SAME AS Glass Candles) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -15,33 +18,40 @@
 
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
+  font-family:'Poppins',sans-serif; /* ✅ same */
   background:var(--beige);
   color:var(--burgundy);
 }
 
 /* HEADER */
 header{
-  padding:15px;
+  padding:15px;                 /* ✅ same */
   text-align:center;
-  font-family:'Didot',serif;
-  font-size:28px;
+  font-family:'Didot',serif;     /* ✅ same */
+  font-size:32px;               /* ✅ same as Glass Candles */
+  font-weight:bold;             /* ✅ same */
   position:relative;
   background:var(--beige);
   color:var(--burgundy);
+  border-bottom:1px solid var(--line);
 }
+
 #langSelect{
   position:absolute;
-  right:15px;
+  right:20px;                   /* ✅ same as Glass Candles */
   top:50%;
   transform:translateY(-50%);
-  padding:4px 8px;
-  border-radius:6px;
+  padding:8px 14px;             /* ✅ same as Glass Candles */
   border:none;
+  border-radius:10px;           /* ✅ same as Glass Candles */
   font-weight:bold;
+  cursor:pointer;
   background:var(--burgundy);
   color:var(--beige);
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:.25s ease;            /* ✅ same */
 }
+#langSelect:hover{opacity:.9}
 
 /* HOME GRID */
 .collections-grid{
@@ -58,7 +68,7 @@ header{
   }
 }
 .collection-card{
-  background:rgba(255,255,255,.18); /* كان بورجوندي - بقى لون فاتح على البيج */
+  background:rgba(255,255,255,.18);
   border:1px solid var(--line);
   border-radius:26px;
   overflow:hidden;
@@ -76,7 +86,7 @@ header{
   text-align:center;
   font-family:'Didot',serif;
   color:var(--burgundy);
-  font-size:22px;
+  font-size:20px; /* ✅ aligned with Glass Candles title size */
 }
 
 /* INNER PAGE */
@@ -89,12 +99,22 @@ header{
 .back-btn{
   background:var(--burgundy);
   color:var(--beige);
-  padding:10px 18px;
+  padding:8px 18px;             /* ✅ same as Glass Candles button */
   border:none;
-  border-radius:10px;
+  border-radius:10px;           /* ✅ same */
   font-weight:bold;
   cursor:pointer;
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:.3s;                  /* ✅ same */
   margin-bottom:20px;
+}
+.back-btn:hover{opacity:.9}
+
+/* headings inside pages */
+.collection-page h2{
+  font-family:'Didot',serif;  /* ✅ same family vibe */
+  font-size:26px;
+  margin: 0 0 14px;
 }
 
 /* MOODS GRID */
@@ -121,111 +141,60 @@ header{
   display:block;
 }
 
-/* =============================== PACKAGE BOX – MOOD (LIKE SPACE PACKAGES) ================================ */
+/* =============================== PACKAGE BOX ================================ */
 .package-details{
   margin-top:30px;
-  background:rgba(255,255,255,.18); /* كان بورجوندي - بقى فاتح على البيج */
+  background:rgba(255,255,255,.18);
   border:1px solid var(--line);
   padding:24px;
-  border-radius:16px;
+  border-radius:18px;
   box-shadow:0 6px 25px rgba(0,0,0,.18);
   max-width:900px;
 }
+
 .package-details h3{
   font-family:'Didot',serif;
   color:var(--burgundy);
-  font-size:26px;
-  margin-bottom:14px;
+  font-size:20px; /* ✅ same as Glass Candles h1 size */
+  margin-bottom:10px;
 }
+
 .package-details p{
-  font-size:16px;
-  line-height:1.9;
-  margin:6px 0;
-  color:var(--burgundy);
+  line-height:1.5;             /* ✅ same */
+  font-size:14px;              /* ✅ same */
+  margin:0 0 8px;
+  color:rgba(75,14,31,.85);    /* ✅ same tone */
 }
-.price-tag{
-  font-size:28px;
+
+/* prices */
+.price-tag,
+.mood-price{
+  font-size:18px;              /* ✅ same as Glass Candles price */
+  font-weight:bold;            /* ✅ same */
+  margin:8px 0;
   color:var(--burgundy);
-  font-weight:bold;
-  margin-top:14px;
+  font-family:'Poppins',sans-serif;
 }
 
 /* ADD TO CART */
 .add-btn{
-  margin-top:20px;
+  margin-top:10px;
   background:var(--burgundy);
   color:var(--beige);
-  padding:14px 32px;
+  padding:8px 18px;            /* ✅ same */
   border:none;
-  border-radius:16px;
+  border-radius:10px;          /* ✅ same */
   font-weight:bold;
-  font-size:18px;
   cursor:pointer;
   transition:.3s;
+  width:100%;                  /* ✅ same as Glass Candles button */
+  font-family:'Poppins',sans-serif;
 }
-.add-btn:hover{
-  background:var(--burgundy);
-  transform:translateY(-2px);
-}
+.add-btn:hover{opacity:.9}
 
 /* MOBILE */
 @media(max-width:768px){
   .package-details{ padding:18px; }
-  .price-tag{ font-size:24px; }
-  .add-btn{ width:100%; }
-}
-
-/* FORCE PACKAGE BOX STYLE – MOODS */
-.package-details{
-  background:rgba(255,255,255,.18) !important; /* كان بورجوندي */
-  border:1px solid var(--line) !important;
-  padding:24px !important;
-  border-radius:18px !important;
-  margin-top:30px !important;
-  box-shadow:0 6px 25px rgba(0,0,0,.18) !important;
-  max-width:900px !important;
-}
-.package-details h3{
-  color:var(--burgundy) !important;
-  font-size:26px !important;
-  margin-bottom:14px !important;
-  font-family:'DidotWeb',serif !important;
-}
-.package-details p{
-  font-size:16px !important;
-  line-height:1.9 !important;
-  margin:6px 0 !important;
-  color:var(--burgundy) !important; /* كان أبيض */
-}
-.price, .price-tag, .mood-price{
-  font-size:28px !important;
-  color:var(--burgundy) !important; /* كان وردي */
-  font-weight:700 !important;
-  margin-top:14px !important;
-}
-
-/* ADD TO CART BUTTON */
-.add-btn, .add-to-cart, button.add-cart{
-  display:inline-block !important;
-  margin-top:20px !important;
-  background:var(--burgundy) !important;
-  color:var(--beige) !important;
-  padding:14px 34px !important;
-  border:none !important;
-  border-radius:30px !important;
-  font-size:18px !important;
-  font-weight:700 !important;
-  cursor:pointer !important;
-  transition:.3s !important;
-}
-.add-btn:hover, .add-to-cart:hover, button.add-cart:hover{
-  background:var(--burgundy) !important;
-  transform:translateY(-2px) !important;
-}
-@media(max-width:768px){
-  .package-details{ padding:18px !important; }
-  .price, .price-tag, .mood-price{ font-size:24px !important; }
-  .add-btn, .add-to-cart, button.add-cart{ width:100% !important; }
 }
 
 /* ✅ TOAST (Added to cart) */
@@ -234,23 +203,23 @@ header{
   left:50%;
   bottom:24px;
   transform:translateX(-50%);
-  background:rgba(75,14,31,.92); /* كان أسود */
+  background:rgba(75,14,31,.92);
   color:var(--beige);
   padding:12px 16px;
   border-radius:14px;
-  font-size:14px;
+  font-size:14px;               /* ✅ same */
   opacity:0;
   pointer-events:none;
   transition:opacity .25s ease, transform .25s ease;
   z-index:9999;
   backdrop-filter: blur(6px);
+  font-family:'Poppins',sans-serif;
 }
 .toast.show{
   opacity:1;
   transform:translateX(-50%) translateY(-6px);
 }
 .toast b{ color:#fff; }
-
 </style>
 </head>
 
@@ -472,8 +441,6 @@ function goHome(){
 /* ======================================================
    ✅ REAL CART (LocalStorage) - works without backend
    Storage Key: "nook_cart"
-   Item shape:
-   { id, name, price, qty, category, page, addedAt }
 ====================================================== */
 const CART_KEY = "nook_cart";
 
@@ -486,6 +453,7 @@ function getCart(){
 }
 function saveCart(cart){
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem("cartItems", JSON.stringify(cart)); // ✅ keep unified with checkout
 }
 
 function addToCart(name, price, category="Moods", pageId=""){
