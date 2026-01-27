@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wooden Racks - Nook Decor</title>
 
-<!-- ✅ Fonts (SAME AS Glass Candles) -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
@@ -18,7 +17,7 @@
 
 body{
   margin:0;
-  font-family:'Poppins',sans-serif; /* ✅ same */
+  font-family:'Poppins',sans-serif;
   background:var(--beige);
   color:var(--burgundy);
 }
@@ -27,9 +26,9 @@ header{
   background:var(--beige);
   padding:15px;
   text-align:center;
-  font-family:'Didot',serif; /* ✅ same */
-  font-size:32px;            /* ✅ same */
-  font-weight:bold;          /* ✅ same */
+  font-family:'Didot',serif;
+  font-size:32px;
+  font-weight:bold;
   position:relative;
   color:var(--burgundy);
   border-bottom:1px solid var(--line);
@@ -40,15 +39,15 @@ header{
   right:20px;
   top:50%;
   transform:translateY(-50%);
-  padding:8px 14px;          /* ✅ same */
+  padding:8px 14px;
   border:none;
-  border-radius:10px;        /* ✅ same */
-  font-weight:bold;          /* ✅ same */
+  border-radius:10px;
+  font-weight:bold;
   background:var(--burgundy);
   color:var(--beige);
   cursor:pointer;
-  font-family:'Poppins',sans-serif; /* ✅ same */
-  transition:.25s ease;             /* ✅ same behavior */
+  font-family:'Poppins',sans-serif;
+  transition:.25s ease;
 }
 #langSelect:hover{ opacity:.9; }
 
@@ -61,7 +60,6 @@ header{
   justify-items:center;
 }
 
-/* ✅ شيلنا الكرت اللي ورا الصور */
 .item{
   background:transparent;
   border-radius:0;
@@ -75,7 +73,6 @@ header{
   flex-direction:column;
   align-items:center;
 }
-
 .item:hover{transform:scale(1.03)}
 
 .slider{
@@ -105,10 +102,8 @@ header{
   backface-visibility: hidden;
   image-rendering:auto;
 }
-
 .slide.active{opacity:1}
 
-/* Arrow */
 .next-btn{
   position:absolute;
   top:50%;
@@ -121,7 +116,6 @@ header{
   color:var(--burgundy);
   z-index:5;
 }
-
 .next-btn:hover{opacity:.75}
 
 .info{
@@ -131,13 +125,12 @@ header{
 }
 
 .price{
-  font-size:18px;     /* ✅ same as candles .price */
-  font-weight:bold;   /* ✅ same */
+  font-size:18px;
+  font-weight:bold;
   color:var(--burgundy);
-  font-family:'Poppins',sans-serif; /* ✅ candles price uses Poppins */
+  font-family:'Poppins',sans-serif;
 }
 
-/* ✅ NEW (for shelves only): subtle line under price */
 .price-note{
   margin-top:4px;
   font-size:13px;
@@ -153,38 +146,58 @@ header{
   letter-spacing:.4px;
 }
 
+/* ✅ الوصف مخفي بشكل شيك + يظهر Hover على الديسكتوب و Tap على الموبايل */
 .desc{
-  line-height:1.5;    /* ✅ same */
-  font-size:14px;     /* ✅ same */
+  line-height:1.5;
+  font-size:14px;
   margin-top:8px;
   color:rgba(75,14,31,.85);
+
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transform: translateY(10px);
+  transition: opacity .35s ease, transform .35s ease, max-height .35s ease;
 }
 
-/* ✅ Add to Cart button same style as candles */
+/* Hover desktop */
+.item:hover .desc{
+  opacity:1;
+  max-height:160px;
+  transform: translateY(0);
+}
+
+/* Tap mobile (class toggled) */
+.item.show-desc .desc{
+  opacity:1;
+  max-height:160px;
+  transform: translateY(0);
+}
+
 .btn{
   background:var(--burgundy);
   border:none;
   color:var(--beige);
-  padding:8px 18px;     /* ✅ same */
-  border-radius:10px;   /* ✅ same */
-  font-weight:bold;     /* ✅ same */
+  padding:8px 18px;
+  border-radius:10px;
+  font-weight:bold;
   cursor:pointer;
   margin-top:12px;
   width:100%;
-  font-family:'Poppins',sans-serif; /* ✅ same */
-  transition:.3s;       /* ✅ same feel */
+  font-family:'Poppins',sans-serif;
+  transition:.3s;
 }
 .btn:hover{opacity:.9}
 
 .back-link{
   display:block;
   text-align:center;
-  margin-top:150px;     /* ✅ same */
-  margin-bottom:40px;   /* ✅ same */
+  margin-top:150px;
+  margin-bottom:40px;
   color:var(--burgundy);
   text-decoration:none;
-  font-size:20px;       /* ✅ same */
-  font-weight:500;      /* ✅ same */
+  font-size:20px;
+  font-weight:500;
 }
 
 /* ===== Mobile ===== */
@@ -192,8 +205,6 @@ header{
   .slider{height:460px}
   .next-btn{font-size:46px;right:-6px}
 }
-
-/* ✅ same back link behavior on mobile/tablet like candles */
 @media (max-width: 768px) {
   .back-link {
     margin-top: 350px;
@@ -229,7 +240,7 @@ function getCart(){
 }
 function saveCart(cart){
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  localStorage.setItem("cartItems", JSON.stringify(cart)); // للـ checkout
+  localStorage.setItem("cartItems", JSON.stringify(cart));
 }
 
 function makeId(category, name, price, img){
@@ -316,7 +327,6 @@ function renderProducts(lang){
     const item=document.createElement("div");
     item.className="item";
 
-    // ✅ For shelves only (products 5 & 6 => idx 4,5)
     const isShelf = (idx === 4 || idx === 5);
 
     const priceNoteHTML = isShelf
@@ -345,7 +355,6 @@ function renderProducts(lang){
 
     const btn=item.querySelector(".add-to-cart");
 
-    // ✅ اسم Unique وثابت بدل ما نخزن الوصف
     const productName = lang==="ar" ? `رف خشبي ${idx+1}` : `Wooden Rack ${idx+1}`;
 
     btn.onclick=()=>addToCart(btn,{
@@ -357,9 +366,35 @@ function renderProducts(lang){
   });
 
   initSliders();
+  initMobileDescToggle(); /* ✅ NEW */
 }
 
-/* ================= SLIDER (NO LEAK) ================= */
+/* ✅ Tap-to-show description on mobile + nice behavior */
+function initMobileDescToggle(){
+  // Touch devices: tap the card toggles description
+  document.querySelectorAll(".item").forEach(item=>{
+    item.addEventListener("click", (e)=>{
+      // prevent toggle when clicking buttons (add to cart / next arrow)
+      if(e.target.closest(".btn") || e.target.closest(".next-btn")) return;
+
+      // close others (clean look)
+      document.querySelectorAll(".item.show-desc").forEach(other=>{
+        if(other !== item) other.classList.remove("show-desc");
+      });
+
+      item.classList.toggle("show-desc");
+    });
+  });
+
+  // tap outside closes
+  document.addEventListener("click", (e)=>{
+    if(!e.target.closest(".item")){
+      document.querySelectorAll(".item.show-desc").forEach(i=>i.classList.remove("show-desc"));
+    }
+  });
+}
+
+/* ================= SLIDER ================= */
 function initSliders(){
   document.querySelectorAll(".slider").forEach(sl=>{
     const slides=sl.querySelectorAll(".slide");
