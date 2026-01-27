@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Wall Art & Macrame - Nook Decor</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Didot&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- ✅ Fonts (SAME AS Glass Candles) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -25,7 +27,7 @@
     background-color: var(--beige);
     padding: 15px;
     text-align: center;
-    font-size: 28px;
+    font-size: 32px; /* ✅ same as Glass Candles */
     font-weight: bold;
     position: relative;
     font-family: 'Didot', serif !important;
@@ -38,21 +40,25 @@
     margin-right: 15px;
   }
 
+  /* ✅ SAME AS Glass Candles */
   #langSelect {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 6px 10px;
+    padding: 8px 14px;        /* ✅ same */
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;      /* ✅ same */
     font-weight: bold;
     cursor: pointer;
     background: var(--burgundy);
     color: var(--beige);
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
+    transition: 0.25s ease;   /* ✅ same */
   }
+
+  #langSelect:hover { opacity: 0.9; }
 
   .gallery {
     display: grid;
@@ -97,47 +103,54 @@
     image-rendering: auto;
   }
 
+  /* ✅ same as Glass Candles price size */
   .price {
-    font-size: 20px;
+    font-size: 18px; /* ✅ was 20 */
     font-weight: bold;
     color: var(--burgundy);
-    margin-top: 10px;
-    font-family: 'Didot', serif !important;
+    margin: 8px 0;   /* ✅ same vibe */
+    font-family: 'Poppins', sans-serif; /* ✅ Glass Candles uses Poppins for price */
   }
 
+  /* ✅ same as Glass Candles desc size + line-height */
   .desc {
-    font-size: 15px;
+    line-height: 1.5; /* ✅ same */
+    font-size: 14px;  /* ✅ was 15 */
     color: rgba(75,14,31,.85);
-    margin-top: 8px;
-    line-height: 1.5;
+    margin-bottom: 8px;
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: .35s; /* ✅ same-ish */
+    transform: translateY(15px);
     font-family: 'Poppins', sans-serif;
     max-width: 350px;
+    margin-top: 0;
   }
 
   .item:hover .desc {
     opacity: 1;
+    max-height: 150px;
     transform: translateY(0);
   }
 
+  /* ✅ SAME AS Glass Candles button */
   .btn {
     background-color: var(--burgundy);
     border: none;
     color: var(--beige);
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 8px 18px;        /* ✅ was 10px 20px */
+    border-radius: 10px;      /* ✅ same */
     font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
     transition: 0.3s;
     width: 100%;
     max-width: 350px;
     font-family: 'Poppins', sans-serif;
+    margin-top: 0;
   }
 
-  .btn:hover { opacity: .92; }
+  .btn:hover { opacity: .9; }
 
   .back-link {
     display: block;
@@ -145,7 +158,8 @@
     margin: 30px 0;
     color: var(--burgundy);
     text-decoration: none;
-    font-weight: 600;
+    font-size: 20px;   /* ✅ keep */
+    font-weight: 500;  /* ✅ matches Glass Candles vibe */
     font-family: 'Poppins', sans-serif;
   }
 
@@ -182,10 +196,9 @@
       object-fit: contain;
     }
 
-    .price { font-size: 16px; }
-    .desc { font-size: 14px; }
-    .btn { padding: 8px 16px; font-size: 14px; }
-
+    .price { font-size: 18px; } /* ✅ keep aligned */
+    .desc { font-size: 14px; }  /* ✅ keep aligned */
+    .btn { padding: 8px 18px; font-size: 14px; } /* ✅ same padding */
     #langSelect {
       font-size: 10px;
       padding: 2px 4px;
