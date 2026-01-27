@@ -25,32 +25,45 @@
 
 /* ---------------- BASE ---------------- */
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'DidotWeb','Georgia',serif;
-  background:#4b0e1f;
-  color:#fff;
 
-  /* ✅ يساعد على ثبات النص في الموبايل */
-  -webkit-text-size-adjust: 100%;
-}
+/* ===============================
+   ✅ COLOR SYSTEM (FIXED)
+   Beige + Burgundy ثابتين قدر الإمكان
+================================ */
 :root{
-  --accent-hover: rgba(255,179,198,0.12);
-  --active-outline: rgba(255,179,198,0.28);
+  /* ✅ Beige ثابت */
+  --beige: #DFC9AB;
 
-  /* ✅ NEW: Beige ثابت ومحايد (بيطلع Beige على AMOLED ومش بيقلب بني) */
-  --beige: #F9F2E5;
+  /* ✅ Burgundy ثابت (شيك ومش مكتوم) */
+  --burgundy: #4B0E1F;
+  --burgundy-dark: #3B0A1A;
 
-  /* ✅ استخدمنا نفس البيج للـ champagne عشان يبقى موحد على كل الصفحة */
+  /* ✅ نصوص البيج */
   --champagne: var(--beige);
   --champagne-text: #2A1716;
 
-  /* ✅ Burgundy system */
-  --burgundy: #4b0e1f;
-  --burgundy-dark: #3b0a1a;
+  /* ✅ hover/active neutral (بدون وردي يبوّظ اللون) */
+  --accent-hover: rgba(255,255,255,0.10);
+  --active-outline: rgba(255,255,255,0.28);
 
-  /* ✅ Premium glow (lighter burgundy) */
-  --burgundy-glow: rgba(75,14,31,0.26);
-  --burgundy-glow-strong: rgba(75,14,31,0.38);
+  /* ✅ ظلال neutral (بدون tint بورجوندي) */
+  --burgundy-glow: rgba(0,0,0,0.12);
+  --burgundy-glow-strong: rgba(0,0,0,0.18);
+}
+
+body{
+  font-family:'DidotWeb','Georgia',serif;
+
+  /* ✅ الخلفية بورجوندي ثابت */
+  background: var(--burgundy);
+  color:#fff;
+
+  /* ✅ ثبات النص في الموبايل */
+  -webkit-text-size-adjust: 100%;
+
+  /* ✅ تقليل اختلاف الرندر */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ✅ wrapper for champagne section */
@@ -135,11 +148,14 @@ header{
 /* ---------------- TOP ANNOUNCEMENT (Create Your Own Mood) ---------------- */
 .announcement-wrap{
   width:100%;
-  background: linear-gradient(90deg, var(--champagne), var(--champagne), var(--champagne));
+  background: var(--champagne) !important;
   border-top: 1px solid rgba(42,23,22,0.14);
   border-bottom: 1px solid rgba(42,23,22,0.14);
   overflow:hidden;
   margin-bottom: 12px;
+
+  /* ✅ منع أي bleed على AMOLED */
+  isolation: isolate;
 }
 .announcement-track{
   display:flex;
@@ -155,17 +171,17 @@ header{
   letter-spacing: 1.2px;
   text-transform: uppercase;
   opacity: 0.95;
-  color: var(--champagne-text);
+  color: var(--champagne-text) !important;
   text-shadow:
     0 0 10px rgba(42,23,22,0.06),
-    0 0 18px rgba(75,14,31,0.10);
+    0 0 18px rgba(0,0,0,0.08);
 }
 .announcement-dot{
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(75,14,31,0.65);
-  box-shadow: 0 0 10px rgba(75,14,31,0.18);
+  background: rgba(75,14,31,0.70);
+  box-shadow: 0 0 10px rgba(0,0,0,0.10);
 }
 .announcement-wrap:hover .announcement-track{ animation-play-state: paused; }
 @keyframes marquee{
@@ -179,27 +195,33 @@ header{
   width:100%;
   height:85vh;
   overflow:hidden;
-  background: var(--champagne);
+  background: var(--champagne) !important;
+
+  /* ✅ منع أي تداخل ألوان */
+  isolation: isolate;
 }
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
   transition:opacity .8s ease-in-out;
-  background: var(--champagne);
+  background: var(--champagne) !important;
 }
 .slide.active{opacity:1;}
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
-  background: var(--champagne);
+  background: var(--champagne) !important;
 }
+
+/* ✅ overlay ثابت بدون صبغة */
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.35);
+  background: rgba(0,0,0,.32);
 }
+
 .hero-content{
   position:absolute;
   left:6%;
@@ -243,10 +265,10 @@ header{
 }
 .dot.active{background:#fff;}
 
-/* ---------------- ✅ FREE SHIPPING BAR (BURGUNDY + TRUCK ICON) ---------------- */
+/* ---------------- ✅ FREE SHIPPING BAR (BURGUNDY) ---------------- */
 .bottom-announce{
   width:100%;
-  background: linear-gradient(90deg, #3b0a1a, var(--burgundy), #3b0a1a);
+  background: linear-gradient(90deg, var(--burgundy-dark), var(--burgundy), var(--burgundy-dark));
   border-top: 1px solid rgba(255,255,255,0.10);
   border-bottom: 1px solid rgba(255,255,255,0.10);
 
@@ -256,7 +278,6 @@ header{
 
   box-shadow: 0 16px 34px rgba(0,0,0,0.22);
 }
-
 .bottom-announce-track{
   display:flex;
   align-items:center;
@@ -266,7 +287,6 @@ header{
   will-change: transform;
   animation: marqueeBottom 11s linear infinite;
 }
-
 .bottom-announce-badge{
   display:inline-flex;
   align-items:center;
@@ -286,7 +306,6 @@ header{
     0 18px 36px rgba(0,0,0,0.18),
     inset 0 1px 0 rgba(255,255,255,0.22);
 }
-
 .bottom-announce-item{
   font-size: 14px;
   letter-spacing: 1.4px;
@@ -294,7 +313,6 @@ header{
   color: rgba(255,255,255,0.92);
   opacity: 0.92;
 }
-
 .bottom-announce-sep{
   width: 7px;
   height: 7px;
@@ -303,7 +321,6 @@ header{
   box-shadow: 0 0 14px rgba(255,255,255,0.14);
   opacity: .8;
 }
-
 .truck-icon{
   width:18px;
   height:18px;
@@ -317,7 +334,6 @@ header{
   stroke:#fff;
   opacity:0.95;
 }
-
 @keyframes marqueeBottom{
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -326,18 +342,20 @@ header{
 
 /* ---------------- FEATURED (CHAMPAGNE SECTION) ---------------- */
 .featured-strip{
-  background: var(--champagne);
+  background: var(--champagne) !important;
   padding:30px 20px;
   margin-top:0;
   margin-bottom: 40px;
   border-top: 1px solid rgba(42,23,22,0.12);
   border-bottom: 1px solid rgba(42,23,22,0.12);
+
+  isolation: isolate;
 }
 .featured-title{
   text-align:center;
   font-size:28px;
   margin-bottom:20px;
-  color: var(--champagne-text);
+  color: var(--champagne-text) !important;
 }
 .featured-wrapper{
   position:relative;
@@ -352,21 +370,23 @@ header{
 }
 .featured-item{
   min-width:220px;
-  background: var(--champagne);
+  background: var(--champagne) !important;
   border-radius:18px;
   overflow:hidden;
 
   box-shadow:
-    0 20px 40px var(--burgundy-glow),
-    0 0 0 1px rgba(75,14,31,0.10);
+    0 20px 40px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(0,0,0,0.06);
 
   transition: transform .25s ease, box-shadow .25s ease;
+
+  isolation: isolate;
 }
 .featured-item:hover{
   transform: translateY(-3px);
   box-shadow:
-    0 26px 54px var(--burgundy-glow-strong),
-    0 0 0 1px rgba(75,14,31,0.14);
+    0 26px 54px rgba(0,0,0,0.18),
+    0 0 0 1px rgba(0,0,0,0.10);
 }
 .featured-item img{
   width:100%;
@@ -379,6 +399,7 @@ header{
     height:220px;
     object-fit:contain;
     object-position:center;
+    background: var(--champagne) !important;
   }
 }
 .featured-arrow{
@@ -387,7 +408,7 @@ header{
   transform:translateY(-50%);
   font-size:32px;
   cursor:pointer;
-  color: var(--champagne-text);
+  color: var(--champagne-text) !important;
 }
 .featured-arrow.left{left:0;}
 .featured-arrow.right{right:0;}
@@ -401,7 +422,7 @@ header{
 .search-bar{
   display:flex;
   gap:8px;
-  background:#3b0a1a;
+  background: var(--burgundy-dark);
   padding:8px 12px;
   border-radius:10px;
 }
@@ -411,16 +432,10 @@ header{
   outline:none;
   color:#fff;
   width:260px;
-
-  /* ✅ أهم حل لمنع زووم iOS */
   font-size:16px;
   line-height: 1.2;
 }
-
-/* ✅ كمان نضمن لكل inputs نفس الفكرة */
-input, select, textarea{
-  font-size:16px;
-}
+input, select, textarea{ font-size:16px; }
 
 /* ---------------- CONTENT ---------------- */
 .container{
@@ -430,7 +445,7 @@ input, select, textarea{
 }
 .sidebar{
   width:230px;
-  background:#3b0a1a;
+  background: var(--burgundy-dark);
   padding:20px;
   border-radius:12px;
 }
@@ -512,7 +527,7 @@ footer p.copy{
   .featured-wrapper { overflow-x: auto; }
   .featured-track { scroll-snap-type: x mandatory; }
   .featured-item { scroll-snap-align: start; }
-  .featured-item img { object-fit: contain; background: var(--champagne); }
+  .featured-item img { object-fit: contain; background: var(--champagne) !important; }
 }
 @media (max-width: 768px) {
   .featured-item { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; }
@@ -525,69 +540,8 @@ footer p.copy{
 @media (max-width: 768px) {
   .featured-arrow, .hero .arrow { display: none !important; }
 }
-/* =========================================================
-   GLOBAL BEIGE FIX – AMOLED / iOS / Android / LCD
-   Color: #DFC9AB
-   (NO deletion – only override)
-========================================================= */
 
-/* ---------- COLOR SYSTEM OVERRIDE ---------- */
-:root{
-  /* ✅ Beige ثابت على كل الشاشات */
-  --beige: #DFC9AB;
-
-  /* كل الشامبين = نفس البيج */
-  --champagne: var(--beige);
-  --champagne-text: #2A1716;
-
-  /* ❌ إلغاء أي Burgundy tint في الظلال */
-  --burgundy-glow: rgba(0,0,0,0.12);
-  --burgundy-glow-strong: rgba(0,0,0,0.18);
-
-  /* UI states تفضل neutral */
-  --accent-hover: rgba(255,255,255,0.10);
-  --active-outline: rgba(255,255,255,0.28);
-}
-
-/* ---------- FORCE BEIGE BACKGROUNDS ---------- */
-.champagne-zone,
-.featured-strip,
-.featured-wrapper,
-.featured-item,
-.hero,
-.slide,
-.announcement-wrap{
-  background-color: var(--champagne) !important;
-}
-
-/* ---------- PREVENT COLOR BLEED (AMOLED FIX) ---------- */
-.featured-item,
-.hero,
-.slide,
-.featured-strip{
-  isolation: isolate;
-}
-
-/* ---------- FEATURED CARDS SHADOW FIX ---------- */
-.featured-item{
-  background: var(--champagne) !important;
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.12),
-    0 0 0 1px rgba(0,0,0,0.06);
-}
-
-/* ---------- REMOVE ANY COLORED OVERLAY EFFECT ---------- */
-.hero-overlay{
-  background: rgba(0,0,0,0.32); /* ثابت – بدون صبغة لون */
-}
-
-/* ---------- TEXT COLOR SAFETY ---------- */
-.featured-title,
-.announcement-item{
-  color: var(--champagne-text) !important;
-}
-
-/* ---------- REDUCED MOTION SUPPORT ---------- */
+/* ✅ Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .announcement-track,
   .bottom-announce-track {
@@ -595,7 +549,6 @@ footer p.copy{
     transform: none !important;
   }
 }
-
 </style>
 </head>
 
@@ -1029,6 +982,3 @@ applyCategory("All");
 
 </body>
 </html>
-
-
-
