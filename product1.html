@@ -194,6 +194,7 @@ function handleAddToCart(btn, product, lang){
     existing.qty = (Number(existing.qty) || 1) + 1; 
     // اختياري: تحديث الاسم حسب اللغة الحالية بدون تكرار
     existing.name = product.name;
+    existing.price = Number(product.price) || existing.price; // ✅ يتأكد السعر مظبوط
   } else { 
     cart.push({
       id: product.id,
@@ -219,6 +220,31 @@ function handleAddToCart(btn, product, lang){
     btn.style.color="var(--beige)"; 
   },1200); 
 } 
+
+/* ✅✅ PRICES (Tier) — بالترتيب اللي كتبتيه */
+const prices = [
+  3400,
+  3000,
+  3000,
+  2400,
+  2400,
+  2400,
+  2400,
+  2400,
+  2400,
+  3200,
+  3500,
+  2400,
+  2400,
+  3500,
+  3500,
+  3200,
+  1000,
+  3300,
+  2200,
+  3200,
+  2000
+];
 
 // =================== IMAGES =================== 
 const images = [ 
@@ -283,6 +309,9 @@ function renderProducts(lang){
     const div = document.createElement("div"); 
     div.className="item"; 
 
+    // ✅ السعر حسب الترتيب (لو زاد عدد المنتجات عن الأسعار يرجع لآخر سعر موجود)
+    const priceValue = (typeof prices[idx] !== "undefined") ? prices[idx] : prices[prices.length - 1];
+
     div.innerHTML=`
       <div class="img-slider"> 
         <img src="${pair[0]}" class="active"> 
@@ -290,7 +319,7 @@ function renderProducts(lang){
         <span class="arrow left">‹</span> 
         <span class="arrow right">›</span> 
       </div> 
-      <div class="price">2000 EGP</div> 
+      <div class="price">${priceValue} EGP</div> 
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p> 
     `; 
 
@@ -306,7 +335,7 @@ function renderProducts(lang){
 
     btn.addEventListener("click", ()=>handleAddToCart(
       btn,
-      { id: productId, name: productName, price:2000, img:pair[0] },
+      { id: productId, name: productName, price: priceValue, img:pair[0] },
       lang
     )); 
 
