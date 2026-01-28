@@ -10,9 +10,49 @@ function esc(s = "") {
     .replaceAll("'", "&#039;");
 }
 
+// ✅ التصنيفات المسموح بيها (زي اللي عندك في الواجهة بالظبط)
+const UI_CATEGORIES = new Set([
+  "All",
+  "Moods",
+  "Space Packages",
+  "Outdoor Flooring",
+  "Vases",
+  "Lighting",
+  "Glass Candles",
+  "Cushions",
+  "Wooden Rack",
+  "Games",
+  "Glass and Small Vases",
+  "Wall Art",
+]);
+
+// ✅ تنظيف/توحيد الكاتيجوري اللي جاية من Firestore
+function normalizeCategory(cat) {
+  const c = String(cat ?? "").trim();
+
+  if (!c) return "All";
+
+  // توحيد بعض الاختلافات الشائعة لو بتحصل عندك
+  const map = {
+    "SpacePackages": "Space Packages",
+    "space packages": "Space Packages",
+    "OutdoorFlooring": "Outdoor Flooring",
+    "outdoor flooring": "Outdoor Flooring",
+    "glass candles": "Glass Candles",
+    "wooden rack": "Wooden Rack",
+    "glass and small vases": "Glass and Small Vases",
+    "wall art": "Wall Art",
+  };
+
+  const fixed = map[c] || c;
+
+  // لو الكاتيجوري مش موجودة في UI → خليها All عشان الفلتر ما يبوظش
+  return UI_CATEGORIES.has(fixed) ? fixed : "All";
+}
+
 function cardHTML(p) {
   const title = esc(p.title || "");
-  const cat = esc(p.category || "All");
+  const cat = esc(normalizeCategory(p.category));
   const img = esc(p.imageUrl || "");
   const href = esc(p.link || "#");
 
@@ -26,7 +66,10 @@ function cardHTML(p) {
 
 async function loadProducts() {
   const grid = document.getElementById("productsGrid");
-  if (!grid) return;
+  if (!grid) {
+    console.warn("productsGrid not found: add id='productsGrid' to <main class='content'>");
+    return;
+  }
 
   const searchResults = document.getElementById("searchResults");
 
@@ -34,11 +77,14 @@ async function loadProducts() {
     const snap = await getDocs(collection(db, "products"));
     const items = snap.docs.map(d => d.data());
 
-    // ✅ لو مفيش منتجات في Firestore، سيب كروت الـ HTML زي ما هي
+    // ✅ لو مفيش منتجات Firestore، سيب منتجات الـ HTML زي ما هي
     if (!items.length) {
       if (typeof window.applyCategory === "function") window.applyCategory("All");
       return;
     }
+
+    // ✅ امنع التكرار لو الصفحة اتعملها refresh
+    grid.querySelectorAll('a.card[data-source="firestore"]').forEach(el => el.remove());
 
     const html = items.map(cardHTML).join("");
 
@@ -54,7 +100,7 @@ async function loadProducts() {
       window.applyCategory("All");
     }
   } catch (e) {
-    console.error(e);
+    console.error("Firestore load error:", e);
   }
 }
 
