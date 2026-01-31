@@ -88,7 +88,7 @@ header{
 .slide{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover; /* ✅ perfect for phone/desktop */
   position:absolute;
   top:0;
   left:0;
@@ -282,8 +282,20 @@ function addToCart(btn, product, lang){
 
 /* ================= PRODUCTS ================= */
 const products = [
+/* ✅ NEW PRODUCT (FIRST ITEM) */
 {
-  img:["https://i.postimg.cc/QxgzwGPF/1768275587645-019bb56f-a3ed-7532-adc7-6795b5fcd917.png","https://i.postimg.cc/NM1mCW1N/M.png"],
+  title:"Hanging Planter",
+  img:["https://i.postimg.cc/BntMsx4t/1198ffae-3256-46a8-8e74-0e2b8bc689bd.jpg"],
+  price:600,
+  desc:{
+    en:"A stylish hanging planter. The plant box can be customized to match your taste.",
+    ar:"حامل زرع مُعلق شيك. ممكن نعمل بوكس الزرع Customized حسب ذوقك."
+  }
+},
+
+/* باقي المنتجات زي ما هي */
+{
+  img:["https://i.postimg.cc/QxgzwGPF/1768275587645-019bb56f-a3ed-7532-adc7-6795b5bcd917.png","https://i.postimg.cc/NM1mCW1N/M.png"],
   price:1200,
   desc:{en:"Premium solid wood rack crafted for durability and elegance. Price per piece.",ar:"رف خشبي صلب بتصميم فاخر وجودة عالية. السعر للقطعة الواحدة."}
 },
@@ -327,7 +339,8 @@ function renderProducts(lang){
     const item=document.createElement("div");
     item.className="item";
 
-    const isShelf = (idx === 4 || idx === 5);
+    const isShelf = (idx === 5 || idx === 6); 
+    // ✅ shifted by +1 because we added new product at the beginning
 
     const priceNoteHTML = isShelf
       ? `<div class="price-note">${lang==="ar" ? "السعر للرف الواحد" : "Price per shelf"}</div>`
@@ -355,7 +368,13 @@ function renderProducts(lang){
 
     const btn=item.querySelector(".add-to-cart");
 
-    const productName = lang==="ar" ? `رف خشبي ${idx+1}` : `Wooden Rack ${idx+1}`;
+    /* ✅ Name in cart:
+       - if product has title => use it (Hanging Planter)
+       - else keep old behavior exactly (Wooden Rack 1,2,...)
+    */
+    const productName = p.title
+      ? p.title
+      : (lang==="ar" ? `رف خشبي ${idx+1}` : `Wooden Rack ${idx+1}`);
 
     btn.onclick=()=>addToCart(btn,{
       name: productName,
@@ -371,13 +390,10 @@ function renderProducts(lang){
 
 /* ✅ Tap-to-show description on mobile + nice behavior */
 function initMobileDescToggle(){
-  // Touch devices: tap the card toggles description
   document.querySelectorAll(".item").forEach(item=>{
     item.addEventListener("click", (e)=>{
-      // prevent toggle when clicking buttons (add to cart / next arrow)
       if(e.target.closest(".btn") || e.target.closest(".next-btn")) return;
 
-      // close others (clean look)
       document.querySelectorAll(".item.show-desc").forEach(other=>{
         if(other !== item) other.classList.remove("show-desc");
       });
@@ -386,7 +402,6 @@ function initMobileDescToggle(){
     });
   });
 
-  // tap outside closes
   document.addEventListener("click", (e)=>{
     if(!e.target.closest(".item")){
       document.querySelectorAll(".item.show-desc").forEach(i=>i.classList.remove("show-desc"));
