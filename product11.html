@@ -325,6 +325,27 @@ header{
 </div>
 </div>
 
+<!-- ✅ RAMADAN PACKAGE (NEW) -->
+<div id="ramadan" class="collection-page">
+<button class="back-btn" type="button" onclick="goHome()">← Back</button>
+<h2>Ramadan Package</h2>
+<div class="inner-grid">
+<img src="https://i.postimg.cc/ZRvc3Z0s/c0812198-b898-4ce3-947f-b7a439b91f6c.jpg">
+<img src="https://i.postimg.cc/8chmKHR9/6ade71ad-cd93-4e61-be29-7480418970d5.jpg">
+<img src="https://i.postimg.cc/sgn9N1hH/ce690225-8a74-4c94-8234-51cada7851d8.jpg">
+<img src="https://i.postimg.cc/MK9QWNpX/c641973d-fa6b-404a-a7ba-a7fec43aaeea.png">
+</div>
+<div class="package-details">
+<h3>Package Includes:</h3>
+<p>• Ramadan garland (5 meters)</p>
+<p>• 2 Ramadan lanterns</p>
+<p>• Ramadan hanging decoration</p>
+<p>• 1 glass candle</p>
+<div class="price-tag">1500 EGP</div>
+<button class="add-btn" type="button" onclick="addToCart('ramadan','Ramadan Package',1500)">Add to Cart</button>
+</div>
+</div>
+
 <div class="toast" id="toast">Added to cart ✅</div>
 
 <script>
@@ -363,7 +384,10 @@ const packages=[
   {id:"entrance",img:"https://i.postimg.cc/X7rnSnfP/fbc1327e-771f-43f4-95c7-7f395391d0b5.jpg", name:"Entrance Area"},
   {id:"indoor",  img:"https://i.postimg.cc/N0ctHTWC/28476348-56e7-4628-ab97-6c7462b042d6.jpg", name:"Indoor Café"},
   {id:"outdoor", img:"https://i.postimg.cc/3RrHLhr0/499825b1-8067-419d-8125-c960d9f20f17.jpg", name:"Outdoor Café"},
-  {id:"room",    img:"https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg", name:"Room Package"}
+  {id:"room",    img:"https://i.postimg.cc/xdhP52mp/warm-vibes-cozy-bedroom-makeover.jpg", name:"Room Package"},
+
+  /* ✅ NEW: RAMADAN PACKAGE CARD */
+  {id:"ramadan", img:"https://i.postimg.cc/MpwFScXn/b16c3776-bdc3-4370-b21e-ffd88372c37e.jpg", name:"Ramadan Package"}
 ];
 
 const container = document.getElementById("packagesContainer");
