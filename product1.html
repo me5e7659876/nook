@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>Vases Collection - Nook Decor</title> 
 
+<!-- ✅ Fonts (SAME AS Glass Candles) -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 
@@ -18,39 +19,41 @@
 body{ 
   margin:0; 
   background:var(--beige); 
-  font-family:'Poppins',sans-serif;
+  font-family:'Poppins',sans-serif;  /* ✅ same */
   color:var(--burgundy); 
 } 
 
 header{ 
   background:var(--beige); 
-  padding:15px;
+  padding:15px;                 /* ✅ same */
   text-align:center; 
-  font-size:32px;
-  font-family:'Didot',serif;
-  font-weight:bold;
+  font-size:32px;               /* ✅ same */
+  font-family:'Didot',serif;    /* ✅ same */
+  font-weight:bold;             /* ✅ same */
   position:relative; 
   color:var(--burgundy); 
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--line); /* ✅ same header feel */
 } 
 
+/* ✅ Language switch — SAME STYLE AS Glass Candles */
 #langSelect{ 
   position:absolute; 
   right:20px; 
   top:50%; 
   transform:translateY(-50%); 
-  padding:8px 14px;
+  padding:8px 14px;           /* ✅ same */
   border:none; 
-  border-radius:10px;
+  border-radius:10px;         /* ✅ same */
   background:var(--burgundy); 
-  font-weight:bold;
+  font-weight:bold;           /* ✅ same */
   color:var(--beige); 
   cursor:pointer; 
-  font-family:'Poppins',sans-serif;
-  transition:0.25s ease;
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:0.25s ease;          /* ✅ same */
 } 
-#langSelect:hover{opacity:.9;}
+#langSelect:hover{opacity:.9;}     /* ✅ same */
 
+/* ===== layout stays the same ===== */
 .gallery{ 
   display:grid; 
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
@@ -90,23 +93,19 @@ header{
 .arrow.left{left:0;} 
 .arrow.right{right:0;} 
 
+/* ✅ Same typography sizing as Glass Candles */
 .price{ 
-  font-size:18px;
-  font-weight:bold;
+  font-size:18px;          /* ✅ same as candles .price */
+  font-weight:bold;        /* ✅ same */
   color:var(--burgundy); 
-  margin:8px 0 2px 0;
-}
-
-.size{
-  font-size:13px;
-  opacity:.8;
-  margin-bottom:8px;
-}
+  margin:8px 0;            /* ✅ closer to candles */
+  font-family:'Poppins',sans-serif; /* ✅ candles price uses Poppins */
+} 
 
 .desc{ 
-  line-height:1.5;
-  font-size:14px;
-  margin-bottom:8px;
+  line-height:1.5;         /* ✅ same */
+  font-size:14px;          /* ✅ same */
+  margin-bottom:8px;       /* ✅ same vibe */
   color:rgba(75,14,31,.85);
   opacity:0; 
   transform:translateY(10px); 
@@ -115,38 +114,39 @@ header{
 
 .item:hover .desc{opacity:1;transform:translateY(0);} 
 
+/* ✅ Add to Cart — SAME as Glass Candles */
 .btn{ 
   background:var(--burgundy); 
   border:none; 
   color:var(--beige); 
-  padding:8px 18px;
-  border-radius:10px;
-  font-weight:bold;
+  padding:8px 18px;        /* ✅ same */
+  border-radius:10px;      /* ✅ same */
+  font-weight:bold;        /* ✅ same */
   cursor:pointer; 
   margin-top:10px; 
-  width:100%;
-  font-family:'Poppins',sans-serif;
-  transition:0.3s;
+  width:100%;              /* ✅ same */
+  font-family:'Poppins',sans-serif; /* ✅ same */
+  transition:0.3s;         /* ✅ same */
 } 
-.btn:hover{opacity:.9;}
+.btn:hover{opacity:.9;}     /* ✅ same */
 
 .back-link{ 
   display:block; 
   text-align:center; 
-  margin-top:150px;
-  margin-bottom:40px;
+  margin-top:150px;        /* ✅ same */
+  margin-bottom:40px;      /* ✅ same */
   color:var(--burgundy); 
   text-decoration:none; 
-  font-size:20px;
-  font-weight:500;
+  font-size:20px;          /* ✅ same */
+  font-weight:500;         /* ✅ same */
 } 
 
 @media(max-width:768px){ 
   .gallery{grid-template-columns:1fr;} 
   .arrow{font-size:48px;} 
   .back-link{ 
-    margin-top:350px;
-    font-size:22px;
+    margin-top:350px;      /* ✅ same */
+    font-size:22px;        /* ✅ same */
   }
 } 
 </style> 
@@ -167,8 +167,8 @@ header{
 <a href="index.html" class="back-link" id="backLink">← Back to Home</a> 
 
 <script> 
-
-const CART_KEY = "nook_cart";
+/* =================== CART FUNCTIONS (NEW CART) =================== */
+const CART_KEY = "nook_cart"; // ✅ السلة الجديدة
 
 function safeParse(v){
   try { return JSON.parse(v); } catch(e){ return null; }
@@ -184,14 +184,17 @@ function saveCart(cart){
   localStorage.setItem("cartItems", JSON.stringify(cart)); 
 }
 
+/* ✅ add-to-cart على الجديد + بدون تكرار بسبب اللغة */
 function handleAddToCart(btn, product, lang){ 
   let cart = getCart(); 
 
+  // ✅ id ثابت لكل منتج (عشان الترجمة ما تعملش duplicate)
   const existing = cart.find(i => i.id === product.id);
   if(existing){ 
     existing.qty = (Number(existing.qty) || 1) + 1; 
+    // اختياري: تحديث الاسم حسب اللغة الحالية بدون تكرار
     existing.name = product.name;
-    existing.price = Number(product.price) || existing.price;
+    existing.price = Number(product.price) || existing.price; // ✅ يتأكد السعر مظبوط
   } else { 
     cart.push({
       id: product.id,
@@ -209,7 +212,7 @@ function handleAddToCart(btn, product, lang){
 
   btn.innerText = lang==="ar" ? "تمت الإضافة ✓" : "Added to Cart ✓"; 
   btn.style.background="#fff"; 
-  btn.style.color="#4b0e1f"; 
+  btn.style.color= getComputedStyle(document.documentElement).getPropertyValue('--burgundy').trim() || "#4b0e1f"; 
 
   setTimeout(()=>{ 
     btn.innerText = lang==="ar" ? "أضف إلى السلة" : "Add to Cart"; 
@@ -218,21 +221,32 @@ function handleAddToCart(btn, product, lang){
   },1200); 
 } 
 
-/* الأسعار الجديدة */
+/* ✅✅ PRICES (Tier) — بالترتيب اللي كتبتيه */
 const prices = [
-2500,1800,2000,1600,1600,1600,1600,1600,1600,
-1600,2000,1600,1600,1700,1700,1700,800,1700,
-1200,1800,800
+  3400,
+  3000,
+  3000,
+  2400,
+  2400,
+  2400,
+  2400,
+  2400,
+  2400,
+  3200,
+  3500,
+  2400,
+  2400,
+  3500,
+  3500,
+  3200,
+  1000,
+  3300,
+  2200,
+  3200,
+  2000
 ];
 
-/* المقاسات */
-const sizes = [
-"140 cm","170 cm","160 cm","160 cm","160 cm","160 cm","160 cm","160 cm","160 cm",
-"170 cm","160 cm","160 cm","160 cm","160 cm","160 cm","170 cm","90 cm","160 cm",
-"120 cm","170 cm","105 cm"
-];
-
-/* الصور كما هي بدون حذف */
+// =================== IMAGES =================== 
 const images = [ 
  "https://i.postimg.cc/qR1tqc6J/1768001841165-019ba51e-9a21-76e5-a357-a330bd615413.jpg", 
  "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png", 
@@ -254,7 +268,28 @@ const images = [
  "https://i.postimg.cc/fWBz4TYj/1767893400105-019b9ea8-290d-7783-ac51-06f3a6c766ec.jpg", 
  "https://i.postimg.cc/FHr2gjYf/1768000867783-019ba50f-6cba-7658-a655-163f9c5d477c.jpg", 
  "https://i.postimg.cc/fbFpNpBR/1768002842018-019ba52a-fe87-7717-9dc7-f26c0622e6c0.png", 
- "https://i.postimg.cc/FzbB0RmL/1768000183993-019ba505-0bae-71c8-b5bc-42c55331c3a3.png" 
+ "https://i.postimg.cc/FzbB0RmL/1768000183993-019ba505-0bae-71c8-b5bc-42c55331c3a3.png", 
+ "https://i.postimg.cc/Cxr6G9ys/1768004241476-019ba543-6d20-78e1-92a1-04efae7a22c8.jpg", 
+ "https://i.postimg.cc/W3svKQ3K/1768007104035-019ba56f-0237-7003-862d-d5ffd410326a.png", 
+ "https://i.postimg.cc/qqg9H0d8/1767893761189-019b9ead-73c8-75af-a38b-a28406d7143d.png", 
+ "https://i.postimg.cc/KYFwvt24/1768007243848-019ba571-19dc-7ded-8267-304451ca63c3.png", 
+ "https://i.postimg.cc/4dx0pZnJ/1767893576603-019b9eaa-cc35-7394-91e1-e09dc321bccd.jpg", 
+ "https://i.postimg.cc/rpvnbWwd/1767919109228-019ba030-0109-7843-ad3c-4eb5bc2b296b.jpg", 
+ "https://i.postimg.cc/Hnt6Vh4v/1768004716826-019ba54a-db78-751c-a63f-9b6e904ee9bd.png", 
+ "https://i.postimg.cc/fRPBtXXK/1767919226383-019ba031-dbb3-7a25-9dfb-c02f32b0c91d.jpg", 
+ "https://i.postimg.cc/7hqV8N8z/1768004550144-019ba548-07e7-7fb5-927b-7eda12793ab7.png", 
+ "https://i.postimg.cc/PfMyb0Y3/1767999614620-019ba4fc-4f5f-75d6-a970-3b5456bf6a7c.png", 
+ "https://i.postimg.cc/t4szjTfP/1768003389805-019ba535-5f98-7edf-9dd5-321644487752.png", 
+ "https://i.postimg.cc/FzPjt5VV/1767998602454-019ba4ed-8d40-7378-a898-97ec389631c2.png", 
+ "https://i.postimg.cc/TP8nvcng/1768002837828-019ba52d-e6d1-7207-a41b-f66801aa8c27.png", 
+ "https://i.postimg.cc/gjB6SyYp/1768002041826-019ba521-dcff-7719-b780-d51ec2012a7f.png", 
+ "https://i.postimg.cc/L6w1jVC1/1768006252344-019ba561-9982-7e2b-8d12-7fbe04c58782.png", 
+ "https://i.postimg.cc/Qxk2XmCM/1767882682662-019b9e04-a153-7852-8292-a05f7c31bf9b.png", 
+ "https://i.postimg.cc/9fD6dqPS/1767882894281-019b9e07-95d6-7478-bb0c-4e7e7186e2b4.png", 
+ "https://i.postimg.cc/BnbTwhSQ/1767919917373-019ba03b-dbad-7aff-9c70-f012e73e6b10.jpg", 
+ "https://i.postimg.cc/63JCqtdc/1768227242460-019bb28d-4f3f-75ce-9a36-dd0e62094dfe.jpg", 
+ "https://i.postimg.cc/6QLt594L/1768001229974-019ba515-2679-7e1a-ba64-201ca3547e44.jpg", 
+ "https://i.postimg.cc/DwG7HQ2B/1768003939954-019ba53e-b94d-70a3-9fd8-813a83954a38.png" 
 ]; 
 
 const pairedImages=[]; 
@@ -265,6 +300,7 @@ for(let i=0;i<images.length;i+=2){
 const langSelect = document.getElementById("langSelect"); 
 const backLink = document.getElementById("backLink"); 
 
+// =================== RENDER PRODUCTS =================== 
 function renderProducts(lang){ 
   const container = document.getElementById("productContainer"); 
   container.innerHTML=""; 
@@ -273,8 +309,8 @@ function renderProducts(lang){
     const div = document.createElement("div"); 
     div.className="item"; 
 
-    const priceValue = prices[idx];
-    const sizeValue = sizes[idx];
+    // ✅ السعر حسب الترتيب (لو زاد عدد المنتجات عن الأسعار يرجع لآخر سعر موجود)
+    const priceValue = (typeof prices[idx] !== "undefined") ? prices[idx] : prices[prices.length - 1];
 
     div.innerHTML=`
       <div class="img-slider"> 
@@ -283,8 +319,7 @@ function renderProducts(lang){
         <span class="arrow left">‹</span> 
         <span class="arrow right">›</span> 
       </div> 
-      <div class="price">${priceValue} EGP</div>
-      <div class="size">${sizeValue}</div>
+      <div class="price">${priceValue} EGP</div> 
       <p class="desc">${lang==="ar"?"مزهرية ديكور أنيقة تضيف لمسة فاخرة لأي مساحة داخلية.":"Elegant vase adding a luxurious touch to any interior space."}</p> 
     `; 
 
@@ -292,7 +327,10 @@ function renderProducts(lang){
     btn.className="btn"; 
     btn.innerText = lang==="ar"?"أضف إلى السلة":"Add to Cart"; 
 
+    // ✅ id ثابت لكل item حسب ترتيبه (مفيش تأثير على ترتيب الصور)
     const productId = `vase_${idx+1}`;
+
+    // ✅ الاسم بيتغير حسب اللغة بس id ثابت
     const productName = (lang === "ar") ? "مزهرية ديكور" : "Decorative Vase";
 
     btn.addEventListener("click", ()=>handleAddToCart(
@@ -308,6 +346,7 @@ function renderProducts(lang){
   initSliders(); 
 } 
 
+// =================== SLIDER =================== 
 function initSliders(){ 
   document.querySelectorAll(".img-slider").forEach(slider=>{ 
     const imgs = slider.querySelectorAll("img"); 
@@ -331,6 +370,7 @@ function initSliders(){
   }); 
 } 
 
+// =================== LANGUAGE SWITCH =================== 
 langSelect.addEventListener("change", ()=>{ 
   const lang = langSelect.value; 
   document.body.dir = lang==="ar"?"rtl":"ltr"; 
@@ -338,6 +378,7 @@ langSelect.addEventListener("change", ()=>{
   renderProducts(lang); 
 }); 
 
+// =================== INITIAL RENDER =================== 
 renderProducts("en"); 
 </script> 
 
