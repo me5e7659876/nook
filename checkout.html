@@ -489,7 +489,7 @@ function showConfirmModal({name, paymentMethod, orderId, totalText}) {
   };
 }
 
-/* Submit form handler */
+<script>
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
   e.preventDefault();
 
@@ -505,25 +505,47 @@ document.getElementById('checkoutForm').addEventListener('submit', function(e){
 
   if(!validatePayment(payment)) return;
 
-  // ✅ Generate simple order id
-  const orderId = "ND-" + Math.floor(100000 + Math.random() * 900000);
+  const cart = getCart();
+  if(cart.length === 0){
+    alert("Cart is empty!");
+    return;
+  }
 
-  // ✅ Get total text from UI
-  const totalText = (document.getElementById('totalAmount')?.textContent || 'Total: 0 EGP').replace('Total:', '').trim();
+  let orderText = "";
+  let total = 0;
 
-  // ✅ Show chic modal instead of alert
-  showConfirmModal({
-    name: fullName,
-    paymentMethod: payment,
-    orderId,
-    totalText
+  cart.forEach(item => {
+    const price = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+    const qty = Math.max(1, parseInt(item.qty) || 1);
+    const itemTotal = price * qty;
+    total += itemTotal;
+
+    orderText += • ${item.name} x${qty} = ${itemTotal} EGP%0A;
   });
 
-  return;
+  const paymentMethod = (payment === "cod") ? "Cash on Delivery" : "Instapay";
+
+  const message = 
+`🛒 New Order - Nook Decor%0A
+👤 Name: ${fullName}%0A
+📞 Phone: ${phone}%0A
+📍 Address: ${address}%0A
+💳 Payment: ${paymentMethod}%0A
+--------------------%0A
+${orderText}
+--------------------%0A
+💰 Total: ${total} EGP`;
+
+  const whatsappNumber = "2010XXXXXXX"; // 🔥 حط رقمك هنا
+
+  const url = https://wa.me/${whatsappNumber}?text=${message};
+
+  window.open(url, '_blank');
+
+  // optional: clear cart
+  localStorage.removeItem(CART_KEY);
+  localStorage.removeItem("cartItems");
 });
-
-renderCheckout();
 </script>
-
 </body>
 </html>
